@@ -1,6 +1,6 @@
 **FASCICOLO SANITARIO ELETTRONICO 2.0**
 
-**INTERFACCE REST Gateway **
+**INTERFACCE REST Gateway**
 
 
 <table>
