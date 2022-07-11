@@ -1,48 +1,6 @@
-<!-- Copy and paste the converted output. -->
-
-<!-----
-
-You have some errors, warnings, or alerts. If you are using reckless mode, turn it off to see inline alerts.
-* ERRORs: 0
-* WARNINGs: 0
-* ALERTS: 1
-
-Conversion time: 4.807 seconds.
-
-
-Using this Markdown file:
-
-1. Paste this output into your source file.
-2. See the notes and action items below regarding this conversion run.
-3. Check the rendered output (headings, lists, code blocks, tables) for proper
-   formatting and use a linkchecker before you publish this page.
-
-Conversion notes:
-
-* Docs to Markdown version 1.0β33
-* Mon Jul 11 2022 02:18:35 GMT-0700 (PDT)
-* Source doc: API_GTW_FSE2_DRAFT_Specifiche_swagger_1.5
-* Tables are currently converted to HTML tables.
-* This document has images: check for >>>>>  gd2md-html alert:  inline image link in generated source and store images to your server. NOTE: Images in exported zip file from Google Docs may not appear in  the same order as they do in your doc. Please check the images!
-
-
-WARNING:
-You have 5 H1 headings. You may want to use the "H1 -> H2" option to demote all headings by one level.
-
------>
-
-
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 1; ALERTS: 1.</p>
-<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
-
-<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
-
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
-
-
 **FASCICOLO SANITARIO ELETTRONICO 2.0**
 
-**INTERFACCE REST Gateway **
+**INTERFACCE REST Gateway**
 
 
 <table>
@@ -371,12 +329,10 @@ Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee G
 
 
 
-* 
-ID_AUTH_CHANNEL_02 [^4]
+* ID_AUTH_CHANNEL_02[^4]
 
 
-* 
-ID_AUTH_REST_01[^5]
+* ID_AUTH_REST_01[^5]
 Di seguito un diagramma che descrive un esempio di interazione per i due servizi descritti di seguito:
 
 
@@ -516,12 +472,10 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 
 
-* 
-**file **che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
+* **file** che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
 
 
-* 
-**requestBody **che dovrà contenere l’oggetto json con i parameter di input
+* **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
 ### 3.1.1. Messaggio di richiesta, esempio “Validation con Attachment”
 
@@ -874,10 +828,10 @@ _Tabella 10: Campi Response valorizzati in caso di warning_
 
 ### 3.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201 
 
-      { \
-         "traceID": "4e1cd92c6a406c4e", \
-         "spanID": "4e1cd92c6a406c4e", \
-         "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+      { 
+         "traceID": "4e1cd92c6a406c4e",
+         "spanID": "4e1cd92c6a406c4e",
+         "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId"
       }
 
 
@@ -1574,14 +1528,12 @@ I campi dei messaggi di richiesta comunicazione metadati riportati nella tabella
 
 
 
-* 
-I campi “asserzione attributo”
+* I campi “asserzione attributo”
 Campi aventi una natura tale da richiedere una certificazione da parte di Sistemi preposti; proprio per rispettare tale vincolo, i campi in questione dovranno essere inviati al Gateway attraverso il JWT fornito nell’header della chiamata.
 
 
 
-* 
-I campi “specifici per messaggio”
+* I campi “specifici per messaggio”
 Campi che possono essere forniti al Gateway direttamente tramite la request body.
 
 Nella parte restante di questo paragrafo saranno descritti puntualmente i campi recuperati dal JWT (che coincidono con i campi “asserzione attributo”) e quelli recuperati dalla request body (che nascono dall’unione dei campi “specifici per messaggio” che non possono essere dedotti dal contesto di invocazione, con dei campi aggiuntivi utili a rendere l’azione del Gateway efficace ed efficiente).
@@ -2224,23 +2176,23 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 
 **Esempio di token decodificato, sezione body**
 
-      { \
-      "sub": "RSSMRA22A01A399Z", \
-      "subject_role": "AAS", \
-      "purpose_of_use": "TREATMENT", \
-      "iss": "190201123456XX", \
-      "locality": "201123456", \
-      "subject_organization": "Regione Sicilia", \
-      "subject_organization_id": "190", \
-      "aud": "[https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1"](https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1%22), \
-      "patient_consent": true, \
-      "action_id": "CREATE", \
-      "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", \
-      "exp": 1656541352925, \
-      "iat": 1656454952925, \
-      "jti": "1234", \
-      "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", \
-      "person_id": "RSSMRA22A01A399Z" \
+      {
+      "sub": "RSSMRA22A01A399Z",
+      "subject_role": "AAS",
+      "purpose_of_use": "TREATMENT",
+      "iss": "190201123456XX",
+      "locality": "201123456",
+      "subject_organization": "Regione Sicilia",
+      "subject_organization_id": "190",
+      "aud": "[https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1"](https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1%22),
+      "patient_consent": true,
+      "action_id": "CREATE",
+      "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1",
+      "exp": 1656541352925,
+      "iat": 1656454952925,
+      "jti": "1234",
+      "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466",
+      "person_id": "RSSMRA22A01A399Z"
       }
 
 
