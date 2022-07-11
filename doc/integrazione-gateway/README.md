@@ -7,7 +7,7 @@ You have some errors, warnings, or alerts. If you are using reckless mode, turn 
 * WARNINGs: 0
 * ALERTS: 1
 
-Conversion time: 8.022 seconds.
+Conversion time: 4.807 seconds.
 
 
 Using this Markdown file:
@@ -20,15 +20,19 @@ Using this Markdown file:
 Conversion notes:
 
 * Docs to Markdown version 1.0β33
-* Thu Jul 07 2022 07:08:06 GMT-0700 (PDT)
-* Source doc: Copia di API_GTW_FSE2_DRAFT_Specifiche_swagger_1.5_rev
+* Mon Jul 11 2022 02:18:35 GMT-0700 (PDT)
+* Source doc: API_GTW_FSE2_DRAFT_Specifiche_swagger_1.5
 * Tables are currently converted to HTML tables.
 * This document has images: check for >>>>>  gd2md-html alert:  inline image link in generated source and store images to your server. NOTE: Images in exported zip file from Google Docs may not appear in  the same order as they do in your doc. Please check the images!
+
+
+WARNING:
+You have 5 H1 headings. You may want to use the "H1 -> H2" option to demote all headings by one level.
 
 ----->
 
 
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 0; ALERTS: 1.</p>
+<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 1; ALERTS: 1.</p>
 <ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
 
 <p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
@@ -74,20 +78,17 @@ Conversion notes:
 **INDICE**
 
 
-[TOC]
 
 
+# 1. Introduzione
 
 
+## 1.1. Riferimenti
 
-
-1. **Introduzione**
-    1. **Riferimenti**
 
 <table>
   <tr>
-   <td>
-<strong>RIF.</strong>
+   <td><strong>RIF.</strong>
    </td>
    <td><strong>DOCUMENTO</strong>
    </td>
@@ -124,13 +125,12 @@ Conversion notes:
 _Tabella 1: Riferimenti Esterni_
 
 
+## 1.2. Acronimi e Definizioni
 
-    2. **Acronimi e Definizioni**
 
 <table>
   <tr>
-   <td>
-<strong>ACRONIMO</strong>
+   <td><strong>ACRONIMO</strong>
    </td>
    <td><strong>DEFINIZIONE</strong>
    </td>
@@ -302,34 +302,30 @@ Tutti: stesura a seguito rivisitazione
 _Tabella 3: Registro Modifiche_
 
 
+# 2. Contesto di Riferimento
 
-2. **Contesto di Riferimento**
+La nuova architettura del FSE prevede la presenza di un componente, denominato Gateway, adibito all’acquisizione, alla validazione, e alla traduzione di dati e documenti clinici secondo i formati definiti dalle Linee Guida FSE. Tali dati e documenti sono prodotti dai Sistemi in uso presso le Strutture Sanitarie (Sistemi Produttori). 
 
-        La nuova architettura del FSE prevede la presenza di un componente, denominato Gateway, adibito all’acquisizione, alla validazione, e alla traduzione di dati e documenti clinici secondo i formati definiti dalle Linee Guida FSE. Tali dati e documenti sono prodotti dai Sistemi in uso presso le Strutture Sanitarie (Sistemi Produttori). 
+In questo documento verranno indicate le modalità per usufruire dei servizi esposti dal gateway: il      documento sarà redatto in modo incrementale e di volta in volta ulteriori API saranno integrate e illustrate. 
 
-
-        In questo documento verranno indicate le modalità per usufruire dei servizi esposti dal gateway: il      documento sarà redatto in modo incrementale e di volta in volta ulteriori API saranno integrate e illustrate. 
-
-
-        In questa prima fase, saranno trattati i servizi principali del Gateway ossia i due servizi che consentono rispettivamente di invocare le funzionalità di Validazione Documento CDA2 e di Pubblicazione Documento CDA2, descritte di seguito negli scenari applicativi di alto livello.
+In questa prima fase, saranno trattati i servizi principali del Gateway ossia i due servizi che consentono rispettivamente di invocare le funzionalità di Validazione Documento CDA2 e di Pubblicazione Documento CDA2, descritte di seguito negli scenari applicativi di alto livello.
 
 
 <table>
   <tr>
-   <td>
-<strong>Endpoint URL</strong>
+   <td><strong>Endpoint URL</strong>
    </td>
    <td><strong>Funzionalità</strong>
    </td>
   </tr>
   <tr>
-   <td>/v<major>/validate-creation
+   <td>/v&lt;major>/validate-creation
    </td>
    <td>VALIDAZIONE DOCUMENTO CDA2 
    </td>
   </tr>
   <tr>
-   <td>/v<major>/publish-creation
+   <td>/v&lt;major>/publish-creation
    </td>
    <td>PUBBLICAZIONE DOCUMENTO CDA2
    </td>
@@ -339,71 +335,57 @@ _Tabella 3: Registro Modifiche_
 
 _Tabella 4: Endpoint/Funzionalità_
 
+La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2 può non essere seguita dalla Pubblicazione CDA2. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
 
-        La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2 può non essere seguita dalla Pubblicazione CDA2. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
+I due servizi sono correlati da un identificativo di transazione referenziato nel documento come “workflowInstanceId” secondo standard IHE (Data Type  CXi)
 
+**Validazione Documento CDA2**
 
-        I due servizi sono correlati da un identificativo di transazione referenziato nel documento come “workflowInstanceId” secondo standard IHE (Data Type  CXi)
+Nello scenario di questa funzionalità il Sistema Produttore invia un documento           secondo il formato standard HL7 CDA2, ed iniettato      in un PDF. 
 
+Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici e semantici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 
-        **Validazione Documento CDA2**
+In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. L’hash del documento CDA2 verrà salvato in cache con chiave “workflowInstanceId”. In risposta verrà ritornato l’identificativo “workflowInstanceId”.
 
+**Pubblicazione Documento CDA2**
 
-        Nello scenario di questa funzionalità il Sistema Produttore invia un documento           secondo il formato standard HL7 CDA2, ed iniettato      in un PDF. 
+Nello scenario di questa funzionalità il Repository Documentale locale invia il documento      secondo il formato standard HL7 CDA2 ed iniettato      in PDF firmato      digitalmente in modalità PADES, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere a quello      precedentemente validato     secondo il servizio di Validazione Documenti CDA2.
 
+La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF. Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
 
-        Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici e semantici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
+Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
 
-
-        In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. L’hash del documento CDA2 verrà salvato in cache con chiave “workflowInstanceId”. In risposta verrà ritornato l’identificativo “workflowInstanceId”.
-
-
-        **Pubblicazione Documento CDA2**
-
-
-        Nello scenario di questa funzionalità il Repository Documentale locale invia il documento      secondo il formato standard HL7 CDA2 ed iniettato      in PDF firmato      digitalmente in modalità PADES, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere a quello      precedentemente validato     secondo il servizio di Validazione Documenti CDA2.
+Il servizio è sincrono e fornisce un acknowledgment di presa in carico.
 
 
-        La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF. Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
+## 2.1. Pattern di Interazione
+
+Le API sono esposte secondo i pattern definiti nelle Linee Guida Modello di Interoperabilità[^1] definite da Agid.
+
+Come scenario di interazione per i servizi esposti dal Gateway viene utilizzato il pattern [BLOCK_REST] Blocking REST[^2]<sup>.</sup>
 
 
-        Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
+## 2.2. Processo di Autenticazione[^3]
 
-
-        Il servizio è sincrono e fornisce un acknowledgment di presa in carico.
-
-
-
-    1. **Pattern di Interazione**
-
-        Le API sono esposte secondo i pattern definiti nelle Linee Guida Modello di Interoperabilità[^1] definite da Agid.
-
-
-        Come scenario di interazione per i servizi esposti dal Gateway viene utilizzato il pattern [BLOCK_REST] Blocking REST[^2]<sup>.</sup>
+Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee Guida:
 
 
 
-    2. **Processo di Autenticazione**[^3]
-
-        Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee Guida:
-
+* 
+ID_AUTH_CHANNEL_02 [^4]
 
 
-* ID_AUTH_CHANNEL_02 [^4]
-
-
-* ID_AUTH_REST_01[^5]
-
-        Di seguito un diagramma che descrive un esempio di interazione per i due servizi descritti di seguito:
+* 
+ID_AUTH_REST_01[^5]
+Di seguito un diagramma che descrive un esempio di interazione per i due servizi descritti di seguito:
 
 
 
-![sequence_diagram](img/sequence.png "sequence diagram")
+![sequence diagram](img/sequence.png)
 
 
 
-
-1. **Servizio di Validazione**
+# 3. Servizio di Validazione
 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 5 “Drilldown Parametri di Input”.
 
@@ -414,13 +396,12 @@ L’Endpoint del caso d’uso di Validazione Documento CDA2 si compone come segu
 Lo scopo di questa API è validare da un punto di vista sintattico e semantico i dati forniti dal Sistema Produttore.
 
 
+## 3.1. Request
 
-    3. **Request**
 
 <table>
   <tr>
-   <td>
-METHOD
+   <td>METHOD
    </td>
    <td>POST
    </td>
@@ -535,32 +516,98 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 
 
-* **file **che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
-* **requestBody **che dovrà contenere l’oggetto json con i parameter di input
-        1. **_Messaggio di richiesta, esempio “Validation con Attachment”_**
+* 
+**file **che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
+
+
+* 
+**requestBody **che dovrà contenere l’oggetto json con i parameter di input
+
+### 3.1.1. Messaggio di richiesta, esempio “Validation con Attachment”
 
 Messaggio di richiesta con activity “VALIDATION” (validazione ai fini della successiva pubblicazione), pdf con CDA innestato in modalità ATTACHMENT e tipo documento CDA
 
+      curl -X 'POST' \	
+
+      'http://&lt;HOST>:&lt;PORT>/v1/validate-creation' \
+
+      -H "Authorization: Bearer TOKEN"\
+
+      -H 'accept: application/json' \
+
+      -H 'Content-Type: multipart/form-data' \
+
+      -F 'requestBody={
+
+      "healthDataFormat": "CDA",
+
+      "mode": "ATTACHMENT",
+
+      "activity": "VALIDATION",
+
+      }' \
+
+      -F 'file=@CDA_OK.pdf;type=application/pdf'
 
 
-        2. **_Messaggio di richiesta, esempio “Verifica con Attachment”_**
+### 3.1.2. Messaggio di richiesta, esempio “Verifica con Attachment”
 
 Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con CDA innestato in modalità ATTACHMENT ma senza specificarlo nella request, tipo documento CDA
 
+      curl -X 'POST' \	
+
+      'http://&lt;HOST>:&lt;PORT>/v1/validate-creation' \
+
+      -H "Authorization: Bearer TOKEN"\
+
+      -H 'accept: application/json' \
+
+      -H 'Content-Type: multipart/form-data' \
+
+      -F 'requestBody={
+
+      "healthDataFormat": "CDA",
+
+      "activity": "VERIFICA",
+
+      }' \
+
+      -F 'file=@CDA_OK.pdf;type=application/pdf'
 
 
-        3. **_Messaggio di richiesta, esempio “Verifica con resource”_**
+### 3.1.3. Messaggio di richiesta, esempio “Verifica con resource”
 
 Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con CDA innestato in modalità  RESOURCE, tipo documento CDA
 
+      curl -X 'POST' \	
+
+      'http://&lt;HOST>:&lt;PORT>/v1/validate-creation' \
+
+      -H "Authorization: Bearer TOKEN"\
+
+      -H 'accept: application/json' \
+
+      -H 'Content-Type: multipart/form-data' \
+
+      -F 'requestBody={
+
+      "healthDataFormat": "CDA",
+
+      "mode": "RESOURCE",
+
+      "activity": "VERIFICA",
+
+      }' \
+
+      -F 'file=@CDA_OK.pdf;type=application/pdf'
 
 
-    4. **Response**
+## 3.2. Response
+
 
 <table>
   <tr>
-   <td>
-TIPO IN CASO DI SUCCESSO
+   <td>TIPO IN CASO DI SUCCESSO
    </td>
    <td colspan="2" >application/json
    </td>
@@ -638,7 +685,7 @@ TIPO IN CASO DI SUCCESSO
 
 _Tabella 7: Response Servizio di Validazione_
 
-* il code 200 sarà restituito in caso di Success e a seguito dell’invocazione del servizio di validazione con l’indicazione del parameter “activity” impostato a VERIFICA (vedere spiegazioni successive). * il code 201 invece sarà restituito in caso di Success e a seguito dell’invocazione del servizio di validazione con l’indicazione del parameter “activity” impostato a VALIDATION.
+* il code 200 sarà restituito in caso di Success e a seguito dell’invocazione del servizio di validazione con l’indicazione del parameter “activity” impostato a VERIFICA (vedere spieigazioni successive). * il code 201 invece sarà restituito in caso di Success e a seguito dell’invocazione del servizio di validazione con l’indicazione del parameter “activity” impostato a VALIDATION.
 
 **Campi sempre valorizzati**
 
@@ -665,7 +712,7 @@ _Tabella 7: Response Servizio di Validazione_
    </td>
    <td>String
    </td>
-   <td>Identificativo univoco assegnato alla  singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
+   <td>Identificativo univoco assegnato allad un singoloa operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
 traceId e spanId coincidono nella prima operazione.
    </td>
   </tr>
@@ -825,11 +872,54 @@ _Tabella 17: Campi Response valorizzati in caso di errore govWay_
 _Tabella 10: Campi Response valorizzati in caso di warning_
 
 
+### 3.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201 
 
-        4. **_Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201 _**
-        5. **_Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400_**
-        1. **_Messaggio di risposta, esempio “Verifica con Attachment” con esito OK 200 con warning_**
-1. **Servizio di Pubblicazione Creazione**
+      { \
+         "traceID": "4e1cd92c6a406c4e", \
+         "spanID": "4e1cd92c6a406c4e", \
+         "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+      }
+
+
+### 3.2.2. Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400
+
+      {
+
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.847c307946d33d8f14876ebb7204f2018a9cbc230da855ac27ed5413a5e2f051.bcf54e7cb9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+
+      "traceID": "7fee3f3e2fc75b30",
+
+      "spanID": "7fee3f3e2fc75b30",
+
+      "type": "/msg/mining-cda",
+
+      "title": "Errore in fase di estrazione del CDA.",
+
+      "detail": "Errore generico in fase di estrazione del CDA dal file.",
+
+      "status": 400,
+
+      "instance": "/msg/mining-cda"
+
+      }
+
+
+### 3.2.3. Messaggio di risposta, esempio “Verifica con Attachment” con esito OK 200 con warning
+
+      {
+
+      "traceID": "96c6883856f9f887",
+
+      "spanID": "96c6883856f9f887",
+
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.847c307946d33d8f14876ebb7204f2018a9cbc230da855ac27ed5413a5e2f051.bcf54e7cb9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+
+      "warning": "Attenzione, non è stata selezionata la modalità di estrazione del CDA"
+
+      }
+
+
+# 4. Servizio di Pubblicazione Creazione
 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 5 “Drilldown Parametri di Input”.
 
@@ -840,13 +930,12 @@ L’Endpoint del caso d’uso di Pubblicazione Documento CDA2 si compone come se
 Lo scopo di questa API è indicizzare un nuovo documento clinico sul FSE regionale, tradurre i dati clinici nel formato HL7 FHIR ed inviarli al Data Repository Centrale.
 
 
+## 4.1. Request
 
-    1. **Request**
 
 <table>
   <tr>
-   <td>
-METHOD
+   <td>METHOD
    </td>
    <td>POST
    </td>
@@ -961,7 +1050,7 @@ _Tabella 11: Method, URL, Type_
   <tr>
    <td> attiCliniciRegoleAccesso
    </td>
-   <td>List<EventCodeEnum>
+   <td>List&lt;EventCodeEnum>
    </td>
    <td>false
    </td>
@@ -1079,32 +1168,131 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 
 
-* **file **che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
-* **requestBody **che dovrà contenere l’oggetto json con i parameter di input
-        2. **_Messaggio di Richiesta, esempio “Pubblicazione con Attachment”_**
+* 
+**file **che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
+
+
+* 
+**requestBody **che dovrà contenere l’oggetto json con i parameter di input
+
+### 4.1.1. Messaggio di Richiesta, esempio “Pubblicazione con Attachment”
 
 Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
 
 Il workflowInstanceId è corretto e presente nel gateway.
 
+      curl -X 'POST' \
+
+      'http://&lt;HOST>:&lt;PORT>/v1/publish-creation/' \
+
+      -H 'accept: application/json' \
+
+      -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+
+      -H 'Content-Type: multipart/form-data' \
+
+      -F 'requestBody={
+
+      "workflowInstanceId": " 2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.e70b9b0acd^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+
+      "healthDataFormat": "CDA",
+
+      "mode": "ATTACHMENT",
+
+      "tipologiaStruttura": "Ospedale",
+
+      "attiCliniciRegoleAccesso": [
+
+         "P99"
+
+      ],
+
+      "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
+
+      "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
+
+      "tipoDocumentoLivAlto": "REF",
+
+      "assettoOrganizzativo": "AD_PSC001",
+
+      "dataInizioPrestazione": "20141020110012",
+
+      "dataFinePrestazione": "20141020110012",
+
+      "tipoAttivitaClinica": "CON",
+
+      "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
+
+      "priorita": false
+
+      }' \
+
+      -F 'file=@CDA_OK.pdf;type=application/pdf'
 
 
-        3. **_Messaggio di Richiesta, esempio “Pubblicazione con Resource”_**
+### 4.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”
 
 Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
 
 In questo caso, il workflowInstanceId non esiste nel gateway.
 
+      curl -X 'POST' \
+
+      'http://&lt;HOST>:&lt;PORT>/v1/publish-creation/' \
+
+      -H 'accept: application/json' \
+
+      -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+
+      -H 'Content-Type: multipart/form-data' \
+
+      -F 'requestBody={
+
+      "workflowInstanceId": " 2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ew.e70b9b0acr^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+
+      "healthDataFormat": "CDA",
+
+      "mode": "RESOURCE",
+
+      "tipologiaStruttura": "Ospedale",
+
+      "attiCliniciRegoleAccesso": [
+
+         "P99"
+
+      ],
+
+      "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290701",
+
+      "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
+
+      "tipoDocumentoLivAlto": "REF",
+
+      "assettoOrganizzativo": "AD_PSC001",
+
+      "dataInizioPrestazione": "20141020110012",
+
+      "dataFinePrestazione": "20141020110012",
+
+      "tipoAttivitaClinica": "CON",
+
+      "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
+
+      "priorita": true
+
+      }' \
+
+      -F 'file=@CDA_OK.pdf;type=application/pdf'
 
 
 
 
-    2. **Response**
+## 4.2. Response
+
 
 <table>
   <tr>
-   <td>
-TIPO IN CASO DI SUCCESSO
+   <td>TIPO IN CASO DI SUCCESSO
    </td>
    <td colspan="2" >application/json
    </td>
@@ -1345,65 +1533,70 @@ Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali 
 _Tabella 17: Campi Response valorizzati in caso di errore govWay_
 
 
+### 4.2.1. Messaggio di Risposta, esempio “Pubblicazione con Attachment”  Success 200
 
-        4. **_Messaggio di Risposta, esempio “Pubblicazione con Attachment”  Success 200_**
-        1. **_Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400_**
-
-{
-
-  "traceID": "61d8123fb20e2afc",
-
-  "spanID": "61d8123fb20e2afc",
-
-  "type": "/msg/cda-element",
-
-  "title": "Errore in fase di recupero dell'esito della verifica.",
-
-  "detail": "Il CDA non risulta validato",
-
-  "status": 400,
-
-  "instance": "/msg/cda-element"
-
-}
+      { \
+         "traceID": "c2e1818fbf7aea7f", \
+         "spanID": "c2e1818fbf7aea7f" \
+      }
 
 
+### 4.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400
 
-1. **Drilldown Parametri di Input**
+      {
 
-        Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.2” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
+      "traceID": "61d8123fb20e2afc",
 
+      "spanID": "61d8123fb20e2afc",
 
-        INI rappresenta un mediatore per le comunicazioni tra i diversi sistemi regionali che appartengono allo stesso Affinity Domain, in grado di garantire ad un sistema di FSE di una regione diversa da quella di assistenza l’accesso ai documenti.
+      "type": "/msg/cda-element",
 
+      "title": "Errore in fase di recupero dell'esito della verifica.",
 
-        Per individuare i parametri di input dei servizi di pubblicazione relativi alla creazione è necessario quindi fare riferimento al dataset del servizio base di comunicazione metadati presentato al paragrafo 3.3 del documento citato in precedenza.
+      "detail": "Il CDA non risulta validato",
 
+      "status": 400,
 
-        I campi dei messaggi di richiesta comunicazione metadati riportati nella tabella 9 sono suddivisi per tipologia, in particolare possiamo individuare:
+      "instance": "/msg/cda-element"
 
-* I campi “asserzione attributo”
-
-            Campi aventi una natura tale da richiedere una certificazione da parte di Sistemi preposti; proprio per rispettare tale vincolo, i campi in questione dovranno essere inviati al Gateway attraverso il JWT fornito nell’header della chiamata.
-
-* I campi “specifici per messaggio”
-
-            Campi che possono essere forniti al Gateway direttamente tramite la request body.
+      }
 
 
-        Nella parte restante di questo paragrafo saranno descritti puntualmente i campi recuperati dal JWT (che coincidono con i campi “asserzione attributo”) e quelli recuperati dalla request body (che nascono dall’unione dei campi “specifici per messaggio” che non possono essere dedotti dal contesto di invocazione, con dei campi aggiuntivi utili a rendere l’azione del Gateway efficace ed efficiente).
+# 5. Drilldown Parametri di Input
 
-    1. **Campi Contenuti nel JWT**
+Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.2” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
+
+INI rappresenta un mediatore per le comunicazioni tra i diversi sistemi regionali che appartengono allo stesso Affinity Domain, in grado di garantire ad un sistema di FSE di una regione diversa da quella di assistenza l’accesso ai documenti.
+
+Per individuare i parametri di input dei servizi di pubblicazione relativi alla creazione è necessario quindi fare riferimento al dataset del servizio base di comunicazione metadati presentato al paragrafo 3.3 del documento citato in precedenza.
+
+I campi dei messaggi di richiesta comunicazione metadati riportati nella tabella 9 sono suddivisi per tipologia, in particolare possiamo individuare:
+
+
+
+* 
+I campi “asserzione attributo”
+Campi aventi una natura tale da richiedere una certificazione da parte di Sistemi preposti; proprio per rispettare tale vincolo, i campi in questione dovranno essere inviati al Gateway attraverso il JWT fornito nell’header della chiamata.
+
+
+
+* 
+I campi “specifici per messaggio”
+Campi che possono essere forniti al Gateway direttamente tramite la request body.
+
+Nella parte restante di questo paragrafo saranno descritti puntualmente i campi recuperati dal JWT (che coincidono con i campi “asserzione attributo”) e quelli recuperati dalla request body (che nascono dall’unione dei campi “specifici per messaggio” che non possono essere dedotti dal contesto di invocazione, con dei campi aggiuntivi utili a rendere l’azione del Gateway efficace ed efficiente).
+
+
+## 5.1. Campi Contenuti nel JWT
+
 
 <table>
   <tr>
-   <td colspan="2" >
-        <strong>HEADER: ALGORITHM & TOKEN TYPE</strong>
+   <td colspan="2" ><strong>HEADER: ALGORITHM & TOKEN TYPE</strong>
    </td>
   </tr>
   <tr>
-   <td colspan="2" >
-<strong>ALG</strong>
+   <td colspan="2" ><strong>ALG</strong>
    </td>
   </tr>
   <tr>
@@ -2015,54 +2208,52 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 
 **Esempio di token decodificato, sezione header**
 
-{
+      {
 
-  "alg": "RS256",
+      "alg": "RS256",
 
-  "typ": "JWT",
+      "typ": "JWT",
 
-  "x5c": [
+      "x5c": [
 
-    "MIIDXjCCAkagAwIBAgIBAjANBgkqhkiG9w ... 779BM4SOI="
+         "MIIDXjCCAkagAwIBAgIBAjANBgkqhkiG9w ... 779BM4SOI="
 
-  ]
+      ]
 
-}
+      }
 
 **Esempio di token decodificato, sezione body**
 
-{ \
-  "sub": "RSSMRA22A01A399Z", \
-  "subject_role": "AAS", \
-  "purpose_of_use": "TREATMENT", \
-  "iss": "190201123456XX", \
-  "locality": "201123456", \
-  "subject_organization": "Regione Sicilia", \
-  "subject_organization_id": "190", \
-  "aud": "[https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1"](https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1%22), \
-  "patient_consent": true, \
-  "action_id": "CREATE", \
-  "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", \
-  "exp": 1656541352925, \
-  "iat": 1656454952925, \
-  "jti": "1234", \
-  "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", \
-  "person_id": "RSSMRA22A01A399Z" \
-}
+      { \
+      "sub": "RSSMRA22A01A399Z", \
+      "subject_role": "AAS", \
+      "purpose_of_use": "TREATMENT", \
+      "iss": "190201123456XX", \
+      "locality": "201123456", \
+      "subject_organization": "Regione Sicilia", \
+      "subject_organization_id": "190", \
+      "aud": "[https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1"](https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1%22), \
+      "patient_consent": true, \
+      "action_id": "CREATE", \
+      "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", \
+      "exp": 1656541352925, \
+      "iat": 1656454952925, \
+      "jti": "1234", \
+      "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", \
+      "person_id": "RSSMRA22A01A399Z" \
+      }
 
 
 
 
+## 5.2. Campi Contenuti nella Request Body
 
-    2. **Campi Contenuti nella Request Body**
-
-        Per i campi contenuti nella request body si evidenzia nel campo “provenienza” se questi sono campi introdotti per rendere possibile la comunicazione con INI o se questi sono stati appositamente introdotti per gestire in maniera efficace ed efficiente il gateway.
+Per i campi contenuti nella request body si evidenzia nel campo “provenienza” se questi sono campi introdotti per rendere possibile la comunicazione con INI o se questi sono stati appositamente introdotti per gestire in maniera efficace ed efficiente il gateway.
 
 
 <table>
   <tr>
-   <td colspan="2" >
-<strong>WORKFLOW INSTANCE ID</strong>
+   <td colspan="2" ><strong>WORKFLOW INSTANCE ID</strong>
    </td>
   </tr>
   <tr>
@@ -2671,8 +2862,7 @@ _Tabella 18: Campi contenuti nella Request Body_
 
 
 
-
-    3. **Tabelle di Riferimento**
+## 5.3. Tabelle di Riferimento
 
 Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
 
@@ -2681,8 +2871,7 @@ Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle
 Eventuali variazioni normative e/o ad Affinity Domain implicano l’aggiornamento delle tabelle referenziate.
 
 
-
-        2. **_Attività Clinica Enum_**
+### 5.3.1. Attività Clinica Enum
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -2756,8 +2945,7 @@ _Tabella 19: contentTypeCode_
 
 
 
-
-        3. **_Healthcare Facility Type Code_**
+### 5.3.2. Healthcare Facility Type Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -2821,8 +3009,7 @@ _Tabella 20: healthcareFacilityTypeCode_
 
 
 
-
-        4. **_Tipo Documento Alto Livello_**
+### 5.3.3. Tipo Documento Alto Livello
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -2948,8 +3135,7 @@ Tabella 2.3-1. Value set per il metadato XDSDocumentEntry.classCode
 _Tabella 21: classCode_
 
 
-
-        5. **_Event Code Enum_**
+### 5.3.4. Event Code Enum
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -3035,8 +3221,7 @@ Tabella 2.7-1. Value set per il metadato XDSDocumentEntry.eventCodeList
 _Tabella 22: eventCodeList_
 
 
-
-        6. **_Ruolo_**
+### 5.3.5. Ruolo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -3150,8 +3335,7 @@ _Tabella 23: role_
 
 
 
-
-        7. **_Contesto Operativo_**
+### 5.3.6. Contesto Operativo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -3181,8 +3365,7 @@ Tabella 6.4-2. Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:p
 _Tabella 24: purposeofuse_
 
 
-
-        8. **_Organizzazione_**
+### 5.3.7. Organizzazione
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -3396,8 +3579,7 @@ _Tabella 25: organization-id_
 
 
 
-
-        9. **_Practice Setting Code_**
+### 5.3.8. Practice Setting Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -3927,13 +4109,12 @@ Tabella 2.13-1. Value set per il metadato XDSDocumentEntry.practiceSettingCode
 _Tabella 26: practiceSettingCode_
 
 
+### 5.3.9. Activity Enum
 
-        10. **_Activity Enum_**
 
 <table>
   <tr>
-   <td>
-<strong>CODICE</strong>
+   <td><strong>CODICE</strong>
    </td>
    <td><strong>VALORE</strong>
    </td>
@@ -3962,13 +4143,12 @@ _Tabella 26: practiceSettingCode_
 _Tabella 27: ActivityEnum_
 
 
+### 5.3.10. Injection Mode Enum
 
-        11. **_Injection Mode Enum_**
 
 <table>
   <tr>
-   <td>
-<strong>CODICE</strong>
+   <td><strong>CODICE</strong>
    </td>
    <td><strong>VALORE</strong>
    </td>
@@ -4030,8 +4210,7 @@ Health Data Format Enum
 _Tabella 29: HealthDataFormatEnum_
 
 
-
-        12. **_Tipo Attività_**
+### 5.3.11. Tipo Attività
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
 
@@ -4061,20 +4240,16 @@ _Tabella 30: action-id_
 ## Notes
 
 [^1]:
-
       https://docs.italia.it/media/pdf/lg-modellointeroperabilita-docs/vintra-work/lg-modellointeroperabilita-docs.pdf
 
 [^2]:
      Par 2.5.1 delle Linee Guida Modello di Interoperabilità 
 
 [^3]:
-
      Par. 4.3.1 del documento rif [2]
 
 [^4]:
-
      Par. 3.4.2 delle Linee Guida Modello di Interoperabilità
 
 [^5]:
-
      Par. 3.5.3 delle Linee Guida Modello di Interoperabilità
