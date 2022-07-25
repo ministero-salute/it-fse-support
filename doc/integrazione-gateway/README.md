@@ -12,22 +12,6 @@
    <td>ver 1.5
    </td>
   </tr>
-  <tr>
-   <td>Classificazione
-   </td>
-   <td>:
-   </td>
-   <td>Diffusione limitata
-   </td>
-  </tr>
-  <tr>
-   <td>Distribuito a
-   </td>
-   <td>:
-   </td>
-   <td>
-   </td>
-  </tr>
 </table>
 
 
