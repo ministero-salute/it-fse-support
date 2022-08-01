@@ -11,7 +11,7 @@ info:
   x-api-id: '1'
   x-summary: Handles and enroutes all the CDA validations and/or publications
 servers:
-  - url: http://localhost:8010
+  - url: http://localhost:8010/v1
     description: Generated server url
     x-sandbox: true
 security:
@@ -20,7 +20,7 @@ tags:
   - name: Servizio validazione documenti
   - name: Servizio pubblicazione documenti
 paths:
-  /v1/documents/{identificativoDocUpdate}:
+  /documents/{identificativoDocUpdate}:
     put:
       tags:
         - Servizio pubblicazione documenti
@@ -45,7 +45,7 @@ paths:
               type: object
               properties:
                 requestBody:
-                  $ref: '#/components/schemas/PublicationCreationReqDTO'
+                  $ref: '#/components/schemas/PublicationUpdateReqDTO'
                 file:
                   maxLength: 1000
                   type: string
@@ -241,7 +241,7 @@ paths:
       security:
         - bearerAuth: []
         - FSE-JWT-Signature: []
-  /v1/documents/{identificativoDocUpdate}/metadata:
+  /documents/{identificativoDocUpdate}/metadata:
     put:
       tags:
         - Servizio pubblicazione documenti
@@ -350,7 +350,7 @@ paths:
       security:
         - bearerAuth: []
         - FSE-JWT-Signature: []
-  /v1/documents:
+  /documents:
     post:
       tags:
         - Servizio pubblicazione documenti
@@ -461,7 +461,7 @@ paths:
       security:
         - bearerAuth: []
         - FSE-JWT-Signature: []
-  /v1/documents/validation:
+  /documents/validation:
     post:
       tags:
         - Servizio validazione documenti
@@ -586,6 +586,428 @@ paths:
         - FSE-JWT-Signature: []
 components:
   schemas:
+    PublicationUpdateReqDTO:
+      required:
+        - assettoOrganizzativo
+        - identificativoDoc
+        - identificativoRep
+        - identificativoSottomissione
+        - tipoAttivitaClinica
+        - tipoDocumentoLivAlto
+        - tipologiaStruttura
+      type: object
+      properties:
+        tipologiaStruttura:
+          type: string
+          description: Tipologia struttura che ha prodotto il documento
+          enum:
+            - Ospedale
+            - Prevenzione
+            - Territorio
+            - SistemaTS
+            - Cittadino
+        attiCliniciRegoleAccesso:
+          maxItems: 100
+          minItems: 0
+          type: array
+          description: Regole di accesso
+          items:
+            type: string
+            description: Regole di accesso
+        tipoDocumentoLivAlto:
+          type: string
+          description: Tipo documento alto livello
+          enum:
+            - WOR
+            - REF
+            - LDO
+            - RIC
+            - SUM
+            - TAC
+            - PRS
+            - PRE
+            - ESE
+            - PDC
+            - VAC
+            - CER
+            - VRB
+        assettoOrganizzativo:
+          type: string
+          description: Assetto organizzativo che ha portato alla creazione del documento
+          enum:
+            - AD_PSC001
+            - AD_PSC002
+            - AD_PSC003
+            - AD_PSC005
+            - AD_PSC006
+            - AD_PSC007
+            - AD_PSC008
+            - AD_PSC009
+            - AD_PSC010
+            - AD_PSC011
+            - AD_PSC012
+            - AD_PSC013
+            - AD_PSC014
+            - AD_PSC015
+            - AD_PSC018
+            - AD_PSC019
+            - AD_PSC020
+            - AD_PSC021
+            - AD_PSC024
+            - AD_PSC025
+            - AD_PSC026
+            - AD_PSC027
+            - AD_PSC028
+            - AD_PSC029
+            - AD_PSC030
+            - AD_PSC031
+            - AD_PSC032
+            - AD_PSC033
+            - AD_PSC034
+            - AD_PSC035
+            - AD_PSC036
+            - AD_PSC037
+            - AD_PSC038
+            - AD_PSC039
+            - AD_PSC040
+            - AD_PSC042
+            - AD_PSC043
+            - AD_PSC046
+            - AD_PSC047
+            - AD_PSC048
+            - AD_PSC049
+            - AD_PSC050
+            - AD_PSC051
+            - AD_PSC052
+            - AD_PSC054
+            - AD_PSC055
+            - AD_PSC056
+            - AD_PSC057
+            - AD_PSC058
+            - AD_PSC060
+            - AD_PSC061
+            - AD_PSC062
+            - AD_PSC064
+            - AD_PSC065
+            - AD_PSC066
+            - AD_PSC068
+            - AD_PSC069
+            - AD_PSC070
+            - AD_PSC071
+            - AD_PSC073
+            - AD_PSC074
+            - AD_PSC075
+            - AD_PSC076
+            - AD_PSC077
+            - AD_PSC078
+            - AD_PSC082
+            - AD_PSC097
+            - AD_PSC098
+            - AD_PSC100
+            - AD_PSC101
+            - AD_PSC102
+            - AD_PSC103
+            - AD_PSC104
+            - AD_PSC106
+            - AD_PSC107
+            - AD_PSC109
+            - AD_PSC121
+            - AD_PSC122
+            - AD_PSC126
+            - AD_PSC127
+            - AD_PSC129
+            - AD_PSC130
+            - AD_PSC131
+            - AD_PSC199
+            - AD_PSC999
+        dataInizioPrestazione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Data inizio prestazione
+        dataFinePrestazione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Data fine prestazione
+        conservazioneANorma:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Conservazione a norma
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attività clinica
+          enum:
+            - PHR
+            - CON
+            - DIS
+            - ERP
+            - Sistema_TS
+        identificativoSottomissione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Identificativo sottomissione
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+            - CDA
+            - DICOM_SR
+        mode:
+          type: string
+          description: Modalità di iniezione del CDA
+          enum:
+            - ATTACHMENT
+            - RESOURCE
+        identificativoDoc:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Identificativo documento
+        identificativoRep:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Identificativo repository
+      additionalProperties: false
+    ErrorResponseDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        type:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: URI da utilizzare come identificativo del problema che si è verificato
+        title:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          description: Descrizione sintetica della tipologia d’errore
+        detail:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          description: Dettaglio della tipologia d’errore
+        status:
+          maximum: 599
+          minimum: 100
+          type: integer
+          description: Stato http
+          format: int32
+        instance:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: URI che identifica la specifica occorrenza del problema
+      additionalProperties: false
+    PublicationResDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+        warning:
+          maxLength: 10000
+          minLength: 0
+          type: string
+          description: Dettaglio del warning
+        workflowInstanceId:
+          maxLength: 256
+          minLength: 0
+          type: string
+          description: Identificativo del workflow instance id
+      additionalProperties: false
+    PublicationMetadataReqDTO:
+      required:
+        - assettoOrganizzativo
+        - identificativoSottomissione
+        - tipoAttivitaClinica
+        - tipoDocumentoLivAlto
+        - tipologiaStruttura
+      type: object
+      properties:
+        tipologiaStruttura:
+          type: string
+          description: Tipologia struttura che ha prodotto il documento
+          enum:
+            - Ospedale
+            - Prevenzione
+            - Territorio
+            - SistemaTS
+            - Cittadino
+        attiCliniciRegoleAccesso:
+          maxItems: 100
+          minItems: 0
+          type: array
+          description: Regole di accesso
+          items:
+            type: string
+            description: Regole di accesso
+        tipoDocumentoLivAlto:
+          type: string
+          description: Tipo documento alto livello
+          enum:
+            - WOR
+            - REF
+            - LDO
+            - RIC
+            - SUM
+            - TAC
+            - PRS
+            - PRE
+            - ESE
+            - PDC
+            - VAC
+            - CER
+            - VRB
+        assettoOrganizzativo:
+          type: string
+          description: Assetto organizzativo che ha portato alla creazione del documento
+          enum:
+            - AD_PSC001
+            - AD_PSC002
+            - AD_PSC003
+            - AD_PSC005
+            - AD_PSC006
+            - AD_PSC007
+            - AD_PSC008
+            - AD_PSC009
+            - AD_PSC010
+            - AD_PSC011
+            - AD_PSC012
+            - AD_PSC013
+            - AD_PSC014
+            - AD_PSC015
+            - AD_PSC018
+            - AD_PSC019
+            - AD_PSC020
+            - AD_PSC021
+            - AD_PSC024
+            - AD_PSC025
+            - AD_PSC026
+            - AD_PSC027
+            - AD_PSC028
+            - AD_PSC029
+            - AD_PSC030
+            - AD_PSC031
+            - AD_PSC032
+            - AD_PSC033
+            - AD_PSC034
+            - AD_PSC035
+            - AD_PSC036
+            - AD_PSC037
+            - AD_PSC038
+            - AD_PSC039
+            - AD_PSC040
+            - AD_PSC042
+            - AD_PSC043
+            - AD_PSC046
+            - AD_PSC047
+            - AD_PSC048
+            - AD_PSC049
+            - AD_PSC050
+            - AD_PSC051
+            - AD_PSC052
+            - AD_PSC054
+            - AD_PSC055
+            - AD_PSC056
+            - AD_PSC057
+            - AD_PSC058
+            - AD_PSC060
+            - AD_PSC061
+            - AD_PSC062
+            - AD_PSC064
+            - AD_PSC065
+            - AD_PSC066
+            - AD_PSC068
+            - AD_PSC069
+            - AD_PSC070
+            - AD_PSC071
+            - AD_PSC073
+            - AD_PSC074
+            - AD_PSC075
+            - AD_PSC076
+            - AD_PSC077
+            - AD_PSC078
+            - AD_PSC082
+            - AD_PSC097
+            - AD_PSC098
+            - AD_PSC100
+            - AD_PSC101
+            - AD_PSC102
+            - AD_PSC103
+            - AD_PSC104
+            - AD_PSC106
+            - AD_PSC107
+            - AD_PSC109
+            - AD_PSC121
+            - AD_PSC122
+            - AD_PSC126
+            - AD_PSC127
+            - AD_PSC129
+            - AD_PSC130
+            - AD_PSC131
+            - AD_PSC199
+            - AD_PSC999
+        dataInizioPrestazione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Data inizio prestazione
+        dataFinePrestazione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Data fine prestazione
+        conservazioneANorma:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Conservazione a norma
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attività clinica
+          enum:
+            - PHR
+            - CON
+            - DIS
+            - ERP
+            - Sistema_TS
+        identificativoSottomissione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Identificativo sottomissione
+      additionalProperties: false
+    ResponseDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+      additionalProperties: false
     PublicationCreationReqDTO:
       required:
         - assettoOrganizzativo
@@ -614,15 +1036,6 @@ components:
           items:
             type: string
             description: Regole di accesso
-            enum:
-              - P99
-              - J07BX03
-              - LP418019_8
-              - LP417541_2
-              - _96118_5
-              - _94503_0
-              - pay
-              - PUBLICPOL
         tipoDocumentoLivAlto:
           type: string
           description: Tipo documento alto livello
@@ -792,251 +1205,6 @@ components:
         priorita:
           type: boolean
           description: Priorita
-      additionalProperties: false
-    ErrorResponseDTO:
-      type: object
-      properties:
-        traceID:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Indentificativo univoco della richiesta dell'utente
-        spanID:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
-        type:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: URI da utilizzare come identificativo del problema che si è verificato
-        title:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: Descrizione sintetica della tipologia d’errore
-        detail:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: Dettaglio della tipologia d’errore
-        status:
-          maximum: 599
-          minimum: 100
-          type: integer
-          description: Stato http
-          format: int32
-        instance:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: URI che identifica la specifica occorrenza del problema
-      additionalProperties: false
-    PublicationResDTO:
-      type: object
-      properties:
-        traceID:
-          maxLength: 100
-          minLength: 0
-          type: string
-        spanID:
-          maxLength: 100
-          minLength: 0
-          type: string
-        warning:
-          maxLength: 10000
-          minLength: 0
-          type: string
-          description: Dettaglio del warning
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo del workflow instance id
-      additionalProperties: false
-    PublicationMetadataReqDTO:
-      required:
-        - assettoOrganizzativo
-        - identificativoSottomissione
-        - tipoAttivitaClinica
-        - tipoDocumentoLivAlto
-        - tipologiaStruttura
-      type: object
-      properties:
-        tipologiaStruttura:
-          type: string
-          description: Tipologia struttura che ha prodotto il documento
-          enum:
-            - Ospedale
-            - Prevenzione
-            - Territorio
-            - SistemaTS
-            - Cittadino
-        attiCliniciRegoleAccesso:
-          maxItems: 100
-          minItems: 0
-          type: array
-          description: Regole di accesso
-          items:
-            type: string
-            description: Regole di accesso
-            enum:
-              - P99
-              - J07BX03
-              - LP418019_8
-              - LP417541_2
-              - _96118_5
-              - _94503_0
-              - pay
-              - PUBLICPOL
-        tipoDocumentoLivAlto:
-          type: string
-          description: Tipo documento alto livello
-          enum:
-            - WOR
-            - REF
-            - LDO
-            - RIC
-            - SUM
-            - TAC
-            - PRS
-            - PRE
-            - ESE
-            - PDC
-            - VAC
-            - CER
-            - VRB
-        assettoOrganizzativo:
-          type: string
-          description: Assetto organizzativo che ha portato alla creazione del documento
-          enum:
-            - AD_PSC001
-            - AD_PSC002
-            - AD_PSC003
-            - AD_PSC005
-            - AD_PSC006
-            - AD_PSC007
-            - AD_PSC008
-            - AD_PSC009
-            - AD_PSC010
-            - AD_PSC011
-            - AD_PSC012
-            - AD_PSC013
-            - AD_PSC014
-            - AD_PSC015
-            - AD_PSC018
-            - AD_PSC019
-            - AD_PSC020
-            - AD_PSC021
-            - AD_PSC024
-            - AD_PSC025
-            - AD_PSC026
-            - AD_PSC027
-            - AD_PSC028
-            - AD_PSC029
-            - AD_PSC030
-            - AD_PSC031
-            - AD_PSC032
-            - AD_PSC033
-            - AD_PSC034
-            - AD_PSC035
-            - AD_PSC036
-            - AD_PSC037
-            - AD_PSC038
-            - AD_PSC039
-            - AD_PSC040
-            - AD_PSC042
-            - AD_PSC043
-            - AD_PSC046
-            - AD_PSC047
-            - AD_PSC048
-            - AD_PSC049
-            - AD_PSC050
-            - AD_PSC051
-            - AD_PSC052
-            - AD_PSC054
-            - AD_PSC055
-            - AD_PSC056
-            - AD_PSC057
-            - AD_PSC058
-            - AD_PSC060
-            - AD_PSC061
-            - AD_PSC062
-            - AD_PSC064
-            - AD_PSC065
-            - AD_PSC066
-            - AD_PSC068
-            - AD_PSC069
-            - AD_PSC070
-            - AD_PSC071
-            - AD_PSC073
-            - AD_PSC074
-            - AD_PSC075
-            - AD_PSC076
-            - AD_PSC077
-            - AD_PSC078
-            - AD_PSC082
-            - AD_PSC097
-            - AD_PSC098
-            - AD_PSC100
-            - AD_PSC101
-            - AD_PSC102
-            - AD_PSC103
-            - AD_PSC104
-            - AD_PSC106
-            - AD_PSC107
-            - AD_PSC109
-            - AD_PSC121
-            - AD_PSC122
-            - AD_PSC126
-            - AD_PSC127
-            - AD_PSC129
-            - AD_PSC130
-            - AD_PSC131
-            - AD_PSC199
-            - AD_PSC999
-        dataInizioPrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data inizio prestazione
-        dataFinePrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data fine prestazione
-        conservazioneANorma:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Conservazione a norma
-        tipoAttivitaClinica:
-          type: string
-          description: Tipo attività clinica
-          enum:
-            - PHR
-            - CON
-            - DIS
-            - ERP
-            - Sistema_TS
-        identificativoSottomissione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo sottomissione
-      additionalProperties: false
-    ResponseDTO:
-      type: object
-      properties:
-        traceID:
-          maxLength: 100
-          minLength: 0
-          type: string
-        spanID:
-          maxLength: 100
-          minLength: 0
-          type: string
       additionalProperties: false
     ValidationCDAReqDTO:
       required:
