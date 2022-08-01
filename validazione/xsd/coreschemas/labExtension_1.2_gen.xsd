@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:oid:1.3.6.1.4.1.19376.1.3.2" xmlns:cdaGen="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:oid:1.3.6.1.4.1.19376.1.3.2" elementFormDefault="qualified">
+	<xs:include schemaLocation="datatypes.xsd"/>
+	<xs:include schemaLocation="datatypes-base.xsd"/>
+	<xs:include schemaLocation="./voc.xsd"/>
+	<xs:import namespace="urn:hl7-org:v3" schemaLocation="POCD_MT000040UV02.xsd"/>
+	<xs:annotation>
+		<xs:documentation>estensione per referto di laboratorio</xs:documentation>
+	</xs:annotation>
+
+	
+	<xs:element name="precondition">
+		<xs:annotation>
+			<xs:documentation>L’elemento entry/act/entryRelationShip/observation/referenceRange/observationRange/precondition se presente DEVE contenere l’elemento precondition/criterion che DEVE contenere:</xs:documentation>
+			<xs:documentation>active, nel caso in cui lo stato di produzione dei risultati sia parziale;</xs:documentation>
+			<xs:documentation>completed, nel caso in cui lo stato di produzione dei risultati sia completo.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="typeId" type="cdaGen:POCD_MT000040UV02.InfrastructureRoot.typeId" minOccurs="0"/>
+				<xs:element name="criterion" type="labCriterion"/>
+			</xs:sequence>
+			<xs:attribute name="nullFlavor" type="cdaGen:NullFlavor" use="optional"/>
+			<xs:attribute name="typeCode" type="cdaGen:ActRelationshipType" use="optional" fixed="PRCN"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="labCriterion">
+		<xs:annotation>
+			<xs:documentation>L’elemento entry/act/entryRelationShip/observation/referenceRange/observationRange/precondition se presente DEVE contenere l’elemento precondition/criterion che DEVE contenere:</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="CE" minOccurs="0"/>
+			<xs:element name="value" type="cdaGen:ANY" minOccurs="0">
+	
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="nullFlavor" type="cdaGen:NullFlavor" use="optional"/>
+		<xs:attribute name="classCode" type="cdaGen:ActClassObservation" use="optional" default="COND"/>
+		<xs:attribute name="moodCode" type="cdaGen:ActMood" use="optional" fixed="EVN"/>
+	</xs:complexType>
+	
+
+</xs:schema>

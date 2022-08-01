@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Edited by C. Beebe using Notepad++ on 2015 09 09 -->
+<xs:schema targetNamespace="urn:hl7-org:v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" elementFormDefault="qualified">
+	<xs:include schemaLocation="./coreschemas/POCD_MT000040UV02.xsd"/>
+	<xs:element name="ClinicalDocument" type="POCD_MT000040UV02.ClinicalDocument"/>
+</xs:schema>
