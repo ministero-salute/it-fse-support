@@ -2,11 +2,6 @@ openapi: 3.0.1
 info:
   title: Gateway Dispatcher
   description: Handles and enroutes all the CDA validations and/or publications
-  termsOfService: www.terms.com
-  contact:
-    name: Mario Rossi
-    url: www.example.com
-    email: example@mail.com
   version: 1.0.0
   x-api-id: '1'
   x-summary: Handles and enroutes all the CDA validations and/or publications
