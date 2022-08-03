@@ -79,7 +79,7 @@ Il verticale regionale di telemedicina realizza almeno i servizi di telemedicina
 
 _Modello logico di interazione a regime_
 
-L’infrastruttura **nazionale di telemedicina **è uno strumento di programmazione e governo, anche clinico, e assolve tra gli altri:
+L’infrastruttura **nazionale di telemedicina** è uno strumento di programmazione e governo, anche clinico, e assolve tra gli altri:
 
 
 
