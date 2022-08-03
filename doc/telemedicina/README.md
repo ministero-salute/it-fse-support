@@ -111,7 +111,7 @@ _esempio di alimentazione evento alert telemonitoraggio_
 
 I reperti (es. diagnostica per immagini) rimangono memorizzati presso i sistemi di conservazione aziendale, vengono messi a disposizione meccanismi di recupero mediante link associati ai dati correlati sia dai verticali di telemedicina che dai servizi di EDS e sono quindi a disposizione anche della PNT.
 
-Nella figura seguente è mostrato un esempio di alimentazione nelle due piattaforme di un referto di televisita.  Il referto prodotto viene sottoposto al gateway per una validazione sintattica e semantica, in seguito alla quale viene memorizzato nel repository documentale e quindi inviato al gateway per la conversione in FHIR, che ne permette la memorizzazione e gestione su EDS, e per l’indicizzazione sui Registry. L’EDS provvede infine a comunicare alla Infrastruttura Nazionale di Telemedicina l’evento.
+Nella figura seguente è mostrato un esempio di alimentazione nelle due piattaforme di un referto di televisita.  Il referto prodotto viene sottoposto al gateway per una validazione sintattica e semantica, in seguito alla quale viene memorizzato nel repository documentale e quindi inviato al gateway per la conversione in FHIR, che ne permette la memorizzazione e gestione su EDS, e per l’indicizzazione sul Registry regionale e, in assenza di Regione di assistenza, sul Registry Nazionale. L’EDS provvede infine a comunicare alla Infrastruttura Nazionale di Telemedicina l’evento.
 
 Il processo di validazione effettuato dal gateway avverrà applicando controlli progressivamente stringenti, tenendo conto del grado di maturità e adeguamento delle soluzioni di mercato.
 
