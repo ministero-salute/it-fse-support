@@ -1,0 +1,787 @@
+<!--HEADER RSA-->
+
+<ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd" xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc">
+	<realmCode code="IT"/>
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040UV02"/>
+	<templateId root="2.16.840.1.113883.2.9.10.1.9.1" extension="1.1" assigningAuthorityName="HL7 Italia"/>
+	<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20220509102426.Q123E456" assigningAuthorityName="Regione Lazio"/>
+	<code code="11488-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName=" Nota di consulto">
+		<!--translation code="[CODICE_LOCALE]" codeSystem="[OID_SISTEMA_CODIFICA]" codeSystemName="[DESCRIZIONE_SISTEMA_CODIFICA]" displayName="[DESCRIZIONE_CODICE]"/-->
+	</code>	
+	<title> Referto di Specialistica Ambulatoriale </title>
+	<sdtc:statusCode code="active"/>
+	<effectiveTime value="20220509103000+0100"/>
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
+	<languageCode code="it-IT"/>
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
+	<versionNumber value="2"/>
+	<recordTarget>
+		<patientRole>
+			<id root="2.16.840.1.113883.2.9.2.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
+			<addr use="H"> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00187</postalCode> 
+				<streetAddressLine>Via Prova 12</streetAddressLine> 
+			</addr> 
+			<telecom use="HP" value="mailto:giuseppe.verdi@example.com"/>
+			<telecom use="MC" value="tel:33224456"/>
+			<patient>
+				<name>
+					<family>Rossi</family>
+					<given>Guido</given>
+				</name>
+				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="MASCHIO"/> 
+				<birthTime value="19600619"/>
+				<birthplace> 
+					<place>
+						<addr>
+							<country>100</country>
+							<state>120</state>
+							<county>RM</county> 
+							<city>Roma</city> 
+							<censusTract>058091</censusTract>
+						</addr>					
+					</place> 
+				</birthplace> 
+			</patient>
+		</patientRole>	
+	</recordTarget>
+	<author>
+		<time value="20220509093000+0100"/>
+		<assignedAuthor classCode="ASSIGNED"> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<addr>
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00184</postalCode> 
+				<streetAddressLine>Via Prova 7</streetAddressLine>
+			</addr>
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="MC" value="tel:3340000000"/>
+			<assignedPerson> 
+				<name> 
+					<family>Prova</family> 
+					<given>Prova</given> 
+					<prefix>Dr</prefix>
+				</name> 
+			</assignedPerson>
+		</assignedAuthor> 
+	</author>	
+	<dataEnterer typeCode="ENT">
+		<time value="20220509094000+0100"/>
+		<assignedEntity>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<addr>
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract>
+				<streetAddressLine>via Prova 7</streetAddressLine>
+			</addr>
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="MC" value="tel:3300000000"/> 
+			<assignedPerson>
+				<name>
+					<family>Prova</family> 
+					<given>Prova</given> 
+				</name>
+			</assignedPerson>
+		</assignedEntity>
+	</dataEnterer>	
+	<custodian>
+		<assignedCustodian>
+			<representedCustodianOrganization>
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+				<name>XXX</name>
+				<telecom use="WP" value="tel:0600000000"/>
+				<addr>
+					<country>100</country>
+					<state>120</state>
+					<county>RM</county> 
+					<city>Roma</city> 
+					<censusTract>058091</censusTract>
+					<streetAddressLine>Via Prova 7</streetAddressLine>
+				</addr>
+			</representedCustodianOrganization>
+		</assignedCustodian>
+	</custodian>	
+	<legalAuthenticator>
+		<time value="20220509095000+0100"/>
+		<signatureCode code="S"/>
+			<assignedEntity>
+				<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+				<addr>
+					<country>100</country>
+					<state>120</state>
+					<county>RM</county> 
+					<city>Roma</city> 
+					<censusTract>058091</censusTract>
+					<streetAddressLine>Via Tommaso 14</streetAddressLine>
+				</addr>
+				<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+				<telecom use="MC" value="tel:3300000000"/> 
+				<assignedPerson>
+					<name>
+						<family>prova</family>
+						<given>prova</given>
+						<prefix>Dott.ssa</prefix>
+					</name>
+				</assignedPerson>
+			</assignedEntity>
+	</legalAuthenticator>	
+	<participant typeCode="REF">
+		<time value="20220509093000+0100"/>
+		<associatedEntity classCode="PROV">
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<code code="3211" codeSystem="2.16.840.1.113883.2.9.6.2.7" codeSystemName="ISCO-08" displayName="Tecnici di imaging medicale e apparecchiature terapeutiche"/>
+			<addr>
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00164</postalCode> 
+				<streetAddressLine>via Prova 3</streetAddressLine>
+			</addr>
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<associatedPerson>
+				<name>
+					<family>Prova</family>
+					<given>Prova</given>
+					<prefix>Dott.</prefix>
+				</name>
+			</associatedPerson>
+		</associatedEntity>
+	</participant>			
+	<inFulfillmentOf> 
+		<order classCode="ACT" moodCode="RQO"> 
+			<id root="2.16.840.1.113883.2.9.4.3.9" extension="[NRE]" assigningAuthorityName="MEF"/> 
+			<priorityCode code="R" codeSystem="2.16.840.1.113883.5.7" codeSystemName="HL7 ActPriority" displayName="Normale"/>
+		</order> 
+	</inFulfillmentOf> 	
+	<documentationOf> 
+		<serviceEvent> 
+			<code code="PROG" codeSystem="2.16.840.1.113883.2.9.5.1.4" codeSystemName="ActCode" displayName="Accesso Programmato"/>
+			<effectiveTime value="20220509073000+0100"/> 
+		</serviceEvent> 
+	</documentationOf> 	
+	<relatedDocument typeCode="RPLC"> 
+		<parentDocument> 
+			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20210420112426.F123E45G" assigningAuthorityName="HL7 Italia"/> 
+			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
+			<versionNumber value="1"/>
+		</parentDocument> 
+	</relatedDocument>
+	<componentOf>
+		<encompassingEncounter>
+			<id root="2.16.840.1.113883.2.9.2.120110.4.6" extension="2011008159" assigningAuthorityName="MEF"/>
+			<effectiveTime>
+				<low value="20220509072426+0100"/>
+				<high value="20220509123026+0100"/>
+			</effectiveTime>
+			<location>
+				<healthCareFacility>
+					<id root="2.16.840.1.113883.2.9.4.1.6" extension="120103.XX.49" assigningAuthorityName="Ministero della Salute"/>
+					<location>
+						<name>Terapia Intensiva</name>
+						<addr>
+							<country>100</country>
+							<state>120</state>
+							<county>RM</county> 
+							<city>Roma</city> 
+							<censusTract>058091</censusTract> 
+							<postalCode>00164</postalCode> 
+							<streetAddressLine>via Prova 3</streetAddressLine>					
+						</addr>
+					</location>
+					<serviceProviderOrganization>
+						<id root="2.16.840.1.113883.2.9.4.1.2" extension="120103.XX" assigningAuthorityName="Ministero della Salute"/>
+						<asOrganizationPartOf>
+							<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+						</asOrganizationPartOf>
+					</serviceProviderOrganization>
+				</healthCareFacility>
+			</location>		
+		</encompassingEncounter>
+	</componentOf>
+
+		
+		
+		
+	<!--BODY RSA-->
+
+	<component>
+		<structuredBody moodCode="EVN" classCode="DOCBODY">
+			<component typeCode="COMP">
+				<section ID="QUESITO_DIAGNOSTICO">
+					<code code="29299-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo della visita"/>
+					<title> Quesito diagnostico </title>
+					<text> 
+						<paragraph> 
+							Ipoglicemia
+						</paragraph> 
+					</text> 
+					<entry> 
+						<observation classCode="OBS" moodCode="EVN"> 
+							<code code="29298-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo della visita"/>
+							<value xsi:type="CD" code="2512" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="IPOGLICEMIA NON SPECIFICATA">
+								<!--translation code="XXX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="[DESC_DIAGNOSI]"/-->
+							</value>
+						</observation> 
+					</entry>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="STORIA_CLINICA">
+					<code code="11329-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia Generale"/>
+					<title> Storia Clinica </title>
+					<text>
+						<table>
+							<thead>
+								<tr>
+									<th>Anamnesi Patologica remota</th>
+									<th>Anamnesi Patologica prossima</th>
+									<th>Anamnesi Patologica Fisiologica</th>
+									<th>Anamnesi Familiare</th>
+									<th>Allergie</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>[DESC_ANAMNESI_PR]</td>
+									<td>[DESC_ANAMNESI_PP]</td>
+									<td>[DESC_ANAMNESI_FISIO]</td>
+									<td>[DESC_ANAMNESI_FAM]</td>
+									<td>[ALLERGIE]</td>
+								</tr>
+							</tbody>
+						</table>
+					</text>
+					<!--Anamnesi Patologica Prossima-->
+					<entry> 
+						<observation moodCode="EVN" classCode="OBS">
+							<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>  
+							<statusCode code="completed"/>
+							<effectiveTime>
+								<low value="20220330112426+0100"/>
+								<high value="20220404110000+0200"/>
+							</effectiveTime>
+							<value xsi:type="CD" code="60975-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Resistenza Vascolare"/>
+							<entryRelationship typeCode="REFR" inversionInd="false"> 
+							    <observation classCode="OBS" moodCode="EVN">
+									<code code="89261-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Decorso Clinico"/>
+									<text><reference value="#[REF_CRON]"/></text>
+									<statusCode code="completed"/>
+									<value xsi:type="CE" code="LA18821-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Acute"/>
+							    </observation>
+							</entryRelationship>
+							<entryRelationship typeCode="REFR" inversionInd="false">
+								<observation classCode="OBS" moodCode="EVN">
+									<code code="33999-4" displayName="Stato" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>  
+									<text>
+										<reference value="#[REF_STATO]"/>
+									</text>
+									<statusCode code="completed"/>
+									<value xsi:type="CE" code="LA18632-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Inactive"/>
+								</observation>
+						    </entryRelationship>	
+						</observation>
+					</entry>
+					<!--Anamnesi Familiare-->
+					<entry>
+						<organizer moodCode="EVN" classCode="CLUSTER">  
+							<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di malattie di membri familiari"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="20220409121122+0200"/>
+							<subject typeCode="SBJ">
+								<relatedSubject classCode="PRS">
+									<code code="MTH" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode" displayName="Mother"/>
+									<subject>
+										<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Femmina"/>
+									</subject>
+								</relatedSubject>
+							</subject>
+							<component>  
+								<observation moodCode="EVN" classCode="OBS">
+									<code code="52797-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi codice ICD"/>
+									<text>
+										<reference value="#[REF_OBS]"/>
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20220406121122+0200"/>
+									<value xsi:type="CD" code="5756" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="COLESTEROLOSI DELLA COLECISTI"/>
+									<entryRelationship typeCode="SUBJ">
+										<observation classCode="OBS" moodCode="EVN">
+											<code code="35267-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età diagnosi patologia"/>
+											<value xsi:type="PQ" value="35" unit="a"/>
+										</observation>
+									</entryRelationship>	
+									<entryRelationship typeCode= "SUBJ">
+										<observation classCode="OBS" moodCode="EVN">
+											<code code="39016-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età decesso"/>
+											<value xsi:type="PQ" value="60" unit="a"/>
+										</observation>
+									</entryRelationship>
+								</observation>
+							</component>
+						</organizer>
+					</entry>	
+					<component typeCode="COMP">
+						<section ID="ALLERGIE">
+							<code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergie e/o reazioni avverse"/>
+							<title> Allergie </title>
+							<text> 
+								<paragraph> 
+									Allergico a Cefalosporine; Allergia a contatto per lattice; 
+									Allergia a contatto ed inalazione per polvere comune.
+								</paragraph> 
+							</text> 
+							<entry> 
+								<act classCode="ACT" moodCode="EVN">
+									<!--templateId root="2.16.840.1.113883.2.9.10.1.6.33.9999"/-->
+									<code nullFlavor="NA"/> 
+									<statusCode code="active"/>
+									<effectiveTime>
+										<low value="20220420101010+0100"/>
+										<!--high value="20220425202020+0100"/-->
+									</effectiveTime>
+									<entryRelationship typeCode="SUBJ">
+										<observation classCode="OBS" moodCode="EVN"> 
+											<code code="52473-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergia o causa della reazione"/> 
+											<text>
+												<reference value="#[REF_NOTA1]"/>
+											</text>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20220415101010+0100"/>
+												<high value="20220419101010+0100"/>
+											</effectiveTime>
+											<value xsi:type="CD" code="ALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ObservationIntoleranceType" displayName="Allergy"/>
+											<participant typeCode="CSM">
+												<participantRole classCode="MANU">
+													<playingEntity classCode="MMAT">
+														<code code="111088007" codeSystem="2.16.840.1.113883.2.9.77.22.11.2" codeSystemName="Allergeni (No Farmaci)" displayName="lattice">
+															<originalText>
+																<reference value="#[REF_AGENT]"/>
+															</originalText>
+														</code>
+													</playingEntity>
+												</participantRole>
+											</participant>
+											<entryRelationship typeCode="MFST">
+												<observation classCode="OBS" moodCode="EVN"> 
+													<code code="75321-0" displayName= "Obiettività Clinica" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+													<text>
+														<reference value='#[REF_TXT_OBS]'/>
+													</text>
+													<statusCode code="completed"/>
+													<effectiveTime>
+														<low value="20220419101010+0100"/>
+														<high value="20220423101010+0100"/>
+													</effectiveTime>
+													<value xsi:type="CD" code="698.8" codeSystem="2.16.840.1.113883.2.9.77.22.11.4" displayName="ALTRE AFFEZIONI PRURIGINOSE SPECIFICATE" codeSystemName="AllergyReactions_PSSIT"> 
+														<originalText> 
+															<reference value="#[REF_REAZ]"/> 
+														</originalText>
+													</value>
+												</observation>
+											</entryRelationship>							
+											<entryRelationship typeCode="SUBJ" >
+												<observation classCode="OBS" moodCode="EVN"> 
+													<code code="SEV" displayName="Criticality" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+													<text>
+														<reference value="#[REF_TXT_CRIT]"/>
+													</text>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="M" codeSystem="2.16.840.1.113883.5.1063" codeSystemName="CriticalityObservation" displayName="Moderate"/>
+												</observation>
+											</entryRelationship>
+											<entryRelationship typeCode="REFR" >
+												<observation classCode="OBS" moodCode="EVN"> 
+													<code code="33999-4" displayName="Stato" codeSystem="2.16.840.1.113883.6.1"	codeSystemName="LOINC"/>
+													<text>
+														<reference value="#[REF_STATO]"/>
+													</text>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="LA16666-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Active"/>
+												</observation>
+											</entryRelationship>
+											<entryRelationship typeCode="SUBJ" >
+												<act classCode="ACT" moodCode="EVN">
+													<code code="48767-8" displayName="'Annotation Comment" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+													<text>
+														<reference value="#[REF_COMMENTI]"/>
+													</text>
+													<statusCode code="completed"/>
+												</act>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+								</act>
+							</entry>			
+						</section>
+					</component>					
+					<component typeCode="COMP">
+						<section ID="TERAPIA_FARMACOLOGICA_IN_ATTO">
+							<code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Uso di farmaci"/>
+							<title> Terapia farmacologica in atto </title>
+							<text> 
+								<list> 
+									<item> 
+										<content ID="TF-1">023993013 – LASIX*25MG 30 CPR</content> 
+									</item> 
+								</list> 
+							</text>
+							<entry>
+								<substanceAdministration classCode="SBADM" moodCode="EVN">
+									<consumable>
+										<manufacturedProduct>
+											<manufacturedMaterial>
+												<code code="023993013" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="LASIX*25MG 30 CPR">
+													<translation code="C03CA01" codeSystem="2.16.840.1.113883.6.73" codeSystemName="WHO ATC"  displayName="FUROSEMIDE"/>
+												</code>
+											</manufacturedMaterial>
+										</manufacturedProduct>
+									</consumable>
+								</substanceAdministration>
+							</entry>
+						</section>
+					</component>			
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="PRECEDENTI_ESAMI_ESEGUITI">
+					<code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Test diagnostici o dati di laboratorio rilevanti"/>
+					<title>Precedenti Esami Eseguiti</title>
+					<text> 
+						<table> 
+							<thead> 
+								<tr> 
+									<th>Precedente Esame Eseguito</th> 
+									<th>Data Esame</th> 
+									<th>Esito</th> 
+								</tr> 
+							</thead> 
+							<tbody> 
+								<tr> 
+									<td>[DESC_PRECEDENTE_ESAME_ESEGUITO]</td> 
+									<td>[DT_ESECUZIONE_ESAME]</td> 
+									<td>[ESITO_ESAME]</td> 
+								</tr> 
+							</tbody> 
+						</table> 
+					</text>
+					<entry> 
+						<observation classCode="OBS" moodCode="EVN"> 
+							<code code="9054" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="ESAME MICROSCOPICO DI CAMPIONE DI SANGUE - PARASSITOLOGIA"/>
+							<effectiveTime>
+								<low value="20220101090000+0200"/> 
+								<high value="20220101103000+0200"/>
+							</effectiveTime>	
+							<value xsi:type="ST">[ESITO_ESAME]</value> 
+						</observation> 
+					</entry> 
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="ESAME_OBIETTIVO">
+					<code code="29545-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Osservazioni fisiche"/>
+					<title> Esame Obiettivo </title>
+					<text> 
+						<paragraph> 
+							Azione cardiaca ritmica normo frequente. 
+							Rumore respiratorio fisiologico su tutto l’ambito. Crepiti fissi 
+							alla base destra.
+							Addome trattabile alla palpazione superficiale e profonda.
+							Modesti edemi declivi
+						</paragraph> 
+					</text>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="PRESTAZIONI">
+					<code code="62387-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"  displayName="Interventi"/>
+					<title> Prestazioni </title>
+					<text>
+						<paragraph>
+							<caption>Prestazioni Eseguite</caption>
+						</paragraph>
+						<list>
+							<item ID="Prestazione-1">
+								<table>
+									<thead>
+										<tr>
+											<th>Prestazione 1</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>Codice Prestazione</th>
+											<td>012311B</td>
+										</tr>
+										<tr>
+											<th>Descrizione Prestazione eseguita</th>
+											<td>ESTRAZIONE DI RADICE RESIDUA (chirurgia ambulatoriale -BIC)</td>
+										</tr>
+										<tr>
+											<th>Data Prestazione eseguita</th>
+											<td>20220509073749+0100</td>
+										</tr>
+									</tbody>
+								</table>
+								<paragraph>
+									<caption>Procedure Operative Eseguite</caption>
+								</paragraph>
+								<list>
+									<item ID="Procedure-1">
+										<table border = "1">
+											<thead>
+												<tr>
+													<th colspan="2">Procedura 1</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<th>Codice Prestazione Eseguita</th>
+													<td>012311B</td>
+												</tr>
+												<tr>
+													<th>Codice Procedura Operativa</th>
+													<td></td>
+												</tr>
+												<tr>
+													<th>Descrizione Procedura Operativa</th>
+													<td></td>
+												</tr>
+												<tr>
+													<th>Quantità</th>
+													<td></td>
+												</tr>
+												<tr>
+													<th>Modalità esecuzione procedura operativa</th>
+													<td></td>
+												</tr>
+												<tr>
+													<th>Strumentazione utilizzata</th>
+													<td></td>
+												</tr>
+												<tr>
+													<th>Parametri descrittivi della procedura</th>
+													<td></td>
+												</tr>
+												<tr>
+													<th>Note</th>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</item>
+								</list>
+							</item>
+						</list>
+					</text>
+					<entry>
+						<act classCode="ACT" moodCode="EVN"> 
+							<code code="012311B" codeSystem="2.16.840.1.113883.2.9.2.120.6.11" codeSystemName="DIZ_PREST_SAN_Regione Lazio" displayName="ESTRAZIONE DI RADICE RESIDUA (chirurgia ambulatoriale- BIC">
+								<originalText>
+									<reference value="Prestazione – 1"/>
+								</originalText>
+							</code>
+							<effectiveTime value="20220509073749+0100"/>
+							<entryRelationship typeCode="COMP">
+								<procedure classCode="PROC" moodCode="EVN">
+									<code code="012311B" codeSystem="2.16.840.1.113883.2.9.2.120.6.11" codeSystemName="DIZ_PREST_SAN_Regione Lazio" displayName="ESTRAZIONE DI RADICE RESIDUA(in chirurgia ambulatoriale - BIC)">
+										<originalText>
+											<reference value="#Procedura - 1"/>
+										</originalText>
+									</code>
+									<effectiveTime value="20220509073749+0100"/>
+								</procedure>
+							</entryRelationship>
+						</act>	
+					</entry>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="CONFRONTO_PRECEDENTI_ESAMI_ESEGUITI">
+					<code code="93126-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Confronto con Precedenti Esami Eseguiti"/>
+					<title> Confronto con Precedenti Esami Eseguiti </title>
+					<text>
+						<paragraph>
+							[Descrizione del confronto con precedenti esami eseguiti]
+						</paragraph>
+					</text>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="REFERTO">
+					<code code="47045-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Referto"/>
+					<title>Referto</title>
+					<text>
+						<paragraph>
+							[Questo paragrafo contiene una descrizione testuale del 
+							referto]
+						</paragraph>
+					</text>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="DIAGNOSI">
+					<code code="29548-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi"/>
+					<title> Diagnosi </title>
+					<text> 
+						<list> 
+							<item> 
+								<content ID="DIAG1">[Diagnosi]</content> 
+							</item> 
+						</list> 
+					</text>
+					<entry> 
+						<observation classCode="OBS" moodCode="EVN"> 
+							<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi"/>
+							<value xsi:type="CD" code="79021" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9CM" displayName="ALTERAZIONI DEL TEST RAPIDO DELLA GLICEMIA"/>
+						</observation> 
+					</entry>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="CONCLUSIONI">
+					<code code="55110-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Conclusioni"/>
+					<title> Conclusioni </title>
+					<text>
+						<paragraph>
+							[Questo paragrafo contiene una descrizione testuale delle 
+							conclusioni]
+						</paragraph>
+					</text>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="SUGGERIMENTI_MEDICO_PRESCRITTORE">
+					<code code="62385-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Raccomandazioni"/>
+					<title> Suggerimenti per il Medico Prescrittore </title>
+					<text>
+						<paragraph>
+							[Questo paragrafo contiene una descrizione testuale dei 
+							suggerimenti per il medico prescrittore]
+						</paragraph>
+					</text>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="ACCERTAMENTI_CONTROLLI_CONSIGLIATI">
+					<code code="80615-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Follow-up Consigliato"/>
+					<title> Accertamenti e Controlli Consigliati </title>
+					<text> 
+						<list> 
+							<item> 
+								<content ID="AC-1">[Questo paragrafo contiene una 
+								3110 descrizione codificata degli Accertamenti e Controlli 
+								Consigliati]</content> 
+							</item> 
+						</list> 
+					</text> 
+					<entry>
+						<act classCode="ACT" moodCode="PRP"> 
+							<code code="2340-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Glucose [Mass/volume] in Blood by Automated test strip"/> 
+						</act> 
+					</entry>
+				</section>
+			</component>
+			<component typeCode="COMP">
+				<section ID="TERAPIA_FARMACOLOGICA_CONSIGLIATA">
+					<code code="93341-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Farmaci Consigliati"/>
+					<title> Terapia farmacologica Consigliata </title>
+					<text>
+						<paragraph>
+							Lasix 25 mg cpr ore 8
+						</paragraph>
+					</text>
+					<entry>
+						<substanceAdministration classCode="SBADM" moodCode="PRP">
+							<text>
+								<reference value="#[REF_MED]"/>
+							</text>
+							<!--Periodo di inizio e fine della terapia-->
+							<effectiveTime xsi:type="IVL_TS">
+								<low value="20220510121100+0100"/>
+								<high value="20220610121100+0100"/>
+							</effectiveTime>
+							<!--Posologia -->
+							<effectiveTime operator="A" xsi:type="PIVL_TS" institutionSpecified="true">
+								<period value="12" unit="h"/>
+							</effectiveTime>
+							<!--Via di somministrazione-->
+							<routeCode code="PO" codeSystem="2.16.840.1.113883.5.112" codeSystemName="HL7 RouteOfAdministration" displayName="Swallow,oral"/>
+							<!--Sito di somministrazione-->
+							<!--approachSiteCode code="LA" codeSystem="2.16.840.1.113883.5.1052" codeSystemName="ActSite" displayName="left arm"/-->
+							<!--Dose (OPZIONALE)-->
+							<doseQuantity>
+								<low value="20" unit="mg"/>
+								<high value="30" unit="mg"/> 
+							</doseQuantity>
+							<!--Frequenza di erogazione-->
+							<rateQuantity>
+								<low value="2" unit="mg/h"/>
+								<high value="3" unit="mg/h"/> 
+							</rateQuantity>
+							<!--Forma Farmaceutica-->
+							<administrationUnitCode code="46992007" codeSystem="2.16.840.1.113883.4.642.3.374" codeSystemName="SNOMED" displayName="Pill"/>
+							<consumable>
+								<manufacturedProduct classCode="MANU">
+							<!--Dettagli del Farmaco-->
+									<manufacturedMaterial>
+										<code code="023993013" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="LASIX*25MG 30 CPR">
+											<translation code="C02LA01" codeSystem="2.16.840.1.113883.6.73" codeSystemName="ATC" displayName="RESERPINA E DIURETICI"/>
+										</code>
+									</manufacturedMaterial>						
+								</manufacturedProduct>
+							</consumable>
+							<participant typeCode="REF">
+								<time value="20220509120000+0100"/>
+								<participantRole>
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+									<playingEntity>
+										<name>
+											<family>Prova</family>
+											<given>Prova</given>
+										</name>
+									</playingEntity>
+								</participantRole>
+							</participant>
+							<entryRelationship typeCode="COMP">
+							<!--Grammatura-->
+								<observation classCode="OBS" moodCode="EVN">
+									<code 	code="XX" codeSystem="2.16.840.1.113883.9.999" codeSystemName="XXXX" displayName="Grammatura"/>
+									<value xsi:type="REAL" value="2.5"/>
+								</observation>
+							</entryRelationship>
+							<entryRelationship typeCode="COMP">
+							<!--Quantità nella confezione-->
+								<observation classCode="OBS" moodCode="EVN">
+									<code code="XX" codeSystem="2.16.840.1.113883.9.999" codeSystemName="XXXX" displayName="Quantità nella Confezione"/>
+									<value xsi:type="REAL" value="5"/>
+								</observation>
+							</entryRelationship>
+							<entryRelationship typeCode="COMP">
+							<!--Numero di confezioni-->
+								<supply classCode="SPLY" moodCode="RQO">
+									<quantity value="5"/>
+								</supply>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>
+				</section>
+			</component>					
+		</structuredBody>
+	</component>	
+</ClinicalDocument>
