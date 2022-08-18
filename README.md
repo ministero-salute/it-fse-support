@@ -10,6 +10,7 @@ A partire da Settembre sarà possibile per tutte le regioni testare le integrazi
 
 * [Documentazione integrazione GTW](https://github.com/ministero-salute/it-fse-support/tree/main/doc/integrazione-gateway)
 * [Tool per generazione Token JWT e iniezione CDA in PDF](https://github.com/ministero-salute/it-fse-gtw-tools)
+* [Esempi di CDA validi](https://github.com/ministero-salute/it-fse-support/tree/main/doc/esempi/CDA)
 * [File (xsd e schematron) a supporto della validazione dei CDA](validazione/)
 * [Richiesta certificati x509 per autenticazione e firma](#richiesta-certificati-x509)
 * [Apertura Segnalazioni](https://github.com/ministero-salute/it-fse-support/issues)
