@@ -1,0 +1,351 @@
+<!--VACCINAZIONI HEADER CDA2-->
+
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc">
+	<realmCode code="IT"/>
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040UV02"/>
+	<templateId root="2.16.840.1.113883.2.9.10.1.11.1.1" extension="1.1" assigningAuthorityName="HL7 Italia"/> 
+	<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.Q123E456" assigningAuthorityName="Regione Lazio"/>
+	<code code="87273-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName=" Immunization note"> 
+		<!--translation code="[CODICE_LOCALE]"	codeSystem="[OID_SISTEMA_CODIFICA]" codeSystemName="[DESCRIZIONE_SISTEMA_CODIFICA]" displayName="Immunization note"/-->
+	</code>
+	<title> Scheda della singola Vaccinazione </title>
+	<effectiveTime value="20220210183023+0100"/>
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
+	<languageCode code="it-IT"/>
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220520112426.Q123E446" assigningAuthorityName="Regione Lazio"/>
+	<versionNumber value="2"/>
+	<recordTarget>
+		<patientRole classCode="PAT">
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
+			<addr use="H"> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00187</postalCode> 
+				<streetAddressLine>via Prova 12</streetAddressLine> 
+			</addr> 			
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="MC" value="tel:3340000000"/>
+			<patient> 
+				<name> 
+					<family>Verdi</family> 
+					<given>Test</given> 
+				</name> 
+				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Maschio"/> 
+				<birthTime value="19930619"/>
+				<birthplace> 
+					<place>
+						<addr>
+							<country>100</country>
+							<state>120</state>
+							<county>RM</county> 
+							<city>Roma</city> 
+							<censusTract>058091</censusTract> 
+						</addr>					
+					</place> 
+				</birthplace> 
+			</patient>
+		</patientRole>
+	</recordTarget>	
+	<author>
+		<time value="20220330112426+0100"/>
+		<assignedAuthor classCode="ASSIGNED"> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<addr use="HP"> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00184</postalCode> 
+				<streetAddressLine>via Esame 7</streetAddressLine> 
+			</addr> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+            <telecom use="WP" value="mailto:prova.provax@pec.it"/>
+            <telecom use="MC" value="tel:3340000000"/>
+			<assignedPerson> 
+				<name> 
+					<family>Prova</family> 
+					<given>Test</given> 
+				</name> 
+			</assignedPerson>
+			<representedOrganization>
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
+				<name>SAN RAFFAELE NOME</name>
+				<telecom use="MC" value="tel:3340000000"/>
+				<addr use="HP"> 
+					<country>100</country>
+					<state>120</state>
+					<county>RM</county> 
+					<city>Roma</city> 
+					<censusTract>058091</censusTract> 
+					<postalCode>00137</postalCode> 
+					<streetAddressLine>via Test 39</streetAddressLine> 
+				</addr>
+			</representedOrganization>
+		</assignedAuthor> 
+	</author> 	
+	<custodian> 
+		<assignedCustodian> 
+			<representedCustodianOrganization>
+				<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>	
+				<name>XXX</name>
+				<telecom use="WP" value="tel: 010 337288945"/> 
+				<addr use="DIR"> 
+					<country>100</country>
+					<state>120</state>
+					<county>RM</county> 
+					<city>Roma</city> 
+					<censusTract>058091</censusTract> 
+					<postalCode>00137</postalCode> 
+					<streetAddressLine>XXX</streetAddressLine> 
+				</addr>
+			</representedCustodianOrganization> 
+		</assignedCustodian> 
+	</custodian>		
+	<legalAuthenticator> 
+		<time value="20220330112426+0100"/> 
+		<signatureCode code="S"/> 
+		<assignedEntity>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<addr> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00164</postalCode> 
+				<streetAddressLine>via Corvetto 3</streetAddressLine>
+			</addr> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="MC" value="tel:3340000000"/>
+			<assignedPerson> 
+				<name>  
+					<family>Prove</family> 
+					<given>Federico</given>
+					<prefix>Dr.</prefix>
+				</name> 
+			</assignedPerson> 
+		</assignedEntity> 
+	</legalAuthenticator> 	
+	<participant typeCode="IND">
+		<associatedEntity classCode="PROV">
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<associatedPerson>
+				<name>
+					<family>Maggi</family>
+					<given>Test</given>
+				</name>
+			</associatedPerson>
+		</associatedEntity>
+	</participant>	
+	<relatedDocument typeCode="RPLC">
+		<parentDocument>
+			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220520112426.Q123E446" assigningAuthorityName="Regione Lazio"/>
+			<versionNumber value="1"/> 
+		</parentDocument> 
+	</relatedDocument>
+	
+	
+	
+<!--VACCINAZIONI BODY CDA2-->
+
+	<component>
+		<structuredBody moodCode="EVN" classCode="DOCBODY">
+			<component typeCode="COMP">
+				<section classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.2.9.10.1.11.3.1"/>					
+					<code code="11369-6" displayName="History of Immunization Narrative" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 	
+					<title> Scheda della singola Vaccinazione </title>
+					<text>
+						[NARRATIVE_BLOCK]
+					</text>
+					<!--dati vaccinazione-->
+					<entry> 
+						<substanceAdministration moodCode="EVN" classCode="SBADM">
+							<templateId root="2.16.840.1.113883.2.9.10.1.11.4.1"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="20220330101000+0100"/>
+							<routeCode code="IABDINJ" codeSystem="2.16.840.1.113883.5.112" codeSystemName=" HL7 RouteOfAdministration" displayName="Injection, intra-abdominal"/>
+							<approachSiteCode code="LA" codeSystem="2.16.840.1.113883.5.1052" codeSystemName="ActSite" displayName="left arm"/>
+							<doseQuantity value="20" unit="mL"/>
+							<consumable typeCode="CSM">
+								<manufacturedProduct>
+									<manufacturedMaterial>
+										<code code="035606033" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="ARIXTRA*2,5MG/0,5MLSC 10SIR.">
+											<translation code="B01AX05" codeSystem="2.16.840.1.113883.6.73" codeSystemName="ATC" displayName="FONDAPARINUX"/>
+										</code>
+										<lotNumberText>20</lotNumberText>
+									</manufacturedMaterial>
+									<manufacturerOrganization>
+										<id root="XXX" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
+										<name>XXX</name>
+									</manufacturerOrganization>
+								</manufacturedProduct>
+							</consumable>
+							<participant typeCode="LOC">
+								<participantRole classCode="ROL">
+									<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
+								</participantRole>
+							</participant>
+							<!--numero di dose-->
+							<entryRelationship typeCode="SUBJ" inversionInd="true">  
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.3"/> 
+									<code code="30973-2" displayName="Numero di dose" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
+									<statusCode code="completed"/> 
+									<value xsi:type="INT" value="3"/> 
+								</observation>
+							</entryRelationship>
+							<!--periodo di copertura-->
+							<entryRelationship typeCode="REFR" inversionInd="false"> 
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.4"/> 
+									<code code="59778-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Date when overdue for immunization "/> 
+									<statusCode code="completed"/>
+									<value xsi:type="IVL_TS">
+										<high value="20220301221122+0100"/>
+									</value>
+								</observation>
+							</entryRelationship>
+							<!--schedulazione del prossimo vaccino-->
+							<entryRelationship typeCode="REFR" inversionInd="false"> 
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.4"/> 
+									<code code="30980-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Date vaccine due"/> 
+									<statusCode code="completed"/> 
+									<value xsi:type="TS" value="20220308221122+0100"/>
+								</observation>
+							</entryRelationship>
+							<!--categorie a rischio-->
+							<entryRelationship typeCode="RSON" inversionInd="false"> 
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.5"/>
+									<code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="95715-9" displayName="Categorie a rischio"/>
+									<statusCode code="completed"/> 
+									<value xsi:type="CD" codeSystem="2.16.840.1.113883.2.9.6.1.56.2" codeSystemName="Categorie di Rischio" code="[COD_RISCHIO]" displayName="[DESC_RISCHIO]"/>
+								</observation>
+							</entryRelationship>
+							<!--condizioni sanitarie a rischio-->
+							<entryRelationship typeCode="RSON" inversionInd="false">    
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.6"/>
+									<code code="59785-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Indicazioni per la vaccinazione"/>
+									<statusCode code="completed"/> 
+									<value xsi:type="CD" code="[COD_CONSRISK]" codeSystem="2.16.840.1.113883.6.103" displayName="[DESC_CONSRISK]" codeSystemName="ICD-9CM (diagnosis codes)"> 
+										<originalText> 
+											<reference value="#[REF_CONSRISK]"/> 
+										</originalText> 
+									</value> 
+								</observation>	
+							</entryRelationship>
+							<!--reazioni avverse-->
+							<entryRelationship typeCode="CAUS" inversionInd="false">   
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.8"/> 
+									<code code="31044-1" displayName="Immunization reaction" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
+									<statusCode code="completed"/> 
+									<effectiveTime>
+										<low value="20220427101010+0100"/>
+										<high value ="20220506101010+0100"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" displayName="[DESC_REAZ]" codeSystemName="ICD-9CM (diagnosis codes)"> 
+									<originalText>
+										<reference value="#[REF_REAZ]"/> 
+									</originalText>
+									</value>
+								</observation>
+							</entryRelationship>
+							<!--malattia per cui si effettua la vaccinazione-->
+							<entryRelationship typeCode="RSON" inversionInd="false"> 
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.9"/> 
+									<code code="75323-6" displayName="Condizione" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
+									<statusCode code="completed"/> 
+									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="[DESC_MAL]">
+										<originalText>
+											<reference value="#[REF_MAL]"></reference>
+										</originalText>
+									</value>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry>	
+					<!--dati esonero/omissione o differimento-->
+					<!--entry-->  
+						<!--substanceAdministration moodCode="EVN" classCode="SBADM">
+							<templateId root="2.16.840.1.113883.2.9.10.1.11.4.2"/>
+							<statusCode code="cancelled"/>
+							<effectiveTime value="20220410222222+0100"/>
+							<consumable typeCode="CSM">
+								<manufacturedProduct>
+									<manufacturedMaterial>
+										<code code="043348022" displayName="[DESC_AIC_VACC]" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC">
+											<translation code="C08CA01" displayName="[DESC_ATC_VACC]" codeSystem="2.16.840.1.113883.6.73" codeSystemName="ATC"/>
+										</code>
+									</manufacturedMaterial>
+								</manufacturedProduct>
+							</consumable>
+							<participant typeCode="LOC">
+								<participantRole classCode="ROL">
+									<id root="XXX" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
+								</participantRole>
+							</participant-->
+							<!--numero di dose-->
+							<!--entryRelationship typeCode="SUBJ" inversionInd="true">  
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.3"/> 
+									<code code="30973-2" displayName="Numero di dose" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
+									<statusCode code="completed"/> 
+									<value xsi:type="INT" value="3"/> 
+								</observation>
+							</entryRelationship-->
+							<!--ragione esonero/omissione o differimento-->
+							<!--entryRelationship typeCode="RSON"> 
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.10"/>
+									<code code="85714-4" displayName="Motivo per cui non si è ricevuto vaccino" codeSystemName="HL7 ActNoImmunizationReason" codeSystem="2.16.840.1.113883.6.1"/>
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<low value="20220425121122+0100"/>
+										<high value="20210707221122+0100"/>
+									</effectiveTime>
+									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.9.999" codeSystemName="XXX" displayName="XXX"/>
+								</observation>
+							</entryRelationship-->
+							<!--malattia con presunta immunità-->
+							<!--entryRelationship typeCode="RSON">
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.7"/>
+									<code code="59784-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Disease with presumed immunity"/>
+									<statusCode code="completed"/>
+										<originalText>
+											<reference value="#[REF_IMMUNE]"></reference>
+										</originalText>
+									</value>
+								</observation>
+							</entryRelationship-->	
+							<!--malattia per cui si effettua la vaccinazione-->
+							<!--entryRelationship typeCode="RSON" inversionInd="false"> 
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.9"/> 
+									<code code="75323-6" displayName="Condizione" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
+									<statusCode code="completed"/> 
+									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="[DESC_MAL]">
+									<originalText>
+										<reference value="#[REF_MAL]"></reference>
+									</originalText>
+									</value>
+								</observation>
+							</entryRelationship>
+						</substanceAdministration>
+					</entry-->
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>	
+
+

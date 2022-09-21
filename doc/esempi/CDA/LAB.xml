@@ -33,12 +33,12 @@
 				<postalCode>00138</postalCode> 
 				<streetAddressLine>Via Prova 12B</streetAddressLine>
 			</addr>			
-			<telecom use="HP" value="mailto:giuseppe.verdi@example.com"/>
-			<telecom use="MC" value="tel:33224456"/>
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+			<telecom use="MC" value="tel:3340000000"/>
 			<patient> 
 				<name> 
 					<family>Verdi</family> 
-					<given>Giuseppe</given> 
+					<given>Test</given> 
 				</name> 
 				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="MASCHIO"/> 
 				<birthTime value="19930619"/>
@@ -69,13 +69,13 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>Via Prova 7</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
 					<family>Prova</family> 
-					<given>Prova</given> 
+					<given>Provo</given> 
 					<prefix>Dr</prefix>
 				</name> 
 			</assignedPerson>
@@ -89,7 +89,7 @@
 			<assignedPerson> 
 				<name> 
 					<family>Prova</family> 
-					<given>Prova</given> 
+					<given>Test</given> 
 				</name> 
 			</assignedPerson> 
 		</assignedEntity> 
@@ -99,8 +99,8 @@
 		<assignedCustodian> 
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
-				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="HP" value="tel: 390 666 0581"/> 
+				<name>SAN RAFFAELE NOMENTANO</name>
+				<telecom use="MC" value="tel:3340000000"/> 
 				<addr> 
 					<country>100</country>
 					<state>120</state>
@@ -116,11 +116,11 @@
 	<informationRecipient> 
 		<intendedRecipient> 
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
-			<telecom use="WP" value="tel:0600000000"/> 
+			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
 			<informationRecipient> 
 				<name>
 					<family>Prova</family> 
-					<given>Prova</given> 
+					<given>Esame</given> 
 				</name> 
 			</informationRecipient> 
 		</intendedRecipient> 
@@ -140,11 +140,11 @@
 					<postalCode>00164</postalCode> 
 					<streetAddressLine>Via Prova 3</streetAddressLine>
 				</addr> 
-				<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+				<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
 				<telecom use="MC" value="tel:3300000000"/> 
 				<assignedPerson> 
 					<name>  
-						<family>Prova</family> 
+						<family>Borromei</family> 
 						<given>Prova</given>
 						<prefix>Dttr.</prefix>
 					</name> 
@@ -166,12 +166,12 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>Via Prova 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
 			<telecom use="HP" value="tel:22998276800"/> 
 			<assignedPerson> 
 				<name> 
-					<family>Prova</family> 
-					<given>Prova</given> 
+					<family>Fumagallo</family> 
+					<given>Test</given> 
 				</name> 
 			</assignedPerson>
 		</assignedEntity> 
@@ -191,17 +191,17 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>Via Prova 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
 			<associatedPerson>
 				<name>
 					<family>Prova</family>
-					<given>Prova</given>
+					<given>Esito</given>
 				</name>
 			</associatedPerson>
 			<scopingOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/><!-- STS11-->
 				<name></name>
-				<name>SAN RAFFAELE NOMENTANA</name>
+				<name>SAN RAFFAELE</name>
 				<telecom use="HP" value="tel: 390 666 0581"/> 
 				<addr> 
 					<country>100</country>
@@ -210,7 +210,7 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract>
 					<postalCode>00137</postalCode> 
-					<streetAddressLine>Via Emilio Praga 39</streetAddressLine> 
+					<streetAddressLine>Via Di Praga 39</streetAddressLine> 
 				</addr>	
 			</scopingOrganization>
 		</associatedEntity>
@@ -233,12 +233,12 @@
 					<assignedPerson>
 						<name>
 							<family>Prova</family>
-							<given>Prova</given>
+							<given>Esame</given>
 						</name>
 					</assignedPerson>
 					<representedOrganization>
 						<id root="2.16.840.1.113883.2.9.4.1.3" extension="327700102" assigningAuthorityName="Ministero della Salute"/>
-						<name>Nuovo Ospedale S.Agostino (MO)</name>
+						<name>Nuovo Ospedale S.Agostino</name>
 						<asOrganizationPartOf>
 							<id root="2.16.840.1.113883.2.9.4.1.1" extension="080105" assigningAuthorityName="Ministero della Salute"/>
 						</asOrganizationPartOf>	
@@ -264,7 +264,7 @@
 					<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 					<assignedPerson>
 						<name>
-							<family>Prova</family>
+							<family>Giusti</family>
 							<given>Prova</given>
 						</name>
 					</assignedPerson>
@@ -276,7 +276,7 @@
 					<serviceProviderOrganization>
 						<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 						<name>[nome_presidio]</name>
-						<telecom use="HP" value="tel:0115678965"/>
+						<telecom use="MC" value="tel:3340000000"/>
 						<asOrganizationPartOf>
 							<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 						</asOrganizationPartOf>
@@ -360,7 +360,7 @@
 										<observation moodCode="EVN" classCode="OBS">
 											<code code="14957-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Microalbumin Massa/Volume in Urine">
 												<translation code="0090334.02" codeSystem="2.16.840.1.113883.2.9.2.30.6.11" codeSystemName="SISS" displayName="Albumina nelle urine"/>
-											</code>									
+											</code>										
 											<statusCode code="completed"/>
 											<effectiveTime value="20220330112426+0100"/>
 											<value xsi:type="PQ" value="16.00" unit="mg/L"/>
@@ -399,4 +399,4 @@
 			</component>
 		</structuredBody>	
 	</component>
-</ClinicalDocument>
+</ClinicalDocument>	
