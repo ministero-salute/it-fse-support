@@ -8,6 +8,7 @@ A partire da Settembre sarà possibile per tutte le regioni testare le integrazi
 
 ## Quickstart Gateway (GTW)
 
+* [FAQ](https://github.com/ministero-salute/it-fse-support/tree/main/doc/faq)
 * [Documentazione integrazione GTW](https://github.com/ministero-salute/it-fse-support/tree/main/doc/integrazione-gateway)
 * [Tool per generazione Token JWT e iniezione CDA in PDF](https://github.com/ministero-salute/it-fse-gtw-tools)
 * [Esempi di CDA validi](https://github.com/ministero-salute/it-fse-support/tree/main/doc/esempi/CDA)
