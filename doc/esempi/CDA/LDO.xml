@@ -45,8 +45,8 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>via Verifica 7</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
-			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson>
 				<name>
@@ -81,7 +81,7 @@
 	<informationRecipient>
 		<intendedRecipient>
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
-			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<informationRecipient>
 				<name>
 					<family>Espositi</family>

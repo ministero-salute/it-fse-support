@@ -22,7 +22,7 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>Via Test 12</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<patient>
 				<name>
@@ -59,8 +59,8 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>via Fila 7</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
-            <telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+            <telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson>
 				<name>
@@ -83,8 +83,8 @@
 				<censusTract>058091</censusTract>
 				<streetAddressLine>via Delta 7</streetAddressLine>
 			</addr>
-			 <telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
-             <telecom use="WP" value="mailto:prova.provax@pec.it"/>
+			 <telecom use="HP" value="mailto:prova.provax@example.com"/> 
+             <telecom use="WP" value="mailto:prova.provax@example.com"/>
 			<assignedPerson>
 				<name>
 					<family>Bianchi</family>
@@ -133,7 +133,7 @@
 				<censusTract>058091</censusTract>
 				<streetAddressLine>Vico San Giovanni 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson>
 				<name>
@@ -157,8 +157,8 @@
 				<censusTract>058091</censusTract>
 				<streetAddressLine>Vico San Giovanni 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
-			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<assignedPerson>
 				<name>
 					<family>Test</family>
@@ -181,7 +181,7 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>via Corvetto 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<associatedPerson>
 				<name>
 					<family>Guido</family>

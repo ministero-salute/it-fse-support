@@ -26,7 +26,7 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>via Test 12</streetAddressLine> 
 			</addr> 			
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
             <telecom use="MC" value="tel:3340000000"/>
 			<patient> 
 				<name> 
@@ -62,8 +62,8 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>via Test 7</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
-            <telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+            <telecom use="WP" value="mailto:prova.provax@example.com"/> 
             <telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
@@ -119,7 +119,7 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>via Corda 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>  
+			<telecom use="HP" value="mailto:prova.provax@example.com"/>  
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name>  
