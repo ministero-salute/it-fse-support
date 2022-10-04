@@ -1,3 +1,4 @@
+<!-- schematron versione:1.3 -->
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"

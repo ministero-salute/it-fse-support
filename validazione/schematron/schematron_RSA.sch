@@ -1,3 +1,4 @@
+<!-- schematron versione:7.3-->
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"
@@ -199,15 +200,13 @@
 			<!--Controllo componentOf-->
 			<assert test="count(hl7:componentOf)=1"
 			>ERRORE-39| L'elemento <name/>/componentOf è obbligatorio </assert>
-			<assert test="count(hl7:componentOf)=0 or count(hl7:componentOf/hl7:encompassingEncounter/hl7:id)=1"
-			>ERRORE-40| L'elemento <name/>/componentOf/encompassingEncounter deve contenere l'elemento 'id' </assert>
 			<assert test="(count(hl7:componentOf)=0 or count(hl7:componentOf/hl7:encompassingEncounter/hl7:location/hl7:healthCareFacility)=1)"
-			>ERRORE-41| L'elemento <name/>/componentOf/encompassingEncounter/location/healthcareFacility deve essere presente </assert>
+			>ERRORE-40| L'elemento <name/>/componentOf/encompassingEncounter/location/healthcareFacility deve essere presente </assert>
 			<assert test="count(hl7:componentOf)=0 or count(hl7:componentOf/hl7:encompassingEncounter/hl7:location)=1"
-			>ERRORE-42| L'elemento <name/>/componentOf/encompassingEncounter DEVE contenere l'elemento 'location'</assert>
+			>ERRORE-41| L'elemento <name/>/componentOf/encompassingEncounter DEVE contenere l'elemento 'location'</assert>
 			<assert test="count(hl7:componentOf)=0 or count(hl7:componentOf/hl7:encompassingEncounter/hl7:location/hl7:healthCareFacility/hl7:serviceProviderOrganization/hl7:asOrganizationPartOf)=0 or 
 			count (hl7:componentOf/hl7:encompassingEncounter/hl7:location/hl7:healthCareFacility/hl7:serviceProviderOrganization/hl7:asOrganizationPartOf/hl7:id)=1"
-			>ERRORE-43| L'elemento <name/>/componentOf/encompassingEncounter/location/healthcareFacility/serviceProviderOrganization/asOrganizationPartOf, se presente deve contenere l'elemento 'id' </assert>	
+			>ERRORE-42| L'elemento <name/>/componentOf/encompassingEncounter/location/healthcareFacility/serviceProviderOrganization/asOrganizationPartOf, se presente deve contenere l'elemento 'id' </assert>	
 		</rule>
 		
 		
@@ -218,7 +217,7 @@
 		<!--Controllo use Telecom-->
 		<rule context="//hl7:telecom">
 			<assert test="(count(@use)=1)"
-			>ERRORE-44| L’elemento 'telecom' DEVE contenere l'attributo @use </assert>
+			>ERRORE-43| L’elemento 'telecom' DEVE contenere l'attributo @use </assert>
 		</rule>	
 		
 		<!-- Controllo formato: -->
@@ -226,23 +225,23 @@
 		<rule context="//hl7:id[@root='2.16.840.1.113883.2.9.4.3.2']">
 			<let name="CF" value="@extension"/>
 			<assert test="matches(@extension, '[A-Z0-9]{16}')"
-			>ERRORE-45| Il codice fiscale '<value-of select="$CF"/>' cittadino ed operatore deve essere costituito da 16 cifre [A-Z0-9]{16}</assert>
+			>ERRORE-44| Il codice fiscale '<value-of select="$CF"/>' cittadino ed operatore deve essere costituito da 16 cifre [A-Z0-9]{16}</assert>
 		</rule>
 	
 		<!--Controllo sugli attributi di observation-->
 		<rule context="//hl7:observation">
 			<let name="moodCd" value="@moodCode"/>
 			<assert test="count(@classCode)=1"
-			>ERRORE-46| L'attributo "@classCode" dell'elemento "observation" deve essere presente </assert>
+			>ERRORE-45| L'attributo "@classCode" dell'elemento "observation" deve essere presente </assert>
 			<assert test="$moodCd='EVN'"
-			>ERRORE-47| L'attributo "@moodCode" dell'elemento "observation" deve essere valorizzato con "EVN" </assert>
+			>ERRORE-46| L'attributo "@moodCode" dell'elemento "observation" deve essere valorizzato con "EVN" </assert>
 		</rule>
 
 		<!--Verifica che i codici ActStatusActiveCompletedAborteSuspended utilizzati siano corretti-->
         <rule context="//hl7:statusCode">
             <let name="val_status" value="@code"/>
             <assert test="$val_status='active' or  $val_status='completed' or $val_status='aborted' or $val_status='suspended'"
-            >Errore 48| Codice ActStatus '<value-of select="$val_status"/>' errato! L'attributo @code deve essere valorizzato con "active", "completed", "aborted", "suspended"
+            >Errore 47| Codice ActStatus '<value-of select="$val_status"/>' errato! L'attributo @code deve essere valorizzato con "active", "completed", "aborted", "suspended"
             </assert>
         </rule>
 		
