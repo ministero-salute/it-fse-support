@@ -33,7 +33,7 @@
 				<postalCode>00138</postalCode> 
 				<streetAddressLine>Via Prova 12B</streetAddressLine>
 			</addr>			
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<telecom use="MC" value="tel:3340000000"/>
 			<patient> 
 				<name> 
@@ -69,8 +69,8 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>Via Prova 7</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
-			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
@@ -116,7 +116,7 @@
 	<informationRecipient> 
 		<intendedRecipient> 
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
-			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<informationRecipient> 
 				<name>
 					<family>Prova</family> 
@@ -140,7 +140,7 @@
 					<postalCode>00164</postalCode> 
 					<streetAddressLine>Via Prova 3</streetAddressLine>
 				</addr> 
-				<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+				<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 				<telecom use="MC" value="tel:3300000000"/> 
 				<assignedPerson> 
 					<name>  
@@ -166,7 +166,7 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>Via Prova 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="HP" value="tel:22998276800"/> 
 			<assignedPerson> 
 				<name> 
@@ -191,7 +191,7 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>Via Prova 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<associatedPerson>
 				<name>
 					<family>Prova</family>
