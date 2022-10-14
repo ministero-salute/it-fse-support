@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.0
+   <td>ver 2.1
    </td>
   </tr>
 </table>
@@ -19,13 +19,13 @@
 
 **INDICE**
 
-
 - [1. Introduzione](#1-introduzione)
   - [1.1. Riferimenti](#11-riferimenti)
   - [1.2. Acronimi e Definizioni](#12-acronimi-e-definizioni)
 - [2. Contesto di Riferimento](#2-contesto-di-riferimento)
   - [2.1. Pattern di Interazione](#21-pattern-di-interazione)
   - [2.2. Processo di Autenticazione[^3]](#22-processo-di-autenticazione3)
+  - [2.3. Note su autenticazione e token JWT](#23-note-su-autenticazione-e-token-jwt)
 - [3. Servizio di Validazione](#3-servizio-di-validazione)
   - [3.1. Request](#31-request)
     - [3.1.1. Messaggio di richiesta, esempio “Validation con Attachment”](#311-messaggio-di-richiesta-esempio-validation-con-attachment)
@@ -386,7 +386,7 @@ Per identificare invece i documenti da cancellare o aggiornare il chiamante dovr
 
 **Validazione Documento CDA2**
 
-Nello scenario di questa funzionalità il Sistema Produttore invia un documento           secondo il formato standard HL7 CDA2, ed iniettato      in un PDF. 
+Nello scenario di questa funzionalità il Sistema Produttore invia un documento           secondo il formato standard HL7 CDA2, ed iniettato in un PDF, il nome CDA allegato deve essere “**cda.xml**”. 
 
 Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici e semantici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 
@@ -394,7 +394,7 @@ In caso di validazione eseguita con successo, l’esito tornato è positivo e la
 
 **Pubblicazione Documento CDA2**
 
-Nello scenario di questa funzionalità il Repository Documentale locale invia il documento      secondo il formato standard HL7 CDA2 ed iniettato      in PDF firmato      digitalmente in modalità PADES, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere a quello      precedentemente validato     secondo il servizio di Validazione Documenti CDA2.
+Nello scenario di questa funzionalità il Repository Documentale locale invia il documento      secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere **esattamente** a quello precedentemente validato     secondo il servizio di Validazione Documenti CDA2.
 
 La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF. Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
 
@@ -442,6 +442,37 @@ Di seguito un diagramma che descrive un esempio di interazione per i due servizi
 
 ![sequence diagram](img/sequence.png "sequence diagram")
 
+## 2.3. Note su autenticazione e token JWT
+
+Per comunicare con il gateway è necessario essere in possesso di 2 certificati X.509 e delle rispettive chiavi private.
+
+Il certificato denominato di **“autenticazione”** viene utilizzato <span style="text-decoration:underline;">unicamente</span> come certificato client per le chiamate https.
+
+Il certificato denominato di **“signature”** viene utilizzato <span style="text-decoration:underline;">unicamente</span> per la firma dei token JWT.
+
+Ogni invocazione delle API avverrà quindi con una chiamata https protetta dal certificato di autenticazione e **conterrà negli header 2 token JWT**.
+
+Il primo JWT è utilizzato per l’autenticazione e contiene i riferimenti all’utente che richiama il servizio e al soggetto interessato, il token viene trasportato nell’header** “Authorization” **di tipo “**Bearer”**:
+
+
+```
+Authorization: Bearer {VALORE DEL TOKEN}
+```
+
+
+Il secondo JWT è di “signature” e contiene rifermenti al documento oggetto delle operazioni, il token viene trasportato nell’header http **“FSE-JWT-Signature”**:
+
+
+```
+FSE-JWT-Signature: {VALORE DEL TOKEN}
+```
+
+
+**Entrambi** i token devono essere firmati utilizzando il certificato “signature”.
+
+Vista la dipendenza dei token dai valori specifici di utente/soggetto/documento è necessario generare nuovi JWT per ogni chiamata alle API.
+
+Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
 
 # 3. Servizio di Validazione
