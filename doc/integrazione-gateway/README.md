@@ -321,6 +321,19 @@ Tutti: stesura a seguito rivisitazione
 8.3.11: Tipo Attività
    </td>
   </tr>
+<tr>
+   <td>2.1
+   </td>
+   <td>15/10/2022
+   </td>
+   <td>Paragrafi modificati:
+
+2: Specificato nome allegato CDA: cda.xml
+
+2.3: Aggiunte note su JWT e certificati
+
+   </td>
+  </tr>
 </table>
 
 
