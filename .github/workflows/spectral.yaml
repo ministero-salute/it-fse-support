@@ -25,3 +25,5 @@ jobs:
       - run: curl https://raw.githubusercontent.com/italia/api-oas-checker/f6f4e6e360b2ce9816dcca29396571dda1c6027d/security/functions/checkSecurity.js > functions/checkSecurity.js
 
       - uses: stoplightio/spectral-action@v0.8.8
+        with:
+          file_glob: 'openapi/gateway/*.yaml'
