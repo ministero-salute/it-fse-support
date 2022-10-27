@@ -4021,7 +4021,7 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Descrizione del dominio dell’utente (vedi TABELLA ORGANIZZAZIONE)
+   <td>Descrizione del dominio dell’utente (vedi TABELLA ORGANIZZAZIONE) <strong>attenzione</strong> la stringa <code>subject_organization</code> deve essere <strong>esattamente</strong> quella riportata in tabella
    </td>
   </tr>
   <tr>
