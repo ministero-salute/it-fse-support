@@ -24,7 +24,7 @@
   - [1.2. Acronimi e Definizioni](#12-acronimi-e-definizioni)
 - [2. Contesto di Riferimento](#2-contesto-di-riferimento)
   - [2.1. Pattern di Interazione](#21-pattern-di-interazione)
-  - [2.2. Processo di Autenticazione[^3]](#22-processo-di-autenticazione3)
+  - [2.2. Processo di Autenticazione\[^3\]](#22-processo-di-autenticazione3)
   - [2.3. Note su autenticazione e token JWT](#23-note-su-autenticazione-e-token-jwt)
 - [3. Servizio di Validazione](#3-servizio-di-validazione)
   - [3.1. Request](#31-request)
@@ -334,6 +334,17 @@ Tutti: stesura a seguito rivisitazione
 
    </td>
   </tr>
+<tr>
+   <td>2.2
+   </td>
+   <td>28/11/2022
+   </td>
+   <td>Paragrafi modificati:
+
+2: Evidenziato endpoint sistema di test
+
+   </td>
+  </tr>
 </table>
 
 
@@ -390,6 +401,10 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
 
 
 _Tabella 4: Endpoint/Funzionalità_
+
+L'endpoint del **sistema di test** è: 
+
+    https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
 
 La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2 può non essere seguita dalla Pubblicazione CDA2. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
 
