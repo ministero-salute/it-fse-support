@@ -16,7 +16,8 @@
 	<versionNumber value="2"/>
 	<recordTarget>
 		<patientRole classCode="PAT">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.9.9.9.9.9.9" extension="11111htttt" assigningAuthorityName="SAN RAFFAELE NOMENTANA"/>
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -24,14 +25,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00187</postalCode> 
-				<streetAddressLine>via Prova 12</streetAddressLine> 
+				<streetAddressLine>via Aurora 12</streetAddressLine> 
 			</addr> 			
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<patient> 
 				<name> 
-					<family>Verdi</family> 
-					<given>Test</given> 
+					<family>Test</family> 
+					<given>Giuseppe</given> 
 				</name> 
 				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Maschio"/> 
 				<birthTime value="19930619"/>
@@ -60,21 +61,21 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00184</postalCode> 
-				<streetAddressLine>via Esame 7</streetAddressLine> 
+				<streetAddressLine>via Milano 7</streetAddressLine> 
 			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
             <telecom use="WP" value="mailto:prova.provax@example.com"/>
-            <telecom use="MC" value="tel:3340000000"/>
+			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
 					<family>Prova</family> 
-					<given>Test</given> 
+					<given>Matteo</given> 
 				</name> 
 			</assignedPerson>
 			<representedOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
-				<name>SAN RAFFAELE NOME</name>
-				<telecom use="MC" value="tel:3340000000"/>
+				<name>SAN RAFFAELE NOMENTANA</name>
+				<telecom use="HP" value="tel: 010 337288945"/> 
 				<addr use="HP"> 
 					<country>100</country>
 					<state>120</state>
@@ -82,7 +83,7 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract> 
 					<postalCode>00137</postalCode> 
-					<streetAddressLine>via Test 39</streetAddressLine> 
+					<streetAddressLine>via Emilio Praga 39</streetAddressLine> 
 				</addr>
 			</representedOrganization>
 		</assignedAuthor> 
@@ -92,7 +93,7 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>	
 				<name>XXX</name>
-				<telecom use="WP" value="tel: 010 337288945"/> 
+				<telecom use="MC" value="tel:3340000000"/> 
 				<addr use="DIR"> 
 					<country>100</country>
 					<state>120</state>
@@ -123,7 +124,7 @@
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name>  
-					<family>Prove</family> 
+					<family>Test</family> 
 					<given>Federico</given>
 					<prefix>Dr.</prefix>
 				</name> 
@@ -135,8 +136,8 @@
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 			<associatedPerson>
 				<name>
-					<family>Maggi</family>
-					<given>Test</given>
+					<family>Esempio</family>
+					<given>Federica</given>
 				</name>
 			</associatedPerson>
 		</associatedEntity>
@@ -234,7 +235,7 @@
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.6"/>
 									<code code="59785-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Indicazioni per la vaccinazione"/>
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" code="[COD_CONSRISK]" codeSystem="2.16.840.1.113883.6.103" displayName="[DESC_CONSRISK]" codeSystemName="ICD-9CM (diagnosis codes)"> 
+									<value xsi:type="CD"  code="493.9" codeSystem="2.16.840.1.113883.6.103" displayName="bronchite asmatica (acuta)" codeSystemName="ICD-9CM (diagnosis codes)"> 
 										<originalText> 
 											<reference value="#[REF_CONSRISK]"/> 
 										</originalText> 
@@ -251,7 +252,7 @@
 										<low value="20220427101010+0100"/>
 										<high value ="20220506101010+0100"/>
 									</effectiveTime>
-									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" displayName="[DESC_REAZ]" codeSystemName="ICD-9CM (diagnosis codes)"> 
+									<value xsi:type="CD" code="692.3" codeSystem="2.16.840.1.113883.6.103" displayName="Dermatite da contatto con farmaci" codeSystemName="ICD-9CM (diagnosis codes)"> 
 									<originalText>
 										<reference value="#[REF_REAZ]"/> 
 									</originalText>
@@ -264,7 +265,7 @@
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.9"/> 
 									<code code="75323-6" displayName="Condizione" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="[DESC_MAL]">
+									<value xsi:type="CD" code="99.45" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Morbillo">
 										<originalText>
 											<reference value="#[REF_MAL]"></reference>
 										</originalText>
@@ -312,7 +313,7 @@
 										<low value="20220425121122+0100"/>
 										<high value="20210707221122+0100"/>
 									</effectiveTime>
-									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.9.999" codeSystemName="XXX" displayName="XXX"/>
+									<value xsi:type="CD" code="427.89" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Bradicardia"/>
 								</observation>
 							</entryRelationship-->
 							<!--malattia con presunta immunità-->
@@ -321,6 +322,7 @@
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.7"/>
 									<code code="59784-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Disease with presumed immunity"/>
 									<statusCode code="completed"/>
+									<value xsi:type="CD" code="403.9" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Nefropatia ipertensiva non specificata">
 										<originalText>
 											<reference value="#[REF_IMMUNE]"></reference>
 										</originalText>
@@ -333,10 +335,10 @@
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.9"/> 
 									<code code="75323-6" displayName="Condizione" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="[DESC_MAL]">
-									<originalText>
-										<reference value="#[REF_MAL]"></reference>
-									</originalText>
+									<value xsi:type="CD" code="99.45" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Morbillo">
+										<originalText>
+											<reference value="#[REF_MAL]"></reference>
+										</originalText>
 									</value>
 								</observation>
 							</entryRelationship>

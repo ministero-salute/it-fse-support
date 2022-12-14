@@ -12,7 +12,7 @@
 	<versionNumber value="1"/>
 	<recordTarget>
 		<patientRole>
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/>
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -20,14 +20,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00187</postalCode> 
-				<streetAddressLine>Via Test 12</streetAddressLine> 
+				<streetAddressLine>Via Aurora 12</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
 			<telecom use="MC" value="tel:3340000000"/>
 			<patient>
 				<name>
-					<family>Prova</family>
-					<given>Rossella</given>
+					<family>Test</family>
+					<given>Guido</given>
 				</name>
 				<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Femmina"/> 
 				<birthTime value="19900619"/>
@@ -57,14 +57,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00184</postalCode> 
-				<streetAddressLine>via Fila 7</streetAddressLine> 
+				<streetAddressLine>via Milano 7</streetAddressLine> 
 			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
             <telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson>
 				<name>
-					<family>Nessuno</family>
+					<family>Prova</family>
 					<given>Matteo</given>
 					<prefix>Dott.</prefix>
 				</name>
@@ -81,14 +81,14 @@
 				<county>RM</county> 
 				<city>Roma</city> 
 				<censusTract>058091</censusTract>
-				<streetAddressLine>via Delta 7</streetAddressLine>
+				<streetAddressLine>via Roma 7</streetAddressLine>
 			</addr>
 			 <telecom use="HP" value="mailto:prova.provax@example.com"/> 
              <telecom use="WP" value="mailto:prova.provax@example.com"/>
 			<assignedPerson>
 				<name>
-					<family>Bianchi</family>
-					<given>Test</given>
+					<family>Test</family>
+					<given>Filippo</given>
 				</name>
 			</assignedPerson>
 		</assignedEntity>
@@ -97,8 +97,8 @@
 		<relatedEntity classCode="PRS">
 			<relatedPerson> 
 				<name> 
-					<family>Silviani</family>
-					<given>Prova</given> 
+					<family>Test</family>
+					<given>Paola</given> 
 				</name> 
 			</relatedPerson> 
 		</relatedEntity> 
@@ -108,7 +108,7 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 				<name>XXX</name>
-				<telecom use="MC" value="tel:3340000000"/>
+				<telecom use="WP" value="tel:0640402233"/>
 				<addr>
 					<country>100</country>
 					<state>120</state>
@@ -137,7 +137,7 @@
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson>
 				<name>
-					<family>Prove</family>
+					<family>Prova</family>
 					<given>Paola</given>
 					<prefix>Dott.ssa</prefix>
 				</name>
@@ -148,7 +148,7 @@
 		<time value="20220510110000+0100"/> 
 		<signatureCode code="S"/> 
 		<assignedEntity> 
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PBOVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
 			<addr>
 				<country>100</country>
 				<state>120</state>
@@ -184,8 +184,8 @@
 			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<associatedPerson>
 				<name>
-					<family>Guido</family>
-					<given>Test</given>
+					<family>Prova</family>
+					<given>Matteo</given>
 				</name>
 			</associatedPerson>
 		</associatedEntity>
@@ -718,7 +718,7 @@
 									</text>
 									<statusCode code="completed"/>
 									<effectiveTime value="20180420101010+0100"/>
-									<value xsi:type="CD" code="41000" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="IMA DELLA PARETE ANTEROLATERALE">
+									<value xsi:type="CD" code="410.00" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="IMA DELLA PARETE ANTEROLATERALE">
 										<originalText>
 											<reference value="#fam_4"/>
 										</originalText>
@@ -1128,7 +1128,7 @@
 						<procedure classCode="PROC" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.11.1"/>
 							<id root="36e8e930-7b14-11db-9ff1-0800200c9b66"/>
-							<code code="8872" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="Diagnostica ecografica del cuore"/>
+							<code code="88.72" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="Diagnostica ecografica del cuore"/>
 							<text>
 								<reference value="#[REF_proc]"/>
 							</text>
@@ -1171,10 +1171,10 @@
 							<performer typeCode="PRF">
 								<time value="20220411121100+0100"/>
 								<assignedEntity>
-									<id root="2.16.840.1.113883.2.9.4.3.2" extension="AEFDFS76R29L123T" assigningAuthorityName="MEF"/>
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 									<assignedPerson>
 										<name>
-											<family>Giancani</family>
+											<family>Test</family>
 											<given>Mauro</given>
 										</name>
 									</assignedPerson>
@@ -1306,7 +1306,6 @@
 								<tr>
 									<th>Creatinina</th>
 									<td>1.1</td>
-									
 									<td>mg/dl</td>
 									<td>0.50 -1.20</td>
 								</tr> 
@@ -1421,7 +1420,7 @@
 						<act classCode="PCPR" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.18.1"/>
 							<id root="XXX"/>
-							<code code="[RDP_CODE]" codeSystem="2.16.840.1.113883.9.999" displayName="[RDP_DESC]"/>
+							<code code="XX" codeSystem="2.16.840.1.113883.2.9.2.30.3.1.3.6.10.1" displayName="Rete IMA"/>
 							<statusCode code="active"/>
 							<effectiveTime>
 								<low nullFlavor="UNK"/>

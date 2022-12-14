@@ -4,7 +4,7 @@
 	<realmCode code="IT"/>
 	<typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040UV02"/>
 	<templateId root="2.16.840.1.113883.2.9.10.1.9.1" extension="1.1" assigningAuthorityName="HL7 Italia"/>
-	<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20220509102426.Q123E456" assigningAuthorityName="Regione Lazio"/>
+	<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220509102426.Q123E456" assigningAuthorityName="Regione Lazio"/>
 	<code code="11488-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName=" Nota di consulto">
 		<!--translation code="[CODICE_LOCALE]" codeSystem="[OID_SISTEMA_CODIFICA]" codeSystemName="[DESCRIZIONE_SISTEMA_CODIFICA]" displayName="[DESCRIZIONE_CODICE]"/-->
 	</code>	
@@ -13,11 +13,11 @@
 	<effectiveTime value="20220509103000+0100"/>
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
 	<languageCode code="it-IT"/>
-	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
 	<versionNumber value="2"/>
 	<recordTarget>
 		<patientRole>
-			<id root="2.16.840.1.113883.2.9.2.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/>
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -25,14 +25,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00187</postalCode> 
-				<streetAddressLine>Via Prova 12</streetAddressLine> 
+				<streetAddressLine>Via Aurora 12</streetAddressLine> 
 			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<telecom use="MC" value="tel:3340000000"/>
 			<patient>
 				<name>
-					<family>Rossi</family>
-					<given>Rosso</given>
+					<family>Esempio</family>
+					<given>Guido</given>
 				</name>
 				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="MASCHIO"/> 
 				<birthTime value="19600619"/>
@@ -52,28 +52,28 @@
 	</recordTarget>
 	<author>
 		<time value="20220509093000+0100"/>
-		<assignedAuthor classCode="ASSIGNED"> 
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
-			<addr>
+		<assignedAuthor classCode="ASSIGNED">
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<addr use="HP"> 
 				<country>100</country>
 				<state>120</state>
 				<county>RM</county> 
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00184</postalCode> 
-				<streetAddressLine>Via Prova 7</streetAddressLine>
-			</addr>
+				<streetAddressLine>via Milano 7</streetAddressLine> 
+			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
-			<assignedPerson> 
-				<name> 
-					<family>Prove</family> 
-					<given>Prova</given> 
-					<prefix>Dr</prefix>
-				</name> 
+			<assignedPerson>
+				<name>
+					<family>Test</family>
+					<given>Matteo</given>
+					<prefix>Dott.</prefix>
+				</name>
 			</assignedPerson>
-		</assignedAuthor> 
+		</assignedAuthor>
 	</author>	
 	<dataEnterer typeCode="ENT">
 		<time value="20220509094000+0100"/>
@@ -85,14 +85,14 @@
 				<county>RM</county> 
 				<city>Roma</city> 
 				<censusTract>058091</censusTract>
-				<streetAddressLine>via Prova 7</streetAddressLine>
+				<streetAddressLine>via Milano 7</streetAddressLine>
 			</addr>
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3300000000"/> 
 			<assignedPerson>
 				<name>
-					<family>Test</family> 
-					<given>Prova</given> 
+					<family>Prova</family>
+					<given>Filippo</given>
 				</name>
 			</assignedPerson>
 		</assignedEntity>
@@ -102,14 +102,14 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 				<name>XXX</name>
-				<telecom use="WP" value="tel:0600000000"/>
+				<telecom use="MC" value="tel:3340000000"/>
 				<addr>
 					<country>100</country>
 					<state>120</state>
 					<county>RM</county> 
 					<city>Roma</city> 
 					<censusTract>058091</censusTract>
-					<streetAddressLine>Via Prova 7</streetAddressLine>
+					<streetAddressLine>Via Venezia 7</streetAddressLine>
 				</addr>
 			</representedCustodianOrganization>
 		</assignedCustodian>
@@ -132,7 +132,7 @@
 				<assignedPerson>
 					<name>
 						<family>Prova</family>
-						<given>Verifica</given>
+						<given>Paola</given>
 						<prefix>Dott.ssa</prefix>
 					</name>
 				</assignedPerson>
@@ -150,13 +150,13 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00164</postalCode> 
-				<streetAddressLine>via Prova 3</streetAddressLine>
+				<streetAddressLine>via Corvetto 3</streetAddressLine>
 			</addr>
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<associatedPerson>
 				<name>
-					<family>Provata</family>
-					<given>Prova</given>
+					<family>Test</family>
+					<given>Andrea</given>
 					<prefix>Dott.</prefix>
 				</name>
 			</associatedPerson>
@@ -176,8 +176,8 @@
 	</documentationOf> 	
 	<relatedDocument typeCode="RPLC"> 
 		<parentDocument> 
-			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20210420112426.F123E45G" assigningAuthorityName="HL7 Italia"/> 
-			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.RSSMRA22A01A399Z.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
+			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20210420112426.F123E45G" assigningAuthorityName="HL7 Italia"/> 
+			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
 			<versionNumber value="1"/>
 		</parentDocument> 
 	</relatedDocument>
@@ -200,7 +200,7 @@
 							<city>Roma</city> 
 							<censusTract>058091</censusTract> 
 							<postalCode>00164</postalCode> 
-							<streetAddressLine>via Prova 3</streetAddressLine>					
+							<streetAddressLine>via Corvetto 3</streetAddressLine>					
 						</addr>
 					</location>
 					<serviceProviderOrganization>
@@ -233,7 +233,7 @@
 					<entry> 
 						<observation classCode="OBS" moodCode="EVN"> 
 							<code code="29298-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo della visita"/>
-							<value xsi:type="CD" code="2512" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="IPOGLICEMIA NON SPECIFICATA">
+							<value xsi:type="CD" code="251.2" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="IPOGLICEMIA NON SPECIFICATA">
 								<!--translation code="XXX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="[DESC_DIAGNOSI]"/-->
 							</value>
 						</observation> 
@@ -318,7 +318,7 @@
 									</text>
 									<statusCode code="completed"/>
 									<effectiveTime value="20220406121122+0200"/>
-									<value xsi:type="CD" code="5756" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="COLESTEROLOSI DELLA COLECISTI"/>
+									<value xsi:type="CD" code="575.6" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="COLESTEROLOSI DELLA COLECISTI"/>
 									<entryRelationship typeCode="SUBJ">
 										<observation classCode="OBS" moodCode="EVN">
 											<code code="35267-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età diagnosi patologia"/>
@@ -347,7 +347,6 @@
 							</text> 
 							<entry> 
 								<act classCode="ACT" moodCode="EVN">
-									<!--templateId root="2.16.840.1.113883.2.9.10.1.6.33.9999"/-->
 									<code nullFlavor="NA"/> 
 									<statusCode code="active"/>
 									<effectiveTime>
@@ -482,7 +481,7 @@
 					</text>
 					<entry> 
 						<observation classCode="OBS" moodCode="EVN"> 
-							<code code="9054" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="ESAME MICROSCOPICO DI CAMPIONE DI SANGUE - PARASSITOLOGIA"/>
+							<code code="90.54" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="ESAME MICROSCOPICO DI CAMPIONE DI SANGUE - PARASSITOLOGIA"/>
 							<effectiveTime>
 								<low value="20220101090000+0200"/> 
 								<high value="20220101103000+0200"/>
@@ -526,11 +525,11 @@
 									<tbody>
 										<tr>
 											<th>Codice Prestazione</th>
-											<td>012311B</td>
+											<td>67727-8</td>
 										</tr>
 										<tr>
 											<th>Descrizione Prestazione eseguita</th>
-											<td>ESTRAZIONE DI RADICE RESIDUA (chirurgia ambulatoriale -BIC)</td>
+											<td>Heart surgery operation</td>
 										</tr>
 										<tr>
 											<th>Data Prestazione eseguita</th>
@@ -552,7 +551,7 @@
 											<tbody>
 												<tr>
 													<th>Codice Prestazione Eseguita</th>
-													<td>012311B</td>
+													<td>55122-6</td>
 												</tr>
 												<tr>
 													<th>Codice Procedura Operativa</th>
@@ -560,7 +559,7 @@
 												</tr>
 												<tr>
 													<th>Descrizione Procedura Operativa</th>
-													<td></td>
+													<td>Surgical operation note implants</td>
 												</tr>
 												<tr>
 													<th>Quantità</th>
@@ -591,7 +590,7 @@
 					</text>
 					<entry>
 						<act classCode="ACT" moodCode="EVN"> 
-							<code code="012311B" codeSystem="2.16.840.1.113883.2.9.2.120.6.11" codeSystemName="DIZ_PREST_SAN_Regione Lazio" displayName="ESTRAZIONE DI RADICE RESIDUA (chirurgia ambulatoriale- BIC">
+							<code code="67727-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Heart surgery operation">
 								<originalText>
 									<reference value="Prestazione – 1"/>
 								</originalText>
@@ -599,7 +598,7 @@
 							<effectiveTime value="20220509073749+0100"/>
 							<entryRelationship typeCode="COMP">
 								<procedure classCode="PROC" moodCode="EVN">
-									<code code="012311B" codeSystem="2.16.840.1.113883.2.9.2.120.6.11" codeSystemName="DIZ_PREST_SAN_Regione Lazio" displayName="ESTRAZIONE DI RADICE RESIDUA(in chirurgia ambulatoriale - BIC)">
+									<code code="55122-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Surgical operation note implants">
 										<originalText>
 											<reference value="#Procedura - 1"/>
 										</originalText>
@@ -648,7 +647,7 @@
 					<entry> 
 						<observation classCode="OBS" moodCode="EVN"> 
 							<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi"/>
-							<value xsi:type="CD" code="79021" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9CM" displayName="ALTERAZIONI DEL TEST RAPIDO DELLA GLICEMIA"/>
+							<value xsi:type="CD" code="790.21" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9CM" displayName="ALTERAZIONI DEL TEST RAPIDO DELLA GLICEMIA"/>
 						</observation> 
 					</entry>
 				</section>
@@ -735,7 +734,7 @@
 								<high value="3" unit="mg/h"/> 
 							</rateQuantity>
 							<!--Forma Farmaceutica-->
-							<administrationUnitCode code="46992007" codeSystem="2.16.840.1.113883.4.642.3.374" codeSystemName="SNOMED" displayName="Pill"/>
+							<administrationUnitCode code="46992007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Pill"/>
 							<consumable>
 								<manufacturedProduct classCode="MANU">
 							<!--Dettagli del Farmaco-->
@@ -749,11 +748,11 @@
 							<participant typeCode="REF">
 								<time value="20220509120000+0100"/>
 								<participantRole>
-									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="FCCGDI86H50I470K" assigningAuthorityName="MEF"/>
 									<playingEntity>
 										<name>
-											<family>Prova</family>
-											<given>Prova</given>
+											<family>Esempio</family>
+											<given>Stefania</given>
 										</name>
 									</playingEntity>
 								</participantRole>
@@ -761,14 +760,14 @@
 							<entryRelationship typeCode="COMP">
 							<!--Grammatura-->
 								<observation classCode="OBS" moodCode="EVN">
-									<code 	code="XX" codeSystem="2.16.840.1.113883.9.999" codeSystemName="XXXX" displayName="Grammatura"/>
+									<code 	code="029480086" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="Grammatura"/>
 									<value xsi:type="REAL" value="2.5"/>
 								</observation>
 							</entryRelationship>
 							<entryRelationship typeCode="COMP">
 							<!--Quantità nella confezione-->
 								<observation classCode="OBS" moodCode="EVN">
-									<code code="XX" codeSystem="2.16.840.1.113883.9.999" codeSystemName="XXXX" displayName="Quantità nella Confezione"/>
+									<code code="029480086" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="Quantità nella Confezione"/>
 									<value xsi:type="REAL" value="5"/>
 								</observation>
 							</entryRelationship>

@@ -18,7 +18,8 @@
 	<versionNumber value="1"/> 
 	<recordTarget typeCode="RCT" contextControlCode="OP">
 		<patientRole classCode="PAT">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.9.9.9.9.9.9" extension="11111htttt" assigningAuthorityName="SAN RAFFAELE NOMENTANA"/>
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -26,14 +27,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00187</postalCode> 
-				<streetAddressLine>via Prova 12</streetAddressLine> 
+				<streetAddressLine>via Aurora 12</streetAddressLine> 
 			</addr> 			
 			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<telecom use="MC" value="tel:3340000000"/>
 			<patient> 
 				<name> 
-					<family>Bonomi</family> 
-					<given>Test</given> 
+					<family>Test</family> 
+					<given>Giuseppe</given> 
 				</name> 
 				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Maschio"/> 
 				<birthTime value="19930619"/>
@@ -54,7 +55,7 @@
 	<author>
 		<time value="20220330112426+0100"/>
 		<assignedAuthor classCode="ASSIGNED"> 
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/>
 			<addr use="HP"> 
 				<country>100</country>
 				<state>120</state>
@@ -62,15 +63,15 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00184</postalCode> 
-				<streetAddressLine>via Prova 7</streetAddressLine> 
+				<streetAddressLine>via Milano 7</streetAddressLine> 
 			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
-					<family>Prove</family> 
-					<given>Prova</given> 
+					<family>Test</family> 
+					<given>Matteo</given> 
 				</name> 
 			</assignedPerson>
 		</assignedAuthor> 
@@ -78,7 +79,7 @@
 	<dataEnterer typeCode="ENT"> 
 		<time value="20220330112426+0100"/> 
 		<assignedEntity> 
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
 			<addr use="HP">
 				<country>100</country>
 				<state>120</state>
@@ -86,14 +87,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00138</postalCode> 
-				<streetAddressLine>via Prova 12B</streetAddressLine> 
+				<streetAddressLine>via Canevari 12B</streetAddressLine> 
 			</addr>
 			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
-					<family>Prova</family> 
-					<given>Provato</given> 
+					<family>Test</family> 
+					<given>Filippo</given> 
 				</name> 
 			</assignedPerson> 
 		</assignedEntity> 
@@ -103,7 +104,7 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.1" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="HP" value="tel:3340000000"/> 
+				<telecom use="MC" value="tel:3340000000"/> 
 				<addr use="HP"> 
 					<country>100</country>
 					<state>120</state>
@@ -111,7 +112,7 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract> 
 					<postalCode>00137</postalCode> 
-					<streetAddressLine>via Prova 39</streetAddressLine> 
+					<streetAddressLine>via Emilio Praga 39</streetAddressLine> 
 				</addr>
 			</representedCustodianOrganization> 
 		</assignedCustodian> 
@@ -119,11 +120,11 @@
 	<informationRecipient> 
 		<intendedRecipient> 
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
-			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="MC" value="tel:3340000000"/> 
 			<informationRecipient> 
 				<name>
-					<family></family> 
-					<given></given> 
+					<family>Esempio</family> 
+					<given>Maura</given> 
 				</name> 
 			</informationRecipient> 
 		</intendedRecipient> 
@@ -140,14 +141,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00164</postalCode> 
-				<streetAddressLine>via Prova 3</streetAddressLine>
+				<streetAddressLine>via Corvetto 3</streetAddressLine>
 			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name>  
-					<family>Esempi</family> 
-					<given>Esempio</given>
+					<family>Test</family> 
+					<given>Federico</given>
 					<prefix>Dr.</prefix>
 				</name> 
 			</assignedPerson> 
@@ -165,20 +166,20 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00164</postalCode> 
-				<streetAddressLine>via Esame 3</streetAddressLine>
+				<streetAddressLine>via Corvetto 3</streetAddressLine>
 			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<assignedPerson> 
 				<name> 
-					<family>Verdi</family> 
-					<given>Esempio</given> 
+					<family>Test</family> 
+					<given>Roberta</given> 
 				</name> 
 			</assignedPerson>
 		</assignedEntity> 
 	</authenticator> 	
 	<participant typeCode="SPRF" contextControlCode="OP">
-		<functionCode code="PRE" codeSystem="2.16.840.1.113883.2.9.5.1.1.88"/>
+		<functionCode code="PRE" codeSystem="2.16.840.1.113883.2.9.5.1.88"/>
 		<time value="20220324112426+0100"/>
 		<associatedEntity classCode="PROV">
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
@@ -190,13 +191,13 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00187</postalCode> 
-				<streetAddressLine>via Test Veneto 3</streetAddressLine> 
+				<streetAddressLine>via Vittorio Veneto 3</streetAddressLine> 
 			</addr>
 			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<associatedPerson>
 				<name>
-					<family>Maggi</family>
-					<given>Prova</given>
+					<family>Esempio</family>
+					<given>Federica</given>
 				</name>
 			</associatedPerson>
 			<scopingOrganization>
@@ -210,7 +211,7 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract> 
 					<postalCode>00137</postalCode> 
-					<streetAddressLine>via Esempio 39</streetAddressLine> 
+					<streetAddressLine>via Emilio Praga 39</streetAddressLine> 
 				</addr>
 			</scopingOrganization>
 		</associatedEntity>
@@ -242,8 +243,8 @@
 					<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 					<assignedPerson>
 						<name>
-							<family>De Vitis</family>
-							<given>Test</given>
+							<family>Prova</family>
+							<given>Giulio</given>
 						</name>	
 					</assignedPerson>
 				</assignedEntity>
@@ -260,7 +261,7 @@
 							<city>Roma</city> 
 							<censusTract>058091</censusTract> 
 							<postalCode>00171</postalCode> 
-							<streetAddressLine>viale Esame Margherita</streetAddressLine> 
+							<streetAddressLine>viale Regina Margherita</streetAddressLine> 
 						</addr>
 					</location>
 					<serviceProviderOrganization>
@@ -281,7 +282,7 @@
 		<structuredBody moodCode="EVN" classCode="DOCBODY">
 			<component typeCode="COMP">
 				<section ID="DICOM_Object_Catalog">
-					<code code="121181" codeSystem="1.2.840.10008.2.16.4" codeSystemName="LOINC" codeSystemVersion="[VERSIONE]" displayName="DICOM Object Catalog"/>
+					<code code="121181" codeSystem="1.2.840.10008.2.16.4" codeSystemName="DCM" codeSystemVersion="01" displayName="DICOM Object Catalog"/>
 					<title>DICOM Object Catalog</title>
 					<entry>
 						<act classCode="ACT" moodCode="EVN">
@@ -291,7 +292,7 @@
 								<act classCode="ACT" moodCode="EVN">
 									<id root="1.2.840.113619.2.62.994044785528.20060823223142485051"/>
 									<code code="113015" codeSystem="1.2.840.10008.2.16.4" codeSystemName="DCM" displayName="Series">
-										<translation code="0090334.02" codeSystem="2.16.840.1.113883.2.9.2.30.6.11" codeSystemName="SISS" displayName="Diagnosi"/>
+										<translation code="0090334.02" codeSystem="2.16.840.1.113883.2.9.2.30.6.11" codeSystemName="SISS" displayName="XXX"/>
 									</code>
 									<entryRelationship typeCode="COMP"> 
 										<observation classCode="DGIMG" moodCode="EVN">
@@ -309,7 +310,7 @@
 			</component>	
 			<component typeCode="COMP">
 				<section ID="Quesito_Diagnostico">
-					<code code="18785-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.19" displayName="Motivo per lo studio - Radiologia"/>
+					<code code="18785-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.73" displayName="Motivo per lo studio - Radiologia"/>
 					<title>Quesito Diagnostico</title>
 					<text>
 						<list>
@@ -321,7 +322,7 @@
 					<entry>
 						<observation classCode="OBS" moodCode="EVN">
 							<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi"/>
-							<value xsi:type="CD" code="[COD_DIAGNOSI]" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9CM" displayName="[DESCRIZIONE_DIAGNOSI]">
+							<value xsi:type="CD" code="770.0" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9CM" displayName="Polmonite congenita">
 								<translation code="[COD_DIAGNOSI]" codeSystem="2.16.840.1.113883.2.9.2.30.6.11" codeSystemName="SISS" displayName="[DESCRIZIONE_DIAGNOSI]"/>
 							</value>
 						</observation>
@@ -391,7 +392,7 @@
 									</text>
 									<statusCode code="completed"/>
 									<effectiveTime value="20220406121122+0200"/>
-									<value xsi:type="CD" code="5756" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="COLESTEROLOSI DELLA COLECISTI"/>
+									<value xsi:type="CD" code="575.6" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="COLESTEROLOSI DELLA COLECISTI"/>
 									<entryRelationship typeCode="SUBJ">
 										<observation classCode="OBS" moodCode="EVN">
 											<code code="35267-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età diagnosi patologia"/>
@@ -564,7 +565,7 @@
 								<originalText>
 									<reference value="#EsameDesc1"/>
 								</originalText>
-								<translation code="87.7" codeSystem="2.16.840.1.113883.6.106" codeSystemName="[XXX]" displayName="Rx Torace"/>
+								<translation code="24651-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="R &amp; L-oblique views"/>
 							</code>
 							<text>
 								<reference value="#Esame1"/>

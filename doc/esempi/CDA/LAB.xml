@@ -14,7 +14,7 @@
 	<versionNumber value="2"/> 
 	<recordTarget typeCode="RCT" contextControlCode="OP">
 		<patientRole classCode="PAT">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -22,7 +22,7 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00187</postalCode> 
-				<streetAddressLine>Via Prova 12</streetAddressLine> 
+				<streetAddressLine>Via Aurora 12</streetAddressLine> 
 			</addr> 
 			<addr use="HP"> 
 				<country>100</country>
@@ -31,14 +31,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00138</postalCode> 
-				<streetAddressLine>Via Prova 12B</streetAddressLine>
+				<streetAddressLine>Via Canevari 12B</streetAddressLine>
 			</addr>			
-			<telecom use="HP" value="mailto:prova.provax@example.com"/>
-			<telecom use="MC" value="tel:3340000000"/>
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+			<telecom use="MC" value="tel:33224456"/>
 			<patient> 
 				<name> 
-					<family>Verdi</family> 
-					<given>Test</given> 
+					<family>Test</family> 
+					<given>Giuseppe</given> 
 				</name> 
 				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="MASCHIO"/> 
 				<birthTime value="19930619"/>
@@ -67,15 +67,15 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00184</postalCode> 
-				<streetAddressLine>Via Prova 7</streetAddressLine>
+				<streetAddressLine>Via Milano 7</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
-					<family>Prova</family> 
-					<given>Provo</given> 
+					<family>Test</family> 
+					<given>Matteo</given> 
 					<prefix>Dr</prefix>
 				</name> 
 			</assignedPerson>
@@ -89,7 +89,7 @@
 			<assignedPerson> 
 				<name> 
 					<family>Prova</family> 
-					<given>Test</given> 
+					<given>Filippo</given> 
 				</name> 
 			</assignedPerson> 
 		</assignedEntity> 
@@ -99,7 +99,7 @@
 		<assignedCustodian> 
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
-				<name>SAN RAFFAELE NOMENTANO</name>
+				<name>SAN RAFFAELE NOMENTANA</name>
 				<telecom use="MC" value="tel:3340000000"/> 
 				<addr> 
 					<country>100</country>
@@ -108,7 +108,7 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract>
 					<postalCode>00137</postalCode> 
-					<streetAddressLine>Via Prova 39</streetAddressLine> 
+					<streetAddressLine>Via Emilio Praga 39</streetAddressLine> 
 				</addr>				
 			</representedCustodianOrganization> 
 		</assignedCustodian> 
@@ -119,8 +119,8 @@
 			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<informationRecipient> 
 				<name>
-					<family>Prova</family> 
-					<given>Esame</given> 
+					<family>Test</family> 
+					<given>Maura</given> 
 				</name> 
 			</informationRecipient> 
 		</intendedRecipient> 
@@ -138,14 +138,14 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract> 
 					<postalCode>00164</postalCode> 
-					<streetAddressLine>Via Prova 3</streetAddressLine>
+					<streetAddressLine>Via Corvetto 3</streetAddressLine>
 				</addr> 
 				<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-				<telecom use="MC" value="tel:3300000000"/> 
+				<telecom use="MC" value="tel:3340000000"/> 
 				<assignedPerson> 
 					<name>  
-						<family>Borromei</family> 
-						<given>Prova</given>
+						<family>Prova</family> 
+						<given>Federico</given>
 						<prefix>Dttr.</prefix>
 					</name> 
 				</assignedPerson> 
@@ -164,14 +164,14 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00164</postalCode> 
-				<streetAddressLine>Via Prova 3</streetAddressLine>
+				<streetAddressLine>Via Corvetto 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="HP" value="tel:22998276800"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="MC" value="tel:3340000000"/> 
 			<assignedPerson> 
 				<name> 
-					<family>Fumagallo</family> 
-					<given>Test</given> 
+					<family>Test</family> 
+					<given>Roberta</given> 
 				</name> 
 			</assignedPerson>
 		</assignedEntity> 
@@ -189,20 +189,20 @@
 				<city>Roma</city> 
 				<censusTract>058091</censusTract> 
 				<postalCode>00187</postalCode> 
-				<streetAddressLine>Via Prova 3</streetAddressLine>
+				<streetAddressLine>Via Vittorio Veneto 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
 			<associatedPerson>
 				<name>
-					<family>Prova</family>
-					<given>Esito</given>
+					<family>Esempio</family>
+					<given>Silvia</given>
 				</name>
 			</associatedPerson>
 			<scopingOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/><!-- STS11-->
 				<name></name>
-				<name>SAN RAFFAELE</name>
-				<telecom use="HP" value="tel: 390 666 0581"/> 
+				<name>SAN RAFFAELE NOMENTANA</name>
+				<telecom use="MC" value="tel:3340000000"/> 
 				<addr> 
 					<country>100</country>
 					<state>120</state>
@@ -210,7 +210,7 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract>
 					<postalCode>00137</postalCode> 
-					<streetAddressLine>Via Di Praga 39</streetAddressLine> 
+					<streetAddressLine>Via Emilio Praga 39</streetAddressLine> 
 				</addr>	
 			</scopingOrganization>
 		</associatedEntity>
@@ -232,13 +232,13 @@
 					<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 					<assignedPerson>
 						<name>
-							<family>Prova</family>
-							<given>Esame</given>
+							<family>Test</family>
+							<given>Mario</given>
 						</name>
 					</assignedPerson>
 					<representedOrganization>
 						<id root="2.16.840.1.113883.2.9.4.1.3" extension="327700102" assigningAuthorityName="Ministero della Salute"/>
-						<name>Nuovo Ospedale S.Agostino</name>
+						<name>Nuovo Ospedale S.Agostino (MO)</name>
 						<asOrganizationPartOf>
 							<id root="2.16.840.1.113883.2.9.4.1.1" extension="080105" assigningAuthorityName="Ministero della Salute"/>
 						</asOrganizationPartOf>	
@@ -250,8 +250,8 @@
 	
 	<relatedDocument typeCode ="RPLC"> 
 		<parentDocument> 
-			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.PROVAX00X00X000Y.20220330112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
-			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="c030702.PROVAX00X00X000Y.20220325112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
+			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220330112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
+			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="c030702.TSTSMN63A01F205H.20220325112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
 			<versionNumber value="1"/> 
 		</parentDocument> 
 	</relatedDocument> 
@@ -264,8 +264,8 @@
 					<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 					<assignedPerson>
 						<name>
-							<family>Giusti</family>
-							<given>Prova</given>
+							<family>Test</family>
+							<given>Silvia</given>
 						</name>
 					</assignedPerson>
 				</assignedEntity>
@@ -297,7 +297,7 @@
 					<component>
 						<section ID="ALBUMINA_URINE">
 							<code code="14957-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Microalbumin Massa/Volume in Urine">
-								<translation code="0090334.02" codeSystem="2.16.840.1.113883.2.9.2.30.6.11" codeSystemName="SISS" displayName="Microalbumina nelle urine"/>
+								<translation code="0090334.02" codeSystem="2.16.840.1.113883.2.9.2.30.6.11" codeSystemName="SISS" displayName="XXX"/>
 							</code>
 							<title>Albumina nelle Urine</title>
 							<text>
@@ -375,8 +375,8 @@
 											<referenceRange>
 												<observationRange>
 													<value xsi:type="IVL_PQ">
-														<low value=" 0.00" unit="mg/L"/>
-														<high value=" 20.00" unit="mg/L"/>
+														<low value="0.00" unit="mg/L"/>
+														<high value="20.00" unit="mg/L"/>
 													</value>
 													<interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 Observation Interpretation" displayName="Normal"/>
 													<lab:precondition> 
