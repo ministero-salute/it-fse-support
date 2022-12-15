@@ -16,6 +16,7 @@ A partire da Settembre sarà possibile per tutte le regioni testare le integrazi
 * [Richiesta certificati x509 per autenticazione e firma](#richiesta-certificati-x509)
 * [Apertura Segnalazioni](https://github.com/ministero-salute/it-fse-support/issues)
 * [Canale Slack #fse](https://developersitalia.slack.com/archives/C03RDT88FSM)
+* [Client Web Gateway (non ufficiale)](https://github.com/zukka77/gtwclient)
 
 # Gateway (GTW)
 
