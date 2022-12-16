@@ -33,7 +33,7 @@
 				<postalCode>00138</postalCode> 
 				<streetAddressLine>Via Canevari 12B</streetAddressLine>
 			</addr>			
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<telecom use="MC" value="tel:33224456"/>
 			<patient> 
 				<name> 
@@ -69,8 +69,8 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>Via Milano 7</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
-			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
@@ -166,7 +166,7 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>Via Corvetto 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
 			<telecom use="MC" value="tel:3340000000"/> 
 			<assignedPerson> 
 				<name> 
@@ -191,7 +191,7 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>Via Vittorio Veneto 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+			<telecom use="HP" value="mailto:prova.provax@example.com"/>
 			<associatedPerson>
 				<name>
 					<family>Esempio</family>
