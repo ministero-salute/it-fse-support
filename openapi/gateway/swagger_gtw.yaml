@@ -2,22 +2,26 @@ openapi: 3.0.1
 info:
   title: Gateway Dispatcher
   description: Handles and enroutes all the CDA validations and/or publications
+  termsOfService: www.terms.com
   contact:
     url: https://github.com/ministero-salute/it-fse-support
   version: 1.0.0
   x-api-id: '1'
   x-summary: Handles and enroutes all the CDA validations and/or publications
 servers:
-  - url: http://localhost:8010/v1
+  - url: https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
     description: Generated server url
     x-sandbox: true
 security:
   - bearerAuth: []
+  - FSE-JWT-Signature: []
 tags:
+  - name: Servizio ispezione transazioni
   - name: Servizio validazione documenti
   - name: Servizio pubblicazione documenti
+  - name: Health check Status Actuator
 paths:
-  /documents/{identificativoDocUpdate}:
+  /v1/documents/{idDoc}:
     put:
       tags:
         - Servizio pubblicazione documenti
@@ -25,7 +29,7 @@ paths:
       description: Sostituisce il documento identificato da oid fornito in input.
       operationId: replace
       parameters:
-        - name: identificativoDocUpdate
+        - name: idDoc
           in: path
           required: true
           schema:
@@ -143,7 +147,7 @@ paths:
       description: Elimina il documento identificato da oid fornito in input.
       operationId: delete
       parameters:
-        - name: identificativoDocUpdate
+        - name: idDoc
           in: path
           required: true
           schema:
@@ -238,15 +242,15 @@ paths:
       security:
         - bearerAuth: []
         - FSE-JWT-Signature: []
-  /documents/{identificativoDocUpdate}/metadata:
+  /v1/documents/{idDoc}/metadata:
     put:
       tags:
         - Servizio pubblicazione documenti
       summary: Pubblicazione aggiornamento metadati
       description: Pubblicazione aggiornamento metadati dato l'identificativo documento.
-      operationId: replaceMetadata
+      operationId: updateMetadata
       parameters:
-        - name: identificativoDocUpdate
+        - name: idDoc
           in: path
           required: true
           schema:
@@ -347,7 +351,7 @@ paths:
       security:
         - bearerAuth: []
         - FSE-JWT-Signature: []
-  /documents:
+  /v1/documents:
     post:
       tags:
         - Servizio pubblicazione documenti
@@ -458,7 +462,7 @@ paths:
       security:
         - bearerAuth: []
         - FSE-JWT-Signature: []
-  /documents/validation:
+  /v1/documents/validation:
     post:
       tags:
         - Servizio validazione documenti
@@ -581,12 +585,234 @@ paths:
       security:
         - bearerAuth: []
         - FSE-JWT-Signature: []
+  /v1/status/{workflowInstanceId}:
+    get:
+      tags:
+        - Servizio ispezione transazioni
+      summary: Recupero eventi del workflow instance id
+      description: Recupera il dettaglio degli eventi tramite il workflow instance id.
+      operationId: getEvents
+      parameters:
+        - name: workflowInstanceId
+          in: path
+          required: true
+          schema:
+            maxLength: 256
+            minLength: 0
+            type: string
+            description: Identificativo del workflow
+      responses:
+        '200':
+          description: Eventi recuperati con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionInspectResDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '403':
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '404':
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '409':
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '413':
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '415':
+          description: Unsupported media type
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '502':
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '503':
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '504':
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+  /v1/status/search/{traceId}:
+    get:
+      tags:
+        - Servizio ispezione transazioni
+      summary: Recupero eventi del trace id
+      description: Recupera il dettaglio degli eventi tramite il trace id.
+      operationId: getEventsByTraceId
+      parameters:
+        - name: traceId
+          in: path
+          required: true
+          schema:
+            maxLength: 100
+            minLength: 1
+            type: string
+      responses:
+        '200':
+          description: Eventi recuperati con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionInspectResDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '403':
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '404':
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '409':
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '413':
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '415':
+          description: Unsupported media type
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '502':
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '503':
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '504':
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+  /status:
+    get:
+      tags:
+        - Health check Status Actuator
+      summary: Health check status
+      description: Health check endpoint.
+      operationId: health
+      responses:
+        '200':
+          description: Health check OK
+          content:
+            application/problem+json: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json: {}
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
 components:
   schemas:
     PublicationUpdateReqDTO:
       required:
         - assettoOrganizzativo
-        - identificativoDoc
         - identificativoRep
         - identificativoSottomissione
         - tipoAttivitaClinica
@@ -607,10 +833,10 @@ components:
           maxItems: 100
           minItems: 0
           type: array
-          description: Regole di accesso
           items:
+            maxLength: 1000
             type: string
-            description: Regole di accesso
+            description: Regola di accesso
         tipoDocumentoLivAlto:
           type: string
           description: Tipo documento alto livello
@@ -628,6 +854,8 @@ components:
             - VAC
             - CER
             - VRB
+            - CON
+            - CNT
         assettoOrganizzativo:
           type: string
           description: Assetto organizzativo che ha portato alla creazione del documento
@@ -741,6 +969,7 @@ components:
             - DIS
             - ERP
             - Sistema_TS
+            - INI
         identificativoSottomissione:
           maxLength: 100
           minLength: 0
@@ -751,18 +980,12 @@ components:
           description: Formato dei dati sanitari
           enum:
             - CDA
-            - DICOM_SR
         mode:
           type: string
           description: Modalità di iniezione del CDA
           enum:
             - ATTACHMENT
             - RESOURCE
-        identificativoDoc:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo documento
         identificativoRep:
           maxLength: 100
           minLength: 0
@@ -793,7 +1016,7 @@ components:
           type: string
           description: Descrizione sintetica della tipologia d’errore
         detail:
-          maxLength: 1000
+          maxLength: 10000
           minLength: 0
           type: string
           description: Dettaglio della tipologia d’errore
@@ -853,10 +1076,10 @@ components:
           maxItems: 100
           minItems: 0
           type: array
-          description: Regole di accesso
           items:
+            maxLength: 1000
             type: string
-            description: Regole di accesso
+            description: Regola di accesso
         tipoDocumentoLivAlto:
           type: string
           description: Tipo documento alto livello
@@ -874,6 +1097,8 @@ components:
             - VAC
             - CER
             - VRB
+            - CON
+            - CNT
         assettoOrganizzativo:
           type: string
           description: Assetto organizzativo che ha portato alla creazione del documento
@@ -987,6 +1212,7 @@ components:
             - DIS
             - ERP
             - Sistema_TS
+            - INI
         identificativoSottomissione:
           maxLength: 100
           minLength: 0
@@ -1029,10 +1255,10 @@ components:
           maxItems: 100
           minItems: 0
           type: array
-          description: Regole di accesso
           items:
+            maxLength: 1000
             type: string
-            description: Regole di accesso
+            description: Regola di accesso
         tipoDocumentoLivAlto:
           type: string
           description: Tipo documento alto livello
@@ -1050,6 +1276,8 @@ components:
             - VAC
             - CER
             - VRB
+            - CON
+            - CNT
         assettoOrganizzativo:
           type: string
           description: Assetto organizzativo che ha portato alla creazione del documento
@@ -1163,6 +1391,7 @@ components:
             - DIS
             - ERP
             - Sistema_TS
+            - INI
         identificativoSottomissione:
           maxLength: 100
           minLength: 0
@@ -1178,7 +1407,6 @@ components:
           description: Formato dei dati sanitari
           enum:
             - CDA
-            - DICOM_SR
         mode:
           type: string
           description: Modalità di iniezione del CDA
@@ -1195,10 +1423,6 @@ components:
           minLength: 0
           type: string
           description: Identificativo repository
-        forcePublish:
-          type: boolean
-          description: Forza pubblicazione documento
-          default: false
         priorita:
           type: boolean
           description: Priorita
@@ -1213,7 +1437,6 @@ components:
           description: Formato dei dati sanitari
           enum:
             - CDA
-            - DICOM_SR
         mode:
           type: string
           description: Modalità di iniezione del CDA
@@ -1226,7 +1449,6 @@ components:
           enum:
             - VERIFICA
             - VALIDATION
-            - TS_PRE_PUBLISHING
       additionalProperties: false
     ValidationErrorResponseDTO:
       type: object
@@ -1252,7 +1474,7 @@ components:
           type: string
           description: Descrizione sintetica della tipologia d’errore
         detail:
-          maxLength: 1000
+          maxLength: 10000
           minLength: 0
           type: string
           description: Dettaglio della tipologia d’errore
@@ -1294,6 +1516,78 @@ components:
           minLength: 0
           type: string
           description: Dettaglio del warning
+      additionalProperties: false
+    StatusCheckDTO:
+      type: object
+      properties:
+        eventType:
+          maxLength: 100
+          minLength: 0
+          type: string
+        eventDate:
+          type: string
+          format: date-time
+        eventStatus:
+          maxLength: 100
+          minLength: 0
+          type: string
+        message:
+          maxLength: 10000
+          minLength: 0
+          type: string
+        identificativoDocumento:
+          maxLength: 100
+          minLength: 0
+          type: string
+        subject:
+          maxLength: 100
+          minLength: 0
+          type: string
+        subjectRole:
+          maxLength: 100
+          minLength: 0
+          type: string
+        tipoAttivita:
+          maxLength: 100
+          minLength: 0
+          type: string
+        organizzazione:
+          maxLength: 100
+          minLength: 0
+          type: string
+        workflowInstanceId:
+          maxLength: 256
+          minLength: 0
+          type: string
+        traceId:
+          maxLength: 100
+          minLength: 0
+          type: string
+        issuer:
+          maxLength: 100
+          minLength: 0
+          type: string
+        expiringDate:
+          type: string
+          format: date-time
+      additionalProperties: false
+    TransactionInspectResDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+        transactionData:
+          maxItems: 1000
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusCheckDTO'
       additionalProperties: false
   securitySchemes:
     bearerAuth:
