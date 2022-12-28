@@ -3,7 +3,6 @@
 
 # Indice
 
-
 - [Processo di accreditamento al FSE 2.0](#processo-di-accreditamento-al-fse-20)
 - [Indice](#indice)
 - [Obiettivo del documento](#obiettivo-del-documento)
@@ -15,13 +14,9 @@
 - [Fase 3: deployment in produzione](#fase-3-deployment-in-produzione)
   - [Notes](#notes)
 
-
-
-
-
 # Obiettivo del documento
 
-Il documento descrive** il processo di accreditamento** al sistema Gateway e fornisce le informazioni operative per poter effettuare i relativi test case.
+Il documento descrive **il processo di accreditamento** al sistema Gateway e fornisce le informazioni operative per poter effettuare i relativi test case.
 
 Questo **documento verrà reso pubblico su Developers Italia**.
 
@@ -81,25 +76,24 @@ Il processo di accreditamento **avviene presso l’ambiente di test del fornitor
 2. Il fornitore, richiede a Sogei certificati di test **associati al fornitore** (mediante email  all’indirizzo [fse_support@sogei.it](mailto:fse_support@sogei.it) fino a quando non sarà disponibile il sistema di provisioning che rilascerà anche i certificati di test)  per accedere ai servizi esposti dalla piattaforma gateway di test in ambiente di pre produzione (esempio: un fornitore che avvia il processo di accreditamento per due applicativi può usare il medesimo certificato). 
 3. Durante la fase di sviluppo, il fornitore provvede **in forma autonoma** ad invocare i servizi del gateway al sistema di pre produzione. Questa attività consente un debugging più accurato da parte del fornitore ed è propedeutica alla richiesta di avvio dell’attività di accreditamento.
 4. Conclusa la fase di sviluppo e test interno, il fornitore avvia la fase di accreditamento compilando il **form di richiesta accreditamento on line messo a disposizione da DTD**  con le seguenti informazioni:
-
-([https://ec.europa.eu/eusurvey/runner/FSE-raccolta-id-applicativo](https://ec.europa.eu/eusurvey/runner/FSE-raccolta-id-applicativo)) 
-
-
-
-* Nome fornitore: subject_application_vendor
-* nome applicazione: subject_application_id
-* versione applicazione: subject_application_version
-* Nome referente fornitore
-* contatti (e-mail telefono, ecc..)
-* data di inizio del test di accreditamento
-* data prevista di fine del test di accreditamento
-* Lista dei tipi di documento oggetto dell’accreditamento 
-* Lista servizi oggetto dell’accreditamento:
-    * validazione
-    * pubblicazione
-5. Il fornitore effettua l’esecuzione dei test case di accreditamento previsti nel piano di accreditamento. Quando risulteranno tutti eseguiti con esito positivo il fornitore produrrà il report dei test effettuati (“Lista risultati test case”) inviandolo all’indirizzo di email [fse-support@sogei.it](mailto:fse-support@sogei.it).  E’ prevista la realizzazione di un meccanismo più diretto di invio della lista dei risultati che sarà reso disponibile successivamente. 
-6. Sogei estrae i log dei test case, confronta i log con il contenuto del report “Lista risultati test case” e produce il report “Valutazione risultati”. 
-7. Il DTD[^1] valuta il report “Valutazione risultati” prodotto da Sogei, la documentazione prodotta dai fornitori e accerta la conformità con le specifiche nazionali. Tale certificazione è propedeutica per poter programmare insieme alla Regione e/o Azienda la fase successiva del processo di adeguamento dell’applicativo (verifica tecnica dell’impianto).
+([https://ec.europa.eu/eusurvey/runner/FSE-raccolta-id-applicativo](https://ec.europa.eu/eusurvey/runner/FSE-raccolta-id-applicativo))
+   * Nome fornitore dell'applicativo
+   * Nome fornitore: subject_application_vendor
+   * nome applicazione: subject_application_id
+   * versione applicazione: subject_application_version
+   * Nome referente fornitore
+   * Email referente al quale verrà inviato l'esito dei test
+   * Account github per il caricamento degli esiti
+   * Common name (CN) del certificato utilizzato per i test
+   * data di inizio del test di accreditamento
+   * data prevista di fine del test di accreditamento
+   * Lista dei tipi di documento oggetto dell’accreditamento 
+   * Lista servizi oggetto dell’accreditamento:
+       * validazione
+       * pubblicazione
+1. Il fornitore accede alla lista dei test case ed esegue i test previsti nel piano di accreditamento. Quando risulteranno tutti eseguiti con esito positivo il fornitore produrrà il report dei test effettuati (`report-checklist.xlsx`) e lo caricherà nell'apposito repository github del Ministero della Salute, come indicato nel README del repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento). 
+2. Sogei estrae i log dei test case, confronta i log con il contenuto del report `report-checklist.xlsx` e produce il report “Valutazione risultati”. 
+3. Il DTD[^1] valuta il report “Valutazione risultati” prodotto da Sogei, la documentazione prodotta dai fornitori e accerta la conformità con le specifiche nazionali. Tale certificazione è propedeutica per poter programmare insieme alla Regione e/o Azienda la fase successiva del processo di adeguamento dell’applicativo (verifica tecnica dell’impianto).
 Di seguito si riporta il flusso documentale a supporto del processo di accreditamento fase 1 .
 
 
@@ -121,19 +115,19 @@ L’accreditamento  del servizio di **validazione e correttezza del CDA2** deve 
 
 Per ogni tipologia di documento da testare **sarà resa disponibile da Sogei al  fornitore** una lista di dataset. Il fornitore userà i dataset forniti per comporre i CDA iniettati nel pdf che verranno inviati al gateway. I dataset dovranno essere coerenti con un dataset reale, anche dal punto di vista terminologico.
 
-Il documento “lista test case” comprensivo dei dataset da utilizzare, è disponibile su Developers Italia.
+Il documento `accreditamento-checklist.xlsx` comprensivo dei dataset da utilizzare, è disponibile su Developers Italia.
 
 Alla fine della sessione di accreditamento il fornitore dovrà fornire:
 
 
 
-1. il report “ test case risultati” (compilando il documento “Lista test case”) indicando per ciascun test:
+1. il report `report-checklist.xlsx` (compilando il documento `accreditamento-checklist.xlsx`) indicando per ciascun test:
     1. **timestamp** 
     2. **traceID** delle transazioni
     3. **workflowInstanceID** delle transazioni eseguite durante il piano di test
     4. identificativo del test case
     5. per i casi di test che prevedono la gestione dei casi di errore,  il messaggio di errore visualizzato dall’applicativo, la procedura che viene adottata per la sua gestione (oltre ai  riferimenti dei log come ai punti precedenti) oppure eventuali motivazioni per cui non è applicabile il test;
-2. i CDA2 firmati con certificati di test che sono prodotti durante il processo di validazione.
+2. i PDF firmati con certificati di test che sono prodotti durante il processo di validazione.
 
 
 ## Test case pubblicazione
