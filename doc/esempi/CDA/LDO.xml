@@ -9,15 +9,15 @@
 	<effectiveTime value="20220417100000+0100"/>
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality"/>
 	<languageCode code="it-IT"/>
-	<setId root="2.16.840.1.113883.2.9.2.99.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
-	<versionNumber value="2"/>
+	<setId root="2.16.840.1.113883.2.9.2.99.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.Q123E456" assigningAuthorityName="Regione Lazio"/>
+	<versionNumber value="1"/>
 	<recordTarget>
 		<patientRole>
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/>
 			<patient>
 				<name>
-					<family>Guido</family>
-					<given>Rossi</given>
+					<family>Rossi</family>
+					<given>Guido</given>
 				</name>
 				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Maschio" />
 				<birthTime value="19800329"/>
@@ -81,7 +81,7 @@
 	<informationRecipient>
 		<intendedRecipient>
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
-			<telecom use="MC" value="tel:3340000000"/> 
+			<telecom use="WP" value="tel:3340000000"/> 
 			<informationRecipient>
 				<name>
 					<family>Esposito</family>
@@ -106,7 +106,7 @@
 	</legalAuthenticator>
 	<participant typeCode="REF">
 		<associatedEntity classCode="PROV">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="ABCDFG76R29L123T" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 			<associatedPerson>
 				<name>
 					<family>DeSantis</family>
@@ -122,13 +122,13 @@
 			<priorityCode code="R" codeSystem="2.16.840.1.113883.5.7" codeSystemName="HL7 ActPriority" displayName="Normale"/>
 		</order>
 	</inFulfillmentOf>
-	<relatedDocument typeCode="RPLC">
-		<parentDocument>
-			<id root="2.16.840.1.113883.2.9.2.99.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
-			<setId root="2.16.840.1.113883.2.9.2.99.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
-			<versionNumber value="1"/> 
-		</parentDocument>
-	</relatedDocument>	
+	<!-- <relatedDocument typeCode="RPLC"> -->
+		<!-- <parentDocument> -->
+			<!-- <id root="2.16.840.1.113883.2.9.2.99.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/> -->
+			<!-- <setId root="2.16.840.1.113883.2.9.2.99.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/> -->
+			<!-- <versionNumber value="1"/>  -->
+		<!-- </parentDocument> -->
+	<!-- </relatedDocument>	 -->
 	<componentOf>
 		<encompassingEncounter>
 			<id root="2.16.840.1.113883.2.9.2.120103.4.6" extension="2011008159" assigningAuthorityName="XXX"/>
@@ -157,7 +157,7 @@
 					<serviceProviderOrganization>
 						<id root="2.16.840.1.113883.2.9.4.1.2" extension="120103.XX" assigningAuthorityName="Ministero della Salute"/>
 						<name>Ospedale Sant'Eugenio</name>
-						<telecom use="MC" value="tel:3340000000"/>
+						<telecom use="WP" value="tel:3340000000"/>
 						<asOrganizationPartOf>
 							<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
 						</asOrganizationPartOf>

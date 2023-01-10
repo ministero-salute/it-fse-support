@@ -12,8 +12,8 @@
 	<effectiveTime value="20220210183023+0100"/>
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
 	<languageCode code="it-IT"/>
-	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220520112426.Q123E446" assigningAuthorityName="Regione Lazio"/>
-	<versionNumber value="2"/>
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.Q123E456" assigningAuthorityName="Regione Lazio"/>
+	<versionNumber value="1"/>
 	<recordTarget>
 		<patientRole classCode="PAT">
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
@@ -75,8 +75,8 @@
 			<representedOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="HP" value="tel: 010 337288945"/> 
-				<addr use="HP"> 
+				<telecom use="WP" value="tel: 010 337288945"/> 
+				<addr use="WP"> 
 					<country>100</country>
 					<state>120</state>
 					<county>RM</county> 
@@ -93,7 +93,7 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>	
 				<name>XXX</name>
-				<telecom use="MC" value="tel:3340000000"/> 
+				<telecom use="WP" value="tel:3340000000"/> 
 				<addr use="DIR"> 
 					<country>100</country>
 					<state>120</state>
@@ -142,12 +142,12 @@
 			</associatedPerson>
 		</associatedEntity>
 	</participant>	
-	<relatedDocument typeCode="RPLC">
+	<!-- <relatedDocument typeCode="RPLC">
 		<parentDocument>
 			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220520112426.Q123E446" assigningAuthorityName="Regione Lazio"/>
 			<versionNumber value="1"/> 
 		</parentDocument> 
-	</relatedDocument>
+	</relatedDocument> -->
 	
 	
 	
@@ -181,7 +181,7 @@
 										<lotNumberText>20</lotNumberText>
 									</manufacturedMaterial>
 									<manufacturerOrganization>
-										<id root="XXX" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
+										<id root="1.2.3.4.5.6.7" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
 										<name>XXX</name>
 									</manufacturerOrganization>
 								</manufacturedProduct>

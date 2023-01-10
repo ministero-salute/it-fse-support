@@ -106,8 +106,8 @@
 	<custodian>
 		<assignedCustodian>
 			<representedCustodianOrganization>
-				<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
-				<name>XXX</name>
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="123" assigningAuthorityName="Ministero della Salute"/>
+				<name>1.2.3.4.5</name>
 				<telecom use="WP" value="tel:0640402233"/>
 				<addr>
 					<country>100</country>
@@ -115,7 +115,7 @@
 					<county>RM</county> 
 					<city>Roma</city> 
 					<censusTract>058091</censusTract>
-					<streetAddressLine>XXX</streetAddressLine>
+					<streetAddressLine>via L</streetAddressLine>
 				</addr>
 			</representedCustodianOrganization>
 		</assignedCustodian>
@@ -124,7 +124,7 @@
 		<time value="20220510110000+0100"/>
 		<signatureCode code="S"/>
 		<assignedEntity>
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROPLA00X00X000Y" assigningAuthorityName="MEF"/>
 			<addr>
 				<country>100</country>
 				<state>120</state>
@@ -170,7 +170,7 @@
 	</authenticator> 	
 	<participant typeCode="IND">
 		<associatedEntity classCode="NOK">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROMTT00X00X000Y" assigningAuthorityName="MEF"/>
 			<code code="FTH" codeSystem="2.16.840.1.113883.5.111" codeSystemName="PersonalRelationshipRoleType" displayName="Padre"/>
 			<addr>
 				<country>100</country>
@@ -208,7 +208,7 @@
 			<component typeCode="COMP">
 				<section ID="ALLERGIE_INTOLLERANZE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.1"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergie, Reazioni Avverse"/>
 					<title>Allergie e Intolleranze</title>
 					<text>
@@ -217,7 +217,7 @@
 					<entry>
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code nullFlavor="NA"/>
 							<statusCode code="active"/>
 							<effectiveTime>
@@ -229,7 +229,7 @@
 							<!--entryRelationship typeCode="SUBJ">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.4"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="OINT" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ObservationIntoleranceType" displayName="Intolerance"/>
 									<text>
 										<reference value="#[REF_ALLARME]"/>
@@ -257,7 +257,7 @@
 							<entryRelationship typeCode="SUBJ">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.3"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="52473-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergia o causa della reazione"/>
 									<text>
 										<reference value="#[REF_TXT_ALLARME]"/>
@@ -282,7 +282,7 @@
 									<entryRelationship typeCode="MFST">
 										<observation classCode="OBS" moodCode="EVN" >
 											<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.5.1"/>
-											<id root="XXX"/>
+											<id root="1.2.3.4.5"/>
 											<code code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Obiettività Clinica"/>
 											<text>
 												<reference value="#[REF_TXT_REAZ]"/>
@@ -341,7 +341,7 @@
 			<component typeCode="COMP">
 				<section ID="TERAPIE_FARMACOLOGICHE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.2"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code='10160-0' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC' displayName='HISTORY OF MEDICATION USE'/>
 					<title>Terapie Farmacologiche</title>
 					<text>
@@ -350,7 +350,7 @@
 					<entry>
 						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.2.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<text>
 								<reference value="#[REF_MED]"/>
 							</text>
@@ -397,7 +397,7 @@
 					<!--entry>
 						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.2.3"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="no-medication-info" codeSystem="2.16.840.1.113883.11.22.15" codeSystemName="IPSNoMedsInfo" displayName="No information about medications"/>
 							<text>
 								<reference value="#[REF_NO_MEDICATION]"/>
@@ -410,7 +410,7 @@
 			<component typeCode="COMP">
 				<section ID="VACCINAZIONI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.3"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di immunizzazioni"/>
 					<title>Vaccinazioni</title>
 					<text>
@@ -419,7 +419,7 @@
 					<entry>
 						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.3.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" displayName="Immunization" />
 							<text>
 								<reference value="#[REF_DESC_VACC]"/>
@@ -470,7 +470,7 @@
 							<entryRelationship typeCode="CAUS">
 								<observation classCode="OBS" moodCode="EVN" >
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.5.1"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Obiettività Clinica"/>
 									<text>
 										<reference value="#[REF_TXT_REAZ]"/>
@@ -507,7 +507,7 @@
 			<component typeCode="COMP">
 				<section ID="LISTA_PROBLEMI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.4"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Lista dei Problemi"/>
 					<title>Lista dei Problemi</title>
 					<text>
@@ -517,7 +517,7 @@
 					<!--entry>
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code nullFlavor="NA"/>
 							<statusCode nullFlavor="NA"/>
 							<effectiveTime>
@@ -526,7 +526,7 @@
 							<entryRelationship typeCode="SUBJ" inversionInd="false">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.2"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
 									<statusCode nullFlavor="NA"/>
 									<effectiveTime>
@@ -556,7 +556,7 @@
 					<entry>
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code nullFlavor="NA"/>
 							<statusCode code="active"/>
 							<effectiveTime>
@@ -567,7 +567,7 @@
 							<entryRelationship typeCode="SUBJ" inversionInd="false">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.2"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
 									<text>
 										<reference value="#[REF_PROBLEMA]"/>
@@ -635,7 +635,7 @@
 							<entryRelationship typeCode="REFR" inversionInd="true">
 								<act classCode="ACT" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.3"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code nullFlavor="NA"/>
 									<text>
 										<reference value="#[REF]"/>
@@ -650,7 +650,7 @@
 			<component typeCode="COMP">
 				<section ID="ANAMNESI_FAMILIARE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.16"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di malattie di membri familiari"/>
 					<title>Anamnesi Familiare</title>
 					<text>
@@ -697,7 +697,7 @@
 					<entry>
 						<organizer classCode="CLUSTER" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.16.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di malattie di membri familiari"/>
 							<statusCode code="completed"/>
 							<subject typeCode="SBJ">
@@ -711,7 +711,7 @@
 							<component>
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.16.2"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="52797-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi codice ICD"/>
 									<text>
 										<reference value="#fam_4"/>
@@ -774,7 +774,7 @@
 			<component typeCode="COMP">
 				<section ID="STILE_DI_VITA">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.6"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stile di vita"/>
 					<title>Stili di Vita (Social History)</title>
 					<text>
@@ -833,7 +833,7 @@
 			<component typeCode="COMP">
 				<section ID="GRAVIDANZE_PARTO">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.7"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="10162-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di gravidanze"/>
 					<title>Gravidanze, parto e stato mestruale</title>
 					<text>
@@ -870,7 +870,7 @@
 			<component typeCode="COMP">
 				<section ID="PARAMETRI_VITALI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.8"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Parametri vitali"/>
 					<title>Parametri Vitali</title>
 					<text>
@@ -926,14 +926,14 @@
 					<entry>
 						<organizer classCode="CLUSTER" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Parametri vitali"/>
 							<statusCode code="completed"/>
 							<effectiveTime value="20200420000000+0100"/>
 							<component typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.2"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="8480-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pressione Sistolica"/>
 									<text>
 										<reference value="#[REF_OBS]"/>
@@ -950,7 +950,7 @@
 							<component typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.2"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="8462-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pressione Diastolica"/>
 									<text>
 										<reference value="#[REF_OBS]"/>
@@ -969,7 +969,7 @@
 					<!--entry>
 						<observation classCode="OBS" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.2"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="8302-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Altezza Corporea"/>
 							<text>
 								<reference value="#[REF_OBS]"/>
@@ -986,7 +986,7 @@
 			<component typeCode="COMP">
 				<section ID="PROTESI_IMPIANTI_AUSILI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.9"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="46264-8" displayName="Storia di uso di dispositivi medici" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
 					<title>Protesi, Impianti ed Ausilii</title> 
 					<text>
@@ -1028,7 +1028,7 @@
 			<component typeCode="COMP">
 				<section ID="PIANI_CURA">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.10"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Piano di cura"/>
 					<title>Piano di Cura</title>
 					<text>
@@ -1050,7 +1050,7 @@
 					<entry>
 						<substanceAdministration classCode="SBADM" moodCode="RQO">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.10.2"/>
-							<id root="XXX" extension="[CODICE_TERAPIA]"/>
+							<id root="1.2.3.4.5" extension="[CODICE_TERAPIA]"/>
 							<text>
 								<reference value="#[REF_MED]"/>
 							</text>
@@ -1080,7 +1080,7 @@
 					<entry>
 						<procedure classCode="PROC" moodCode="INT">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.10.3"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="68692-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Neurological surgery procedure note"/>
 							<text>
 								<reference value="#[REF_PROC]"/>
@@ -1092,7 +1092,7 @@
 					<entry>
 						<encounter classCode="ENC" moodCode="RQO">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.10.4"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="IMP" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActEncounterCode" displayName="Inpatient"/>
 							<text>
 								<reference value="#[REF_ENC]"/>
@@ -1118,7 +1118,7 @@
 			<component typeCode="COMP">
 				<section ID="TRATTAMENTI_PROCEDURE_TERAPEUTICHE_CHIRURGICHE_DIAGNOSTICHE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.11"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="47519-4" codeSystem="2.16.840.1.113883.6.1" displayName="Storia di Procedure"/>
 					<title> Trattamenti e procedure terapeutiche, chirurgiche e diagnostiche </title>
 					<text>
@@ -1138,7 +1138,7 @@
 							</effectiveTime>
 							<entryRelationship typeCode="RSON">
 								<observation classCode="OBS" moodCode="EVN">
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="410" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM (diagnosis codes)" displayName="IMA"/>
 								</observation>
 							</entryRelationship>
@@ -1150,7 +1150,7 @@
 			<component typeCode="COMP">
 				<section ID="VISITE_RICOVERI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.12"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di ospedalizzazioni e Storia di visite ambulatoriali"/> 
 					<title>Visite e Ricoveri</title>
 					<text>
@@ -1159,7 +1159,7 @@
 					<entry>
 						<encounter classCode="ENC" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.12.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="CARD" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" displayName="Cardiologia"/>
 							<text>
 								<reference value="#[REF_ENC]"/>
@@ -1188,7 +1188,7 @@
 			<component typeCode="COMP">
 				<section ID="STATO_FUNZIONALE_PAZIENTE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.13"/>
-					<id root= "XXX"/>
+					<id root= "1.2.3.4.5"/>
 					<code code="47420-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Nota di valutazione dello stato funzionale"/>
 					<title>Stato funzionale del Paziente</title>
 					<text>
@@ -1245,7 +1245,7 @@
 			<component typeCode="COMP">
 				<section ID="INDAGINI_DIAGNOSTICHE_ESAMI_LABORATORIO">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.14"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="30954-2" codeSystem="2.16.840.1.113883.6.1" displayName="Test diagnostici rilevanti e/o dati di laboratorio"/>
 					<title>Indagini diagnostiche e esami di laboratorio</title>
 					<text>
@@ -1321,7 +1321,7 @@
 							<component> 
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.14.2"/>
-									<id root="XXX"/>
+									<id root="1.2.3.4.5"/>
 									<code code="2161-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Creatinina nelle urine"/> 
 									<statusCode code="completed"/> 
 									<effectiveTime value="20220412101010+0100"/> 
@@ -1347,9 +1347,9 @@
 			<component typeCode="COMP">
 				<section ID="ASSENSO_DISSENSO_DONAZIONE_ORGANI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.15"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="42348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Dichiarazioni anticipate di trattamento"/>
-					<title> Assenso / Dissenso Donazione Organi </title> 
+					<title>Assenso / Dissenso Donazione Organi</title> 
 					<text>
 						<table border="1" width="100%">
 							<thead>
@@ -1376,7 +1376,7 @@
 			<component typeCode="COMP">
 				<section ID="ESENZIONI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.17"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4"/>
 					<code code="57827-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo di esenzione dal co-pagamento"/>
 					<title> Esenzioni </title> 
 					<text>
@@ -1385,7 +1385,7 @@
 					<entry>
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.17.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4"/>
 							<code code="02" codeSystem="2.16.840.1.113883.2.9.6.1.22" displayName="Disoccupazione"/>
 							<statusCode code="active"/>
 							<effectiveTime>
@@ -1410,7 +1410,7 @@
 			<component typeCode="COMP">
 				<section ID="RETI_PATOLOGIA">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.18"/>
-					<id root="XXX"/>
+					<id root="1.2.3.4.5"/>
 					<code code="PSSIT99" codeSystem="2.16.840.1.113883.2.9.5.2.8" codeSystemName="ProfiloSanitarioSinteticoIT" displayName="Reti di Patologia"/>
 					<title> Reti di Patologia </title> 
 					<text>
@@ -1419,7 +1419,7 @@
 					<entry>
 						<act classCode="PCPR" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.18.1"/>
-							<id root="XXX"/>
+							<id root="1.2.3.4.5"/>
 							<code code="XX" codeSystem="2.16.840.1.113883.2.9.2.30.3.1.3.6.10.1" displayName="Rete IMA"/>
 							<statusCode code="active"/>
 							<effectiveTime>

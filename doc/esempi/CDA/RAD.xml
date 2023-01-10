@@ -104,8 +104,8 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.1" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="MC" value="tel:3340000000"/> 
-				<addr use="HP"> 
+				<telecom use="WP" value="tel:3340000000"/> 
+				<addr use="WP"> 
 					<country>100</country>
 					<state>120</state>
 					<county>RM</county> 
@@ -203,7 +203,7 @@
 			<scopingOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.1" extension="120148" assigningAuthorityName="Ministero della Salute"/>
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="MC" value="tel:3340000000"/> 
+				<telecom use="WP" value="tel:3340000000"/> 
 				<addr>
 					<country>100</country>
 					<state>120</state>
@@ -267,7 +267,7 @@
 					<serviceProviderOrganization>
 						<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 						<name>[NOME_PRESIDIO]</name>
-						<telecom use="MC" value="tel:3340000000"/>
+						<telecom use="WP" value="tel:3340000000"/>
 						<asOrganizationPartOf>
 							<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 						</asOrganizationPartOf>

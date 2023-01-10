@@ -10,8 +10,8 @@
 	<effectiveTime value="20220330112426+0100"/>
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
 	<languageCode code="it-IT"/>
-	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="c030702.TSTSMN63A01F205H.20220325112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/> 
-	<versionNumber value="2"/> 
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J" assigningAuthorityName="Regione Lazio"/> 
+	<versionNumber value="1"/> 
 	<recordTarget typeCode="RCT" contextControlCode="OP">
 		<patientRole classCode="PAT">
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
@@ -100,7 +100,7 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="MC" value="tel:3340000000"/> 
+				<telecom use="WP" value="tel:3340000000"/> 
 				<addr> 
 					<country>100</country>
 					<state>120</state>
@@ -141,7 +141,7 @@
 					<streetAddressLine>Via Corvetto 3</streetAddressLine>
 				</addr> 
 				<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-				<telecom use="MC" value="tel:3340000000"/> 
+				<telecom use="WP" value="tel:3340000000"/> 
 				<assignedPerson> 
 					<name>  
 						<family>Prova</family> 
@@ -167,7 +167,7 @@
 				<streetAddressLine>Via Corvetto 3</streetAddressLine>
 			</addr> 
 			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="MC" value="tel:3340000000"/> 
+			<telecom use="WP" value="tel:3340000000"/> 
 			<assignedPerson> 
 				<name> 
 					<family>Test</family> 
@@ -202,7 +202,7 @@
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/><!-- STS11-->
 				<name></name>
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="MC" value="tel:3340000000"/> 
+				<telecom use="WP" value="tel:3340000000"/> 
 				<addr> 
 					<country>100</country>
 					<state>120</state>
@@ -248,13 +248,13 @@
 		</serviceEvent>
 	</documentationOf>
 	
-	<relatedDocument typeCode ="RPLC"> 
+	<!-- <relatedDocument typeCode ="RPLC"> 
 		<parentDocument> 
 			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220330112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
 			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="c030702.TSTSMN63A01F205H.20220325112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
 			<versionNumber value="1"/> 
 		</parentDocument> 
-	</relatedDocument> 
+	</relatedDocument>  -->
 	
 	<componentOf>
 		<encompassingEncounter>
@@ -276,7 +276,7 @@
 					<serviceProviderOrganization>
 						<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 						<name>[nome_presidio]</name>
-						<telecom use="MC" value="tel:3340000000"/>
+						<telecom use="WP" value="tel:3340000000"/>
 						<asOrganizationPartOf>
 							<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 						</asOrganizationPartOf>
