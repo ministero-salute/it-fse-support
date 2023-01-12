@@ -115,7 +115,7 @@ L’accreditamento  del servizio di **validazione e correttezza del CDA2** deve 
 
 Per ogni tipologia di documento da testare **sarà resa disponibile da Sogei al  fornitore** una lista di dataset. Il fornitore userà i dataset forniti per comporre i CDA iniettati nel pdf che verranno inviati al gateway. I dataset dovranno essere coerenti con un dataset reale, anche dal punto di vista terminologico.
 
-Il documento `accreditamento-checklist.xlsx` comprensivo dei dataset da utilizzare, è disponibile su Developers Italia.
+Il documento [`accreditamento-checklist.xlsx`](https://github.com/ministero-salute/it-fse-accreditamento/tree/main/Test%20Case) comprensivo dei dataset da utilizzare, è disponibile nel repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento).
 
 Alla fine della sessione di accreditamento il fornitore dovrà fornire:
 
@@ -127,7 +127,7 @@ Alla fine della sessione di accreditamento il fornitore dovrà fornire:
     3. **workflowInstanceID** delle transazioni eseguite durante il piano di test
     4. identificativo del test case
     5. per i casi di test che prevedono la gestione dei casi di errore,  il messaggio di errore visualizzato dall’applicativo, la procedura che viene adottata per la sua gestione (oltre ai  riferimenti dei log come ai punti precedenti) oppure eventuali motivazioni per cui non è applicabile il test;
-2. i PDF firmati con certificati di test che sono prodotti durante il processo di validazione.
+2. Per i software in cui la firma è oggetto di adeguamento: i PDF firmati PADES che sono prodotti durante il processo di validazione (non è necessario che i certificati di firma siano "qualificati", verrà controllata solo la corretta apposizione della firma PADES).
 
 
 ## Test case pubblicazione
