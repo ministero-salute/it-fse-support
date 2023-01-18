@@ -1,5 +1,5 @@
-<!-- schematron versione:17.0 -->
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- schematron versione:19.0 -->
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"
         xmlns:iso="http://purl.oclc.org/dsdl/schematron"
@@ -22,15 +22,16 @@
 			>ERRORE-2| Almeno un elemento 'realmCode' DEVE avere l'attributo @root valorizzato come 'IT'</assert>
 
 			<!-- Controllo su templateId-->
-			<assert test="count(hl7:templateId)>=1"
+			<let name="num_tid" value="count(hl7:templateId)"/>
+			<assert test="$num_tid >= 1"
 			>ERRORE-3| L'elemento <name/> DEVE avere almeno un elemento di tipo 'templateId'</assert>
-			<assert test="count(hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.1'])= 1 and  count(hl7:templateId/@extension)= 1"
+			<assert test="count(hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.1']) = 1 and  count(hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.1']/@extension)=1"
 			>ERRORE-4| Almeno un elemento 'templateId' DEVE essere valorizzato attraverso l'attributo  @root='2.16.840.1.113883.2.9.10.1.1' (id del template nazionale)  associato all'attributo @extension che  indica la versione a cui il templateId fa riferimento</assert>
 							
 			<!-- Controllo su code-->	
 			<assert test="count(hl7:code[@code='11502-2'][@codeSystem='2.16.840.1.113883.6.1']) = 1"
 			>ERRORE-5| L'elemento <name/>/code deve essere valorizzato con l'attributo @code='11502-2' e il @codeSystem='2.16.840.1.113883.6.1'</assert>
-						
+				
 			<report test="not(count(hl7:code[@codeSystemName='LOINC'])=1) or not(count(hl7:code[@displayName='REFERTO DI LABORATORIO'])=1 or
 			count(hl7:code[@displayName='Referto di Laboratorio'])=1 or count(hl7:code[@displayName='Referto di laboratorio'])=1)"
 			>W001| Si raccomanda di valorizzare gli attributi dell'elemento <name/>/code nel seguente modo: @codeSystemName ='LOINC' e @displayName ='Referto di laboratorio'.--> </report>
@@ -63,19 +64,41 @@
 			>ERRORE-10| L'elemento <name/> DEVE contenere un solo elemento 'recordTarget' </assert>
 			
 			<!--Controllo recordTarget/patientRole/id-->
-			<!--report test="not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])=1) and
-			not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7'])=1) and
-			not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3'])=1) and
-			not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.18'])=1) and
-			not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.17'])=1) and
-			not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.15'])=1)"
-			>W002| Si si consiglia di valorizzare l'elemento recordTarget/patientRole/id  con una  delle seguenti informazioni:
+			<assert test="count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7'])=1 or 
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3'])=1 or 
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.18'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.17'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.15'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.10.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.20.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.30.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.41.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.42.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.50.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.60.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.70.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.80.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.90.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.100.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.110.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.120.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.130.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.140.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.150.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.160.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.170.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1'])=1"
+			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite una  delle seguenti identificatori Nazionanli:
 			CF 2.16.840.1.113883.2.9.4.3.2
 			TEAM 2.16.840.1.113883.2.9.4.3.7 o 2.16.840.1.113883.2.9.4.3.3
 			ENI 2.16.840.1.113883.2.9.4.3.18
 			STP 2.16.840.1.113883.2.9.4.3.17
-			ANA 2.16.840.1.113883.2.9.4.3.15.> 
-			</report-->
+			ANA 2.16.840.1.113883.2.9.4.3.15
+			Oppure tramite gli identificatori regionali generati per rappresentare l'id del paziente.
+			</assert>
 
 			<!--Controllo recordTarget/patientRole/addr-->
 			<let name="num_addr" value="count(hl7:recordTarget/hl7:patientRole/hl7:addr)"/>
@@ -113,23 +136,6 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:patient/hl7:birthplace/hl7:place/hl7:addr)=1"
 			>ERRORE-18| L'elemento <name/>/recordTarget/patientRole/patient/birthplace DEVE contenere un elemento place/addr </assert>	
 			
-			
-			
-			<!-- Controllo author/assignedAuthor/id/@root -->
-			<assert test="count(hl7:author/hl7:assignedAuthor/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])= 1"
-			>ERRORE-19| L'elemento <name/>/author/assignedAuthor DEVE contenere almeno un elemento 'id' con il relativo attributo @root valorizzato con '2.16.840.1.113883.2.9.4.3.2'</assert>
-			
-			<!--Controllo author/assignedAuthor/assignedPerson/name-->
-			<let name="name_author" value="hl7:author/hl7:assignedAuthor/hl7:assignedPerson"/>
-			
-			<assert test="count($name_author/hl7:name)=1"
-			>ERRORE-20| L'elemento <name/>/author/assignedAuthor/assignedPerson DEVE avere l'elemento 'name' </assert>
-			<assert test="count($name_author/hl7:name)=0 or (count($name_author/hl7:name/hl7:given)=1 and count($name_author/hl7:name/hl7:family)=1)"
-			>ERRORE-21| L'elemento <name/>/author/assignedAuthor/assignedPerson/name DEVE avere gli elementi 'given' e 'family'</assert>
-
-			<!-- controllo author/assignedAuthor/telecom -->
-			<assert test="count(hl7:author/hl7:assignedAuthor/hl7:telecom)>=1"
-			>ERRORE-22| In ClinicalDocument/author/assignedAuthor DEVE essere presente almeno un elemento 'telecom' </assert>
 
 			<!--Controllo ClinicalDocument/dataEnterer-->	
 			<assert test="count(hl7:dataEnterer)=0 or count(hl7:dataEnterer/hl7:time)=1"
@@ -167,23 +173,11 @@
 			>ERRORE-32| ClinicalDocument/legalAuthenticator/assignedEntity/assignedPerson DEVE contenere l'elemento 'name'. </assert>
 			<assert test = "count(hl7:legalAuthenticator)= 0 or (count(hl7:legalAuthenticator/hl7:assignedEntity/hl7:assignedPerson/hl7:name/hl7:family)=1 and count(hl7:legalAuthenticator/hl7:assignedEntity/hl7:assignedPerson/hl7:name/hl7:given)=1)"
 			>ERRORE-33| ClinicalDocument/legalAuthenticator/assignedEntity/assignedPerson/name DEVE riportare gli elementi 'given' e 'family'</assert>
-			
-			<!--Participant-->
-			<assert test="count(hl7:participant/hl7:associatedEntity/hl7:associatedPerson)=0 or 
-			(count(hl7:participant/hl7:associatedEntity/hl7:associatedPerson/hl7:name)=1)"
-			>ERRORE-34| L'elemento <name/>/participant/associatedEntity/associatedPerson deve contenere l'elemento 'name'</assert>
-			
-			<assert test="count(hl7:participant/hl7:associatedEntity/hl7:associatedPerson)=0 or 
-			(count(hl7:participant/hl7:associatedEntity/hl7:associatedPerson/hl7:name/hl7:family)=1 and count(hl7:participant/hl7:associatedEntity/hl7:associatedPerson/hl7:name/hl7:given)=1)"
-			>ERRORE-35| L'elemento <name/>/participant/associatedEntity/associatedPerson/name deve contenere gli elementi 'given' e 'family'</assert>
+						
 			
 			<!-- controllo su inFulfillmentOf-->
-			<let name="prioriry" value="hl7:inFulfillmentOf/hl7:order/hl7:priorityCode/@code"/>
 			<assert test ="count(hl7:inFulfillmentOf)>=1" 
 			>ERRORE-36| In ClinicalDocuemnt DEVE essere presente almeno un elemento 'inFulfillmentOf'. </assert>
-			 <assert test ="count(hl7:inFulfillmentOf/hl7:order/hl7:priorityCode)=0 or 
-			count(hl7:inFulfillmentOf/hl7:order/hl7:priorityCode[@codeSystem='2.16.840.1.113883.5.7'][@code='R' or @code='P' or @code='UR' or @code='EM'])=1"
-            >ERRORE-37| <name/>/infulfillmentOf/order/priorityCode DEVE avere l'attributo '@codeSystem='2.16.840.1.113883.5.7' e @code valorizzato con uno dei seguenti valori: 'R'|'P'|'UR'|'EM' </assert>
 					
 			<!--controllo su documentationOf-->
 			<!--report test = "count (hl7:documentationOf/hl7:serviceEvent/hl7:performer)!=0 or 
@@ -212,9 +206,46 @@
 			>ERRORE-42| L'elemento ClinicalDocument/componentOf/encompassingEncounter/location/healthcareFacility/serviceProviderOrganization deve contenere l'elemento 'id' </assert>
 		
 		</rule>
-
 		
+		<!-- Controllo author-->
+		<rule context="hl7:ClinicalDocument/hl7:author">
+			<!-- Controllo author/assignedAuthor/id/@root -->
+			<assert test="count(hl7:assignedAuthor/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])= 1"
+			>ERRORE-19| L'elemento <name/>/assignedAuthor DEVE contenere almeno un elemento 'id' con il relativo attributo @root valorizzato con '2.16.840.1.113883.2.9.4.3.2'</assert>
+			
+			<!--Controllo author/assignedAuthor/assignedPerson/name-->
+			<let name="name_author" value="hl7:assignedAuthor/hl7:assignedPerson"/>
+			
+			<assert test="count($name_author/hl7:name)=1"
+			>ERRORE-20| L'elemento <name/>/assignedAuthor/assignedPerson DEVE avere l'elemento 'name' </assert>
+			<assert test="count($name_author/hl7:name)=0 or (count($name_author/hl7:name/hl7:given)=1 and count($name_author/hl7:name/hl7:family)=1)"
+			>ERRORE-21| L'elemento <name/>/assignedAuthor/assignedPerson/name DEVE avere gli elementi 'given' e 'family'</assert>
 
+			<!-- controllo author/assignedAuthor/telecom -->
+			<assert test="count(hl7:assignedAuthor/hl7:telecom)>=1"
+			>ERRORE-22| L'elemento <name/>/assignedAuthor DEVE deve contenere almeno un elemento 'telecom'</assert>
+			
+		</rule>
+		
+		<!-- Controllo participant-->
+		<rule context="hl7:ClinicalDocument/hl7:participant">
+			<assert test="count(hl7:associatedEntity/hl7:associatedPerson)=0 or 
+			(count(hl7:associatedEntity/hl7:associatedPerson/hl7:name)=1)"
+			>ERRORE-34| L'elemento <name/>/associatedEntity/associatedPerson deve contenere l'elemento 'name'</assert>
+			
+			<assert test="count(hl7:associatedEntity/hl7:associatedPerson)=0 or 
+			(count(hl7:associatedEntity/hl7:associatedPerson/hl7:name/hl7:family)=1 and count(hl7:associatedEntity/hl7:associatedPerson/hl7:name/hl7:given)=1)"
+			>ERRORE-35| L'elemento <name/>/associatedEntity/associatedPerson/name deve contenere gli elementi 'given' e 'family'</assert>
+			
+		</rule>
+		<!-- Controllo inFulfillmentOf-->
+		<rule context="hl7:ClinicalDocument/hl7:inFulfillmentOf">
+			<let name="prioriry" value="hl7:order/hl7:priorityCode/@code"/>
+			 <assert test ="count(hl7:order/hl7:priorityCode)=0 or 
+			count(hl7:order/hl7:priorityCode[@codeSystem='2.16.840.1.113883.5.7'][@code='R' or @code='P' or @code='UR' or @code='EM'])=1"
+            >ERRORE-37| <name/>/order/priorityCode DEVE avere l'attributo '@codeSystem='2.16.840.1.113883.5.7' e @code valorizzato con uno dei seguenti valori: 'R'|'P'|'UR'|'EM' </assert>
+		</rule>
+		
 		
 	<!--________________________________CONTROLLI GENERICI_____________________________________________________________-->
 		
@@ -236,7 +267,7 @@
 		<!--campi Codice Fiscale: 16 cifre [A-Z0-9]{16} -->
 		<rule context="//hl7:id[@root='2.16.840.1.113883.2.9.4.3.2']">
 			<let name="CF" value="@extension"/>
-			<assert test="matches(@extension, '[A-Z0-9]{16}')"
+			<assert test="matches(@extension, '[A-Z0-9]{16}') and string-length($CF)=16"
 			> ERRORE-45| codice fiscale '<value-of select="$CF"/>' cittadino ed operatore: 16 cifre [A-Z0-9]{16}</assert>
 		</rule>
 		

@@ -952,7 +952,7 @@ StaticMifToXsd.xsl version 2.0</xs:documentation>
          <xs:element name="value" type="ANY" minOccurs="0"/>
          <xs:element name="valueNegationInd" type="BL" minOccurs="0"/>
          <xs:element name="interpretationCode" type="CE" minOccurs="0"/>
-		 <xs:element ref="lab:precondition" minOccurs="0"/>
+		 <xs:element ref="lab:precondition" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
       <xs:attributeGroup ref="InfrastructureRootAttributes"/>
       <xs:attribute name="nullFlavor" type="NullFlavor" use="optional"/>
