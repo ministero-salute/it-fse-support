@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- schematron versione:5.0 -->
+<!-- schematron versione: 5.1 -->
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"
         xmlns:iso="http://purl.oclc.org/dsdl/schematron"
@@ -48,11 +48,12 @@
 			<!--Controllo incrociato tra setId-versionNumber e relatedDocument-->
 			<let name="versionNumber" value="hl7:versionNumber/@value"/>
 			<assert test="(string(number($versionNumber)) = 'NaN') or
+					($versionNumber= '1' and count(hl7:setId)=0) or 
 					($versionNumber= 1 and hl7:id/@root = hl7:setId/@root and hl7:id/@extension = hl7:setId/@extension) or
 					($versionNumber!= '1' and hl7:id/@root = hl7:setId/@root and hl7:id/@extension != hl7:setId/@extension) or
 					(hl7:id/@root != hl7:setId/@root)"
 			>ERRORE-8| Se ClinicalDocument.id e ClinicalDocument.setId usano lo stesso dominio di identificazione (@root identico) allora l’attributo @extension del
-			ClinicalDocument.id deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico possono coincidere solo per la prima versione di un documento</assert>
+			ClinicalDocument.id deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico coincidono solo per la prima versione di un documento</assert>
 			
 			<assert test="(string(number($versionNumber)) ='NaN') or
 						  ($versionNumber=1) or 
@@ -91,13 +92,13 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1'])=1"
-			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite una  delle seguenti identificatori Nazionanli:
+			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite uno dei seguenti identificatori Nazionanli:
 			CF 2.16.840.1.113883.2.9.4.3.2
 			TEAM 2.16.840.1.113883.2.9.4.3.7 o 2.16.840.1.113883.2.9.4.3.3
 			ENI 2.16.840.1.113883.2.9.4.3.18
 			STP 2.16.840.1.113883.2.9.4.3.17
 			ANA 2.16.840.1.113883.2.9.4.3.15
-			Oppure tramite gli identificatori regionali generati per rappresentare l'id del paziente.
+			Oppure tramite gli identificatori Regionali generati per rappresentare l'id del paziente.
 			</assert>
 			
 			<!--Controllo recordTarget/patientRole/addr-->
@@ -267,8 +268,8 @@
 		<!--Controllo sugli attributi di observation-->
 		<rule context="//hl7:observation">
 			<let name="moodCd" value="@moodCode"/>
-			<assert test="count(@classCode)=1"
-			>Errore-48| L'attributo "@classCode" dell'elemento "observation" deve essere presente </assert>
+			<assert test="count(@classCode)=0 or @classCode='OBS'"
+			>Errore-48| L'attributo "@classCode" dell'elemento "observation" deve essere valorizzato con "OBS" </assert>
 			<assert test="$moodCd='EVN'"
 			>Errore-49| L'attributo "@moodCode" dell'elemento "observation" deve essere valorizzato con "EVN" </assert>
 		</rule>
@@ -561,7 +562,7 @@
 			<assert test="count(hl7:observation)=1"
 			>ERRORE-b48| Sezione Procedure Eseguite durante il ricovero: L'elemento proceduere/entryRelationship, deve avere un elemento 'observation'.</assert>
 			<report test="not(count(hl7:observation/hl7:code[@codeSystem='2.16.840.1.113883.6.103'])=1)"
-			>W005| Si consiglia di valorizzare l'attributo @codeSystem dell'elemento procedure/entryRelationship/observation/code con il sistema di codifica ICD-9-CM (@codesystem='2.16.840.1.113883.6.103')--> </report>
+			>W005| Sezione Procedure Eseguite durante il ricovero: Si consiglia di valorizzare l'attributo @codeSystem dell'elemento procedure/entryRelationship/observation/code con il sistema di codifica ICD-9-CM (@codesystem='2.16.840.1.113883.6.103')--> </report>
 		</rule>
 		
 		<!--Allergie-->	

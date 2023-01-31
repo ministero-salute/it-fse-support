@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- schematron versione:2.4 -->
+<!-- schematron versione: 2.5 -->
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"
         xmlns:iso="http://purl.oclc.org/dsdl/schematron"
@@ -25,7 +25,7 @@
 			<!--Controllo templateId-->
 			<let name="num_tid" value="count(hl7:templateId)"/>
 			<assert test="$num_tid >= 1"
-			>ERRORE-2| L'elemento <name/> DEVE avere almeno un elemento di tipo 'templateId'</assert>
+			>ERRORE-3| L'elemento <name/> DEVE avere almeno un elemento di tipo 'templateId'</assert>
 			<assert test="count(hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.1.1'])= 1 and  count(hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.1.1']/@extension)= 1"
 			>ERRORE-4| Almeno un elemento <name/>/templateId DEVE essere valorizzato attraverso l'attributo @root='2.16.840.1.113883.2.9.10.1.11.1.1', associato all'attributo @extension che  indica la versione a cui il templateId fa riferimento</assert>
 			
@@ -49,11 +49,12 @@
 			<!--Controllo incrociato tra setId-versionNumber e relatedDocument-->
 			<let name="versionNumber" value="hl7:versionNumber/@value"/>
 			<assert test="(string(number($versionNumber)) = 'NaN') or
+					($versionNumber= '1' and count(hl7:setId)=0) or 
 					($versionNumber= 1 and hl7:id/@root = hl7:setId/@root and hl7:id/@extension = hl7:setId/@extension) or
 					($versionNumber!= '1' and hl7:id/@root = hl7:setId/@root and hl7:id/@extension != hl7:setId/@extension) or
 					(hl7:id/@root != hl7:setId/@root)"
 			>ERRORE-8| Se ClinicalDocument.id e ClinicalDocument.setId usano lo stesso dominio di identificazione (@root identico) allora l’attributo @extension del ClinicalDocument.id 
-			deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico possono coincidere solo per la prima versione di un documento</assert>
+			deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico coincidono solo per la prima versione di un documento</assert>
 			
 			<assert test="(string(number($versionNumber)) ='NaN') or
 						  ($versionNumber=1) or 
@@ -92,7 +93,7 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1'])=1"
-			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite una  delle seguenti identificatori Nazionanli:
+			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite uno dei seguenti identificatori Nazionanli:
 			CF 2.16.840.1.113883.2.9.4.3.2
 			TEAM 2.16.840.1.113883.2.9.4.3.7 o 2.16.840.1.113883.2.9.4.3.3
 			ENI 2.16.840.1.113883.2.9.4.3.18

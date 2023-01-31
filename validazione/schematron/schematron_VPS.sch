@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- schematron versione:2.9-->
+<!-- schematron versione: 3.0-->
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"
         xmlns:iso="http://purl.oclc.org/dsdl/schematron"
@@ -50,11 +50,12 @@
 			<!--Controllo incrociato tra setId-versionNumber e relatedDocument-->
 			<let name="versionNumber" value="hl7:versionNumber/@value"/>
 			<assert test="(string(number($versionNumber)) = 'NaN') or
+					($versionNumber= '1' and count(hl7:setId)=0) or 
 					($versionNumber= '1' and hl7:id/@root = hl7:setId/@root and hl7:id/@extension = hl7:setId/@extension) or
 					($versionNumber!= '1' and hl7:id/@root = hl7:setId/@root and hl7:id/@extension != hl7:setId/@extension) or
 					(hl7:id/@root != hl7:setId/@root)"
 			>ERRORE-8| Se ClinicalDocument.id e ClinicalDocument.setId usano lo stesso dominio di identificazione (@root identico) allora l’attributo @extension del
-			ClinicalDocument.id deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico possono coincidere solo per la prima versione di un documento</assert>
+			ClinicalDocument.id deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico coincidono solo per la prima versione di un documento</assert>
 			
 			<assert test="(string(number($versionNumber)) ='NaN') or
 						  ($versionNumber=1) or 
@@ -93,7 +94,7 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1'])=1"
-			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite una  delle seguenti identificatori Nazionanli:
+			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite uno dei seguenti identificatori Nazionanli:
 			CF 2.16.840.1.113883.2.9.4.3.2
 			TEAM 2.16.840.1.113883.2.9.4.3.7 o 2.16.840.1.113883.2.9.4.3.3
 			ENI 2.16.840.1.113883.2.9.4.3.18
@@ -257,8 +258,8 @@
 		<!--Controllo sugli attributi di observation-->
 		<rule context="//hl7:observation">
 			<let name="moodCd" value="@moodCode"/>
-			<assert test="count(@classCode)=1"
-			>ERRORE-45| L'attributo "@classCode" dell'elemento "observation" deve essere presente </assert>
+			<assert test="count(@classCode)=0 or @classCode='OBS'"
+			>ERRORE-45| L'attributo "@classCode" dell'elemento "observation" deve essere valorizzato con "OBS" </assert>
 			<assert test="$moodCd='EVN'"
 			>ERRORE-46| L'attributo "@moodCode" dell'elemento "observation" deve essere valorizzato con "EVN" </assert>
 		</rule>
@@ -996,8 +997,8 @@
 			>ERRORE-b169| Sezione Interventi Prestazioni Consulenze e Richieste: l'elemento act DEVE essere valorizzato con gli attributi @classCode='ACT' e @moodCode='EVN' o @moodCode='RQO' </assert>
 			<assert test="count(hl7:act/hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.6.62'])=1"
 			>ERRORE-b170| Sezione Interventi Prestazioni Consulenze e Richieste: l'elemento entry/act DEVE contenere l'elemento templateId valorizzato con l'attributo @root='2.16.840.1.113883.2.9.10.1.6.62'.</assert>
-			<assert test="count(hl7:act/hl7:code[@code='76645-1'][@codeSystem='2.16.840.1.113883.6.1'])=1"
-			>ERRORE-b171| Sezione Interventi Prestazioni Consulenze e Richieste: l'elemento entry/act/code DEVE essere valorizzato con gli attributi @code='76645-1' e @codeSystem='2.16.840.1.113883.6.1'.</assert>
+			<!--assert test="count(hl7:act/hl7:code[@codeSystem='2.16.840.1.113883.6.1'])=1"
+			>ERRORE-b171| Sezione Interventi Prestazioni Consulenze e Richieste: l'elemento entry/act/code DEVE essere valorizzato tramite @codeSystem='2.16.840.1.113883.6.1'.</assert-->
 			<assert test="count(hl7:act/hl7:statusCode[@code='completed'])=1 or count(hl7:observation/hl7:statusCode[@code='aborted'])=1"
 			>ERRORE-b172| Sezione Interventi Prestazioni Consulenze e Richieste: l'elemento entry/act DEVE contenere un elemento statusCode valorizzato con l'attributo @code='completed' o @code='aborted'.  </assert>			
 			<assert test="count(hl7:act/hl7:participant)=0 or (count(hl7:act/hl7:participant[@typeCode='REF']))>=1"
@@ -1077,8 +1078,8 @@
 			<rule context="hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:code[@code='8716-3']]/hl7:entry/hl7:organizer/hl7:component">
 				<assert test="count(hl7:observation/hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.6.91'])=1"
 				>ERRORE-b193| Sezione Parametri Vitali: l'elemento entry/organizer/component/observation/templateId DEVE essere valorizzato con l'attributo @root='2.16.840.1.113883.2.9.10.1.6.91'</assert> 
-				<assert test="count(hl7:observation/hl7:code[@code='86678-0'][@codeSystem='2.16.840.1.113883.6.1'])=1"
-				>ERRORE-b194| Sezione Parametri Vitali: l'elemento entry/organizer/component/observation/code DEVE essere valorizzato con gli attributi @code='86678-0' e @codeSystem='2.16.840.1.113883.6.1'</assert>
+				<assert test="count(hl7:observation/hl7:code[@codeSystem='2.16.840.1.113883.6.1'])=1"
+				>ERRORE-b194| Sezione Parametri Vitali: l'elemento entry/organizer/component/observation/code DEVE essere valorizzato tramite @codeSystem='2.16.840.1.113883.6.1'</assert>
 				<assert test="count(hl7:observation/hl7:statusCode[@code='completed'])=1"
 				>ERRORE-b195| Sezione Parametri Vitali: l'elemento entry/organizer/component/observation DEVE contenere un elemento statusCode valorizzato con l'attributo @code='completed'</assert>		
 				<assert test="count(hl7:observation/hl7:value)=1"

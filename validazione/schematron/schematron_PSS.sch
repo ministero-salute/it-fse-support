@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- schematron versione:2.9-->
+<!-- schematron versione: 3.0-->
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"
         xmlns:iso="http://purl.oclc.org/dsdl/schematron"
@@ -50,11 +50,12 @@
 			<!--Controllo incrociato tra setId-versionNumber e relatedDocument-->
 			<let name="versionNumber" value="hl7:versionNumber/@value"/>
 			<assert test="(string(number($versionNumber)) = 'NaN') or
+					($versionNumber= '1' and count(hl7:setId)=0) or 
 					($versionNumber= 1 and hl7:id/@root = hl7:setId/@root and hl7:id/@extension = hl7:setId/@extension) or
 					($versionNumber!= '1' and hl7:id/@root = hl7:setId/@root and hl7:id/@extension != hl7:setId/@extension) or
 					(hl7:id/@root != hl7:setId/@root)"
 			>ERRORE-8| Se ClinicalDocument.id e ClinicalDocument.setId usano lo stesso dominio di identificazione (@root identico) allora l’attributo @extension del ClinicalDocument.id 
-			deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico possono coincidere solo per la prima versione di un documento</assert>
+			deve essere diverso da quello del ClinicalDocument.setId a meno che ClinicalDocument.versionNumber non sia uguale ad 1; cioè i valori di setId ed id per un documento clinico coincidono solo per la prima versione di un documento</assert>
 			
 			<assert test="(string(number($versionNumber)) ='NaN') or
 						  ($versionNumber=1) or 
@@ -89,7 +90,7 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1'])=1"
-			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite una  delle seguenti identificatori Nazionanli:
+			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite uno dei seguenti identificatori Nazionanli:
 			CF 2.16.840.1.113883.2.9.4.3.2
 			ANA 2.16.840.1.113883.2.9.4.3.15
 			Oppure tramite gli identificatori regionali generati per rappresentare l'id del paziente.
@@ -214,7 +215,7 @@
 		
 		<!-- Controllo informant-->
 		<rule context="hl7:ClinicalDocument/hl7:informant">
-			<assert test="(count(hl7:relatedEntity[@classCode='CON' or @classCode='PROV' or @classCode='PRS'])=1)"
+			<assert test="count(hl7:relatedEntity)=0 or(count(hl7:relatedEntity[@classCode='CON' or @classCode='PROV' or @classCode='PRS'])=1)"
 			>ERRORE-26| L'elemento <name/>/relatedEntity deve essere valorizzato con l'attributo @classCode='CON' o @classCode='PROV' o @classCode='PRS'.</assert>
 			
 			<let name="nome" value="hl7:relatedEntity/hl7:relatedPerson/hl7:name"/>
@@ -271,9 +272,8 @@
 	
 		<!--Controllo sugli attributi di observation-->
 		<rule context="//hl7:observation">
-			<let name="moodCd" value="@moodCode"/>
-			<assert test="count(@classCode)=1"
-			>ERRORE-46| L'attributo "@classCode" dell'elemento "observation" deve essere presente </assert>
+			<assert test="count(@classCode)=0 or @classCode='OBS'"
+			>ERRORE-46| L'attributo "@classCode" dell'elemento "observation" deve essere valorizzato con "OBS" </assert>
 		</rule>
 		
 		<!--Controllo sui valori di statusCode-->
