@@ -9,6 +9,9 @@
 - [3. Aspetti di processo](#3-aspetti-di-processo)
 - [4. Ulteriori considerazioni](#4-ulteriori-considerazioni)
 - [5. Conclusioni](#5-conclusioni)
+- [6. Appendice](#6-appendice)
+  - [Proposta codici di errore Middleware](#proposta-codici-di-errore-middleware)
+  - [Proposta gestione warning Middleware](#proposta-gestione-warning-middleware)
   - [Notes](#notes)
 
 
@@ -119,7 +122,9 @@ Per quanto riguarda il primo aspetto è necessario quindi che la presenza del mi
 
 Per **sincrono** si intende che il sistema produttore **rimane in attesa** della risposta del GTW attraverso le chiamate al middleware regionale.
 
-Il secondo aspetto vuole garantire che **ogni** messaggio inviato verso il middleware regionale raggiunga il GTW **subito dopo la ricezione**  e che eventuali violazioni di regole regionali non comportino uno scarto verso il GTW: **ogni messaggio ricevuto deve essere passato al GTW, a livello regionale non è possibile inserire controlli bloccanti.**
+Il secondo aspetto vuole garantire che **ogni** messaggio inviato verso il middleware regionale raggiunga il GTW **subito dopo la ricezione**  e che eventuali violazioni di regole regionali non comportino uno scarto verso il GTW: **ogni messaggio ricevuto deve essere passato al GTW, in generale, a livello regionale non è possibile inserire controlli bloccanti.**
+
+Errori bloccanti sono possibili unicamente nel caso la validazione incontri condizioni che non permetteranno in un secondo momento la pubblicazione del referto, ad esempio per caratteristiche peculiari dell'infrastruttura locale, in questo caso l'errore va comunque dato **dopo** aver chiamato il servizio centrale.
 
 
 ![sequence diagram](img/sequence.png)
@@ -154,6 +159,39 @@ Si riassumono in sostanza i criteri che deve soddisfare il middleware regionale:
 1. Adottare uno dei casi proposti per la gestione dei certificati.
 2. Non alterare le fasi e le tempistiche delle validazioni sincrone.
 3. Non introdurre controlli bloccanti che scartino messaggi senza che questi vengano inoltrati al GTW.
+
+# 6. Appendice
+
+## Proposta codici di errore Middleware
+
+La seguente tabella propone una standardizzazione degli errori generati dai middleware regionali.
+
+|tipo errore|type|title|status|instance|detail|
+|---|---|---|---|---|---|
+|Impossibilità di contattare GTW nazionale|mw/io_error|Errore comunicazione con GTW nazionale|504|*libero*|*libero*|
+|Errore interno|mw/internal_error|Errore Interno|500|*libero*|*libero*|
+|Errori specifici implementazione mw|mw/* |*libero*|4xx|*libero*|*libero*|
+
+In caso di errore dal GTW nazionale, il middleware *deve* ritornare l'errore nazionale *senza aggiungere dati locali* nel body HTTP.
+
+## Proposta gestione warning Middleware
+
+Si propone che il middleware regionale utilizzi la stringa  `--middlewarewarning--` come prefisso dei warning generati.
+Se esiste già un warning nazionale, il warning del middleware deve essere concatenato dopo quello nazionale.
+es:
+
+```json
+{
+  ...
+"warning": "[[WARNING_EXTRACT]Attenzione, non è stata selezionata la modalità di estrazione del CDA]--middlewarewarning--warning locale"
+  ...
+}
+```
+
+Il prefisso `--middlewarewarning--` va inserito una volta sola nella stringa anche in caso di warning multipli, in sostanza separa i warning nazionali da quelli locali.
+
+Anche nel caso ci sia solo warning locale è necessario inserire il prefisso `--middlewarewarning--`.
+
 
 <!-- Footnotes themselves at the bottom. -->
 ## Notes
