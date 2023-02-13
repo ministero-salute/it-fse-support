@@ -19,9 +19,6 @@ _13/02/2023 	1.0 - prima versione_
 
 Il documento descrive le azioni necessarie per l’avvio in produzione degli applicativi software adeguati per la produzione dei documenti secondo le nuove specifiche documentali del FSE 2.0 nella **fase transitoria in cui il gateway non è in produzione** e la comunicazione avviene ancora secondo i meccanismi di FSE 1.0.
 
-Questo **documento verrà reso pubblico su Developers Italia**.
-
-
 # 3. Processo di accreditamento (convalida)
 
 Il processo di accreditamento si sospende dopo la [fase 1](https://github.com/ministero-salute/it-fse-support/tree/main/doc/accreditamento#fase-1-processo-di-accreditamento), cioè dopo la fase di **accreditamento (convalida) dell’applicativo software** eseguito presso gli ambienti di test del fornitore con esito positivo. 
