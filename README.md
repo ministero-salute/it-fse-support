@@ -11,7 +11,7 @@ A partire da Settembre sarà possibile per tutte le regioni testare le integrazi
 * [FAQ](https://github.com/ministero-salute/it-fse-support/tree/main/doc/faq)
 * [Documentazione integrazione GTW](https://github.com/ministero-salute/it-fse-support/tree/main/doc/integrazione-gateway)
 * [Documentazione per accreditamento](doc/accreditamento)
-        * [Gestione transitorio avvio](doc/transitorio)
+  * [Gestione transitorio avvio](doc/transitorio)
 * [Descrizione modelli middleware regionali](doc/middleware-regionale)
 * [Tool per generazione Token JWT e iniezione CDA in PDF](https://github.com/ministero-salute/it-fse-gtw-tools)
 * [Container Gateway](https://github.com/ministero-salute/it-fse-gtw-test-container)
