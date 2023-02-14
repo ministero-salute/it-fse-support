@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- schematron versione: 1.6 -->
+<!-- schematron versione: 1.7 -->
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" 
 		xmlns:cda="urn:hl7-org:v3"
         xmlns:iso="http://purl.oclc.org/dsdl/schematron"
@@ -219,8 +219,8 @@
 		<!--Controllo sugli attributi di observation-->
 		<rule context="//hl7:observation">
 			<let name="moodCd" value="@moodCode"/>
-			<assert test="count(@classCode)=1"
-			>ERRORE-32| L'attributo "@classCode" dell'elemento "observation" deve essere presente </assert>
+			<assert test="count(@classCode)=0 or @classCode='OBS'"
+			>ERRORE-32| L'attributo "@classCode" dell'elemento "observation" deve essere valorizzato con 'OBS' </assert>
 			<assert test="$moodCd='EVN'"
 			>ERRORE-33| L'attributo "@moodCode" dell'elemento "observation" deve essere valorizzato con "EVN" </assert>
 		</rule>
@@ -233,7 +233,7 @@
 		
 			<!--Vaccinazioni-->
 			<assert test="count(hl7:component/hl7:section[@classCode='DOCSECT'][@moodCode='EVN'])=1"
-			>ERRORE-b1| L'elemento component/section deve avere gli attributi @classCode='DOCSECT </assert>
+			>ERRORE-b1| L'elemento component/section deve avere gli attributi @classCode='DOCSECT @moodCode='EVN'.</assert>
 			<assert test="count(hl7:component/hl7:section/hl7:templateId)=0 or 
 			count(hl7:component/hl7:section/hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.3.2'])=1"
 			>ERRORE-b2| L'elemento section può contenere un elemento 'templateId' valorizzato con l'attributo @root='2.16.840.1.113883.2.9.10.1.11.3.2'</assert>
@@ -268,18 +268,23 @@
 			count(hl7:substanceAdministration/hl7:participant/hl7:participantRole[@classCode='ROL'])>=1"
 			>ERRORE-b12| L'elemento entry/substanceAdministration/participant DEVE contenere l'elemento 'participantRole' valorizzato con l'attributo @classCode='ROL' </assert>
 			
+			
 			<!-- entry - Dati Vaccino-->
 			<assert test="count(hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.1']])=0 or 
 			count(hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.1']]/hl7:statusCode[@code='completed'])=1"
-			>ERRORE-b13| L'elemento entry/substanceAdministration (in Dati vaccinazione) DEVE contenere un elemento 'statusCode' valorizzato con attributo @code='completed' </assert>
+			>ERRORE-b13| L'elemento entry/substanceAdministration (Dati vaccinazione) DEVE contenere un elemento 'statusCode' valorizzato con attributo @code='completed' </assert>
 			<let name="farma_dv" value="hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.1']]/hl7:consumable/hl7:manufacturedProduct/hl7:manufacturedMaterial"/>
 			<assert test="count(hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.1']])=0 or 
 			count($farma_dv/hl7:code[@codeSystem='2.16.840.1.113883.2.9.6.1.5'])=1"
-			>ERRORE-b14| L'elemento entry/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial (in Dati vaccinazione) DEVE contenere un elemento 'code' valorizzato secondo AIC - @codeSystem='2.16.840.1.113883.2.9.6.1.5'.</assert>
+			>ERRORE-b14| L'elemento entry/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial (Dati vaccinazione) DEVE contenere un elemento 'code' valorizzato secondo AIC - @codeSystem='2.16.840.1.113883.2.9.6.1.5'.</assert>
 			<assert test="count($farma_dv/hl7:code/hl7:translation)=0 or
 			(count($farma_dv/hl7:code/hl7:translation[@codeSystem='2.16.840.1.113883.6.73'])=1)"
-			>ERRORE-b15| L'elemento entry/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial/code (in Dati vaccinazione) può contenere un elemento 'translation' valorizzato secondo ATC - @codeSystem='2.16.840.1.113883.6.73'.</assert>
-
+			>ERRORE-b15| L'elemento entry/substanceAdministration/consumable/manufacturedProduct/manufacturedMaterial/code (Dati vaccinazione) può contenere un elemento 'translation' valorizzato secondo ATC - @codeSystem='2.16.840.1.113883.6.73'.</assert>
+			<let name="consum" value="hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.1']]/hl7:consumable/hl7:manufacturedProduct"/>
+			<assert test="(count($consum/hl7:manufacturerOrganization)=0 or
+			count($consum/hl7:manufacturerOrganization/hl7:name)&gt;=1)"
+			>ERRORE-b15.1| L'elemento entry/substanceAdministration/consumable/manufacturedProduct/manufacturerOrganization DEVE contenere almeno un elemento 'name'.</assert>
+				
 				<!-- entryRelationship - Numero di dose-->
 				<assert test="count(hl7:substanceAdministration/hl7:entryRelationship[@typeCode='SUBJ'][@inversionInd='true'])=0 or 
 				count(hl7:substanceAdministration/hl7:entryRelationship[@typeCode='SUBJ']/hl7:observation/hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.3'])=1"
@@ -377,12 +382,12 @@
 			<assert test="count(hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.2']])=0 or
 			count($reason/hl7:statusCode[@code='completed'])=1"
 			>ERRORE-b39| L'elemento entry/substanceAdministration/entryRelationship/observation (Ragione esonero/omissione o differimento) DEVE contenere  un elemento 'statusCode' valorizzato con l'attributo @code='completed'.</assert>			
-			<assert test="count(hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.2']])=0 or
+			<assert test="count($reason/hl7:effectiveTime)=0 or
 			count($reason/hl7:effectiveTime/hl7:low)=1"
-			>ERRORE-b40| L'elemento entry/substanceAdministration/entryRelationship/observation (Ragione esonero/omissione o differimento) DEVE contenere  un elemento 'effectiveTime' col sottoelemento 'low' valorizzato.</assert>				
-			<assert test="count(hl7:substanceAdministration[hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.11.4.2']])=0 or
+			>ERRORE-b40| L'elemento entry/substanceAdministration/entryRelationship/observation/effectiveTime (Ragione esonero/omissione o differimento) DEVE avere il sottoelemento 'low' valorizzato.</assert>				
+			<assert test="count($reason/hl7:effectiveTime)=0 or
 			count($reason/hl7:effectiveTime/hl7:high)=1"
-			>ERRORE-b41| L'elemento entry/substanceAdministration/entryRelationship/observation (Ragione esonero/omissione o differimento) DEVE contenere  un elemento 'effectiveTime' col sottoelemento 'high' valorizzato.</assert>
+			>ERRORE-b41| L'elemento entry/substanceAdministration/entryRelationship/observation/effectiveTime (Ragione esonero/omissione o differimento) DEVEavere il sottoelemento 'high' valorizzato.</assert>
 		
 		</rule>
 		
