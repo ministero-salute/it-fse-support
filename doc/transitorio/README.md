@@ -23,7 +23,7 @@ Il documento descrive le azioni necessarie per l’avvio in produzione degli app
 
 Il processo di accreditamento si sospende dopo la [fase 1](https://github.com/ministero-salute/it-fse-support/tree/main/doc/accreditamento#fase-1-processo-di-accreditamento), cioè dopo la fase di **accreditamento (convalida) dell’applicativo software** eseguito presso gli ambienti di test del fornitore con esito positivo. 
 
-Le fasi 2 e 3 del processo di accreditamento  vengono rimandate ad un momento successivo.
+Le fasi 2 e 3 del processo di accreditamento  vengono rimandate ad un momento successivo, cioè quando il gateway sarà disponibile in produzione.
 
 Al termine della fase 1 l’applicativo software è in grado di produrre documenti CDA aderenti alle specifiche nazionali in termini di formato e, se gestita dall’applicativo, di apporre la firma PADES.
 
@@ -37,7 +37,7 @@ L’infrastruttura FSE regionale (anche per le regioni in sussidiarietà) dovrà
 * se necessario, per gestire i nuovi formati documentali prodotti
 * alle specifiche INI FSE 1.0 versione 2.4.1.
 
-Gli applicativi software convalidati saranno installati in produzione mantenendo la modalità di conferimento dei documenti utilizzata per FSE 1.0, secondo le indicazioni della singola regione e in raccordo agli adeguamenti alla infrastruttura regionale. 
+Gli applicativi software convalidati (fase 1) saranno installati in produzione mantenendo la modalità di conferimento dei documenti utilizzata per FSE 1.0, secondo le indicazioni della singola regione e in raccordo agli adeguamenti alla infrastruttura regionale. 
 
 Laddove l’applicativo non realizzi le funzioni  di firma PADES dei documenti, dovrà essere integrato con un servizio in grado di apporre tale tipologia di firma.
 
