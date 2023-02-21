@@ -7,6 +7,8 @@
   - [2.1. Caso 1 (trasporto regionale, firma produttore)](#21-caso-1-trasporto-regionale-firma-produttore)
   - [2.2. Caso 2 (trasporto e firma regionali)](#22-caso-2-trasporto-e-firma-regionali)
 - [3. Aspetti di processo](#3-aspetti-di-processo)
+  - [3.1. Validazione](#31-validazione)
+  - [3.2. Pubblicazione/Indicizzazione](#32-pubblicazioneindicizzazione)
 - [4. Ulteriori considerazioni](#4-ulteriori-considerazioni)
 - [5. Conclusioni](#5-conclusioni)
 - [6. Appendice](#6-appendice)
@@ -111,6 +113,8 @@ In questa modalità non sarà necessario emettere un certificato per ogni sistem
 
 Per quanto riguarda il processo, il middleware regionale deve essere trasparente rispetto ai workflow definiti da specifica.
 
+## 3.1. Validazione
+
 In particolare devono essere garantiti:
 
 
@@ -132,6 +136,30 @@ Errori bloccanti sono possibili unicamente nel caso la validazione incontri cond
 
 **Sequence chiamata sincrona**
 
+## 3.2. Pubblicazione/Indicizzazione
+
+Il modello prevede che il l'indice FSE Regionale sia alimentato dalle comunicazioni INI anche per gli assistiti della regione, come nello schema seguente:
+
+<!--https://sequencediagram.org/index.html#initialData=C4S2BsFMAIEFxAW0gO2AQwF4gPYpgJIoAmIAxjAGIDKAotAEqQDmuK6UAUJwA7oBOoMiD5poAIgCyIYsSgB3ATAa0A4uOjoAztES8BQkejHjVAFQDqG7dGb7B5I2IIA5AvcOjgEoqQrQaehV1TR0QbhQcYBgoADNvHFjdAC5oYhwyWxAAA+gANw4ZdGAcTkQAWgA+ZmSeAFcAIwaEMnROdDJQAujdds6Qbpg7Ziqasjw8yEEYdMyQFACACQIGThHKxFTYAGEAaWgAamgLAndiSA6u4pg9ddcCVPHEOpRydF1IDGJi8MuB6+g90492gVWgIEeOGer1aHy+Pz6Vx64RAoMqgLcWz2nHOf0G4OBblGWN2OIu-XxQMiPRwk34tlSwH4xi0WDYMFoABFqNAoZAtKyyXiAXZuJwgA-->
+![sequence pubblicazione](img/sequence_pubblicazione.png)
+
+Questo garantisce che le informazioni tra documenti e dati siano allineate, il Gateway implementa logiche di retry sia verso INI che verso EDS dando priorità alla consistenza delle informazioni.
+
+
+Un "*response*" positivo al servizio di pubblicazione indica che il Gateway ha **preso in carico** il compito di inviare dati e metadati rispettivamente ad EDS e ad INI.
+
+
+Tuttavia, nell'impossibilità di contattare il Gateway è possibile "indicizzare" temporaneamente le informazioni su sistemi interni alla regione.
+
+
+Al ristabilirsi delle comunicazioni con il Gateway dovranno essere recuperate le pubblicazioni non inviate.
+
+<!--https://sequencediagram.org/index.html#initialData=C4S2BsFMAIHEBUDq0AiB7A7gO2gBQK4BGh4IAxgIYBeIaWkAUAwA4UBOoZIrWw0ARAFkQAExFQM7GACUAorH7QKAZ2gBbFu07cKvAQkSKV0AOaaO5HXoCSAOWvntPPv2tYR5GADEAyrOhyCkqqIEwMWGjAMFAAZnxoMeoAXNAiaGSmIAAH0ABuFKQiFMBoDGoAtAAeJinMRCTk1LT00DEFpMAUDBRkoPlR6mXlAHwgKSDullRUTXTR6QWMDOBoaMxwSAC8adgM0PvqIzXQdcSklHsHPX3FMGYmR0lkdLmQHDBpGRPQXgAS1tIGA9hmoUgBBADCAGloABqaCIawOESQa4gfowDSQdxAkZ2awpZ5qfBYRrqSCdIqgbq9dG3aD4hj46AjaBjaBEklktQUihU0JojFshggEbstjkOhcUgUAD0yjQuTYKjIEte5MpxVCIBZwwZ9nB0IYKMF9NC+Me0EhUONqNpQsZEQGirephSwGVWGUsxashQPmgaB5ym9ttNAzMTCAA-->
+![sequence pubblicazione](img/sequence_gtw_down_pubblicazione.png)
+
+L'indicizzazione locale è possibile anche nel caso di documento pubblicato, ma per il quale non siano arrivati i metadati da INI entro un periodo di tempo (da definire con le Amministrazioni titolari) dalla pubblicazione.
+
+Al ricevimento dei metadati da INI su documento indicizzato localmente questi dovranno andare a "sovrascrivere" eventuali dati locali in conflitto (caso che non dovrebbe darsi), in modo che un successivo recupero da INI fornisca lo stesso set di metadati trasmessi da INI stesso.
 
 # 4. Ulteriori considerazioni
 
