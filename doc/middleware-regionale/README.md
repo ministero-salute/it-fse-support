@@ -7,8 +7,13 @@
   - [2.1. Caso 1 (trasporto regionale, firma produttore)](#21-caso-1-trasporto-regionale-firma-produttore)
   - [2.2. Caso 2 (trasporto e firma regionali)](#22-caso-2-trasporto-e-firma-regionali)
 - [3. Aspetti di processo](#3-aspetti-di-processo)
+  - [3.1. Validazione](#31-validazione)
+  - [3.2. Pubblicazione/Indicizzazione](#32-pubblicazioneindicizzazione)
 - [4. Ulteriori considerazioni](#4-ulteriori-considerazioni)
 - [5. Conclusioni](#5-conclusioni)
+- [6. Appendice](#6-appendice)
+  - [Proposta codici di errore Middleware](#proposta-codici-di-errore-middleware)
+  - [Proposta gestione warning Middleware](#proposta-gestione-warning-middleware)
   - [Notes](#notes)
 
 
@@ -108,6 +113,8 @@ In questa modalità non sarà necessario emettere un certificato per ogni sistem
 
 Per quanto riguarda il processo, il middleware regionale deve essere trasparente rispetto ai workflow definiti da specifica.
 
+## 3.1. Validazione
+
 In particolare devono essere garantiti:
 
 
@@ -119,7 +126,9 @@ Per quanto riguarda il primo aspetto è necessario quindi che la presenza del mi
 
 Per **sincrono** si intende che il sistema produttore **rimane in attesa** della risposta del GTW attraverso le chiamate al middleware regionale.
 
-Il secondo aspetto vuole garantire che **ogni** messaggio inviato verso il middleware regionale raggiunga il GTW **subito dopo la ricezione**  e che eventuali violazioni di regole regionali non comportino uno scarto verso il GTW: **ogni messaggio ricevuto deve essere passato al GTW, a livello regionale non è possibile inserire controlli bloccanti.**
+Il secondo aspetto vuole garantire che **ogni** messaggio inviato verso il middleware regionale raggiunga il GTW **subito dopo la ricezione**  e che eventuali violazioni di regole regionali non comportino uno scarto verso il GTW: **ogni messaggio ricevuto deve essere passato al GTW, in generale, a livello regionale non è possibile inserire controlli bloccanti.**
+
+Errori bloccanti sono possibili unicamente nel caso la validazione incontri condizioni che non permetteranno in un secondo momento la pubblicazione del referto, ad esempio per caratteristiche peculiari dell'infrastruttura locale, in questo caso l'errore va comunque dato **dopo** aver chiamato il servizio centrale.
 
 
 ![sequence diagram](img/sequence.png)
@@ -127,6 +136,30 @@ Il secondo aspetto vuole garantire che **ogni** messaggio inviato verso il middl
 
 **Sequence chiamata sincrona**
 
+## 3.2. Pubblicazione/Indicizzazione
+
+Il modello prevede che l'indice FSE Regionale sia alimentato dalle comunicazioni INI anche per gli assistiti della regione, come nello schema seguente:
+
+<!--https://sequencediagram.org/index.html#initialData=C4S2BsFMAIEFxAW0gO2AQwF4gPYpgJIoAmIAxjAGIDKAotAEqQDmuK6UAUJwA7oBOoMiD5poAIgCyIYsSgB3ATAa0A4uOjoAztES8BQkejHjVAFQDqG7dGb7B5I2IIA5AvcOjgEoqQrQaehV1TR0QbhQcYBgoADNvHFjdAC5oYhwyWxAAA+gANw4ZdGAcTkQAWgA+ZmSeAFcAIwaEMnROdDJQAujdds6Qbpg7Ziqasjw8yEEYdMyQFACACQIGThHKxFTYAGEAaWgAamgLAndiSA6u4pg9ddcCVPHEOpRydF1IDGJi8MuB6+g90492gVWgIEeOGer1aHy+Pz6Vx64RAoMqgLcWz2nHOf0G4OBblGWN2OIu-XxQMiPRwk34tlSwH4xi0WDYMFoABFqNAoZAtKyyXiAXZuJwgA-->
+![sequence pubblicazione](img/sequence_pubblicazione.png)
+
+Questo garantisce che le informazioni tra documenti e dati siano allineate: il Gateway implementa logiche di retry sia verso INI che verso EDS dando priorità alla consistenza delle informazioni.
+
+
+Un "*response*" positivo al servizio di pubblicazione indica che il Gateway ha **preso in carico** il compito di inviare dati e metadati rispettivamente ad EDS e ad INI.
+
+
+Tuttavia, nell'impossibilità di contattare il Gateway è possibile "indicizzare" temporaneamente le informazioni su sistemi interni alla regione.
+
+
+Al ristabilirsi delle comunicazioni con il Gateway dovranno essere recuperate le pubblicazioni non inviate.
+
+<!--https://sequencediagram.org/index.html#initialData=C4S2BsFMAIHEBUDq0AiB7A7gO2gBQK4BGh4IAxgIYBeIaWkAUAwA4UBOoZIrWw0ARAFkQAExFQM7GACUAorH7QKAZ2gBbFu07cKvAQkSKV0AOaaO5HXoCSAOWvntPPv2tYR5GADEAyrOhyCkqqIEwMWGjAMFAAZnxoMeoAXNAiaGSmIAAH0ABuFKQiFMBoDGoAtAAeJinMRCTk1LT00DEFpMAUDBRkoPlR6mXlAHwgKSDullRUTXTR6QWMDOBoaMxwSAC8adgM0PvqIzXQdcSklHsHPX3FMGYmR0lkdLmQHDBpGRPQXgAS1tIGA9hmoUgBBADCAGloABqaCIawOESQa4gfowDSQdxAkZ2awpZ5qfBYRrqSCdIqgbq9dG3aD4hj46AjaBjaBEklktQUihU0JojFshggEbstjkOhcUgUAD0yjQuTYKjIEte5MpxVCIBZwwZ9nB0IYKMF9NC+Me0EhUONqNpQsZEQGirephSwGVWGUsxashQPmgaB5ym9ttNAzMTCAA-->
+![sequence pubblicazione](img/sequence_gtw_down_pubblicazione.png)
+
+L'indicizzazione locale è possibile anche nel caso di documento pubblicato, ma per il quale non siano arrivati i metadati da INI entro un periodo di tempo (da definire con le Amministrazioni titolari) dalla pubblicazione.
+
+Al ricevimento della *comunicazione/aggiornamento metadati* da INI su documento indicizzato localmente questi dovranno andare a "sovrascrivere" eventuali dati locali in conflitto (caso che non dovrebbe darsi), in modo che un successivo *recupero* fornisca i metadati valorizzati come trasmessi da INI.
 
 # 4. Ulteriori considerazioni
 
@@ -154,6 +187,39 @@ Si riassumono in sostanza i criteri che deve soddisfare il middleware regionale:
 1. Adottare uno dei casi proposti per la gestione dei certificati.
 2. Non alterare le fasi e le tempistiche delle validazioni sincrone.
 3. Non introdurre controlli bloccanti che scartino messaggi senza che questi vengano inoltrati al GTW.
+
+# 6. Appendice
+
+## Proposta codici di errore Middleware
+
+La seguente tabella propone una standardizzazione degli errori generati dai middleware regionali.
+
+|tipo errore|type|title|status|instance|detail|
+|---|---|---|---|---|---|
+|Impossibilità di contattare GTW nazionale|mw/io_error|Errore comunicazione con GTW nazionale|504|*libero*|*libero*|
+|Errore interno|mw/internal_error|Errore Interno|500|*libero*|*libero*|
+|Errori specifici implementazione mw|mw/* |*libero*|4xx|*libero*|*libero*|
+
+In caso di errore dal GTW nazionale, il middleware *deve* ritornare l'errore nazionale *senza aggiungere dati locali* nel body HTTP.
+
+## Proposta gestione warning Middleware
+
+Si propone che il middleware regionale utilizzi la stringa  `--middlewarewarning--` come prefisso dei warning generati.
+Se esiste già un warning nazionale, il warning del middleware deve essere concatenato dopo quello nazionale.
+es:
+
+```json
+{
+  ...
+"warning": "[[WARNING_EXTRACT]Attenzione, non è stata selezionata la modalità di estrazione del CDA]--middlewarewarning--warning locale"
+  ...
+}
+```
+
+Il prefisso `--middlewarewarning--` va inserito una volta sola nella stringa anche in caso di warning multipli, in sostanza separa i warning nazionali da quelli locali.
+
+Anche nel caso ci sia solo warning locale è necessario inserire il prefisso `--middlewarewarning--`.
+
 
 <!-- Footnotes themselves at the bottom. -->
 ## Notes
