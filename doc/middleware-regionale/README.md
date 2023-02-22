@@ -159,7 +159,7 @@ Al ristabilirsi delle comunicazioni con il Gateway dovranno essere recuperate le
 
 L'indicizzazione locale è possibile anche nel caso di documento pubblicato, ma per il quale non siano arrivati i metadati da INI entro un periodo di tempo (da definire con le Amministrazioni titolari) dalla pubblicazione.
 
-Al ricevimento della *comunicazione/aggiornamento metadati* da INI su documento indicizzato localmente questi dovranno andare a "sovrascrivere" eventuali dati locali in conflitto (caso che non dovrebbe darsi), in modo che un successivo *recupero* fornisca lo stesso set di metadati trasmessi da INI.
+Al ricevimento della *comunicazione/aggiornamento metadati* da INI su documento indicizzato localmente questi dovranno andare a "sovrascrivere" eventuali dati locali in conflitto (caso che non dovrebbe darsi), in modo che un successivo *recupero* fornisca i metadati valorizzati come trasmessi da INI.
 
 # 4. Ulteriori considerazioni
 
