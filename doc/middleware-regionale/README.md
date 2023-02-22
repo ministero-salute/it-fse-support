@@ -138,12 +138,12 @@ Errori bloccanti sono possibili unicamente nel caso la validazione incontri cond
 
 ## 3.2. Pubblicazione/Indicizzazione
 
-Il modello prevede che il l'indice FSE Regionale sia alimentato dalle comunicazioni INI anche per gli assistiti della regione, come nello schema seguente:
+Il modello prevede che l'indice FSE Regionale sia alimentato dalle comunicazioni INI anche per gli assistiti della regione, come nello schema seguente:
 
 <!--https://sequencediagram.org/index.html#initialData=C4S2BsFMAIEFxAW0gO2AQwF4gPYpgJIoAmIAxjAGIDKAotAEqQDmuK6UAUJwA7oBOoMiD5poAIgCyIYsSgB3ATAa0A4uOjoAztES8BQkejHjVAFQDqG7dGb7B5I2IIA5AvcOjgEoqQrQaehV1TR0QbhQcYBgoADNvHFjdAC5oYhwyWxAAA+gANw4ZdGAcTkQAWgA+ZmSeAFcAIwaEMnROdDJQAujdds6Qbpg7Ziqasjw8yEEYdMyQFACACQIGThHKxFTYAGEAaWgAamgLAndiSA6u4pg9ddcCVPHEOpRydF1IDGJi8MuB6+g90492gVWgIEeOGer1aHy+Pz6Vx64RAoMqgLcWz2nHOf0G4OBblGWN2OIu-XxQMiPRwk34tlSwH4xi0WDYMFoABFqNAoZAtKyyXiAXZuJwgA-->
 ![sequence pubblicazione](img/sequence_pubblicazione.png)
 
-Questo garantisce che le informazioni tra documenti e dati siano allineate, il Gateway implementa logiche di retry sia verso INI che verso EDS dando priorità alla consistenza delle informazioni.
+Questo garantisce che le informazioni tra documenti e dati siano allineate: il Gateway implementa logiche di retry sia verso INI che verso EDS dando priorità alla consistenza delle informazioni.
 
 
 Un "*response*" positivo al servizio di pubblicazione indica che il Gateway ha **preso in carico** il compito di inviare dati e metadati rispettivamente ad EDS e ad INI.
@@ -159,7 +159,7 @@ Al ristabilirsi delle comunicazioni con il Gateway dovranno essere recuperate le
 
 L'indicizzazione locale è possibile anche nel caso di documento pubblicato, ma per il quale non siano arrivati i metadati da INI entro un periodo di tempo (da definire con le Amministrazioni titolari) dalla pubblicazione.
 
-Al ricevimento dei metadati da INI su documento indicizzato localmente questi dovranno andare a "sovrascrivere" eventuali dati locali in conflitto (caso che non dovrebbe darsi), in modo che un successivo recupero da INI fornisca lo stesso set di metadati trasmessi da INI stesso.
+Al ricevimento della *comunicazione/aggiornamento metadati* da INI su documento indicizzato localmente questi dovranno andare a "sovrascrivere" eventuali dati locali in conflitto (caso che non dovrebbe darsi), in modo che un successivo *recupero* fornisca lo stesso set di metadati trasmessi da INI.
 
 # 4. Ulteriori considerazioni
 
