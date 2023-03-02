@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.3
+   <td>ver 2.4
    </td>
   </tr>
 </table>
