@@ -72,7 +72,7 @@
   - [9.1. Response](#91-response)
 - [10. Drilldown Response in caso di Errore](#10-drilldown-response-in-caso-di-errore)
   - [10.1. Errori Applicativi](#101-errori-applicativi)
-    - [11.3.1. ListaEsempi errori di errore generati dal Gateway](#1131-listaesempi-errori-di-errore-generati-dal-gateway)
+    - [11.3.1. Esempi di errore generati dal Gateway](#1131-esempi-di-errore-generati-dal-gateway)
   - [10.1. Errori provenienti da Apparati di Frontiera](#101-errori-provenienti-da-apparati-di-frontiera)
 - [11. Drilldown Parametri di Input](#11-drilldown-parametri-di-input)
   - [11.1. Campi Contenuti nei JWT](#111-campi-contenuti-nei-jwt)
@@ -384,6 +384,18 @@ Tutti: stesura a seguito rivisitazione
 11.1: aggiunti nuovi custom claims per Applicativo
    </td>
   </tr>
+  <tr>
+   <td>2.4
+   </td>
+   <td>21/02/2022
+   </td>
+   <td>Paragrafi modificati
+<p>
+5, 7, 8, 9: rimozione Content-Type
+<p>
+6: rimozione priorità e workflowInstanceId sul Servizio di Sostituzione
+   </td>
+  </tr>
 </table>
 
 
@@ -495,7 +507,7 @@ La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estra
 
 Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
 
-Il servizio è sincrono e fornisce un acknowledgment di presa in carico.
+La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
 
 **Eliminazione Documento**
 
@@ -595,7 +607,7 @@ https://<HOST>:<PORT>/v<major>/documents/validation
 ```
 
 
-Lo scopo di questa API è validare da un punto di vista sintattico e semantico i dati forniti dal Sistema Produttore.
+Lo scopo di questa API è validare da un punto di vista sintattico, semantico e terminologico i dati forniti dal Sistema Produttore.
 
 
 ## 3.1. Request
@@ -1716,12 +1728,6 @@ Lo scopo di questa API Sincrona è eliminare le risorse FHIR precedentemente pub
    <td>/v1/documents/{identificativoDocUpdate}
    </td>
   </tr>
-  <tr>
-   <td>TYPE
-   </td>
-   <td>application/json
-   </td>
-  </tr>
 </table>
 
 
@@ -2134,7 +2140,7 @@ _Tabella 20: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="16" >Request Body
+   <td rowspan="14" >Request Body
    </td>
    <td>file
    </td>
@@ -2148,18 +2154,8 @@ _Tabella 20: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="15" >requestBody
+   <td rowspan="13" >requestBody
    </td>
-   <td>workflowInstanceId
-   </td>
-   <td>String
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
    <td>healthDataFormat
    </td>
    <td>HealthDataFormatEnum
@@ -2287,16 +2283,6 @@ _Tabella 20: Method, URL, Type_
    <td>true
    </td>
    <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
-   </td>
-  </tr>
-  <tr>
-   <td>priorita
-   </td>
-   <td>boolean
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
    </td>
   </tr>
 </table>
@@ -2813,8 +2799,6 @@ curl -X 'PUT' \
 
   -H 'accept: application/json' \
 
-  -H 'Content-Type: application/json' \
-
   -d '{
 
   "tipologiaStruttura": "Ospedale",
@@ -3074,12 +3058,6 @@ Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di
    <td>URL
    </td>
    <td>/v1/status/{workflowInstanceId}
-   </td>
-  </tr>
-  <tr>
-   <td>TYPE
-   </td>
-   <td>application/json
    </td>
   </tr>
 </table>
@@ -3589,12 +3567,6 @@ Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di
    <td>/v1/status/search/{traceId}
    </td>
   </tr>
-  <tr>
-   <td>TYPE
-   </td>
-   <td>application/json
-   </td>
-  </tr>
 </table>
 
 
@@ -3754,7 +3726,7 @@ Può differire dal type in caso sia necessario specificare il problema con maggi
 _Tabella 37: Campi Response valorizzati in caso di errore_
 
 
-### 11.3.1. ListaEsempi errori di errore generati dal Gateway
+### 11.3.1. Esempi di errore generati dal Gateway
 
 
 <table>
@@ -4948,7 +4920,7 @@ Riferimento: urn:oasis:names:tc:xspa:1.0:resource:hl7:type
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Non Obbligatorio
+   <td>Non Obbligatorio per il servizio di Eliminazione Documento e Aggiornamento Metadati
    </td>
   </tr>
   <tr>
@@ -5012,7 +4984,7 @@ UPDATE per il servizio di Aggiornamento Metadati
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio nei servizi di pubblicazione
+   <td>Obbligatorio per i servizi di Creazione e Sostituzione Documento
    </td>
   </tr>
   <tr>
