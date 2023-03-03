@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.4
+   <td>ver 2.5
    </td>
   </tr>
 </table>
@@ -394,6 +394,20 @@ Tutti: stesura a seguito rivisitazione
 5, 7, 8, 9: rimozione Content-Type
 <p>
 6: rimozione priorità e workflowInstanceId sul Servizio di Sostituzione
+   </td>
+  </tr>
+  </tr>
+  <tr>
+   <td>2.5
+   </td>
+   <td>03/03/2023
+   </td>
+   <td>Paragrafi modificati
+<p>
+4,6,7: Aggiunti parametri in request body
+<p>
+11: Aggiornamento enums "affinity domain 2.4.1"
+<p>
    </td>
   </tr>
 </table>
