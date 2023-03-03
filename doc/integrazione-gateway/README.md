@@ -120,7 +120,7 @@
   <tr>
    <td>2
    </td>
-   <td>Affinity Domain 2.2
+   <td>Affinity Domain 2.4.1
    </td>
    <td>Documento Affinity Domain
    </td>
@@ -1191,7 +1191,7 @@ _Tabella 10: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="16" >Request Body
+   <td rowspan="18" >Request Body
    </td>
    <td>file
    </td>
@@ -1205,7 +1205,7 @@ _Tabella 10: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="15" >requestBody
+   <td rowspan="17" >requestBody
    </td>
    <td>workflowInstanceId
    </td>
@@ -1356,6 +1356,29 @@ _Tabella 10: Method, URL, Type_
    <td>N.A.
    </td>
   </tr>
+   <tr>
+   <td>descriptions
+   </td>
+   <td>List
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - description
+   </td>
+  </tr>
+   <tr>
+   <td>administrativeRequest
+   </td>
+   <td>AdministrativeReqEnum
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - administrativeRequest
+   </td>
+  </tr>
+  
+  
+  
 </table>
 
 
@@ -1423,7 +1446,13 @@ curl -X 'POST' \
 
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
 
-  "priorita": false
+  "priorita": false,
+
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+
+  "administrativeRequest": "SSN"
 
 }' \
 
@@ -1481,7 +1510,13 @@ curl -X 'POST' \
 
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
 
-  "priorita": true
+  "priorita": true,
+
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+
+  "administrativeRequest": "SSN"
 
 }' \
 
@@ -2140,7 +2175,7 @@ _Tabella 20: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="14" >Request Body
+   <td rowspan="16" >Request Body
    </td>
    <td>file
    </td>
@@ -2154,7 +2189,7 @@ _Tabella 20: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="13" >requestBody
+   <td rowspan="15" >requestBody
    </td>
    <td>healthDataFormat
    </td>
@@ -2285,6 +2320,27 @@ _Tabella 20: Method, URL, Type_
    <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
    </td>
   </tr>
+  <tr>
+   <td>descriptions
+   </td>
+   <td>List
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - description
+   </td>
+  </tr>
+   <tr>
+   <td>administrativeRequest
+   </td>
+   <td>AdministrativeReqEnum
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - administrativeRequest
+   </td>
+  </tr>
+
 </table>
 
 
@@ -2348,7 +2404,11 @@ curl -X 'PUT' \
 
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
 
-  "priorita": false
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+
+  "administrativeRequest": "SSN"
 
 }' \
 
@@ -2681,9 +2741,9 @@ _Tabella 25: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="9" >Request Body
+   <td rowspan="11" >Request Body
    </td>
-   <td rowspan="9" >requestBody
+   <td rowspan="11" >requestBody
    </td>
    <td>tipologiaStruttura
    </td>
@@ -2774,6 +2834,27 @@ _Tabella 25: Method, URL, Type_
    <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
    </td>
   </tr>
+   <tr>
+   <td>descriptions
+   </td>
+   <td>List
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - description
+   </td>
+  </tr>
+   <tr>
+   <td>administrativeRequest
+   </td>
+   <td>AdministrativeReqEnum
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - administrativeRequest
+   </td>
+  </tr>
+  
 </table>
 
 
@@ -2821,7 +2902,13 @@ curl -X 'PUT' \
 
   "tipoAttivitaClinica": "CON",
 
-  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592"
+  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
+
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+
+  "administrativeRequest": "SSN"
 
 }'\
 
@@ -5739,6 +5826,74 @@ Vedi TABELLA ORGANIZZAZIONE per il codice della REGIONE
    <td>Facoltativo
    </td>
   </tr>
+  <tr>
+   <td colspan="2" ><strong>DESCRIPTIONS</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>PARAMETRO</strong>
+   </td>
+   <td><code>descriptions</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>DESCRIZIONE</strong>
+   </td>
+   <td>Questo metadato permette di specificare una ulteriore descrizione associata al documento.
+   </td>
+  </tr>
+  <tr>
+   <td><strong>ESEMPIO</strong>
+   </td>
+   <td>[CODICE]^[Descrizione]^[OID]
+   </td>
+  </tr>
+  <tr>
+   <td><strong>PROVENIENZA</strong>
+   </td>
+   <td>GATEWAY
+   </td>
+  </tr>
+  <tr>
+   <td><strong>VALIDAZIONE</strong>
+   </td>
+   <td>Facoltativo
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" ><strong>ADMINISTRATIVE REQUEST</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>PARAMETRO</strong>
+   </td>
+   <td><code>administrativeRequest</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>DESCRIZIONE</strong>
+   </td>
+   <td>Questo metadato permette di indicare il regime nel quale il documento è stato prodotto.
+   </td>
+  </tr>
+  <tr>
+   <td><strong>ESEMPIO</strong>
+   </td>
+   <td>SSN
+   </td>
+  </tr>
+  <tr>
+   <td><strong>PROVENIENZA</strong>
+   </td>
+   <td>GATEWAY
+   </td>
+  </tr>
+  <tr>
+   <td><strong>VALIDAZIONE</strong>
+   </td>
+   <td>Facoltativo
+   </td>
+  </tr>
 </table>
 
 
@@ -5822,6 +5977,41 @@ prestazione programmata/prenotata
 Sistema TS.
    </td>
   </tr>
+
+   <tr>
+   <td>INI
+   </td>
+   <td>Documenti INI
+   </td>
+   <td>Documenti trasferiti da INI durante il
+trasferimento 
+<p>
+indice alla nuova RDA.
+   </td>
+  </tr>
+
+   <tr>
+   <td>PN-DGC
+   </td>
+   <td>Documenti PN-DGC
+   </td>
+   <td>Documenti resi disponibili dalla Piattaforma
+<p>
+Nazionale DGC al sistema FSE.
+   </td>
+  </tr>
+
+  <tr>
+   <td>OBS
+   </td>
+   <td>Documento stato di salute
+   </td>
+   <td>Documenti trasmessi al FSE per arricchire la
+<p>
+valutazione dello stato di salute del paziente.
+   </td>
+  </tr>
+  
 </table>
 
 
@@ -5882,6 +6072,14 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    <td>Cittadino
    </td>
    <td>Indica che il dato/documento è stato inserito dal cittadino.
+   </td>
+  </tr>
+   <tr>
+   <td>MdsPN-DGC
+   </td>
+   <td>MdsPN-DGC
+   </td>
+   <td>Piattaforma Nazionale DGC del Ministero Della Salute.
    </td>
   </tr>
 </table>
@@ -6010,6 +6208,23 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di verbale (ad es. verbale di pronto soccorso).
    </td>
   </tr>
+   <tr>
+   <td>CON
+   </td>
+   <td>Documento di consenso
+   </td>
+   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento di consenso (ad es. consenso
+informato anestesia).
+   </td>
+  </tr>
+   <tr>
+   <td>CNT
+   </td>
+   <td>Documento di controllo
+   </td>
+   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento che descrive un controllo clinico (ad es. bilanci di salute).
+   </td>
+  </tr>
 </table>
 
 
@@ -6036,6 +6251,22 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    <td>Oscuramento del documento
    </td>
    <td>Specifica che un assistito ha stabilito di oscurare un documento a tutti i ruoli abilitati all’accesso al FSE.
+   </td>
+  </tr>
+  <tr>
+   <td>P97
+   </td>
+   <td>Oscuramento al genitore
+   </td>
+   <td>Un assistito minore ha stabilito di oscurare un documento ai propri genitori.
+   </td>
+  </tr>
+  <tr>
+   <td>P98
+   </td>
+   <td>Oscuramento all’assistito
+   </td>
+   <td>Un medico specialista ha stabilito di oscurare provvisoriamente un documento al proprio assistito. Il documento sarà visibile all’assistito a seguito del processo di mediazione che terminerà con l’eliminazione del valore P98.
    </td>
   </tr>
   <tr>
@@ -6093,7 +6324,574 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    </td>
    <td>Consente di specificare che il metadato typeCode (57833-6) cui è correlato fa riferimento ad una prescrizione a carico del SSN in maniera totale o parziale. Il codice utilizzato è individuato dal value set http://hl7.org/fhir/ValueSet/coverage-type
    </td>
+     <tr>
+      <td>LP267463-0</td>
+      <td>Reddito</td>
+      </td>
+    </tr>
+    <tr>
+      <td>LP199190-2</td>
+      <td>Patologia</td>
+      </td>
+    </tr>
+    <tr>
+      <td>90768-3</td>
+      <td>Analisi sangue donatore</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AC</td>
+      <td>Anthrax vaccines</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AC01</td>
+      <td>anthrax antigen</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AD</td>
+      <td>Brucellosis vaccines</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AD01</td>
+      <td>brucella antigen</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AE</td>
+      <td>Cholera vaccines</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AE01</td>
+      <td>cholera, inactivated, whole cell</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AE02</td>
+      <td>cholera, live attenuated</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AE51</td>
+      <td>cholera, combinations with typhoid vaccine, inactivated, whole cell</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AF</td>
+      <td>Diphtheria vaccines</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AF01</td>
+      <td>diphtheria toxoid</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AG</td>
+      <td>Haemophilus influenzae B vaccines</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AG01</td>
+      <td>haemophilus influenzae B, purified antigen conjugated</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AG51</td>
+      <td>haemophilus influenzae B, combinations with toxoids</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AG52</td>
+      <td>haemophilus influenzae B, combinations with pertussis and toxoids</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AG53</td>
+      <td>haemophilus influenzae B, combinations with meningococcus C, conjugated</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AG54</td>
+      <td>haemophilus influenza B, combinations with meningococcus C,Y, conjugated</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AH</td>
+      <td>Meningococcal vaccines</td>
+      </td>
+    </tr>
+    <tr>
+      <td>J07AH01</td>
+      <td>meningococcus A, purified polysaccharides antigen</td>
+      </td>
+    </tr> 
+  <tr>
+    <td>J07AH02</td>
+    <td>other meningococcal monovalent purified polysaccharides antigen</td>
+    </td>
   </tr>
+  <tr>
+    <td>J07AH03</td>
+    <td>meningococcus A,C, bivalent purified polysaccharides antigen</td>
+    </td>
+  </tr>
+  <tr>
+    <td>J07AH04</td>
+    <td>meningococcus A,C,Y,W-135, tetravalent purified polysaccharides antigen</td>
+ </td> </tr>
+  <tr>
+    <td>J07AH05</td>
+    <td>other meningococcal polyvalent purified polysaccharides antigen</td>
+ </td> </tr>
+  <tr>
+    <td>J07AH06</td>
+    <td>meningococcus B, outer membrane vesicle vaccine</td>
+  </td></tr>
+  <tr>
+    <td>J07AH07</td>
+    <td>meningococcus C, purified polysaccharides antigen conjugated</td>
+  </td></tr>
+  <tr>
+    <td>J07AH08</td>
+    <td>meningococcus A,C,Y,W-135, tetravalent purified polysaccharides antigen conjugated</td>
+ </td> </tr>
+  <tr>
+    <td>J07AH09</td>
+    <td>meningococcus B, multicomponent vaccine</td>
+  </td></tr>
+  <tr>
+    <td>J07AH10</td>
+    <td>meningococcus A, purified polysaccharides antigen conjugated</td>
+  </td></tr>
+  <tr>
+    <td>J07AJ</td>
+    <td>Pertussis vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AJ01</td>
+    <td>pertussis, inactivated, whole cell</td>
+  </td></tr>
+  <tr>
+    <td>J07AJ02</td>
+    <td>pertussis, purified antigen</td>
+  </td></tr>
+  <tr>
+    <td>J07AJ51</td>
+    <td>pertussis, inactivated, whole cell, combinations with toxoids</td>
+  </td></tr>
+  <tr>
+    <td>J07AJ52</td>
+    <td>pertussis, purified antigen, combinations with toxoids</td>
+  </td></tr>
+  <tr>
+    <td>J07AK</td>
+    <td>Plague vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AK01</td>
+    <td>plague, inactivated, whole cell</td>
+  </td></tr>
+  <tr>
+    <td>J07AL</td>
+    <td>Pneumococcal vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AL01</td>
+    <td>pneumococcus, purified polysaccharides antigen</td>
+  </td></tr>
+  <tr>
+    <td>J07AL02</td>
+    <td>pneumococcus, purified polysaccharides antigen conjugated</td>
+  </td></tr>
+
+  <tr>
+    <td>J07AL52</td>
+    <td>pneumococcus purified polysaccharides antigen and haemophilus influenzae, conjugated</td>
+  </td></tr>
+  <tr>
+    <td>J07AM</td>
+    <td>Tetanus vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AM01</td>
+    <td>tetanus toxoid</td>
+  </td></tr>
+  <tr>
+    <td>J07AM51</td>
+    <td>tetanus toxoid, combinations with diphtheria toxoid</td>
+  </td></tr>
+  <tr>
+    <td>J07AM52</td>
+    <td>tetanus toxoid, combinations with tetanus immunoglobulin</td>
+  </td></tr>
+  <tr>
+    <td>J07AN</td>
+    <td>Tuberculosis vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AN01</td>
+    <td>tuberculosis, live attenuated</td>
+  </td></tr>
+  <tr>
+    <td>J07AP</td>
+    <td>Typhoid vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AP01</td>
+    <td>typhoid, oral, live attenuated</td>
+  </td></tr>
+  <tr>
+    <td>J07AP02</td>
+    <td>typhoid, inactivated, whole cell</td>
+  </td></tr>
+  <tr>
+    <td>J07AP03</td>
+    <td>typhoid, purified polysaccharide antigen</td>
+  </td></tr>
+  <tr>
+    <td>J07AP10</td>
+    <td>typhoid, combinations with paratyphi types</td>
+  </td></tr>
+  <tr>
+    <td>J07AR</td>
+    <td>Typhus (exanthematicus) vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AR01</td>
+    <td>typhus exanthematicus, inactivated, whole cell</td>
+  </td></tr>
+  <tr>
+    <td>J07AX</td>
+    <td>Other bacterial vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07AX01</td>
+    <td>leptospira vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07BA</td>
+    <td>Encephalitis vaccines</td>
+  </td></tr>
+  <tr>
+    <td>J07BA01</td>
+    <td>encephalitis, tick borne, inactivated, whole virus</td>
+  </td></tr>
+  <tr>
+    <td>J07BA02</td>
+    <td>encephalitis, Japanese, inactivated, whole virus</td>
+  </td></tr>
+  <tr>
+    <td>J07BA03</td>
+    <td>encephalitis, Japanese, live attenuated</td>
+  </td></tr>
+  <tr>
+    <td>J07BB</td>
+    <td>Influenza vaccines</td>
+  </td></tr>
+  <tr>
+            <td>J07BC</td>
+            <td>Hepatitis vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BC01</td>
+            <td>hepatitis B, purified antigen</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BC02</td>
+            <td>hepatitis A, inactivated, whole virus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BC20</td>
+            <td>combinations</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BD</td>
+            <td>Measles vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BD01</td>
+            <td>measles, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BD51</td>
+            <td>measles, combinations with mumps, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BD52</td>
+            <td>measles, combinations with mumps and rubella, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BD53</td>
+            <td>measles, combinations with rubella, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BD54</td>
+            <td>measles, combinations with mumps, rubella and varicella, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BE</td>
+            <td>Mumps vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BE01</td>
+            <td>mumps, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BF</td>
+            <td>Poliomyelitis vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BF01</td>
+            <td>poliomyelitis oral, monovalent, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BF02</td>
+            <td>poliomyelitis oral, trivalent, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BF03</td>
+            <td>poliomyelitis, trivalent, inactivated, whole virus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BF04</td>
+            <td>poliomyelitis oral, bivalent, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BG</td>
+            <td>Rabies vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BG01</td>
+            <td>rabies, inactivated, whole virus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BH</td>
+            <td>Rota virus diarrhea vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BH01</td>
+            <td>rota virus, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BH02</td>
+            <td>rota virus, pentavalent, live, reassorted</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BJ</td>
+            <td>Rubella vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BJ01</td>
+            <td>rubella, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BJ51</td>
+            <td>rubella, combinations with mumps, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BK</td>
+            <td>Varicella zoster vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BK01</td>
+            <td>varicella, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BK02</td>
+            <td>zoster, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BK03</td>
+            <td>zoster, purified antigen</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BL</td>
+            <td>Yellow fever vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BL01</td>
+            <td>yellow fever, live attenuated</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BM</td>
+            <td>Papillomavirus vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BM01</td>
+            <td>papillomavirus (human types 6, 11, 16, 18)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BM02</td>
+            <td>papillomavirus (human types 16, 18)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BM03</td>
+            <td>papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BN</td>
+            <td>Covid-19 vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BN01</td>
+            <td>covid-19, RNA-based vaccine</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BN02</td>
+            <td>covid-19, viral vector, non-replicating</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BN03</td>
+            <td>covid-19, inactivated virus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BN04</td>
+            <td>covid-19, protein subunit</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BX</td>
+            <td>Other viral vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BX01</td>
+            <td>smallpox vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BX02</td>
+            <td>ebola vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07BX04</td>
+            <td>dengue virus vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA</td>
+            <td>Bacterial and viral vaccines, combined</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA01</td>
+            <td>diphtheria-poliomyelitis-tetanus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA02</td>
+            <td>diphtheria-pertussis-poliomyelitis-tetanus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA03</td>
+            <td>diphtheria-rubella-tetanus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA04</td>
+            <td>haemophilus influenzae B and poliomyelitis</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA05</td>
+            <td>diphtheria-hepatitis B-pertussis-tetanus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA06</td>
+            <td>diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA07</td>
+            <td>diphtheria-hepatitis B-tetanus</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA08</td>
+            <td>haemophilus influenzae B and hepatitis B</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA09</td>
+            <td>diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA10</td>
+            <td>typhoid-hepatitis A</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA11</td>
+            <td>diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA12</td>
+            <td>diphtheria-pertussis-poliomyelitis-tetanus-hepatitis B</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07CA13</td>
+            <td>diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B-meningococcus A + C</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07XA</td>
+            <td>Parasitic vaccines</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>J07XA01</td>
+            <td>malaria vaccine</td>
+            <td></td>
+        </tr>
 </table>
 
 
@@ -6102,7 +6900,7 @@ _Tabella 45: _Value set per il metadato XDSDocumentEntry.eventCodeList
 
 ### 11.3.5. Ruolo
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -6157,11 +6955,68 @@ Pediatra di Libera Scelta
    </td>
   </tr>
   <tr>
+   <td>DSA
+   </td>
+   <td>Direttore sanitario
+   </td>
+   <td>Direttore sanitario
+   </td>
+  </tr>
+   <tr>
+   <td>DAM
+   </td>
+   <td>Direttore amministrativo
+   </td>
+   <td>Direttore amministrativo
+   </td>
+  </tr>
+  <tr>
+  <tr>
    <td>OAM
    </td>
    <td>Operatore amministrativo
    </td>
    <td>Operatore Amministrativo
+   </td>
+  </tr>
+  <tr>
+   <td>ASS
+   </td>
+   <td>Assistito
+   </td>
+   <td>Assistito
+   </td>
+  </tr>
+  <tr>
+   <td>TUT
+   </td>
+   <td>Tutore
+   </td>
+   <td>Tutore
+   </td>
+  </tr>
+  <tr>
+   <td>ING
+   </td>
+   <td>Informal giver (Assistito)
+   </td>
+   <td>Informal giver (Assistito)
+   </td>
+  </tr>
+  <tr>
+   <td>GEN
+   </td>
+   <td>Genitore Assistito
+   </td>
+   <td>Genitore Assistito
+   </td>
+  </tr>
+  <tr>
+   <td>NOR
+   </td>
+   <td>Nodo regionale
+   </td>
+   <td>Nodo regionale
    </td>
   </tr>
   <tr>
@@ -6194,6 +7049,22 @@ Pediatra di Libera Scelta
    <td>Infrastruttura Nazionale per l’Interoperabilità
    </td>
    <td>Ruolo di sistema (non indicato nel DPCM perché non rappresenta una professione)
+   </td>
+  </tr>
+  <tr>
+   <td>OGC
+   </td>
+   <td>Operatore per la gestione dei consensi
+   </td>
+   <td>Operatore per la gestione dei consensi
+   </td>
+  </tr>
+   <tr>
+   <td>OPI
+   </td>
+   <td>Operatore di informativa
+   </td>
+   <td>Operatore di informativa
    </td>
   </tr>
   <tr>
@@ -6433,7 +7304,15 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 000</p>
 
    </td>
-   <td>INI o Sistema TS
+   <td>INI
+   </td>
+  </tr>
+   <tr>
+   <td><p style="text-align: right">
+970</p>
+
+   </td>
+   <td>Sistema TS
    </td>
   </tr>
   <tr>
@@ -6472,515 +7351,345 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    <td><strong>CodingScheme</strong>
    </td>
   </tr>
-  <tr>
-   <td>AD_PSC001
-   </td>
-   <td>Allergologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC002
-   </td>
-   <td>Day Hospital
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC003
-   </td>
-   <td>Anatomia e Istologia Patologica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC005
-   </td>
-   <td>Angiologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC006
-   </td>
-   <td>Cardiochirurgia Padiatrica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC007
-   </td>
-   <td>Cardiochirurgia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC008
-   </td>
-   <td>Cardiologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC009
-   </td>
-   <td>Chirurgia Generale
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC010
-   </td>
-   <td>Chirurgia Maxillo-Facciale
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC011
-   </td>
-   <td>Chirurgia Pediatrica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC012
-   </td>
-   <td>Chirurgia Plastica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC013
-   </td>
-   <td>Chirurgia Toracica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC014
-   </td>
-   <td>Chirurgia Vascolare
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC015
-   </td>
-   <td>Medicina Sportiva
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC018
-   </td>
-   <td>Ematologia e Immunoematologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC019
-   </td>
-   <td>Malattie Endocrine, del Ricambio e della Nutrizione
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC020
-   </td>
-   <td>Immunologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC021
-   </td>
-   <td>Geriatria
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC024
-   </td>
-   <td>Malattie Infettive e Tropicali
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC025
-   </td>
-   <td>Medicina del Lavoro
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC026
-   </td>
-   <td>Medicina Generale
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC027
-   </td>
-   <td>Medicina Legale
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC028
-   </td>
-   <td>Unita Spinale
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC029
-   </td>
-   <td>Nefrologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC030
-   </td>
-   <td>Neurochirurgia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC031
-   </td>
-   <td>Nido
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC032
-   </td>
-   <td>Neurologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC033
-   </td>
-   <td>Neuropsichiatria Infantile
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC034
-   </td>
-   <td>Oculistica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC035
-   </td>
-   <td>Odontoiatria e Stomatologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC036
-   </td>
-   <td>Ortopedia e Traumatologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC037
-   </td>
-   <td>Ostetricia e Ginecologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC038
-   </td>
-   <td>Otorinolaringoiatria
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC039
-   </td>
-   <td>Pediatria
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC040
-   </td>
-   <td>Psichiatria
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC042
-   </td>
-   <td>Tossicologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC043
-   </td>
-   <td>Urologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC046
-   </td>
-   <td>Grandi Ustioni Pediatriche
-   </td>
+   <tr>
+      <td>AD_PSC001</td>
+      <td>Allergologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC002</td>
+      <td>Day Hospital</td>
+    </tr>
+    <tr>
+      <td>AD_PSC003</td>
+      <td>Anatomia e Istologia Patologica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC005</td>
+      <td>Angiologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC006</td>
+      <td>Cardiochirurgia Pediatrica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC007</td>
+      <td>Cardiochirurgia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC008</td>
+      <td>Cardiologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC009</td>
+      <td>Chirurgia Generale</td>
+    </tr>
+    <tr>
+      <td>AD_PSC010</td>
+      <td>Chirurgia Maxillo-Facciale</td>
+    </tr>
+    <tr>
+      <td>AD_PSC011</td>
+      <td>Chirurgia Pediatrica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC012</td>
+      <td>Chirurgia Plastica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC013</td>
+      <td>Chirurgia Toracica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC014</td>
+      <td>Chirurgia Vascolare</td>
+    </tr>
+    <tr>
+      <td>AD_PSC015</td>
+      <td>Medicina Sportiva</td>
+    </tr>
+    <tr>
+      <td>AD_PSC018</td>
+      <td>Ematologia e Immunoematologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC019</td>
+      <td>Malattie Endocrine, del Ricambio e della Nutrizione</td>
+    </tr>
+    <tr>
+      <td>AD_PSC020</td>
+      <td>Immunologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC021</td>
+      <td>Geriatria</td>
+    </tr>
+    <tr>
+      <td>AD_PSC024</td>
+      <td>Malattie Infettive e Tropicali</td>
+    </tr>
+    <tr>
+      <td>AD_PSC025</td>
+      <td>Medicina del Lavoro</td>
+    </tr>
+    <tr>
+      <td>AD_PSC026</td>
+      <td>Medicina Generale</td>
+    </tr>
+    <tr>
+      <td>AD_PSC027</td>
+      <td>Medicina Legale</td>
+    </tr>
+    <tr>
+    <td>AD_PSC028</td>
+    <td>Unita Spinale</td>
+  </tr>
+  <tr>
+    <td>AD_PSC029</td>
+    <td>Nefrologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC030</td>
+    <td>Neurochirurgia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC031</td>
+    <td>Nido</td>
   </tr>
   <tr>
-   <td>AD_PSC047
-   </td>
-   <td>Grandi Ustionati
-   </td>
+    <td>AD_PSC032</td>
+    <td>Neurologia</td>
   </tr>
   <tr>
-   <td>AD_PSC048
-   </td>
-   <td>Nefrologia (Abilitazione Trapianto Rene)
-   </td>
+    <td>AD_PSC033</td>
+    <td>Neuropsichiatria Infantile</td>
   </tr>
   <tr>
-   <td>AD_PSC049
-   </td>
-   <td>Terapia Intensiva
-   </td>
+    <td>AD_PSC034</td>
+    <td>Oculistica</td>
   </tr>
   <tr>
-   <td>AD_PSC050
-   </td>
-   <td>Unità Coronarica
-   </td>
+    <td>AD_PSC035</td>
+    <td>Odontoiatria e Stomatologia</td>
   </tr>
   <tr>
-   <td>AD_PSC051
-   </td>
-   <td>Astanteria
-   </td>
+    <td>AD_PSC036</td>
+    <td>Ortopedia e Traumatologia</td>
   </tr>
   <tr>
-   <td>AD_PSC052
-   </td>
-   <td>Dermatologia
-   </td>
+    <td>AD_PSC037</td>
+    <td>Ostetricia e Ginecologia</td>
   </tr>
   <tr>
-   <td>AD_PSC054
-   </td>
-   <td>Emodialisi
-   </td>
+    <td>AD_PSC038</td>
+    <td>Otorinolaringoiatria</td>
   </tr>
   <tr>
-   <td>AD_PSC055
-   </td>
-   <td>Farmacologia Clinica
-   </td>
+    <td>AD_PSC039</td>
+    <td>Pediatria</td>
   </tr>
   <tr>
-   <td>AD_PSC056
-   </td>
-   <td>Recupero e Riabilitazione Funzionale
-   </td>
+    <td>AD_PSC040</td>
+    <td>Psichiatria</td>
   </tr>
   <tr>
-   <td>AD_PSC057
-   </td>
-   <td>Fisiopatologia della Riabilitazione Umana
-   </td>
+    <td>AD_PSC042</td>
+    <td>Tossicologia</td>
   </tr>
   <tr>
-   <td>AD_PSC058
-   </td>
-   <td>Gastroenterologia
-   </td>
+    <td>AD_PSC043</td>
+    <td>Urologia</td>
   </tr>
   <tr>
-   <td>AD_PSC060
-   </td>
-   <td>Lungodegenti
-   </td>
+    <td>AD_PSC046</td>
+    <td>Grandi Ustioni Pediatriche</td>
   </tr>
   <tr>
-   <td>AD_PSC061
-   </td>
-   <td>Medicina Nucleare
-   </td>
+    <td>AD_PSC047</td>
+    <td>Grandi Ustionati</td>
   </tr>
   <tr>
-   <td>AD_PSC062
-   </td>
-   <td>Neonatologia
-   </td>
+    <td>AD_PSC048</td>
+    <td>Nefrologia (Abilitazione Trapianto Rene)</td>
   </tr>
   <tr>
-   <td>AD_PSC064
-   </td>
-   <td>Oncologia
-   </td>
+    <td>AD_PSC049</td>
+    <td>Terapia Intensiva</td>
   </tr>
   <tr>
-   <td>AD_PSC065
-   </td>
-   <td>Oncoematologia Pediatrica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC066
-   </td>
-   <td>Oncoematologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC068
-   </td>
-   <td>Pneumologia, Fisiopatologia Respiratoria, Tisiologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC069
-   </td>
-   <td>Radiologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC070
-   </td>
-   <td>Radioterapia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC071
-   </td>
-   <td>Reumatologia
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC073
-   </td>
-   <td>Terapia Intensiva Neonatale
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC074
-   </td>
-   <td>Radioterapia Oncologica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC075
-   </td>
-   <td>Neuro-Riabilitazione
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC076
-   </td>
-   <td>Neurochirurgia Pediatrica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC077
-   </td>
-   <td>Nefrologia Pediatrica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC078
-   </td>
-   <td>Urologia Pediatrica
-   </td>
-  </tr>
-  <tr>
-   <td>AD_PSC082
-   </td>
-   <td>Anestesia e Rianimazione
-   </td>
-  </tr>
+    <td>AD_PSC050</td>
+    <td>Unità Coronarica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC051</td>
+    <td>Astanteria</td>
+  </tr>
+  <tr>
+    <td>AD_PSC052</td>
+    <td>Dermatologia</td>
+  </tr>
   <tr>
-   <td>AD_PSC097
-   </td>
-   <td>Detenuti
-   </td>
+    <td>AD_PSC054</td>
+    <td>Emodialisi</td>
   </tr>
   <tr>
-   <td>AD_PSC098
-   </td>
-   <td>Day Surgery Plurispecialistica
-   </td>
+      <td>AD_PSC055</td>
+      <td>Farmacologia Clinica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC056</td>
+      <td>Recupero e Riabilitazione Funzionale</td>
+    </tr>
+    <tr>
+      <td>AD_PSC057</td>
+      <td>Fisiopatologia della Riabilitazione Umana</td>
+    </tr>
+    <tr>
+      <td>AD_PSC058</td>
+      <td>Gastroenterologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC060</td>
+      <td>Lungodegenti</td>
+    </tr>
+    <tr>
+      <td>AD_PSC061</td>
+      <td>Medicina Nucleare</td>
+    </tr>
+    <tr>
+      <td>AD_PSC062</td>
+      <td>Neonatologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC064</td>
+      <td>Oncologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC065</td>
+      <td>Oncoematologia Pediatrica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC066</td>
+      <td>Oncoematologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC068</td>
+      <td>Pneumologia, Fisiopatologia Respiratoria, Tisiologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC069</td>
+      <td>Radiologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC070</td>
+      <td>Radioterapia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC071</td>
+      <td>Reumatologia</td>
+    </tr>
+    <tr>
+      <td>AD_PSC073</td>
+      <td>Terapia Intensiva Neonatale</td>
+    </tr>
+    <tr>
+      <td>AD_PSC074</td>
+      <td>Radioterapia Oncologica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC075</td>
+      <td>Neuro-Riabilitazione</td>
+    </tr>
+    <tr>
+      <td>AD_PSC076</td>
+      <td>Neurochirurgia Pediatrica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC077</td>
+      <td>Nefrologia Pediatrica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC078</td>
+      <td>Urologia Pediatrica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC082</td>
+      <td>Anestesia e Rianimazione</td>
+    </tr>
+    <tr>
+      <td>AD_PSC097</td>
+      <td>Detenuti</td>
+    </tr>
+     <tr>
+    <td>AD_PSC098</td>
+    <td>Day Surgery Plurispecialistica</td>
   </tr>
   <tr>
-   <td>AD_PSC100
-   </td>
-   <td>Laboratorio Analisi Chimico Cliniche
-   </td>
+    <td>AD_PSC100</td>
+    <td>Laboratorio Analisi Chimico Cliniche</td>
   </tr>
   <tr>
-   <td>AD_PSC101
-   </td>
-   <td>Microbiologia e Virologia
-   </td>
+    <td>AD_PSC101</td>
+    <td>Microbiologia e Virologia</td>
   </tr>
   <tr>
-   <td>AD_PSC102
-   </td>
-   <td>Centro Trasfusionale e Immunoematologico
-   </td>
+    <td>AD_PSC102</td>
+    <td>Centro Trasfusionale e Immunoematologico</td>
   </tr>
   <tr>
-   <td>AD_PSC103
-   </td>
-   <td>Radiodiagnostica
-   </td>
+    <td>AD_PSC103</td>
+    <td>Radiodiagnostica</td>
   </tr>
   <tr>
-   <td>AD_PSC104
-   </td>
-   <td>Neuroradiologia
-   </td>
+    <td>AD_PSC104</td>
+    <td>Neuroradiologia</td>
   </tr>
   <tr>
-   <td>AD_PSC106
-   </td>
-   <td>Pronto Soccorso e OBI
-   </td>
+    <td>AD_PSC106</td>
+    <td>Pronto Soccorso e OBI</td>
   </tr>
   <tr>
-   <td>AD_PSC107
-   </td>
-   <td>Poliambulatorio
-   </td>
+    <td>AD_PSC107</td>
+    <td>Poliambulatorio</td>
   </tr>
   <tr>
-   <td>AD_PSC109
-   </td>
-   <td>Centrale Operativa 118
-   </td>
+    <td>AD_PSC109</td>
+    <td>Centrale Operativa 118</td>
   </tr>
   <tr>
-   <td>AD_PSC121
-   </td>
-   <td>Comparti Operatori - Degenza Ordinaria
-   </td>
+    <td>AD_PSC121</td>
+    <td>Comparti Operatori - Degenza Ordinaria</td>
   </tr>
   <tr>
-   <td>AD_PSC122
-   </td>
-   <td>Comparti Operatori - Day Surgery
-   </td>
+    <td>AD_PSC122</td>
+    <td>Comparti Operatori - Day Surgery</td>
   </tr>
   <tr>
-   <td>AD_PSC126
-   </td>
-   <td>Libera Professione Degenza
-   </td>
+    <td>AD_PSC126</td>
+    <td>Libera Professione Degenza</td>
   </tr>
   <tr>
-   <td>AD_PSC127
-   </td>
-   <td>Hospice Ospedaliero
-   </td>
+    <td>AD_PSC127</td>
+    <td>Hospice Ospedaliero</td>
   </tr>
   <tr>
-   <td>AD_PSC129
-   </td>
-   <td>Trapianto Organi e Tessuti
-   </td>
+    <td>AD_PSC129</td>
+    <td>Trapianto Organi e Tessuti</td>
   </tr>
   <tr>
-   <td>AD_PSC130
-   </td>
-   <td>Medicina di Base
-   </td>
+    <td>AD_PSC130</td>
+    <td>Medicina di Base</td>
   </tr>
   <tr>
-   <td>AD_PSC131
-   </td>
-   <td>Assistenza Territoriale
-   </td>
+    <td>AD_PSC131</td>
+    <td>Assistenza Territoriale</td>
   </tr>
   <tr>
-   <td>AD_PSC199
-   </td>
-   <td>Raccolta Consenso
-   </td>
+    <td>AD_PSC199</td>
+    <td>Raccolta Consenso</td>
   </tr>
   <tr>
-   <td>AD_PSC999
-   </td>
-   <td>Altro
-   </td>
+    <td>AD_PSC999</td>
+    <td>Altro</td>
   </tr>
 </table>
 
