@@ -2311,7 +2311,7 @@ _Tabella 20: Method, URL, Type_
    </td>
    <td>false
    </td>
-   <td>urn:ita:2017:repository-type
+   <td>XDSDocumentEntry.Slot - Conservazione a norma
    </td>
   </tr>
   <tr>
@@ -2825,7 +2825,7 @@ _Tabella 25: Method, URL, Type_
    </td>
    <td>false
    </td>
-   <td>urn:ita:2017:repository-type
+   <td>XDSDocumentEntry.Slot - Conservazione a norma
    </td>
   </tr>
   <tr>
