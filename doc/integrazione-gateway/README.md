@@ -4161,7 +4161,7 @@ _Tabella 38: Campi Response valorizzati in caso di errore govWay_
 
 # 11. Drilldown Parametri di Input
 
-Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.2” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
+Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.4.1” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
 
 INI rappresenta un mediatore per le comunicazioni tra i diversi sistemi regionali che appartengono allo stesso Affinity Domain, in grado di garantire ad un sistema di FSE di una regione diversa da quella di assistenza l’accesso ai documenti.
 
@@ -5920,16 +5920,16 @@ _Tabella 41: Campi contenuti nella Request Body_
 
 ## 11.3. Tabelle di Riferimento
 
-Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
+Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
 
-Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle medesime specifiche di riferimento (versione 2.2), sono esclusivamente quelle necessarie all’utilizzo dei servizi di validazione e di pubblicazione.
+Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle medesime specifiche di riferimento (versione 2.4.1), sono esclusivamente quelle necessarie all’utilizzo dei servizi di validazione e di pubblicazione.
 
 Eventuali variazioni normative e/o ad Affinity Domain implicano l’aggiornamento delle tabelle referenziate.
 
 
 ### 11.3.1. Attività Clinica Enum
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -6036,7 +6036,7 @@ _Tabella 42:  _Value set per il metadato XDSSubmissionSet.contentTypeCode
 
 ### 11.3.2. Healthcare Facility Type Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -6106,7 +6106,7 @@ _Tabella 43:  _Value set per il metadato XDSDocumentEntry.healthcareFacilityType
 
 ### 11.3.3. Tipo Documento Alto Livello
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -6247,7 +6247,7 @@ _Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 ### 11.3.4. Event Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -7099,7 +7099,7 @@ _Tabella 46: _Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:r
 
 ### 11.3.6. Contesto Operativo
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -7135,7 +7135,7 @@ _Tabella 47: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:pu
 
 ### 11.3.7. Organizzazione
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -7355,7 +7355,7 @@ _Tabella 48: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:or
 
 ### 11.3.8. Practice Setting Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 
 <table>
@@ -7807,7 +7807,7 @@ _Tabella 52: HealthDataFormatEnum_
 
 ### 11.3.12. Tipo Attività
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.2”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
 Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:action-id  
 
