@@ -5073,7 +5073,7 @@ UPDATE per il servizio di Aggiornamento Metadati
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Hash del file fornito in input
+   <td>Hash (SHA256) del file fornito in input
    </td>
   </tr>
   <tr>
