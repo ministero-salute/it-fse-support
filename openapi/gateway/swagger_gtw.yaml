@@ -9,7 +9,7 @@ info:
   x-api-id: '1'
   x-summary: Handles and enroutes all the CDA validations and/or publications
 servers:
-  - url: https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
+  - url: https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway
     description: Generated server url
     x-sandbox: true
 security:
