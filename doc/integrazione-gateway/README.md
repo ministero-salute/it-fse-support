@@ -90,6 +90,7 @@
     - [11.3.10. Injection Mode Enum](#11310-injection-mode-enum)
     - [11.3.11. Health Data Format Enum](#11311-health-data-format-enum)
     - [11.3.12. Tipo Attività](#11312-tipo-attività)
+    - [11.3.13. Administrative Request](#11313-administrative-request)
   - [Notes](#notes)
 
 
@@ -7841,6 +7842,50 @@ Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:a
 
 
 _Tabella 53: action-id_
+
+
+### 11.3.13. Administrative Request
+
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+
+<table>
+  <tr>
+   <td><strong>Codice</strong>
+   </td>
+   <td><strong>DisplayName</strong>
+   </td>
+   <td><strong>Descrizione utilizzo</strong>
+   </td>
+  </tr>
+  
+<tr>  
+<td>SSN</td>
+<td>Regime SSN</td>
+<td>Documento prodotto in regime SSN (in seguito a impegnativa SSN o screening)</td>
+</tr>
+<tr>
+<td>INPATIENT</td>
+<td>Regime di ricovero</td>
+<td>Documenti prodotti in: regime di ricovero ad eccezione di ricoveri in libera professione completamente a carico del cittadino, pronto soccorso ad eccezione dei pazienti che non hanno copertura SSN.</td>
+</tr>
+<tr>
+<td>NOSSN</td>
+<td>Regime privato</td>
+<td>Documento prodotto in regime privato per cui il cittadino paga tutte le spese sanitarie (es. ricoveri in libera professione, prestazioni intramoenia, etc.</td>
+</tr>
+<tr>
+<td>SSR</td>
+<td>Regime SSR</td>
+<td>Documento prodotto in regime SSR (all’interno di progettualità regionali)</td>
+</tr>
+<tr>
+<td>DONOR</td>
+<td>Regime donatori</td>
+<td>Documento prodotto in regime per i donatori</td>
+</tr>
+</table>
+
+_Tabella 53: Value set per il metadato XDSDocumentEntry.Slot - Administrative Request_
 
 
 <!-- Footnotes themselves at the bottom. -->
