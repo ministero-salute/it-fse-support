@@ -66,13 +66,15 @@
     - [8.1.2. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Creazione contestuale con Resource”](#812-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
   - [8.2. Response](#82-response)
     - [8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione e Pubblicazione contestuale con Attachment”](#821-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
-    - [8.2.2. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione e Pubblicazione contestuale con Resource”](#822-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-resource)
+    - [8.2.2. Esempio di Messaggio di Risposta con esito KO 400 - “Validazione e Pubblicazione contestuale con errore sintattico"](#822-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
+    - [8.2.3. Esempio di Messaggio di Risposta con esito KO 201 - “Validazione e Pubblicazione contestuale con warning semantico"](#823-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
 - [9. Servizio di Validazione Sostituzione contestuale Documento](#9-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
   - [9.1. Request](#91-request)
     - [9.1.1. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Sostituzione contestuale Documento con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
   - [9.2. Response](#92-response)
     - [9.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#921-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
-    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Resource](#922-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-resource)
+    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico"](#922-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
+    - [9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico"](#923-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
 - [10. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#10-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
   - [10.1. Request](#101-request)
     - [10.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1011-esempio-messaggio-di-richiesta-stato-transazioni)
@@ -601,17 +603,21 @@ Anche in questo caso il documento viene identificato dal XDSDocumentEntry.unique
 
 **Validazione e Pubblicazione creazione contestuale di un Documento CDA2**
 
-Nello scenario di questa funzionalità il Repository Documentale locale invia il documento secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento verrà validato secondo il servizio di Validazione Documenti CDA2 e successivamente nella medesima transazione verrà effettuata secondo il servizio di Validazione Documenti CDA2 la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
+In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati. Dapprima, quindi, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito in maniera **SINCRONA**. 
 
-La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
+In caso di esito positivo, nella stessa transazione, vengono preparati i vari metadati del documento per la comunicazione verso INI e la sua indicizzazione, e viene preparato il bundle FHIR per l'invio ad EDS. È importante notare che sia la validazione che la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione verso INI ed EDS è asincrona. 
+
+Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
 
 **Validazione e Pubblicazione sostituzione contestuale di un Documento CDA2**
 
-Questa funzionalità permette di sovrascrivere un documento precedentemente pubblicato applicando preliminarmente la validazione secondo il servizio di Validazione Documenti CDA2. 
+In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati con il fine ultimo di sostituire un documento precedentemente pubblicato su INI ed EDS.
 
-Come per la creazione, il servizio effettua la conversione del documento in ingresso (identificato dal XDSDocumentEntry.uniqueId) in formato FHIR e procede all’invio verso EDS e INI.
+Inizialmente, quindi, in maniera **SINCRONA**, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito e, in caso di esito positivo, nella medesima transazione, vengono recuperati i riferimenti del documento da sostituire da INI e, se presenti, si procede a preparare i metadati per la sostituzione dello stesso e per la sua indicizzazione, e infine viene preparato il bundle FHIR per la sostituzione su EDS.
 
-La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
+È importante notare che sia la validazione che la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione verso INI ed EDS è asincrona.
+
+Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
 
 **Recupero Stato Transazione per WorkflowInstanceId (o TraceId)**
 
@@ -3198,7 +3204,7 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 ```
 
 # 8. Servizio di validazione e pubblicazione creazione contestuale
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l'invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti, è necessario fare riferimento al Capitolo 13 "Drilldown Parametri di Input.
 
 L’Endpoint del caso d’uso di Validazione e pubblicazione creazione Documento CDA2 si compone come segue:
 
@@ -3206,7 +3212,7 @@ L’Endpoint del caso d’uso di Validazione e pubblicazione creazione Documento
 https://<HOST>:<PORT>/v<major>/documents/validate-and-create
 ```
 
-Lo scopo di questa API è validare un documento,indicizzarlo sul FSE regionale, tradurre i dati clinici nel formato HL7 FHIR ed inviarli al Data Repository Centrale.
+Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale..
 
 
 ## 8.1. Request
@@ -3478,7 +3484,7 @@ _Tabella 30: Method, URL, Type_
 </table>
 
 
-_Tabella 31: Parametri Richiesta di Creazione_
+_Tabella 31: Parametri Richiesta di validazione pubblicazione creazione contestuale_
 
 La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “priorita” consente al Gateway di decidere la priorità da attribuire al documento fornito in input al servizio.
 
@@ -3716,7 +3722,7 @@ curl -X 'POST' \
 </table>
 
 
-_Tabella 32: Response Servizio di Pubblicazione_
+_Tabella 32: Response Servizio di Validazione Pubblicazione creazione contestuale_
 
 \* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
@@ -3793,21 +3799,40 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 ### 8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”
 
 ```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f", \
+{ 
+    "traceID": "c2e1818fbf7aea7f", 
+    "spanID": "c2e1818fbf7aea7f", 
     "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
 }
 ```
 
-### 8.2.2. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Resource”
+### 8.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”
 
 
 ```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f", \
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+{ 
+  "traceID": "79e2637736ad9bae", 
+  "spanID": "79e2637736ad9bae", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.46a41df0ab0514f11c0811056832c3225e06c8e11824f27c7e5517ca5cfc57fe.ac05831184^^^^urn:ihe:iti:xdw:2013:workflowInstanceId", 
+  "responseStatus": 400, 
+  "type": "/msg/syntax", 
+  "title": "Errore di sintassi.", 
+  "detail": "Error while executing validation on xsd schema", 
+  "instance": "/validation/error", 
+  "status": "400" 
+}
+```
+
+### 8.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”
+
+
+```
+{
+  "traceID": "b20d5f0f59d117ca",
+  "spanID": "b20d5f0f59d117ca",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.10908.4.4.2.0d0002200a27e9ead4de0891c19736a630eab68fb09f7851561bbfeed7389948.9562421609^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "[W005 | Sezione Esame Eseguito: l'entry/act/code può essere valorizzato secondo i sistemi di codifica\n\t\t\tLOINC @codeSystem='2.16.840.1.113883.6.1'\n\t\t\tICD-9-CM @codeSystem='2.16.840.1.113883.6.103']",
+  "responseStatus": 201
 }
 ```
  
@@ -3821,7 +3846,7 @@ L’Endpoint del caso d’uso di Validazione Pubblicazione Sostituzione Document
 https://<HOST>:<PORT>/v<major>/documents/validate-and-replace/<identificativoDocUpdate>
 ```
 
-Lo scopo di questa API Asincrona è validare un documento e pubblicarlo sovrascrivendo il documento che era stato precedentemente pubblicato. 
+Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale sostituendo un documento precedentemente pubblicato, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale. 
 
 
 ## 9.1. Request
@@ -4097,11 +4122,9 @@ _Tabella 35: Method, URL, Type_
 </table>
 
 
-_Tabella 36: Parametri Richiesta di Pubblicazione Sostituzione_
+_Tabella 36: Parametri Richiesta di Validazione Pubblicazione Sostituzione contestuale_
 
 La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la resituzione di un errore di tipo warning. 
-
-Il Request Body coincide con la struttura utilizzata per il servizio di Pubblicazione Creazione Documento.
 
 Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento da sostituire e al parametro _identificativoDoc_ utilizzato precedentemente nel servizio di creazione.
 
@@ -4109,8 +4132,7 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 ### 9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”
 
 Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
-
-Il workflowInstanceId è corretto e presente nel gateway.
+ 
 
 ```
 curl -X 'PUT' \
@@ -4269,7 +4291,7 @@ curl -X 'PUT' \
 </table>
 
 
-_Tabella 37: Response Servizio di Pubblicazione Sostituzione Documento_
+_Tabella 37: Response Servizio di Validazione pubblicazione Sostituzione Documento contestuale_
 
 \* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
@@ -4353,13 +4375,31 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Resource
+### 9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”
 
 ```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f", \
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+{
+  "traceID": "b20d5f0f59d117ca",
+  "spanID": "b20d5f0f59d117ca",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.10908.4.4.2.0d0002200a27e9ead4de0891c19736a630eab68fb09f7851561bbfeed7389948.9562421609^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "[W005 | Sezione Esame Eseguito: l'entry/act/code può essere valorizzato secondo i sistemi di codifica\n\t\t\tLOINC @codeSystem='2.16.840.1.113883.6.1'\n\t\t\tICD-9-CM @codeSystem='2.16.840.1.113883.6.103']",
+  "responseStatus": 201
+}
+```
+
+### 9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”
+
+```
+{ 
+  "traceID": "79e2637736ad9bae", 
+  "spanID": "79e2637736ad9bae", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.46a41df0ab0514f11c0811056832c3225e06c8e11824f27c7e5517ca5cfc57fe.ac05831184^^^^urn:ihe:iti:xdw:2013:workflowInstanceId", 
+  "responseStatus": 400, 
+  "type": "/msg/syntax", 
+  "title": "Errore di sintassi.", 
+  "detail": "Error while executing validation on xsd schema", 
+  "instance": "/validation/error", 
+  "status": "400" 
 }
 ```
 
