@@ -605,7 +605,7 @@ Anche in questo caso il documento viene identificato dal XDSDocumentEntry.unique
 
 In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati. Dapprima, quindi, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito in maniera **SINCRONA**. 
 
-In caso di esito positivo, nella stessa transazione, vengono preparati i vari metadati del documento per la comunicazione verso INI e la sua indicizzazione, e viene preparato il bundle FHIR per l'invio ad EDS. È importante notare che la validazion, il recupero dei riferimenti da **INI** e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
+In caso di esito positivo, nella stessa transazione, vengono preparati i vari metadati del documento per la comunicazione verso INI e la sua indicizzazione, e viene preparato il bundle FHIR per l'invio ad EDS. È importante notare che la validazione, e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
 
 Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
 
@@ -615,7 +615,7 @@ In questa funzionalità, il Repository Documentale locale invia il documento nel
 
 Inizialmente, quindi, in maniera **SINCRONA**, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito e, in caso di esito positivo, nella medesima transazione, vengono recuperati i riferimenti del documento da sostituire da INI e, se presenti, si procede a preparare i metadati per la sostituzione dello stesso e per la sua indicizzazione, e infine viene preparato il bundle FHIR per la sostituzione su EDS.
 
-È importante notare che sia la validazione che la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione verso INI ed EDS è asincrona.
+È importante notare che la validazione, il recupero dei riferimenti da **INI** e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
 
 Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
 
