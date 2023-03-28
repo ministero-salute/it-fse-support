@@ -605,7 +605,7 @@ Anche in questo caso il documento viene identificato dal XDSDocumentEntry.unique
 
 In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati. Dapprima, quindi, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito in maniera **SINCRONA**. 
 
-In caso di esito positivo, nella stessa transazione, vengono preparati i vari metadati del documento per la comunicazione verso INI e la sua indicizzazione, e viene preparato il bundle FHIR per l'invio ad EDS. È importante notare che sia la validazione che la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione verso INI ed EDS è asincrona. 
+In caso di esito positivo, nella stessa transazione, vengono preparati i vari metadati del documento per la comunicazione verso INI e la sua indicizzazione, e viene preparato il bundle FHIR per l'invio ad EDS. È importante notare che la validazion, il recupero dei riferimenti da **INI** e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
 
 Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
 
@@ -3726,7 +3726,7 @@ _Tabella 32: Response Servizio di Validazione Pubblicazione creazione contestual
 
 \* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
-** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
+** La pubblicazione creazione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400
 
 **Campi sempre valorizzati**
 
@@ -4233,7 +4233,7 @@ curl -X 'PUT' \
   <tr>
    <td>404
    </td>
-   <td>Not found
+   <td>Not found***
    </td>
   </tr>
   <tr>
@@ -4295,7 +4295,9 @@ _Tabella 37: Response Servizio di Validazione pubblicazione Sostituzione Documen
 
 \* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
-** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
+** La pubblicazione sostituzione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400.
+
+*** La pubblicazione sostituzione restituirà codice di errore 404 se il documento che si intende sostituire non è presente su INI.
 
 **Campi sempre valorizzati**
 
