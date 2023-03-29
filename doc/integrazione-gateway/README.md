@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.5
+   <td>ver 2.6
    </td>
   </tr>
 </table>
@@ -60,37 +60,52 @@
   - [7.2. Response](#72-response)
     - [7.2.1. Esempio di Messaggio di risposta con Esito Success 200](#721-esempio-di-messaggio-di-risposta-con-esito-success-200)
     - [7.2.2. Esempio di Messaggio di Risposta con esito KO 400](#722-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-- [8. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#8-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
+- [8. Servizio di Validazione Pubblicazione creazione contestuale](#8-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
   - [8.1. Request](#81-request)
-    - [8.1.1. Esempio Messaggio di Richiesta stato Transazioni](#811-esempio-messaggio-di-richiesta-stato-transazioni)
+    - [8.1.1. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Creazione contestuale con Attachment”](#811-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
+    - [8.1.2. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Creazione contestuale con Resource”](#812-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
   - [8.2. Response](#82-response)
-    - [8.2.1. Esempio messaggio di risposta con Esito Success 200](#821-esempio-messaggio-di-risposta-con-esito-success-200)
-    - [8.2.2. Esempio di Messaggio di Risposta con esito KO 400](#822-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-- [9. Servizio di Recupero Stato Transazione per TraceId](#9-servizio-di-recupero-stato-transazione-per-traceid)
+    - [8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione e Pubblicazione contestuale con Attachment”](#821-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
+    - [8.2.2. Esempio di Messaggio di Risposta con esito KO 400 - “Validazione e Pubblicazione contestuale con errore sintattico"](#822-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
+    - [8.2.3. Esempio di Messaggio di Risposta con esito KO 201 - “Validazione e Pubblicazione contestuale con warning semantico"](#823-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
+- [9. Servizio di Validazione Sostituzione contestuale Documento](#9-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
   - [9.1. Request](#91-request)
-    - [9.1.1. Esempio Messaggio di Richiesta stato Transazioni](#911-esempio-messaggio-di-richiesta-stato-transazioni)
-  - [9.1. Response](#91-response)
-- [10. Drilldown Response in caso di Errore](#10-drilldown-response-in-caso-di-errore)
-  - [10.1. Errori Applicativi](#101-errori-applicativi)
-    - [11.3.1. Esempi di errore generati dal Gateway](#1131-esempi-di-errore-generati-dal-gateway)
-  - [10.1. Errori provenienti da Apparati di Frontiera](#101-errori-provenienti-da-apparati-di-frontiera)
-- [11. Drilldown Parametri di Input](#11-drilldown-parametri-di-input)
-  - [11.1. Campi Contenuti nei JWT](#111-campi-contenuti-nei-jwt)
-  - [11.2. Campi Contenuti nella Request Body](#112-campi-contenuti-nella-request-body)
-  - [11.3. Tabelle di Riferimento](#113-tabelle-di-riferimento)
-    - [11.3.1. Attività Clinica Enum](#1131-attività-clinica-enum)
-    - [11.3.2. Healthcare Facility Type Code](#1132-healthcare-facility-type-code)
-    - [11.3.3. Tipo Documento Alto Livello](#1133-tipo-documento-alto-livello)
-    - [11.3.4. Event Code](#1134-event-code)
-    - [11.3.5. Ruolo](#1135-ruolo)
-    - [11.3.6. Contesto Operativo](#1136-contesto-operativo)
-    - [11.3.7. Organizzazione](#1137-organizzazione)
-    - [11.3.8. Practice Setting Code](#1138-practice-setting-code)
-    - [11.3.9. Activity Enum](#1139-activity-enum)
-    - [11.3.10. Injection Mode Enum](#11310-injection-mode-enum)
-    - [11.3.11. Health Data Format Enum](#11311-health-data-format-enum)
-    - [11.3.12. Tipo Attività](#11312-tipo-attività)
-    - [11.3.13. Administrative Request](#11313-administrative-request)
+    - [9.1.1. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Sostituzione contestuale Documento con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
+  - [9.2. Response](#92-response)
+    - [9.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#921-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
+    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico"](#922-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
+    - [9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico"](#923-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
+- [10. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#10-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
+  - [10.1. Request](#101-request)
+    - [10.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1011-esempio-messaggio-di-richiesta-stato-transazioni)
+  - [10.2. Response](#102-response)
+    - [10.2.1. Esempio messaggio di risposta con Esito Success 200](#1021-esempio-messaggio-di-risposta-con-esito-success-200)
+    - [10.2.2. Esempio di Messaggio di Risposta con esito KO 400](#1022-esempio-di-messaggio-di-risposta-con-esito-ko-400)
+- [11. Servizio di Recupero Stato Transazione per TraceId](#11-servizio-di-recupero-stato-transazione-per-traceid)
+  - [11.1. Request](#111-request)
+    - [11.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1111-esempio-messaggio-di-richiesta-stato-transazioni)
+  - [11.1. Response](#111-response)
+- [12. Drilldown Response in caso di Errore](#12-drilldown-response-in-caso-di-errore)
+  - [12.1. Errori Applicativi](#121-errori-applicativi)
+    - [12.3.1. Esempi di errore generati dal Gateway](#1231-esempi-di-errore-generati-dal-gateway)
+  - [12.1. Errori provenienti da Apparati di Frontiera](#121-errori-provenienti-da-apparati-di-frontiera)
+- [13. Drilldown Parametri di Input](#13-drilldown-parametri-di-input)
+  - [13.1. Campi Contenuti nei JWT](#131-campi-contenuti-nei-jwt)
+  - [13.2. Campi Contenuti nella Request Body](#132-campi-contenuti-nella-request-body)
+  - [13.3. Tabelle di Riferimento](#133-tabelle-di-riferimento)
+    - [13.3.1. Attività Clinica Enum](#1331-attività-clinica-enum)
+    - [13.3.2. Healthcare Facility Type Code](#1332-healthcare-facility-type-code)
+    - [13.3.3. Tipo Documento Alto Livello](#1333-tipo-documento-alto-livello)
+    - [13.3.4. Event Code](#1334-event-code)
+    - [13.3.5. Ruolo](#1335-ruolo)
+    - [13.3.6. Contesto Operativo](#1336-contesto-operativo)
+    - [13.3.7. Organizzazione](#1337-organizzazione)
+    - [13.3.8. Practice Setting Code](#1338-practice-setting-code)
+    - [13.3.9. Activity Enum](#1339-activity-enum)
+    - [13.3.10. Injection Mode Enum](#13310-injection-mode-enum)
+    - [13.3.11. Health Data Format Enum](#13311-health-data-format-enum)
+    - [13.3.12. Tipo Attività](#13312-tipo-attività)
+    - [13.3.13. Administrative Request](#13313-administrative-request)
   - [Notes](#notes)
 
 
@@ -411,6 +426,28 @@ Tutti: stesura a seguito rivisitazione
 <p>
    </td>
   </tr>
+
+  <tr>
+   <td>2.6
+   </td>
+   <td>23/03/2023
+   </td>
+   <td>Paragrafi modificati:
+<p>
+8: Aggiunto paragrafo validazione pubblicazione creazione contestuale
+<p>
+9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
+<p>
+10: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per WorkflowInstanceId"
+<p>
+11: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per TraceId"
+<p>
+12: Cambio indice paragrafo "Drilldown Response in caso di Errore"
+<p>
+13. Cambio indice paragrafo "Drilldown Parametri di Input"
+<p>
+   </td>
+  </tr>
 </table>
 
 
@@ -473,6 +510,22 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
    <td>PUT
    </td>
    <td>AGGIORNAMENTO METADATI
+   </td>
+  </tr>
+  <tr>
+   <td>/v<major>/documents/validate-and-create
+   </td>
+   <td>POST
+   </td>
+   <td>VALIDAZIONE E PUBBLICAZIONE CREAZIONE CONTESTUALE
+   </td>
+  </tr>
+  <tr>
+   <td>/v<major>/documents/validate-and-replace/{idDoc}
+   </td>
+   <td>PUT
+   </td>
+   <td>VALIDAZIONE E PUBBLICAZIONE SOSTITUZIONE CONTESTUALE
    </td>
   </tr>
   <tr>
@@ -548,6 +601,24 @@ In caso di errore nell’aggiornamento, il servizio fornisce un acknowledgement 
 
 Anche in questo caso il documento viene identificato dal XDSDocumentEntry.uniqueId.
 
+**Validazione e Pubblicazione creazione contestuale di un Documento CDA2**
+
+In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati. Dapprima, quindi, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito in maniera **SINCRONA**. 
+
+In caso di esito positivo, nella stessa transazione, vengono preparati i vari metadati del documento per la comunicazione verso INI e la sua indicizzazione, e viene preparato il bundle FHIR per l'invio ad EDS. È importante notare che la validazione, e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
+
+Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
+
+**Validazione e Pubblicazione sostituzione contestuale di un Documento CDA2**
+
+In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati con il fine ultimo di sostituire un documento precedentemente pubblicato su INI ed EDS.
+
+Inizialmente, quindi, in maniera **SINCRONA**, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito e, in caso di esito positivo, nella medesima transazione, vengono recuperati i riferimenti del documento da sostituire da INI e, se presenti, si procede a preparare i metadati per la sostituzione dello stesso e per la sua indicizzazione, e infine viene preparato il bundle FHIR per la sostituzione su EDS.
+
+È importante notare che la validazione, il recupero dei riferimenti da **INI** e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
+
+Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
+
 **Recupero Stato Transazione per WorkflowInstanceId (o TraceId)**
 
 Questa funzionalità permette di verificare lo stato della transazione presa in carico dal Gateway. Utilizzando il WorkflowInstanceId (o il TraceId) ottenuto in risposta dai servizi di Validazione e/o Pubblicazione sarà possibile conoscere lo stato della transazione e sapere se la comunicazione verso INI ed EDS è avvenuta con successo.
@@ -612,7 +683,7 @@ Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
 # 3. Servizio di Validazione
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 11 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Documento CDA2 si compone come segue:
 
@@ -984,7 +1055,7 @@ curl -X 'POST' \
 
 _Tabella 7: Response Servizio di Validazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
 ** Se il servizio viene invocato con il parametro “activity” a VERIFICA, verrà restituito lo StatusCode 200  in caso di SUCCESS
 
@@ -1105,7 +1176,7 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 
 # 4. Servizio di Creazione
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 11 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Creazione Documento CDA2 si compone come segue:
 
@@ -1645,7 +1716,7 @@ curl -X 'POST' \
 
 _Tabella 12: Response Servizio di Pubblicazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
 ** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
 
@@ -1970,7 +2041,7 @@ curl -X 'DELETE' \
 
 _Tabella 17: Response Servizio di Pubblicazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -2075,7 +2146,7 @@ _Tabella 19: Campi Response valorizzati in caso di warning_
 
 # 6. Servizio di Sostituzione Documento
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 11 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Sostituzione Documento si compone come segue:
 
@@ -2535,7 +2606,7 @@ curl -X 'PUT' \
 
 _Tabella 22: Response Servizio di Pubblicazione Sostituzione Documento_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
 ** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
 
@@ -2641,7 +2712,7 @@ _Tabella 24: Campi Response valorizzati in caso di warning_
 
 # 7. Servizio di Aggiornamento Metadati
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 11 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Aggiornamento Metadati si compone come segue:
 
@@ -3029,7 +3100,7 @@ curl -X 'PUT' \
 
 _Tabella 27: Response Servizio di Pubblicazione Sostituzione Documento_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -3132,10 +3203,1212 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 }
 ```
 
+# 8. Servizio di validazione e pubblicazione creazione contestuale
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l'invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti, è necessario fare riferimento al Capitolo 13 "Drilldown Parametri di Input.
 
-# 8. Servizio di Recupero Stato Transazione per WorkflowInstanceId
+L’Endpoint del caso d’uso di Validazione e pubblicazione creazione Documento CDA2 si compone come segue:
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 11 “Drilldown Parametri di Input”.
+```
+https://<HOST>:<PORT>/v<major>/documents/validate-and-create
+```
+
+Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale..
+
+
+## 8.1. Request
+
+
+<table>
+  <tr>
+   <td>METHOD
+   </td>
+   <td>POST
+   </td>
+  </tr>
+  <tr>
+   <td>URL
+   </td>
+   <td>/v1/documents/validate-and-create
+   </td>
+  </tr>
+  <tr>
+   <td>TYPE
+   </td>
+   <td>multipart/form-data
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 30: Method, URL, Type_
+
+
+<table>
+  <tr>
+   <td colspan="6" >     <strong>PARAMETER</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>SECTION</strong>
+   </td>
+   <td><strong>KEY</strong>
+   </td>
+   <td><strong>NAME</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>REQUIRED</strong>
+   </td>
+   <td><strong>AFFINITY DOMAIN/IHE</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>Authorization
+   </td>
+   <td>N.D.
+   </td>
+   <td>Bearer
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>FSE-JWT-Signature
+   </td>
+   <td>N.D.
+   </td>
+   <td>N.D.
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>Accept
+   </td>
+   <td>application/json
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="18" >Request Body
+   </td>
+   <td>file
+   </td>
+   <td>file
+   </td>
+   <td>MultipartFile
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr> 
+  <tr>
+   <td>healthDataFormat
+   </td>
+   <td>HealthDataFormatEnum
+   </td>
+   <td>false
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>mode
+   </td>
+   <td>InjectionModeEnum
+   </td>
+   <td>false
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>tipologiaStruttura
+   </td>
+   <td>HealthcareFacilityEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.healthcareFacilityTypeCode
+   </td>
+  </tr>
+  <tr>
+   <td>attiCliniciRegoleAccesso
+   </td>
+   <td>List<String>
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.eventCodeList
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoDoc
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.uniqueId
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoRep
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.repositoryUniqueId
+   </td>
+  </tr>
+  <tr>
+   <td>tipoDocumentoLivAlto
+   </td>
+   <td>TipoDocAltoLivEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.classCode
+   </td>
+  </tr>
+  <tr>
+   <td>assettoOrganizzativo
+   </td>
+   <td>PracticeSettingCodeEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.practiceSettingCode
+   </td>
+  </tr>
+  <tr>
+   <td>dataInizioPrestazione
+   </td>
+   <td>String
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry. serviceStartTime (ITI TF 3: 4.2.3.2.19)
+   </td>
+  </tr>
+  <tr>
+   <td>dataFinePrestazione
+   </td>
+   <td>String
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.serviceStopTime (ITI TF 3: 4.2.3.2.20)
+   </td>
+  </tr>
+  <tr>
+   <td>conservazioneANorma
+   </td>
+   <td>String
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - Conservazione a norma
+   </td>
+  </tr>
+  <tr>
+   <td>tipoAttivitaClinica
+   </td>
+   <td>AttivitaClinicaEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSSubmissionSet.contentTypeCode
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoSottomissione
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
+   </td>
+  </tr>
+  <tr>
+   <td>priorita
+   </td>
+   <td>boolean
+   </td>
+   <td>false
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+   <tr>
+   <td>descriptions
+   </td>
+   <td>List
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - description
+   </td>
+  </tr>
+   <tr>
+   <td>administrativeRequest
+   </td>
+   <td>AdministrativeReqEnum
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - administrativeRequest
+   </td>
+  </tr>
+  
+  
+  
+</table>
+
+
+_Tabella 31: Parametri Richiesta di validazione pubblicazione creazione contestuale_
+
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “priorita” consente al Gateway di decidere la priorità da attribuire al documento fornito in input al servizio.
+
+Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
+
+
+
+* **file** che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
+
+
+* **requestBody** che dovrà contenere l’oggetto json con i parameter di input
+
+### 8.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”
+
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+
+```
+curl -X 'POST' \
+
+  'https://<HOST>:<PORT>/v1/documents/validate-and-create' \
+
+  -H 'accept: application/json' \
+
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+
+  -H 'Content-Type: multipart/form-data' \
+
+  -F 'requestBody={
+
+  "healthDataFormat": "CDA",
+
+  "mode": "ATTACHMENT",
+
+  "tipologiaStruttura": "Ospedale",
+
+  "attiCliniciRegoleAccesso": [
+
+    "P99"
+
+  ],
+
+  "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
+
+  "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
+
+  "tipoDocumentoLivAlto": "REF",
+
+  "assettoOrganizzativo": "AD_PSC001",
+
+  "dataInizioPrestazione": "20141020110012",
+
+  "dataFinePrestazione": "20141020110012",
+
+  "tipoAttivitaClinica": "CON",
+
+  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
+
+  "priorita": false,
+
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+
+  "administrativeRequest": "SSN"
+
+}' \
+
+  -F 'file=@CDA_OK.pdf;type=application/pdf'
+```
+
+### 8.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”
+
+Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
+
+```
+curl -X 'POST' \
+
+  'https://<HOST>:<PORT>/v1/documents/validate-and-create' \
+
+  -H 'accept: application/json' \
+
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+
+  -H 'Content-Type: multipart/form-data' \
+
+  -F 'requestBody={
+
+  "healthDataFormat": "CDA",
+
+  "mode": "RESOURCE",
+
+  "tipologiaStruttura": "Ospedale",
+
+  "attiCliniciRegoleAccesso": [
+
+    "P99"
+
+  ],
+
+  "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290701",
+
+  "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
+
+  "tipoDocumentoLivAlto": "REF",
+
+  "assettoOrganizzativo": "AD_PSC001",
+
+  "dataInizioPrestazione": "20141020110012",
+
+  "dataFinePrestazione": "20141020110012",
+
+  "tipoAttivitaClinica": "CON",
+
+  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
+
+  "priorita": true,
+
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+
+  "administrativeRequest": "SSN"
+
+}' \
+
+  -F 'file=@CDA_OK.pdf;type=application/pdf'
+```
+
+
+
+## 8.2. Response
+
+
+<table>
+  <tr>
+   <td>TIPO IN CASO DI SUCCESSO
+   </td>
+   <td colspan="2" >application/json
+   </td>
+  </tr>
+  <tr>
+   <td>TIPO IN CASO DI ERRORE*
+   </td>
+   <td colspan="2" >application/problem+json
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="11" >STATUS CODE
+   </td>
+   <td>201
+   </td>
+   <td>Presa in carico eseguita con successo
+   </td>
+  </tr>
+  <tr>
+   <td>400
+   </td>
+   <td>Bad request** (input non valido o validazione/ pubblicazione non corretta)
+   </td>
+  </tr>
+  <tr>
+   <td>401
+   </td>
+   <td>Unauthorized
+   </td>
+  </tr>
+  <tr>
+   <td>403
+   </td>
+   <td>Token jwt mancante o non valido
+   </td>
+  </tr>
+  <tr>
+   <td>404
+   </td>
+   <td>Not found
+   </td>
+  </tr>
+  <tr>
+   <td>409
+   </td>
+   <td>Conflict
+   </td>
+  </tr>
+  <tr>
+   <td>413
+   </td>
+   <td>Payload too large
+   </td>
+  </tr>
+  <tr>
+   <td>415
+   </td>
+   <td>Unsupported media type
+   </td>
+  </tr>
+  <tr>
+   <td>429
+   </td>
+   <td>Too Many Requests
+   </td>
+  </tr>
+  <tr>
+   <td>500
+   </td>
+   <td>Internal server error
+   </td>
+  </tr>
+  <tr>
+   <td>502
+   </td>
+   <td>Invalid response received from the API Implementation
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>503
+   </td>
+   <td>Service unavailable
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>504
+   </td>
+   <td>Endpoint request timed-out
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 32: Response Servizio di Validazione Pubblicazione creazione contestuale_
+
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+
+** La pubblicazione creazione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400
+
+**Campi sempre valorizzati**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>traceID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente. È sempre presente a differenza del workflowInstanceId poiché il valore di quest’ultimo dipende dal CDA preso in input
+   </td>
+  </tr>
+  <tr>
+   <td>spanID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato ad un singolo operazione della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
+traceId e spanId coincidono nella prima operazione.
+   </td>
+  </tr>
+  <tr>
+   <td>workflowInstanceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco della transazione
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 33: Campi Response sempre valorizzati_
+
+**Campi valorizzati solo in caso di warning**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>warning
+   </td>
+   <td>String
+   </td>
+   <td>Dettaglio del warning
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 34: Campi Response valorizzati in caso di warning_
+
+
+### 8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”
+
+```
+{ 
+    "traceID": "c2e1818fbf7aea7f", 
+    "spanID": "c2e1818fbf7aea7f", 
+    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+}
+```
+
+### 8.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”
+
+
+```
+{ 
+  "traceID": "79e2637736ad9bae", 
+  "spanID": "79e2637736ad9bae", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.46a41df0ab0514f11c0811056832c3225e06c8e11824f27c7e5517ca5cfc57fe.ac05831184^^^^urn:ihe:iti:xdw:2013:workflowInstanceId", 
+  "responseStatus": 400, 
+  "type": "/msg/syntax", 
+  "title": "Errore di sintassi.", 
+  "detail": "Error while executing validation on xsd schema", 
+  "instance": "/validation/error", 
+  "status": "400" 
+}
+```
+
+### 8.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”
+
+
+```
+{
+  "traceID": "b20d5f0f59d117ca",
+  "spanID": "b20d5f0f59d117ca",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.10908.4.4.2.0d0002200a27e9ead4de0891c19736a630eab68fb09f7851561bbfeed7389948.9562421609^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "[W005 | Sezione Esame Eseguito: l'entry/act/code può essere valorizzato secondo i sistemi di codifica\n\t\t\tLOINC @codeSystem='2.16.840.1.113883.6.1'\n\t\t\tICD-9-CM @codeSystem='2.16.840.1.113883.6.103']",
+  "responseStatus": 201
+}
+```
+ 
+# 9. Servizio di validazione pubblicazione sostituzione contestuale
+
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+
+L’Endpoint del caso d’uso di Validazione Pubblicazione Sostituzione Documento si compone come segue:
+
+```
+https://<HOST>:<PORT>/v<major>/documents/validate-and-replace/<identificativoDocUpdate>
+```
+
+Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale sostituendo un documento precedentemente pubblicato, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale. 
+
+
+## 9.1. Request
+
+
+<table>
+  <tr>
+   <td>METHOD
+   </td>
+   <td>PUT
+   </td>
+  </tr>
+  <tr>
+   <td>URL
+   </td>
+   <td>/v1/documents/validate-and-replace/{identificativoDocUpdate}
+   </td>
+  </tr>
+  <tr>
+   <td>TYPE
+   </td>
+   <td>multipart/form-data
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 35: Method, URL, Type_
+
+
+<table>
+  <tr>
+   <td colspan="6" >     <strong>PARAMETER</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>SECTION</strong>
+   </td>
+   <td><strong>KEY</strong>
+   </td>
+   <td><strong>NAME</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>REQUIRED</strong>
+   </td>
+   <td><strong>AFFINITY DOMAIN/IHE</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>Authorization
+   </td>
+   <td>N.D.
+   </td>
+   <td>Bearer
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>FSE-JWT-Signature
+   </td>
+   <td>N.D.
+   </td>
+   <td>N.D.
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>Accept
+   </td>
+   <td>application/json
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Path variable
+   </td>
+   <td>identificativoDocUpdate
+   </td>
+   <td>identificativoDocUpdate
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.uniqueId
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="16" >Request Body
+   </td>
+   <td>file
+   </td>
+   <td>file
+   </td>
+   <td>MultipartFile
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="15" >requestBody
+   </td>
+   <td>healthDataFormat
+   </td>
+   <td>HealthDataFormatEnum
+   </td>
+   <td>false
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>mode
+   </td>
+   <td>InjectionModeEnum
+   </td>
+   <td>false
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>tipologiaStruttura
+   </td>
+   <td>HealthcareFacilityEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.healthcareFacilityTypeCode
+   </td>
+  </tr>
+  <tr>
+   <td>attiCliniciRegoleAccesso
+   </td>
+   <td>List<String>
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.eventCodeList
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoDoc
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.uniqueId
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoRep
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.repositoryUniqueId
+   </td>
+  </tr>
+  <tr>
+   <td>tipoDocumentoLivAlto
+   </td>
+   <td>TipoDocAltoLivEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.classCode
+   </td>
+  </tr>
+  <tr>
+   <td>assettoOrganizzativo
+   </td>
+   <td>PracticeSettingCodeEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.practiceSettingCode
+   </td>
+  </tr>
+  <tr>
+   <td>dataInizioPrestazione
+   </td>
+   <td>String
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry. serviceStartTime (ITI TF 3: 4.2.3.2.19)
+   </td>
+  </tr>
+  <tr>
+   <td>dataFinePrestazione
+   </td>
+   <td>String
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.serviceStopTime (ITI TF 3: 4.2.3.2.20)
+   </td>
+  </tr>
+  <tr>
+   <td>conservazioneANorma
+   </td>
+   <td>String
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - Conservazione a norma
+   </td>
+  </tr>
+  <tr>
+   <td>tipoAttivitaClinica
+   </td>
+   <td>AttivitaClinicaEnum
+   </td>
+   <td>true
+   </td>
+   <td>XDSSubmissionSet.contentTypeCode
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoSottomissione
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
+   </td>
+  </tr>
+  <tr>
+   <td>descriptions
+   </td>
+   <td>List
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - description
+   </td>
+  </tr>
+   <tr>
+   <td>administrativeRequest
+   </td>
+   <td>AdministrativeReqEnum
+   </td>
+   <td>false
+   </td>
+   <td>XDSDocumentEntry.Slot - administrativeRequest
+   </td>
+  </tr>
+
+</table>
+
+
+_Tabella 36: Parametri Richiesta di Validazione Pubblicazione Sostituzione contestuale_
+
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la resituzione di un errore di tipo warning. 
+
+Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento da sostituire e al parametro _identificativoDoc_ utilizzato precedentemente nel servizio di creazione.
+
+
+### 9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”
+
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+ 
+
+```
+curl -X 'PUT' \
+
+  'https://<HOST>:<PORT>/v1/documents/validate-and-replace/507f1f77bcf86cd799439011' \
+
+  -H 'accept: application/json' \
+
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+
+  -H 'Content-Type: multipart/form-data' \
+
+  -F 'requestBody={
+
+  "healthDataFormat": "CDA",
+
+  "mode": "ATTACHMENT",
+
+  "tipologiaStruttura": "Ospedale",
+
+  "attiCliniciRegoleAccesso": [
+
+    "P99"
+
+  ],
+
+  "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
+
+  "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
+
+  "tipoDocumentoLivAlto": "REF",
+
+  "assettoOrganizzativo": "AD_PSC001",
+
+  "dataInizioPrestazione": "20141020110012",
+
+  "dataFinePrestazione": "20141020110012",
+
+  "tipoAttivitaClinica": "CON",
+
+  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
+
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+
+  "administrativeRequest": "SSN"
+
+}' \
+
+  -F 'file=@CDA_OK.pdf;type=application/pdf'
+```
+
+## 9.2. Response
+
+
+<table>
+  <tr>
+   <td>TIPO IN CASO DI SUCCESSO
+   </td>
+   <td colspan="2" >application/json
+   </td>
+  </tr>
+  <tr>
+   <td>TIPO IN CASO DI ERRORE*
+   </td>
+   <td colspan="2" >application/problem+json
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="11" >STATUS CODE
+   </td>
+   <td> 200
+   </td>
+   <td>Presa in carico eseguita con successo
+   </td>
+  </tr>
+  <tr>
+   <td>400
+   </td>
+   <td>Bad request** (input non valido o validazione/ pubblicazione non corretta)
+   </td>
+  </tr>
+  <tr>
+   <td>401
+   </td>
+   <td>Unauthorized
+   </td>
+  </tr>
+  <tr>
+   <td>403
+   </td>
+   <td>Token jwt mancante o non valido
+   </td>
+  </tr>
+  <tr>
+   <td>404
+   </td>
+   <td>Not found***
+   </td>
+  </tr>
+  <tr>
+   <td>409
+   </td>
+   <td>Conflict
+   </td>
+  </tr>
+  <tr>
+   <td>413
+   </td>
+   <td>Payload too large
+   </td>
+  </tr>
+  <tr>
+   <td>415
+   </td>
+   <td>Unsupported media type
+   </td>
+  </tr>
+  <tr>
+   <td>429
+   </td>
+   <td>Too Many Requests
+   </td>
+  </tr>
+  <tr>
+   <td>500
+   </td>
+   <td>Internal server error
+   </td>
+  </tr>
+  <tr>
+   <td>502
+   </td>
+   <td>Invalid response received from the API Implementation
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>503
+   </td>
+   <td>Service unavailable
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>504
+   </td>
+   <td>Endpoint request timed-out
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 37: Response Servizio di Validazione pubblicazione Sostituzione Documento contestuale_
+
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+
+** La pubblicazione sostituzione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400.
+
+*** La pubblicazione sostituzione restituirà codice di errore 404 se il documento che si intende sostituire non è presente su INI.
+
+**Campi sempre valorizzati**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>traceID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente. È sempre presente a differenza del workflowInstanceId poiché il valore di quest’ultimo dipende dal CDA preso in input
+   </td>
+  </tr>
+  <tr>
+   <td>spanID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato ad un singolo operazione della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
+traceId e spanId coincidono nella prima operazione.
+   </td>
+  </tr>
+  <tr>
+   <td>workflowInstanceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco della transazione
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 38: Campi Response sempre valorizzati_
+
+**Campi valorizzati solo in caso di warning**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>warning
+   </td>
+   <td>String
+   </td>
+   <td>Dettaglio del warning
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 39: Campi Response valorizzati in caso di warning_
+
+
+### 9.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
+
+```
+{ \
+    "traceID": "c2e1818fbf7aea7f", \
+    "spanID": "c2e1818fbf7aea7f", \
+    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+}
+```
+
+### 9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”
+
+```
+{
+  "traceID": "b20d5f0f59d117ca",
+  "spanID": "b20d5f0f59d117ca",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.10908.4.4.2.0d0002200a27e9ead4de0891c19736a630eab68fb09f7851561bbfeed7389948.9562421609^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "[W005 | Sezione Esame Eseguito: l'entry/act/code può essere valorizzato secondo i sistemi di codifica\n\t\t\tLOINC @codeSystem='2.16.840.1.113883.6.1'\n\t\t\tICD-9-CM @codeSystem='2.16.840.1.113883.6.103']",
+  "responseStatus": 201
+}
+```
+
+### 9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”
+
+```
+{ 
+  "traceID": "79e2637736ad9bae", 
+  "spanID": "79e2637736ad9bae", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.46a41df0ab0514f11c0811056832c3225e06c8e11824f27c7e5517ca5cfc57fe.ac05831184^^^^urn:ihe:iti:xdw:2013:workflowInstanceId", 
+  "responseStatus": 400, 
+  "type": "/msg/syntax", 
+  "title": "Errore di sintassi.", 
+  "detail": "Error while executing validation on xsd schema", 
+  "instance": "/validation/error", 
+  "status": "400" 
+}
+```
+
+
+# 10. Servizio di Recupero Stato Transazione per WorkflowInstanceId
+
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
@@ -3146,7 +4419,7 @@ https://<HOST>:<PORT>/v<major>/status/<workflowInstanceId>
 Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di una transazione associati ad un workflowInstanceId.
 
 
-## 8.1. Request
+## 10.1. Request
 
 
 <table>
@@ -3237,7 +4510,7 @@ _Tabella 31: Parametri Richiesta di Recupero Stato Transazioni per WorkflowInsta
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 
-### 8.1.1. Esempio Messaggio di Richiesta stato Transazioni
+### 10.1.1. Esempio Messaggio di Richiesta stato Transazioni
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
@@ -3251,7 +4524,7 @@ curl -X 'GET' \
   -H 'accept: application/json' 
 ```
 
-## 8.2. Response
+## 10.2. Response
 
 
 <table>
@@ -3350,7 +4623,7 @@ curl -X 'GET' \
 
 _Tabella 32: Response Servizio di Recupero Stato Transazione per WorkflowInstanceId_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -3512,7 +4785,7 @@ _Tabella 33: Campi Response sempre valorizzati_
 _Tabella 34: Campi Response sempre valorizzati_
 
 
-### 8.2.1. Esempio messaggio di risposta con Esito Success 200
+### 10.2.1. Esempio messaggio di risposta con Esito Success 200
 
 ```
 {
@@ -3618,7 +4891,7 @@ _Tabella 34: Campi Response sempre valorizzati_
 }
 ```
 
-### 8.2.2. Esempio di Messaggio di Risposta con esito KO 400
+### 10.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
 ```
 {
@@ -3640,9 +4913,9 @@ _Tabella 34: Campi Response sempre valorizzati_
 }
 ```
 
-# 9. Servizio di Recupero Stato Transazione per TraceId
+# 11. Servizio di Recupero Stato Transazione per TraceId
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 11 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
@@ -3653,7 +4926,7 @@ https://<HOST>:<PORT>/v<major>/status/search/<traceId>
 Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di una transazione associati ad un traceId. 
 
 
-## 9.1. Request
+## 11.1. Request
 
 
 <table>
@@ -3744,7 +5017,7 @@ _Tabella 36: Parametri Richiesta di Recupero Stato Transazioni per traceId_
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 
-### 9.1.1. Esempio Messaggio di Richiesta stato Transazioni
+### 11.1.1. Esempio Messaggio di Richiesta stato Transazioni
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
@@ -3757,17 +5030,17 @@ curl -X 'GET' \
   -H 'accept: application/json' 
 ```
 
-## 9.1. Response
+## 11.1. Response
 
 Per ulteriori dettagli su response del servizio in oggetto è necessario fare riferimento al Capitolo 8 “Servizio di Recupero stato transazione per WorkflowInstanceId”
 
 
-# 10. Drilldown Response in caso di Errore
+# 12. Drilldown Response in caso di Errore
 
 Il Gateway genererà due tipologie di errore distinte, entrambe aderenti alla specifica RFC 7807.
 
 
-## 10.1. Errori Applicativi
+## 12.1. Errori Applicativi
 
 Di seguito vengono indicati i campi valorizzati soltanto in caso di errori provenienti dall’applicativo
 
@@ -3828,7 +5101,7 @@ Può differire dal type in caso sia necessario specificare il problema con maggi
 _Tabella 37: Campi Response valorizzati in caso di errore_
 
 
-### 11.3.1. Esempi di errore generati dal Gateway
+### 12.3.1. Esempi di errore generati dal Gateway
 
 
 <table>
@@ -4100,7 +5373,7 @@ _Tabella 37: Campi Response valorizzati in caso di errore_
 
 
 
-## 10.1. Errori provenienti da Apparati di Frontiera
+## 12.1. Errori provenienti da Apparati di Frontiera
 
 Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali o di sicurezza (ad esempio token mancante o scaduto, request non conforme alle specifiche) che vengono intercettati e notificati prima che la richiesta raggiunga i microservizi.
 
@@ -4160,7 +5433,7 @@ Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali 
 _Tabella 38: Campi Response valorizzati in caso di errore govWay_
 
 
-# 11. Drilldown Parametri di Input
+# 13. Drilldown Parametri di Input
 
 Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.4.1” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
 
@@ -4183,7 +5456,7 @@ Campi che possono essere forniti al Gateway direttamente tramite la request body
 Nella parte restante di questo paragrafo saranno descritti puntualmente i campi recuperati dal JWT (che coincidono con i campi “asserzione attributo”) e quelli recuperati dalla request body (che nascono dall’unione dei campi “specifici per messaggio” che non possono essere dedotti dal contesto di invocazione).
 
 
-## 11.1. Campi Contenuti nei JWT
+## 13.1. Campi Contenuti nei JWT
 
 Gli endpoint del Gateway ricevono 2 token JWT:
 
@@ -5235,7 +6508,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 
 
 
-## 11.2. Campi Contenuti nella Request Body
+## 13.2. Campi Contenuti nella Request Body
 
 Per i campi contenuti nella request body si evidenzia nel campo “provenienza” se questi sono campi introdotti per rendere possibile la comunicazione con INI o se questi sono stati appositamente introdotti per gestire in maniera efficace ed efficiente il gateway.
 
@@ -5919,7 +7192,7 @@ _Tabella 41: Campi contenuti nella Request Body_
 
 
 
-## 11.3. Tabelle di Riferimento
+## 13.3. Tabelle di Riferimento
 
 Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
 
@@ -5928,7 +7201,7 @@ Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle
 Eventuali variazioni normative e/o ad Affinity Domain implicano l’aggiornamento delle tabelle referenziate.
 
 
-### 11.3.1. Attività Clinica Enum
+### 13.3.1. Attività Clinica Enum
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -6035,7 +7308,7 @@ _Tabella 42:  _Value set per il metadato XDSSubmissionSet.contentTypeCode
 
 
 
-### 11.3.2. Healthcare Facility Type Code
+### 13.3.2. Healthcare Facility Type Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -6105,7 +7378,7 @@ _Tabella 43:  _Value set per il metadato XDSDocumentEntry.healthcareFacilityType
 
 
 
-### 11.3.3. Tipo Documento Alto Livello
+### 13.3.3. Tipo Documento Alto Livello
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -6246,7 +7519,7 @@ informato anestesia).
 _Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 
-### 11.3.4. Event Code
+### 13.3.4. Event Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -6913,7 +8186,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 45: _Value set per il metadato XDSDocumentEntry.eventCodeList
 
 
-### 11.3.5. Ruolo
+### 13.3.5. Ruolo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -7098,7 +8371,7 @@ _Tabella 46: _Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:r
 
 
 
-### 11.3.6. Contesto Operativo
+### 13.3.6. Contesto Operativo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -7134,7 +8407,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 47: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:purposeofuse
 
 
-### 11.3.7. Organizzazione
+### 13.3.7. Organizzazione
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -7354,7 +8627,7 @@ _Tabella 48: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:or
 
 
 
-### 11.3.8. Practice Setting Code
+### 13.3.8. Practice Setting Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -7712,7 +8985,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 49: _Value set per il metadato XDSDocumentEntry.practiceSettingCode
 
 
-### 11.3.9. Activity Enum
+### 13.3.9. Activity Enum
 
 
 <table>
@@ -7746,7 +9019,7 @@ _Tabella 49: _Value set per il metadato XDSDocumentEntry.practiceSettingCode
 _Tabella 50: ActivityEnum_
 
 
-### 11.3.10. Injection Mode Enum
+### 13.3.10. Injection Mode Enum
 
 
 <table>
@@ -7780,7 +9053,7 @@ _Tabella 50: ActivityEnum_
 _Tabella 51: InjectionModeEnum_
 
 
-### 11.3.11. Health Data Format Enum
+### 13.3.11. Health Data Format Enum
 
 
 <table>
@@ -7806,7 +9079,7 @@ _Tabella 51: InjectionModeEnum_
 _Tabella 52: HealthDataFormatEnum_
 
 
-### 11.3.12. Tipo Attività
+### 13.3.12. Tipo Attività
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
@@ -7844,7 +9117,7 @@ Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:a
 _Tabella 53: action-id_
 
 
-### 11.3.13. Administrative Request
+### 13.3.13. Administrative Request
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
 
