@@ -561,7 +561,7 @@ Per identificare invece i documenti da cancellare o aggiornare il chiamante dovr
 
 **Validazione Documento CDA2**
 
-Nello scenario di questa funzionalità il Sistema Produttore invia un documento           secondo il formato standard HL7 CDA2, ed iniettato in un PDF, il nome CDA allegato deve essere “**cda.xml**”. 
+Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard HL7 CDA2, ed iniettato in un PDF, il nome CDA allegato deve essere “**cda.xml**”. 
 
 Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici e semantici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 
@@ -569,13 +569,29 @@ In caso di validazione eseguita con successo, l’esito tornato è positivo e la
 
 **Pubblicazione Documento CDA2**
 
-Nello scenario di questa funzionalità il Repository Documentale locale invia il documento      secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere **esattamente** a quello precedentemente validato     secondo il servizio di Validazione Documenti CDA2.
+Nello scenario di questa funzionalità il Repository Documentale locale invia il documento secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere **esattamente** a quello precedentemente validato secondo il servizio di Validazione Documenti CDA2.
 
 La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF. Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
 
 Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
 
 La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
+
+**Pubblicazione Documento CDA2 con validazione contestuale**
+
+**Questo servizio non è da intendersi per un utilizzo regolare, ma per la gestione di specifici casi di errore nel normale workflow dei documenti.**
+
+Nello scenario di questa funzionalità il Repository Documentale locale invia il documento *non validato in precedenza* secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**.
+
+È possibile utilizzare questo servizio nei casi in cui non sia stato possibile validare un documento al momento dell'emissione dello stesso per:
+* indisponibilità della connettività rete
+* indisponibilità del servizio
+* errore interno del gateway 
+
+Ci si trova nel caso in cui l'attività clinica sia proceduta e vi sia necessità di "recuperare" la validazione prima della pubblicazione.
+
+In ogni caso questo servizio non è da usarsi per violare la semantica di chiamata sincrona di validazione, da parte del produttore, al momento dell'emissione del documento.
+
 
 **Eliminazione Documento**
 
