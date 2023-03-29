@@ -60,21 +60,21 @@
   - [7.2. Response](#72-response)
     - [7.2.1. Esempio di Messaggio di risposta con Esito Success 200](#721-esempio-di-messaggio-di-risposta-con-esito-success-200)
     - [7.2.2. Esempio di Messaggio di Risposta con esito KO 400](#722-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-- [8. Servizio di Validazione Pubblicazione creazione contestuale](#8-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
+- [8. Servizio di validazione e pubblicazione creazione contestuale](#8-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
   - [8.1. Request](#81-request)
-    - [8.1.1. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Creazione contestuale con Attachment”](#811-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
-    - [8.1.2. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Creazione contestuale con Resource”](#812-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
+    - [8.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#811-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
+    - [8.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”](#812-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
   - [8.2. Response](#82-response)
-    - [8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione e Pubblicazione contestuale con Attachment”](#821-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
-    - [8.2.2. Esempio di Messaggio di Risposta con esito KO 400 - “Validazione e Pubblicazione contestuale con errore sintattico"](#822-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
-    - [8.2.3. Esempio di Messaggio di Risposta con esito KO 201 - “Validazione e Pubblicazione contestuale con warning semantico"](#823-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
-- [9. Servizio di Validazione Sostituzione contestuale Documento](#9-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
+    - [8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”](#821-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
+    - [8.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”](#822-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
+    - [8.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”](#823-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
+- [9. Servizio di validazione pubblicazione sostituzione contestuale](#9-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
   - [9.1. Request](#91-request)
-    - [9.1.1. Messaggio di Richiesta, esempio “Validazione e Pubblicazione Sostituzione contestuale Documento con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
+    - [9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
   - [9.2. Response](#92-response)
     - [9.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#921-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
-    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico"](#922-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
-    - [9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico"](#923-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
+    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#922-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
+    - [9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#923-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
 - [10. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#10-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
   - [10.1. Request](#101-request)
     - [10.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1011-esempio-messaggio-di-richiesta-stato-transazioni)
@@ -577,22 +577,6 @@ Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in for
 
 La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
 
-**Pubblicazione Documento CDA2 con validazione contestuale**
-
-**Questo servizio non è da intendersi per un utilizzo regolare, ma per la gestione di specifici casi di errore nel normale workflow dei documenti.**
-
-Nello scenario di questa funzionalità il Repository Documentale locale invia il documento *non validato in precedenza* secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**.
-
-È possibile utilizzare questo servizio nei casi in cui non sia stato possibile validare un documento al momento dell'emissione dello stesso per:
-* indisponibilità della connettività rete
-* indisponibilità del servizio
-* errore interno del gateway 
-
-Ci si trova nel caso in cui l'attività clinica sia proceduta e vi sia necessità di "recuperare" la validazione prima della pubblicazione.
-
-In ogni caso questo servizio non è da usarsi per violare la semantica di chiamata sincrona di validazione, da parte del produttore, al momento dell'emissione del documento.
-
-
 **Eliminazione Documento**
 
 Nello scenario di questa funzionalità il Repository Documentale locale effettuerà una richiesta di cancellazione di un documento identificato dal XDSDocumentEntry.uniqueId. 
@@ -619,13 +603,27 @@ Anche in questo caso il documento viene identificato dal XDSDocumentEntry.unique
 
 **Validazione e Pubblicazione creazione contestuale di un Documento CDA2**
 
+
+**Questo servizio non è da intendersi per un utilizzo regolare, ma per la gestione di specifici casi di errore nel normale workflow dei documenti.**
+
 In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati. Dapprima, quindi, viene eseguita la validazione (sintattica, semantica, terminologica) del documento fornito in maniera **SINCRONA**. 
 
 In caso di esito positivo, nella stessa transazione, vengono preparati i vari metadati del documento per la comunicazione verso INI e la sua indicizzazione, e viene preparato il bundle FHIR per l'invio ad EDS. È importante notare che la validazione, e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
 
 Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
 
+È possibile utilizzare questo servizio nei casi in cui non sia stato possibile validare un documento al momento dell'emissione dello stesso per:
+* indisponibilità della connettività rete
+* indisponibilità del servizio
+* errore interno del gateway 
+
+Ci si trova nel caso in cui l'attività clinica sia proceduta e vi sia necessità di "recuperare" la validazione prima della pubblicazione.
+
+In ogni caso questo servizio non è da usarsi per violare la semantica di chiamata sincrona di validazione, da parte del produttore, al momento dell'emissione del documento.
+
 **Validazione e Pubblicazione sostituzione contestuale di un Documento CDA2**
+
+**Questo servizio non è da intendersi per un utilizzo regolare, ma per la gestione di specifici casi di errore nel normale workflow dei documenti.**
 
 In questa funzionalità, il Repository Documentale locale invia il documento nel formato standard HL7 CDA2, che viene iniettato in un PDF firmato digitalmente in modalità **PADES** e corredato di alcuni metadati con il fine ultimo di sostituire un documento precedentemente pubblicato su INI ed EDS.
 
@@ -634,6 +632,16 @@ Inizialmente, quindi, in maniera **SINCRONA**, viene eseguita la validazione (si
 È importante notare che la validazione, il recupero dei riferimenti da **INI** e la conversione del dato in formato FHIR avvengono in maniera sincrona, mentre la comunicazione dei metadati verso INI e del bundle verso EDS è **ASINCRONA**.
 
 Alla fine del processo, il servizio fornisce un acknowledgment di presa in carico.
+
+È possibile utilizzare questo servizio nei casi in cui non sia stato possibile validare un documento al momento dell'emissione dello stesso per:
+* indisponibilità della connettività rete
+* indisponibilità del servizio
+* errore interno del gateway 
+
+Ci si trova nel caso in cui l'attività clinica sia proceduta e vi sia necessità di "recuperare" la validazione prima della pubblicazione.
+
+In ogni caso questo servizio non è da usarsi per violare la semantica di chiamata sincrona di validazione, da parte del produttore, al momento dell'emissione del documento.
+
 
 **Recupero Stato Transazione per WorkflowInstanceId (o TraceId)**
 
