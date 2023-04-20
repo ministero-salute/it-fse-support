@@ -300,7 +300,7 @@
 							<templateId root="2.16.840.1.113883.2.9.10.1.6.87"/>
 							<code code="29298-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Ragione della visita"/>
 							<statusCode code="completed"/>
-							<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.12" codeSystemName="CausaAccesso_VPS" displayName="[DESC_CAUSA]"/>
+							<value xsi:type="ST">[DESC_CAUSA]</value>
 						</observation> 
 					</entry>
 				</section>	
@@ -336,7 +336,7 @@
 							<value xsi:type="CD" code="R" codeSystem="2.16.840.1.113883.2.9.6.1.54.4" codeSystemName="CodiceTriage_VPS" displayName="Rosso"/>
 							<performer typeCode="PRF">
 								<assignedEntity>
-									<id root="2.16.840.1.113883.2.9.4.3.2" extension="STAGFR68L14H501V" assigningAuthorityName="MEF"/>
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
 									<assignedPerson>
 										<name>
 											<family>Test</family>
@@ -660,7 +660,7 @@
 					<component>
 						<section ID="PROBLEMI_APERTI">
 							<templateId root="2.16.840.1.113883.2.9.10.1.6.59"/>
-							<code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName=" Problem list Reported "/>
+							<code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName=" Problem list Reported"/>
 							<title>Problemi aperti</title>
 							<text>
 								<table>
@@ -717,7 +717,7 @@
 					<entry>
 						<encounter moodCode="EVN" classCode="ENC"> 
 							<templateId root="2.16.840.1.113883.2.9.10.1.6.51"/>
-							<code code="XXX" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.4" codeSystemName="TipoEncounter_VPS" displayName="[DESC_VISITA]"/>
+							<code code="V24.2" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9CM" displayName="Follow -up di routine"/>
 							<effectiveTime>
 								<low value="20220415090909+0100"/>
 								<high value="20220415160000+0100"/>
@@ -778,8 +778,8 @@
 								</time>
 								<participantRole>
 									<templateId root="2.16.840.1.113883.2.9.10.1.6.64"/>
-									<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
-									<code code="XXX" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.10" codeSystemName="TipoLuogo_VPS" displayName="XXX"/>
+									<id root="2.16.840.1.113883.2.9.4.1.2" extension="010004" assigningAuthorityName="Ministero della Salute"/>
+									<code code="18" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.10" codeSystemName="TipoLuogo_VPS" displayName="Ematologia"/>
 								</participantRole>
 							</participant>
 							<entryRelationship typeCode="SUBJ">
@@ -882,13 +882,13 @@
 						</table>
 					</text>
 					<entry>
-						<!--Dettaglio prestazione richiesta-->
-						<act classCode="ACT" moodCode="RQO">
+						<!--Dettaglio prestazione eseguita-->
+						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.6.62"/>
 							<code code="76645-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Cardiac stress test EKG study"/>
 							<text>[descrizione elemento,esito consulenza]</text>
 							<statusCode code="completed"/>
-							<effectiveTime value="20220417101010+0100"/> 
+							<effectiveTime value="20220417171717+0100"/> 
 							<!--esecutore della prestazione-->
 							<performer>
 								<time value="20220417171717+0100"/>
@@ -1004,7 +1004,7 @@
 							<!--Dettaglio parametro vitale-->
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.6.91"/>
-									<code code="86678-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Weight gain of 5% or more in the last month or gain of 10% or more in last 6 months"/>
+									<code code="70962-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Weight gain of 5% or more in the last month or gain of 10% or more in last 6 months"/>
 									<statusCode code="completed"/>
 									<repeatNumber value="3"/>
 									<value xsi:type="PQ" value="10" unit="kg"/>
@@ -1211,14 +1211,14 @@
 										<participantRole classCode="SDLOC">
 											<templateId root="2.16.840.1.113883.2.9.10.1.6.64"/>
 											<id root="2.16.840.1.113883.2.9.4.1.1" extension="IDSTRUTTURA" assigningAuthorityName="[NOME_ORGANIZZAZIONE]"/>
-											<code code="XXX" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.11" codeSystemName="TipoLuogoPostDimissione_VPS" displayName="[DES_LUOGO]"/>
+											<code code="5" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.11" codeSystemName="TipoLuogoPostDimissione_VPS" displayName="rifiuto ricovero"/>
 										</participantRole>
 									</participant>							
 									<!--Ragione Collocazione-->
 									<entryRelationship typeCode="RSON">
 										<observation classCode="OBS" moodCode="EVN">
 											<templateId root="2.16.840.1.113883.2.9.10.1.6.68"/>
-											<code code="XXX" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.13" codeSystemName="ProblemType_VPS" displayName="[DESC_REASON]"/>
+											<code code="1" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.13" codeSystemName="ProblemType_VPS" displayName="In continuità di soccorso"/>
 											<statusCode code="completed"/>
 											<effectiveTime value="20220428101010+0100"/>
 											<value xsi:type="ST">[DETTAGLIO_CAUSA_TRASFERIMENTO]</value>
@@ -1242,14 +1242,14 @@
 										<participantRole classCode="SDLOC">
 											<templateId root="2.16.840.1.113883.2.9.10.1.6.64"/>
 											<id root="2.16.840.1.113883.2.9.4.1.1" extension="IDSTRUTTURA" assigningAuthorityName="[NOME_ORGANIZZAZIONE]"/>
-											<code code="XXX" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.11" codeSystemName="TipoLuogoPostDimissione_VPS" displayName="[DES_LUOGO]"/>
+											<code code="3" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.11" codeSystemName="TipoLuogoPostDimissione_VPS" displayName="trasferimento in un altro istituto"/>
 										</participantRole>
 									</participant>
 									<!--Ragione del Trasferimento-->
 									<entryRelationship typeCode="RSON">
 										<observation classCode="OBS" moodCode="EVN">
 												<templateId root="2.16.840.1.113883.2.9.10.1.6.68"/>
-												<code code="XXX" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.13" codeSystemName="ProblemType_VPS" displayName="[DESC_REASON]"/>
+												<code code="1" codeSystem="2.16.840.1.113883.2.9.1.11.1.2.13" codeSystemName="ProblemType_VPS" displayName="In continuità di soccorso"/>
 												<statusCode code="completed"/>
 												<effectiveTime value="20220506101010+0100"/>
 												<value xsi:type="ST">[DETTAGLIO_CAUSA_TRASFERIMENTO]</value>
