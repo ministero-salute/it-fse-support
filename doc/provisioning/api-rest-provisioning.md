@@ -41,7 +41,7 @@
   - [5.2. Response](#52-response)
     - [5.2.1. Esempio Messaggio di Risposta con esito OK 200](#521-esempio-messaggio-di-risposta-con-esito-ok-200)
     - [5.2.2. Esempio Messaggio di Risposta con esito KO 404](#522-esempio-messaggio-di-risposta-con-esito-ko-404)
-    - [5.2.3. Esempio Messaggio di Risposta con esito OK In Elaborazione 206](#523-esempio-messaggio-di-risposta-con-esito-ok-206)
+    - [5.2.3. Esempio Messaggio di Risposta con esito OK 206](#523-esempio-messaggio-di-risposta-con-esito-ok-206)
 - [6. Servizio di Rinnovo massivo certificati](#6-servizio-di-rinnovo-massivo-certificati)
   - [6.1. Request](#61-request)
     - [6.1.1. Esempio di rinnovo di certificati](#611-esempio-di-rinnovo-di-certificati)
@@ -79,7 +79,7 @@
 
 | TOOL | LINK                                                                   | DESCRIPTION                       |
 | ---- | ---------------------------------------------------------------------- | --------------------------------- |
-| 1    | Linee Guida Architetturali del Fascicolo Sanitario Elettronico V2      | Linee guida FSE 2.0               |
+| 1    | [Linee Guida Architetturali del Fascicolo Sanitario Elettronico 2.0](https://www.gazzettaufficiale.it/eli/id/2022/07/11/22A03961/sg)      | Linee guida FSE 2.0               |
 | 2    | [Supporto FSE 2.0](https://github.com/ministero-salute/it-fse-support) | Pagina di Supporto GitHub FSE 2.0 |
 
 _Tabella 1: Riferimenti Esterni_
