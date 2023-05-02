@@ -1,0 +1,909 @@
+openapi: 3.0.1
+info:
+  title: Provisioning Orchestrator
+  description: Handles the requests of the provisioning
+  termsOfService: https://www.fascicolosanitario.gov.it/it/note-legali
+  contact:
+    name: Fascicolo Sanitario Elettronico 2.0
+    url: https://developers.italia.it/it/fse/
+  version: 1.0.0
+  x-api-id: '1'
+  x-summary: Provisioning Orchestrator
+servers:
+  - url: https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/provisioning/v1
+    description: Generated server url
+    x-sandbox: true
+tags: 
+  - name: Health check Status Actuator
+  - name: Orchestrator service multi
+paths:
+  /v1/certificate/revoke/multi:
+    post:
+      tags:
+        - Orchestrator service multi
+      summary: Richiesta revoca certificati multipli
+      description: Revoca certificati multipli
+      operationId: revokeCertificatesRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WrapRevokeMultiRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: Richiesta revoca certificati inoltrata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RevokeResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '409':
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+        - FSE-JWT-Provisioning: []
+  /v1/certificate/renew/multi:
+    post:
+      tags:
+        - Orchestrator service multi
+      summary: Richiesta rinnovo certificati multipli
+      description: Rinnovo certificati multipli
+      operationId: renewCertificatesRequest
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - files
+                - renewInfo
+              type: object
+              properties:
+                renewInfo:
+                  $ref: '#/components/schemas/WrapRenewMultiRequestDTO'
+                files:
+                  maxLength: 1000
+                  maxItems: 1000
+                  minItems: 1
+                  type: array
+                  items:
+                    maxLength: 10000
+                    type: string
+                    format: binary
+              additionalProperties: false
+      responses:
+        '200':
+          description: Richiesta rinnovo certificati inoltrata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RenewResponseDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '409':
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+        - FSE-JWT-Provisioning: []
+  /v1/certificate/create/multi:
+    post:
+      tags:
+        - Orchestrator service multi
+      summary: Richiesta creazione certificato multipla
+      description: Creazione certificato multipla
+      operationId: createCertificatesRequest
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - creationInfo
+                - files
+              type: object
+              properties:
+                creationInfo:
+                  $ref: '#/components/schemas/WrapCreateMultiRequestDTO'
+                files:
+                  maxLength: 1000
+                  maxItems: 1000
+                  minItems: 1
+                  type: array
+                  items:
+                    maxLength: 10000
+                    type: string
+                    format: binary
+              additionalProperties: false
+      responses:
+        '200':
+          description: Richiesta creazione certificati inoltrata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OutcomeCertificatesDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '409':
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+        - FSE-JWT-Provisioning: []
+  /v1/certificates/multi:
+    get:
+      tags:
+        - Orchestrator service multi
+      summary: Recupera richieste certificati
+      description: Ricerca certificati
+      operationId: getCertificatesMulti
+      parameters:
+        - name: nodeID
+          in: query
+          required: true
+          schema:
+            maximum: 2147483647
+            minimum: 0
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Richieste certificati recuperate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificatesMultiRequestDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+        - FSE-JWT-Provisioning: []
+  /v1/certificate/profile:
+    get:
+      tags:
+        - Orchestrator service multi
+      summary: Recupera profilo
+      description: Recupera profilo
+      operationId: getProfile
+      responses:
+        '200':
+          description: Profilo recuperato
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '404':
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+        - FSE-JWT-Provisioning: []
+  /v1/certificate/download/multi/{uuid}:
+    get:
+      tags:
+        - Orchestrator service multi
+      summary: Recupera richiesta machine to machine
+      description: Recupera richiesta
+      operationId: downloadRequestMultiM2M
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            maxLength: 2147483647
+            minLength: 0
+            type: string
+      responses:
+        '200':
+          description: Richiesta recuperata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateMultiDownloadDTO'
+        '206':
+          description: Zip incompleto. In elaborazione
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateMultiDownloadDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '404':
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+        - FSE-JWT-Provisioning: []
+  /status:
+    get:
+      tags:
+        - Health check Status Actuator
+      summary: Health check status
+      description: Health check endpoint.
+      operationId: health
+      responses:
+        '200':
+          description: Health check OK
+          content:
+            application/problem+json: {}
+        '400':
+          description: Bad request
+          content:
+            application/problem+json: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json: {}
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+components:
+  schemas:
+    ErrorResponseDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        type:
+          maxLength: 1000
+          minLength: 1
+          type: string
+          description: Identificativo della classe del problema verificatosi
+        title:
+          maxLength: 1000
+          minLength: 1
+          type: string
+          description: Descrizione della classe del problema verificatosi (invariante per occorrenze diverse dello stesso problema)
+        detail:
+          maxLength: 1000
+          minLength: 1
+          type: string
+          description: Descrizione del problema
+        instance:
+          maxLength: 1000
+          minLength: 1
+          type: string
+          description: URI che identifica la specifica occorrenza del problema
+      additionalProperties: false
+    RevokeInfoDTO:
+      type: object
+      properties:
+        distinguishedNameAuth:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Distinguished name auth
+        distinguishedNameSign:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Distinguished name sign
+        reason:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Reason for revocation
+          enum:
+            - UNSPECIFIED
+            - KEY_COMPROMISE
+            - CA_COMPROMISE
+            - AFFILIATION_CHANGED
+            - SUPERSEDED
+            - CESSATION_OF_OPERATION
+            - CERTIFICATE_HOLD
+            - REMOVE_FROM_CRL
+            - PRIVILEGE_WITH_DRAWN
+            - AA_COMPROMISE
+      additionalProperties: false
+    WrapRevokeMultiRequestDTO:
+      type: object
+      properties:
+        nodeID:
+          maximum: 100
+          minimum: 1
+          type: integer
+          description: Node Id
+          format: int64
+        uuid:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: uuid
+        reason:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Reason for revocation
+          enum:
+            - UNSPECIFIED
+            - KEY_COMPROMISE
+            - CA_COMPROMISE
+            - AFFILIATION_CHANGED
+            - SUPERSEDED
+            - CESSATION_OF_OPERATION
+            - CERTIFICATE_HOLD
+            - REMOVE_FROM_CRL
+            - PRIVILEGE_WITH_DRAWN
+            - AA_COMPROMISE
+        revokes:
+          maxItems: 10000
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/RevokeInfoDTO'
+      additionalProperties: false
+    CertificateFailureDTO:
+      maxLength: 50
+      type: object
+      properties:
+        nameAuth:
+          minimum: 0
+          maxLength: 1000
+          type: string
+          description: Name of the certificate used for authentication
+        hashAuth:
+          minimum: 0
+          maxLength: 1000
+          type: string
+          description: Hash of the certificate used for authentication
+        nameSign:
+          minimum: 0
+          maxLength: 1000
+          type: string
+          description: Name of the certificate used for signature
+        hashSign:
+          minimum: 0
+          maxLength: 1000
+          type: string
+          description: Hash of the certificate used for signature
+        reason:
+          minimum: 0
+          maxLength: 1000
+          type: string
+          description: Reason
+      additionalProperties: false
+      description: failures
+    CertificatesInfoDTO:
+      maxLength: 50
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        idAuth:
+          maximum: 1000
+          minimum: 0
+          maxLength: 1000
+          type: integer
+          description: Id of the certificate used for authentication
+          format: int64
+        nameAuth:
+          maxLength: 1000
+          type: string
+          description: Name of the certificate used for authentication
+        idSign:
+          maximum: 1000
+          minimum: 0
+          maxLength: 1000
+          type: integer
+          description: Id of the certificate used for signing
+          format: int64
+        nameSign:
+          maxLength: 1000
+          type: string
+          description: Name of the certificate used for signing
+      additionalProperties: false
+      description: creations
+    RevokeResponseDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        revokes:
+          maxLength: 1000
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: revokes
+          items:
+            $ref: '#/components/schemas/CertificatesInfoDTO'
+        failures:
+          maxLength: 1000
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: failures
+          items:
+            $ref: '#/components/schemas/CertificateFailureDTO'
+      additionalProperties: false
+    RenewMultiRequestDTO:
+      type: object
+      properties:
+        nameFileAuth:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the authorizing file
+        nameFileSign:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the signing file
+        distinguishedNameAuth:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the authorizing distinguished name
+        distinguishedNameSign:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the signing distinguished name
+      additionalProperties: false
+    WrapRenewMultiRequestDTO:
+      type: object
+      properties:
+        nodeID:
+          maximum: 92233720368547760
+          minimum: 1
+          type: integer
+          description: ID of the logged user
+          format: int64
+        certificateList:
+          maxItems: 10000
+          minItems: 1
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/RenewMultiRequestDTO'
+      additionalProperties: false
+    RenewResponseDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        uuid:
+          maxLength: 1000
+          type: string
+          description: uuid
+        renews:
+          maxLength: 1000
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: renews
+          items:
+            $ref: '#/components/schemas/CertificatesInfoDTO'
+        failures:
+          maxLength: 1000
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: failures
+          items:
+            $ref: '#/components/schemas/CertificateFailureDTO'
+      additionalProperties: false
+    CreateMultiRequestDTO:
+      type: object
+      properties:
+        nameFileAuth:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the authorizing file
+        nameFileSign:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the signing file
+        variablePartCN:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Name of the authorizing file
+      additionalProperties: false
+    WrapCreateMultiRequestDTO:
+      type: object
+      properties:
+        nodeID:
+          maximum: 10
+          minimum: 0
+          type: integer
+          description: Node Id
+          format: int64
+        certificateList:
+          maxItems: 1000
+          minItems: 0
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateMultiRequestDTO'
+        description:
+          maximum: 100000000
+          minimum: 0
+          maxLength: 100000000
+          minLength: 0
+          type: string
+          description: description
+      additionalProperties: false
+    OutcomeCertificatesDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        uuid:
+          maxLength: 50
+          type: string
+          description: uuid
+        creations:
+          maxLength: 50
+          maxItems: 50
+          minItems: 0
+          type: array
+          description: creations
+          items:
+            $ref: '#/components/schemas/CertificatesInfoDTO'
+        failures:
+          maxLength: 50
+          maxItems: 50
+          minItems: 0
+          type: array
+          description: failures
+          items:
+            $ref: '#/components/schemas/CertificateFailureDTO'
+      additionalProperties: false
+    CertificatesMultiRequestDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        certificates:
+          maxItems: 10000
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestLightMultiDTO'
+      additionalProperties: false
+    RequestLightMultiDTO:
+      type: object
+      properties:
+        uuid:
+          maxLength: 50
+          type: string
+          description: uuid
+        description:
+          maxLength: 10000
+          type: string
+          description: description
+        requestPairs:
+          maxLength: 1000
+          maxItems: 10000
+          minItems: 0
+          type: array
+          description: description
+          items:
+            $ref: '#/components/schemas/RequestPairMultiDTO'
+      additionalProperties: false
+      description: Certificate request details
+    RequestPairMultiDTO:
+      maxLength: 1000
+      type: object
+      properties:
+        dnAuth:
+          maxLength: 50
+          type: string
+          description: Dn auth
+        dnSign:
+          maxLength: 50
+          type: string
+          description: Dn sign
+      additionalProperties: false
+      description: description
+    ProfileDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        givenName:
+          maxLength: 100
+          minLength: 1
+          type: string
+          description: Nome
+        familyName:
+          maxLength: 100
+          minLength: 1
+          type: string
+          description: Surname
+        taxCode:
+          maxLength: 16
+          minLength: 1
+          type: string
+          description: Fiscal code
+        roles:
+          maxItems: 1000
+          minItems: 0
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfileRoleDTO'
+      additionalProperties: false
+    ProfileRoleDTO:
+      type: object
+      properties:
+        nodeID:
+          maximum: 2147483647
+          minimum: 0
+          minLength: 1
+          type: integer
+          description: The role ID
+          format: int64
+        nodeFatherID:
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Node father ID
+          format: int64
+        roleID:
+          maximum: 2147483647
+          minimum: 0
+          maxLength: 1000
+          minLength: 1
+          type: integer
+          description: The role description
+          format: int64
+        roleDescription:
+          maxLength: 1000
+          type: string
+          description: The role description
+        regionID:
+          maxLength: 1000
+          minLength: 1
+          type: string
+          description: The role description
+        regionDescription:
+          maxLength: 1000
+          type: string
+          description: The role description
+        enterprise:
+          maxLength: 1000
+          type: string
+          description: Enterprise
+        structure:
+          maxLength: 1000
+          type: string
+          description: Structure
+        email:
+          maxLength: 100
+          type: string
+          description: User email
+        fixedPartCN:
+          maxLength: 1000
+          type: string
+          description: Fixed part of CN
+        allowedToMonitoring:
+          type: boolean
+      additionalProperties: false
+      description: Roles
+    CertificateMultiDownloadDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        uuid:
+          maxLength: 36
+          type: string
+          description: uuid
+        size:
+          maximum: 10000
+          minimum: 0
+          maxLength: 100000
+          type: integer
+          description: size
+          format: int32
+        zip64:
+          maxLength: 100000
+          maxItems: 10000
+          minItems: 0
+          type: array
+          description: zipBase64
+          items:
+            maxLength: 100000
+            type: string
+            description: zipBase64
+            format: byte
+        message:
+          maxLength: 1000
+          type: string
+          description: message
+      additionalProperties: false
+  securitySchemes: 
+    FSE-JWT-Provisioning:
+      type: apiKey
+      name: FSE-JWT-Provisioning
+      in: header
+    bearerAuth:
+      type: http
+      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token} [RFC8725](https://tools.ietf.org/html/RFC8725)."'
+      scheme: bearer
+      bearerFormat: JWT
