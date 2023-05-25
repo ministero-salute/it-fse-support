@@ -6799,7 +6799,7 @@ Vedi TABELLA ORGANIZZAZIONE per il codice della REGIONE
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio; dovrà coincidere con l’xpath ClinicalDocument/id/@extension del CDA.
+   <td>Obbligatorio; dovrà coincidere con il contenuto dell'attributo extension presente nel CDA al percorso ClinicalDocument/id.
    </td>
   </tr>
 </table>
