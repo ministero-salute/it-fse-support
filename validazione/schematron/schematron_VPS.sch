@@ -240,7 +240,12 @@
 		</rule>
 		
 		<!--controllo su documentationOf-->
-        <rule context="hl7:ClinicalDocument/hl7:documentationOf"><assert test ="count(hl7:serviceEvent)=0 or (count(hl7:serviceEvent/hl7:effectiveTime/hl7:low)=1 and count(hl7:serviceEvent/hl7:effectiveTime/hl7:high)=1) ">ERRORE-44 se presente l'elemento serviceEventi/effectiveTime, deve avere low e high valorizzati.</assert></rule>
+        <rule context="hl7:ClinicalDocument/hl7:documentationOf">
+			<assert test ="count(hl7:serviceEvent)=0 or (count(hl7:serviceEvent/hl7:effectiveTime/hl7:low)=1 and count(hl7:serviceEvent/hl7:effectiveTime/hl7:high)=1) "
+			>ERRORE-44 se presente l'elemento serviceEventi/effectiveTime, deve avere low e high valorizzati.</assert>
+			<assert test="count(hl7:serviceEvent/hl7:performer)=0 or count(hl7:serviceEvent/hl7:performer[@typeCode!='PPRF'])=1"
+			>ERRORE-41a | L'elemento ClinicalDocument/documentationOf/serviceEvent/performer deve essere valorizzato con uno dei seguenti valori: 'PRF' o 'SPRF'.</assert>
+		</rule>
 
 <!--________________________________CONTROLLI GENERICI_________________________________________________________________-->
 	
@@ -295,10 +300,10 @@
 		</rule>
 		
 		<!-- Controllo effectiveTime: -->
-		<rule context="//hl7:effectiveTime[hl7:low]">
+		<rule context="//hl7:effectiveTime[hl7:low/@value]">
 			<let name="effective_time_low" value="string(hl7:low/@value)"/>
 			<let name="effective_time_high" value="string(hl7:high/@value)"/>
-			<assert test="count(hl7:high)=0 or ($effective_time_high > $effective_time_low)"
+			<assert test="count(hl7:high/@value)=0 or ($effective_time_high > $effective_time_low)"
 			>ERROR-52| Il valore dell'elemento effectiveTime/high : '<value-of select="$effective_time_high"/>' 
 			deve essere maggione di quello di effectiveTime/low : '<value-of select="$effective_time_low"/>'.</assert>
 		</rule>
@@ -377,8 +382,8 @@
 			>ERRORE-b16| Sezione Triage: la sezione DEVE essere presente</assert>
 			<assert test="count(hl7:component/hl7:section[hl7:code[@code='54094-8']]/hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.6.21'])=1"
 			>ERRORE-b17| Sezione Triage: la sezione deve contenere l'elemento templateId valorizzato con l'attributo @root='2.16.840.1.113883.2.9.10.1.6.21'</assert>
-			<assert test="count(hl7:component/hl7:section[hl7:code[@code='54094-8']]/hl7:text)=1 and count(hl7:component/hl7:section[hl7:code[@code='54094-8']]/hl7:entry)=1"
-			>ERRORE-b18| Sezione Triage: la sezione DEVE contenere un elemento 'text' ed un solo elemento 'entry'</assert>
+			<assert test="count(hl7:component/hl7:section[hl7:code[@code='54094-8']]/hl7:text)=1 and count(hl7:component/hl7:section[hl7:code[@code='54094-8']]/hl7:entry)>=1"
+			>ERRORE-b18| Sezione Triage: la sezione DEVE contenere un elemento 'text' e almeno un elemento 'entry'.</assert>
 			
 			<!--12-->
 			<!--Dimissione-->
@@ -734,10 +739,13 @@
 				>ERRORE-b103| Sotto-sezione Anamnesi: l'elemento entry/observation/statusCode deve avere l'attributo @code='completed'</assert>
 				<assert test="count(hl7:observation)=0 or count(hl7:observation/hl7:effectiveTime/hl7:low)=1"
 				>ERRORE-b104| Sotto-sezione Anamnesi: l'elemento entry/observation/effectiveTime deve essere presente e deve avere l'elemento 'low' valorizzato</assert>
-				<assert test="(count(hl7:observation)=0 or count(hl7:observation/hl7:entryRelationship/hl7:observation[hl7:code[@code='33999-4']])=0) or 
+				
+				<!--assert test="(count(hl7:observation)=0 or count(hl7:observation/hl7:entryRelationship/hl7:observation[hl7:code[@code='33999-4']])=0) or 
 				(count(hl7:observation/hl7:entryRelationship/hl7:observation[hl7:code[@code='33999-4']]/hl7:value[@code='LA18632-2'])=1 and 
 				count(hl7:observation/hl7:effectiveTime/hl7:high)=1) or count(hl7:observation/hl7:effectiveTime/hl7:high)=1"
-				>ERRORE-b105| Sotto-sezione Anamnesi: l'elemento entry/observation/effectiveTime deve essere presente e deve avere l'elemento 'high' valorizzato</assert>
+				>ERRORE-b105| Sotto-sezione Anamnesi: l'elemento entry/observation/effectiveTime deve essere presente e deve avere l'elemento 'high' valorizzato</assert-->
+
+
 				<assert test="count(hl7:observation)=0 or count(hl7:observation/hl7:value[@xsi:type='CD'])=1"
 				>ERRORE-b106| Sotto-sezione Anamnesi: l'elemento entry/observation/value deve avere l'attributo @xsi:type="CD" </assert>
 				<assert test="count(hl7:observation)=0 or (count(hl7:observation/hl7:value/@code)=0 and count(hl7:observation/hl7:value/hl7:originalText/hl7:reference)=1)
@@ -880,10 +888,13 @@
 				<rule context="hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:code[@code='78337-3']]/hl7:component/hl7:section[hl7:code[@code='48765-2']]/hl7:entry/hl7:act/hl7:entryRelationship/hl7:observation/hl7:participant">
 			
 					<!--Descrizione Agente Codificato-->
-					<assert test="count(hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.6.73'])=1 or
+					<assert test="count(hl7:participantRole/hl7:playingEntity/hl7:code[@nullFlavor='UNK'])=1 or
+					count(hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.6.73'])=1 or
 					count(hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.9.6.1.5'])=1 or
 					count(hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.9.77.22.11.2'])=1"
-					>ERRORE-b140| Sezione Allergie (descrizione agente codificato): l'elemento entry/act/entryRelationship/observation/participant/participantRole/playingEntity deve avere l'attributo code/@codeSystem valorizzato come segue:
+					>ERRORE-b140| Sezione Allergie (descrizione agente codificato): l'elemento entry/act/entryRelationship/observation/participant/participantRole/playingEntity deve avere l'attributo code valorizzato con @nullFlavor='UNK' nel caso in cui non è noto l'agente della reazione allergica 
+					altrimenti code/@codeSystem valorizzato come segue: 
+					deve avere l'attributo code/@codeSystem valorizzato come segue:
 					- '2.16.840.1.113883.6.73' codifica "WHO ATC"
 					- '2.16.840.1.113883.2.9.6.1.5' codifica "AIC"
 					- '2.16.840.1.113883.2.9.77.22.11.2' value set "AllergenNoDrugs" (- per le allergie non a farmaci –)
@@ -1146,7 +1157,7 @@
 				>ERRORE-b202| Sezione Terapia Farmacologica in Pronto Soccorso: l'elemento entry/substanceAdministration DEVE contenere l'elemento 'templateId' con attributo @root='2.16.840.1.113883.2.9.10.1.6.52'</assert>
 				<assert test="count(hl7:substanceAdministration/hl7:statusCode[@code='completed'])=1"
 				>ERRORE-b203| Sezione Terapia Farmacologica in Pronto Soccorso: l'elemento entry/substanceAdministration deve contenere un elemento 'statusCode' con attributo @code='completed'</assert>
-				<assert test="count(hl7:substanceAdministration/hl7:effectiveTime[@xsi:type='IVL_TS']/hl7:low)=1 and count(hl7:substanceAdministration/hl7:effectiveTime[@xsi:type='IVL_TS']/hl7:high)=1"
+				<assert test="count(hl7:substanceAdministration/hl7:effectiveTime[@xsi:type='IVL_TS']/hl7:low)=1"
 				>ERRORE-b204| Sezione Terapia Farmacologica in Pronto Soccorso: l'elemento entry/substanceAdministration/effectiveTime deve avere l'elemento 'low' valorizzato</assert>
 				<assert test="count(hl7:substanceAdministration/hl7:consumable/hl7:manufacturedProduct/hl7:templateId[@root='2.16.840.1.113883.2.9.10.1.6.53'])=1"
 				>ERRORE-b205| Sezione Terapia Farmacologica in Pronto Soccorso: l'elemento entry/substanceAdministration/consumable/manufacturedProduct deve contenere un elemento 'templateId' valorizzato con @root='2.16.840.1.113883.2.9.10.1.6.53'</assert>
