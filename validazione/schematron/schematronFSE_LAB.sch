@@ -72,6 +72,27 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.18'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.17'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.15'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.10.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.20.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.30.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.41.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.42.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.50.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.60.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.70.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.80.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.90.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.100.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.110.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.120.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.130.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.140.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.150.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.160.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.170.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.10.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.20.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.30.4.1'])=1 or
@@ -95,12 +116,59 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1'])=1"
 			>ERRORE-11| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite uno dei seguenti identificatori Nazionanli:
 			CF 2.16.840.1.113883.2.9.4.3.2
-			TEAM 2.16.840.1.113883.2.9.4.3.7 o 2.16.840.1.113883.2.9.4.3.3
+			TEAM 2.16.840.1.113883.2.9.4.3.7 e 2.16.840.1.113883.2.9.4.3.3
 			ENI 2.16.840.1.113883.2.9.4.3.18
-			STP 2.16.840.1.113883.2.9.4.3.17
+			STP 2.16.840.1.113883.2.9.4.3.17 oppure un identificativo regionale 
 			ANA 2.16.840.1.113883.2.9.4.3.15
 			Oppure tramite gli identificatori regionali generati per rappresentare l'id del paziente.
 			</assert>
+			
+			<assert test="
+			(
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7']) = 0 or
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3']) = 1 
+			) and 
+			(
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3']) = 0 or
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7']) = 1 
+			)"
+			
+			>ERRORE-11a| Nel caso di Soggetti assicurati da istituzioni estere, devono essere riportati almeno due elementi di tipo 'id' contenenti:
+			- 2.16.840.1.113883.2.9.4.3.7: Il numero di identificazione della Tessera TEAM (Tessera Europea di Assicurazione Malattia),
+			- 2.16.840.1.113883.2.9.4.3.3Il numero di identificazione Personale TEAM
+			- numero di identificazione dell’assistito nel sistema PACS @nullFlavour è ammesso ove l’informazione non sia disponibile).
+			</assert>
+			
+			<assert test="(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])=0 and 
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7'])=0 and 
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3'])=0 and 
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.18'])=0 and
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.15'])=0) or 
+			not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.10.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.20.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.30.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.41.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.42.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.50.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.60.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.70.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.80.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.90.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.100.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.110.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.120.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.130.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.140.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.150.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.160.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.170.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1.1'])=1)"
+			
+			>ERRORE-11b| Nel caso di Stranieri Temporaneamente Presenti, l'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite un identificativo STP.</assert>
+			
+			
 
 			<!--Controllo recordTarget/patientRole/addr-->
 			<let name="num_addr" value="count(hl7:recordTarget/hl7:patientRole/hl7:addr)"/>
@@ -237,7 +305,8 @@
 		
 		<!--controllo su documentationOf-->
 		<rule context="hl7:ClinicalDocument/hl7:documentationOf">
-		
+			<assert test="count(hl7:serviceEvent/hl7:performer)=0 or count(hl7:serviceEvent/hl7:performer[@typeCode!='PPRF'])=1"
+			>ERRORE-41a | L'elemento ClinicalDocument/documentationOf/serviceEvent/performer deve essere valorizzato con uno dei seguenti valori: 'PRF' o 'SPRF'.</assert>
 			<assert test = "count (hl7:serviceEvent/hl7:performer/hl7:assignedEntity/hl7:assignedPerson)=0 or 
 			count (hl7:serviceEvent/hl7:performer/hl7:assignedEntity/hl7:assignedPerson/hl7:name)=1"
 			>ERRORE-42| L'elemento ClinicalDocument/documentationOf/serviceEvent/performer/assignedEntity/assignedPerson se presente, deve contenere l'elemento name </assert>
@@ -271,22 +340,24 @@
 		</rule>
 		
 		<!-- Controllo sotto elementi name-->
-		<rule context="//hl7:name[not(parent::hl7:informationRecipient) and not(parent::hl7:patient) and not(contains(local-name(..), 'Person'))]">
+
+		<rule context="//hl7:name[contains(local-name(..), 'Organization') or (parent::hl7:location)]">
 		  <assert test="count(hl7:delimiter)=0 and count(hl7:prefix)=0 and count(hl7:suffix)=0"
 		  >ERRORE-47| L’elemento 'name' di un'organizzazione non deve contenere i sotto elementi 'delimiter', 'prefix', 'suffix'.</assert>
-		</rule>
+    	</rule>
+
 		<rule context="//hl7:name">
 			<assert test="count(hl7:delimiter)=0"
 			>ERRORE-48| L’elemento 'name' del soggetto non deve contenere il sotto elemento 'delimiter'.</assert>
 		</rule>
 		
 		<!-- Controllo effectiveTime: -->
-		<rule context="//hl7:effectiveTime[hl7:low]">
+		<rule context="//hl7:effectiveTime[hl7:low/@value]">
 			<let name="effective_time_low" value="string(hl7:low/@value)"/>
 			<let name="effective_time_high" value="string(hl7:high/@value)"/>
-			<assert test="count(hl7:high)=0 or ($effective_time_high > $effective_time_low)"
+			<assert test="count(hl7:high/@value)=0 or ($effective_time_high >= $effective_time_low)"
 			>ERROR-49| Il valore dell'elemento effectiveTime/high : '<value-of select="$effective_time_high"/>' 
-			deve essere maggione di quello di effectiveTime/low : '<value-of select="$effective_time_low"/>'.</assert>
+			deve essere maggione o uguale di quello di effectiveTime/low : '<value-of select="$effective_time_low"/>'.</assert>
 		</rule>
 		
 		<rule context="//*[contains(local-name(), 'Organization')]/hl7:addr[@use='H' or @use='HP' or @use='HV']">
@@ -316,12 +387,12 @@
 						count(hl7:code[@code='18721-1'])>= 1 or count(hl7:code[@code='18722-9'])>= 1 or
 						count(hl7:code[@code='18723-7'])>= 1 or count(hl7:code[@code='18724-5'])>= 1 or
 						count(hl7:code[@code='18725-2'])>= 1 or count(hl7:code[@code='18727-8'])>= 1 or
-						count(hl7:code[@code='18729-6'])>= 1 or count(hl7:code[@code='18729-4'])>= 1 or
-						count(hl7:code[@code='18767-4'])>= 1 or count(hl7:code[@code='18768-2'])>= 1 or
-						count(hl7:code[@code='18769-0'])>= 1 or count(hl7:code[@code='26435-8'])>= 1 or
-						count(hl7:code[@code='26436-6'])>= 1 or count(hl7:code[@code='26437-4'])>= 1 or
-						count(hl7:code[@code='26438-2'])>= 1 or count(hl7:code[@code='18716-1'])>= 1 or
-						count(hl7:code[@code='26439-0'])>= 1 "
+						count(hl7:code[@code='18728-6'])>= 1 or count(hl7:code[@code='18729-6'])>= 1 or 
+						count(hl7:code[@code='18729-4'])>= 1 or count(hl7:code[@code='18767-4'])>= 1 or 
+						count(hl7:code[@code='18768-2'])>= 1 or count(hl7:code[@code='18769-0'])>= 1 or 
+						count(hl7:code[@code='26435-8'])>= 1 or count(hl7:code[@code='26436-6'])>= 1 or 
+						count(hl7:code[@code='26437-4'])>= 1 or count(hl7:code[@code='26438-2'])>= 1 or 
+						count(hl7:code[@code='18716-1'])>= 1 or count(hl7:code[@code='26439-0'])>= 1 "
 						>ERRORE-b1| L'elemento code della section DEVE essere valorizzato con uno dei seguenti codici LOINC individuati:
 						18717-9 BANCA DEL SANGUE
 						18718-7 MARCATORI CELLULARI 
