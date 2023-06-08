@@ -65,13 +65,33 @@
 			>ERRORE-10| L'elemento <name/> DEVE contenere un solo elemento 'recordTarget' </assert>
 			
 			<!--Controllo recordTarget/patientRole/id-->
-			<!--Controllo recordTarget/patientRole/id-->
-			<assert test="count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])=1 or
-			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7'])=1 or 
-			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3'])=1 or 
-			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.18'])=1 or
-			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.17'])=1 or
-			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.15'])=1 or
+			<assert test="(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])=1 and count(hl7:recordTarget/hl7:patientRole/hl7:id[@root or @nullFlavor])>=2) or
+			(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7']) = 1 and count(hl7:recordTarget/hl7:patientRole/hl7:id[@root or @nullFlavor])>=3) or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3']) = 1 or
+			(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.18'])=1 and count(hl7:recordTarget/hl7:patientRole/hl7:id[@root or @nullFlavor])>=2) or
+			(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.17'])=1 and count(hl7:recordTarget/hl7:patientRole/hl7:id[@root or @nullFlavor])>=2) or
+			(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.15'])=1 and count(hl7:recordTarget/hl7:patientRole/hl7:id[@root or @nullFlavor])>=2) or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.10.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.20.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.30.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.41.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.42.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.50.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.60.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.70.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.80.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.90.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.100.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.110.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.120.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.130.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.140.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.150.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.160.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.170.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.10.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.20.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.30.4.1'])=1 or
@@ -93,15 +113,61 @@
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1'])=1 or
 			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1'])=1"
-			>ERRORE-11a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite uno dei seguenti identificatori Nazionanli:
-			CF 2.16.840.1.113883.2.9.4.3.2
-			TEAM 2.16.840.1.113883.2.9.4.3.7 o 2.16.840.1.113883.2.9.4.3.3
+			>ERRORE-10a| L'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite uno dei seguenti identificatori Nazionanli:
+			CF 2.16.840.1.113883.2.9.4.3.2 (Nel caso di Cittadino Italiano o straniero residente in Italia, patientRole DEVE riportare un elemento di tipo id contenente il Codice Fiscale e un ulteriore elemento id OBBLIGATORIO contenente il numero di identificazione dell’assistito nel sistema PACS (@nullFlavour è ammesso ove l’informazione non sia disponibile).)
+			TEAM 2.16.840.1.113883.2.9.4.3.7 e 2.16.840.1.113883.2.9.4.3.3
 			ENI 2.16.840.1.113883.2.9.4.3.18
-			STP 2.16.840.1.113883.2.9.4.3.17
+			STP 2.16.840.1.113883.2.9.4.3.17 oppure un identificativo regionale 
 			ANA 2.16.840.1.113883.2.9.4.3.15
 			Oppure tramite gli identificatori regionali generati per rappresentare l'id del paziente.
 			</assert>
 			
+			<assert test="
+			(
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7']) = 0 or
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3']) = 1 
+			) and 
+			(
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3']) = 0 or
+			  count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7']) = 1 
+			)"
+			
+			>ERRORE-10b| Nel caso di Soggetti assicurati da istituzioni estere, devono essere riportati almeno tre elementi di tipo "id" contenenti:
+			- 2.16.840.1.113883.2.9.4.3.7: Il numero di identificazione della Tessera TEAM (Tessera Europea di Assicurazione Malattia),
+			- 2.16.840.1.113883.2.9.4.3.3Il numero di identificazione Personale TEAM
+			- numero di identificazione dell’assistito nel sistema PACS @nullFlavour è ammesso ove l’informazione non sia disponibile).
+			</assert>
+			
+			<assert test="(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.2'])=0 and 
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.7'])=0 and 
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.3'])=0 and
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.18'])=0 and
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.4.3.15'])=0) or 
+			not(count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.10.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.20.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.30.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.41.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.42.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.50.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.60.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.70.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.80.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.90.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.100.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.110.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.120.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.130.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.140.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.150.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.160.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.170.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.180.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.190.4.1.1'])=1 or
+			count(hl7:recordTarget/hl7:patientRole/hl7:id[@root='2.16.840.1.113883.2.9.2.200.4.1.1'])=1)"			
+			>ERRORE-10c| Nel caso di Stranieri Temporaneamente Presenti, l'elemento <name/>/recordTarget/patientRole/id  deve avere l'attributo @root valorizzato tramite un identificativo STP.</assert>
+			
+
+					
 			<!--Controllo addr-->
 			<let name="num_addr" value="count(hl7:recordTarget/hl7:patientRole/hl7:addr)"/>
 			<assert test="$num_addr=0 or (count(hl7:recordTarget/hl7:patientRole/hl7:addr/hl7:country)=$num_addr and 
@@ -184,16 +250,6 @@
 			<assert test ="count(hl7:inFulfillmentOf)>=1" 
 			>ERRORE-38| In ClinicalDocuemnt DEVE essere presente almeno un elemento 'inFulfillmentOf'. </assert>
 
-            <!--Controllo documentationOf-->
-			<assert test = "count (hl7:documentationOf/hl7:serviceEvent)=0 or 
-			                count (hl7:documentationOf/hl7:serviceEvent/hl7:code[@code='PROG'])=1 or
-                            count (hl7:documentationOf/hl7:serviceEvent/hl7:code[@code='DIR'])=1 or 
-							count (hl7:documentationOf/hl7:serviceEvent/hl7:code[@code='RAD_PROG'])=1 or 
-							count (hl7:documentationOf/hl7:serviceEvent/hl7:code[@code='RAD_DIR'])=1"
-			>ERRORE-40| L'elemento ClinicalDocument/documentationOf/serviceEvent deve contenere l'elemento code e DEVE valorizzare il suo attributo code con uno dei seguenti valori: 'PROG'|'DIR'|'RAD_PROG|'RAD_DIR' </assert>			
-			<assert test = "count(hl7:documentationOf/hl7:serviceEvent)= 0 or count(hl7:documentationOf/hl7:serviceEvent/hl7:code[@codeSystem='2.16.840.1.113883.2.9.5.1.4'])= 1"
-			>ERRORE-41| L'elemento ClinicalDocument/documentationOf/serviceEvent DEVE contenere l'elemento code valorizzato con l'attributo @codeSystem '2.16.840.1.113883.2.9.5.1.4'</assert>
-
 			<!--Controllo componentOf-->
 			<let name="path_name" value="hl7:componentOf/hl7:encompassingEncounter/hl7:responsibleParty/hl7:assignedEntity/hl7:assignedPerson/hl7:name"/>
 			<let name="code_encomp" value="hl7:componentOf/hl7:encompassingEncounter/hl7:code/@code"/>
@@ -255,7 +311,20 @@
             >ERRORE-39| <name/>/order/priorityCode DEVE avere l'attributo '@codeSystem='2.16.840.1.113883.5.7' e @code valorizzato con uno dei seguenti valori: 'R'|'P'|'UR'|'EM' </assert>
 		</rule>
 		
-	
+		<!--Controllo documentationOf-->
+		<rule context="hl7:ClinicalDocument/hl7:documentationOf">
+			<assert test="count(hl7:serviceEvent/hl7:performer)=0 or count(hl7:serviceEvent/hl7:performer[@typeCode!='PPRF'])=1"
+			>ERRORE-39a| L'elemento ClinicalDocument/documentationOf/serviceEvent/performer deve essere valorizzato con uno dei seguenti valori: 'PRF' o 'SPRF'.</assert>
+			<assert test = "count (hl7:serviceEvent)=0 or 
+			                count (hl7:serviceEvent/hl7:code[@code='PROG'])=1 or
+                            count (hl7:serviceEvent/hl7:code[@code='DIR'])=1 or 
+							count (hl7:serviceEvent/hl7:code[@code='RAD_PROG'])=1 or 
+							count (hl7:serviceEvent/hl7:code[@code='RAD_DIR'])=1"
+			>ERRORE-40| L'elemento ClinicalDocument/documentationOf/serviceEvent deve contenere l'elemento code e DEVE valorizzare il suo attributo code con uno dei seguenti valori: 'PROG'|'DIR'|'RAD_PROG|'RAD_DIR' </assert>			
+			<assert test = "count(hl7:serviceEvent)= 0 or count(hl7:serviceEvent/hl7:code[@codeSystem='2.16.840.1.113883.2.9.5.1.4'])= 1"
+			>ERRORE-41| L'elemento ClinicalDocument/documentationOf/serviceEvent DEVE contenere l'elemento code valorizzato con l'attributo @codeSystem '2.16.840.1.113883.2.9.5.1.4'</assert>
+
+		</rule>
 	<!--________________________________ CONTROLLI GENERICI _____________________________________________________________-->
 	
 		<!--Controllo use Telecom-->
@@ -264,6 +333,11 @@
 			>Errore-45| L’elemento 'telecom' DEVE contenere l'attributo @use.
 			</assert>
 		</rule>	
+		<rule context="//*[contains(local-name(), 'Organization')][hl7:telecom]">
+			<assert test="not(hl7:telecom/@use='H' or hl7:telecom/@use='HP' or hl7:telecom/@use='HV')"
+			>ERRORE-45a| L'elemento telecom di un'organizzazione non può essere di tipo Home, ovvero l'attributo @use deve essere diverso da: H | HP | HV.
+			</assert>
+		</rule>
 		
 		<!-- Controllo formato: -->
 		<!--campi Codice Fiscale: 16 cifre [A-Z0-9]{16} -->
@@ -292,14 +366,32 @@
 			>Errore-50| L'attributo "@classCode" dell'elemento "Act" deve essere valorizzato con "ACT" </assert>
 		</rule>
 		
-		<!--Verifica che i codici relativi al CodeSystem "UCUM" utilizzati siano corretti-->
-		<!--rule context="//*[@unit]">
-			<let name="val_UCUM" value="@unit"/>
-			<assert test="doc('DIZ/XML_FSE_v1/2.16.840.1.113883.4.642.3.912.xml')//el[@code=$val_UCUM]"
-			>ERRORE-7_DIZ| Codice UCUM <value-of select="$val_UCUM"/> errato
-			</assert>
-		</rule-->
+		<!-- Controllo sotto elementi name-->
+
+		<rule context="//hl7:name[contains(local-name(..), 'Organization') or (parent::hl7:location)]">
+		  <assert test="count(hl7:delimiter)=0 and count(hl7:prefix)=0 and count(hl7:suffix)=0"
+		  >ERRORE-51| L’elemento 'name' di un'organizzazione non deve contenere i sotto elementi 'delimiter', 'prefix', 'suffix'.</assert>
+    	</rule>
+
+		<rule context="//hl7:name">
+			<assert test="count(hl7:delimiter)=0"
+			>ERRORE-52| L’elemento 'name' del soggetto non deve contenere il sotto elemento 'delimiter'.</assert>
+		</rule>
 		
+		<!-- Controllo effectiveTime: -->
+		<rule context="//hl7:effectiveTime[hl7:low/@value]">
+			<let name="effective_time_low" value="string(hl7:low/@value)"/>
+			<let name="effective_time_high" value="string(hl7:high/@value)"/>
+			<assert test="count(hl7:high/@value)=0 or ($effective_time_high >= $effective_time_low)"
+			>ERROR-53| Il valore dell'elemento effectiveTime/high : '<value-of select="$effective_time_high"/>' 
+			deve essere maggiore o uguale di quello di effectiveTime/low : '<value-of select="$effective_time_low"/>'.</assert>
+		</rule>
+		
+		<rule context="//*[contains(local-name(), 'Organization')]/hl7:addr[@use='H' or @use='HP' or @use='HV']">
+			<assert test="false()"
+			>ERRORE-54| L'indirizzo di un'organizzazione non può essere di tipo Home, ovvero l'attributo @use deve essere diverso da: H | HP | HV.
+			</assert>
+		</rule>
 	<!--________________________________ BODY _____________________________________________________________-->	
 	
 	    <!--Controllo sulle Section obbligatorie-->
@@ -567,16 +659,18 @@
 			(count(hl7:act/hl7:entryRelationship/hl7:observation/hl7:value/@code)=1 or 
 			count(hl7:act/hl7:entryRelationship/hl7:observation/hl7:value/hl7:originalText/hl7:reference)=1)"
 			>ERRORE-b56| Sotto sezione Allergie: L'elemento entry/act/entryRelationship/observation/value non codificato, deve avere l'elemento originalText/reference valorizzato.</assert>
+			
+			<assert test="count(hl7:act/hl7:entryRelationship/hl7:observation/hl7:participant)>=1"
+			>ERRORE-b57| Sotto sezione Allergie: L'elemento entryRelationship/observation (Descrizione Agente) deve avere almeno un elemento 'participant' che dettaglia l'agente scatenante.</assert>
 		</rule>
 		
 		<!--Descrizione Agente-->
-		<rule context="hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:code[@code='11329-0']]/hl7:component/hl7:section[hl7:code[@code='48765-2']]/hl7:entry/hl7:act/hl7:entryRelationship">
-			<assert test="count(hl7:observation/hl7:participant)=1"
-			>ERRORE-b57| Sotto sezione Allergie: L'elemento entryRelationship/observation (Descrizione Agente) deve avere almeno un elemento 'participant' che dettaglia l'agente scatenante.</assert>
-			<assert test="count(hl7:observation/hl7:participant/hl7:participantRole/hl7:playingEntity/hl7:code[@nullFlavor='UNK'])=1 or
-			count(hl7:observation/hl7:participant/hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.6.73'])=1 or
-			count(hl7:observation/hl7:participant/hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.9.6.1.5'])=1 or
-			count(hl7:observation/hl7:participant/hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.9.77.22.11.2'])=1"
+		<rule context="hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:code[@code='11329-0']]/hl7:component/hl7:section[hl7:code[@code='48765-2']]/hl7:entry/hl7:act/hl7:entryRelationship/hl7:observation/hl7:participant">
+			
+			<assert test="count(hl7:participantRole/hl7:playingEntity/hl7:code[@nullFlavor='UNK'])=1 or
+			count(hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.6.73'])=1 or
+			count(hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.9.6.1.5'])=1 or
+			count(hl7:participantRole/hl7:playingEntity/hl7:code[@codeSystem='2.16.840.1.113883.2.9.77.22.11.2'])=1"
 			>ERRORE-b58| Sotto sezione Allergie: L'elemento participant/participantRole/playingEntity deve avere l'attributo code valorizzato con @nullFlavor='UNK' nel caso in cui non è noto l'agente della reazione allergica altrimenti
 			code/@codeSystem valorizzato come segue:
 			- '2.16.840.1.113883.6.73' codifica "WHO ATC"
@@ -612,7 +706,7 @@
 		<rule context="hl7:ClinicalDocument/hl7:component/hl7:structuredBody/hl7:component/hl7:section[hl7:code[@code='55114-3']]/hl7:entry">
 			<assert test="count(hl7:observation)=1"
 			>ERRORE-b64| Sezione Precedenti Esami Eseguiti: L'elemento 'entry' della sezione deve contenere un elemento di tipo 'observation'.</assert>
-				<!--Dubbio sul controllo @codeSystem-->
+
 			<!--assert test="count(hl7:observation/hl7:code[@codeSystem='2.16.840.1.113883.6.1'])=1 or 
 			count(hl7:observation/hl7:code[@codeSystem='2.16.840.1.113883.6.103'])=1"
 			>ERRORE-109| Sezione Precedenti Esami Eseguiti: l'entry/observation/code può essere valorizzato secodo i sistemi di codifica
@@ -644,8 +738,8 @@
 			LOINC @codeSystem='2.16.840.1.113883.6.1'
 			ICD-9-CM @codeSystem='2.16.840.1.113883.6.103'</report>
 			
-			<assert test="count(hl7:act/hl7:statusCode[@code='active'])=1"
-			>ERRORE-b66| Sezione Esame Eseguito: L'elemento 'statusCode' all'interno di entry/act deve avere l'attributo @code valorizzato come "active".</assert>
+			<assert test="count(hl7:act/hl7:statusCode)=1"
+			>ERRORE-b66| Sezione Esame Eseguito: L'elemento entry/act deve contenere il tag 'statusCode' valorizzato.</assert>
 			<assert test="count(hl7:act/hl7:effectiveTime)=1"
 			>ERRORE-b67| Sezione Esame Eseguito: entry/act della sezione deve avere l'elemento 'effectiveTime'.</assert>
 			
