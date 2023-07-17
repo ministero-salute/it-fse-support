@@ -134,13 +134,13 @@ _Tabella 3: Registro Modifiche_
 
 
 # 2. Contesto di Riferimento
-La nuova architettura del terminology system prevede la presenza di un componente, terminology server, che implementa lo standard HL7 Fhir per consentire l'integrazione con i sistemi sanitari elettronici. 
-Ciò è fatto attraverso l'utilizzo di tre tipi di metadata resource:
+La nuova architettura del terminology system prevede la presenza di un componente, terminology server, che implementa lo standard HL7 FHIR per  consentire l'integrazione con i sistemi sanitari elettronici(ad esempio il **Gateway**) e per garantire l'interoperabilità con altri sistemi e applicazioni che usano le risorse terminologiche, in particolare i seguenti  tipi di metadata resource:
  - **Codesystem**
  - **Valueset**
  - **Conceptmap** 
 
-Il caricamento e il recupero di tali risorse può essere fatto sia in maniera standard (ovvero accedendo direttamente al terminology-server), sia in maniera custom(facilitata) attraverso alcune api esposte, illustrate di seguito in questo documento, in particolare verranno dettagliate le modalità attraverso cui è possibile usufruire dei servizi esposti dal terminology system.
+Il caricamento e il recupero di tali risorse può essere fatto sia in maniera standard (ovvero accedendo direttamente al terminology-server), sia in maniera custom attraverso apposite api esposte, illustrate di seguito in questo documento.
+In particolare verranno dettagliate le modalità attraverso cui è possibile usufruire dei servizi esposti dal terminology system.
 
 Il documento sarà redatto in maniera incrementale e di volta in volta ulteriori API saranno integrate e illustrate.
 
@@ -163,18 +163,17 @@ L'endpoint del **sistema di test** è:
 
 **Upload terminologie**:
 
-L'API di caricamento terminologie fornisce un servizio che semplifica il processo di caricamento di terminologie sul Terminology Server, infatti gli utenti possono facilmente caricare terminologie in diversi formati, inclusi il formato FHIR (FHIR_R4_XML, FHIR_R4_JSON) e formati personalizzati come [CSV](#521-drill-down-custom-csv) o [JSON](#522-drill-down-custom-json).
-Questo processo agevola l'integrazione e la gestione delle terminologie nel sistema, grazie ad alcune facilitazioni e opzioni di formato diverse.
+L'API di upload permette di semplificare il processo di caricamento di terminologie sul terminology server hapi-fhir; 
+Infatti gli utenti possono facilmente caricare terminologie in diversi formati, inclusi il formato FHIR (FHIR_R4_XML, FHIR_R4_JSON) e formati personalizzati come [CSV](#521-drill-down-custom-csv) o [JSON](#522-drill-down-custom-json).
 <br/>
 
 **Delete terminologie**:
 
-L'API di cancellazione consente agli utenti di eliminare metadata resource dal server terminologico in modo tramite l'identificatore del dizionario (OID) e l'identificatore della versione (Version).
+L'API di cancellazione consente agli utenti di eliminare metadata resource dal server terminologico tramite l'identificatore del dizionario (OID) e l'identificatore della versione (Version).
 
 Al termine della richiesta di eliminazione, il server restituirà una risposta che indicherà se la cancellazione è avvenuta con successo o se si sono verificati eventuali errori nel processo.
 
 <br/>
-
 
 ## 2.1. Pattern di Interazione
 
@@ -215,7 +214,6 @@ Il secondo JWT è di “signature” e contiene rifermenti al file oggetto dell'
 ```
 FSE-JWT-Terminology: {VALORE DEL TOKEN}
 ```
-
 
 **Entrambi** i token devono essere firmati utilizzando il certificato “signature”.
 
