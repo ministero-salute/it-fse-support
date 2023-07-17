@@ -1,6 +1,6 @@
 **FASCICOLO SANITARIO ELETTRONICO 2.0**
 
-**INTERFACCE REST TERMINOLOGY SERVICE**
+**INTERFACCE REST TERMINOLOGY SYSTEM**
 
 
 <table>
@@ -39,6 +39,9 @@
   - [5.1 Campi contenuti nei JWT](#51-campi-contenuti-nei-jwt)
     - [5.1.1. Authentication Bearer](#511-authentication-bearer)
     - [5.1.2. FSE-JWT-Terminology](#512-fse-jwt-terminology)
+    - [5.2. Drill down file input](#52-drill-down-file-input)
+    - [5.2.1 Drill down custom csv](#521-drill-down-custom-csv)
+    - [5.2.2 Drill down custom json](#522-drill-down-custom-json)
 - [6. Drilldown Response in caso di Errore](#6-drilldown-response-in-caso-di-errore)
   - [6.1. Errori Applicativi](#61-errori-applicativi)
     - [6.2. Esempi di errore generati da Terminology](#62-esempi-di-errore-generati-da-terminology)
@@ -89,6 +92,12 @@ _Tabella 1: Riferimenti Esterni_
    </td>
   </tr>
   <tr>
+   <td>FTS
+   </td>
+   <td>FSE Terminology system
+   </td>
+  </tr>
+  <tr>
    <td>N.A.
    </td>
    <td>Non Applicabile
@@ -125,11 +134,17 @@ _Tabella 3: Registro Modifiche_
 
 
 # 2. Contesto di Riferimento
-La nuova architettura del terminology service prevede la presenza di un componente, terminology server, adibito alla memorizzazione dei metadata resource (**Codesystem**, **Valueset**, **Conceptmap**), ed altri servizi che facilitano proprio la gestione di questi componenti.
+La nuova architettura del terminology system prevede la presenza di un componente, terminology server, che implementa lo standard HL7 Fhir per consentire l'integrazione con i sistemi sanitari elettronici. 
+Ciò è fatto attraverso l'utilizzo di tre tipi di metadata resource:
+ - **Codesystem**
+ - **Valueset**
+ - **Conceptmap** 
 
-In questo documento verranno indicate le modalità per usufruire dei servizi esposti dal terminology service: il documento sarà redatto in modo incrementale e di volta in volta ulteriori API saranno integrate e illustrate.
+Il caricamento e il recupero di tali risorse può essere fatto sia in maniera standard (ovvero accedendo direttamente al terminology-server), sia in maniera custom(facilitata) attraverso alcune api esposte, illustrate di seguito in questo documento, in particolare verranno dettagliate le modalità attraverso cui è possibile usufruire dei servizi esposti dal terminology system.
 
-In questa fase vengono trattati i due servizi principali del, che consentono rispettivamente di invocare le funzionalità di upload e eliminazione terminologie.
+Il documento sarà redatto in maniera incrementale e di volta in volta ulteriori API saranno integrate e illustrate.
+
+In questa fase vengono trattati i due servizi principali, che consentono rispettivamente di invocare le funzionalità di upload e di eliminazione terminologie.
 
 | Endpoint URL                    | Metodo | Funzionalità        |
 | ------------------------------- | ------ | ------------------- |
@@ -148,16 +163,16 @@ L'endpoint del **sistema di test** è:
 
 **Upload terminologie**:
 
-L'API in questione fornisce un servizio che permette agli utenti di caricare terminologie sul Terminology Server utilizzando una serie di facilitazioni. Gli utenti possono sfruttare questa API per caricare terminologie sia nel formato FHIR (FHIR_R4_XML, FHIR_R4_JSON) che tramite formati personalizzati come CSV o JSON.
-
-In sostanza, l'API semplifica il processo di caricamento di terminologie sul server, fornendo agli utenti la flessibilità di utilizzare formati standard come FHIR o di personalizzare i formati dei loro documenti tramite CSV o JSON. Questo consente agli utenti di adattare i loro dati terminologici alle specifiche del server FHIR, facilitando l'integrazione e la gestione delle terminologie nel sistema.
-
+L'API di caricamento terminologie fornisce un servizio che semplifica il processo di caricamento di terminologie sul Terminology Server, infatti gli utenti possono facilmente caricare terminologie in diversi formati, inclusi il formato FHIR (FHIR_R4_XML, FHIR_R4_JSON) e formati personalizzati come [CSV](#521-drill-down-custom-csv) o [JSON](#522-drill-down-custom-json).
+Questo processo agevola l'integrazione e la gestione delle terminologie nel sistema, grazie ad alcune facilitazioni e opzioni di formato diverse.
 <br/>
 
 **Delete terminologie**:
 
-L'endpoint corrispondente a questo metodo DELETE consente di cancellare terminologie dal server terminologico. 
-Utilizzando l'API, gli utenti possono fornire l'identificatore del dizionario (oid) e l'identificatore della versione (version) per eliminare le terminologie associate a quel sistema. La risposta restituirà un messaggio che indica se la cancellazione è avvenuta con successo o se si sono verificati errori.
+L'API di cancellazione consente agli utenti di eliminare metadata resource dal server terminologico in modo tramite l'identificatore del dizionario (OID) e l'identificatore della versione (Version).
+
+Al termine della richiesta di eliminazione, il server restituirà una risposta che indicherà se la cancellazione è avvenuta con successo o se si sono verificati eventuali errori nel processo.
+
 <br/>
 
 
@@ -181,7 +196,7 @@ Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee G
 
 ## 2.3. Note su autenticazione e token JWT
 
-Per comunicare con il le API di authoring esposte dal microservizio **it-fse-srv-dictionary** è necessario essere in possesso di 2 certificati X.509 e delle rispettive chiavi private.
+Per comunicare con le API di authoring esposte dal microservizio **it-fse-srv-dictionary** è necessario essere in possesso di 2 certificati X.509 e delle rispettive chiavi private.
 
 Il certificato denominato di **“autenticazione”** viene utilizzato <span style="text-decoration:underline;">unicamente</span> come certificato client per le chiamate https.
 
@@ -217,8 +232,12 @@ L’Endpoint si compone come segue:
 https://<HOST>:<PORT>/v<major>/terminology/{format}
 ```
 
-Lo scopo di questa API è quello di permettere il caricamento delle terminologie sul terminology server hapi-fhir utilizzando diversi formati,
-in particolare CUSTOM_CSV, CUSTOM_JSON, FHIR_JSON, FHIR_XML.
+Lo scopo di questa API è quello di permettere il caricamento delle terminologie sul terminology server utilizzando diversi formati,
+in particolare: 
+- CUSTOM_CSV 
+- CUSTOM_JSON
+- FHIR_JSON
+- FHIR_XML
 
 
 ## 3.1. Request
@@ -264,7 +283,7 @@ _Tabella 5: Method, Url, Type_
    <td>true</td>
   </tr>
   <tr>
-   <td rowspan="1" >Path param</td>
+   <td rowspan="1">Path variable</td>
    <td>format</td>
    <td>format</td>
    <td>FormatEnum</td>
@@ -278,7 +297,7 @@ _Tabella 5: Method, Url, Type_
    <td>true</td>
   </tr>
 <tr>
-   <td rowspan="5">creationInfo<span style="color: red;">**</span></td>
+   <td rowspan="5">creationInfo*</span></td>
    <td>oidName</td>
    <td>String</td>
    <td>true</td>
@@ -289,29 +308,20 @@ _Tabella 5: Method, Url, Type_
    <td>true</td>
   </tr>
   <tr>
-   <td>url
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
+   <td>url</td>
+   <td>String</td>
+   <td>true</td>
   </tr>
    <tr>
-   <td>oid
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
+   <td>oid</td>
+   <td>String</td>
+   <td>true</td>
   </tr>
-   </tr>
+  </tr>
    <tr>
-   <td>type
-   </td>
-   <td>TypeEnum
-   </td>
-   <td>true
-   </td>
+   <td>type</td>
+   <td>TypeEnum</td>
+   <td>true</td>
   </tr>
 </table>
 
@@ -320,12 +330,11 @@ _Tabella 6: Endpoint - Descrizione parametri_
 <br>
 
 La compilazione errata dei parametri o la mancata compilazione dei parametri "required" comporta un errore di tipo bloccante.
-
-Il Request Body è di tipo multipart/form-data e contiene i seguenti parametri:
+Il request body è di tipo multipart/form-data e contiene i seguenti parametri:
 
 - **file**: Questo parametro deve contenere un file in linea a quanto specificato nel campo format in path param.
 
-- **creationInfo**: Questo parametro contiene metadati di supporto per CUSTOM_CSV e CUSTOM_JSON.
+- **creationInfo***: Questo parametro contiene metadati di supporto per CUSTOM_CSV e CUSTOM_JSON.
 
 **N.B<span style="color: red;">**: la parte creationInfo è obbligatoria solo nel caso in cui viene scelto come format un CSV o un JSON.
 
@@ -341,25 +350,29 @@ Il Request Body è di tipo multipart/form-data e contiene i seguenti parametri:
   </tr>
   <tr>
    <td>CUSTOM_CSV</td>
-   <td>".csv"</td>
-   <td>Custom CSV Format</td>
+   <td>.csv</td>
+   <td>Custom CSV</td>
   </tr>
   <tr>
    <td>CUSTOM_JSON</td>
-   <td>".json"</td>
-   <td>Custom JSON Format</td>
+   <td>.json</td>
+   <td>Custom JSON</td>
   </tr>
   <tr>
    <td>FHIR_R4_XML</td>
-   <td>".xml"</td>
-   <td>FHIR Release 4 XML Format</td>
+   <td>.xml</td>
+   <td>FHIR Release 4 XML</td>
   </tr>
   <tr>
    <td>FHIR_R4_JSON</td>
-   <td>".json"</td>
-   <td>FHIR Release 4 JSON Format</td>
+   <td>.json</td>
+   <td>FHIR Release 4 JSON</td>
   </tr>
 </table>
+
+_Tabella 7: FormatEnum_
+
+<br>
 
 <table>
   <tr>
@@ -376,6 +389,8 @@ Il Request Body è di tipo multipart/form-data e contiene i seguenti parametri:
    <td>Code system</td>
   </tr>
 </table>
+
+_Tabella 8: TypeEnum_
 
 ### 3.1.1. Esempio Request
 
@@ -484,9 +499,9 @@ curl -X 'POST' \
 </table>
 
 
-_Tabella 7: Response Servizio di Upload terminologie_
+_Tabella 9: Response Servizio di Upload terminologie_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 6 “Drilldown Error Response”.
 
 <br>
 
@@ -520,6 +535,8 @@ traceId e spanId coincidono nella prima operazione.
   </tr>
 </table>
 
+_Tabella 10: Campi Response sempre valorizzati_
+
 <br>
 
 **Campi valorizzati in caso di Success**
@@ -533,16 +550,16 @@ traceId e spanId coincidono nella prima operazione.
   <tr>
    <td>location</td>
    <td>String</td>
-   <td>location</td>
+   <td>Puntamento della risorsa creata</td>
   </tr>
   <tr>
    <td>insertedItems</td>
    <td>Integer</td>
-   <td>insertedItems</td>
+   <td>Numero degli elementi inseriti</td>
   </tr>
 </table>
 
-_Tabella 8: Campi Response sempre valorizzati_
+_Tabella 11: Campi Response valorizzati in caso di success_
 
 <br>
 
@@ -587,11 +604,11 @@ Lo scopo di questa API è quello di consentire l'eliminazione di una terminologi
 ## 4.1. Request
 
 | METHOD | POST                            |
-| ------ | ----------------------------    |
+| ------ | ------------------------------- |
 | URL    | /v1/terminology/{oid}/{version} |
 | TYPE   | application/json                |
 
-_Tabella 9: Method, Url, Type_
+_Tabella 12: Method, Url, Type_
 
 <br>
  
@@ -648,7 +665,7 @@ _Tabella 9: Method, Url, Type_
   </tr>
 </table>
 
-_Tabella 10: Endpoint - Descrizione parametri_
+_Tabella 13: Endpoint - Descrizione parametri_
 
 Il parametro `oid` e `version` identificano una "chiave primaria" della terminologia che si intende eliminare sul terminology-server
 
@@ -734,10 +751,9 @@ curl -X 'DELETE' \
   </tr>
 </table>
 
+_Tabella 14: Response Servizio di Alimentazione_
 
-_Tabella 12: Response Servizio di Alimentazione_
-
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 6 “Drilldown Error Response”.
 
 <br>
 
@@ -771,7 +787,7 @@ traceId e spanId coincidono nella prima operazione.
   </tr>
 </table>
 
-_Tabella 13: Campi Response sempre valorizzati_
+_Tabella 15: Campi Response sempre valorizzati_
 
 <br>
 
@@ -798,7 +814,7 @@ _Tabella 13: Campi Response sempre valorizzati_
   </tr>
 </table>
 
-_Tabella 14: Campi Response sempre valorizzati_
+_Tabella 16: Campi Response sempre valorizzati_
 
 <br>
 
@@ -954,7 +970,7 @@ Il token JWT denominato `Authentication Bearer` è un token di autenticazione, c
   </tr>
   </table>
 
-_Tabella 40: Campi Authentication Bearer_
+_Tabella 17: Campi Authentication Bearer_
 
 <br>
 
@@ -1134,8 +1150,7 @@ Codice Fiscale dell’utente che fa richiesta del servizio di interoperabilità.
   </tr>
 </table>
 
-
-_Tabella 41: Campi contenuti in Authentication Bearer Token_
+_Tabella 18: Campi contenuti in Authentication Bearer Token_
 
 <br>
 
@@ -1383,7 +1398,7 @@ Il token JWT denominato `FSE-JWT-Terminology` è un token applicativo composto d
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
-   <td>https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/Terminology/v1
+   <td>https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/terminology/v1
    </td>
   </tr>
   <tr>
@@ -1427,65 +1442,48 @@ Il token JWT denominato `FSE-JWT-Terminology` è un token applicativo composto d
   </tr>
 </table>
 
-_Tabella 42: Campi contenuti nel business Token_
+_Tabella 19: Campi contenuti nel business Token_
 
 <br>
 
 <table>
   <tr>
-   <td colspan="2" >
-<strong>CUSTOM CLAIMS</strong>
-   </td>
+   <td colspan="2"><strong>CUSTOM CLAIMS</strong></td>
   </tr>
   <tr>
    <td colspan="2" style="text-align:center"><strong>OID TERMINOLOGIA</strong>
    </td>
   </tr>
   <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>TODO
-   </td>
+   <td><strong>DESCRIZIONE</strong></td>
+   <td>Identifica l'oid per cui si vuole effettuare una richiesta di creazione/eliminazione</td>
   </tr>
   <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>TODO
-   </td>
+   <td><strong>ESEMPIO</strong></td>
+   <td>urn:oid:2.16.840.1.113883.5.1</td>
   </tr>
   <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio per gli endpoint di Creazione massiva e Rinnovo massivo
-   </td>
+   <td><strong>VALIDAZIONE</strong></td>
+   <td>Obbligatorio sia per l'endpoint di upload che delete. In particolare per la creazione, viene sempre controllata la presenza, in più nel caso in cui si sceglie un format CUSTOM_CSV o CUSTOM_JSON viene anche controllato il valore</td>
   </tr>
   <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>oid</code>
-   </td>
+   <td><strong>CAMPO JWT</strong></td>
+   <td><code>oid</code></td>
   </tr>
   <tr>
-   <td colspan="2" style="text-align:center"><strong>VERSION</strong>
-   </td>
+   <td colspan="2" style="text-align:center"><strong>VERSION</strong></td>
   </tr>
   <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>TODO
-   </td>
+   <td><strong>DESCRIZIONE</strong></td>
+   <td>Identifica la version della terminologia per la quale si vuole richiedere una creazione/cancellazione</td>
   </tr>
   <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>TODO
-   </td>
+   <td><strong>ESEMPIO</strong></td>
+   <td>2.1.0</td>
   </tr>
   <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio per gli endpoint di Download massivo e Revoca massiva
-   </td>
+   <td><strong>VALIDAZIONE</strong></td>
+   <td>Obbligatorio sia per l'endpoint di upload che delete. In particolare per la creazione, viene sempre controllata la presenza, in più nel caso in cui si sceglie un format CUSTOM_CSV o CUSTOM_JSON viene anche controllato il valore</td>
   </tr>
   <tr>
    <td><strong>CAMPO JWT</strong>
@@ -1493,10 +1491,30 @@ _Tabella 42: Campi contenuti nel business Token_
    <td><code>version</code>
    </td>
   </tr>
+
+  <tr>
+   <td colspan="2" style="text-align:center"><strong>HASH FILE</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>DESCRIZIONE</strong></td>
+   <td>Identifica l'hash sha 256 del file per il quale si intende fare upload</td>
+  </tr>
+  <tr>
+   <td><strong>ESEMPIO</strong></td>
+   <td>ccd1a23b4a73c838e4dfc2a1948aaec8389ebd331cbaebc1b3144c74fca17da5</td>
+  </tr>
+  <tr>
+   <td><strong>VALIDAZIONE</strong></td>
+   <td>Obbligatorio solo per l'endpoint di upload.</td>
+  </tr>
+  <tr>
+   <td><strong>CAMPO JWT</strong></td>
+   <td><code>hash_file</code></td>
+  </tr>
 </table>
 
-
-_Tabella 43: Campi contenuti in FSE-JWT-Terminology_
+_Tabella 20: Campi contenuti in FSE-JWT-Terminology_
 
 **Esempio di utilizzo del token bearerAuth**
 
@@ -1516,45 +1534,97 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 }
 ```
 
-**Esempio di Payload del token FSE-JWT-Terminology decodificato in caso di creazione e rinnovo massivo**
+**Esempio di Payload del token FSE-JWT-Terminology decodificato in caso di upload terminologie**
 ```json
+
 {
   "alg": "RS256",
   "typ": "JWT",
   "kid": "0",
-  "iss": "integrity:190201123456XX",
   "x5c": "MIIDBzCCAe+gAwIBAgIJAIBJZQZQX4ZmMA0GCSqGSIb3DQEBC[...]",
-  "iat": 1540890704,
-  "exp": 1540918800,
-  "jti": 1540918800,
+  "sub": "PROVAX00X00X000Y",
   "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/terminology/v1",
-  "sub": "VRDMRC67T20I257E",
-  "vector_hash_csr": ["d98d66e46b1333ddb548e55a086c0153b1a691f2c4f38e62067ad4ca77bfd8f8","d98d66e46b1333ddb548e55a086c0153b1a691f2c4f38e62067ad4ca77bfd8f9"]
-  
+  "file_hash":  "d98d66e46b1333ddb548e55a086c0153b1a691f2c4f38e62067ad4ca77bfd8f8",
+  "iss": "integrity:S1#190201234567PR",
+  "oid": "urn:oid:2.16.840.1.113883.5.1",
+  "exp": 1689697549,
+  "iat": 1689611149,
+  "version": "2.1.0",
+  "jti": "1689611149"
 }
 ```
-**Esempio di Payload del token FSE-JWT-Terminology decodificato in caso di revoca massiva**
+**Esempio di Payload del token FSE-JWT-Terminology decodificato in caso di eliminazione terminologie**
 ```json
 {
   "alg": "RS256",
   "typ": "JWT",
   "kid": "0",
-  "iss": "integrity:190201123456XX",
   "x5c": "MIIDBzCCAe+gAwIBAgIJAIBJZQZQX4ZmMA0GCSqGSIb3DQEBC[...]",
-  "iat": 1540890704,
-  "exp": 1540918800,
-  "jti": 1540918800,
+  "sub": "PROVAX00X00X000Y",
   "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/terminology/v1",
-  "sub": "VRDMRC67T20I257E",
-  "vector_id": "e2241357-6d09-43c8-adcc-6e098d95ca3f"
-  
+  "iss": "integrity:S1#190201234567PR",
+  "oid": "urn:oid:2.16.840.1.113883.5.1",
+  "exp": 1689697549,
+  "iat": 1689611149,
+  "version": "2.1.0",
+  "jti": "1689611149"
 }
 ```
 
+### 5.2. Drill down file input
+Di seguito si vuole dare una panoramica dei diversi formati accettati dall'api di authoring in particolare csv e json custom
+
+### 5.2.1 Drill down custom csv
+Di seguito viene mostrato il formato del csv per il caricamento di un Codesystem:
+
+<table>
+  <tr>
+    <th>is-a</th>
+    <th>code</th>
+    <th>display</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>F</td>
+    <td>Female</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>M</td>
+    <td>Male</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>UN</td>
+    <td>Undifferentiated</td>
+  </tr>
+</table>
+
+_Tabella 21: Esempio custom csv file_
+
+### 5.2.2 Drill down custom json
+Di seguito viene mostrato il formato del json per il caricamento di un Codesystem:
+
+```json
+[
+  {
+    "code": "F",
+    "description": "Female"
+  },
+  {
+    "code": "M",
+    "description": "Male"
+  },
+  {
+    "code": "UN",
+    "description": "Undifferentiated"
+  }
+]
+```
 
 # 6. Drilldown Response in caso di Errore
 
-Il Gateway genererà due tipologie di errore distinte, entrambe aderenti alla specifica RFC 7807.
+Il Terminology service genererà due tipologie di errore distinte, entrambe aderenti alla specifica RFC 7807.
 
 
 ## 6.1. Errori Applicativi
@@ -1613,17 +1683,20 @@ Può differire dal type in caso sia necessario specificare il problema con maggi
   </tr>
 </table>
 
-_Tabella 44: Campi Response valorizzati in caso di errore_
+_Tabella 22: Campi Response valorizzati in caso di errore_
 
 ### 6.2. Esempi di errore generati da Terminology
 | TYPE                | TITLE                 | DETAIL                        | STATUS | INSTANCE     |
 | ------------------- | --------------------- | ----------------------------- | ------ | ------------ |
-| /errors             | Errore Generico.      | {dinamico in base all’errore} | 500    | /server      |
-| /errors/bad-request | Richiesta malformata. | {dinamico in base all’errore} | 400    | /bad-request |
-| /errors/not-found   | Risorsa non trovata.  | {dinamico in base all’errore} | 404    | /not-found   |
-| /errors             | Errore Generico.      | {dinamico in base all’errore} | 409    | /conflict    |
+| /errors             | Errore Generico.      | {dinamico in base all’errore} | 500    | /generic     |
+| /errors/fields      | Missing.              | {dinamico in base all’errore} | 400    | /mandatory   |
+| /errors/fields      | Valore errato.        | {dinamico in base all’errore} | 400    | /mandatory   |
+| /errors/fields      | Token jwt errato      | {dinamico in base all’errore} | 400    | /mandatory   |
+| /msg/resource       | Errore risorsa        | {dinamico in base all’errore} | 404    | /not-found   |
+| /msg/resource       | Errore risorsa        | {dinamico in base all’errore} | 409    | /conflict    |
+| /errors             | Timeout.              | Errore di timeout             | 504    | /timeout     |
 
-_Tabella 45: stati response_
+_Tabella 23: stati response_
 
 <!-- Footnotes themselves at the bottom. -->
 # Notes
