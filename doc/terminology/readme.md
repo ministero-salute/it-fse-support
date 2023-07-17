@@ -593,7 +593,7 @@ L’Endpoint del caso d’uso di cancellazione terminologia si compone come segu
 https://<HOST>:<PORT>/v<major>/terminology/{oid}/{version}
 ```
 
-Lo scopo di questa API è quello di consentire l'eliminazione di una terminologia dato il suo id e la sua version.
+Lo scopo di questa API è quello di consentire l'eliminazione di una terminologia dato il suo oid e la sua version.
 
 
 ## 4.1. Request
