@@ -545,7 +545,7 @@ _Tabella 10: Campi Response sempre valorizzati_
   <tr>
    <td>location</td>
    <td>String</td>
-   <td>Puntamento della risorsa creata</td>
+   <td>Url della risorsa creata sul server terminologico</td>
   </tr>
   <tr>
    <td>insertedItems</td>
