@@ -332,10 +332,7 @@ Il request body è di tipo multipart/form-data e contiene i seguenti parametri:
 
 - **file**: Questo parametro deve contenere un file in linea a quanto specificato nel campo format in path variable.
 
-- **creationInfo***: Questo parametro contiene metadati di supporto per CUSTOM_CSV e CUSTOM_JSON.
-
-**N.B<span style="color: red;">**: la parte creationInfo è obbligatoria solo nel caso in cui viene scelto come format un CSV o un JSON.
-
+- **creationInfo***: Questo parametro contiene metadati di supporto per CUSTOM_CSV e CUSTOM_JSON. Tale parte risulta essere obbligatoria solo se viene scelto come format in path variable uno dei due formati sopra citati.
 
 <table>
   <tr>
