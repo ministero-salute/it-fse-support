@@ -789,27 +789,11 @@ _Tabella 13: Campi Response sempre valorizzati_
    </td>
   </tr>
   <tr>
-   <td>uuid
+   <td>deletedItems
    </td>
-   <td>String
+   <td>Integer
    </td>
-   <td>Identificativo univoco assegnato ad una singola creazione massiva.
-   </td>
-  </tr>
-  <tr>
-   <td>creations
-   </td>
-   <td>Array
-   </td>
-   <td>Array di oggetti che rappresentano le creazioni effettuate.
-   </td>
-  </tr>
-  <tr>
-   <td>failures
-   </td>
-   <td>Array
-   </td>
-   <td>Array di oggetti che rappresentano le creazioni non effettuate.
+   <td>Numero di elementi eliminati
    </td>
   </tr>
 </table>
