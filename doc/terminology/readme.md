@@ -27,14 +27,14 @@
   - [3.1. Request](#31-request)
     - [3.1.1. Esempio Request](#311-esempio-request)
   - [3.2. Response](#32-response)
-    - [3.2.1. Esempio Messaggio di Risposta con esito OK 200](#321-esempio-messaggio-di-risposta-con-esito-ok-200)
-    - [3.2.2. Esempio Messaggio di Risposta con esito KO 404](#322-esempio-messaggio-di-risposta-con-esito-ko-404)
+    - [3.2.1. Esempio Messaggio di Risposta con esito OK 201](#321-esempio-messaggio-di-risposta-con-esito-ok-201)
+    - [3.2.2. Esempio Messaggio di Risposta con esito KO 409](#322-esempio-messaggio-di-risposta-con-esito-ko-409)
 - [4. Servizio di Cancellazione Terminologie](#4-servizio-di-cancellazione-terminologie)
   - [4.1. Request](#41-request)
     - [4.1.1. Esempio Request](#411-esempio-request)
   - [4.2. Response](#42-response)
     - [4.2.1. Esempio Messaggio di Risposta con esito OK 200](#421-esempio-messaggio-di-risposta-con-esito-ok-200)
-    - [4.2.2. Esempio Messaggio di Risposta con esito KO 400](#422-esempio-messaggio-di-risposta-con-esito-ko-400)
+    - [4.2.2. Esempio Messaggio di Risposta con esito KO 404](#422-esempio-messaggio-di-risposta-con-esito-ko-404)
 - [5 Drilldown Parametri di Input](#5-drilldown-parametri-di-input)
   - [5.1 Campi contenuti nei JWT](#51-campi-contenuti-nei-jwt)
     - [5.1.1. Authentication Bearer](#511-authentication-bearer)
@@ -181,7 +181,7 @@ Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee G
 
 ## 2.3. Note su autenticazione e token JWT
 
-Per comunicare con il Sistema di Terminology è necessario essere in possesso di 2 certificati X.509 e delle rispettive chiavi private.
+Per comunicare con il le API di authoring esposte dal microservizio **it-fse-srv-dictionary** è necessario essere in possesso di 2 certificati X.509 e delle rispettive chiavi private.
 
 Il certificato denominato di **“autenticazione”** viene utilizzato <span style="text-decoration:underline;">unicamente</span> come certificato client per le chiamate https.
 
@@ -191,14 +191,11 @@ Ogni invocazione delle API avverrà quindi con una chiamata https protetta dal c
 
 Il primo JWT è utilizzato per l’autenticazione e contiene i riferimenti all’utente che richiama il servizio, il token viene trasportato nell’header **“Authorization”** di tipo **“Bearer”**:
 
-
 ```
 Authorization: Bearer {VALORE DEL TOKEN}
 ```
 
-
 Il secondo JWT è di “signature” e contiene rifermenti al file oggetto dell'operazione, il token viene trasportato nell’header http **“FSE-JWT-Terminology**:
-
 
 ```
 FSE-JWT-Terminology: {VALORE DEL TOKEN}
@@ -207,9 +204,7 @@ FSE-JWT-Terminology: {VALORE DEL TOKEN}
 
 **Entrambi** i token devono essere firmati utilizzando il certificato “signature”.
 
-Vista la dipendenza dei token dai valori specifici di del file è necessario generare nuovi JWT per ogni chiamata alle API.
-
-Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
+Per i dettagli sui campi dei token si consulti l’apposito [paragrafo](#511-authentication-bearer).
 
 <br>
 
@@ -222,7 +217,8 @@ L’Endpoint si compone come segue:
 https://<HOST>:<PORT>/v<major>/terminology/{format}
 ```
 
-Lo scopo di questa API è quello di permettere il caricamento delle terminologie sul terminology server hapi-fhir utilizzando diversi formati. 
+Lo scopo di questa API è quello di permettere il caricamento delle terminologie sul terminology server hapi-fhir utilizzando diversi formati,
+in particolare CUSTOM_CSV, CUSTOM_JSON, FHIR_JSON, FHIR_XML.
 
 
 ## 3.1. Request
@@ -281,16 +277,16 @@ _Tabella 5: Method, Url, Type_
    <td>MultipartFile</td>
    <td>true</td>
   </tr>
-  <tr>
-   <td rowspan="5" >creationInfo</td>
+<tr>
+   <td rowspan="5">creationInfo<span style="color: red;">**</span></td>
    <td>oidName</td>
    <td>String</td>
    <td>true</td>
-  </tr>
+</tr>
   <tr>
    <td>version</td>
    <td>String</td>
-   <td>false</td>
+   <td>true</td>
   </tr>
   <tr>
    <td>url
@@ -322,14 +318,16 @@ _Tabella 5: Method, Url, Type_
 _Tabella 6: Endpoint - Descrizione parametri_
 
 <br>
-La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. 
 
-Il Request Body è di tipo multipart/form-data, al suo interno sono previsti due parametri:
+La compilazione errata dei parametri o la mancata compilazione dei parametri "required" comporta un errore di tipo bloccante.
 
-file che dovrà contenere un file in linea al format specificato come path param che contiene il content reale da uploadare sul terminology-server
-creationInfo che contiente metadati a supporto di CUSTOM_CSV e CUSTOM_JSON.
+Il Request Body è di tipo multipart/form-data e contiene i seguenti parametri:
 
-**N.B: la parte creationInfo è obbligatorio solo nel caso in cui non si lavora direttamente con terminologie fhir ma bensì si scelgono formati semplificati come custom_csv o custom_json** .
+- **file**: Questo parametro deve contenere un file in linea a quanto specificato nel campo format in path param.
+
+- **creationInfo**: Questo parametro contiene metadati di supporto per CUSTOM_CSV e CUSTOM_JSON.
+
+**N.B<span style="color: red;">**: la parte creationInfo è obbligatoria solo nel caso in cui viene scelto come format un CSV o un JSON.
 
 
 <table>
@@ -373,19 +371,19 @@ creationInfo che contiente metadati a supporto di CUSTOM_CSV e CUSTOM_JSON.
    <td><strong>DESCRIZIONE</strong></td>
   </tr>
   <tr>
-   <td>CPDE_SYSTEM</td>
-   <td>CPDE_SYSTEM</td>
+   <td>CODE_SYSTEM</td>
+   <td>CODE_SYSTEM</td>
    <td>Code system</td>
   </tr>
 </table>
 
 ### 3.1.1. Esempio Request
 
-Esempio request creazione massiva certificati.
+Esempio request di upload file con format CUSTOM_CSV.
 
 ``` bash
 curl -X 'POST' \
-  'http://<HOST>:<PORT>/v<major>/terminology/<FORMAT>' \
+  'http://<HOST>:<PORT>/v<major>/terminology/CUSTOM_CSV' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <token>' \
   -H 'FSE-JWT-Terminology: <token>' \
@@ -486,7 +484,7 @@ curl -X 'POST' \
 </table>
 
 
-_Tabella 7: Response Servizio di Alimentazione_
+_Tabella 7: Response Servizio di Upload terminologie_
 
 \* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 10 “Drilldown Error Response”.
 
@@ -528,100 +526,19 @@ traceId e spanId coincidono nella prima operazione.
 
 <table>
   <tr>
-  <td><strong></strong>
-   </td>
-   <td><strong>FIELD</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>DESCRIPTION</strong>
-   </td>
+   <td><strong>FIELD</strong></td>
+   <td><strong>TYPE</strong></td>
+   <td><strong>DESCRIPTION</strong></td>
   </tr>
   <tr>
-  <td></td>
-   <td>givenName
-   </td>
-   <td>String
-   </td>
-   <td>Nome
-   </td>
+   <td>location</td>
+   <td>String</td>
+   <td>location</td>
   </tr>
   <tr>
-  <td></td>
-   <td>familyName
-   </td>
-   <td>String
-   </td>
-   <td>Cognome
-   </td>
-  </tr>
-  <tr>
-  <td></td>
-   <td>taxCode
-   </td>
-   <td>String
-   </td>
-   <td>Codice fiscale
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="14">roles
-   </td>
-  </tr>
-  <tr>
-    <td>nodeID</td>
-    <td>String</td>
-    <td>Id nodo utente</td>
-  </tr>
-<tr>
-    <td>nodeFatherID</td>
-    <td>String</td>
-    <td>Id nodo utente padre</td>
-  </tr>
-<tr>
-    <td>roleID</td>
-    <td>String</td>
-    <td>Id ruolo utente</td>
-  </tr>
-<tr>
-    <td>roleDescription</td>
-    <td>String</td>
-    <td>Descrizione ruolo</td>
-  </tr>
-<tr>
-    <td>regionID</td>
-    <td>String</td>
-    <td>Id regione</td>
-  </tr>
-<tr>
-    <td>regionDescription</td>
-    <td>String</td>
-    <td>Descrizione regione</td>
-  </tr>
-<tr>
-    <td>enterprise</td>
-    <td>String</td>
-    <td>Descrizione opzionale sull'azienda di riferimento per gli amministratori aziendali</td>
-  </tr>
-<tr>
-    <td>structure</td>
-    <td>String</td>
-    <td>Descrizione opzionale sulla struttura di riferimento per gli amministratori privati</td>
-  </tr>
-<tr>
-    <td>email</td>
-    <td>String</td>
-    <td>Indirizzo email</td>
-  </tr>
-<tr>
-    <td>fixedPartCN</td>
-    <td>String</td>
-    <td>Parte fissa common name</td>
-  </tr>
-<tr>
-    <td>allowedToMonitoring</td>
-    <td>Boolean</td>
-    <td>Indica se l'utente può accedere alla dashboard di monitoring</td>
+   <td>insertedItems</td>
+   <td>Integer</td>
+   <td>insertedItems</td>
   </tr>
 </table>
 
@@ -630,43 +547,28 @@ _Tabella 8: Campi Response sempre valorizzati_
 <br>
 
   
-### 3.2.1. Esempio Messaggio di Risposta con esito OK 200
+### 3.2.1. Esempio Messaggio di Risposta con esito OK 201
 
 ```json
 {
   "traceID": "f52aa9db64d0bea0",
   "spanID": "f52aa9db64d0bea0",
-  "givenName": "GIVEN_NAME",
-  "familyName": "FAMILY_NAME",
-  "taxCode": "FISCAL_CODE",
-  "roles": [
-    {
-      "nodeID": 143,
-      "nodeFatherID": 142,
-      "roleID": 5,
-      "roleDescription": "Role",
-      "regionID": "150",
-      "regionDescription": "Regione Campania",
-      "enterprise": null,
-      "structure": null,
-      "email": "mail@mail.com",
-      "fixedPartCN": "FIXEDPART",
-      "allowedToMonitoring": true
-    }
-  ]
+  "location": "Codesystem/<ID>",
+  "insertedItems": "3"
 }
 ```
 
-### 3.2.2. Esempio Messaggio di Risposta con esito KO 404
+### 3.2.2. Esempio Messaggio di Risposta con esito KO 409
 
 ``` json
 {
-  "traceID": "16c812055899c379",
-  "spanID": "fbc326110b857727",
-  "type": "/errors/validation",
-  "title": "Errore di validazione",
-  "detail": "User with fiscal code CF not found!",
-  "instance": "/not-found"
+  "traceID": "56aacc4b8186e711",
+  "spanID": "8628d4adb9349552",
+  "type": "/errors/conflict",
+  "title": "Conflict",
+  "detail": "CodeSystem già esistente con oid <OID> e version <VERSION>",
+  "status": 409,
+  "instance": "/conflict"
 }
 ```
 
@@ -676,19 +578,18 @@ Nella presente sezione vengono riportate le informazioni principali per l’invo
 L’Endpoint del caso d’uso di creazione massiva si compone come segue:
 
 ```
-https://<HOST>:<PORT>/v<major>/certificate/create/multi
+https://<HOST>:<PORT>/v<major>/terminology/{oid}/{version}
 ```
 
-Lo scopo di questa API è quello di consentire la creazione di un certo numero di certificati.
-Per la creazione delle CSR fare riferiemento al Capitolo 11 'Drilldown Creazione CSR'.
+Lo scopo di questa API è quello di consentire l'eliminazione di una terminologia dato il suo id e la sua version.
 
 
 ## 4.1. Request
 
-| METHOD | POST                         |
-| ------ | ---------------------------- |
-| URL    | /v1/certificate/create/multi |
-| TYPE   | multipart/form-data          |
+| METHOD | POST                            |
+| ------ | ----------------------------    |
+| URL    | /v1/terminology/{oid}/{version} |
+| TYPE   | application/json                |
 
 _Tabella 9: Method, Url, Type_
 
@@ -727,98 +628,42 @@ _Tabella 9: Method, Url, Type_
    <td>true</td>
   </tr>
   <tr>
-   <td rowspan="5" >Request<p>Body</td>
+   <td rowspan="5" >Path<p>Variable</td>
    <tr>
-   <td>files</td>
-   <td>files</td>
-   <td>MultipartFile[]</td>
-   <td>true
-   </td>
+      <td>oid</td>
+      <td>oid</td>
+      <td>String</td>
+      <td>true
+      </td>
+   </tr>
+   <tr>
+      <td>version</td>
+      <td>version</td>
+      <td>String</td>
+      <td>true
+      </td>
    </tr>
   </tr>
-  <tr>
-   <td rowspan="3" >requestBody</td>
-   <td>nodeID</td>
-   <td>Long</td>
-   <td>true</td>
-   <tr>
-  <td rowspan="1" >certificateList</td>
-   <td>Certificate[]</td>
-   <td>true</td>
-  </tr>
-  <tr>
-  <td rowspan="3" >description</td>
-   <td>String</td>
-   <td>false</td>
-  </tr>
+   
   </tr>
 </table>
 
 _Tabella 10: Endpoint - Descrizione parametri_
 
-Il parametro `nodeID` è reperibile invocando il servizio descritto nel Capitolo 3 'Servizio di Restituzione Profili'
-
-Di seguito la descrizione dei parametri di `Certificate` che identifica la richiesta della coppia di CSR
-
-<table>
-  <td> <strong>KEY</strong></td>
-  <td><strong>VALUE</strong></td>
-  <td><strong>TYPE</strong></td>
-  <td><strong>REQUIRED</strong></td>
-  </tr>
-  <tr>
-   <td>nameFileAuth</td>
-   <td>Nome della csr di autenticazione</td>
-   <td>String</td>
-   <td>true</td>
-  </tr>
-  <tr>
-   <td>nameFileSign</td>
-    <td>Nome della csr di firma</td>
-   <td>String</td>
-   <td>true</td>
-  </tr>
-  <tr>
-   <td>variablePartCN</td>
-   <td>Parte variabile del common name</td>
-   <td>String</td>
-   <td>true</td>
-  </tr>
-
-</table>
-
-_Tabella 11: Endpoint - Descrizione parametro certificateList_
-
-**N.B.**
-
-Ci deve essere coerenza tra `nameFileAuth`,`nameFileSign` e i `filename` dei `files` nella richiesta multipart.
+Il parametro `oid` e `version` identificano una "chiave primaria" della terminologia che si intende eliminare sul terminology-server
 
 <br>
 
 ### 4.1.1. Esempio Request
 
-Esempio request creazione massiva certificati.
+Esempio request eliminazione terminologia.
 
 ``` bash
-curl -X 'POST' \
-  'https://<HOST>:<PORT>/v<major>/certificate/create/multi' \
+curl -X 'DELETE' \
+  'http://<HOST>:<PORT>/v<major>/terminology/<OID>/<VERSION>' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <token>' \
-  -H 'FSE-JWT-Terminology: <token>' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'creationInfo={
-  "nodeID": 110,
-  "certificateList": [
-    {
-      "nameFileAuth": "csrAuth.csr",
-      "nameFileSign": "csrSign.csr",
-      "variablePartCN": "P"
-    }
-  ],
-  "description": "Certificati regione Lazio"
-}' \
-  -F 'files=@csrAuth.csr' \
-  -F 'files=@csrSign.csr'
+  -H 'FSE-JWT-Terminology: <token>'
 ```
 
 ## 4.2. Response
@@ -831,70 +676,41 @@ curl -X 'POST' \
    </td>
   </tr>
   <tr>
-   <td>TIPO IN CASO DI ERRORE*
-   </td>
-   <td colspan="2" >application/problem+json
-   </td>
+   <td>TIPO IN CASO DI ERRORE*</td>
+   <td colspan="2" >application/problem+json</td>
   </tr>
   <tr>
-   <td rowspan="14" >STATUS CODE
-   </td>
-   <td> 200
-   </td>
-   <td>Richiesta creazione presa in carico
-   </td>
+   <td rowspan="14" >STATUS CODE</td>
+   <td>200</td>
+   <td>Documenti cancellati correttamente</td>
   </tr>
   <tr>
    <td>400
    </td>
-   <td>Bad request (input non valido)
-   </td>
+   <td>Bad request (input non valido)</td>
   </tr>
   <tr>
-   <td>401
-   </td>
-   <td>Unauthorized
-   </td>
+   <td>401</td>
+   <td>Unauthorized</td>
   </tr>
   <tr>
-   <td>403
-   </td>
-   <td>Token jwt mancante o non valido
-   </td>
+   <td>403</td>
+   <td>Token jwt mancante o non valido</td>
   </tr>
   <tr>
-   <td>404
-   </td>
-   <td>Not found
-   </td>
+   <td>404</td>
+   <td>Not found</td>
   </tr>
   <tr>
-   <td>409
-   </td>
-   <td>Conflict
-   </td>
+   <td>415</td>
+   <td>Unsupported media type</td>
   </tr>
   <tr>
-   <td>413
-   </td>
-   <td>Payload too large
-   </td>
+   <td>429</td>
+   <td>Too Many Requests</td>
   </tr>
   <tr>
-   <td>415
-   </td>
-   <td>Unsupported media type
-   </td>
-  </tr>
-  <tr>
-   <td>429
-   </td>
-   <td>Too Many Requests
-   </td>
-  </tr>
-  <tr>
-   <td>500
-   </td>
+   <td>500</td>
    <td>Internal server error
    </td>
   </tr>
@@ -1006,39 +822,23 @@ _Tabella 14: Campi Response sempre valorizzati_
 
 ```json
 {
-  "traceID": "df401c4b09a437cd",
-  "spanID": "df401c4b09a437cd",
-  "uuid": "016a4dd5-186a-4b18-90cc-c9c8b6298102",
-  "creations": [
-    {
-      "idAuth": 12,
-      "nameAuth": "csrAuth.csr",
-      "idSign": 13,
-      "nameSign": "csrSign.csr"
-    }
-  ],
-  "failures": [
-    {
-      "nameAuth": "csrAuth1.csr",
-      "hashAuth": "a1b2c3d4e5f6g7h8i9j0",
-      "nameSign": "csrSign1.csr",
-      "hashSign": "a1b2c3d4e5f6g7h8i9j0",
-      "reason": "La richiesta di certificato è già esistente"
-    }
-  ]
+  "traceID": "95c0e4c28706b3f3",
+  "spanID": "95c0e4c28706b3f3",
+  "deletedItems": 3
 }
 ```
 
-### 4.2.2. Esempio Messaggio di Risposta con esito KO 400
+### 4.2.2. Esempio Messaggio di Risposta con esito KO 404
 
 ``` json
 {
-  "traceID": "e2deda3d6d446ad4",
-  "spanID": "e2deda3d6d446ad4",
-  "type": "/errors",
-  "title": "Errore Generico",
-  "detail": "Attenzione il file: csrAutha.csr non risulta essere presente tra i multipart forniti",
-  "instance": "/bad-request"
+  "traceID": "e18d321733ae74ab",
+  "spanID": "e18d321733ae74ab",
+  "type": "/msg/resource",
+  "title": "Errore risorsa",
+  "detail": "Il documento richiesto non esiste",
+  "status": 404,
+  "instance": "/not-found"
 }
 ```
 
