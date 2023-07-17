@@ -587,7 +587,7 @@ _Tabella 11: Campi Response valorizzati in caso di success_
 # 4. Servizio di Cancellazione Terminologie
 Nella presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità.
 
-L’Endpoint del caso d’uso di creazione massiva si compone come segue:
+L’Endpoint del caso d’uso di cancellazione terminologia si compone come segue:
 
 ```
 https://<HOST>:<PORT>/v<major>/terminology/{oid}/{version}
