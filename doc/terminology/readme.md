@@ -809,7 +809,7 @@ _Tabella 15: Campi Response sempre valorizzati_
   </tr>
 </table>
 
-_Tabella 16: Campi Response sempre valorizzati_
+_Tabella 16: Campi Response valorizzati nel caso di esito positivo_
 
 <br>
 
