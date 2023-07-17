@@ -330,7 +330,7 @@ _Tabella 6: Endpoint - Descrizione parametri_
 La compilazione errata dei parametri o la mancata compilazione dei parametri "required" comporta un errore di tipo bloccante.
 Il request body è di tipo multipart/form-data e contiene i seguenti parametri:
 
-- **file**: Questo parametro deve contenere un file in linea a quanto specificato nel campo format in path param.
+- **file**: Questo parametro deve contenere un file in linea a quanto specificato nel campo format in path variable.
 
 - **creationInfo***: Questo parametro contiene metadati di supporto per CUSTOM_CSV e CUSTOM_JSON.
 
