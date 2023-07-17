@@ -1459,7 +1459,8 @@ _Tabella 19: Campi contenuti nel business Token_
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong></td>
-   <td>Obbligatorio sia per l'endpoint di upload che delete. In particolare per la creazione, viene sempre controllata la presenza, in più nel caso in cui si sceglie un format CUSTOM_CSV o CUSTOM_JSON viene anche controllato il valore</td>
+   <td>Obbligatorio sia per l'endpoint di upload che delete. 
+   Inoltre sia per l'operazione di delete che per l'operazione di upload(solo nel caso in cui venga scelto come format CUSTOM_CSV o CUSTOM_JSON) viene eseguito un controllo di coerenza.</td>
   </tr>
   <tr>
    <td><strong>CAMPO JWT</strong></td>
@@ -1478,7 +1479,8 @@ _Tabella 19: Campi contenuti nel business Token_
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong></td>
-   <td>Obbligatorio sia per l'endpoint di upload che delete. In particolare per la creazione, viene sempre controllata la presenza, in più nel caso in cui si sceglie un format CUSTOM_CSV o CUSTOM_JSON viene anche controllato il valore</td>
+   <td>Obbligatorio sia per l'endpoint di upload che delete. 
+   Inoltre sia per l'operazione di delete che per l'operazione di upload(solo nel caso in cui venga scelto come format CUSTOM_CSV o CUSTOM_JSON) viene eseguito un controllo di coerenza.</td>
   </tr>
   <tr>
    <td><strong>CAMPO JWT</strong>
@@ -1493,7 +1495,7 @@ _Tabella 19: Campi contenuti nel business Token_
   </tr>
   <tr>
    <td><strong>DESCRIZIONE</strong></td>
-   <td>Identifica l'hash sha 256 del file per il quale si intende fare upload</td>
+   <td>Identifica l'hash del file in input</td>
   </tr>
   <tr>
    <td><strong>ESEMPIO</strong></td>
