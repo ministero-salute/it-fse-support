@@ -139,7 +139,7 @@ La nuova architettura del terminology system prevede la presenza di un component
  - **Valueset**
  - **Conceptmap** 
 
-Il caricamento e il recupero di tali risorse può essere fatto sia in maniera standard (ovvero accedendo direttamente al terminology-server), sia in maniera custom attraverso apposite api esposte, illustrate di seguito in questo documento.
+Il caricamento e il recupero di tali risorse può essere fatto sia in maniera standard (ovvero accedendo direttamente al terminology-server), sia in maniera custom attraverso apposite API esposte, illustrate di seguito in questo documento.
 In particolare verranno dettagliate le modalità attraverso cui è possibile usufruire dei servizi esposti dal terminology system.
 
 Il documento sarà redatto in maniera incrementale e di volta in volta ulteriori API saranno integrate e illustrate.
@@ -177,7 +177,7 @@ Al termine della richiesta di eliminazione, il server restituirà una risposta c
 
 ## 2.1. Pattern di Interazione
 
-Le API sono esposte secondo i pattern definiti nelle Linee Guida Modello di Interoperabilità[^1] definite da Agid.
+Le API sono esposte secondo i pattern definiti nelle Linee Guida Modello di Interoperabilità[^1] definite da AgID.
 
 Come scenario di interazione per i servizi esposti viene utilizzato il pattern [BLOCK_REST] Blocking REST[^2]<sup>.</sup>
 
@@ -1598,6 +1598,8 @@ Di seguito viene mostrato il formato del csv per il caricamento di un Codesystem
 </table>
 
 _Tabella 21: Esempio custom csv file_
+
+Nell'esempio mostrato il campo is-a è vuoto in quanto non vi è un riferimento al parent
 
 ### 5.2.2 Drill down custom json
 Di seguito viene mostrato il formato del json per il caricamento di un Codesystem:
