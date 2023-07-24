@@ -1490,7 +1490,7 @@ _Tabella 19: Campi contenuti nel business Token_
   </tr>
 
   <tr>
-   <td colspan="2" style="text-align:center"><strong>HASH FILE</strong>
+   <td colspan="2" style="text-align:center"><strong>FILE HASH</strong>
    </td>
   </tr>
   <tr>
@@ -1507,7 +1507,7 @@ _Tabella 19: Campi contenuti nel business Token_
   </tr>
   <tr>
    <td><strong>CAMPO JWT</strong></td>
-   <td><code>hash_file</code></td>
+   <td><code>file_hash</code></td>
   </tr>
 </table>
 
