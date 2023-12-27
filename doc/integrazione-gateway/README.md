@@ -2285,7 +2285,7 @@ _Tabella 20: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="16" >Request Body
+   <td rowspan="18" >Request Body
    </td>
    <td>file
    </td>
@@ -2299,8 +2299,17 @@ _Tabella 20: Method, URL, Type_
    </td>
   </tr>
   <tr>
-   <td rowspan="15" >requestBody
+   <td rowspan="18" >requestBody</td>
+   <tr>
    </td>
+   <td>workflowInstanceId
+   </td>
+   <td>String
+   </td>
+   <td>false
+   </td>
+   <td>N.A.
+   </tr>
    <td>healthDataFormat
    </td>
    <td>HealthDataFormatEnum
