@@ -365,7 +365,7 @@ paths:
               type: object
               properties:
                 requestBody:
-                  $ref: '#/components/schemas/PublicationUpdateReqDTO'
+                  $ref: '#/components/schemas/ValidateAndReplaceDTO'
                 file:
                   maxLength: 1000
                   type: string
@@ -383,73 +383,73 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '401':
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '403':
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '404':
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '409':
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '413':
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '415':
           description: Unsupported media type
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '429':
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '502':
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '503':
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '504':
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         default:
           description: default
           content:
@@ -710,7 +710,7 @@ paths:
               type: object
               properties:
                 requestBody:
-                  $ref: '#/components/schemas/PublicationFatherCreationReqDTO'
+                  $ref: '#/components/schemas/ValidateAndCreateDTO'
                 file:
                   maxLength: 1000
                   type: string
@@ -728,73 +728,73 @@ paths:
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '401':
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '403':
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '404':
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '409':
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '413':
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '415':
           description: Unsupported media type
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '429':
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '500':
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '502':
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '503':
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '504':
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         default:
           description: default
           content:
@@ -1072,6 +1072,7 @@ components:
             - AD_PSC001
             - AD_PSC002
             - AD_PSC003
+            - AD_PSC004
             - AD_PSC005
             - AD_PSC006
             - AD_PSC007
@@ -1104,6 +1105,7 @@ components:
             - AD_PSC038
             - AD_PSC039
             - AD_PSC040
+            - AD_PSC041
             - AD_PSC042
             - AD_PSC043
             - AD_PSC046
@@ -1124,31 +1126,33 @@ components:
             - AD_PSC064
             - AD_PSC065
             - AD_PSC066
+            - AD_PSC067
             - AD_PSC068
             - AD_PSC069
             - AD_PSC070
             - AD_PSC071
+            - AD_PSC072
             - AD_PSC073
             - AD_PSC074
             - AD_PSC075
             - AD_PSC076
             - AD_PSC077
             - AD_PSC078
-            - AD_PSC082
+            - AD_PSC094
+            - AD_PSC096
             - AD_PSC097
             - AD_PSC098
+            - AD_PSC099
             - AD_PSC100
             - AD_PSC101
             - AD_PSC102
             - AD_PSC103
             - AD_PSC104
-            - AD_PSC106
             - AD_PSC107
             - AD_PSC109
             - AD_PSC121
             - AD_PSC122
             - AD_PSC126
-            - AD_PSC127
             - AD_PSC129
             - AD_PSC130
             - AD_PSC131
@@ -1171,7 +1175,7 @@ components:
           description: Conservazione a norma
         tipoAttivitaClinica:
           type: string
-          description: Tipo attività clinica
+          description: Tipo attivitÃ  clinica
           enum:
             - PHR
             - CON
@@ -1203,17 +1207,6 @@ components:
             - NOSSN
             - SSR
             - DONOR
-        healthDataFormat:
-          type: string
-          description: Formato dei dati sanitari
-          enum:
-            - CDA
-        mode:
-          type: string
-          description: Modalità di iniezione del CDA
-          enum:
-            - ATTACHMENT
-            - RESOURCE
         identificativoDoc:
           maxLength: 100
           minLength: 0
@@ -1224,6 +1217,22 @@ components:
           minLength: 0
           type: string
           description: Identificativo repository
+        mode:
+          type: string
+          description: ModalitÃ  di iniezione del CDA
+          enum:
+            - ATTACHMENT
+            - RESOURCE
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+            - CDA
+        workflowInstanceId:
+          maxLength: 256
+          minLength: 0
+          type: string
+          description: Identificativo del workflow
       additionalProperties: false
     ErrorResponseDTO:
       type: object
@@ -1242,17 +1251,17 @@ components:
           maxLength: 100
           minLength: 0
           type: string
-          description: URI da utilizzare come identificativo del problema che si è verificato
+          description: URI da utilizzare come identificativo del problema che si Ã¨ verificato
         title:
           maxLength: 1000
           minLength: 0
           type: string
-          description: Descrizione sintetica della tipologia d’errore
+          description: Descrizione sintetica della tipologia dâ€™errore
         detail:
           maxLength: 200000
           minLength: 0
           type: string
-          description: Dettaglio della tipologia d’errore
+          description: Dettaglio della tipologia dâ€™errore
         status:
           maximum: 599
           minimum: 100
@@ -1340,6 +1349,7 @@ components:
             - AD_PSC001
             - AD_PSC002
             - AD_PSC003
+            - AD_PSC004
             - AD_PSC005
             - AD_PSC006
             - AD_PSC007
@@ -1372,6 +1382,7 @@ components:
             - AD_PSC038
             - AD_PSC039
             - AD_PSC040
+            - AD_PSC041
             - AD_PSC042
             - AD_PSC043
             - AD_PSC046
@@ -1392,31 +1403,33 @@ components:
             - AD_PSC064
             - AD_PSC065
             - AD_PSC066
+            - AD_PSC067
             - AD_PSC068
             - AD_PSC069
             - AD_PSC070
             - AD_PSC071
+            - AD_PSC072
             - AD_PSC073
             - AD_PSC074
             - AD_PSC075
             - AD_PSC076
             - AD_PSC077
             - AD_PSC078
-            - AD_PSC082
+            - AD_PSC094
+            - AD_PSC096
             - AD_PSC097
             - AD_PSC098
+            - AD_PSC099
             - AD_PSC100
             - AD_PSC101
             - AD_PSC102
             - AD_PSC103
             - AD_PSC104
-            - AD_PSC106
             - AD_PSC107
             - AD_PSC109
             - AD_PSC121
             - AD_PSC122
             - AD_PSC126
-            - AD_PSC127
             - AD_PSC129
             - AD_PSC130
             - AD_PSC131
@@ -1439,7 +1452,7 @@ components:
           description: Conservazione a norma
         tipoAttivitaClinica:
           type: string
-          description: Tipo attività clinica
+          description: Tipo attivitÃ  clinica
           enum:
             - PHR
             - CON
@@ -1493,6 +1506,263 @@ components:
           minLength: 0
           type: string
           description: Identificativo del workflow instance id
+      additionalProperties: false
+    ValidateAndReplaceDTO:
+      required:
+        - assettoOrganizzativo
+        - identificativoDoc
+        - identificativoRep
+        - identificativoSottomissione
+        - tipoAttivitaClinica
+        - tipoDocumentoLivAlto
+        - tipologiaStruttura
+      type: object
+      properties:
+        tipologiaStruttura:
+          type: string
+          description: Tipologia struttura che ha prodotto il documento
+          enum:
+            - Ospedale
+            - Prevenzione
+            - Territorio
+            - SistemaTS
+            - Cittadino
+            - MdsPN_DGC
+        attiCliniciRegoleAccesso:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            maxLength: 1000
+            type: string
+            description: Regola di accesso
+        tipoDocumentoLivAlto:
+          type: string
+          description: Tipo documento alto livello
+          enum:
+            - WOR
+            - REF
+            - LDO
+            - RIC
+            - SUM
+            - TAC
+            - PRS
+            - PRE
+            - ESE
+            - PDC
+            - VAC
+            - CER
+            - VRB
+            - CON
+            - CNT
+        assettoOrganizzativo:
+          type: string
+          description: Assetto organizzativo che ha portato alla creazione del documento
+          enum:
+            - AD_PSC001
+            - AD_PSC002
+            - AD_PSC003
+            - AD_PSC004
+            - AD_PSC005
+            - AD_PSC006
+            - AD_PSC007
+            - AD_PSC008
+            - AD_PSC009
+            - AD_PSC010
+            - AD_PSC011
+            - AD_PSC012
+            - AD_PSC013
+            - AD_PSC014
+            - AD_PSC015
+            - AD_PSC018
+            - AD_PSC019
+            - AD_PSC020
+            - AD_PSC021
+            - AD_PSC024
+            - AD_PSC025
+            - AD_PSC026
+            - AD_PSC027
+            - AD_PSC028
+            - AD_PSC029
+            - AD_PSC030
+            - AD_PSC031
+            - AD_PSC032
+            - AD_PSC033
+            - AD_PSC034
+            - AD_PSC035
+            - AD_PSC036
+            - AD_PSC037
+            - AD_PSC038
+            - AD_PSC039
+            - AD_PSC040
+            - AD_PSC041
+            - AD_PSC042
+            - AD_PSC043
+            - AD_PSC046
+            - AD_PSC047
+            - AD_PSC048
+            - AD_PSC049
+            - AD_PSC050
+            - AD_PSC051
+            - AD_PSC052
+            - AD_PSC054
+            - AD_PSC055
+            - AD_PSC056
+            - AD_PSC057
+            - AD_PSC058
+            - AD_PSC060
+            - AD_PSC061
+            - AD_PSC062
+            - AD_PSC064
+            - AD_PSC065
+            - AD_PSC066
+            - AD_PSC067
+            - AD_PSC068
+            - AD_PSC069
+            - AD_PSC070
+            - AD_PSC071
+            - AD_PSC072
+            - AD_PSC073
+            - AD_PSC074
+            - AD_PSC075
+            - AD_PSC076
+            - AD_PSC077
+            - AD_PSC078
+            - AD_PSC094
+            - AD_PSC096
+            - AD_PSC097
+            - AD_PSC098
+            - AD_PSC099
+            - AD_PSC100
+            - AD_PSC101
+            - AD_PSC102
+            - AD_PSC103
+            - AD_PSC104
+            - AD_PSC107
+            - AD_PSC109
+            - AD_PSC121
+            - AD_PSC122
+            - AD_PSC126
+            - AD_PSC129
+            - AD_PSC130
+            - AD_PSC131
+            - AD_PSC199
+            - AD_PSC999
+        dataInizioPrestazione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Data inizio prestazione
+        dataFinePrestazione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Data fine prestazione
+        conservazioneANorma:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Conservazione a norma
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attivitÃ  clinica
+          enum:
+            - PHR
+            - CON
+            - DIS
+            - ERP
+            - Sistema_TS
+            - INI
+            - PN_DGC
+            - OBS
+        identificativoSottomissione:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Identificativo sottomissione
+        descriptions:
+          maxItems: 100
+          minItems: 0
+          type: array
+          items:
+            maxLength: 1000
+            type: string
+            description: Descriptions
+        administrativeRequest:
+          type: string
+          description: Administrative
+          enum:
+            - SSN
+            - INPATIENT
+            - NOSSN
+            - SSR
+            - DONOR
+        identificativoDoc:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Identificativo documento
+        identificativoRep:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Identificativo repository
+        mode:
+          type: string
+          description: ModalitÃ  di iniezione del CDA
+          enum:
+            - ATTACHMENT
+            - RESOURCE
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+            - CDA
+      additionalProperties: false
+    ValidationErrorResponseDTO:
+      type: object
+      properties:
+        traceID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+        spanID:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+        type:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: URI da utilizzare come identificativo del problema che si Ã¨ verificato
+        title:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          description: Descrizione sintetica della tipologia dâ€™errore
+        detail:
+          maxLength: 200000
+          minLength: 0
+          type: string
+          description: Dettaglio della tipologia dâ€™errore
+        status:
+          maximum: 599
+          minimum: 100
+          type: integer
+          description: Stato http
+          format: int32
+        instance:
+          maxLength: 100
+          minLength: 0
+          type: string
+          description: URI che identifica la specifica occorrenza del problema
+        workflowInstanceId:
+          maxLength: 256
+          minLength: 0
+          type: string
+          description: Identificativo del workflow
       additionalProperties: false
     PublicationCreationReqDTO:
       required:
@@ -1549,6 +1819,7 @@ components:
             - AD_PSC001
             - AD_PSC002
             - AD_PSC003
+            - AD_PSC004
             - AD_PSC005
             - AD_PSC006
             - AD_PSC007
@@ -1581,6 +1852,7 @@ components:
             - AD_PSC038
             - AD_PSC039
             - AD_PSC040
+            - AD_PSC041
             - AD_PSC042
             - AD_PSC043
             - AD_PSC046
@@ -1601,31 +1873,33 @@ components:
             - AD_PSC064
             - AD_PSC065
             - AD_PSC066
+            - AD_PSC067
             - AD_PSC068
             - AD_PSC069
             - AD_PSC070
             - AD_PSC071
+            - AD_PSC072
             - AD_PSC073
             - AD_PSC074
             - AD_PSC075
             - AD_PSC076
             - AD_PSC077
             - AD_PSC078
-            - AD_PSC082
+            - AD_PSC094
+            - AD_PSC096
             - AD_PSC097
             - AD_PSC098
+            - AD_PSC099
             - AD_PSC100
             - AD_PSC101
             - AD_PSC102
             - AD_PSC103
             - AD_PSC104
-            - AD_PSC106
             - AD_PSC107
             - AD_PSC109
             - AD_PSC121
             - AD_PSC122
             - AD_PSC126
-            - AD_PSC127
             - AD_PSC129
             - AD_PSC130
             - AD_PSC131
@@ -1648,7 +1922,7 @@ components:
           description: Conservazione a norma
         tipoAttivitaClinica:
           type: string
-          description: Tipo attività clinica
+          description: Tipo attivitÃ  clinica
           enum:
             - PHR
             - CON
@@ -1680,17 +1954,6 @@ components:
             - NOSSN
             - SSR
             - DONOR
-        healthDataFormat:
-          type: string
-          description: Formato dei dati sanitari
-          enum:
-            - CDA
-        mode:
-          type: string
-          description: Modalità di iniezione del CDA
-          enum:
-            - ATTACHMENT
-            - RESOURCE
         identificativoDoc:
           maxLength: 100
           minLength: 0
@@ -1701,14 +1964,25 @@ components:
           minLength: 0
           type: string
           description: Identificativo repository
-        priorita:
-          type: boolean
-          description: Priorita
+        mode:
+          type: string
+          description: ModalitÃ  di iniezione del CDA
+          enum:
+            - ATTACHMENT
+            - RESOURCE
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+            - CDA
         workflowInstanceId:
           maxLength: 256
           minLength: 0
           type: string
           description: Identificativo del workflow
+        priorita:
+          type: boolean
+          description: Priorita
       additionalProperties: false
     ValidationCDAReqDTO:
       required:
@@ -1722,13 +1996,13 @@ components:
             - CDA
         mode:
           type: string
-          description: Modalità di iniezione del CDA
+          description: ModalitÃ  di iniezione del CDA
           enum:
             - ATTACHMENT
             - RESOURCE
         activity:
           type: string
-          description: Attività del gateway
+          description: AttivitÃ  del gateway
           enum:
             - VERIFICA
             - VALIDATION
@@ -1755,52 +2029,7 @@ components:
           type: string
           description: Dettaglio del warning
       additionalProperties: false
-    ValidationErrorResponseDTO:
-      type: object
-      properties:
-        traceID:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Indentificativo univoco della richiesta dell'utente
-        spanID:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
-        type:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: URI da utilizzare come identificativo del problema che si è verificato
-        title:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: Descrizione sintetica della tipologia d’errore
-        detail:
-          maxLength: 200000
-          minLength: 0
-          type: string
-          description: Dettaglio della tipologia d’errore
-        status:
-          maximum: 599
-          minimum: 100
-          type: integer
-          description: Stato http
-          format: int32
-        instance:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: URI che identifica la specifica occorrenza del problema
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo del workflow
-      additionalProperties: false
-    PublicationFatherCreationReqDTO:
+    ValidateAndCreateDTO:
       required:
         - assettoOrganizzativo
         - identificativoDoc
@@ -1855,6 +2084,7 @@ components:
             - AD_PSC001
             - AD_PSC002
             - AD_PSC003
+            - AD_PSC004
             - AD_PSC005
             - AD_PSC006
             - AD_PSC007
@@ -1887,6 +2117,7 @@ components:
             - AD_PSC038
             - AD_PSC039
             - AD_PSC040
+            - AD_PSC041
             - AD_PSC042
             - AD_PSC043
             - AD_PSC046
@@ -1907,31 +2138,33 @@ components:
             - AD_PSC064
             - AD_PSC065
             - AD_PSC066
+            - AD_PSC067
             - AD_PSC068
             - AD_PSC069
             - AD_PSC070
             - AD_PSC071
+            - AD_PSC072
             - AD_PSC073
             - AD_PSC074
             - AD_PSC075
             - AD_PSC076
             - AD_PSC077
             - AD_PSC078
-            - AD_PSC082
+            - AD_PSC094
+            - AD_PSC096
             - AD_PSC097
             - AD_PSC098
+            - AD_PSC099
             - AD_PSC100
             - AD_PSC101
             - AD_PSC102
             - AD_PSC103
             - AD_PSC104
-            - AD_PSC106
             - AD_PSC107
             - AD_PSC109
             - AD_PSC121
             - AD_PSC122
             - AD_PSC126
-            - AD_PSC127
             - AD_PSC129
             - AD_PSC130
             - AD_PSC131
@@ -1954,7 +2187,7 @@ components:
           description: Conservazione a norma
         tipoAttivitaClinica:
           type: string
-          description: Tipo attività clinica
+          description: Tipo attivitÃ  clinica
           enum:
             - PHR
             - CON
@@ -1986,17 +2219,6 @@ components:
             - NOSSN
             - SSR
             - DONOR
-        healthDataFormat:
-          type: string
-          description: Formato dei dati sanitari
-          enum:
-            - CDA
-        mode:
-          type: string
-          description: Modalità di iniezione del CDA
-          enum:
-            - ATTACHMENT
-            - RESOURCE
         identificativoDoc:
           maxLength: 100
           minLength: 0
@@ -2007,6 +2229,17 @@ components:
           minLength: 0
           type: string
           description: Identificativo repository
+        mode:
+          type: string
+          description: ModalitÃ  di iniezione del CDA
+          enum:
+            - ATTACHMENT
+            - RESOURCE
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+            - CDA
         priorita:
           type: boolean
           description: Priorita
@@ -2064,6 +2297,10 @@ components:
           type: string
         expiringDate:
           maxLength: 100
+          minLength: 0
+          type: string
+        extra:
+          maxLength: 10000
           minLength: 0
           type: string
       additionalProperties: false
