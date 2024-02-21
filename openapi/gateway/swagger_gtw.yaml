@@ -157,7 +157,7 @@ paths:
             type: string
       responses:
         '200':
-          description: Delete eseguita con successo
+          description: Cancellazione eseguita con successo
           content:
             application/json:
               schema:
@@ -260,7 +260,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Presa in carico eseguita con successo
+          description: Aggiornamento eseguito con successo
           content:
             application/json:
               schema:
