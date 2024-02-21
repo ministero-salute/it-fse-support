@@ -1987,7 +1987,7 @@ curl -X 'DELETE' \
    </td>
    <td> 200
    </td>
-   <td>Delete eseguita con successo
+   <td>Cancellazione eseguita con successo
    </td>
   </tr>
   <tr>
@@ -3055,7 +3055,7 @@ curl -X 'PUT' \
    </td>
    <td> 200
    </td>
-   <td>Presa in carico eseguita con successo
+   <td>Aggiornamento eseguito con successo
    </td>
   </tr>
   <tr>
@@ -3131,7 +3131,7 @@ curl -X 'PUT' \
 </table>
 
 
-_Tabella 27: Response Servizio di Pubblicazione Sostituzione Documento_
+_Tabella 27: Response Servizio di Pubblicazione Aggiornamento Documento_
 
 \* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
 
@@ -6751,7 +6751,7 @@ Vedi TABELLA HEALTHCARE FACILITY TYPE CODE
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Metadato che può essere utilizzato per rappresentare i principali atti clinici che vengono documentati, come ulteriore specializzazione del metadato typeCode, ed è utilizzato anche per specificare la politica di visibilità del documento (ossia se esso è oscurato o meno).Per quanto riguarda la descrizione dell’evento documentato, questo metadato può ad esempio specificare il tipo di vaccino o indicare la tipologia di tampone documentata nel referto di laboratorio. \
+   <td>Metadato che può essere utilizzato per rappresentare i principali atti clinici che vengono documentati, come ulteriore specializzazione del metadato typeCode, ed è utilizzato anche per specificare la politica di visibilità del documento (ossia se esso è oscurato o meno).Per quanto riguarda la descrizione dell’evento documentato, questo metadato può ad esempio specificare il tipo di vaccino o indicare la tipologia di tampone documentata nel referto di laboratorio. \
 Da Affinity Domain, come specificato al paragrafo 2.7, Tabella 2.7-1 \
 Vedi TABELLA EVENT CODE
    </td>
