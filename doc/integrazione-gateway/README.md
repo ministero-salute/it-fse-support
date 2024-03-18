@@ -1576,7 +1576,7 @@ curl -X 'POST' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
 
-  "administrativeRequest": "SSN"
+  "administrativeRequest": ["SSN"]
 
 }' \
 
@@ -1640,7 +1640,7 @@ curl -X 'POST' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
 
-  "administrativeRequest": "SSN"
+  "administrativeRequest": ["SSN"]
 
 }' \
 
@@ -4228,7 +4228,7 @@ curl -X 'PUT' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
 
-  "administrativeRequest": "SSN"
+  "administrativeRequest": ["SSN"]
 
 }' \
 
