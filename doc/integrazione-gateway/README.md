@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.6
+   <td>ver 2.7
    </td>
   </tr>
 </table>
@@ -136,7 +136,7 @@
   <tr>
    <td>2
    </td>
-   <td>Affinity Domain 2.4.1
+   <td>Affinity Domain 2.5
    </td>
    <td>Documento Affinity Domain
    </td>
@@ -445,6 +445,20 @@ Tutti: stesura a seguito rivisitazione
 12: Cambio indice paragrafo "Drilldown Response in caso di Errore"
 <p>
 13. Cambio indice paragrafo "Drilldown Parametri di Input"
+<p>
+   </td>
+  </tr>
+
+  <tr>
+   <td>2.7
+   </td>
+   <td>15/03/2024
+   </td>
+   <td>Paragrafi modificati:
+<p>
+TODO
+<p>
+9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
 <p>
    </td>
   </tr>
@@ -2342,7 +2356,7 @@ _Tabella 20: Method, URL, Type_
   <tr>
    <td>attiCliniciRegoleAccesso
    </td>
-   <td>List<String>
+   <td>String[]
    </td>
    <td>false
    </td>
@@ -2442,7 +2456,7 @@ _Tabella 20: Method, URL, Type_
   <tr>
    <td>descriptions
    </td>
-   <td>List
+   <td>String[]
    </td>
    <td>false
    </td>
@@ -2452,7 +2466,7 @@ _Tabella 20: Method, URL, Type_
    <tr>
    <td>administrativeRequest
    </td>
-   <td>AdministrativeReqEnum
+   <td>AdministrativeReqEnum[]
    </td>
    <td>false
    </td>
@@ -2509,7 +2523,7 @@ curl -X 'PUT' \
 
   "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
 
-  "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
+  "identificativoRep": "2.16.840.1.113883.2.9.2.120.4.5.1",
 
   "tipoDocumentoLivAlto": "REF",
 
@@ -2527,7 +2541,7 @@ curl -X 'PUT' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
 
-  "administrativeRequest": "SSN"
+  "administrativeRequest": ["SSN"]
 
 }' \
 
@@ -2876,7 +2890,7 @@ _Tabella 25: Method, URL, Type_
   <tr>
    <td>attiCliniciRegoleAccesso
    </td>
-   <td>List<String>
+   <td>String[]
    </td>
    <td>false
    </td>
@@ -2956,7 +2970,7 @@ _Tabella 25: Method, URL, Type_
    <tr>
    <td>descriptions
    </td>
-   <td>List
+   <td>String[]
    </td>
    <td>false
    </td>
@@ -2966,7 +2980,7 @@ _Tabella 25: Method, URL, Type_
    <tr>
    <td>administrativeRequest
    </td>
-   <td>AdministrativeReqEnum
+   <td>AdministrativeReqEnum[]
    </td>
    <td>false
    </td>
@@ -3027,7 +3041,7 @@ curl -X 'PUT' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
 
-  "administrativeRequest": "SSN"
+  "administrativeRequest": ["SSN"]
 
 }'\
 
@@ -3384,7 +3398,7 @@ _Tabella 30: Method, URL, Type_
   <tr>
    <td>attiCliniciRegoleAccesso
    </td>
-   <td>List<String>
+   <td>String[]
    </td>
    <td>false
    </td>
@@ -3494,7 +3508,7 @@ _Tabella 30: Method, URL, Type_
    <tr>
    <td>descriptions
    </td>
-   <td>List
+   <td>String[]
    </td>
    <td>false
    </td>
@@ -3504,7 +3518,7 @@ _Tabella 30: Method, URL, Type_
    <tr>
    <td>administrativeRequest
    </td>
-   <td>AdministrativeReqEnum
+   <td>AdministrativeReqEnum[]
    </td>
    <td>false
    </td>
@@ -3583,7 +3597,7 @@ curl -X 'POST' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
 
-  "administrativeRequest": "SSN"
+  "administrativeRequest": ["SSN"]
 
 }' \
 
@@ -3643,7 +3657,7 @@ curl -X 'POST' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
 
-  "administrativeRequest": "SSN"
+  "administrativeRequest": ["SSN"]
 
 }' \
 
@@ -7241,98 +7255,50 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 
 <table>
   <tr>
-   <td><strong>Codice</strong>
-   </td>
-   <td><strong>DisplayName </strong>
-   </td>
-   <td><strong>Descrizione utilizzo</strong>
-   </td>
+    <td><strong>Codice</strong></td>
+    <td><strong>DisplayName</strong></td>
+    <td><strong>Descrizione utilizzo</strong></td>
   </tr>
   <tr>
-   <td>PHR
-   </td>
-   <td>Personal Health Record Update
-   </td>
-   <td>Documenti trasmessi direttamente dal
-<p>
-paziente mediante il taccuino personale.
-   </td>
+    <td>PHR</td>
+    <td>Personal Health Record Update</td>
+    <td>Documenti trasmessi direttamente dal paziente mediante il taccuino personale.</td>
   </tr>
   <tr>
-   <td>CON
-   </td>
-   <td>Consulto
-   </td>
-   <td>Documenti trasmessi per richiedere un
-<p>
-consulto.
-   </td>
+    <td>CON</td>
+    <td>Consulto</td>
+    <td>Documenti trasmessi per richiedere un consulto.</td>
   </tr>
   <tr>
-   <td>DIS
-   </td>
-   <td>Discharge
-   </td>
-   <td>Documenti trasmessi a seguito di un
-<p>
-ricovero.
-   </td>
+    <td>DIS</td>
+    <td>Discharge</td>
+    <td>Documenti trasmessi a seguito di un ricovero.</td>
   </tr>
   <tr>
-   <td>ERP
-   </td>
-   <td>Erogazione Prestazione Prenotata
-   </td>
-   <td>Documenti trasmessi a seguito di una
-<p>
-prestazione programmata/prenotata
-   </td>
+    <td>ERP</td>
+    <td>Erogazione Prestazione Prenotata</td>
+    <td>Documenti trasmessi a seguito di una prestazione programmata/prenotata</td>
   </tr>
   <tr>
-   <td>Sistema TS
-   </td>
-   <td>Documenti sistema TS
-   </td>
-   <td>Documenti resi disponibili nel FSE dal
-<p>
-Sistema TS.
-   </td>
+    <td>Sistema_TS</td>
+    <td>Documenti sistema TS</td>
+    <td>Documenti resi disponibili nel FSE dal Sistema TS.</td>
   </tr>
-
-   <tr>
-   <td>INI
-   </td>
-   <td>Documenti INI
-   </td>
-   <td>Documenti trasferiti da INI durante il
-trasferimento 
-<p>
-indice alla nuova RDA.
-   </td>
-  </tr>
-
-   <tr>
-   <td>PN-DGC
-   </td>
-   <td>Documenti PN-DGC
-   </td>
-   <td>Documenti resi disponibili dalla Piattaforma
-<p>
-Nazionale DGC al sistema FSE.
-   </td>
-  </tr>
-
   <tr>
-   <td>OBS
-   </td>
-   <td>Documento stato di salute
-   </td>
-   <td>Documenti trasmessi al FSE per arricchire la
-<p>
-valutazione dello stato di salute del paziente.
-   </td>
+    <td>INI</td>
+    <td>Documenti INI</td>
+    <td>Documenti trasferiti da INI durante il trasferimento indice alla nuova RDA.</td>
   </tr>
-  
+  <tr>
+    <td>PN_DGC</td>
+    <td>Documenti PN-DGC</td>
+    <td>Documenti resi disponibili dalla Piattaforma Nazionale DGC al sistema FSE.</td>
+  </tr>
+  <tr>
+    <td>OBS</td>
+    <td>Documento stato di salute</td>
+    <td>Documenti trasmessi al FSE per arricchire la valutazione dello stato di salute del paziente.</td>
+  </tr>
 </table>
 
 
@@ -7348,60 +7314,39 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 
 <table>
   <tr>
-   <td><strong>Codice</strong>
-   </td>
-   <td><strong>Nome mnemonico</strong>
-   </td>
-   <td><strong>Descrizione</strong>
-   </td>
+    <td><strong>Codice</strong></td>
+    <td><strong>DisplayName</strong></td>
+    <td><strong>Descrizione utilizzo</strong></td>
   </tr>
   <tr>
-   <td>Ospedale
-   </td>
-   <td>Ospedale
-   </td>
-   <td>Indica che il documento è stato prodotto in regime di ricovero ospedaliero del paziente.
-   </td>
+    <td>Ospedale</td>
+    <td>Ospedale</td>
+    <td>Indica che il documento è stato prodotto in regime di ricovero ospedaliero del paziente.</td>
   </tr>
   <tr>
-   <td>Prevenzione
-   </td>
-   <td>Prevenzione
-   </td>
-   <td>Indica che il documento è stato prodotto a seguito di uno screening o di medicina preventiva.
-   </td>
+    <td>Prevenzione</td>
+    <td>Prevenzione</td>
+    <td>Indica che il documento è stato prodotto a seguito di uno screening o di medicina preventiva.</td>
   </tr>
   <tr>
-   <td>Territorio
-   </td>
-   <td>Territorio
-   </td>
-   <td>Indica che il documento è stato prodotto a seguito di un incontro con uno specialista territoriale (ad es. MMG, PLS, ecc.).
-   </td>
+    <td>Territorio</td>
+    <td>Territorio</td>
+    <td>Indica che il documento è stato prodotto a seguito di un incontro con uno specialista territoriale (ad es. MMG, PLS, ecc.).</td>
   </tr>
   <tr>
-   <td>SistemaTS
-   </td>
-   <td>SistemaTS
-   </td>
-   <td>Indica che il documento è gestito e condiviso dal Sistema TS.
-   </td>
+    <td>SistemaTS</td>
+    <td>SistemaTS</td>
+    <td>Indica che il documento è gestito e condiviso dal Sistema TS.</td>
   </tr>
   <tr>
-   <td>Cittadino
-   </td>
-   <td>Cittadino
-   </td>
-   <td>Indica che il dato/documento è stato inserito dal cittadino.
-   </td>
+    <td>Cittadino</td>
+    <td>Cittadino</td>
+    <td>Indica che il dato/documento è stato inserito dal cittadino.</td>
   </tr>
-   <tr>
-   <td>MdsPN-DGC
-   </td>
-   <td>MdsPN-DGC
-   </td>
-   <td>Piattaforma Nazionale DGC del Ministero Della Salute.
-   </td>
+  <tr>
+    <td>MdsPN_DGC</td>
+    <td>MdsPN-DGC</td>
+    <td>Piattaforma Nazionale DGC del Ministero Della Salute.</td>
   </tr>
 </table>
 
@@ -7413,138 +7358,89 @@ _Tabella 43:  _Value set per il metadato XDSDocumentEntry.healthcareFacilityType
 
 ### 13.3.3. Tipo Documento Alto Livello
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
   <tr>
-   <td><strong>Codice</strong>
-   </td>
-   <td><strong>Nome mnemonico</strong>
-   </td>
-   <td><strong>Descrizione Utilizzo</strong>
-   </td>
+    <td><strong>Codice</strong></td>
+    <td><strong>DisplayName</strong></td>
+    <td><strong>Descrizione utilizzo</strong></td>
   </tr>
   <tr>
-   <td>WOR
-   </td>
-   <td>Documento di workflow
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per i documenti di workflow.
-   </td>
+    <td>WOR</td>
+    <td>Documento di workflow</td>
+    <td>Questa classe di documenti deve essere utilizzata per i documenti di workflow.</td>
   </tr>
   <tr>
-   <td>REF
-   </td>
-   <td>Referto
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di referto.
-   </td>
+    <td>REF</td>
+    <td>Referto</td>
+    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di referto.</td>
   </tr>
   <tr>
-   <td>LDO
-   </td>
-   <td>Lettera di dimissione ospedaliera
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per le lettere di dimissione ospedaliera.
-   </td>
+    <td>LDO</td>
+    <td>Lettera di dimissione ospedaliera</td>
+    <td>Questa classe di documenti deve essere utilizzata per le lettere di dimissione ospedaliera.</td>
   </tr>
   <tr>
-   <td>RIC
-   </td>
-   <td>Richiesta
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di richiesta (prescrizioni, richieste di consulto, ecc.).
-   </td>
+    <td>RIC</td>
+    <td>Richiesta</td>
+    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di richiesta (prescrizioni, richieste di consulto, ecc.).</td>
   </tr>
   <tr>
-   <td>SUM
-   </td>
-   <td>Sommario
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di sommario (ad es. profilo sanitario sintetico).
-   </td>
+    <td>SUM</td>
+    <td>Sommario</td>
+    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di sommario (ad es. profilo sanitario sintetico).</td>
   </tr>
   <tr>
-   <td>TAC
-   </td>
-   <td>Taccuino
-   </td>
-   <td>Questa classe deve essere utilizzata per indicare documenti trasmessi nel taccuino dall’assistito.
-   </td>
+    <td>TAC</td>
+    <td>Taccuino</td>
+    <td>Questa classe deve essere utilizzata per indicare documenti trasmessi nel taccuino dall’assistito.</td>
   </tr>
   <tr>
-   <td>PRS
-   </td>
-   <td>Prescrizione
-   </td>
-   <td>Questa classe specifica che le informazioni riguardano le prescrizioni condivise dal Sistema TS.
-   </td>
+    <td>PRS</td>
+    <td>Prescrizione</td>
+    <td>Questa classe specifica che le informazioni riguardano le prescrizioni condivise dal Sistema TS.</td>
   </tr>
   <tr>
-   <td>PRE
-   </td>
-   <td>Prestazioni
-   </td>
-   <td>Questa classe specifica che le informazioni riguardano le prestazioni erogate condivise dal Sistema TS.
-   </td>
+    <td>PRE</td>
+    <td>Prestazioni</td>
+    <td>Questa classe specifica che le informazioni riguardano le prestazioni erogate condivise dal Sistema TS.</td>
   </tr>
   <tr>
-   <td>ESE
-   </td>
-   <td>Esenzione
-   </td>
-   <td>Questa classe indica che le informazioni riguardano le esenzioni.
-   </td>
+    <td>ESE</td>
+    <td>Esenzione</td>
+    <td>Questa classe indica che le informazioni riguardano le esenzioni.</td>
   </tr>
   <tr>
-   <td>PDC
-   </td>
-   <td>Piano di cura
-   </td>
-   <td>Questa classe specifica che le informazioni riguardano i piani terapeutici condivisi dal Sistema TS.
-   </td>
+    <td>PDC</td>
+    <td>Piano di cura</td>
+    <td>Questa classe specifica che le informazioni riguardano i piani terapeutici condivisi dal Sistema TS.</td>
   </tr>
   <tr>
-   <td>VAC
-   </td>
-   <td>Vaccino
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di vaccino (scheda della singola vaccinazione, certificato vaccinale).
-   </td>
+    <td>VAC</td>
+    <td>Vaccino</td>
+    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di vaccino (scheda della singola vaccinazione, certificato vaccinale).</td>
   </tr>
   <tr>
-   <td>CER
-   </td>
-   <td>Certificato per DGC
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per i documenti associati al Digital Green Certificate (certificazione verde Covid-19, certificazione di guarigione da Covid-19).
-   </td>
+    <td>CER</td>
+    <td>Certificato per DGC</td>
+    <td>Questa classe di documenti deve essere utilizzata per i documenti associati al Digital Green Certificate (certificazione verde Covid-19, certificazione di guarigione da Covid-19).</td>
   </tr>
   <tr>
-   <td>VRB
-   </td>
-   <td>Verbale
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di verbale (ad es. verbale di pronto soccorso).
-   </td>
+    <td>VRB</td>
+    <td>Verbale</td>
+    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di verbale (ad es. verbale di pronto soccorso).</td>
   </tr>
-   <tr>
-   <td>CON
-   </td>
-   <td>Documento di consenso
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento di consenso (ad es. consenso
-informato anestesia).
-   </td>
+  <tr>
+    <td>CON</td>
+    <td>Documento di consenso</td>
+    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento di consenso (ad es. consenso informato anestesia).</td>
   </tr>
-   <tr>
-   <td>CNT
-   </td>
-   <td>Documento di controllo
-   </td>
-   <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento che descrive un controllo clinico (ad es. bilanci di salute).
-   </td>
+  <tr>
+    <td>CNT</td>
+    <td>Documento di controllo</td>
+    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento che descrive un controllo clinico (ad es. bilanci di salute).</td>
   </tr>
 </table>
 
@@ -7554,665 +7450,1150 @@ _Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 ### 13.3.4. Event Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
   <tr>
-   <td><strong>CODICE</strong>
-   </td>
-   <td><strong>NOME MNEMONICO</strong>
-   </td>
-   <td><strong>DESCRIZIONE UTILIZZO</strong>
-   </td>
+    <td><strong>Codice</strong></td>
+    <td><strong>DisplayName</strong></td>
+    <td><strong>Descrizione utilizzo</strong></td>
   </tr>
   <tr>
-   <td>P99
-   </td>
-   <td>Oscuramento del documento
-   </td>
-   <td>Specifica che un assistito ha stabilito di oscurare un documento a tutti i ruoli abilitati all’accesso al FSE.
-   </td>
+    <td>J07AC</td>
+    <td>J07AC</td>
+    <td>Anthrax vaccines</td>
   </tr>
   <tr>
-   <td>P97
-   </td>
-   <td>Oscuramento al genitore
-   </td>
-   <td>Un assistito minore ha stabilito di oscurare un documento ai propri genitori.
-   </td>
+    <td>J07AC01</td>
+    <td>J07AC01</td>
+    <td>anthrax antigen</td>
   </tr>
   <tr>
-   <td>P98
-   </td>
-   <td>Oscuramento all’assistito
-   </td>
-   <td>Un medico specialista ha stabilito di oscurare provvisoriamente un documento al proprio assistito. Il documento sarà visibile all’assistito a seguito del processo di mediazione che terminerà con l’eliminazione del valore P98.
-   </td>
+    <td>J07AD</td>
+    <td>J07AD</td>
+    <td>Brucellosis vaccines</td>
   </tr>
   <tr>
-   <td>J07BX03
-   </td>
-   <td>Vaccino per Covid-19
-   </td>
-   <td>Fornisce indicazione relativamente all’evento vaccino per Covid-19, dettagliando maggiormente il contenuto del metadato typeCode cui è correlato (ad es. scheda della singola vaccinazione). Il codice utilizzato è individuato dalla classificazione ATC.
-   </td>
+    <td>J07AD01</td>
+    <td>J07AD01</td>
+    <td>brucella antigen</td>
   </tr>
   <tr>
-   <td>LP418019-8
-   </td>
-   <td>Tampone antigenico per Covid-19
-   </td>
-   <td>Fornisce indicazione relativamente all’evento tampone antigenico per Covid-19, dettagliando maggiormente il contenuto del metadato typeCode cui è correlato (ad es. referto di laboratorio). Il codice utilizzato è individuato dalla codifica LOINC.
-   </td>
+    <td>J07AE</td>
+    <td>J07AE</td>
+    <td>Cholera vaccines</td>
   </tr>
   <tr>
-   <td>LP417541-2
-   </td>
-   <td>Tampone molecolare per Covid-19
-   </td>
-   <td>Fornisce indicazione relativamente all’evento tampone molecolare per Covid-19, dettagliando maggiormente il contenuto del metadato typeCode cui è correlato (ad es. referto di laboratorio). Il codice utilizzato è individuato dalla codifica LOINC.
-   </td>
+    <td>J07AE01</td>
+    <td>J07AE01</td>
+    <td>cholera, inactivated, whole cell</td>
   </tr>
   <tr>
-   <td>96118-5
-   </td>
-   <td>Test Sierologico qualitativo
-   </td>
-   <td>Fornisce indicazione relativamente all’evento test sierologico qualitativo per Covid-19, dettagliando maggiormente il contenuto del metadato typeCode cui è correlato (ad es. referto di laboratorio). Il codice utilizzato è individuato dalla codifica LOINC.
-   </td>
+    <td>J07AE02</td>
+    <td>J07AE02</td>
+    <td>cholera, live attenuated</td>
   </tr>
   <tr>
-   <td>94503-0
-   </td>
-   <td>Test Sierologico quantitativo
-   </td>
-   <td>Fornisce indicazione relativamente all’evento test sierologico quantitativo per Covid-19, dettagliando maggiormente il contenuto del metadato typeCode cui è correlato (ad es. referto di laboratorio). Il codice utilizzato è individuato dalla codifica LOINC.
-   </td>
+    <td>J07AE51</td>
+    <td>J07AE51</td>
+    <td>cholera, combinations with typhoid vaccine, inactivated, whole cell</td>
   </tr>
   <tr>
-   <td>pay
-   </td>
-   <td>Prescrizione farmaceutica non a carico SSN
-   </td>
-   <td>Fornisce indicazione relativamente alla cosiddetta “Ricetta bianca”, consentendo di specificare che il metadato typeCode (57833-6) cui è correlato fa riferimento ad una prescrizione non a carico del SSN. Il codice utilizzato è individuato dal value set http://hl7.org/fhir/ValueSet/coverage-type
-   </td>
+    <td>J07AF</td>
+    <td>J07AF</td>
+    <td>Diphtheria vaccines</td>
   </tr>
   <tr>
-   <td>PUBLICPOL
-   </td>
-   <td>Prescrizione farmaceutica SSN
-   </td>
-   <td>Consente di specificare che il metadato typeCode (57833-6) cui è correlato fa riferimento ad una prescrizione a carico del SSN in maniera totale o parziale. Il codice utilizzato è individuato dal value set http://hl7.org/fhir/ValueSet/coverage-type
-   </td>
-     <tr>
-      <td>LP267463-0</td>
-      <td>Reddito</td>
-      </td>
-    </tr>
-    <tr>
-      <td>LP199190-2</td>
-      <td>Patologia</td>
-      </td>
-    </tr>
-    <tr>
-      <td>90768-3</td>
-      <td>Analisi sangue donatore</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AC</td>
-      <td>Anthrax vaccines</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AC01</td>
-      <td>anthrax antigen</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AD</td>
-      <td>Brucellosis vaccines</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AD01</td>
-      <td>brucella antigen</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AE</td>
-      <td>Cholera vaccines</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AE01</td>
-      <td>cholera, inactivated, whole cell</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AE02</td>
-      <td>cholera, live attenuated</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AE51</td>
-      <td>cholera, combinations with typhoid vaccine, inactivated, whole cell</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AF</td>
-      <td>Diphtheria vaccines</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AF01</td>
-      <td>diphtheria toxoid</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AG</td>
-      <td>Haemophilus influenzae B vaccines</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AG01</td>
-      <td>haemophilus influenzae B, purified antigen conjugated</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AG51</td>
-      <td>haemophilus influenzae B, combinations with toxoids</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AG52</td>
-      <td>haemophilus influenzae B, combinations with pertussis and toxoids</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AG53</td>
-      <td>haemophilus influenzae B, combinations with meningococcus C, conjugated</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AG54</td>
-      <td>haemophilus influenza B, combinations with meningococcus C,Y, conjugated</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AH</td>
-      <td>Meningococcal vaccines</td>
-      </td>
-    </tr>
-    <tr>
-      <td>J07AH01</td>
-      <td>meningococcus A, purified polysaccharides antigen</td>
-      </td>
-    </tr> 
+    <td>J07AF01</td>
+    <td>J07AF01</td>
+    <td>diphtheria toxoid</td>
+  </tr>
+  <tr>
+    <td>J07AG</td>
+    <td>J07AG</td>
+    <td>Haemophilus influenzae B vaccines</td>
+  </tr>
+  <tr>
+    <td>J07AG01</td>
+    <td>J07AG01</td>
+    <td>haemophilus influenzae B, purified antigen conjugated</td>
+  </tr>
+  <tr>
+    <td>J07AG51</td>
+    <td>J07AG51</td>
+    <td>haemophilus influenzae B, combinations with toxoids</td>
+  </tr>
+  <tr>
+    <td>J07AG52</td>
+    <td>J07AG52</td>
+    <td>haemophilus influenzae B, combinations with pertussis and toxoids</td>
+  </tr>
+  <tr>
+    <td>J07AG53</td>
+    <td>J07AG53</td>
+    <td>haemophilus influenzae B, combinations with meningococcus C, conjugated</td>
+  </tr>
+  <tr>
+    <td>J07AG54</td>
+    <td>J07AG54</td>
+    <td>haemophilus influenza B, combinations with meningococcus C,Y, conjugated</td>
+  </tr>
+  <tr>
+    <td>J07AH</td>
+    <td>J07AH</td>
+    <td>Meningococcal vaccines</td>
+  </tr>
+  <tr>
+    <td>J07AH01</td>
+    <td>J07AH01</td>
+    <td>meningococcus A, purified polysaccharides antigen</td>
+  </tr>
   <tr>
     <td>J07AH02</td>
+    <td>J07AH02</td>
     <td>other meningococcal monovalent purified polysaccharides antigen</td>
-    </td>
   </tr>
   <tr>
     <td>J07AH03</td>
+    <td>J07AH03</td>
     <td>meningococcus A,C, bivalent purified polysaccharides antigen</td>
-    </td>
   </tr>
   <tr>
     <td>J07AH04</td>
+    <td>J07AH04</td>
     <td>meningococcus A,C,Y,W-135, tetravalent purified polysaccharides antigen</td>
- </td> </tr>
+  </tr>
   <tr>
     <td>J07AH05</td>
+    <td>J07AH05</td>
     <td>other meningococcal polyvalent purified polysaccharides antigen</td>
- </td> </tr>
+  </tr>
   <tr>
     <td>J07AH06</td>
+    <td>J07AH06</td>
     <td>meningococcus B, outer membrane vesicle vaccine</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AH07</td>
+    <td>J07AH07</td>
     <td>meningococcus C, purified polysaccharides antigen conjugated</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AH08</td>
+    <td>J07AH08</td>
     <td>meningococcus A,C,Y,W-135, tetravalent purified polysaccharides antigen conjugated</td>
- </td> </tr>
+  </tr>
   <tr>
     <td>J07AH09</td>
+    <td>J07AH09</td>
     <td>meningococcus B, multicomponent vaccine</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AH10</td>
+    <td>J07AH10</td>
     <td>meningococcus A, purified polysaccharides antigen conjugated</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AJ</td>
+    <td>J07AJ</td>
     <td>Pertussis vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AJ01</td>
+    <td>J07AJ01</td>
     <td>pertussis, inactivated, whole cell</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AJ02</td>
+    <td>J07AJ02</td>
     <td>pertussis, purified antigen</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AJ51</td>
+    <td>J07AJ51</td>
     <td>pertussis, inactivated, whole cell, combinations with toxoids</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AJ52</td>
+    <td>J07AJ52</td>
     <td>pertussis, purified antigen, combinations with toxoids</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AK</td>
+    <td>J07AK</td>
     <td>Plague vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AK01</td>
+    <td>J07AK01</td>
     <td>plague, inactivated, whole cell</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AL</td>
+    <td>J07AL</td>
     <td>Pneumococcal vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AL01</td>
+    <td>J07AL01</td>
     <td>pneumococcus, purified polysaccharides antigen</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AL02</td>
+    <td>J07AL02</td>
     <td>pneumococcus, purified polysaccharides antigen conjugated</td>
-  </td></tr>
-
+  </tr>
   <tr>
     <td>J07AL52</td>
+    <td>J07AL52</td>
     <td>pneumococcus purified polysaccharides antigen and haemophilus influenzae, conjugated</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AM</td>
+    <td>J07AM</td>
     <td>Tetanus vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AM01</td>
+    <td>J07AM01</td>
     <td>tetanus toxoid</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AM51</td>
+    <td>J07AM51</td>
     <td>tetanus toxoid, combinations with diphtheria toxoid</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AM52</td>
+    <td>J07AM52</td>
     <td>tetanus toxoid, combinations with tetanus immunoglobulin</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AN</td>
+    <td>J07AN</td>
     <td>Tuberculosis vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AN01</td>
+    <td>J07AN01</td>
     <td>tuberculosis, live attenuated</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AP</td>
+    <td>J07AP</td>
     <td>Typhoid vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AP01</td>
+    <td>J07AP01</td>
     <td>typhoid, oral, live attenuated</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AP02</td>
+    <td>J07AP02</td>
     <td>typhoid, inactivated, whole cell</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AP03</td>
+    <td>J07AP03</td>
     <td>typhoid, purified polysaccharide antigen</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AP10</td>
+    <td>J07AP10</td>
     <td>typhoid, combinations with paratyphi types</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AR</td>
+    <td>J07AR</td>
     <td>Typhus (exanthematicus) vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AR01</td>
+    <td>J07AR01</td>
     <td>typhus exanthematicus, inactivated, whole cell</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AX</td>
+    <td>J07AX</td>
     <td>Other bacterial vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07AX01</td>
+    <td>J07AX01</td>
     <td>leptospira vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07BA</td>
+    <td>J07BA</td>
     <td>Encephalitis vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07BA01</td>
+    <td>J07BA01</td>
     <td>encephalitis, tick borne, inactivated, whole virus</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07BA02</td>
+    <td>J07BA02</td>
     <td>encephalitis, Japanese, inactivated, whole virus</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07BA03</td>
+    <td>J07BA03</td>
     <td>encephalitis, Japanese, live attenuated</td>
-  </td></tr>
+  </tr>
   <tr>
     <td>J07BB</td>
+    <td>J07BB</td>
     <td>Influenza vaccines</td>
-  </td></tr>
+  </tr>
   <tr>
-            <td>J07BC</td>
-            <td>Hepatitis vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BC01</td>
-            <td>hepatitis B, purified antigen</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BC02</td>
-            <td>hepatitis A, inactivated, whole virus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BC20</td>
-            <td>combinations</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BD</td>
-            <td>Measles vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BD01</td>
-            <td>measles, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BD51</td>
-            <td>measles, combinations with mumps, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BD52</td>
-            <td>measles, combinations with mumps and rubella, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BD53</td>
-            <td>measles, combinations with rubella, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BD54</td>
-            <td>measles, combinations with mumps, rubella and varicella, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BE</td>
-            <td>Mumps vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BE01</td>
-            <td>mumps, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BF</td>
-            <td>Poliomyelitis vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BF01</td>
-            <td>poliomyelitis oral, monovalent, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BF02</td>
-            <td>poliomyelitis oral, trivalent, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BF03</td>
-            <td>poliomyelitis, trivalent, inactivated, whole virus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BF04</td>
-            <td>poliomyelitis oral, bivalent, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BG</td>
-            <td>Rabies vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BG01</td>
-            <td>rabies, inactivated, whole virus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BH</td>
-            <td>Rota virus diarrhea vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BH01</td>
-            <td>rota virus, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BH02</td>
-            <td>rota virus, pentavalent, live, reassorted</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BJ</td>
-            <td>Rubella vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BJ01</td>
-            <td>rubella, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BJ51</td>
-            <td>rubella, combinations with mumps, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BK</td>
-            <td>Varicella zoster vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BK01</td>
-            <td>varicella, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BK02</td>
-            <td>zoster, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BK03</td>
-            <td>zoster, purified antigen</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BL</td>
-            <td>Yellow fever vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BL01</td>
-            <td>yellow fever, live attenuated</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BM</td>
-            <td>Papillomavirus vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BM01</td>
-            <td>papillomavirus (human types 6, 11, 16, 18)</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BM02</td>
-            <td>papillomavirus (human types 16, 18)</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BM03</td>
-            <td>papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58)</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BN</td>
-            <td>Covid-19 vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BN01</td>
-            <td>covid-19, RNA-based vaccine</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BN02</td>
-            <td>covid-19, viral vector, non-replicating</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BN03</td>
-            <td>covid-19, inactivated virus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BN04</td>
-            <td>covid-19, protein subunit</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BX</td>
-            <td>Other viral vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BX01</td>
-            <td>smallpox vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BX02</td>
-            <td>ebola vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07BX04</td>
-            <td>dengue virus vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA</td>
-            <td>Bacterial and viral vaccines, combined</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA01</td>
-            <td>diphtheria-poliomyelitis-tetanus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA02</td>
-            <td>diphtheria-pertussis-poliomyelitis-tetanus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA03</td>
-            <td>diphtheria-rubella-tetanus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA04</td>
-            <td>haemophilus influenzae B and poliomyelitis</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA05</td>
-            <td>diphtheria-hepatitis B-pertussis-tetanus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA06</td>
-            <td>diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA07</td>
-            <td>diphtheria-hepatitis B-tetanus</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA08</td>
-            <td>haemophilus influenzae B and hepatitis B</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA09</td>
-            <td>diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA10</td>
-            <td>typhoid-hepatitis A</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA11</td>
-            <td>diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA12</td>
-            <td>diphtheria-pertussis-poliomyelitis-tetanus-hepatitis B</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07CA13</td>
-            <td>diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B-meningococcus A + C</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07XA</td>
-            <td>Parasitic vaccines</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>J07XA01</td>
-            <td>malaria vaccine</td>
-            <td></td>
-        </tr>
+    <td>J07BB01</td>
+    <td>J07BB01</td>
+    <td>influenza, inactivated, whole virus</td>
+  </tr>
+  <tr>
+    <td>J07BB02</td>
+    <td>J07BB02</td>
+    <td>influenza, inactivated, split virus or surface antigen</td>
+  </tr>
+  <tr>
+    <td>J07BB03</td>
+    <td>J07BB03</td>
+    <td>influenza, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BB04</td>
+    <td>J07BB04</td>
+    <td>influenza, virus like particles</td>
+  </tr>
+  <tr>
+    <td>J07BC</td>
+    <td>J07BC</td>
+    <td>Hepatitis vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BC01</td>
+    <td>J07BC01</td>
+    <td>hepatitis B, purified antigen</td>
+  </tr>
+  <tr>
+    <td>J07BC02</td>
+    <td>J07BC02</td>
+    <td>hepatitis A, inactivated, whole virus</td>
+  </tr>
+  <tr>
+    <td>J07BC20</td>
+    <td>J07BC20</td>
+    <td>combinations</td>
+  </tr>
+  <tr>
+    <td>J07BD</td>
+    <td>J07BD</td>
+    <td>Measles vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BD01</td>
+    <td>J07BD01</td>
+    <td>measles, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BD51</td>
+    <td>J07BD51</td>
+    <td>measles, combinations with mumps, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BD52</td>
+    <td>J07BD52</td>
+    <td>measles, combinations with mumps and rubella, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BD53</td>
+    <td>J07BD53</td>
+    <td>measles, combinations with rubella, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BD54</td>
+    <td>J07BD54</td>
+    <td>measles, combinations with mumps, rubella and varicella, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BE</td>
+    <td>J07BE</td>
+    <td>Mumps vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BE01</td>
+    <td>J07BE01</td>
+    <td>mumps, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BF</td>
+    <td>J07BF</td>
+    <td>Poliomyelitis vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BF01</td>
+    <td>J07BF01</td>
+    <td>poliomyelitis oral, monovalent, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BF02</td>
+    <td>J07BF02</td>
+    <td>poliomyelitis oral, trivalent, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BF03</td>
+    <td>J07BF03</td>
+    <td>poliomyelitis, trivalent, inactivated, whole virus</td>
+  </tr>
+  <tr>
+    <td>J07BF04</td>
+    <td>J07BF04</td>
+    <td>poliomyelitis oral, bivalent, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BG</td>
+    <td>J07BG</td>
+    <td>Rabies vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BG01</td>
+    <td>J07BG01</td>
+    <td>rabies, inactivated, whole virus</td>
+  </tr>
+  <tr>
+    <td>J07BH</td>
+    <td>J07BH</td>
+    <td>Rota virus diarrhea vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BH01</td>
+    <td>J07BH01</td>
+    <td>rota virus, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BH02</td>
+    <td>J07BH02</td>
+    <td>rota virus, pentavalent, live, reassorted</td>
+  </tr>
+  <tr>
+    <td>J07BJ</td>
+    <td>J07BJ</td>
+    <td>Rubella vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BJ01</td>
+    <td>J07BJ01</td>
+    <td>rubella, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BJ51</td>
+    <td>J07BJ51</td>
+    <td>rubella, combinations with mumps, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BK</td>
+    <td>J07BK</td>
+    <td>Varicella zoster vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BK01</td>
+    <td>J07BK01</td>
+    <td>varicella, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BK02</td>
+    <td>J07BK02</td>
+    <td>zoster, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BK03</td>
+    <td>J07BK03</td>
+    <td>zoster, purified antigen</td>
+  </tr>
+  <tr>
+    <td>J07BL</td>
+    <td>J07BL</td>
+    <td>Yellow fever vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BL01</td>
+    <td>J07BL01</td>
+    <td>yellow fever, live attenuated</td>
+  </tr>
+  <tr>
+    <td>J07BM</td>
+    <td>J07BM</td>
+    <td>Papillomavirus vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BM01</td>
+    <td>J07BM01</td>
+    <td>papillomavirus (human types 6, 11, 16, 18)</td>
+  </tr>
+  <tr>
+    <td>J07BM02</td>
+    <td>J07BM02</td>
+    <td>papillomavirus (human types 16, 18)</td>
+  </tr>
+  <tr>
+    <td>J07BM03</td>
+    <td>J07BM03</td>
+    <td>papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58)</td>
+  </tr>
+  <tr>
+    <td>J07BN01</td>
+    <td>J07BN01</td>
+    <td>covid-19, RNA-based vaccine</td>
+  </tr>
+  <tr>
+    <td>J07BN02</td>
+    <td>J07BN02</td>
+    <td>covid-19, viral vector, non-replicating</td>
+  </tr>
+  <tr>
+    <td>J07BN03</td>
+    <td>J07BN03</td>
+    <td>covid-19, inactivated virus</td>
+  </tr>
+  <tr>
+    <td>J07BN04</td>
+    <td>J07BN04</td>
+    <td>covid-19, protein subunit</td>
+  </tr>
+  <tr>
+    <td>J07BX</td>
+    <td>J07BX</td>
+    <td>Other viral vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BX01</td>
+    <td>J07BX01</td>
+    <td>smallpox vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BX02</td>
+    <td>J07BX02</td>
+    <td>ebola vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BX04</td>
+    <td>J07BX04</td>
+    <td>dengue virus vaccines</td>
+  </tr>
+  <tr>
+    <td>J07CA</td>
+    <td>J07CA</td>
+    <td>Bacterial and viral vaccines, combined</td>
+  </tr>
+  <tr>
+    <td>J07CA01</td>
+    <td>J07CA01</td>
+    <td>diphtheria-poliomyelitis-tetanus</td>
+  </tr>
+  <tr>
+    <td>J07CA02</td>
+    <td>J07CA02</td>
+    <td>diphtheria-pertussis-poliomyelitis-tetanus</td>
+  </tr>
+  <tr>
+    <td>J07CA03</td>
+    <td>J07CA03</td>
+    <td>diphtheria-rubella-tetanus</td>
+  </tr>
+  <tr>
+    <td>J07CA04</td>
+    <td>J07CA04</td>
+    <td>haemophilus influenzae B and poliomyelitis</td>
+  </tr>
+  <tr>
+    <td>J07CA05</td>
+    <td>J07CA05</td>
+    <td>diphtheria-hepatitis B-pertussis-tetanus</td>
+  </tr>
+  <tr>
+    <td>J07CA06</td>
+    <td>J07CA06</td>
+    <td>diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus</td>
+  </tr>
+  <tr>
+    <td>J07CA07</td>
+    <td>J07CA07</td>
+    <td>diphtheria-hepatitis B-tetanus</td>
+  </tr>
+  <tr>
+    <td>J07CA08</td>
+    <td>J07CA08</td>
+    <td>haemophilus influenzae B and hepatitis B</td>
+  </tr>
+  <tr>
+    <td>J07CA09</td>
+    <td>J07CA09</td>
+    <td>diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B</td>
+  </tr>
+  <tr>
+    <td>J07CA10</td>
+    <td>J07CA10</td>
+    <td>typhoid-hepatitis A</td>
+  </tr>
+  <tr>
+    <td>J07CA11</td>
+    <td>J07CA11</td>
+    <td>diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B</td>
+  </tr>
+  <tr>
+    <td>J07CA12</td>
+    <td>J07CA12</td>
+    <td>diphtheria-pertussis-poliomyelitis-tetanus-hepatitis B</td>
+  </tr>
+  <tr>
+    <td>J07CA13</td>
+    <td>J07CA13</td>
+    <td>diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B-meningococcus A + C</td>
+  </tr>
+  <tr>
+    <td>J07XA</td>
+    <td>J07XA</td>
+    <td>Parasitic vaccines</td>
+  </tr>
+  <tr>
+    <td>J07XA01</td>
+    <td>J07XA01</td>
+    <td>malaria vaccines</td>
+  </tr>
+  <tr>
+    <td>_1001000221103</td>
+    <td>1001000221103</td>
+    <td>Inactivated whole Vibrio cholerae antigen only vaccine product in oral dose form</td>
+  </tr>
+  <tr>
+    <td>_1011000221100</td>
+    <td>1011000221100</td>
+    <td>Live attenuated Vibrio cholerae antigen only vaccine product in oral dose form</td>
+  </tr>
+  <tr>
+    <td>_1031000221108</td>
+    <td>1031000221108</td>
+    <td>Human poliovirus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1051000221104</td>
+    <td>1051000221104</td>
+    <td>Live attenuated Human poliovirus serotypes 1 and 3 antigens only vaccine product in oral dose form</td>
+  </tr>
+  <tr>
+    <td>_1052328007</td>
+    <td>1052328007</td>
+    <td>Streptococcus pneumoniae Danish serotype 4, 6B, 9V, 14, 18C, 19F, and 23F capsular polysaccharide antigens conjugated only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1081000221109</td>
+    <td>1081000221109</td>
+    <td>Live attenuated Rotavirus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1101000221104</td>
+    <td>1101000221104</td>
+    <td>Clostridium tetani toxoid antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1119254000</td>
+    <td>1119254000</td>
+    <td>Streptococcus pneumoniae Danish serotype 1, 3, 4, 5, 6A, 6B, 7F, 9V, 14, 18C, 19A, 19F, and 23F capsular polysaccharide antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1119305005</td>
+    <td>1119305005</td>
+    <td>SARS-CoV-2 antigen vaccine</td>
+  </tr>
+  <tr>
+    <td>_1119349007</td>
+    <td>1119349007</td>
+    <td>SARS-CoV-2 mRNA vaccine</td>
+  </tr>
+  <tr>
+    <td>_1121000221106</td>
+    <td>1121000221106</td>
+    <td>Live attenuated Yellow fever virus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1131000221109</td>
+    <td>1131000221109</td>
+    <td>Vaccine product containing only inactivated whole Rabies lyssavirus antigen</td>
+  </tr>
+  <tr>
+    <td>_1157024006</td>
+    <td>1157024006</td>
+    <td>Inactivated whole SARS-CoV-2 antigen vaccine</td>
+  </tr>
+  <tr>
+    <td>_1162643001</td>
+    <td>1162643001</td>
+    <td>SARS-CoV-2 recombinant spike protein antigen vaccine</td>
+  </tr>
+  <tr>
+    <td>_1181000221105</td>
+    <td>1181000221105</td>
+    <td>Influenza virus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1801000221105</td>
+    <td>1801000221105</td>
+    <td>Streptococcus pneumoniae capsular polysaccharide antigen conjugated only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1861000221106</td>
+    <td>1861000221106</td>
+    <td>Bacillus Calmette-Guerin antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_1981000221108</td>
+    <td>1981000221108</td>
+    <td>Neisseria meningitidis serogroup B antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_2171000221104</td>
+    <td>2171000221104</td>
+    <td>Salmonella enterica subspecies enterica serovar Typhi capsular polysaccharide unconjugated antigen only vaccine product in parenteral dose form</td>
+  </tr>
+  <tr>
+    <td>_2221000221107</td>
+    <td>2221000221107</td>
+    <td>Live attenuated Human alphaherpesvirus 3 only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_28531000087107</td>
+    <td>28531000087107</td>
+    <td>COVID-19 vaccine</td>
+  </tr>
+  <tr>
+    <td>_29061000087103</td>
+    <td>29061000087103</td>
+    <td>COVID-19 non-replicating viral vector vaccine</td>
+  </tr>
+  <tr>
+    <td>_37146000</td>
+    <td>37146000</td>
+    <td>Typhus vaccine</td>
+  </tr>
+  <tr>
+    <td>_409568008</td>
+    <td>409568008</td>
+    <td>Pentavalent botulinum toxoid vaccine</td>
+  </tr>
+  <tr>
+    <td>_428601009</td>
+    <td>428601009</td>
+    <td>Paratyphoid vaccine</td>
+  </tr>
+  <tr>
+    <td>_601000221108</td>
+    <td>601000221108</td>
+    <td>Bordetella pertussis antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_774618008</td>
+    <td>774618008</td>
+    <td>Whole cell Bordetella pertussis and Clostridium tetani toxoid adsorbed and Corynebacterium diphtheriae toxoid antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_775641005</td>
+    <td>775641005</td>
+    <td>Clostridium tetani toxoid adsorbed and Corynebacterium diphtheriae toxoid antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_777725002</td>
+    <td>777725002</td>
+    <td>Clostridium tetani toxoid antigen adsorbed only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836368004</td>
+    <td>836368004</td>
+    <td>Bacteria antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836369007</td>
+    <td>836369007</td>
+    <td>Virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836374004</td>
+    <td>836374004</td>
+    <td>Hepatitis B virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836375003</td>
+    <td>836375003</td>
+    <td>Hepatitis A virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836377006</td>
+    <td>836377006</td>
+    <td>Influenza virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836378001</td>
+    <td>836378001</td>
+    <td>Japanese encephalitis virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836379009</td>
+    <td>836379009</td>
+    <td>Human papillomavirus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836380007</td>
+    <td>836380007</td>
+    <td>Haemophilus influenzae type B antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836381006</td>
+    <td>836381006</td>
+    <td>Corynebacterium diphtheriae antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836382004</td>
+    <td>836382004</td>
+    <td>Measles morbillivirus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836383009</td>
+    <td>836383009</td>
+    <td>Vibrio cholerae antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836384003</td>
+    <td>836384003</td>
+    <td>Bacillus anthracis antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836385002</td>
+    <td>836385002</td>
+    <td>Yellow fever virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836387005</td>
+    <td>836387005</td>
+    <td>Rotavirus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836388000</td>
+    <td>836388000</td>
+    <td>Rubella virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836389008</td>
+    <td>836389008</td>
+    <td>Vaccinia virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836390004</td>
+    <td>836390004</td>
+    <td>Salmonella enterica subspecies enterica serovar Typhi antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836393002</td>
+    <td>836393002</td>
+    <td>Rabies lyssavirus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836397001</td>
+    <td>836397001</td>
+    <td>Coxiella burnetii antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836398006</td>
+    <td>836398006</td>
+    <td>Streptococcus pneumoniae antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836401009</td>
+    <td>836401009</td>
+    <td>Neisseria meningitidis antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836402002</td>
+    <td>836402002</td>
+    <td>Bacillus Calmette-Guerin antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836403007</td>
+    <td>836403007</td>
+    <td>Tick-borne encephalitis virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836495005</td>
+    <td>836495005</td>
+    <td>Human alphaherpesvirus 3 antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836498007</td>
+    <td>836498007</td>
+    <td>Mumps orthorubulavirus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_836500008</td>
+    <td>836500008</td>
+    <td>Haemophilus influenzae type B and Neisseria meningitidis serogroup C antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_840549009</td>
+    <td>840549009</td>
+    <td>Yersinia pestis antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_840563003</td>
+    <td>840563003</td>
+    <td>Dengue virus antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_840599008</td>
+    <td>840599008</td>
+    <td>Borrelia burgdorferi antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_863911006</td>
+    <td>863911006</td>
+    <td>Clostridium tetani antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871726005</td>
+    <td>871726005</td>
+    <td>Rabies lyssavirus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871737006</td>
+    <td>871737006</td>
+    <td>Mumps orthorubulavirus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871738001</td>
+    <td>871738001</td>
+    <td>Live attenuated Mumps orthorubulavirus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871739009</td>
+    <td>871739009</td>
+    <td>Human poliovirus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871740006</td>
+    <td>871740006</td>
+    <td>Inactivated whole Human poliovirus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871742003</td>
+    <td>871742003</td>
+    <td>Clostridium tetani antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871751006</td>
+    <td>871751006</td>
+    <td>Hepatitis A virus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871759008</td>
+    <td>871759008</td>
+    <td>Acellular Bordetella pertussis only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871764007</td>
+    <td>871764007</td>
+    <td>Haemophilus influenzae type b antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871765008</td>
+    <td>871765008</td>
+    <td>Measles morbillivirus antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871768005</td>
+    <td>871768005</td>
+    <td>Influenza virus antigen only vaccine product in nasal dose form</td>
+  </tr>
+  <tr>
+    <td>_871772009</td>
+    <td>871772009</td>
+    <td>Influenza A virus subtype H1N1 antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871803007</td>
+    <td>871803007</td>
+    <td>Hepatitis A and Hepatitis B virus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871804001</td>
+    <td>871804001</td>
+    <td>Hepatitis A virus and Salmonella enterica subspecies enterica serovar Typhi antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871806004</td>
+    <td>871806004</td>
+    <td>Haemophilus influenzae type B and Hepatitis B virus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871826000</td>
+    <td>871826000</td>
+    <td>Clostridium tetani and Corynebacterium diphtheriae antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871831003</td>
+    <td>871831003</td>
+    <td>Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871837004</td>
+    <td>871837004</td>
+    <td>Clostridium tetani and Corynebacterium diphtheriae and Human poliovirus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871839001</td>
+    <td>871839001</td>
+    <td>Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Haemophilus influenzae type B antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871866001</td>
+    <td>871866001</td>
+    <td>Neisseria meningitidis serogroup C only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871871008</td>
+    <td>871871008</td>
+    <td>Neisseria meningitidis serogroup A and C only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871873006</td>
+    <td>871873006</td>
+    <td>Neisseria meningitidis serogroup A, C, W135 and Y only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871875004</td>
+    <td>871875004</td>
+    <td>Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871876003</td>
+    <td>871876003</td>
+    <td>Acellular Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871878002</td>
+    <td>871878002</td>
+    <td>Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Human poliovirus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871887006</td>
+    <td>871887006</td>
+    <td>Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Haemophilus influenzae type B and Human poliovirus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871889009</td>
+    <td>871889009</td>
+    <td>Acellular Bordetella pertussis and Corynebacterium diphtheriae and Hepatitis B virus and inactivated whole Human poliovirus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871895005</td>
+    <td>871895005</td>
+    <td>Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Haemophilus influenzae type B and Hepatitis B virus and Human poliovirus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871908002</td>
+    <td>871908002</td>
+    <td>Human alphaherpesvirus 3 and Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871918007</td>
+    <td>871918007</td>
+    <td>Rickettsia antigen-containing vaccine product</td>
+  </tr>
+  <tr>
+    <td>_871921009</td>
+    <td>871921009</td>
+    <td>Staphylococcus toxoid vaccine</td>
+  </tr>
+  <tr>
+    <td>_921000221108</td>
+    <td>921000221108</td>
+    <td>Neisseria meningitidis antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>_971000221109</td>
+    <td>971000221109</td>
+    <td>Live attenuated Salmonella enterica subspecies enterica serovar Typhi antigen only vaccine product in oral dose form</td>
+  </tr>
+  <tr>
+    <td>_981000221107</td>
+    <td>981000221107</td>
+    <td>Streptococcus pneumoniae antigen only vaccine product</td>
+  </tr>
+  <tr>
+    <td>P99</td>
+    <td>P99</td>
+    <td>Oscuramento del documento</td>
+  </tr>
+  <tr>
+    <td>P97</td>
+    <td>P97</td>
+    <td>Oscuramento al genitore</td>
+  </tr>
+  <tr>
+    <td>P98</td>
+    <td>P98</td>
+    <td>Oscuramento all’assistito</td>
+  </tr>
+  <tr>
+    <td>J07BN</td>
+    <td>J07BN</td>
+    <td>Vaccino per Covid-19</td>
+  </tr>
+  <tr>
+    <td>LP418019_8</td>
+    <td>LP418019-8</td>
+    <td>Tampone antigenico per Covid-19</td>
+  </tr>
+  <tr>
+    <td>LP417541_2</td>
+    <td>LP417541-2</td>
+    <td>Tampone molecolare per Covid-19</td>
+  </tr>
+  <tr>
+    <td>_96118_5</td>
+    <td>96118-5</td>
+    <td>Test Sierologico qualitativo</td>
+  </tr>
+  <tr>
+    <td>_94503_0</td>
+    <td>94503-0</td>
+    <td>Test Sierologico quantitativo</td>
+  </tr>
+  <tr>
+    <td>pay</td>
+    <td>pay</td>
+    <td>Prescrizione farmaceutica non a carico SSN</td>
+  </tr>
+  <tr>
+    <td>PUBLICPOL</td>
+    <td>PUBLICPOL</td>
+    <td>Prescrizione farmaceutica SSN</td>
+  </tr>
+  <tr>
+    <td>LP267463_0</td>
+    <td>LP267463-0</td>
+    <td>Reddito</td>
+  </tr>
+  <tr>
+    <td>LP199190_2</td>
+    <td>LP199190-2</td>
+    <td>Patologia</td>
+  </tr>
+  <tr>
+    <td>_90768_3</td>
+    <td>90768-3</td>
+    <td>Analisi sangue donatore</td>
+  </tr>
 </table>
 
 
@@ -8221,7 +8602,7 @@ _Tabella 45: _Value set per il metadato XDSDocumentEntry.eventCodeList
 
 ### 13.3.5. Ruolo
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
@@ -8406,7 +8787,7 @@ _Tabella 46: _Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:r
 
 ### 13.3.6. Contesto Operativo
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
@@ -9152,7 +9533,7 @@ _Tabella 53: action-id_
 
 ### 13.3.13. Administrative Request
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 <table>
   <tr>

@@ -420,6 +420,12 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ValidationErrorResponseDTO'
+        '422':
+          description: Richiesta semanticamente non processabile
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '429':
           description: Too Many Requests
           content:
@@ -765,6 +771,12 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ValidationErrorResponseDTO'
+        '422':
+          description: Richiesta semanticamente non processabile
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorResponseDTO'
         '429':
           description: Too Many Requests
           content:
@@ -814,6 +826,7 @@ paths:
       parameters:
         - name: workflowInstanceId
           in: path
+          description: Identificativo del workflow
           required: true
           schema:
             maxLength: 256
@@ -1199,14 +1212,19 @@ components:
             type: string
             description: Descriptions
         administrativeRequest:
-          type: string
-          description: Administrative
-          enum:
-            - SSN
-            - INPATIENT
-            - NOSSN
-            - SSR
-            - DONOR
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            description: Administrative request
+            enum:
+              - SSN
+              - INPATIENT
+              - NOSSN
+              - SSR
+              - DONOR
         identificativoDoc:
           maxLength: 100
           minLength: 0
@@ -1476,14 +1494,19 @@ components:
             type: string
             description: Descriptions
         administrativeRequest:
-          type: string
-          description: Administrative
-          enum:
-            - SSN
-            - INPATIENT
-            - NOSSN
-            - SSR
-            - DONOR
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            description: Administrative request
+            enum:
+              - SSN
+              - INPATIENT
+              - NOSSN
+              - SSR
+              - DONOR
       additionalProperties: false
     ResponseWifDTO:
       type: object
@@ -1689,14 +1712,19 @@ components:
             type: string
             description: Descriptions
         administrativeRequest:
-          type: string
-          description: Administrative
-          enum:
-            - SSN
-            - INPATIENT
-            - NOSSN
-            - SSR
-            - DONOR
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            description: Administrative request
+            enum:
+              - SSN
+              - INPATIENT
+              - NOSSN
+              - SSR
+              - DONOR
         identificativoDoc:
           maxLength: 100
           minLength: 0
@@ -1946,14 +1974,19 @@ components:
             type: string
             description: Descriptions
         administrativeRequest:
-          type: string
-          description: Administrative
-          enum:
-            - SSN
-            - INPATIENT
-            - NOSSN
-            - SSR
-            - DONOR
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            description: Administrative request
+            enum:
+              - SSN
+              - INPATIENT
+              - NOSSN
+              - SSR
+              - DONOR
         identificativoDoc:
           maxLength: 100
           minLength: 0
@@ -2211,14 +2244,19 @@ components:
             type: string
             description: Descriptions
         administrativeRequest:
-          type: string
-          description: Administrative
-          enum:
-            - SSN
-            - INPATIENT
-            - NOSSN
-            - SSR
-            - DONOR
+          maxItems: 1000
+          minItems: 0
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            description: Administrative request
+            enum:
+              - SSN
+              - INPATIENT
+              - NOSSN
+              - SSR
+              - DONOR
         identificativoDoc:
           maxLength: 100
           minLength: 0
