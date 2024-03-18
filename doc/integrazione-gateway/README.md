@@ -909,7 +909,7 @@ curl -X 'POST' \
 
   "mode": "ATTACHMENT",
 
-  "activity": "VALIDATION",
+  "activity": "VALIDATION"
 
 }' \
 
@@ -938,7 +938,7 @@ curl -X 'POST' \
 
   "healthDataFormat": "CDA",
 
-  "activity": "VERIFICA",
+  "activity": "VERIFICA"
 
 }' \
 
@@ -969,7 +969,7 @@ curl -X 'POST' \
 
   "mode": "RESOURCE",
 
-  "activity": "VERIFICA",
+  "activity": "VERIFICA"
 
 }' \
 
