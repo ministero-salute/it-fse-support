@@ -455,10 +455,20 @@ Tutti: stesura a seguito rivisitazione
    <td>15/03/2024
    </td>
    <td>Paragrafi modificati:
-<p>
-TODO
-<p>
+
 9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
+<p>
+   </td>
+  </tr>
+
+   <tr>
+   <td>2.8
+   </td>
+   <td>27/03/2024
+   </td>
+   <td>Paragrafi modificati:
+	   <p>
+13.1. Campi Contenuti nei JWT
 <p>
    </td>
   </tr>
