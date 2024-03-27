@@ -6280,7 +6280,7 @@ Valore booleano
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio, non previsto per il servizio di Eliminazione Documento
+   <td>Obbligatorio
    </td>
   </tr>
   <tr>
@@ -6549,7 +6549,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
   "iat": 1656454952925, \
   "jti": "1234", \
   "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", \
-  "person_id": "RSSMRA22A01A399Z" \
+  "person_id": "PROVAX00X00X000Y" \
 }
 ```
 
