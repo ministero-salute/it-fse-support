@@ -1145,11 +1145,11 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 
 ### 3.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201 
 
-```json
+``` json
 { 
-    "traceID": "4e1cd92c6a406c4e", 
-    "spanID": "4e1cd92c6a406c4e", 
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+ "traceID": "4e1cd92c6a406c4e", 
+ "spanID": "4e1cd92c6a406c4e", 
+ "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
@@ -1747,9 +1747,9 @@ _Tabella 14: Campi Response valorizzati in caso di warning_
 
 ``` json
 { 
-    "traceID": "c2e1818fbf7aea7f", 
-    "spanID": "c2e1818fbf7aea7f", 
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
@@ -2058,9 +2058,9 @@ _Tabella 19: Campi Response valorizzati in caso di warning_
 
 ``` json
 { 
-   "traceID": "c2e1818fbf7aea7f", 
-   "spanID": "c2e1818fbf7aea7f",
-   "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
@@ -2600,9 +2600,9 @@ _Tabella 24: Campi Response valorizzati in caso di warning_
 
 ``` json
 { 
-    "traceID": "c2e1818fbf7aea7f", 
-    "spanID": "c2e1818fbf7aea7f", 
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
@@ -3064,9 +3064,9 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 
 ``` json
 { 
-   "traceID": "c2e1818fbf7aea7f", 
-   "spanID": "c2e1818fbf7aea7f",
-   "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
@@ -3632,9 +3632,9 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 
 ``` json
 { 
-    "traceID": "c2e1818fbf7aea7f", 
-    "spanID": "c2e1818fbf7aea7f", 
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
 }
 ```
 
@@ -4180,9 +4180,9 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 
 ``` json
 { 
-    "traceID": "c2e1818fbf7aea7f", 
-    "spanID": "c2e1818fbf7aea7f", 
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+ "traceID": "c2e1818fbf7aea7f", 
+ "spanID": "c2e1818fbf7aea7f", 
+ "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
@@ -6228,22 +6228,22 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 
 ``` json
 { 
-  "sub": "RSSMRA22A01A399Z^^^&2.16.840.1.113883.2.9.4.3.2&ISO", 
-  "subject_role": "AAS", 
-  "purpose_of_use": "TREATMENT", 
-  "iss": "190201123456XX", 
-  "locality": "201123456", 
-  "subject_organization": "Regione Sicilia", 
-  "subject_organization_id": "190", 
-  "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
-  "patient_consent": true, 
-  "action_id": "CREATE", 
-  "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", 
-  "exp": 1656541352925, 
-  "iat": 1656454952925, 
-  "jti": "1234", 
-  "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", 
-  "person_id": "PROVAX00X00X000Y^^^&2.16.840.1.113883.2.9.4.3.2&ISO" 
+  "sub": "RSSMRA22A01A399Z^^^&2.16.840.1.113883.2.9.4.3.2&ISO", 
+  "subject_role": "AAS", 
+  "purpose_of_use": "TREATMENT", 
+  "iss": "190201123456XX", 
+  "locality": "201123456", 
+  "subject_organization": "Regione Sicilia", 
+  "subject_organization_id": "190", 
+  "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
+  "patient_consent": true, 
+  "action_id": "CREATE", 
+  "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", 
+  "exp": 1656541352925, 
+  "iat": 1656454952925, 
+  "jti": "1234", 
+  "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", 
+  "person_id": "PROVAX00X00X000Y^^^&2.16.840.1.113883.2.9.4.3.2&ISO" 
 }
 ```
 
