@@ -1145,7 +1145,7 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 
 ### 3.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201 
 
-``` json
+```json
 { 
     "traceID": "4e1cd92c6a406c4e", 
     "spanID": "4e1cd92c6a406c4e", 
