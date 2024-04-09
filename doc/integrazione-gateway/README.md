@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.7
+   <td>ver 2.8
    </td>
   </tr>
 </table>
@@ -585,17 +585,17 @@ Per identificare invece i documenti da cancellare o aggiornare il chiamante dovr
 
 **Validazione Documento CDA2**
 
-Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard HL7 CDA2, ed iniettato in un PDF, il nome CDA allegato deve essere “**cda.xml**”(senza considerare maiuscole e minuscole).. 
+Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard HL7 CDA2, ed iniettato in un PDF, il nome CDA allegato deve essere “**cda.xml**”(senza considerare maiuscole e minuscole). 
 
-Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici e semantici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
+Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici, semantici e terminologici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 
-In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. L’hash del documento CDA2 verrà salvato in cache con chiave “workflowInstanceId”. In risposta verrà ritornato l’identificativo “workflowInstanceId”.
+In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. 
 
 **Pubblicazione Documento CDA2**
 
-Nello scenario di questa funzionalità il Repository Documentale locale invia il documento secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere **esattamente** a quello precedentemente validato secondo il servizio di Validazione Documenti CDA2.
+Nello scenario di questa funzionalità il Repository Documentale locale invia il documento secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere a quello precedentemente validato secondo il servizio di Validazione Documenti CDA2.
 
-La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF. Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
+La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF ignorando il tag del CDA "Legal Authenticator". Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
 
 Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
 
@@ -890,8 +890,6 @@ La compilazione errata dei parameter oppure la non compilazione dei parameter �
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
-
-
 * **file** che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
@@ -900,29 +898,18 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 Messaggio di richiesta con activity “VALIDATION” (validazione ai fini della successiva pubblicazione), pdf con CDA innestato in modalità ATTACHMENT e tipo documento CDA
 
-```
+``` bash
 curl -X 'POST' \	
-
   'https://<HOST>:<PORT>/v1/documents/validation' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'accept: application/json' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "healthDataFormat": "CDA",
-
   "mode": "ATTACHMENT",
-
   "activity": "VALIDATION",
-
 }' \
-
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
@@ -931,27 +918,17 @@ curl -X 'POST' \
 
 Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con CDA innestato in modalità ATTACHMENT ma senza specificarlo nella request, tipo documento CDA
 
-```
+``` bash
 curl -X 'POST' \	
-
   'https://<HOST>:<PORT>/v1/documents/validation' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'accept: application/json' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "healthDataFormat": "CDA",
-
   "activity": "VERIFICA",
-
 }' \
-
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
@@ -960,29 +937,18 @@ curl -X 'POST' \
 
 Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con CDA innestato in modalità  RESOURCE, tipo documento CDA
 
-```
+``` bash
 curl -X 'POST' \	
-
   'https://<HOST>:<PORT>/v1/documents/validation' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'accept: application/json' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "healthDataFormat": "CDA",
-
   "mode": "RESOURCE",
-
   "activity": "VERIFICA",
-
 }' \
-
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
@@ -1134,8 +1100,8 @@ _Tabella 7: Response Servizio di Validazione_
    </td>
    <td>String
    </td>
-   <td>Identificativo univoco assegnato alla singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
-traceId e spanId coincidono nella prima operazione.
+   <td>Identificativo univoco assegnato alla singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). 
+TraceId e spanId coincidono nella prima operazione.
    </td>
   </tr>
   <tr>
@@ -1179,48 +1145,40 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 
 ### 3.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201 
 
-{ \
-    "traceID": "4e1cd92c6a406c4e", \
-    "spanID": "4e1cd92c6a406c4e", \
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+``` json
+{ 
+ "traceID": "4e1cd92c6a406c4e", 
+ "spanID": "4e1cd92c6a406c4e", 
+ "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
+```
 
 
 ### 3.2.2. Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400
 
+``` json
 {
-
   "traceID": "7fee3f3e2fc75b30",
-
   "spanID": "7fee3f3e2fc75b30",
-
   "type": "/msg/cda-element",
-
   "title": "Errore in fase di estrazione del CDA.",
-
   "detail": "Errore in fase di estrazione del CDA.",
-
   "status": 400,
-
   "instance": "/msg/cda-extraction"
-
 }
+```
 
 
 ### 3.2.3. Messaggio di risposta, esempio “Verifica con Attachment” con esito OK 200 con warning
 
+``` json
 {
-
-"traceID": "96c6883856f9f887",
-
-"spanID": "96c6883856f9f887",
-
-"workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.847c307946d33d8f14876ebb7204f2018a9cbc230da855ac27ed5413a5e2f051.bcf54e7cb9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
-"warning": "Attenzione, non è stata selezionata la modalità di estrazione del CDA"
-
+  "traceID": "96c6883856f9f887",
+  "spanID": "96c6883856f9f887",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.847c307946d33d8f14876ebb7204f2018a9cbc230da855ac27ed5413a5e2f051.bcf54e7cb9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "Attenzione, non è stata selezionata la modalità di estrazione del CDA"
 }
-
+```
 
 # 4. Servizio di Creazione
 
@@ -1535,59 +1493,34 @@ Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo d
 
 Il workflowInstanceId è corretto e presente nel gateway.
 
-```
+``` bash
 curl -X 'POST' \
-
   'https://<HOST>:<PORT>/v1/documents' \
-
   -H 'accept: application/json' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "workflowInstanceId": " 2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.e70b9b0acd^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
   "healthDataFormat": "CDA",
-
   "mode": "ATTACHMENT",
-
   "tipologiaStruttura": "Ospedale",
-
   "attiCliniciRegoleAccesso": [
-
     "P99"
-
   ],
-
   "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
-
   "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-
   "tipoDocumentoLivAlto": "REF",
-
   "assettoOrganizzativo": "AD_PSC001",
-
   "dataInizioPrestazione": "20141020110012",
-
   "dataFinePrestazione": "20141020110012",
-
   "tipoAttivitaClinica": "CON",
-
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-
   "priorita": false,
-
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
-
   "administrativeRequest": ["SSN"]
-
 }' \
 
   -F 'file=@CDA_OK.pdf;type=application/pdf'
@@ -1599,61 +1532,35 @@ Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo doc
 
 In questo caso, il workflowInstanceId non esiste nel gateway.
 
-```
+``` bash
 curl -X 'POST' \
-
   'https://<HOST>:<PORT>/v1/documents' \
-
   -H 'accept: application/json' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "workflowInstanceId": " 2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ew.e70b9b0acr^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
   "healthDataFormat": "CDA",
-
   "mode": "RESOURCE",
-
   "tipologiaStruttura": "Ospedale",
-
   "attiCliniciRegoleAccesso": [
-
     "P99"
-
   ],
-
   "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290701",
-
   "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-
   "tipoDocumentoLivAlto": "REF",
-
   "assettoOrganizzativo": "AD_PSC001",
-
   "dataInizioPrestazione": "20141020110012",
-
   "dataFinePrestazione": "20141020110012",
-
   "tipoAttivitaClinica": "CON",
-
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-
   "priorita": true,
-
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
-
   "administrativeRequest": ["SSN"]
-
 }' \
-
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
@@ -1838,33 +1745,25 @@ _Tabella 14: Campi Response valorizzati in caso di warning_
 
 ### 4.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”
 
-```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f", \
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+``` json
+{ 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
 ### 4.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400
 
-```
+``` json
 {
-
   "traceID": "61d8123fb20e2afc",
-
   "spanID": "61d8123fb20e2afc",
-
   "type": "/msg/cda-match",
-
   "title": "Errore in fase di recupero dell'esito della verifica.",
-
   "detail": "Il CDA non risulta validato",
-
   "status": 400,
-
   "instance": "/msg/cda-validation"
-
 }
 ```
 
@@ -1978,15 +1877,11 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 
 Messaggio di richiesta con identificativoDocUpdate presente e formalmente corretto. 
 
-```
+``` bash
 curl -X 'DELETE' \
-
   'https://<HOST>:<PORT>/v1/documents/507f1f77bcf86cd799439011' \
-
   -H 'accept: application/json' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
 ```
 
@@ -2161,34 +2056,25 @@ _Tabella 19: Campi Response valorizzati in caso di warning_
 
 ### 5.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo
 
-```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f",
-
-   "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+``` json
+{ 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
 ### 5.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
-```
+``` json
 {
-
   "traceID": "61d8123fb20e2afc",
-
   "spanID": "61d8123fb20e2afc",
-
   "type": "/msg/mandatory-element",
-
   "title": "Campo obbligatorio non presente",
-
   "detail": "Il campo identificativo documento deve essere valorizzato",
-
   "status": 400,
-
   "instance": "/msg/mandatory-element"
-
 }
 ```
 
@@ -2502,59 +2388,34 @@ Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo d
 
 Il workflowInstanceId è corretto e presente nel gateway.
 
-```
+``` bash
 curl -X 'PUT' \
-
   'https://<HOST>:<PORT>/v1/documents/507f1f77bcf86cd799439011' \
-
   -H 'accept: application/json' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "workflowInstanceId": " 2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.e70b9b0acd^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
   "healthDataFormat": "CDA",
-
   "mode": "ATTACHMENT",
-
   "tipologiaStruttura": "Ospedale",
-
   "attiCliniciRegoleAccesso": [
-
     "P99"
-
   ],
-
   "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
-
   "identificativoRep": "2.16.840.1.113883.2.9.2.120.4.5.1",
-
   "tipoDocumentoLivAlto": "REF",
-
   "assettoOrganizzativo": "AD_PSC001",
-
   "dataInizioPrestazione": "20141020110012",
-
   "dataFinePrestazione": "20141020110012",
-
   "tipoAttivitaClinica": "CON",
-
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
-
   "administrativeRequest": ["SSN"]
-
 }' \
-
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
@@ -2737,33 +2598,25 @@ _Tabella 24: Campi Response valorizzati in caso di warning_
 
 ### 6.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
 
-```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f", \
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+``` json
+{ 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
 ### 6.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
-```
+``` json
 {
-
   "traceID": "61d8123fb20e2afc",
-
   "spanID": "61d8123fb20e2afc",
-
   "type": "/msg/cda-element",
-
   "title": "Errore in fase di recupero dell'esito della verifica.",
-
   "detail": "Il CDA non risulta validato",
-
   "status": 400,
-
   "instance": "/msg/cda-element"
-
 }
 ```
 
@@ -3012,49 +2865,29 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 
 Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
 
-```
+``` bash
 curl -X 'PUT' \
-
   'https://<HOST>:<PORT>/v1/documents/507f1f77bcf86cd799439011/metadata' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'accept: application/json' \
-
   -d '{
-
   "tipologiaStruttura": "Ospedale",
-
   "attiCliniciRegoleAccesso": [
-
     "P99"
-
   ],
-
   "tipoDocumentoLivAlto": "WOR",
-
   "assettoOrganizzativo": "AD_PSC001",
-
-   "dataInizioPrestazione": "20141020110012",
-
+  "dataInizioPrestazione": "20141020110012",
   "dataFinePrestazione": "20141020110012",
-
   "conservazioneANorma": "string",
-
   "tipoAttivitaClinica": "CON",
-
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
-
   "administrativeRequest": ["SSN"]
-
 }'\
-
 -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
@@ -3229,34 +3062,25 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 
 ### 7.2.1. Esempio di Messaggio di risposta con Esito Success 200
 
-```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f",
-
-   "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+``` json
+{ 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
 ### 7.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
-```
+``` json
 {
-
   "traceID": "61d8123fb20e2afc",
-
   "spanID": "61d8123fb20e2afc",
-
   "type": "/msg/mandatory-element",
-
   "title": "Campo obbligatorio non presente",
-
   "detail": "Il campo identificativo documento deve essere valorizzato",
-
   "status": 400,
-
   "instance": "/msg/mandatory-element"
-
 }
 ```
 
@@ -3558,59 +3382,34 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
 
-```
+``` bash
 curl -X 'POST' \
-
   'https://<HOST>:<PORT>/v1/documents/validate-and-create' \
-
   -H 'accept: application/json' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "healthDataFormat": "CDA",
-
   "mode": "ATTACHMENT",
-
   "tipologiaStruttura": "Ospedale",
-
   "attiCliniciRegoleAccesso": [
-
     "P99"
-
   ],
-
   "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
-
   "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-
   "tipoDocumentoLivAlto": "REF",
-
   "assettoOrganizzativo": "AD_PSC001",
-
   "dataInizioPrestazione": "20141020110012",
-
   "dataFinePrestazione": "20141020110012",
-
   "tipoAttivitaClinica": "CON",
-
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-
   "priorita": false,
-
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
-
   "administrativeRequest": ["SSN"]
-
 }' \
-
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
@@ -3618,57 +3417,33 @@ curl -X 'POST' \
 
 Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
 
-```
+``` bash
 curl -X 'POST' \
-
   'https://<HOST>:<PORT>/v1/documents/validate-and-create' \
-
   -H 'accept: application/json' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "healthDataFormat": "CDA",
-
   "mode": "RESOURCE",
-
   "tipologiaStruttura": "Ospedale",
-
   "attiCliniciRegoleAccesso": [
-
     "P99"
-
   ],
-
   "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290701",
-
   "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-
   "tipoDocumentoLivAlto": "REF",
-
   "assettoOrganizzativo": "AD_PSC001",
-
   "dataInizioPrestazione": "20141020110012",
-
   "dataFinePrestazione": "20141020110012",
-
   "tipoAttivitaClinica": "CON",
-
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-
   "priorita": true,
-
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
-
   "administrativeRequest": ["SSN"]
-
 }' \
 
   -F 'file=@CDA_OK.pdf;type=application/pdf'
@@ -3855,18 +3630,18 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 
 ### 8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”
 
-```
+``` json
 { 
-    "traceID": "c2e1818fbf7aea7f", 
-    "spanID": "c2e1818fbf7aea7f", 
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f", 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
 }
 ```
 
 ### 8.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”
 
 
-```
+``` json
 { 
   "traceID": "79e2637736ad9bae", 
   "spanID": "79e2637736ad9bae", 
@@ -3883,7 +3658,7 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 ### 8.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”
 
 
-```
+``` json
 {
   "traceID": "b20d5f0f59d117ca",
   "spanID": "b20d5f0f59d117ca",
@@ -4191,55 +3966,32 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
  
 
-```
+``` bash
 curl -X 'PUT' \
-
   'https://<HOST>:<PORT>/v1/documents/validate-and-replace/507f1f77bcf86cd799439011' \
-
   -H 'accept: application/json' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-
   -H 'Content-Type: multipart/form-data' \
-
   -F 'requestBody={
-
   "healthDataFormat": "CDA",
-
   "mode": "ATTACHMENT",
-
   "tipologiaStruttura": "Ospedale",
-
   "attiCliniciRegoleAccesso": [
-
     "P99"
-
   ],
-
   "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
-
   "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-
   "tipoDocumentoLivAlto": "REF",
-
   "assettoOrganizzativo": "AD_PSC001",
-
   "dataInizioPrestazione": "20141020110012",
-
   "dataFinePrestazione": "20141020110012",
-
   "tipoAttivitaClinica": "CON",
-
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
-
   "administrativeRequest": ["SSN"]
-
 }' \
 
   -F 'file=@CDA_OK.pdf;type=application/pdf'
@@ -4426,17 +4178,17 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 
 ### 9.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
 
-```
-{ \
-    "traceID": "c2e1818fbf7aea7f", \
-    "spanID": "c2e1818fbf7aea7f", \
-    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+``` json
+{ 
+ "traceID": "c2e1818fbf7aea7f", 
+ "spanID": "c2e1818fbf7aea7f", 
+ "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
 }
 ```
 
 ### 9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”
 
-```
+``` json
 {
   "traceID": "b20d5f0f59d117ca",
   "spanID": "b20d5f0f59d117ca",
@@ -4448,7 +4200,7 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 
 ### 9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”
 
-```
+``` json
 { 
   "traceID": "79e2637736ad9bae", 
   "spanID": "79e2637736ad9bae", 
@@ -4571,13 +4323,10 @@ La compilazione errata dei parametri oppure la non compilazione dei parametri �
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
-```
+``` bash
 curl -X 'GET' \
-
 'https://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId' \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-
   -H 'accept: application/json' 
 ```
 
@@ -4844,103 +4593,55 @@ _Tabella 34: Campi Response sempre valorizzati_
 
 ### 10.2.1. Esempio messaggio di risposta con Esito Success 200
 
-```
+``` json
 {
-
   "traceID": "3f67b89ba72ed40b",
-
   "spanID": "81bad71c3ffea6d0",
-
   "transactionData": [
-
     {
-
       "eventType": "VALIDATION",
-
       "eventDate": "2022-12-12T12:11:35.955+00:00",
-
       "eventStatus": "SUCCESS",
-
       "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
-
       "organizzazione": "110",
-
       "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
       "traceId": "4dfc0f6e30444deb",
-
       "issuer": "integrity:S1#110201234567XX",
-
       "expiringDate": "2022-12-17T12:11:35.998+00:00"
-
     },
-
     {
-
       "eventType": "PUBLICATION",
-
       "eventDate": "2022-12-12T12:11:38.280+00:00",
-
       "eventStatus": "SUCCESS",
-
       "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^27847450",
-
       "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
-
       "tipoAttivita": "PHR",
-
       "organizzazione": "110",
-
       "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
       "traceId": "e46dfa44b05ba6b7",
-
       "issuer": "integrity:S1#110201234567XX",
-
       "expiringDate": "2022-12-17T12:11:38.341+00:00"
-
     },
-
     {
-
       "eventType": "SEND_TO_INI",
-
       "eventDate": "2022-12-12T12:11:39.063+00:00",
-
       "eventStatus": "SUCCESS",
-
       "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
       "expiringDate": "2022-12-17T12:11:39.091+00:00"
-
     },
-
     {
-
       "eventType": "SEND_TO_EDS",
-
       "eventDate": "2022-12-12T12:11:39.262+00:00",
-
       "eventStatus": "SUCCESS",
-
       "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
       "expiringDate": "2022-12-17T12:11:39.309+00:00"
-
     },
-
     {
-
       "eventType": "EDS_WORKFLOW",
-
       "eventDate": "2022-12-12T12:11:47.275+00:00",
-
       "eventStatus": "SUCCESS",
-
       "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-
       "expiringDate": "2022-12-17T12:11:47.302+00:00"
-
     }
 
   ]
@@ -4950,23 +4651,15 @@ _Tabella 34: Campi Response sempre valorizzati_
 
 ### 10.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
-```
+``` json
 {
-
   "traceID": "6cd7a61189e8282f",
-
   "spanID": "6cd7a61189e8282f",
-
   "type": "msg/record-not-found",
-
   "title": "Record non trovato.",
-
   "detail": "No Record Found",
-
   "status": 404,
-
   "instance": ""
-
 }
 ```
 
@@ -5078,11 +4771,9 @@ La compilazione errata dei parametri oppure la non compilazione dei parametri �
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
-```
+``` bash
 curl -X 'GET' \
-
   'https://<HOST>:<PORT>/v1/status/search/3f67b89ba72ed40b’ \
-
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \ \
   -H 'accept: application/json' 
 ```
@@ -5492,7 +5183,7 @@ _Tabella 38: Campi Response valorizzati in caso di errore govWay_
 
 # 13. Drilldown Parametri di Input
 
-Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.4.1” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
+Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.5” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
 
 INI rappresenta un mediatore per le comunicazioni tra i diversi sistemi regionali che appartengono allo stesso Affinity Domain, in grado di garantire ad un sistema di FSE di una regione diversa da quella di assistenza l’accesso ai documenti.
 
@@ -6113,7 +5804,6 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
 
 ---
 
-
 <table>
   <tr>
    <td colspan="2" ><strong>CUSTOM CLAIMS</strong>
@@ -6306,16 +5996,16 @@ Valore booleano
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Contesto operativo della richiesta \
+   <td>Contesto operativo della richiesta.
 Vedi TABELLA CONTESTO OPERATIVO
    </td>
   </tr>
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
-   <td>TREATMENT per il servizio di Validazione, Creazione e Sostituzione Documento
+   <td>TREATMENT per il servizio di Validazione, Creazione 
 <p>
-UPDATE per il servizio di Eliminazione Documento e Aggiornamento Metadati
+UPDATE per il servizio di Eliminazione Documento, Aggiornamento Metadati e Sostituzione Documento
    </td>
   </tr>
   <tr>
@@ -6378,11 +6068,11 @@ Riferimento: urn:oasis:names:tc:xacml:1.0:action:action-id
   <tr>
    <td><strong>VALORE</strong>
    </td>
-   <td>CREATE per il servizio di Creazione e Sostituzione Documento
+   <td>CREATE per il servizio di Creazione
 <p>
 DELETE per il servizio di Eliminazione Documento
 <p>
-UPDATE per il servizio di Aggiornamento Metadati
+UPDATE per il servizio di Sostituzione Documento e Aggiornamento Metadati
    </td>
   </tr>
   <tr>
@@ -6524,42 +6214,36 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 
 **Esempio di token decodificato, sezione header**
 
-```
+``` json
 {
-
   "alg": "RS256",
-
   "typ": "JWT",
-
   "x5c": [
-
     "MIIDXjCCAkagAwIBAgIBAjANBgkqhkiG9w ... 779BM4SOI="
-
   ]
-
 }
 ```
 
 **Esempio di Payload del token FSE-JWT-Signature decodificato**
 
-```
-{ \
-  "sub": "RSSMRA22A01A399Z", \
-  "subject_role": "AAS", \
-  "purpose_of_use": "TREATMENT", \
-  "iss": "190201123456XX", \
-  "locality": "201123456", \
-  "subject_organization": "Regione Sicilia", \
-  "subject_organization_id": "190", \
-  "aud": "[https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1"](https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1%22), \
-  "patient_consent": true, \
-  "action_id": "CREATE", \
-  "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", \
-  "exp": 1656541352925, \
-  "iat": 1656454952925, \
-  "jti": "1234", \
-  "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", \
-  "person_id": "PROVAX00X00X000Y" \
+``` json
+{ 
+  "sub": "RSSMRA22A01A399Z^^^&2.16.840.1.113883.2.9.4.3.2&ISO", 
+  "subject_role": "AAS", 
+  "purpose_of_use": "TREATMENT", 
+  "iss": "190201123456XX", 
+  "locality": "201123456", 
+  "subject_organization": "Regione Sicilia", 
+  "subject_organization_id": "190", 
+  "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
+  "patient_consent": true, 
+  "action_id": "CREATE", 
+  "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", 
+  "exp": 1656541352925, 
+  "iat": 1656454952925, 
+  "jti": "1234", 
+  "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", 
+  "person_id": "PROVAX00X00X000Y^^^&2.16.840.1.113883.2.9.4.3.2&ISO" 
 }
 ```
 
@@ -7251,16 +6935,16 @@ _Tabella 41: Campi contenuti nella Request Body_
 
 ## 13.3. Tabelle di Riferimento
 
-Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
+Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
 
-Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle medesime specifiche di riferimento (versione 2.4.1), sono esclusivamente quelle necessarie all’utilizzo dei servizi di validazione e di pubblicazione.
+Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle medesime specifiche di riferimento (versione 2.5), sono esclusivamente quelle necessarie all’utilizzo dei servizi di validazione e di pubblicazione.
 
 Eventuali variazioni normative e/o ad Affinity Domain implicano l’aggiornamento delle tabelle referenziate.
 
 
 ### 13.3.1. Attività Clinica Enum
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
@@ -7319,7 +7003,7 @@ _Tabella 42:  _Value set per il metadato XDSSubmissionSet.contentTypeCode
 
 ### 13.3.2. Healthcare Facility Type Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
@@ -8814,7 +8498,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    </td>
    <td>Trattamento di cura ordinario
    </td>
-   <td>Il valore deve essere utilizzato per il servizio di validazione e per i servizi di Creazione e Sostituzione Documento.
+   <td>Il valore deve essere utilizzato per il servizio di validazione e per i servizi di Validazione e Creazione.
    </td>
   </tr>
   <tr>
@@ -8822,7 +8506,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    </td>
    <td>Invalidamento e aggiornamento di un documento
    </td>
-   <td>Il valore deve essere utilizzato per il servizio di Eliminazione Documento e Aggiornamento Metadati
+   <td>Il valore deve essere utilizzato per il servizio di Eliminazione Documento, Aggiornamento Metadati e Sostituzione documento.
    </td>
   </tr>
 </table>
@@ -8833,7 +8517,7 @@ _Tabella 47: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:pu
 
 ### 13.3.7. Organizzazione
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
@@ -9053,7 +8737,7 @@ _Tabella 48: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:or
 
 ### 13.3.8. Practice Setting Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 
 <table>
@@ -9505,7 +9189,7 @@ _Tabella 52: HealthDataFormatEnum_
 
 ### 13.3.12. Tipo Attività
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.4.1”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:action-id  
 
