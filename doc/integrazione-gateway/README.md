@@ -3200,6 +3200,8 @@ _Tabella 30: Method, URL, Type_
    </td>
   </tr> 
   <tr>
+   <td rowspan="16" >requestBody
+   </td>
    <td>healthDataFormat
    </td>
    <td>HealthDataFormatEnum
