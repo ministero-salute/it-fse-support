@@ -5479,7 +5479,7 @@ Valore in formato DER, codificato in base64.
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Codice Fiscale dell’utente che fa richiesta del servizio di interoperabilità
+   <td>Codice Fiscale dell’utente o partita iva dell'azienda che fa richiesta del servizio di interoperabilità
 <p>
 Formato codifica conforme alle specifiche IHE (ITI TF-3)
    </td>
@@ -5775,7 +5775,7 @@ Valore in formato DER, codificato in base64.
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Codice Fiscale dell’utente che fa richiesta del servizio di interoperabilità
+   <td>Codice Fiscale dell’utente o partita iva dell'organizzazione che fa richiesta del servizio di interoperabilità
 <p>
 Formato codifica conforme alle specifiche IHE (ITI TF-3)
    </td>
@@ -5865,6 +5865,7 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
    <td><code>subject_organization</code>
    </td>
   </tr>
+  
   <tr>
    <td colspan="2"  style="text-align:center"><strong>STRUTTURA UTENTE</strong>
    </td>
@@ -5872,32 +5873,43 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Identificativo della struttura utente.
-<p>
-Codifica ISTAT della Azienda (ASL) concatenato alla codifica HSP.11 - HSP.11bis - STS.11 - RIA.11. \
-     Nel caso di ruolo APR assume il valore del codice ISTAT dell’Azienda (ASL)
-<p>
-Le codifiche saranno ampliate per coprire tutte le casistiche mancanti.
-<p>
-Riferimento: urn:oasis:names:tc:xspa:1.0:environment:locality
+   <td>Tale attributo, obbligatorio e unico, identifica la struttura a cui appartiene l’autore che ha creato il
+documento.
+L’elemento <Value> deve essere valorizzato come rappresentato di seguito, dove l’elemento XON.1
+contiene il nome dell’organizzazione (non sono imposti vincoli aggiuntivi per questo elemento),
+XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10
+rappresenta il codice della struttura
    </td>
   </tr>
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
-   <td>201123456 (caso struttura) – 201 (caso ruolo APR)
+   <td>NOME_ORGANIZZAZIONE^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^CODICE_STRUTTURA
    </td>
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio
+   <td>Obbligatorio solo in fase di pubblicazione
    </td>
   </tr>
   <tr>
    <td><strong>CAMPO JWT</strong>
    </td>
    <td><code>locality</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>NOTE</strong>
+   </td>
+   <td> Tale campo verrà utilizzato per popolare sia:
+   </br>
+   1. Author institution dal Gateway verso INI
+   </br>
+   2. Il CODICE_STRUTTURA verrà utilizzato per popolare il campo urn:oasis:names:tc:xspa:1.0:environment:locality dal gateway verso ini
+   </br>
+   </br>
+   Per maggiori informazioni sulla valorizzazione di questo campo si può far riferimento all'affinity domain 2.5 cap 2.1.2
    </td>
   </tr>
   <tr>
@@ -6232,7 +6244,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
   "subject_role": "AAS", 
   "purpose_of_use": "TREATMENT", 
   "iss": "190201123456XX", 
-  "locality": "201123456", 
+    "locality": "NOME_STRUTTURA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^CODICE_STRUTTURA",
   "subject_organization": "Regione Sicilia", 
   "subject_organization_id": "190", 
   "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
@@ -8475,6 +8487,7 @@ Pediatra di Libera Scelta
 
 
 _Tabella 46: _Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:role
+
 
 
 
