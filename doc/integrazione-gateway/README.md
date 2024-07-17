@@ -5884,7 +5884,7 @@ rappresenta il codice della struttura
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
-   <td>NOME_ORGANIZZAZIONE^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^CODICE_STRUTTURA
+   <td>NOME_STRUTTURA^^^^^&CODICE_CATALOGO&ISO^^^^CODICE_STRUTTURA
    </td>
   </tr>
   <tr>
@@ -5902,11 +5902,11 @@ rappresenta il codice della struttura
   <tr>
    <td><strong>NOTE</strong>
    </td>
-   <td> Tale campo verrà utilizzato per popolare sia:
+   <td> Questo identificativo della struttura utente verrà utilizzato dal Gateway per popolare:
    </br>
-   1. Author institution dal Gateway verso INI
+   1. L’attributo Author.AuthorInstitution dal Gateway verso INI
    </br>
-   2. Il CODICE_STRUTTURA verrà utilizzato per popolare il campo urn:oasis:names:tc:xspa:1.0:environment:locality dal gateway verso ini
+   2. l’asserzione di attributo urn:oasis:names:tc:xspa:1.0:environment:locality dal Gateway verso INI. In questo caso concateniamo codice catalogo con codice struttura
    </br>
    </br>
    Per maggiori informazioni sulla valorizzazione di questo campo si può far riferimento all'affinity domain 2.5 cap 2.1.2
@@ -6244,7 +6244,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
   "subject_role": "AAS", 
   "purpose_of_use": "TREATMENT", 
   "iss": "190201123456XX", 
-    "locality": "NOME_STRUTTURA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^CODICE_STRUTTURA",
+  "locality": "LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^190111123456",
   "subject_organization": "Regione Sicilia", 
   "subject_organization_id": "190", 
   "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
@@ -6259,6 +6259,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 }
 ```
 
+N.B: Il campo **locality** nell'esempio fa riferimento al **LABORATORIO DI PROVA** della Regione Sicilia **190**, ASL **111** e codice STS.11 **123456**
 
 
 ## 13.2. Campi Contenuti nella Request Body
