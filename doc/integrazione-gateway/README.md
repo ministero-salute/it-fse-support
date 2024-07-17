@@ -5908,10 +5908,20 @@ rappresenta il codice della struttura
    </br>
    2. l’asserzione di attributo urn:oasis:names:tc:xspa:1.0:environment:locality dal Gateway verso INI. In questo caso concateniamo codice catalogo con codice struttura
    </br>
-   </br>
-   Per maggiori informazioni sulla valorizzazione di questo campo si può far riferimento all'affinity domain 2.5 cap 2.1.2
    </td>
   </tr>
+
+ <tr>
+   <td><strong>OBBLIGATORIETA'</strong>
+   </td>
+   <td> La valorizzazione come tipo XON sarà obbligatoria nei servizi di Pubblicazione Creazione e Sostituzione (anche con validazione contestuale), Eliminazione documento e Aggiornamento Metadati.
+   </td>
+  </tr>
+
+
+
+
+
   <tr>
    <td colspan="2"  style="text-align:center"><strong>RUOLO UTENTE</strong>
    </td>
