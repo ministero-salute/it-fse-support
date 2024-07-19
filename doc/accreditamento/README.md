@@ -9,7 +9,6 @@
 - [Processo complessivo](#processo-complessivo)
 - [Fase 1: processo di accreditamento](#fase-1-processo-di-accreditamento)
   - [Test case validazione](#test-case-validazione)
-  - [Test case pubblicazione](#test-case-pubblicazione)
 - [Fase 2: verifica tecnica dell'impianto](#fase-2-verifica-tecnica-dellimpianto)
 - [Fase 3: deployment in produzione](#fase-3-deployment-in-produzione)
   - [Notes](#notes)
@@ -58,9 +57,7 @@ La fase di accreditamento del software è propedeutica per le fasi successive e 
     2. semantiche secondo gli schematron (sch) pubblicati sul git FSE di Salute; 
     3. terminologiche applicando le le specifiche e i dizionari pubblicati su git FSE Salute; 
 2. verifica della corretta apposizione della firma PADES al documento; 
-3. verifica della corretta invocazione di uno o più servizi  esposti dal gateway:
-    4. servizio  di validazione
-    5. servizio di pubblicazione
+3. verifica della corretta invocazione del servizio di validazione esposto dal gateway.
 
 
 ![processo di accreditamento](img/processo.png)
@@ -76,7 +73,7 @@ Il processo di accreditamento **avviene presso l’ambiente di test del fornitor
 2. Il fornitore, richiede a Sogei certificati di test **associati al fornitore** (mediante email  all’indirizzo [fse_support@sogei.it](mailto:fse_support@sogei.it) fino a quando non sarà disponibile il sistema di provisioning che rilascerà anche i certificati di test)  per accedere ai servizi esposti dalla piattaforma gateway di test in ambiente di pre produzione (esempio: un fornitore che avvia il processo di accreditamento per due applicativi può usare il medesimo certificato). 
 3. Durante la fase di sviluppo, il fornitore provvede **in forma autonoma** ad invocare i servizi del gateway al sistema di pre produzione. Questa attività consente un debugging più accurato da parte del fornitore ed è propedeutica alla richiesta di avvio dell’attività di accreditamento.
 4. Conclusa la fase di sviluppo e test interno, il fornitore avvia la fase di accreditamento compilando il **form di richiesta accreditamento on line messo a disposizione da DTD**  con le seguenti informazioni:
-([https://ec.europa.eu/eusurvey/runner/FSE-raccolta-id-applicativo](https://ec.europa.eu/eusurvey/runner/FSE-raccolta-id-applicativo))
+([https://ec.europa.eu/eusurvey/runner/FSE-raccolta-id-applicativo](https://ec.europa.eu/eusurvey/runner/FSE-2-validazione))
    * Nome fornitore dell'applicativo
    * Nome fornitore: subject_application_vendor
    * nome applicazione: subject_application_id
@@ -90,7 +87,6 @@ Il processo di accreditamento **avviene presso l’ambiente di test del fornitor
    * Lista dei tipi di documento oggetto dell’accreditamento 
    * Lista servizi oggetto dell’accreditamento:
        * validazione
-       * pubblicazione
 1. Il fornitore accede alla lista dei test case ed esegue i test previsti nel piano di accreditamento. Quando risulteranno tutti eseguiti con esito positivo il fornitore produrrà il report dei test effettuati (`report-checklist.xlsx`) e lo caricherà nell'apposito repository github del Ministero della Salute, come indicato nel README del repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento). 
 2. Sogei estrae i log dei test case, confronta i log con il contenuto del report `report-checklist.xlsx` e produce il report “Valutazione risultati”. 
 3. Il DTD[^1] valuta il report “Valutazione risultati” prodotto da Sogei, la documentazione prodotta dai fornitori e accerta la conformità con le specifiche nazionali. Tale certificazione è propedeutica per poter programmare insieme alla Regione e/o Azienda la fase successiva del processo di adeguamento dell’applicativo (verifica tecnica dell’impianto).
@@ -128,33 +124,6 @@ Alla fine della sessione di accreditamento il fornitore dovrà fornire:
     4. identificativo del test case
     5. per i casi di test che prevedono la gestione dei casi di errore,  il messaggio di errore visualizzato dall’applicativo, la procedura che viene adottata per la sua gestione (oltre ai  riferimenti dei log come ai punti precedenti) oppure eventuali motivazioni per cui non è applicabile il test;
 2. Per i software in cui la firma è oggetto di adeguamento: i PDF firmati PADES che sono prodotti durante il processo di validazione (non è necessario che i certificati di firma siano "qualificati", verrà controllata solo la corretta apposizione della firma PADES).
-
-
-## Test case pubblicazione
-
-L’accreditamento del servizio di **pubblicazione e correttezza dei metadati** di indicizzazione deve prevedere i seguenti test cases:
-
-
-
-* pubblicazione casi di test noti;
-* replace del documento;
-* update metadati;
-* oscuramento;
-* cancellazione documento
-
-** ** 
-
-Si precisa che:
-
-
-
-1. la verifica della completezza dei metadati è oggetto dei test case;
-2. la  correttezza del CDA2 non è oggetto dei test case perché il sistema che pubblica tipicamente non è anche il produttore del documento;
-3.  i CDA2 di test che il fornitore dovrà pubblicare e vengono forniti da Sogei e sono riconosciuti dal gateway come validati;
-
-**Verranno forniti maggiori dettagli sul processo di accreditamento al servizio di pubblicazione nella versione successiva del documento.**
-
-
 
 
 # Fase 2: verifica tecnica dell'impianto
