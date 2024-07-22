@@ -5873,24 +5873,24 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Tale attributo, obbligatorio e unico, identifica la struttura a cui appartiene l’autore che ha creato il
-documento.
-L’elemento <Value> deve essere valorizzato come rappresentato di seguito, dove l’elemento XON.1
-contiene il nome dell’organizzazione (non sono imposti vincoli aggiuntivi per questo elemento),
-XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10
-rappresenta il codice della struttura
+   <td>Tale attributo, obbligatorio e unico, identifica la struttura a cui appartiene l’utente.
+L’elemento deve essere valorizzato come tipo XON in cui XON.1 contiene il nome della struttura,
+XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura:
+NOME_STRUTTURA^^^^^&CODICE_CATALOGO&ISO^^^^CODICE_STRUTTURA
+Per maggiori informazioni sulla valorizzazione di questo attributo si può far riferimento ad AuthorInstitution nell'Affinity Domain Italia v.2.5 par. 2.1.2.
    </td>
   </tr>
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
-   <td>NOME_STRUTTURA^^^^^&CODICE_CATALOGO&ISO^^^^CODICE_STRUTTURA
+   <td>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456
+(Riferimento al "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456")
    </td>
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio solo in fase di pubblicazione
+   <td>La valorizzazione come tipo XON è obbligatoria nei servizi di Pubblicazione Creazione e Sostituzione (anche con validazione contestuale), Eliminazione documento e Aggiornamento Metadati.
    </td>
   </tr>
   <tr>
@@ -5910,18 +5910,6 @@ rappresenta il codice della struttura
    </br>
    </td>
   </tr>
-
- <tr>
-   <td><strong>OBBLIGATORIETA'</strong>
-   </td>
-   <td> La valorizzazione come tipo XON sarà obbligatoria nei servizi di Pubblicazione Creazione e Sostituzione (anche con validazione contestuale), Eliminazione documento e Aggiornamento Metadati.
-   </td>
-  </tr>
-
-
-
-
-
   <tr>
    <td colspan="2"  style="text-align:center"><strong>RUOLO UTENTE</strong>
    </td>
