@@ -5479,7 +5479,7 @@ Valore in formato DER, codificato in base64.
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Codice Fiscale dell’utente che fa richiesta del servizio di interoperabilità
+   <td>Codice Fiscale dell’utente o partita iva dell'azienda che fa richiesta del servizio di interoperabilità
 <p>
 Formato codifica conforme alle specifiche IHE (ITI TF-3)
    </td>
@@ -5775,7 +5775,7 @@ Valore in formato DER, codificato in base64.
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Codice Fiscale dell’utente che fa richiesta del servizio di interoperabilità
+   <td>Codice Fiscale dell’utente o partita iva dell'organizzazione che fa richiesta del servizio di interoperabilità
 <p>
 Formato codifica conforme alle specifiche IHE (ITI TF-3)
    </td>
@@ -5865,6 +5865,7 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
    <td><code>subject_organization</code>
    </td>
   </tr>
+  
   <tr>
    <td colspan="2"  style="text-align:center"><strong>STRUTTURA UTENTE</strong>
    </td>
@@ -5872,32 +5873,41 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Identificativo della struttura utente.
-<p>
-Codifica ISTAT della Azienda (ASL) concatenato alla codifica HSP.11 - HSP.11bis - STS.11 - RIA.11. \
-     Nel caso di ruolo APR assume il valore del codice ISTAT dell’Azienda (ASL)
-<p>
-Le codifiche saranno ampliate per coprire tutte le casistiche mancanti.
-<p>
-Riferimento: urn:oasis:names:tc:xspa:1.0:environment:locality
+   <td>Tale attributo, obbligatorio e unico, identifica la struttura a cui appartiene l’utente.
+L’elemento deve essere valorizzato come tipo XON in cui XON.1 contiene il nome della struttura,
+XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura:
+NOME_STRUTTURA^^^^^&CODICE_CATALOGO&ISO^^^^CODICE_STRUTTURA
+Per maggiori informazioni sulla valorizzazione di questo attributo si può far riferimento ad AuthorInstitution nell'Affinity Domain Italia v.2.5 par. 2.1.2.
    </td>
   </tr>
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
-   <td>201123456 (caso struttura) – 201 (caso ruolo APR)
+   <td>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456
+(Riferimento al "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456")
    </td>
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio
+   <td>La valorizzazione come tipo XON è obbligatoria nei servizi di Pubblicazione Creazione e Sostituzione (anche con validazione contestuale), Eliminazione documento e Aggiornamento Metadati.
    </td>
   </tr>
   <tr>
    <td><strong>CAMPO JWT</strong>
    </td>
    <td><code>locality</code>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>NOTE</strong>
+   </td>
+   <td> Questo identificativo della struttura utente verrà utilizzato dal Gateway per popolare:
+   </br>
+   1. L’attributo Author.AuthorInstitution dal Gateway verso INI
+   </br>
+   2. l’asserzione di attributo urn:oasis:names:tc:xspa:1.0:environment:locality dal Gateway verso INI. In questo caso concateniamo codice catalogo con codice struttura
+   </br>
    </td>
   </tr>
   <tr>
@@ -6232,7 +6242,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
   "subject_role": "AAS", 
   "purpose_of_use": "TREATMENT", 
   "iss": "190201123456XX", 
-  "locality": "201123456", 
+  "locality": "LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^190111123456",
   "subject_organization": "Regione Sicilia", 
   "subject_organization_id": "190", 
   "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
@@ -6247,6 +6257,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 }
 ```
 
+N.B: Il campo **locality** nell'esempio fa riferimento al **LABORATORIO DI PROVA** della Regione Sicilia **190**, ASL **111** e codice STS.11 **123456**
 
 
 ## 13.2. Campi Contenuti nella Request Body
@@ -8475,6 +8486,7 @@ Pediatra di Libera Scelta
 
 
 _Tabella 46: _Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:role
+
 
 
 
