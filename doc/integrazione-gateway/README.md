@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.8
+   <td>ver 2.9
    </td>
   </tr>
 </table>
@@ -465,6 +465,17 @@ Tutti: stesura a seguito rivisitazione
    <td>2.8
    </td>
    <td>27/03/2024
+   </td>
+   <td>Paragrafi modificati:
+	   <p>
+13.1. Campi Contenuti nei JWT
+<p>
+   </td>
+  </tr>
+   <tr>
+   <td>2.9
+   </td>
+   <td>29/07/2024
    </td>
    <td>Paragrafi modificati:
 	   <p>
@@ -5883,14 +5894,22 @@ Per maggiori informazioni sulla valorizzazione di questo attributo si può far r
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
-   <td>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456
-(Riferimento al "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456")
+   <td>
+      <ul>
+        <strong>CREAZIONE E SOSTITUZIONE(ANCHE CONTESTUALE):</strong><br>
+        <li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456
+(Riferimento al "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456")</li>
+      </ul>
+      <ul>
+        <strong>CANCELLAZIONE E AGGIORNAMENTO:</strong><br>
+        <li>2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456</li>
+      </ul> 
    </td>
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>La valorizzazione come tipo XON è obbligatoria nei servizi di Pubblicazione Creazione e Sostituzione (anche con validazione contestuale), Eliminazione documento e Aggiornamento Metadati.
+   <td>La valorizzazione come tipo XON è obbligatoria nei servizi di Pubblicazione Creazione e Sostituzione, anche con validazione contestuale.
    </td>
   </tr>
   <tr>
