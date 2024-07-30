@@ -5923,9 +5923,8 @@ Per maggiori informazioni sulla valorizzazione di questo attributo si può far r
    </td>
    <td> Questo identificativo della struttura utente verrà utilizzato dal Gateway per popolare:
    </br>
-   1. L’attributo Author.AuthorInstitution dal Gateway verso INI
-   </br>
-   2. l’asserzione di attributo urn:oasis:names:tc:xspa:1.0:environment:locality dal Gateway verso INI. In questo caso concateniamo codice catalogo con codice struttura
+   1. Per le operazioni di creazione e sostituzione(anche contestuale) l’attributo Author.AuthorInstitution dal Gateway verso INI. L'asserzione di attributo urn:oasis:names:tc:xspa:1.0:environment:locality dal Gateway verso INI verrà valorizzato come concatenazione di codice catalogo e codice struttura</br>
+   2. Per l'operazione di cancellazione e update verso INI sarà utilizzato nella sua forma codice catologo e codice struttura.</br>
    </br>
    </td>
   </tr>
