@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "sudo astro dev --host",
     "start": "astro dev",
-    "build:unix": "sudo astro build --root /Users/vincenzoingenito/Desktop/FORK/it-fse-support/doc/wiki && sudo touch ./../../docs/.nojekyll",
+    "build:unix": "sudo astro build --root /Users/vincenzoingenito/eclipse-workspace/it-fse-support/doc/wiki && sudo touch ./../../docs/.nojekyll",
     "build:win": "astro build && echo >> docs/.nojekyll",
     "astro": "astro",
     "preview": "astro preview"
