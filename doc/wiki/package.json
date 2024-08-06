@@ -1,0 +1,22 @@
+{
+  "name": "fse",
+  "private": true,
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "sudo astro dev --host",
+    "start": "astro dev",
+    "build:unix": "sudo astro build --root /Users/vincenzoingenito/Desktop/FORK/it-fse-support/doc/wiki && sudo touch ./../../docs/.nojekyll",
+    "build:win": "astro build && echo >> docs/.nojekyll",
+    "astro": "astro",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.10",
+    "@astrojs/starlight": "^0.21.5",
+    "astro": "^4.3.5",
+    "sharp": "^0.32.5",
+    "shiki": "^1.6.0",
+    "typescript": "^5.4.5"
+  }
+}
