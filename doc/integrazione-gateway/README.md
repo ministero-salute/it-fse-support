@@ -596,7 +596,12 @@ Per identificare invece i documenti da cancellare o aggiornare il chiamante dovr
 
 **Validazione Documento CDA2**
 
-Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard HL7 CDA2, ed iniettato in un PDF, il nome CDA allegato deve essere “**cda.xml**”(senza considerare maiuscole e minuscole). 
+Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard HL7 CDA2, ed iniettato in un PDF, il nome CDA allegato deve essere `cda.xml` (senza considerare maiuscole e minuscole). Il `cda.xml` deve essere presente in uno dei seguenti punti all'interno del pdf:
+- Root/Names/EmbeddedFiles/Names/[1]/EF/F
+- Root/Names/EmbeddedFiles/Kids/[0]/Names/[1]/EF/F
+
+In differenti circostanze, verrà restituito un errore di validazione come definito al paragrafo [3.2.2](#322-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-ko-400).
+
 
 Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici, semantici e terminologici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 
