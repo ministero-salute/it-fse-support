@@ -5889,32 +5889,38 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Tale attributo, obbligatorio e unico, identifica la struttura a cui appartiene l’utente.
-L’elemento deve essere valorizzato come tipo XON in cui XON.1 contiene il nome della struttura,
-XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura:
-NOME_STRUTTURA^^^^^&CODICE_CATALOGO&ISO^^^^CODICE_STRUTTURA
-Per maggiori informazioni sulla valorizzazione di questo attributo si può far riferimento ad AuthorInstitution nell'Affinity Domain Italia v.2.5 par. 2.1.2.
+   <td>Tale attributo, univoco, identifica la struttura a cui appartiene l’utente.
+L’elemento è sottoposto alle validazioni come da sezione "VALIDAZIONE" e viene utilizzato dal Gateway per il colloquio con INI come riportato nella sezione "NOTE".
+Per maggiori informazioni sulla valorizzazione di tipo XON si può far riferimento ad AuthorInstitution nell'Affinity Domain Italia v.2.5 par. 2.1.2.
    </td>
   </tr>
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
    <td>
+   I valori ammessi per i servizi di CREATE e REPLACE (anche contestuale ) sono solo quelli seguiti dalla dicitura "(tipo XON)"
       <ul>
-        <strong>CREAZIONE E SOSTITUZIONE(ANCHE CONTESTUALE):</strong><br>
-        <li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456
-(Riferimento al "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456")</li>
+        <li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (tipo XON)</li>
       </ul>
       <ul>
-        <strong>CANCELLAZIONE E AGGIORNAMENTO:</strong><br>
-        <li>2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456</li>
+        <li>^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456</li>
+      </ul> 
+      <ul>
+        <li>2.16.840.1.113883.2.9.4.1.3.111101123456 (tipo OID)</li>
+      </ul> 
+      <ul>
+        <li>111101123456 (Regione “111”, ASL “101” e codice STS.11(6) “123456")</li>
+      </ul> 
+      <ul>
+        <li>101123456 (ASL “101” e codice STS.11(6) “123456")</li>
       </ul> 
    </td>
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>La valorizzazione come tipo XON è obbligatoria nei servizi di Pubblicazione Creazione e Sostituzione, anche con validazione contestuale.
+   <td>Per i servizi di CREATE e REPLACE (anche contestuale) il Gateway fa un controllo bloccante per verificare che il popolamento rispetti lo standard XON (in cui XON.1 contiene il nome della struttura, XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura);</br>
+   Per i servizi di DELETE e UPDATE non vengono effettuati controlli bloccanti (viene controllato se il campo in input rispetta lo XON per le logiche di popolamento della locality riportate in note). .
    </td>
   </tr>
   <tr>
@@ -5926,10 +5932,24 @@ Per maggiori informazioni sulla valorizzazione di questo attributo si può far r
   <tr>
    <td><strong>NOTE</strong>
    </td>
-   <td> Questo identificativo della struttura utente verrà utilizzato dal Gateway per popolare:
-   </br>
-   1. Per le operazioni di creazione e sostituzione(anche contestuale) l’attributo Author.AuthorInstitution dal Gateway verso INI. L'asserzione di attributo urn:oasis:names:tc:xspa:1.0:environment:locality dal Gateway verso INI verrà valorizzato come concatenazione di codice catalogo e codice struttura</br>
-   2. Per l'operazione di cancellazione e update verso INI sarà utilizzato nella sua forma codice catologo e codice struttura.</br>
+   <td> Questo identificativo della struttura utente verrà utilizzato dal Gateway: 
+   </br></br>   
+   1. Per le operazioni di CREATE e REPLACE (anche contestuale) per popolare l’attributo Author.AuthorInstitution dal Gateway verso INI. L'asserzione di attributo “locality” dal Gateway verso INI verrà valorizzato come concatenazione di codice catalogo e codice struttura (tipo OID)
+ 
+	ESEMPIO 1.a (AutorInstitution):  
+	LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (Riferimento al "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456")
+ 
+	ESEMPIO 1.b (locality): 2.16.840.1.113883.2.9.4.1.3.111101123456 </br>
+
+  2. Per le operazioni di DELETE e UPDATE per popolare l'asserzione di attributo “locality” dal Gateway verso INI con il contenuto del Custom Claim locality (se compliant con lo standard XON, si popola come da esempio 1.b);</br> 
+In caso contrario viene ribaltato il valore restituito senza controllarne il contenuto. L’attributo Author.AuthorInstitution non è necessario in DELETE e viene popolato utilizzando il servizio di Recupero Metadati in UPDATE.
+ 
+	ESEMPI 2.a (locality):  
+	2.16.840.1.113883.2.9.4.1.3.111101123456 (tipo OID) --> Questo valore viene inviato dal Gateway sia quando è compliant con XON che quando viene inviato questo valore come input
+	111101123456 (Regione “111”, ASL “101” e codice STS.11(6) “123456")
+	101123456 (ASL “101” e codice STS.11(6) “123456")
+	123456 (codice STS.11(6) “123456")</br>
+
    </br>
    </td>
   </tr>
