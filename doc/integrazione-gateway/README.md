@@ -5898,29 +5898,28 @@ Per maggiori informazioni sulla valorizzazione di tipo XON si può far riferimen
    <td><strong>ESEMPIO</strong>
    </td>
    <td>
-   I valori ammessi per i servizi di CREATE e REPLACE (anche contestuale ) sono solo quelli seguiti dalla dicitura "(tipo XON)"
-      <ul>
-        <li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (tipo XON)</li>
-      </ul>
-      <ul>
-        <li>^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456</li>
-      </ul> 
-      <ul>
-        <li>2.16.840.1.113883.2.9.4.1.3.111101123456 (tipo OID)</li>
-      </ul> 
-      <ul>
-        <li>111101123456 (Regione “111”, ASL “101” e codice STS.11(6) “123456")</li>
-      </ul> 
-      <ul>
-        <li>101123456 (ASL “101” e codice STS.11(6) “123456")</li>
-      </ul> 
+   I valori ammessi per il custom claim “locality” si differenziano per i vari servizi del Gateway. </br>
+   Per i servizi di CREATE e REPLACE (anche con validazione contestuale), l’unica valorizzazione possibile è quella come tipo XON, ad esempio:
+   <ul>
+   <li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (tipo XON), che indica la struttura "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456".</li>
+   </ul>
+</br>
+    Per i servizi di DELETE e UPDATE sono ammesse ulteriori valorizzazioni. </br>Esempi di valorizzazioni possibili per la stessa struttura al punto precedente sono i seguenti: </br>
+    <ul><li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456  (Tipo XON);</li>
+    <li>^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (Tipo XON);</li>
+    <li>2.16.840.1.113883.2.9.4.1.3.111101123456 (tipo OID);</li>
+    <li>111101123456 (Regione “111”, ASL “101” e codice STS.11(6) “123456");</li>
+    <li>101123456 (ASL “101” e codice STS.11(6) “123456");</li>
+    <li>123456 (Codice STS.11(6) “123456")</li>
+    </ul>
+
    </td>
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Per i servizi di CREATE e REPLACE (anche contestuale) il Gateway fa un controllo bloccante per verificare che il popolamento rispetti lo standard XON (in cui XON.1 contiene il nome della struttura, XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura);</br>
-   Per i servizi di DELETE e UPDATE non vengono effettuati controlli bloccanti (viene controllato se il campo in input rispetta lo XON per le logiche di popolamento della locality riportate in note). .
+   <td>Per i servizi di CREATE e REPLACE (anche con validazione contestuale) il Gateway fa un controllo bloccante per verificare che il popolamento rispetti lo standard XON (in cui XON.1 contiene il nome della struttura, XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura); </br>
+Per i servizi di DELETE e UPDATE non vengono effettuati controlli bloccanti; viene controllato solo quando il campo in input è conforme al tipo XON, per le logiche di popolamento dell’asserzione di attributo locality riportate in Note.
    </td>
   </tr>
   <tr>
@@ -5932,24 +5931,23 @@ Per maggiori informazioni sulla valorizzazione di tipo XON si può far riferimen
   <tr>
    <td><strong>NOTE</strong>
    </td>
-   <td> Questo identificativo della struttura utente verrà utilizzato dal Gateway: 
-   </br></br>   
-   1. Per le operazioni di CREATE e REPLACE (anche contestuale) per popolare l’attributo Author.AuthorInstitution dal Gateway verso INI. L'asserzione di attributo “locality” dal Gateway verso INI verrà valorizzato come concatenazione di codice catalogo e codice struttura (tipo OID)
+   <td> L’identificativo della struttura utente verrà utilizzato dal Gateway in base al servizio richiesto.
  
-	ESEMPIO 1.a (AutorInstitution):  
-	LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (Riferimento al "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456")
+Nelle operazioni di CREATE e REPLACE (anche con validazione contestuale), il Gateway utilizza il contenuto del claim “locality” per valorizzare, verso INI, il metadato “Author.AuthorInstitution” e l'asserzione di attributo “locality”; nel caso in cui il claim “locality” (che deve essere di tipo XON) sia valorizzato come di seguito </br>
+LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 :
+<ul>
+<li>Lo stesso valore verrà utilizzato per la valorizzazione del metadato “Author.AuthorInstitution” che il Gateway comunica a INI;</li>
+<li>L'asserzione di attributo “locality” che il Gateway comunica a INI verrà valorizzato come concatenazione di codice catalogo (XON.6.2) e codice struttura (XON.10):
+2.16.840.1.113883.2.9.4.1.3.111101123456</li>
+</ul>
  
-	ESEMPIO 1.b (locality): 2.16.840.1.113883.2.9.4.1.3.111101123456 </br>
+Nelle operazioni di DELETE e UPDATE, il Gateway utilizza il contenuto del claim “locality” per popolare l'asserzione di attributo “locality” verso INI:
+<ul>
+<li>Se il custom claim locality è conforme al tipo XON, attua la stessa trasformazione prevista per CREATE e REPLACE, ovvero, concatenando di codice catalogo e codice struttura.</li>
+<li>In caso contrario, il suo valore viene ribaltato senza ulteriori controlli.</li>
+</ul>
 
-  2. Per le operazioni di DELETE e UPDATE per popolare l'asserzione di attributo “locality” dal Gateway verso INI con il contenuto del Custom Claim locality (se compliant con lo standard XON, si popola come da esempio 1.b);</br> 
-In caso contrario viene ribaltato il valore restituito senza controllarne il contenuto. L’attributo Author.AuthorInstitution non è necessario in DELETE e viene popolato utilizzando il servizio di Recupero Metadati in UPDATE.
- 
-	ESEMPI 2.a (locality):  
-	2.16.840.1.113883.2.9.4.1.3.111101123456 (tipo OID) --> Questo valore viene inviato dal Gateway sia quando è compliant con XON che quando viene inviato questo valore come input
-	111101123456 (Regione “111”, ASL “101” e codice STS.11(6) “123456")
-	101123456 (ASL “101” e codice STS.11(6) “123456")
-	123456 (codice STS.11(6) “123456")</br>
-
+Il metadato “Author.AuthorInstitution” non è necessario in DELETE, mentre in UPDATE viene popolato utilizzando il valore che il Gateway ottiene con l’operazione di recupero metadati (FindDocuments) propedeutica  all’aggiornamento metadati.
    </br>
    </td>
   </tr>
