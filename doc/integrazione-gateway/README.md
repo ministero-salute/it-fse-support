@@ -483,6 +483,17 @@ Tutti: stesura a seguito rivisitazione
 <p>
    </td>
   </tr>
+  <tr>
+   <td>3.0
+   </td>
+   <td>02/10/2024
+   </td>
+   <td>Paragrafi modificati:
+	   <p>
+13.1. Chiarimenti sull’impostazione del claim “locality”
+<p>
+   </td>
+  </tr>
 </table>
 
 
