@@ -484,7 +484,7 @@ Tutti: stesura a seguito rivisitazione
    </td>
   </tr>
   <tr>
-   <td>3.0
+   <td>2.10
    </td>
    <td>02/10/2024
    </td>
