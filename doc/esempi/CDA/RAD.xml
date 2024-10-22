@@ -310,7 +310,7 @@
 			</component>	
 			<component typeCode="COMP">
 				<section ID="Quesito_Diagnostico">
-					<code code="18785-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" codeSystemVersion="2.73" displayName="Motivo per lo studio - Radiologia"/>
+					<code code="18785-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo per lo studio - Radiologia"/>
 					<title>Quesito Diagnostico</title>
 					<text>
 						<list>
