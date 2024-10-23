@@ -226,7 +226,7 @@
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.5"/>
 									<code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="95715-9" displayName="Categorie a rischio"/>
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" codeSystem="2.16.840.1.113883.2.9.6.1.56.2" codeSystemName="Categorie di Rischio" code="[COD_RISCHIO]" displayName="[DESC_RISCHIO]"/>
+									<value xsi:type="CD" codeSystem="2.16.840.1.113883.2.9.6.1.56.2" codeSystemName="Categorie di Rischio" code="22" displayName="Viaggi all'estero"/>
 								</observation>
 							</entryRelationship>
 							<!--condizioni sanitarie a rischio-->
