@@ -1,0 +1,1971 @@
+<ClinicalDocument xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd" xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc">
+	<realmCode code="IT"/>
+	<typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040UV02"/>
+	<templateId root="2.16.840.1.113883.2.9.10.1.8.1" extension="1.3" assigningAuthorityName="HL7 Italia"/>
+	<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J" assigningAuthorityName="Regione Lazio"/>	
+	<code code="11526-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pathology study"/> 
+	<title>Referto di anatomia patologica</title>
+	<sdtc:statusCode code="active"/>
+	<effectiveTime value="20230330112426+0100"/>
+	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
+	<languageCode code="it-IT"/>
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J2" assigningAuthorityName="Regione Lazio"/> 
+	<versionNumber value="2"/> 
+	<recordTarget typeCode="RCT" contextControlCode="OP">
+		<patientRole classCode="PAT">
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<addr use="H"> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00187</postalCode> 
+				<streetAddressLine>Via Aurora 12</streetAddressLine> 
+			</addr> 
+			<addr use="HP"> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00138</postalCode> 
+				<streetAddressLine>Via Canevari 12B</streetAddressLine>
+			</addr>			
+			<telecom use="HP" value="mailto:prova.test@gmail.com"/>
+			<telecom use="MC" value="tel:33224456"/>
+			<patient> 
+				<name> 
+					<family>Test</family> 
+					<given>Giuseppe</given> 
+				</name> 
+				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="MASCHIO"/> 
+				<birthTime value="19930619"/>
+				<birthplace> 
+					<place>
+						<addr use="HP">
+							<country>100</country>
+							<county>RM</county> 
+							<city>Roma</city> 
+							<censusTract>058091</censusTract>
+						</addr>					
+					</place> 
+				</birthplace> 
+			</patient>
+		</patientRole>
+	</recordTarget>
+	<author> 
+		<time value="20220325110000+0100"/>
+		<assignedAuthor classCode="ASSIGNED"> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.2.120.4.2" extension="12345" assigningAuthorityName="MEF"/>
+			<addr use="HP">
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00184</postalCode> 
+				<streetAddressLine>Via Milano 7</streetAddressLine>
+			</addr>
+			<addr use="TMP">
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county>
+				<city>Roma</city>
+				<censusTract>058091</censusTract>
+				<postalCode>00184</postalCode>
+				<streetAddressLine>via Milano 7</streetAddressLine>
+			</addr>
+			<telecom use="HP" value="mailto:prova.matteo@gmail.it"/> 
+			<telecom use="WP" value="mailto:prova.matteo@pec.it"/> 
+			<telecom use="MC" value="tel:3478129873"/>
+			<assignedPerson classCode="PSN" determinerCode="INSTANCE"> 
+				<name> 
+					<family>Prova</family> 
+					<given>Matteo</given> 
+					<prefix>Dott.</prefix>
+				</name> 
+			</assignedPerson>
+			<representedOrganization>
+				<id root="2.16.840.1.113883.2.9.4.1.1" extension="030325" assigningAuthorityName="Ministero della Salute"/>	
+				<name>ASL Roma 2</name>
+				<telecom use="WP" value="mailto:prova.provax@example.com"/>
+				<addr use="WP">
+					<country>100</country>
+					<state>120</state>
+					<county>RM</county>
+					<city>Roma</city>
+					<censusTract>15146</censusTract>
+					<postalCode>20129</postalCode>
+					<streetAddressLine>via Goffredo Mameli 2</streetAddressLine>
+				</addr>
+			</representedOrganization>
+		</assignedAuthor> 
+	</author>
+	<dataEnterer typeCode="ENT"> 
+		<time value="20220325120000+0100"/> 
+		<assignedEntity> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.2.120.4.2" extension="12345" assigningAuthorityName="MEF"/>
+			<assignedPerson classCode="PSN" determinerCode="INSTANCE"> 
+				<name> 
+					<family>Prova</family> 
+					<given>Filippo</given> 
+				</name> 
+			</assignedPerson> 
+		</assignedEntity> 
+	</dataEnterer>
+	<custodian> 
+		<assignedCustodian> 
+			<representedCustodianOrganization>
+				<id root="2.16.840.1.113883.2.9.4.1.1" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
+				<name>SAN RAFFAELE NOMENTANA</name>
+				<telecom use="WP" value="tel:010337288945"/> 
+				<addr use="DIR"> 
+					<country>100</country>
+					<state>120</state>
+					<county>RM</county> 
+					<city>Roma</city> 
+					<censusTract>058091</censusTract> 
+					<postalCode>00137</postalCode> 
+					<streetAddressLine>via Emilio Praga 39</streetAddressLine> 
+				</addr>
+			</representedCustodianOrganization> 
+		</assignedCustodian> 
+	</custodian>
+	<informationRecipient> 
+		<intendedRecipient> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.2.120.4.2" extension="12345" assigningAuthorityName="MEF"/>
+			<telecom use="WP" value="tel:062866794"/> 
+			<informationRecipient> 
+				<name>
+					<family>Prova</family> 
+					<given>Maura</given> 
+				</name> 
+			</informationRecipient> 
+		</intendedRecipient> 
+	</informationRecipient>
+	<legalAuthenticator> 
+		<time value="20230325110000+0100"/> 
+		<signatureCode code="S"/> 
+		<assignedEntity>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.2.120.4.2" extension="12345" assigningAuthorityName="MEF"/>
+			<addr use="HP"> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00164</postalCode> 
+				<streetAddressLine>Via Corvetto 3</streetAddressLine>
+			</addr> 
+			<telecom use="HP" value="mailto:prova.federico@gmail.com"/> 
+			<telecom use="MC" value="tel:330987986"/> 
+			<assignedPerson classCode="PSN" determinerCode="INSTANCE"> 
+				<name>  
+					<family>Prova</family> 
+					<given>Federico</given>
+					<prefix>Dott.</prefix>
+				</name> 
+			</assignedPerson> 
+		</assignedEntity> 
+	</legalAuthenticator> 	
+	<authenticator> 
+		<time value="20220325110000+0100"/> 
+		<signatureCode code="S"/> 
+		<assignedEntity> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.2.120.4.2" extension="12345" assigningAuthorityName="MEF"/> 
+			<addr use="HP"> 
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00164</postalCode> 
+				<streetAddressLine>Via Corvetto 3</streetAddressLine>
+			</addr> 
+			<telecom use="HP" value="mailto:prova.roberta@gmail.com"/> 
+			<telecom use="HP" value="tel:22998276800"/> 
+			<assignedPerson classCode="PSN" determinerCode="INSTANCE"> 
+				<name> 
+					<family>Prova</family> 
+					<given>Roberta</given> 
+				</name> 
+			</assignedPerson>
+		</assignedEntity> 
+	</authenticator>	
+	<participant typeCode="REF" contextControlCode="OP">
+		<functionCode code="ATTPHYS" codeSystem= "2.16.840.1.113883.2.9.5.1.88"/>  
+		<time value="20230320110000+0100"/> 	
+		<associatedEntity classCode="PROV">
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.2.120.4.2" extension="12345" assigningAuthorityName="MEF"/>
+			<addr use="HP">
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00187</postalCode> 
+				<streetAddressLine>Via Vittorio Veneto 3</streetAddressLine>
+			</addr>
+			<telecom use="HP" value="mailto:prova.silvia@gmail.com"/>
+			<associatedPerson>
+				<name>
+					<family>Prova</family>
+					<given>Silvia</given>
+				</name>
+			</associatedPerson>
+			<scopingOrganization classCode="ORG" determinerCode="INSTANCE">
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+				<name>SAN RAFFAELE NOMENTANA</name>
+				<telecom use="WP" value="tel:3906660581"/> 
+				<addr use="WP"> 
+					<country>100</country>
+					<state>120</state>
+					<county>RM</county> 
+					<city>Roma</city> 
+					<censusTract>058091</censusTract>
+					<postalCode>00137</postalCode> 
+					<streetAddressLine>Via Emilio Praga 39</streetAddressLine> 
+				</addr>	
+			</scopingOrganization>
+		</associatedEntity>
+	</participant>
+	<inFulfillmentOf> 
+		<order classCode="ACT" moodCode="RQO"> 
+			<id root="2.16.840.1.113883.2.9.4.3.9" extension="[NRE]" assigningAuthorityName="Ministero delle Finanze"/> 
+			<priorityCode code="P" codeSystem="2.16.840.1.113883.5.7" codeSystemName="HL7 ActPriority" displayName="routine"/>
+		</order> 
+	</inFulfillmentOf>
+	<documentationOf>
+		<serviceEvent classCode="ACT" moodCode="EVN">
+			<id root="2.16.840.1.113883.2.9.4.9.9.9" extension="xxx" assigningAuthorityName="Ministero delle Finanze"/>
+			<effectiveTime value="20230324112426+0100"/>
+			<performer typeCode="PRF">
+				<assignedEntity>
+					<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+					<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+						<name>
+							<family>Prova</family>
+							<given>Mario</given>
+						</name>
+					</assignedPerson>
+					<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+						<id root="2.16.840.1.113883.2.9.4.1.3" extension="327700102" assigningAuthorityName="Ministero della Salute"/>
+						<name>Nuovo Ospedale S.Agostino (MO)</name>
+						<asOrganizationPartOf classCode="PART">
+							<id root="2.16.840.1.113883.2.9.4.1.1" extension="080105" assigningAuthorityName="Ministero della Salute"/>
+						</asOrganizationPartOf>	
+					</representedOrganization>
+				</assignedEntity>
+			</performer>
+		</serviceEvent>
+	</documentationOf>
+	<relatedDocument typeCode="XFRM"> 
+		<parentDocument> 
+			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J2" assigningAuthorityName="HL7 Italia"/> 
+			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J2" assigningAuthorityName="Regione Lazio"/>
+			<versionNumber value="1"/>
+		</parentDocument> 
+	</relatedDocument>
+	<componentOf typeCode="COMP">
+		<encompassingEncounter classCode="ENC" moodCode="EVN">
+			<effectiveTime value="20230330112426+0100"/>
+			<responsibleParty typeCode="RESP">
+				<assignedEntity classCode="ASSIGNED">
+					<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+					<id root="2.16.840.1.113883.2.9.2.120.4.2" extension="12345" assigningAuthorityName="MEF"/> 
+					<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+						<name>
+							<family>Prova</family>
+							<given>Silvia</given>
+						</name>
+					</assignedPerson>
+				</assignedEntity>
+			</responsibleParty>
+			<location typeCode="LOC">
+				<healthCareFacility classCode="SDLOC">
+					<id root="2.16.840.1.113883.2.9.4.1.6" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+					<serviceProviderOrganization classCode="ORG" determinerCode="INSTANCE">
+						<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+						<name>[nome_presidio]</name>
+						<telecom use="WP" value="tel:0115678965"/>
+						<asOrganizationPartOf classCode="PART">
+							<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+						</asOrganizationPartOf>
+					</serviceProviderOrganization>
+				</healthCareFacility>
+			</location>
+		</encompassingEncounter>
+	</componentOf>
+
+		
+	
+	<!--BODY RAP-->
+
+	<component>
+		<structuredBody moodCode="EVN" classCode="DOCBODY">
+			<!--Notizie cliniche-->
+			<component typeCode="COMP">
+				<section ID="Notizie_Cliniche"  classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.132"/>
+					<code code="22636-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Referto patologico anamnesi rilevante"/>
+					<title> Notizie Cliniche </title>
+					<text>   
+						<paragraph>  
+							Anamnesi Familiare: Il padre all’età di 55 anni è stato colpito da angina pectoris. Il nonno materno era diabetico.
+							Anamnesi Fisiologica: all’età di 16 anni si è manifestata l’allergia al glutine.
+							Anamnesi Patologica Remota: Nell’anno 1988 ha subito appendicectomia. 
+							Anamnesi Patologica Prossima: Ne mese di marzo 2016 è stata colpita da sindrome influenzale nonostante la vaccinazione antinfluenzale.
+						</paragraph>  
+					</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20230120145726"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<addr use="HP">
+								<country>100</country>
+								<state>120</state>
+								<county>RM</county>
+								<city>Roma</city>
+								<censusTract>058091</censusTract>
+								<postalCode>00184</postalCode>
+								<streetAddressLine>via Milano 7</streetAddressLine>
+							</addr>
+							<telecom use="HP" value="tel:3340000000"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>Enzo</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+								<name>SAN RAFFAELE NOMENTANA</name>
+								<telecom use="MC" value="tel:3340000000"/>
+								<addr use="WP">
+									<country>100</country>
+									<state>120</state>
+									<county>RM</county>
+									<city>Roma</city>
+									<censusTract>058091</censusTract>
+									<postalCode>00137</postalCode>
+									<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+								</addr>
+								<asOrganizationPartOf>
+									<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+								</asOrganizationPartOf>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<component typeCode="COMP">
+					  <section ID="Anamnesi" classCode="DOCSECT" moodCode="EVN">
+						<templateId root="2.16.840.1.113883.3.1937.777.63.10.282"/>
+						<code code="11329-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Anamnesi Generale"/>
+						<title> Anamnesi </title>
+						<text>
+							<paragraph>
+								Intervento passato appendicectomia
+								Intervento passato appendicectomia
+							</paragraph>
+						</text>
+						  <!-- Anamnesi Fisiologica-Patologica-->
+						<entry>
+							<observation moodCode="EVN" classCode="OBS">
+								<templateId root="2.16.840.1.113883.3.1937.777.63.10.135"/>
+								<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
+								<statusCode code="completed"/>
+								<effectiveTime>
+									<low value="20230330112426+0100"/>
+									<high value="20230404110000+0200"/>
+								</effectiveTime>
+								<value xsi:type="CD" code="60975-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Resistenza Vascolare"/>
+								<!-- Cronicità -->
+								<entryRelationship typeCode="REFR">
+									<observation classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.136"/>
+										<code code="89261-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Decorso Clinico"/>
+										<text><reference value="#[REF_CRON]"/></text>
+										<statusCode code="completed"/>
+										<value xsi:type="CD" code="LA18821-1" codeSystem="2.16.840.1.113883.2.9.77.22.11.10" codeSystemName="ProblemCronicity" displayName="Acute"/>
+									</observation>
+								</entryRelationship>
+								<!-- Stato -->
+								<entryRelationship typeCode="REFR">
+									<observation classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.137"/>
+										<code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stato"/>
+										<text>
+											<reference value="#[REF_STATO]"/>
+										</text>
+										<statusCode code="completed"/>
+										<value xsi:type="CD" code="LA18632-2" codeSystem="2.16.840.1.113883.2.9.77.22.11.7" codeSystemName="StatoClinicoProblema" displayName="Inactive"/>
+									</observation>
+								</entryRelationship>
+							</observation>
+						</entry>
+						<!--Anamnesi Familiare-->
+						<entry>
+							<organizer moodCode="EVN" classCode="CLUSTER">
+								<templateId root="2.16.840.1.113883.3.1937.777.63.10.138"/>
+								<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di malattie di membri familiari"/>
+								<statusCode code="completed"/>
+								<effectiveTime value="20230409121122+0200"/>
+								<subject typeCode="SBJ" contextControlCode="OP">
+									<relatedSubject classCode="PRS">
+										<code code="MTH" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode" displayName="Mother"/>
+										<subject classCode="PSN" determinerCode="INSTANCE">
+											<name>
+												<given>Prova</given>
+												<family>Silvia</family>
+											</name>
+											<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Female"/>
+										</subject>
+									</relatedSubject>
+								</subject>
+								<!-- Dettaglio anamnesi Familiare -->
+								<component>
+									<observation moodCode="EVN" classCode="OBS">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.144"/>
+										<code code="52797-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi codice ICD"/>
+										<text>
+											<reference value="#[REF_OBS]"/>
+										</text>
+										<statusCode code="completed"/>
+										<effectiveTime value="20230406121122+0200"/>
+										<value xsi:type="CD" code="575.6" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="COLESTEROLOSI DELLA COLECISTI"/>
+										<!-- Età Insorgenza -->
+										<entryRelationship typeCode="SUBJ">
+											<observation classCode="OBS" moodCode="EVN">
+												<templateId root="2.16.840.1.113883.3.1937.777.63.10.145"/>
+												<code code="35267-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età insorgenza"/>
+												<statusCode code="completed"/>
+												<effectiveTime value="20200406121122+0200"/>
+												<value xsi:type="IVL_PQ" value="35" unit="a"/>
+											</observation>
+										</entryRelationship>
+										<!-- Età Decesso -->
+										<entryRelationship typeCode= "SUBJ">
+											<observation classCode="OBS" moodCode="EVN">
+												<templateId root="2.16.840.1.113883.3.1937.777.63.10.152"/>
+												<code code="39016-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età decesso"/>
+												<statusCode code="completed"/>
+												<value xsi:type="IVL_PQ" value="70" unit="a"/>
+											</observation>
+										</entryRelationship>
+									</observation>
+								</component>
+							</organizer>
+						</entry>
+					 </section>
+					</component>
+				
+					<component typeCode="COMP">
+						<section ID="Quesito_Diagnostico" classCode="DOCSECT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.130"/>
+							<code code="42349-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo del consulto"/>
+							<title> Quesito diagnostico </title>
+							<text> 
+								<paragraph> 
+									Ipoglicemia
+								</paragraph> 
+							</text>
+							<author typeCode="AUT" contextControlCode="OP">
+								<time value="20230120145726"/>
+								<assignedAuthor classCode="ASSIGNED">
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+									<addr use="HP">
+										<country>100</country>
+										<state>120</state>
+										<county>RM</county>
+										<city>Roma</city>
+										<censusTract>058091</censusTract>
+										<postalCode>00184</postalCode>
+										<streetAddressLine>via Milano 7</streetAddressLine>
+									</addr>
+									<telecom use="HP" value="83478327483"/>
+									<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<prefix>Dott.</prefix>
+											<family>Prova</family>
+											<given>GIUSEPPE</given>
+										</name>
+									</assignedPerson>
+									<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+										<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+										<name>SAN RAFFAELE NOMENTANA</name>
+										<telecom use="MC" value="tel:3340000000"/>
+										<addr use="WP">
+											<country>100</country>
+											<state>120</state>
+											<county>RM</county>
+											<city>Roma</city>
+											<censusTract>058091</censusTract>
+											<postalCode>00137</postalCode>
+											<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+										</addr>
+										<asOrganizationPartOf classCode="PART">
+											<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+										</asOrganizationPartOf>
+									</representedOrganization>
+								</assignedAuthor>
+							</author>
+							<!-- Quesito Diagnostico -->
+							<entry typeCode="COMP"> 
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.131"/>
+									<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi"/>
+									<statusCode code="completed"/>
+									<value xsi:type="CD" code="251.2" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="IPOGLICEMIA NON SPECIFICATA"/>	
+								</observation>
+							</entry>
+							<!-- Note Commenti -->
+							<entry typeCode="COMP"> 
+								<act classCode="ACT" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+									<text> 
+										Ulteriori accertamenti da fare
+									</text>
+								</act>
+							</entry>
+						</section>
+					</component>
+					
+				
+				<!-- Sotto-sezione Allergie -->
+					<component typeCode="COMP">
+						<section ID="Allergie" classCode="DOCSECT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.155"/>
+							<code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergie e/o reazioni avverse"/>
+							<title> Allergie </title>
+							<text> 
+								<paragraph> 
+									Allergico a Cefalosporine; Allergia a contatto per lattice; 
+									Allergia da contatto e per inalazione di polvere comune.
+								</paragraph> 
+							</text> 
+							<author typeCode="AUT" contextControlCode="OP">
+								<time value="20230120145726"/>
+								<assignedAuthor classCode="ASSIGNED">
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+									<addr use="HP">
+										<country>100</country>
+										<state>120</state>
+										<county>RM</county>
+										<city>Roma</city>
+										<censusTract>058091</censusTract>
+										<postalCode>00184</postalCode>
+										<streetAddressLine>via Milano 7</streetAddressLine>
+									</addr>
+									<telecom use="HP" value="83478327483"/>
+									<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<prefix>Dott.</prefix>
+											<family>Prova</family>
+											<given>GIUSEPPE</given>
+										</name>
+									</assignedPerson>
+									<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+										<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+										<name>SAN RAFFAELE NOMENTANA</name>
+										<telecom use="MC" value="tel:3340000000"/>
+										<addr use="WP">
+											<country>100</country>
+											<state>120</state>
+											<county>RM</county>
+											<city>Roma</city>
+											<censusTract>058091</censusTract>
+											<postalCode>00137</postalCode>
+											<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+										</addr>
+										<asOrganizationPartOf classCode="PART">
+											<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+										</asOrganizationPartOf>
+									</representedOrganization>
+								</assignedAuthor>
+							</author>
+							<!-- Allergie -->
+							<entry typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.156"/>
+									<code nullFlavor="NA"/> 
+									<statusCode code="active"/>
+									<effectiveTime value="20230420101010+0100"/>
+									<entryRelationship typeCode="SUBJ">
+										<observation classCode="OBS" moodCode="EVN"> 
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.157"/>
+											<code code="52473-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergia o causa della reazione"/> 
+											<text>
+												<reference value="#[REF_NOTA1]"/>
+											</text>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20230415101010+0100"/>
+												<high value="20230419101010+0100"/>
+											</effectiveTime>
+											<value xsi:type="CD" code="ALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ObservationIntoleranceType" displayName="Allergy">
+												<originalText>
+													<reference value="#[nota]"/>
+												</originalText>
+											</value>
+											<participant typeCode="CSM" contextControlCode="OP">
+												<participantRole classCode="MANU">
+													<playingEntity classCode="MMAT" determinerCode="INSTANCE">
+														<code code="111088007" codeSystem="2.16.840.1.113883.2.9.77.22.11.2" codeSystemName="Allergeni (No Farmaci)" displayName="Lattice">
+															<originalText>
+																<reference value="#[REF_AGENT]"/>
+															</originalText>
+														</code>
+													</playingEntity>
+												</participantRole>
+											</participant>
+											<!-- Descrizione Reazione -->
+											<entryRelationship typeCode="MFST">
+												<observation classCode="OBS" moodCode="EVN"> 
+													<templateId root="2.16.840.1.113883.3.1937.777.63.10.163"/>
+													<code code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Obiettività Clinica"/>
+													<text>
+														<reference value='#[REF_TXT_OBS]'/>
+													</text>
+													<statusCode code="completed"/>
+													<effectiveTime>
+														<low value="20230419101010+0100"/>
+														<high value="20230423101010+0100"/>
+													</effectiveTime>
+													<value xsi:type="CD" code="698.8" codeSystem="2.16.840.1.113883.2.9.77.22.11.4" displayName="ALTRE AFFEZIONI PRURIGINOSE SPECIFICATE" codeSystemName="AllergyReactions_PSSIT"/>
+												</observation>
+											</entryRelationship>
+											<!-- Descrizione Criticità -->
+											<entryRelationship typeCode="SUBJ" >
+												<observation classCode="OBS" moodCode="EVN"> 
+													<templateId root="2.16.840.1.113883.3.1937.777.63.10.164"/>
+													<code code="82606-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergy or intolerance criticality"/>
+													<text>
+														<reference value="#[REF_TXT_CRIT]"/>
+													</text>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="M" codeSystem="2.16.840.1.113883.5.1063" codeSystemName="CriticalityObservation" displayName="Moderate"/>
+												</observation>
+											</entryRelationship>
+											<!-- Stato Allergia/Intolleranza-->
+											<entryRelationship typeCode="REFR" >
+												<observation classCode="OBS" moodCode="EVN"> 
+													<templateId root="2.16.840.1.113883.3.1937.777.63.10.165"/>
+													<code code="33999-4" codeSystem="2.16.840.1.113883.6.1"	codeSystemName="LOINC" displayName="Stato"/>
+													<text>
+														<reference value="#[REF_STATO]"/>
+													</text>
+													<statusCode code="completed"/>
+													<value xsi:type="CD" code="LA16666-2" codeSystem="2.16.840.1.113883.2.9.77.22.11.7" codeSystemName="LOINC" displayName="Active"/>
+												</observation>
+											</entryRelationship>
+											<!-- Commenti-->
+											<entryRelationship typeCode="SUBJ" >
+												<act classCode="ACT" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+													<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+													<text>
+														<reference value="#[REF_COMMENTI]"/>
+													</text>
+													<statusCode code="completed"/>
+												</act>
+											</entryRelationship>
+										</observation>
+									</entryRelationship>
+								</act>
+							</entry>
+							<!-- Note e Commenti -->
+							<entry typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+									<text>
+										[Questo paragrafo contiene una nota o un commento]
+									</text>
+								</act>
+							</entry>
+						</section>
+					</component>
+					
+					<!--Precedenti Esami Eseguiti-->
+					<component typeCode="COMP">
+						<section ID="Precedenti_Esami_Eseguiti" classCode="DOCSECT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.167"/>
+							<code code="67803-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Procedura"/>
+							<title>Precedenti Esami Eseguiti</title>
+							<text>
+								<table>
+									<thead>
+										<tr>
+											<th>Precedente Esame Eseguito</th>
+											<th>Data Esame</th>
+											<th>Esito</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Esame Istologico</td>
+											<td>(25 Settembre2023 09:22)</td>
+											<td>Nessun problema riscontrato</td>
+										</tr>
+									</tbody>
+								</table>
+							</text>
+							<author typeCode="AUT" contextControlCode="OP">
+								<time value="20230120145726"/>
+								<assignedAuthor classCode="ASSIGNED">
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+									<addr use="HP">
+										<country>100</country>
+										<state>120</state>
+										<county>RM</county>
+										<city>Roma</city>
+										<censusTract>058091</censusTract>
+										<postalCode>00184</postalCode>
+										<streetAddressLine>via Milano 7</streetAddressLine>
+									</addr>
+									<telecom use="HP" value="83478327483"/>
+									<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<prefix>Dott.</prefix>
+											<family>Prova</family>
+											<given>GIUSEPPE</given>
+										</name>
+									</assignedPerson>
+									<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+										<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+										<name>SAN RAFFAELE NOMENTANA</name>
+										<telecom use="MC" value="tel:3340000000"/>
+										<addr use="WP">
+											<country>100</country>
+											<state>120</state>
+											<county>RM</county>
+											<city>Roma</city>
+											<censusTract>058091</censusTract>
+											<postalCode>00137</postalCode>
+											<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+										</addr>
+										<asOrganizationPartOf classCode="PART">
+											<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+										</asOrganizationPartOf>
+									</representedOrganization>
+								</assignedAuthor>
+							</author>
+							<!-- Observation-Precedenti Esami Eseguiti -->
+							<entry typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.168"/>
+									<code code="44640-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Histologic type in Skin melanoma"/>
+									<effectiveTime value="20230203092200+0200"/>
+									<value xsi:type="ST"> Nessun problema riscontrato</value>
+								</observation>
+							</entry>
+							<!-- Note e Commenti -->
+							<entry typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+									<text>
+										Precedenti esami eseguiti
+									</text>
+								</act>
+							</entry>
+						</section>
+					</component >
+					
+					<!--Terapie Farmacologiche Pregresse-->
+					<component typeCode="COMP">
+						<section ID="Terapie_Farmacologiche_Pregresse" classCode="DOCSECT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.169"/>
+							<code code="8677-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Medication use"/>
+							<title> Terapie farmacologiche pregresse</title>
+							<text> 
+								<list> 
+									<item> 
+										<content ID="TF_1">023993013 – LASIX*25MG 30 CPR</content> 
+									</item> 
+								</list> 
+							</text>
+							<author typeCode="AUT" contextControlCode="OP">
+								<time value="20230120145726"/>
+								<assignedAuthor classCode="ASSIGNED">
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+									<addr use="HP">
+										<country>100</country>
+										<state>120</state>
+										<county>RM</county>
+										<city>Roma</city>
+										<censusTract>058091</censusTract>
+										<postalCode>00184</postalCode>
+										<streetAddressLine>via Milano 7</streetAddressLine>
+									</addr>
+									<telecom use="HP" value="83478327483"/>
+									<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<prefix>Dott.</prefix>
+											<family>Prova</family>
+											<given>GIUSEPPE</given>
+										</name>
+									</assignedPerson>
+									<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+										<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+										<name>SAN RAFFAELE NOMENTANA</name>
+										<telecom use="MC" value="tel:3340000000"/>
+										<addr use="WP">
+											<country>100</country>
+											<state>120</state>
+											<county>RM</county>
+											<city>Roma</city>
+											<censusTract>058091</censusTract>
+											<postalCode>00137</postalCode>
+											<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+										</addr>
+										<asOrganizationPartOf classCode="PART">
+											<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+										</asOrganizationPartOf>
+									</representedOrganization>
+								</assignedAuthor>
+							</author>
+							<entry>
+								<substanceAdministration classCode="SBADM" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.170"/>
+									<!-- Dettaglio Farmaco -->
+									<statusCode code="completed"/>
+									<effectiveTime value="20230419101010+0100"/>
+									<routeCode code="IABDINJ" codeSystem="2.16.840.1.113883.5.112" codeSystemName="HL7 RouteOfAdministration" displayName="Injection, intra-abdominal"/>
+									<approachSiteCode code="LA" codeSystem="2.16.840.1.113883.5.1052" codeSystemName="ActSite" displayName="left arm"/>
+									<doseQuantity>
+										<low value="20" unit="mL"/>
+										<high value="30" unit="mL"/> 
+									</doseQuantity>
+									<rateQuantity>
+										<low value="10" unit="mL/h"/>
+										<high value="15" unit="mL/h"/> 
+									</rateQuantity>
+									<consumable typeCode="CSM">
+										<manufacturedProduct classCode="MANU">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.171"/>
+											<manufacturedMaterial classCode="MMAT">
+												<templateId root="2.16.840.1.113883.3.1937.777.63.10.172"/>
+												<code code="023993013" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="LASIX*25MG 30 CPR">
+													<translation code="C03CA01" codeSystem="2.16.840.1.113883.6.73" codeSystemName="WHO ATC"  displayName="FUROSEMIDE"/>
+												</code>
+											</manufacturedMaterial>
+										</manufacturedProduct>
+									</consumable>
+								</substanceAdministration>
+							</entry>
+							<!-- Note e Commenti -->
+							<entry typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+									<text>
+										Terapia farmacologica sospesa
+									</text>
+								</act>
+							</entry>
+						</section>
+					</component>
+					
+					<!--Terapia Oncologica Pregressa-->
+					<component typeCode="COMP">
+						<section ID="Terapia_Oncologica_Pregressa" classCode="DOCSECT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.175"/>
+							<code code="103567-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Previous cancer therapy medical record"/>
+							<title>Terapia Oncologica pregressa</title>
+							<text>
+								100 MG POLVERE E SOLVENTE PER CONCENTRATO PER SOLUZIONE PER INFUSIONE
+							</text>
+							<author typeCode="AUT" contextControlCode="OP">
+								<time value="20220419101010+0100"/>
+								<assignedAuthor classCode="ASSIGNED">
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+									<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<prefix>Dott.</prefix>
+											<family>Prova</family>
+											<given>GIUSEPPE</given>
+										</name>
+									</assignedPerson>
+								<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.1" extension="030325" assigningAuthorityName="Ministero della Salute"/>	
+								</representedOrganization>	
+								</assignedAuthor>
+							</author>
+							<!-- Terapia Oncologica -->
+							<entry>
+								<substanceAdministration classCode="SBADM" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.170"/>
+									<statusCode code="completed"/>
+									<consumable typeCode="CSM">
+										<manufacturedProduct classCode="MANU">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.171"/>
+											<manufacturedMaterial classCode="MMAT">
+												<templateId root="2.16.840.1.113883.3.1937.777.63.10.172"/>
+												<code code="024754018" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="CARMIAN*30 CPR 100/25MG"/>
+											</manufacturedMaterial>
+										</manufacturedProduct>
+									</consumable>
+								</substanceAdministration>
+							</entry>
+							<!-- Procedure -->
+							<entry>
+								<procedure moodCode="EVN" classCode="PROC">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.183"/>
+									<code code="V58.0" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="SESSIONE DI RADIOTERAPIA"/>
+								</procedure>
+							</entry>
+							<entry>
+								<procedure moodCode="EVN" classCode="PROC">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.183"/>
+									<code code="V58.0" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="SESSIONE DI RADIOTERAPIA"/>
+									<text>
+										<reference value="#[REF_proc]"/>
+									</text>
+									<statusCode code="active"/>
+									<effectiveTime>
+										<low value="20230420100000+0100"/>
+									</effectiveTime>
+								</procedure>
+							</entry>
+							<!-- Note e Commenti -->
+							<entry typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+									<text>
+										[Questo paragrafo contiene una nota o un commento]
+									</text>
+								</act>
+							</entry>
+						</section>
+					</component>
+
+					<!--Precedenti trattamenti e procedure chirurgiche e diagnostiche pregresse-->
+					<component typeCode="COMP">
+						<section ID="Precedenti_trattamenti_e_procedure_chirurgiche_e_diagnostiche_pregresse" classCode="DOCSECT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.180"/>
+							<code code="47519-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di Procedure"/>							<text>
+								Appendicectomia
+							</text> 
+							<author typeCode="AUT" contextControlCode="OP">
+								<time value="20220419101010+0100"/>
+								<assignedAuthor classCode="ASSIGNED">
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+									<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<prefix>Dott.</prefix>
+											<family>Prova</family>
+											<given>GIUSEPPE</given>
+										</name>
+									</assignedPerson>
+									<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+										<asOrganizationPartOf classCode="PART">
+											<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+										</asOrganizationPartOf>
+									</representedOrganization>
+								</assignedAuthor>
+							</author>
+							<!-- Procedure (RAP) -->
+							<entry>
+								<procedure classCode="PROC" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.183"/>
+									<code code="887.2" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="Diagnostica ecografica del cuore"/>
+									<text>
+										<reference value="#[REF_proc]"/>
+									</text>
+									<statusCode code="active"/>
+									<effectiveTime>
+										<low value="20200420100000+0100"/>
+									</effectiveTime>
+								</procedure>
+							</entry>
+							<!-- Note e Commenti -->
+							<entry typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+									<text>
+										[Questo paragrafo contiene una nota o un commento]
+									</text>
+								</act>
+							</entry>
+						</section>
+					</component>
+					
+					<!--Indagini Radiologiche-->
+					<component typeCode="COMP">
+						<section ID="Indagini_Radiologiche" classCode="DOCSECT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.184"/>
+							<code code="55114-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Precedente procedura di imaging, descrizioni"/>
+							<text>
+								<table>
+									<thead>
+										<tr>
+											<th>Precedente Esame Radiologico</th>
+											<th>Data Esame</th>
+											<th>Esito</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Radiografia del torace</td>
+											<td>(03 Feb2022 09:22)</td>
+											<td>Nessun trauma riscontrato</td>
+										</tr>
+									</tbody>
+								</table>
+							</text>
+							<author typeCode="AUT" contextControlCode="OP">
+								<time value="20220419101010+0100"/>
+								<assignedAuthor classCode="ASSIGNED">
+									<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+									<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+										<name>
+											<prefix>Dott.</prefix>
+											<family>Prova</family>
+											<given>GIUSEPPE</given>
+										</name>
+									</assignedPerson>
+									<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+										<asOrganizationPartOf classCode="PART"></asOrganizationPartOf>
+									</representedOrganization>
+								</assignedAuthor>
+							</author>
+							<!-- Indagini Radiologiche -->
+							<entry>
+								<observation moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.186"/>
+									<code code="36554-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Radiografia del torace"/>
+									<text>
+										<reference value="#[noteIR]"/>
+									</text>
+								</observation>
+							</entry>
+							<!-- Note e Commenti -->
+							<entry typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+									<text>
+										[Questo paragrafo contiene una nota o un commento]
+									</text>
+								</act>
+							</entry>
+						</section>
+					</component>
+				  </section>
+			</component>
+					
+			<!--Procedura-->
+			<component>
+				<section ID="Procedura" moodCode="EVN" classCode="DOCSECT">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.142"/>
+					<code code="29300-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Procedure"/>
+					<title>Procedura</title>
+					<text>
+						<paragraph>
+							Biopsia
+						</paragraph>
+					</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20230120145726"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<addr use="HP">
+								<country>100</country>
+								<state>120</state>
+								<county>RM</county>
+								<city>Roma</city>
+								<censusTract>058091</censusTract>
+								<postalCode>00184</postalCode>
+								<streetAddressLine>via Milano 7</streetAddressLine>
+							</addr>
+							<telecom use="HP" value="83478327483"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+								<name>SAN RAFFAELE NOMENTANA</name>
+								<telecom use="MC" value="tel:3340000000"/>
+								<addr use="WP">
+									<country>100</country>
+									<state>120</state>
+									<county>RM</county>
+									<city>Roma</city>
+									<censusTract>058091</censusTract>
+									<postalCode>00137</postalCode>
+									<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+								</addr>
+								<asOrganizationPartOf classCode="PART">
+									<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+								</asOrganizationPartOf>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<!--Procedura di raccolta del campione-->
+					<entry typeCode="COMP">
+						<procedure classCode="PROC" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.143"/>
+							<code code="94331-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Specimen Collection procedure comment"/>
+							<text>xxx</text>
+							<statusCode code="completed"/>
+							<effectiveTime value="20230406121122+0200"/>
+							<methodCode code="86273004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Biopsy"/>
+							<approachSiteCode code="7771000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Left"/>
+							<targetSiteCode code="12738006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Brain"/>
+							<specimen typeCode="SPC">
+								<specimenRole classCode="SPEC">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.259"/>
+									<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+								</specimenRole>
+							</specimen>
+							<!-- Identificativo contenitore -->
+							<entryRelationship typeCode="COMP">
+								<supply moodCode="EVN" classCode="SPLY">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.251"/>
+									<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+									<code code="74384-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Tipologia della fornitura"/>
+									<statusCode code="completed"/>
+								</supply>
+							</entryRelationship>
+							<!--AP-Observation-->
+							<entryRelationship typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+									<code code="66746-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Tipo campione"/>
+									<value xsi:type="CD" code="256865009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Brain Tissue"/>
+									<targetSiteCode code="4870002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Dorsal tegmental nuclei of midbrain"/>
+									<specimen typeCode="SPC">
+										<specimenRole classCode="SPEC">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+											<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+										</specimenRole>
+									</specimen>
+								</observation>
+							</entryRelationship>
+							<!--Oggetti correlati-->
+							<entryRelationship typeCode="COMP">
+								<observationMedia classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.257"/>
+									<value representation="B64" mediaType="image/jpeg">
+										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
+									</value>
+								</observationMedia>
+							</entryRelationship>
+							<entryRelationship typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+									
+									<text>
+										<reference value="#ref"/>
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20220406121122+0200"/>
+								</act>
+							</entryRelationship>
+						</procedure>
+					</entry>
+					<!-- Note e Commenti -->
+					<entry typeCode="COMP">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+							<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+							<text>
+								[Questo paragrafo contiene una nota o un commento]
+							</text>
+						</act>
+					</entry>
+				</section>
+			</component>
+						
+			<!--Osservazione Macroscopica-->
+			<component typeCode="COMP">
+				<section ID="Osservazione_Macroscopica" classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.149"/>
+					<code code="22634-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pathology report gross observation"/>
+					<title>Osservazione Macroscopica</title>
+					<text>
+						Nessun problema riscontrato
+					</text>
+
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20230120145726"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<addr use="HP">
+								<country>100</country>
+								<state>120</state>
+								<county>RM</county>
+								<city>Roma</city>
+								<censusTract>058091</censusTract>
+								<postalCode>00184</postalCode>
+								<streetAddressLine>via Milano 7</streetAddressLine>
+							</addr>
+							<telecom use="HP" value="83478327483"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+								<name>SAN RAFFAELE NOMENTANA</name>
+								<telecom use="MC" value="tel:3340000000"/>
+								<addr use="WP">
+									<country>100</country>
+									<state>120</state>
+									<county>RM</county>
+									<city>Roma</city>
+									<censusTract>058091</censusTract>
+									<postalCode>00137</postalCode>
+									<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+								</addr>
+								<asOrganizationPartOf classCode="PART">
+									<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+								</asOrganizationPartOf>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<entry typeCode="COMP">
+					  <organizer classCode="BATTERY" moodCode="EVN">
+					    <statusCode code="completed"/>
+						<component typeCode="COMP">
+							<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+								<code code="24419-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Referto patologico.osservazione generale"/>
+								<text> [Osservazione Macroscopica] </text>
+								<statusCode code="completed"/>
+								<effectiveTime value="20220203092200+0200"/>
+								<value xsi:type="ST"> [Esito osservazione macro] </value>
+								<targetSiteCode code="4870002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Dorsal tegmental nuclei of midbrain"/>
+								<specimen typeCode="SPC">
+									<specimenRole classCode="SPEC">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+										<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+									</specimenRole>
+								</specimen>
+								<!--Oggetti correlati-->
+								<entryRelationship typeCode="COMP">
+									<observationMedia classCode="OBS" moodCode="EVN"> 
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.209"/>
+										<value representation="B64" mediaType="immagine/jpeg"> 
+											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
+										</value>  
+									</observationMedia>  
+								</entryRelationship>
+								<entryRelationship typeCode="COMP">
+									<act classCode="ACT" moodCode="EVN"> 
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+										<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+										
+										<text>
+											[Annotazioni e Commenti]
+									   </text>	
+									   <statusCode code="completed"/>
+									</act>
+								</entryRelationship>
+							</observation>
+						</component>
+						</organizer>
+					</entry>
+					<!-- Note e Commenti -->
+					<entry typeCode="COMP">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+							<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+							<text>
+								[Questo paragrafo contiene una nota o un commento]
+							</text>
+						</act>
+					</entry>
+				</section>
+			</component>
+			
+			<!--Osservazione Microscopica-->
+			<component typeCode="COMP">
+				<section ID="Osservazione_Microscopica" classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.193"/>
+					<code code="22635-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Referto patologico.osservazione microscopica"/>
+					<title>Osservazione Microscopica</title>
+					<text>
+						Nessun problema riscontrato
+					</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20230120145726"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<addr use="HP">
+								<country>100</country>
+								<state>120</state>
+								<county>RM</county>
+								<city>Roma</city>
+								<censusTract>058091</censusTract>
+								<postalCode>00184</postalCode>
+								<streetAddressLine>via Milano 7</streetAddressLine>
+							</addr>
+							<telecom use="HP" value="83478327483"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+								<name>SAN RAFFAELE NOMENTANA</name>
+								<telecom use="MC" value="tel:3340000000"/>
+								<addr use="WP">
+									<country>100</country>
+									<state>120</state>
+									<county>RM</county>
+									<city>Roma</city>
+									<censusTract>058091</censusTract>
+									<postalCode>00137</postalCode>
+									<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+								</addr>
+								<asOrganizationPartOf classCode="PART">
+									<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+								</asOrganizationPartOf>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<entry>
+					  <organizer classCode="BATTERY" moodCode="EVN">
+						<code code="102034-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Path report.microscopic observation"/>
+					    <statusCode code="completed"/>
+						<component typeCode="COMP">
+							<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+								<code code="24419-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Referto patologico.osservazione generale"/>
+								<text> [Osservazione Micro] </text>
+								<statusCode code="completed"/>
+								<effectiveTime value="20220203092200+0200"/>
+								<value xsi:type="ST"> Esito osservazione micro </value>
+								<targetSiteCode code="4870002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Dorsal tegmental nuclei of midbrain"/>
+								<specimen typeCode="SPC">
+									<specimenRole classCode="SPEC">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+										<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+									</specimenRole>
+								</specimen>
+								<!--Oggetti correlati-->
+								<entryRelationship typeCode="COMP">
+									<observationMedia classCode="OBS" moodCode="EVN"> 
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.209"/>
+										<value representation="B64" mediaType="image/jpeg"> 
+											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
+										</value>  
+									</observationMedia>  
+								</entryRelationship>
+								<!--AP-Observation annidato-->
+								<entryRelationship typeCode="COMP">
+									<observation classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+										<code code="24419-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Referto patologico.osservazione generale"/>
+										<text> xx xx </text>
+										<statusCode code="completed"/>
+										<effectiveTime value="20220203092200+0200"/>
+										<value xsi:type="ST"> Esito osservazione micro </value>
+										<targetSiteCode code="4870002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Dorsal tegmental nuclei of midbrain"/>
+										<specimen typeCode="SPC">
+											<specimenRole classCode="SPEC">
+												<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+												<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+											</specimenRole>
+										</specimen>
+										<!--Oggetti correlati-->
+										<entryRelationship typeCode="COMP">
+											<observationMedia classCode="OBS" moodCode="EVN"> 
+												<templateId root="2.16.840.1.113883.3.1937.777.63.10.209"/>
+												<value representation="B64" mediaType="image/jpeg"> 
+													JVBERi0xLjQKJeLjz9MKNCAwIG9iago8PC9EZWNvZGVQYXJtczw8L0JpdHNQZXJDb21wb25lbnQgOC9Db2xvcnMgMS9QcmVkaWN0b3IgMTUvQ29sdW1ucyA5NT4+L1R5cGUvWE9iamVjdC9TdWJ0eXBlL0ltYWdlL0JpdHNQZXJDb21wb25lbnQgOC9XaWR0aCA5NS9MZW5ndGggMjc4Ny9IZWlnaHQgNzQvQ29sb3JTcGFjZVsvSW5kZXhlZC9EZXZpY2VSR0IgMjMyKP////f39//39//n3v/ezv/v5//Gpf+1hP+te/+la/+MQvd7XCn/cxj/59b/3sb/zq3/rXP/nFr/lEr/jDn3hDH/hDH3eyH/eyH3cxj3a1xi/8ac/72M/7V7/6Vj/5xS/5RC/4wx94RcKf+EXCn3exj/exj3cxD/c1xi92sA/9a1/86l/8aU/72E/61r/6Va95xS/5xK/5Q594wx94Qh/4Qh/4QY93sQ/3sQ93NcYvdzAP/37//v3v/nzv/evf/Wrf/nxv/v1v/35///987Wpff/7+f33t7v1rXWpe/37/f/9+f35+//797v3t733tbv1s7nzs7vzsbnxr3evcbvxr3nvbXetbXnta3eraXWpaXepZzWnJTOlJTWlIzOjIzWlITOjHvOhJTWnIzOlKXerZzWpZzepbXnva3etWvGe2O9c1q9a1K1Y1K9Y8bvzrXevb3nxozWnITOlHvOjHPGhNb33s7v1sbnzozOnHvGjGPGe73expzerZTWpWO9e1q9c1K1a7Xvxq3nvaXetZzWrYTWnHvWlHPOjGvGhFwptVLW7957zpRjzoRaxntSvXM5vWMxtVoQrUK9786158at3r2U3q2M1qVz1pRrzoxjxoRKxnNCvWs5tWMhtVIYrUre9+el57171pxzzpRrxoxazoRSxntKvXMxvWNcKbVaIa1Szvfexu/WnN61lNatY86MWsaEUr17QsZzOb1rMbVjIbVaGK1SGLVSEK1KvefOjN6thNale86cSsZ7Qr1zIa1atd7Gte/OrefGpd69c9aca86UY8aMWs6MUsaESr17QsZ7Mb1rXCm1Y5TetYzWrYTerXPOnGPOlDm9c3vWpVrGjOf37+//987v3sbn1r3v1rXnzpzevYTWrXvOpXPWpd7v597/79b358bv3rX33uf/997379bv5+/39/f//+///+f//wAAACldL0ZpbHRlci9GbGF0ZURlY29kZT4+c3RyZWFtCnja7Zf9e1PlGce/AYpT1ipEY3kRLDFDGYjEdVkFNzLcctLQFwYWE46haWdfHK2VJrCJdYFOPcqGBEpKqcempqYmTVirLiStrjWxqO3K9CSIc1mnkLh/Y/cJaZNc0tZemz/smp80h3Oa5vvc9/3cLw/4lv8hikvKSstK95fwEsyPn+TlLVqUR6/cnG0LcH20j+lNrJFgWdbwS7MG2eTS13NxfRZsWleoEF+qu9ZKN63Kw1cxP8IaWZOJpWvyX+Peh7XIoOi+dYU/WrNgBv3VKplMLpPTRa5QqOQbipCN5pF9oqhJ/0hNTU2F3sCytMKj5Zn6y1QyxTL1TPoKGWkTMpF81ZpsF8wG1mBi9aXaOIMFCUZSrGswietVMRn6Cpli04z2L5cpZfctWyaVKwrzlTKZavMDSLOLtIx7Spgsj3bRCmzlQ9P6a2bTX6pQymVbgJytKzasVZEXitXqtLyRpBpEdUZrsTY89htzHIR2zz6D0aBN269U3DtDfNRkf35BKia5q+4SF1g8HRzRzhIAupqm2vq6lpb6umerGyKAZrfRwFYWZ8a/aMb4K/NvX4QUNyiUMtUdU2lpYg2VOlJ76tctLXVP19XRm9Y4VAokdrImY0VmfGbZX7lyWr9oE9kizYEIs4c1sGQ9V5sUf67psOnJ2uQahxmginwzZ8RnxvirZPn3p3NmRXq5XxgNxnKSf44MP3TEwiRdeqeSlqinBSR6k8kQSenPmp+0v4vStVggl6lWJD/RUwQYsr6u5UBNRgLxB+uern+CQQk50JDOz6JZ4nP/FkyxZW2+XHUziDJKHQ4CmXtQAMFwr0evigarLbV19UeBCqNJr0nFf+b4iPmzJC+tvyRfproHRJWxqQI43NLyqGi82XGmf+B4f8+zUfGBfCpFyV6W5ZL2L1fOvL8bKT73p+Oznvbq1oUANHqWLcel2vonJADvc/W6nn/b1ft853EfJy7QcgiJapNx13T8Z7E/I/45903VYhlrogqqfPxABBgZ6HR1ugY6es4OdPb2/mEEqKmvNaOcGgcz5/6qlPlr86ae7lhO9fV9EI8ZTdXQ1dY1kvzzrt6OwEmO1zbv97S/0ds5AsmT9dWIsU16rRh/MT9ny/8lKfvzKPtl+bdtA7GbWiYs9U0A91pvryOGFIyt/02XG431L0g0BpNJl6zfOfLnByse2LJ18fqNMgW10sJkdkqqjOwu1DxeA6b7rQEPA2y5eQHyHlQDnPOlbuBArVatNxhL5ooP9TeZjEqAur+Cmk+hYj1EEhUsfffoM1Hs7+w8Ccmff7pUDOKKDYiA7/hTI6qesaDayJbMUb9ifxORJy8KlXJxKgxVLJV/dZ0GoZdeQOIvP1+7GGo1tt224nM3Lr3sgOVxC6gCS+bqz1S/ZPU1edmdG6YqjaHq2YnKJsT7z/IY+fuK7+Vh5bKtWHpb0UUdTvcw/K8sTKUpZT/pzxwfUr5JWkgxKtiag2kajOwetJmgJVsTHZ+vXHfPlnXrVhdJv5s7dhr+AUFbb95eyZq0qfjMnP/U35R5ktWFZP8qpClnTZXqmibwLj8OD/zrBpX0bqlq6S0qZe6XQzza+VitVmdi92q+xvwV63drvjjkt2IandFkiJUdkDRTeEIdX65XyTdLZZvlipuKmLNH0BazHMJuI1slmTv+1+p3pZibt6aPMRGxPwh1ukmnBr/v/yLnzuVysiCfemtk4Cg8Qs1RCW2vJdUfZuv/ymT/V2+k2lItXZC5Afr44Qbh2TiGXPuxcM3yfMrh76gx3OlBc3HTjp/ReNNiKv4zzd+lU/Wbu7aQFliJKXYYTMZSbbXQx8PeOwFsW3mT8sYHAbS/6QG4g4lqljoI5qxfcX6J+liskCvzC9NbUEHDXXOyjI+h9WVXIwAmqWFzucxAtbmcFbNz7v6vKpAX/Djpyh0UIRq+0w6QQJXuCANEXW/37Mc1rK/1vkizs1FnpE/T83e1epb5e3seRLZJqdYUGzDFThrAu2NWBmh7y9U54eaLeb+dhoANOr+2UuzfWeeTuc8PeWIZFyanV6rHGdiHLaSy/Vivq/N4h7ODxkxvKxA168m5MuDrzHfq/yl9rFLIyZvpLRDEw+dujXjn63W5et9+w9U54GCunUqNDUjrz35+k03PlzXi+Srtq6CnKBtEO9V9HS7ieLsb0FSY6FS6M33+pBCvyc3JXZibu5BeD2THP2v+5inFJL0lfZbdkzwsl2kAidt/0n0V4HcZKGzsrqzzM53AC+VJClXJ+ZRdv+nzycof0gS76+70AlRmBnafvqFcu52RSB4qrzDsoxUrzcjUVypTPZ5+FHfmZOmvkysyzm/MvSr6j0ZBekHoqo0kaDTuNRzcu9dkFB/YnRoA6fgsl2egyLJffWOB9FZpLqbJXbZZKl2yEWkkpVRphFH8oTt9gw7I1N9YIJWSiHgR31TKc7IAWQjlu6ufMJgMlYaKBnPiemkivjO+OH/i2ofKmmMa/N/BRJgEZiAiMPgPOeELhRyNSFGcqZcY8/lC/8T18BQjk+ETmImAz+J/5X1rSrF1GGkcvqh2ZMiM6xBuRiacDjMx7hEXCQNj9hNwDzkY/KOrSwAgHkJES53gJ887OGCy611SvRJwuIEQj8ipkE003WF7nSnW0I3dw9AvvXTNsv88ILEfQcgT9Y1Ehy5Gdvj8w05R+V0HCP5M3Oss84QFc4/N3/8Jf8bjPjYCBx8/F4j6AmgNmQMfxjyf4rQ9GnQyL3h2TIwjk6P9E44/hnFisDhuvRB3vILPHIzE3gWg+zwIoUfwfoq4vTkYAPzmo3S1DmJCsDmBHRfcoRi4Ic4zwl/goBm+wmv4CXt2fFq3a/zHJk8OhL0+XyQ0jO6hsHdU1O/ygogNRbobEbFz3hEAkrA42z/UfKYdCwHxVz0UyivHop5hd9JlRNt9g13Z8RkDEBqxvM9z7iNMyIrTE1di1ssgmQFO/NyL9stkPxcid6yX+wLA5SF0aYd9om/uMAdzv84zzPVMQjPmpj+1BdVZ+n8D4Aii+1Ouqw2OUU3U6bf4LCDGnCP7Wy9o4bQi4jNfGrLZ/mrmnR6/cwReXjMaMHu7cMrncfTHnvLAbnc7uq8O2ty+M3FkYDEDcNsgBL19EWgDHMpC9tRh4VIoPM4AwzEwNgF+u90McA7vO4AtDm1XuwdImI9c8kUnOcTHw20M/OFWS5DHf43iCX/c44vjG2PEFyKvvkGKueL5dqRmXIfoJL5CopHB/HGO4zo4TuErCENXMH/C15QEqxtIMLyVh+23CXzUF6U7wP1KFID6Ex4nbPwxAVet/vk5kQifv9a3g/aP4PaNTxwLjLe3IdAzHvzYnWh1tB2zJca6uhvH7W3d7zMj9oD3POaFT7Q/cs4D4Zztkw+0CLVhskcIjDLwnBNOCeiawLmLkv1DAk71S6xRXOoR5mX/i6J+dPCq2FstYaDND97HB54ChI6Ipi84FICvEZ6L9DyoxcngqDM+P/vHADQPcsBH4+7uBNpOJPXHAb6H93bFTwXhMMPjpecLzPh7UfN7AubDqJ1zm7mPuxDtuWQbBYI2xC5MBvp56nXcB1fUow743IieNcPxYaRnGH3989M/PHjR++o7uvYgBcrdBlDCCK2CNRwIfswlftfdFvTyHg7U2VpDwYTHF3CcO4H5wHwhCEIEcY4XH4BEgt50I4iVytBvtZIECJ5LqOkaYzQCvuX/jn8Dnj5MGQplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwvTGVuZ3RoIDczNS9GaWx0ZXIvRmxhdGVEZWNvZGU+PnN0cmVhbQp42qVVTY+bMBC98yvmmD1AbAiEHGlCVlT5akDVHvbighN5BTghTivtr++YBJqwVNvdKgImeOb5zZvxcDSOBoGveL0YFH7h89FwPHCp5UJhuO7kYuZGbHzD39H4ktTrNiSZYY9cy/fBpJ7+N5xTmECyMwYbthclg4fkxRhQfTevnkT7mRivLzTx7pPaImB69GpQcoGzgfo1Xo1ELtG4bo+1MdjyHa+UBFb8OOdMyUqwnN97UrchpjERKRZ7q0ar0S/vnp6e5ttgOg0gDpIgDi7LbQiUiA0i74YRb0hGQzrx7U6A1cdhMGOKwU9xEviw6ZDYQ5vQScf1T+Kj3sRrhQZLhukqwUCWqczlXqTs3s9tYWgfDPWsKyfB9qU8iRsgeB6kMhM7NJ8f3hFzyqpUlLJgkPE8Z7BkRaGN/yRzQL1bMtF0tjaX71LxXeIMbTAhyHgp05aYKFXFsrNS2BoIfBBIr+JQyhKXdiLH1VLxzxGOecaB6e4oNNcMZawENj5vaCfvK+gSC9/DlB346ytm/Tkmc3ZCJkqddZZF0x0fqOSKy0POThi0kPowoUSRVo4fhOK5PleItohWYJvOG7B/a9pNJfcVNkgtFEJjSQpe4skq697Z3aaAHk0WnywN1p1jK2FfwqHdWPEKdT4rkcqPiLPpBRAlpLI6SU024ztRilchy97506Xp1EaY1PNUX3Y9gB97RrEewGOcnXoY47C8mM0wxlFMQcNS0GsT1KS4JR7EcYIzbZVEsAnWizWEMA22i7Vmg7t3wsfeJbwdcOt4E86CRQixdY03YRktgtVfALzr/k4DsAwWQZJEIUSreYjG9xAZJNv1JroCHHFXizg1hkdg5FNrMsYkPUgLGIpiT2AmoatSN/ERcXTZ77jX03YnqoK95WpPxujfF7XkmS5tHadYJWRvoo7vN5Gt1PcTvW+/m6hWoEwq9eZztN6ESRgn3a9QHMa6lEEcNur9BvE468IKZW5kc3RyZWFtCmVuZG9iago5IDAgb2JqCjw8L0RlY29kZVBhcm1zPDwvQml0c1BlckNvbXBvbmVudCA4L0NvbG9ycyAxL1ByZWRpY3RvciAxNS9Db2x1bW5zIDk1Pj4vVHlwZS9YT2JqZWN0L1N1YnR5cGUvSW1hZ2UvQml0c1BlckNvbXBvbmVudCA4L1dpZHRoIDk1L0xlbmd0aCAyNzg3L0hlaWdodCA3NC9Db2xvclNwYWNlWy9JbmRleGVkL0RldmljZVJHQiAyMzIo////9/f3//f3/+fe/97O/+/n/8al/7WE/617/6Vr/4xC93tcKf9zGP/n1v/exv/Orf+tc/+cWv+USv+MOfeEMf+EMfd7If97IfdzGPdrXGL/xpz/vYz/tXv/pWP/nFL/lEL/jDH3hFwp/4RcKfd7GP97GPdzEP9zXGL3awD/1rX/zqX/xpT/vYT/rWv/pVr3nFL/nEr/lDn3jDH3hCH/hCH/hBj3exD/exD3c1xi93MA//fv/+/e/+fO/969/9at/+fG/+/W//fn///3ztal9//v5/fe3u/Wtdal7/fv9//35/fn7//v3u/e3vfe1u/WzufOzu/OxufGvd69xu/Gvee9td61tee1rd6tpdalpd6lnNaclM6UlNaUjM6MjNaUhM6Me86ElNacjM6Upd6tnNalnN6ltee9rd61a8Z7Y71zWr1rUrVjUr1jxu/Otd69vefGjNachM6Ue86Mc8aE1vfezu/WxufOjM6ce8aMY8Z7vd7GnN6tlNalY717Wr1zUrVrte/Gree9pd61nNathNace9aUc86Ma8aEXCm1Utbv3nvOlGPOhFrGe1K9czm9YzG1WhCtQr3vzrXnxq3evZTerYzWpXPWlGvOjGPGhErGc0K9azm1YyG1UhitSt7356XnvXvWnHPOlGvGjFrOhFLGe0q9czG9Y1wptVohrVLO997G79ac3rWU1q1jzoxaxoRSvXtCxnM5vWsxtWMhtVoYrVIYtVIQrUq9586M3q2E1qV7zpxKxntCvXMhrVq13sa1786t58al3r1z1pxrzpRjxoxazoxSxoRKvXtCxnsxvWtcKbVjlN61jNathN6tc86cY86UOb1ze9alWsaM5/fv7//3zu/exufWve/WtefOnN69hNate86lc9al3u/n3v/v1vfnxu/etffe5//33vfv1u/n7/f39///7///5///AAAAKV0vRmlsdGVyL0ZsYXRlRGVjb2RlPj5zdHJlYW0KeNrtl/17U+UZx78BilPWKkRjeREsMUMZiMR1WQU3Mtxy0tAXBhYTjqFpZ18crZUmsIl1gU49yoYESkqpx6ampiZNWKsuJK2uNbGo7cr0JIhzWaeQuH9j9wlpk1zS1l6bP+yanzSHc5rm+9z3/dwvD/iW/yGKS8pKy0r3l/ASzI+f5OUtWpRHr9ycbQtwfbSP6U2skWBZ1vBLswbZ5NLXc3F9FmxaV6gQX6q71ko3rcrDVzE/whpZk4mla/Jf496Htcig6L51hT9as2AG/dUqmUwuk9NFrlCo5BuKkI3mkX2iqEn/SE1NTYXewLK0wqPlmfrLVDLFMvVM+goZaRMykXzVmmwXzAbWYGL1pdo4gwUJRlKsazCJ61UxGfoKmWLTjPYvlyll9y1bJpUrCvOVMplq8wNIs4u0jHtKmCyPdtEKbOVD0/prZtNfqlDKZVuAnK0rNqxVkReK1eq0vJGkGkR1RmuxNjz2G3MchHbPPoPRoE3br1TcO0N81GR/fkEqJrmr7hIXWDwdHNHOEgC6mqba+rqWlvq6Z6sbIoBmt9HAVhZnxr9oxvgr829fhBQ3KJQy1R1TaWliDZU6Unvq1y0tdU/X1dGb1jhUCiR2siZjRWZ8ZtlfuXJav2gT2SLNgQizhzWwZD1XmxR/rumw6cna5BqHGaCKfDNnxGfG+Ktk+fenc2ZFerlfGA3GcpJ/jgw/dMTCJF16p5KWqKcFJHqTyRBJ6c+an7S/i9K1WCCXqVYkP9FTBBiyvq7lQE1GAvEH656uf4JBCTnQkM7Polnic/8WTLFlbb5cdTOIMkodDgKZe1AAwXCvR6+KBqsttXX1R4EKo0mvScV/5viI+bMkL62/JF+mugdElbGpAjjc0vKoaLzZcaZ/4Hh/z7NR8YF8KkXJXpblkvYvV868vxspPven47Oe9urWhQA0epYtx6Xa+ickAO9z9bqef9vV+3zncR8nLtByCIlqk3HXdPxnsT8j/jn3TdViGWuiCqp8/EAEGBnodHW6Bjp6zg509vb+YQSoqa81o5waBzPn/qqU+Wvzpp7uWE719X0QjxlN1dDV1jWS/POu3o7ASY7XNu/3tL/R2zkCyZP11YixTXqtGH8xP2fL/yUp+/Mo+2X5t20DsZtaJiz1TQD3Wm+vI4YUjK3/TZcbjfUvSDQGk0mXrN858ucHKx7YsnXx+o0yBbXSwmR2SqqM7C7UPF4DpvutAQ8DbLl5AfIeVAOc86Vu4ECtVq03GEvmig/1N5mMSoC6v4KaT6FiPUQSFSx99+gzUezv7DwJyZ9/ulQM4ooNiIDv+FMjqp6xoNrIlsxRv2J/E5EnLwqVcnEqDFUslX91nQahl15A4i8/X7sYajW23bbiczcuveyA5XELqAJL5urPVL9k9TV52Z0bpiqNoerZicomxPvP8hj5+4rv5WHlsq1YelvRRR1O9zD8ryxMpSllP+nPHB9SvklaSDEq2JqDaRqM7B60maAlWxMdn69cd8+WdetWF0m/mzt2Gv4BQVtv3l7JmrSp+Myc/9TflHmS1YVk/yqkKWdNleqaJvAuPw4P/OsGlfRuqWrpLSpl7pdDPNr5WK1WZ2L3ar7G/BXrd2u+OOS3Yhqd0WSIlR2QNFN4Qh1frlfJN0tlm+WKm4qYs0fQFrMcwm4jWyWZO/7X6nelmJu3po8xEbE/CHW6SacGv+//IufO5XKyIJ96a2TgKDxCzVEJba8l1R9m6//KZP9Xb6TaUi1dkLkB+vjhBuHZOIZc+7FwzfJ8yuHvqDHc6UFzcdOOn9F402Iq/jPN36VT9Zu7tpAWWIkpdhhMxlJttdDHw947AWxbeZPyxgcBtL/pAbiDiWqWOgjmrF9xfon6WKyQK/ML01tQQcNdc7KMj6H1ZVcjACapYXO5zEC1uZwVs3Pu/q8qkBf8OOnKHRQhGr7TDpBAle4IA0Rdb/fsxzWsr/W+SLOzUWekT9Pzd7V6lvl7ex5Etkmp1hQbMMVOGsC7Y1YGaHvL1Tnh5ot5v52GgA06v7ZS7N9Z55O5zw95YhkXJqdXqscZ2IctpLL9WK+r83iHs4PGTG8rEDXrybky4OvMd+r/KX2sUsjJm+ktEMTD526NeOfrdbl6337D1TngYK6dSo0NSOvPfn6TTc+XNeL5Ku2roKcoG0Q71X0dLuJ4uxvQVJjoVLozff6kEK/JzcldmJu7kF4PZMc/a/7mKcUkvSV9lt2TPCyXaQCJ23/SfRXgdxkobOyurPMzncAL5UkKVcn5lF2/6fPJyh/SBLvr7vQCVGYGdp++oVy7nZFIHiqvMOyjFSvNyNRXKlM9nn4Ud+Zk6a+TKzLOb8y9KvqPRkF6QeiqjSRoNO41HNy712QUH9idGgDp+CyXZ6DIsl99Y4H0VmkupsldtlkqXbIRaSSlVGmEUfyhO32DDsjU31gglZKIeBHfVMpzsgBZCOW7q58wmAyVhooGc+J6aSK+M744f+Lah8qaYxr838FEmARmICIw+A854QuFHI1IUZyplxjz+UL/xPXwFCOT4ROYiYDP4n/lfWtKsXUYaRy+qHZkyIzrEG5GJpwOMzHuERcJA2P2E3APORj8o6tLACAeQkRLneAnzzs4YLLrXVK9EnC4gRCPyKmQTTTdYXudKdbQjd3D0C+9dM2y/zwgsR9ByBP1jUSHLkZ2+PzDTlH5XQcI/kzc6yzzhAVzj83f/wl/xuM+NgIHHz8XiPoCaA2ZAx/GPJ/itD0adDIveHZMjCOTo/0Tjj+GcWKwOG69EHe8gs8cjMTeBaD7PAihR/B+iri9ORgA/OajdLUOYkKwOYEdF9yhGLghzjPCX+CgGb7Ca/gJe3Z8Wrdr/McmTw6EvT5fJDSM7qGwd1TU7/KCiA1FuhsRsXPeEQCSsDjbP9R8ph0LAfFXPRTKK8einmF30mVE232DXdnxGQMQGrG8z3PuI0zIitMTV2LWyyCZAU783Iv2y2Q/FyJ3rJf7AsDlIXRph32ib+4wB3O/zjPM9UxCM+amP7UF1Vn6fwPgCKL7U66rDY5RTdTpt/gsIMacI/tbL2jhtCLiM18astn+auadHr9zBF5eMxowe7twyudx9Mee8sBudzu6rw7a3L4zcWRgMQNw2yAEvX0RaAMcykL21GHhUig8zgDDMTA2AX673QxwDu87gC0ObVe7B0iYj1zyRSc5xMfDbQz84VZLkMd/jeIJf9zji+MbY8QXIq++QYq54vl2pGZch+gkvkKikcH8cY7jOjhO4SsIQ1cwf8LXlASrG0gwvJWH7bcJfNQXpTvA/UoUgPoTHids/DEBV63++TmRCJ+/1reD9o/g9o1PHAuMt7ch0DMe/NidaHW0HbMlxrq6G8ftbd3vMyP2gPc85oVPtD9yzgPhnO2TD7QItWGyRwiMMvCcE04J6JrAuYuS/UMCTvVLrFFc6hHmZf+Lon508KrYWy1hoM0P3scHngKEjoimLzgUgK8Rnov0PKjFyeCoMz4/+8cANA9ywEfj7u4E2k4k9ccBvof3dsVPBeEww+Ol5wvM+HtR83sC5sOonXObuY+7EO25ZBsFgjbELkwG+nnqddwHV9SjDvjciJ41w/FhpGcYff3z0z88eNH76ju69iAFyt0GUMIIrYI1HAh+zCV+190W9PIeDtTZWkPBhMcXcJw7gfnAfCEIQgRxjhcfgESC3nQjiJXK0G+1kgQInkuo6RpjNAK+5f+OfwOePkwZCmVuZHN0cmVhbQplbmRvYmoKMTAgMCBvYmoKPDwvVHlwZS9DYXRhbG9nL1ZpZXdlclByZWZlcmVuY2VzPDwvRml0V2luZG93IHRydWU+Pi9QYWdlcyA2IDAgUj4+CmVuZG9iagoxMSAwIG9iago8PC9Qcm9kdWNlcihwdXJlcGRmIDAuNzcuMjAxMTAxMTYpL01vZERhdGUoRDoyMDE5MDIyMTA4MjcxOC0wMScwMCcpL1RpdGxlKFhYWEZSQUNDQSBTQVRBU0EpL0NyZWF0aW9uRGF0ZShEOjIwMTkwMjIxMDgyNzE4LTAxJzAwJyk+PgplbmRvYmoKOCAwIG9iago8PC9UeXBlL09ialN0bS9OIDUvTGVuZ3RoIDI2NC9GaXJzdCAyOC9GaWx0ZXIvRmxhdGVEZWNvZGU+PnN0cmVhbQp42q2RUWuDMBDHv8o9bg/rJUarhVKYXQUZY2IdG0gfrAbJqMkwEbpvv4srpR+gIXB35H+/u9zFwEAATwQEEEQr4CCEgCWELIH1GqvfH4lF00t8k51qUnOuGWVEqwiSMDjQ0yi1Iz2DErdGO4osRHNYSmumsZWWOF/vx2/ZOvLU0DMIvWCzwWI07V46qLF4yQAreXaA+UD10ovdXmx+wIzwBMg4Nen5GXX87wj6wgz059q21+NOt6ZTusdPpZ+1Vdd4Px2dV3kpx7SxctZXapD2KXfNSbX3YaXm1N2HVJqh0TcovxdLU59oAxxfVWfr2M+B1vJR7miiD2wRx4uAcU53+Uipf+kymW0KZW5kc3RyZWFtCmVuZG9iagoxMiAwIG9iago8PC9UeXBlL1hSZWYvV1sxIDIgMl0vSW5kZXhbMCAxM10vSUQgWzw2MjYzNjEzMDYzMzAzOTM2MzY2NTM5MzE2MjMxMzE2Mj48NjQzMDYxNjIzOTM1NjI2NjMxMzQzOTY1NjQzMzMzNjE+XS9MZW5ndGggNTgvSW5mbyAxMSAwIFIvU2l6ZSAxMy9Sb290IDEwIDAgUi9GaWx0ZXIvRmxhdGVEZWNvZGU+PnN0cmVhbQp42mNgYPj/n4mBg4EZRDCBCEZGBn4GBka+JQwMIC4LiGBgVHQCEoLHgIRCNIhYBySUljEwAADKZwZOCmVuZHN0cmVhbQplbmRvYmoKc3RhcnR4cmVmCjg4NzAKJSVFT0YK
+												</value>  
+											</observationMedia>  
+										</entryRelationship>
+										<entryRelationship typeCode="COMP">
+											<act classCode="ACT" moodCode="EVN"> 
+												<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+												<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+												
+												<text>
+													[Annotazioni e Commenti]
+											   </text>	
+											   <statusCode code="completed"/>
+											</act>
+										</entryRelationship>
+									</observation>
+								</entryRelationship>
+								<!--Commenti-->
+								<entryRelationship typeCode="COMP">
+									<act classCode="ACT" moodCode="EVN"> 
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+										<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+										
+										<text>
+											[Commenti]
+									   </text>
+										<statusCode code="completed"/>									   
+									</act>
+								</entryRelationship>
+							</observation>
+						</component>
+						</organizer>
+					</entry>
+					<!-- Note e Commenti -->
+					<entry typeCode="COMP">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+							<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+							<text>
+								[Questo paragrafo contiene una nota o un commento]
+							</text>
+						</act>
+					</entry>
+				</section>
+			</component>
+			
+			<!--Stato del margine-->
+			<component>
+				<section ID="Stato_del_Margine" classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.190"/>
+					<code code="33755-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stato del Margine"/>
+					<title>Stato del Margine</title>
+					<text>
+						[Stato del Margine]
+					</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20230120145726"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<addr use="HP">
+								<country>100</country>
+								<state>120</state>
+								<county>RM</county>
+								<city>Roma</city>
+								<censusTract>058091</censusTract>
+								<postalCode>00184</postalCode>
+								<streetAddressLine>via Milano 7</streetAddressLine>
+							</addr>
+							<telecom use="HP" value="83478327483"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+								<name>SAN RAFFAELE NOMENTANA</name>
+								<telecom use="MC" value="tel:3340000000"/>
+								<addr use="WP">
+									<country>100</country>
+									<state>120</state>
+									<county>RM</county>
+									<city>Roma</city>
+									<censusTract>058091</censusTract>
+									<postalCode>00137</postalCode>
+									<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+								</addr>
+								<asOrganizationPartOf classCode="PART">
+									<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+								</asOrganizationPartOf>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<entry typeCode="COMP">
+						<observation classCode="OBS" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.196"/>
+							<code code="33738-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stato del Margine"/>
+							<statusCode code="completed"/>
+							<effectiveTime value="20230203092200+0200"/>
+							<value xsi:type="IVL_PQ" value="3" unit="mm"/>
+							<targetSiteCode code="4870002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Dorsal tegmental nuclei of midbrain"/>
+							<entryRelationship typeCode="COMP">
+								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+									<text>
+										<reference value="#REF"/>
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20230203092200+0200"/>
+								</act>
+							</entryRelationship>
+						</observation>
+					</entry>
+					<!-- Note e Commenti -->
+					<entry typeCode="COMP">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+							<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+							<text>
+								[Questo paragrafo contiene una nota o un commento]
+							</text>
+						</act>
+					</entry>
+				</section>
+			</component>
+
+			<!--Analisi supplementari dei campioni-->
+			<component>
+				<section ID="Analisi_supplementari_dei_campioni" classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.197"/>
+					<code code="22639-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pathology report supplemental reports"/>
+					<title>Analisi Supplementari dei campioni</title>
+					<text>
+						[NARRATIVE_BLOCK]
+					</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20230120145726"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<addr use="HP">
+								<country>100</country>
+								<state>120</state>
+								<county>RM</county>
+								<city>Roma</city>
+								<censusTract>058091</censusTract>
+								<postalCode>00184</postalCode>
+								<streetAddressLine>via Milano 7</streetAddressLine>
+							</addr>
+							<telecom use="HP" value="83478327483"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+								<name>SAN RAFFAELE NOMENTANA</name>
+								<telecom use="MC" value="tel:3340000000"/>
+								<addr use="WP">
+									<country>100</country>
+									<state>120</state>
+									<county>RM</county>
+									<city>Roma</city>
+									<censusTract>058091</censusTract>
+									<postalCode>00137</postalCode>
+									<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+								</addr>
+								<asOrganizationPartOf classCode="PART">
+									<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+								</asOrganizationPartOf>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<entry typeCode="COMP">
+						<organizer classCode="BATTERY" moodCode="EVN">
+							<statusCode code="completed"/>
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+									<code code="44624-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Additional pathological findings in Tumor"/>
+									<text>[Analisi supplementari dei campioni]</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20220203092200+0200"/>
+									<value xsi:type="ST">[Esito Analisi supplementari dei campioni]</value>
+									<specimen typeCode="SPC">
+										<specimenRole classCode="SPEC">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+											<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+										</specimenRole>
+									</specimen>
+									<!--Oggetti correlati-->
+									<entryRelationship typeCode="COMP">
+										<observationMedia classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.209"/>
+											<value representation="B64" mediaType="image/jpeg">
+												JVBERi0xLjQKJeLjz9MKNCAwIG9iago8PC9EZWNvZGVQYXJtczw8L0JpdHNQZXJDb21wb25lbnQgOC9Db2xvcnMgMS9QcmVkaWN0b3IgMTUvQ29sdW1ucyA5NT4+L1R5cGUvWE9iamVjdC9TdWJ0eXBlL0ltYWdlL0JpdHNQZXJDb21wb25lbnQgOC9XaWR0aCA5NS9MZW5ndGggMjc4Ny9IZWlnaHQgNzQvQ29sb3JTcGFjZVsvSW5kZXhlZC9EZXZpY2VSR0IgMjMyKP////f39//39//n3v/ezv/v5//Gpf+1hP+te/+la/+MQvd7XCn/cxj/59b/3sb/zq3/rXP/nFr/lEr/jDn3hDH/hDH3eyH/eyH3cxj3a1xi/8ac/72M/7V7/6Vj/5xS/5RC/4wx94RcKf+EXCn3exj/exj3cxD/c1xi92sA/9a1/86l/8aU/72E/61r/6Va95xS/5xK/5Q594wx94Qh/4Qh/4QY93sQ/3sQ93NcYvdzAP/37//v3v/nzv/evf/Wrf/nxv/v1v/35///987Wpff/7+f33t7v1rXWpe/37/f/9+f35+//797v3t733tbv1s7nzs7vzsbnxr3evcbvxr3nvbXetbXnta3eraXWpaXepZzWnJTOlJTWlIzOjIzWlITOjHvOhJTWnIzOlKXerZzWpZzepbXnva3etWvGe2O9c1q9a1K1Y1K9Y8bvzrXevb3nxozWnITOlHvOjHPGhNb33s7v1sbnzozOnHvGjGPGe73expzerZTWpWO9e1q9c1K1a7Xvxq3nvaXetZzWrYTWnHvWlHPOjGvGhFwptVLW7957zpRjzoRaxntSvXM5vWMxtVoQrUK9786158at3r2U3q2M1qVz1pRrzoxjxoRKxnNCvWs5tWMhtVIYrUre9+el57171pxzzpRrxoxazoRSxntKvXMxvWNcKbVaIa1Szvfexu/WnN61lNatY86MWsaEUr17QsZzOb1rMbVjIbVaGK1SGLVSEK1KvefOjN6thNale86cSsZ7Qr1zIa1atd7Gte/OrefGpd69c9aca86UY8aMWs6MUsaESr17QsZ7Mb1rXCm1Y5TetYzWrYTerXPOnGPOlDm9c3vWpVrGjOf37+//987v3sbn1r3v1rXnzpzevYTWrXvOpXPWpd7v597/79b358bv3rX33uf/997379bv5+/39/f//+///+f//wAAACldL0ZpbHRlci9GbGF0ZURlY29kZT4+c3RyZWFtCnja7Zf9e1PlGce/AYpT1ipEY3kRLDFDGYjEdVkFNzLcctLQFwYWE46haWdfHK2VJrCJdYFOPcqGBEpKqcempqYmTVirLiStrjWxqO3K9CSIc1mnkLh/Y/cJaZNc0tZemz/smp80h3Oa5vvc9/3cLw/4lv8hikvKSstK95fwEsyPn+TlLVqUR6/cnG0LcH20j+lNrJFgWdbwS7MG2eTS13NxfRZsWleoEF+qu9ZKN63Kw1cxP8IaWZOJpWvyX+Peh7XIoOi+dYU/WrNgBv3VKplMLpPTRa5QqOQbipCN5pF9oqhJ/0hNTU2F3sCytMKj5Zn6y1QyxTL1TPoKGWkTMpF81ZpsF8wG1mBi9aXaOIMFCUZSrGswietVMRn6Cpli04z2L5cpZfctWyaVKwrzlTKZavMDSLOLtIx7Spgsj3bRCmzlQ9P6a2bTX6pQymVbgJytKzasVZEXitXqtLyRpBpEdUZrsTY89htzHIR2zz6D0aBN269U3DtDfNRkf35BKia5q+4SF1g8HRzRzhIAupqm2vq6lpb6umerGyKAZrfRwFYWZ8a/aMb4K/NvX4QUNyiUMtUdU2lpYg2VOlJ76tctLXVP19XRm9Y4VAokdrImY0VmfGbZX7lyWr9oE9kizYEIs4c1sGQ9V5sUf67psOnJ2uQahxmginwzZ8RnxvirZPn3p3NmRXq5XxgNxnKSf44MP3TEwiRdeqeSlqinBSR6k8kQSenPmp+0v4vStVggl6lWJD/RUwQYsr6u5UBNRgLxB+uern+CQQk50JDOz6JZ4nP/FkyxZW2+XHUziDJKHQ4CmXtQAMFwr0evigarLbV19UeBCqNJr0nFf+b4iPmzJC+tvyRfproHRJWxqQI43NLyqGi82XGmf+B4f8+zUfGBfCpFyV6W5ZL2L1fOvL8bKT73p+Oznvbq1oUANHqWLcel2vonJADvc/W6nn/b1ft853EfJy7QcgiJapNx13T8Z7E/I/45903VYhlrogqqfPxABBgZ6HR1ugY6es4OdPb2/mEEqKmvNaOcGgcz5/6qlPlr86ae7lhO9fV9EI8ZTdXQ1dY1kvzzrt6OwEmO1zbv97S/0ds5AsmT9dWIsU16rRh/MT9ny/8lKfvzKPtl+bdtA7GbWiYs9U0A91pvryOGFIyt/02XG431L0g0BpNJl6zfOfLnByse2LJ18fqNMgW10sJkdkqqjOwu1DxeA6b7rQEPA2y5eQHyHlQDnPOlbuBArVatNxhL5ooP9TeZjEqAur+Cmk+hYj1EEhUsfffoM1Hs7+w8Ccmff7pUDOKKDYiA7/hTI6qesaDayJbMUb9ifxORJy8KlXJxKgxVLJV/dZ0GoZdeQOIvP1+7GGo1tt224nM3Lr3sgOVxC6gCS+bqz1S/ZPU1edmdG6YqjaHq2YnKJsT7z/IY+fuK7+Vh5bKtWHpb0UUdTvcw/K8sTKUpZT/pzxwfUr5JWkgxKtiag2kajOwetJmgJVsTHZ+vXHfPlnXrVhdJv5s7dhr+AUFbb95eyZq0qfjMnP/U35R5ktWFZP8qpClnTZXqmibwLj8OD/zrBpX0bqlq6S0qZe6XQzza+VitVmdi92q+xvwV63drvjjkt2IandFkiJUdkDRTeEIdX65XyTdLZZvlipuKmLNH0BazHMJuI1slmTv+1+p3pZibt6aPMRGxPwh1ukmnBr/v/yLnzuVysiCfemtk4Cg8Qs1RCW2vJdUfZuv/ymT/V2+k2lItXZC5Afr44Qbh2TiGXPuxcM3yfMrh76gx3OlBc3HTjp/ReNNiKv4zzd+lU/Wbu7aQFliJKXYYTMZSbbXQx8PeOwFsW3mT8sYHAbS/6QG4g4lqljoI5qxfcX6J+liskCvzC9NbUEHDXXOyjI+h9WVXIwAmqWFzucxAtbmcFbNz7v6vKpAX/Djpyh0UIRq+0w6QQJXuCANEXW/37Mc1rK/1vkizs1FnpE/T83e1epb5e3seRLZJqdYUGzDFThrAu2NWBmh7y9U54eaLeb+dhoANOr+2UuzfWeeTuc8PeWIZFyanV6rHGdiHLaSy/Vivq/N4h7ODxkxvKxA168m5MuDrzHfq/yl9rFLIyZvpLRDEw+dujXjn63W5et9+w9U54GCunUqNDUjrz35+k03PlzXi+Srtq6CnKBtEO9V9HS7ieLsb0FSY6FS6M33+pBCvyc3JXZibu5BeD2THP2v+5inFJL0lfZbdkzwsl2kAidt/0n0V4HcZKGzsrqzzM53AC+VJClXJ+ZRdv+nzycof0gS76+70AlRmBnafvqFcu52RSB4qrzDsoxUrzcjUVypTPZ5+FHfmZOmvkysyzm/MvSr6j0ZBekHoqo0kaDTuNRzcu9dkFB/YnRoA6fgsl2egyLJffWOB9FZpLqbJXbZZKl2yEWkkpVRphFH8oTt9gw7I1N9YIJWSiHgR31TKc7IAWQjlu6ufMJgMlYaKBnPiemkivjO+OH/i2ofKmmMa/N/BRJgEZiAiMPgPOeELhRyNSFGcqZcY8/lC/8T18BQjk+ETmImAz+J/5X1rSrF1GGkcvqh2ZMiM6xBuRiacDjMx7hEXCQNj9hNwDzkY/KOrSwAgHkJES53gJ887OGCy611SvRJwuIEQj8ipkE003WF7nSnW0I3dw9AvvXTNsv88ILEfQcgT9Y1Ehy5Gdvj8w05R+V0HCP5M3Oss84QFc4/N3/8Jf8bjPjYCBx8/F4j6AmgNmQMfxjyf4rQ9GnQyL3h2TIwjk6P9E44/hnFisDhuvRB3vILPHIzE3gWg+zwIoUfwfoq4vTkYAPzmo3S1DmJCsDmBHRfcoRi4Ic4zwl/goBm+wmv4CXt2fFq3a/zHJk8OhL0+XyQ0jO6hsHdU1O/ygogNRbobEbFz3hEAkrA42z/UfKYdCwHxVz0UyivHop5hd9JlRNt9g13Z8RkDEBqxvM9z7iNMyIrTE1di1ssgmQFO/NyL9stkPxcid6yX+wLA5SF0aYd9om/uMAdzv84zzPVMQjPmpj+1BdVZ+n8D4Aii+1Ouqw2OUU3U6bf4LCDGnCP7Wy9o4bQi4jNfGrLZ/mrmnR6/cwReXjMaMHu7cMrncfTHnvLAbnc7uq8O2ty+M3FkYDEDcNsgBL19EWgDHMpC9tRh4VIoPM4AwzEwNgF+u90McA7vO4AtDm1XuwdImI9c8kUnOcTHw20M/OFWS5DHf43iCX/c44vjG2PEFyKvvkGKueL5dqRmXIfoJL5CopHB/HGO4zo4TuErCENXMH/C15QEqxtIMLyVh+23CXzUF6U7wP1KFID6Ex4nbPwxAVet/vk5kQifv9a3g/aP4PaNTxwLjLe3IdAzHvzYnWh1tB2zJca6uhvH7W3d7zMj9oD3POaFT7Q/cs4D4Zztkw+0CLVhskcIjDLwnBNOCeiawLmLkv1DAk71S6xRXOoR5mX/i6J+dPCq2FstYaDND97HB54ChI6Ipi84FICvEZ6L9DyoxcngqDM+P/vHADQPcsBH4+7uBNpOJPXHAb6H93bFTwXhMMPjpecLzPh7UfN7AubDqJ1zm7mPuxDtuWQbBYI2xC5MBvp56nXcB1fUow743IieNcPxYaRnGH3989M/PHjR++o7uvYgBcrdBlDCCK2CNRwIfswlftfdFvTyHg7U2VpDwYTHF3CcO4H5wHwhCEIEcY4XH4BEgt50I4iVytBvtZIECJ5LqOkaYzQCvuX/jn8Dnj5MGQplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwvTGVuZ3RoIDczNS9GaWx0ZXIvRmxhdGVEZWNvZGU+PnN0cmVhbQp42qVVTY+bMBC98yvmmD1AbAiEHGlCVlT5akDVHvbighN5BTghTivtr++YBJqwVNvdKgImeOb5zZvxcDSOBoGveL0YFH7h89FwPHCp5UJhuO7kYuZGbHzD39H4ktTrNiSZYY9cy/fBpJ7+N5xTmECyMwYbthclg4fkxRhQfTevnkT7mRivLzTx7pPaImB69GpQcoGzgfo1Xo1ELtG4bo+1MdjyHa+UBFb8OOdMyUqwnN97UrchpjERKRZ7q0ar0S/vnp6e5ttgOg0gDpIgDi7LbQiUiA0i74YRb0hGQzrx7U6A1cdhMGOKwU9xEviw6ZDYQ5vQScf1T+Kj3sRrhQZLhukqwUCWqczlXqTs3s9tYWgfDPWsKyfB9qU8iRsgeB6kMhM7NJ8f3hFzyqpUlLJgkPE8Z7BkRaGN/yRzQL1bMtF0tjaX71LxXeIMbTAhyHgp05aYKFXFsrNS2BoIfBBIr+JQyhKXdiLH1VLxzxGOecaB6e4oNNcMZawENj5vaCfvK+gSC9/DlB346ytm/Tkmc3ZCJkqddZZF0x0fqOSKy0POThi0kPowoUSRVo4fhOK5PleItohWYJvOG7B/a9pNJfcVNkgtFEJjSQpe4skq697Z3aaAHk0WnywN1p1jK2FfwqHdWPEKdT4rkcqPiLPpBRAlpLI6SU024ztRilchy97506Xp1EaY1PNUX3Y9gB97RrEewGOcnXoY47C8mM0wxlFMQcNS0GsT1KS4JR7EcYIzbZVEsAnWizWEMA22i7Vmg7t3wsfeJbwdcOt4E86CRQixdY03YRktgtVfALzr/k4DsAwWQZJEIUSreYjG9xAZJNv1JroCHHFXizg1hkdg5FNrMsYkPUgLGIpiT2AmoatSN/ERcXTZ77jX03YnqoK95WpPxujfF7XkmS5tHadYJWRvoo7vN5Gt1PcTvW+/m6hWoEwq9eZztN6ESRgn3a9QHMa6lEEcNur9BvE468IKZW5kc3RyZWFtCmVuZG9iago5IDAgb2JqCjw8L0RlY29kZVBhcm1zPDwvQml0c1BlckNvbXBvbmVudCA4L0NvbG9ycyAxL1ByZWRpY3RvciAxNS9Db2x1bW5zIDk1Pj4vVHlwZS9YT2JqZWN0L1N1YnR5cGUvSW1hZ2UvQml0c1BlckNvbXBvbmVudCA4L1dpZHRoIDk1L0xlbmd0aCAyNzg3L0hlaWdodCA3NC9Db2xvclNwYWNlWy9JbmRleGVkL0RldmljZVJHQiAyMzIo////9/f3//f3/+fe/97O/+/n/8al/7WE/617/6Vr/4xC93tcKf9zGP/n1v/exv/Orf+tc/+cWv+USv+MOfeEMf+EMfd7If97IfdzGPdrXGL/xpz/vYz/tXv/pWP/nFL/lEL/jDH3hFwp/4RcKfd7GP97GPdzEP9zXGL3awD/1rX/zqX/xpT/vYT/rWv/pVr3nFL/nEr/lDn3jDH3hCH/hCH/hBj3exD/exD3c1xi93MA//fv/+/e/+fO/969/9at/+fG/+/W//fn///3ztal9//v5/fe3u/Wtdal7/fv9//35/fn7//v3u/e3vfe1u/WzufOzu/OxufGvd69xu/Gvee9td61tee1rd6tpdalpd6lnNaclM6UlNaUjM6MjNaUhM6Me86ElNacjM6Upd6tnNalnN6ltee9rd61a8Z7Y71zWr1rUrVjUr1jxu/Otd69vefGjNachM6Ue86Mc8aE1vfezu/WxufOjM6ce8aMY8Z7vd7GnN6tlNalY717Wr1zUrVrte/Gree9pd61nNathNace9aUc86Ma8aEXCm1Utbv3nvOlGPOhFrGe1K9czm9YzG1WhCtQr3vzrXnxq3evZTerYzWpXPWlGvOjGPGhErGc0K9azm1YyG1UhitSt7356XnvXvWnHPOlGvGjFrOhFLGe0q9czG9Y1wptVohrVLO997G79ac3rWU1q1jzoxaxoRSvXtCxnM5vWsxtWMhtVoYrVIYtVIQrUq9586M3q2E1qV7zpxKxntCvXMhrVq13sa1786t58al3r1z1pxrzpRjxoxazoxSxoRKvXtCxnsxvWtcKbVjlN61jNathN6tc86cY86UOb1ze9alWsaM5/fv7//3zu/exufWve/WtefOnN69hNate86lc9al3u/n3v/v1vfnxu/etffe5//33vfv1u/n7/f39///7///5///AAAAKV0vRmlsdGVyL0ZsYXRlRGVjb2RlPj5zdHJlYW0KeNrtl/17U+UZx78BilPWKkRjeREsMUMZiMR1WQU3Mtxy0tAXBhYTjqFpZ18crZUmsIl1gU49yoYESkqpx6ampiZNWKsuJK2uNbGo7cr0JIhzWaeQuH9j9wlpk1zS1l6bP+yanzSHc5rm+9z3/dwvD/iW/yGKS8pKy0r3l/ASzI+f5OUtWpRHr9ycbQtwfbSP6U2skWBZ1vBLswbZ5NLXc3F9FmxaV6gQX6q71ko3rcrDVzE/whpZk4mla/Jf496Htcig6L51hT9as2AG/dUqmUwuk9NFrlCo5BuKkI3mkX2iqEn/SE1NTYXewLK0wqPlmfrLVDLFMvVM+goZaRMykXzVmmwXzAbWYGL1pdo4gwUJRlKsazCJ61UxGfoKmWLTjPYvlyll9y1bJpUrCvOVMplq8wNIs4u0jHtKmCyPdtEKbOVD0/prZtNfqlDKZVuAnK0rNqxVkReK1eq0vJGkGkR1RmuxNjz2G3MchHbPPoPRoE3br1TcO0N81GR/fkEqJrmr7hIXWDwdHNHOEgC6mqba+rqWlvq6Z6sbIoBmt9HAVhZnxr9oxvgr829fhBQ3KJQy1R1TaWliDZU6Unvq1y0tdU/X1dGb1jhUCiR2siZjRWZ8ZtlfuXJav2gT2SLNgQizhzWwZD1XmxR/rumw6cna5BqHGaCKfDNnxGfG+Ktk+fenc2ZFerlfGA3GcpJ/jgw/dMTCJF16p5KWqKcFJHqTyRBJ6c+an7S/i9K1WCCXqVYkP9FTBBiyvq7lQE1GAvEH656uf4JBCTnQkM7Polnic/8WTLFlbb5cdTOIMkodDgKZe1AAwXCvR6+KBqsttXX1R4EKo0mvScV/5viI+bMkL62/JF+mugdElbGpAjjc0vKoaLzZcaZ/4Hh/z7NR8YF8KkXJXpblkvYvV868vxspPven47Oe9urWhQA0epYtx6Xa+ickAO9z9bqef9vV+3zncR8nLtByCIlqk3HXdPxnsT8j/jn3TdViGWuiCqp8/EAEGBnodHW6Bjp6zg509vb+YQSoqa81o5waBzPn/qqU+Wvzpp7uWE719X0QjxlN1dDV1jWS/POu3o7ASY7XNu/3tL/R2zkCyZP11YixTXqtGH8xP2fL/yUp+/Mo+2X5t20DsZtaJiz1TQD3Wm+vI4YUjK3/TZcbjfUvSDQGk0mXrN858ucHKx7YsnXx+o0yBbXSwmR2SqqM7C7UPF4DpvutAQ8DbLl5AfIeVAOc86Vu4ECtVq03GEvmig/1N5mMSoC6v4KaT6FiPUQSFSx99+gzUezv7DwJyZ9/ulQM4ooNiIDv+FMjqp6xoNrIlsxRv2J/E5EnLwqVcnEqDFUslX91nQahl15A4i8/X7sYajW23bbiczcuveyA5XELqAJL5urPVL9k9TV52Z0bpiqNoerZicomxPvP8hj5+4rv5WHlsq1YelvRRR1O9zD8ryxMpSllP+nPHB9SvklaSDEq2JqDaRqM7B60maAlWxMdn69cd8+WdetWF0m/mzt2Gv4BQVtv3l7JmrSp+Myc/9TflHmS1YVk/yqkKWdNleqaJvAuPw4P/OsGlfRuqWrpLSpl7pdDPNr5WK1WZ2L3ar7G/BXrd2u+OOS3Yhqd0WSIlR2QNFN4Qh1frlfJN0tlm+WKm4qYs0fQFrMcwm4jWyWZO/7X6nelmJu3po8xEbE/CHW6SacGv+//IufO5XKyIJ96a2TgKDxCzVEJba8l1R9m6//KZP9Xb6TaUi1dkLkB+vjhBuHZOIZc+7FwzfJ8yuHvqDHc6UFzcdOOn9F402Iq/jPN36VT9Zu7tpAWWIkpdhhMxlJttdDHw947AWxbeZPyxgcBtL/pAbiDiWqWOgjmrF9xfon6WKyQK/ML01tQQcNdc7KMj6H1ZVcjACapYXO5zEC1uZwVs3Pu/q8qkBf8OOnKHRQhGr7TDpBAle4IA0Rdb/fsxzWsr/W+SLOzUWekT9Pzd7V6lvl7ex5Etkmp1hQbMMVOGsC7Y1YGaHvL1Tnh5ot5v52GgA06v7ZS7N9Z55O5zw95YhkXJqdXqscZ2IctpLL9WK+r83iHs4PGTG8rEDXrybky4OvMd+r/KX2sUsjJm+ktEMTD526NeOfrdbl6337D1TngYK6dSo0NSOvPfn6TTc+XNeL5Ku2roKcoG0Q71X0dLuJ4uxvQVJjoVLozff6kEK/JzcldmJu7kF4PZMc/a/7mKcUkvSV9lt2TPCyXaQCJ23/SfRXgdxkobOyurPMzncAL5UkKVcn5lF2/6fPJyh/SBLvr7vQCVGYGdp++oVy7nZFIHiqvMOyjFSvNyNRXKlM9nn4Ud+Zk6a+TKzLOb8y9KvqPRkF6QeiqjSRoNO41HNy712QUH9idGgDp+CyXZ6DIsl99Y4H0VmkupsldtlkqXbIRaSSlVGmEUfyhO32DDsjU31gglZKIeBHfVMpzsgBZCOW7q58wmAyVhooGc+J6aSK+M744f+Lah8qaYxr838FEmARmICIw+A854QuFHI1IUZyplxjz+UL/xPXwFCOT4ROYiYDP4n/lfWtKsXUYaRy+qHZkyIzrEG5GJpwOMzHuERcJA2P2E3APORj8o6tLACAeQkRLneAnzzs4YLLrXVK9EnC4gRCPyKmQTTTdYXudKdbQjd3D0C+9dM2y/zwgsR9ByBP1jUSHLkZ2+PzDTlH5XQcI/kzc6yzzhAVzj83f/wl/xuM+NgIHHz8XiPoCaA2ZAx/GPJ/itD0adDIveHZMjCOTo/0Tjj+GcWKwOG69EHe8gs8cjMTeBaD7PAihR/B+iri9ORgA/OajdLUOYkKwOYEdF9yhGLghzjPCX+CgGb7Ca/gJe3Z8Wrdr/McmTw6EvT5fJDSM7qGwd1TU7/KCiA1FuhsRsXPeEQCSsDjbP9R8ph0LAfFXPRTKK8einmF30mVE232DXdnxGQMQGrG8z3PuI0zIitMTV2LWyyCZAU783Iv2y2Q/FyJ3rJf7AsDlIXRph32ib+4wB3O/zjPM9UxCM+amP7UF1Vn6fwPgCKL7U66rDY5RTdTpt/gsIMacI/tbL2jhtCLiM18astn+auadHr9zBF5eMxowe7twyudx9Mee8sBudzu6rw7a3L4zcWRgMQNw2yAEvX0RaAMcykL21GHhUig8zgDDMTA2AX673QxwDu87gC0ObVe7B0iYj1zyRSc5xMfDbQz84VZLkMd/jeIJf9zji+MbY8QXIq++QYq54vl2pGZch+gkvkKikcH8cY7jOjhO4SsIQ1cwf8LXlASrG0gwvJWH7bcJfNQXpTvA/UoUgPoTHids/DEBV63++TmRCJ+/1reD9o/g9o1PHAuMt7ch0DMe/NidaHW0HbMlxrq6G8ftbd3vMyP2gPc85oVPtD9yzgPhnO2TD7QItWGyRwiMMvCcE04J6JrAuYuS/UMCTvVLrFFc6hHmZf+Lon508KrYWy1hoM0P3scHngKEjoimLzgUgK8Rnov0PKjFyeCoMz4/+8cANA9ywEfj7u4E2k4k9ccBvof3dsVPBeEww+Ol5wvM+HtR83sC5sOonXObuY+7EO25ZBsFgjbELkwG+nnqddwHV9SjDvjciJ41w/FhpGcYff3z0z88eNH76ju69iAFyt0GUMIIrYI1HAh+zCV+190W9PIeDtTZWkPBhMcXcJw7gfnAfCEIQgRxjhcfgESC3nQjiJXK0G+1kgQInkuo6RpjNAK+5f+OfwOePkwZCmVuZHN0cmVhbQplbmRvYmoKMTAgMCBvYmoKPDwvVHlwZS9DYXRhbG9nL1ZpZXdlclByZWZlcmVuY2VzPDwvRml0V2luZG93IHRydWU+Pi9QYWdlcyA2IDAgUj4+CmVuZG9iagoxMSAwIG9iago8PC9Qcm9kdWNlcihwdXJlcGRmIDAuNzcuMjAxMTAxMTYpL01vZERhdGUoRDoyMDE5MDIyMTA4MjcxOC0wMScwMCcpL1RpdGxlKFhYWEZSQUNDQSBTQVRBU0EpL0NyZWF0aW9uRGF0ZShEOjIwMTkwMjIxMDgyNzE4LTAxJzAwJyk+PgplbmRvYmoKOCAwIG9iago8PC9UeXBlL09ialN0bS9OIDUvTGVuZ3RoIDI2NC9GaXJzdCAyOC9GaWx0ZXIvRmxhdGVEZWNvZGU+PnN0cmVhbQp42q2RUWuDMBDHv8o9bg/rJUarhVKYXQUZY2IdG0gfrAbJqMkwEbpvv4srpR+gIXB35H+/u9zFwEAATwQEEEQr4CCEgCWELIH1GqvfH4lF00t8k51qUnOuGWVEqwiSMDjQ0yi1Iz2DErdGO4osRHNYSmumsZWWOF/vx2/ZOvLU0DMIvWCzwWI07V46qLF4yQAreXaA+UD10ovdXmx+wIzwBMg4Nen5GXX87wj6wgz059q21+NOt6ZTusdPpZ+1Vdd4Px2dV3kpx7SxctZXapD2KXfNSbX3YaXm1N2HVJqh0TcovxdLU59oAxxfVWfr2M+B1vJR7miiD2wRx4uAcU53+Uipf+kymW0KZW5kc3RyZWFtCmVuZG9iagoxMiAwIG9iago8PC9UeXBlL1hSZWYvV1sxIDIgMl0vSW5kZXhbMCAxM10vSUQgWzw2MjYzNjEzMDYzMzAzOTM2MzY2NTM5MzE2MjMxMzE2Mj48NjQzMDYxNjIzOTM1NjI2NjMxMzQzOTY1NjQzMzMzNjE+XS9MZW5ndGggNTgvSW5mbyAxMSAwIFIvU2l6ZSAxMy9Sb290IDEwIDAgUi9GaWx0ZXIvRmxhdGVEZWNvZGU+PnN0cmVhbQp42mNgYPj/n4mBg4EZRDCBCEZGBn4GBka+JQwMIC4LiGBgVHQCEoLHgIRCNIhYBySUljEwAADKZwZOCmVuZHN0cmVhbQplbmRvYmoKc3RhcnR4cmVmCjg4NzAKJSVFT0YK
+											</value>
+										</observationMedia>
+									</entryRelationship>
+									<entryRelationship typeCode="COMP">
+										<act classCode="ACT" moodCode="EVN"> 
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+											<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+											
+											<text> 
+												[Annotazioni e Commenti]
+											</text>
+											<statusCode code="completed"/>
+										</act>
+									</entryRelationship>
+								</observation>
+							</component>
+						</organizer>
+					</entry>
+					<!-- Note e Commenti -->
+					<entry typeCode="COMP">
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+							<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+							<text>
+								[Questo paragrafo contiene una nota o un commento]
+							</text>
+						</act>
+					</entry>
+				</section>
+			</component>
+			
+			<!--Epicrisi-->
+			<component typeCode="COMP">
+				<section ID="Epicrisi">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.211"/>
+					<code code="85691-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Risultato dell'autopsia Narrativa"/>
+					<title>Epicrisi</title>
+					<text>
+						[NARRATIVE_BLOCK]
+					</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20220419101010+0100"/>
+						<assignedAuthor>
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
+					<entry>
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+							<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+							<text>
+								[Annotazioni e Commenti]
+							</text>
+						</act>
+					</entry>
+				</section>
+			</component>
+			
+			<!--Diagnosi-->
+			<component typeCode="COMP">
+				<section ID="Diagnosi" classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.176"/>
+					<code code="22637-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Referto patologico.diagnosi finale"/>
+					<title>Diagnosi</title>
+					<text>[Diagnosi]</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20220419101010+0100"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.1" extension="030325" assigningAuthorityName="Ministero della Salute"/>	
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+					<!--Diagnosi conclusiva-->
+					<entry typeCode="COMP">
+					  <organizer classCode="BATTERY" moodCode="EVN">
+					    <code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi"/>
+						<statusCode code="completed"/>
+						<component typeCode="COMP">
+							<observation classCode="OBS" moodCode="EVN">
+								<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+								<code code="29308-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi"/>
+								<text>[Diagnosi]</text>
+								<value xsi:type="CD" code="191.0" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD9-CM" displayName="TUMORI MALIGNI DEL CERVELLO,ECCETTO LOBI E VENTRICOLI"/>
+								<specimen typeCode="SPC">
+									<specimenRole classCode="SPEC">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+										<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+									</specimenRole>
+								</specimen>
+								<!--Oggetti correlati-->
+								<entryRelationship typeCode="COMP">
+									<observationMedia classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.209"/>
+										<value representation="B64" mediaType="image/jpeg">
+											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
+										</value>
+									</observationMedia>
+								</entryRelationship>
+							    <!-- Commenti -->
+								<entryRelationship typeCode="COMP">
+									<act classCode="ACT" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+										<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+										
+										<text>[Annotazioni e Commenti]</text>
+										<statusCode code="completed"/>
+									</act>
+								</entryRelationship>
+							</observation>
+						</component>
+					   </organizer>
+					</entry>
+					<!--Tipo istologico-->
+					<entry typeCode="COMP">
+					    <organizer classCode="BATTERY" moodCode="EVN">
+							<code code="22036-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Istologia:Osservazione"/>
+							<statusCode code="completed"/>
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+									<code code="59847-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Istologia e comportamento"/>
+									<text>
+										[NARRATIVE_BLOCK]
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20230203092200+0200"/>
+									<value xsi:type="ST">[Morfologia e comportamento]</value>
+									<specimen typeCode="SPC">
+									<specimenRole classCode="SPEC">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+										<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+									</specimenRole>
+								</specimen>
+								<!--Oggetti correlati-->
+								<entryRelationship typeCode="COMP">
+									<observationMedia classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.209"/>
+										<value representation="B64" mediaType="image/jpeg">
+											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
+										</value>
+									</observationMedia>
+								</entryRelationship>
+							    <!-- Commenti -->
+								<entryRelationship typeCode="COMP">
+									<act classCode="ACT" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+										<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+										<text>[Annotazioni e Commenti]</text>
+										<statusCode code="completed"/>
+									</act>
+								</entryRelationship>
+							</observation>
+						</component>
+					   </organizer>
+					</entry>
+					
+					<!--Formula del tumore-->
+					<entry typeCode="COMP">
+						<organizer classCode="BATTERY" moodCode="EVN">
+							<code code="22640-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Segno indicativo di stadio"/>
+							<text>xxx</text>
+							<statusCode code="completed"/>
+							
+							<!--AP-Observation-->
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.150"/>
+									<code code="42032-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Numero di tumori alla diagnosi"/>
+									<text>
+										  [NARRATIVE_BLOCK]
+									</text>
+									<statusCode code="completed"/>
+									<effectiveTime value="20220203092200+0200"/>
+									<value xsi:type="IVL_PQ" value="3"/>
+									<specimen typeCode="SPC">
+									<specimenRole classCode="SPEC">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.174"/>
+										<id root="2.16.840.1.113883.2.9.99" extension="9999999"/>
+									</specimenRole>
+								</specimen>
+								<!--Oggetti correlati-->
+								<entryRelationship typeCode="COMP">
+									<observationMedia classCode="OBS" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.209"/>
+										<value representation="B64" mediaType="image/jpeg">
+											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
+										</value>
+									</observationMedia>
+								</entryRelationship>
+							    <!-- Commenti -->
+								<entryRelationship typeCode="COMP">
+									<act classCode="ACT" moodCode="EVN">
+										<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+										<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+										
+										<text>[Annotazioni e Commenti]</text>
+										<statusCode code="completed"/>
+									</act>
+								</entryRelationship>
+							</observation>
+						</component>
+					 
+							<!--Formula del tumore TNM-->
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.217"/>
+									<code code="59541-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Grado del sistema patologico"/>
+									<value xsi:type="CD" code="258313006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName=" Level I (tumor staging)"/>
+									<!--Fase di rilevamento del TNM-->
+									<entryRelationship typeCode="COMP">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.218"/>
+											<code code="42075-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Primary site and TNM-stage group override flag Cancer case"/>
+											<value xsi:type="CD" code="399390009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Tumor-node-metastasis (TNM) stage grouping"/>
+										</observation>							
+									</entryRelationship>
+									<!--Categoria TNM-->
+									<entryRelationship typeCode="COMP">
+										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.222"/>
+											<code code="21899-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Tumore principale patologia"/>
+											<value xsi:type="CD" code="371494008" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="pN category (observable entity)"/>
+											<targetSiteCode code="4870002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Dorsal tegmental nuclei of midbrain"/>
+										</observation>			
+									</entryRelationship>
+								</observation>
+				            </component>
+
+							<!--Linfonodi-->
+							<component typeCode="COMP">
+								<observation classCode="OBS" moodCode="EVN"> 
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.226"/>
+									<code code="92830-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Sentinel lymph node extranodal extension [Presence] in Cancer specimen"/>
+									<text>[Linfonodi]</text>
+									<statusCode code="completed"/>
+									<effectiveTime>
+										<low value="20230101090000+0200"/>
+										<high value="20230101103000+0200"/>
+									</effectiveTime>									
+									<repeatNumber value="3"/>
+									<value xsi:type="IVL_PQ" value="10"/>
+									<targetSiteCode code="4870002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Dorsal tegmental nuclei of midbrain"/>
+
+									<!--Dimensione Linfonodi-->
+									<entryRelationship typeCode="COMP">
+										<observation classCode="OBS" moodCode="EVN"> 
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.214"/>
+											<code code="85351-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Lymph node metastatic deposit.max dimension LM "/>
+											<text>[dimensione Linfonodi]</text>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20230101090000+0200"/>
+												<high value="20230101103000+0200"/>
+											</effectiveTime>	
+											<value xsi:type="IVL_PQ" value="5" unit="g"/>
+										</observation>
+									</entryRelationship>
+									<!--caratteristica linfonodi-->
+									<entryRelationship typeCode="COMP">
+										<observation classCode="OBS" moodCode="EVN"> 
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.216"/>
+											<code code="21892-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Lymph node involvement Cancer"/>
+											<text>[Caratteristica Linfonodi]</text>
+											<statusCode code="completed"/>
+											<effectiveTime>
+												<low value="20230101090000+0200"/>
+												<high value="20230101103000+0200"/>
+											</effectiveTime>	
+											<repeatNumber xsi:type="IVL_INT" value="3"/>
+											<value xsi:type="IVL_PQ" value="5" unit="g"/>
+										</observation>
+									</entryRelationship>
+									<!--Commenti-->
+									<entryRelationship typeCode="COMP">
+										<act classCode="ACT" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.166"/>
+											<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+										
+											<text>
+												<reference value="#nota1"/>
+											</text>
+											<statusCode code="completed"/>
+											<effectiveTime value="20220406121122+0200"/>
+										</act>
+									</entryRelationship>									
+								</observation>
+							</component>		
+    					</organizer>	
+					</entry>
+					<entry>
+						<act classCode="ACT" moodCode="EVN">
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.279"/>
+							<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e Commenti"/>
+							<text>
+								[COMMENTI]
+							</text>
+						</act>
+					</entry>
+				</section>
+			</component>
+			
+			<!--Commenti e conclusioni-->
+	
+			<component typeCode="COMP">
+				<section ID="Ulteriori_Accertamenti_Diagnostici" classCode="DOCSECT" moodCode="EVN">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.220"/>
+					<code code="62385-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Procedura, disposizione"/>
+					<title>Ulteriori accertamenti diagnostici</title>
+					<text>
+						Non sono necessari ulteriori accertamenti diagnostici
+					</text>
+					<author typeCode="AUT" contextControlCode="OP">
+						<time value="20230120145726"/>
+						<assignedAuthor classCode="ASSIGNED">
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="Ministero Economia e Finanze"/>
+							<addr use="HP">
+								<country>100</country>
+								<state>120</state>
+								<county>RM</county>
+								<city>Roma</city>
+								<censusTract>058091</censusTract>
+								<postalCode>00184</postalCode>
+								<streetAddressLine>via Milano 7</streetAddressLine>
+							</addr>
+							<telecom use="HP" value="83478327483"/>
+							<assignedPerson classCode="PSN" determinerCode="INSTANCE">
+								<name>
+									<prefix>Dott.</prefix>
+									<family>Prova</family>
+									<given>GIUSEPPE</given>
+								</name>
+							</assignedPerson>
+							<representedOrganization classCode="ORG" determinerCode="INSTANCE">
+								<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+								<name>SAN RAFFAELE NOMENTANA</name>
+								<telecom use="MC" value="tel:3340000000"/>
+								<addr use="WP">
+									<country>100</country>
+									<state>120</state>
+									<county>RM</county>
+									<city>Roma</city>
+									<censusTract>058091</censusTract>
+									<postalCode>00137</postalCode>
+									<streetAddressLine>via Emilio Praga 39</streetAddressLine>
+								</addr>
+								<asOrganizationPartOf classCode="PART">
+									<id root="2.16.840.1.113883.2.9.4.1.1" extension="120103" assigningAuthorityName="Ministero della Salute"/>
+								</asOrganizationPartOf>
+							</representedOrganization>
+						</assignedAuthor>
+					</author>
+				</section>
+			</component>
+		</structuredBody>
+	</component>
+</ClinicalDocument>
