@@ -79,8 +79,11 @@
   - [10.1. Request](#101-request)
     - [10.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1011-esempio-messaggio-di-richiesta-stato-transazioni)
   - [10.2. Response](#102-response)
-    - [10.2.1. Esempio messaggio di risposta con Esito Success 200](#1021-esempio-messaggio-di-risposta-con-esito-success-200)
-    - [10.2.2. Esempio di Messaggio di Risposta con esito KO 400](#1022-esempio-di-messaggio-di-risposta-con-esito-ko-400)
+    - [10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200](#1021-esempio-messaggio-di-risposta-ad-una-creazione-con-esito-success-200)
+    - [10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200](#1022-esempio-messaggio-di-risposta-ad-una-cancellazione-con-esito-success-200)
+    - [10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200](#1023-esempio-messaggio-di-risposta-ad-una-sostituzione-con-esito-success-200)
+    - [10.2.4. Esempio messaggio di risposta ad un aggiornamento con Esito Success 200](#1024-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
+    - [10.2.5. Esempio di Messaggio di Risposta con esito KO 404](#1025-esempio-di-messaggio-di-risposta-con-esito-ko-404)
 - [11. Servizio di Recupero Stato Transazione per TraceId](#11-servizio-di-recupero-stato-transazione-per-traceid)
   - [11.1. Request](#111-request)
     - [11.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1111-esempio-messaggio-di-richiesta-stato-transazioni)
@@ -244,256 +247,287 @@ _Tabella 2: Acronimi e Definizioni_
 
 
 <table>
-  <tr>
-   <td><strong>VERSIONE</strong>
-   </td>
-   <td><strong>DATA</strong>
-   </td>
-   <td><strong>MODIFICHE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>1.1
-   </td>
-   <td>20/05/22
-   </td>
-   <td>Paragrafi modificati
-<p>
-Tutti: prima stesura a seguito rivisitazione
-   </td>
-  </tr>
-  <tr>
-   <td>1.2
-   </td>
-   <td>07/06/22
-   </td>
-   <td>Paragrafi modificati
-<p>
-Tutti: stesura a seguito rivisitazione
-   </td>
-  </tr>
-  <tr>
-   <td>1.3
-   </td>
-   <td>13/06/22
-   </td>
-   <td>Paragrafi modificati
-<p>
-2.2: scenario integrazione gateway;
-<p>
-3.2: aggiornamento status code; esempio workflowInstanceId; esempio response con warning;
-<p>
-4.2: aggiornamento status code;
-<p>
-5.1: obbligatorietà campo patient_consent 
-   </td>
-  </tr>
-  <tr>
-   <td>1.4
-   </td>
-   <td>28/06/2022
-   </td>
-   <td>Paragrafi modificati
-<p>
-2: Contesto di riferimento con overview casi d’uso di validazione e pubblicazione CDA2;
-<p>
-3: aggiornamento paragrafo introduttivo per il servizio di validazione;
-<p>
-3.1: aggiornamento parametri della request del servizio di validazione e aggiunta colonna AFFINITY DOMAIN/ITI TF;
-<p>
-4: aggiornamento paragrafo introduttivo per il servizio di pubblicazione;
-<p>
-4.1: aggiornamento parametri della request del servizio di pubblicazione creazione e aggiunta colonna AFFINITY DOMAIN/ITI TF;
-<p>
-5.1: eliminata valorizzazione nella descrizione Tipo Attività;
-<p>
-5.3: stesura paragrafo introduttivo per le tabelle di riferimento;
-<p>
-5.3.1: aggiornamento tabella Attività Clinica secondo Affinity Domain versione 2.2;
-<p>
-5.3.5: aggiornamento tabella con eliminazione dei ruoli non pertinenti alla validazione e pubblicazione CDA2, eliminazione colonna Tipologie di Interazioni;
-<p>
-5.3.6: aggiornamento tabella con eliminazione dei valori non pertinenti alla validazione e pubblicazione CDA2, eliminazione colonna Tipologie di Interazioni;
-<p>
-5.3.12: eliminazione dei valori per il tipo di attività non pertinenti alla validazione e pubblicazione CDA2.
-   </td>
-  </tr>
-  <tr>
-   <td>1.5
-   </td>
-   <td>05/07/2022
-   </td>
-   <td>Correzioni su tutte le sezioni
-   </td>
-  </tr>
-  <tr>
-   <td>2.0
-   </td>
-   <td>29/07/2022
-   </td>
-   <td>Paragrafi modificati:
-<p>
-3: aggiornamento Request e Accept header
-<p>
-4: aggiornamento Request e Accept header
-<p>
-5: stesura del paragrafo Eliminazione Documento
-<p>
-6: stesura del paragrafo Sostituzione Documento
-<p>
-7: stesura del paragrafo Aggiornamento Metadati
-<p>
-8.1: aggiornamento doppio JWT
-<p>
-8.3.4: aggiornamento doppio JWT
-<p>
-8.3.6: Contesto Operativo
-<p>
-8.3.11: Tipo Attività
-   </td>
-  </tr>
-<tr>
-   <td>2.1
-   </td>
-   <td>15/10/2022
-   </td>
-   <td>Paragrafi modificati:
+   <tr>
+      <td><strong>VERSIONE</strong>
+      </td>
+      <td><strong>DATA</strong>
+      </td>
+      <td><strong>MODIFICHE</strong>
+      </td>
+   </tr>
+   <tr>
+      <td>1.1
+      </td>
+      <td>20/05/22
+      </td>
+      <td>Paragrafi modificati
+         <p>
+            Tutti: prima stesura a seguito rivisitazione
+      </td>
+   </tr>
+   <tr>
+      <td>1.2
+      </td>
+      <td>07/06/22
+      </td>
+      <td>Paragrafi modificati
+         <p>
+            Tutti: stesura a seguito rivisitazione
+      </td>
+   </tr>
+   <tr>
+      <td>1.3
+      </td>
+      <td>13/06/22
+      </td>
+      <td>Paragrafi modificati
+         <p>
+            2.2: scenario integrazione gateway;
+         <p>
+            3.2: aggiornamento status code; esempio workflowInstanceId; esempio response con warning;
+         <p>
+            4.2: aggiornamento status code;
+         <p>
+            5.1: obbligatorietà campo patient_consent
+      </td>
+   </tr>
+   <tr>
+      <td>1.4
+      </td>
+      <td>28/06/2022
+      </td>
+      <td>Paragrafi modificati
+         <p>
+            2: Contesto di riferimento con overview casi d’uso di validazione e pubblicazione CDA2;
+         <p>
+            3: aggiornamento paragrafo introduttivo per il servizio di validazione;
+         <p>
+            3.1: aggiornamento parametri della request del servizio di validazione e aggiunta colonna AFFINITY
+            DOMAIN/ITI TF;
+         <p>
+            4: aggiornamento paragrafo introduttivo per il servizio di pubblicazione;
+         <p>
+            4.1: aggiornamento parametri della request del servizio di pubblicazione creazione e aggiunta colonna
+            AFFINITY DOMAIN/ITI TF;
+         <p>
+            5.1: eliminata valorizzazione nella descrizione Tipo Attività;
+         <p>
+            5.3: stesura paragrafo introduttivo per le tabelle di riferimento;
+         <p>
+            5.3.1: aggiornamento tabella Attività Clinica secondo Affinity Domain versione 2.2;
+         <p>
+            5.3.5: aggiornamento tabella con eliminazione dei ruoli non pertinenti alla validazione e pubblicazione
+            CDA2, eliminazione colonna Tipologie di Interazioni;
+         <p>
+            5.3.6: aggiornamento tabella con eliminazione dei valori non pertinenti alla validazione e pubblicazione
+            CDA2, eliminazione colonna Tipologie di Interazioni;
+         <p>
+            5.3.12: eliminazione dei valori per il tipo di attività non pertinenti alla validazione e pubblicazione
+            CDA2.
+      </td>
+   </tr>
+   <tr>
+      <td>1.5
+      </td>
+      <td>05/07/2022
+      </td>
+      <td>Correzioni su tutte le sezioni
+      </td>
+   </tr>
+   <tr>
+      <td>2.0
+      </td>
+      <td>29/07/2022
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            3: aggiornamento Request e Accept header
+         <p>
+            4: aggiornamento Request e Accept header
+         <p>
+            5: stesura del paragrafo Eliminazione Documento
+         <p>
+            6: stesura del paragrafo Sostituzione Documento
+         <p>
+            7: stesura del paragrafo Aggiornamento Metadati
+         <p>
+            8.1: aggiornamento doppio JWT
+         <p>
+            8.3.4: aggiornamento doppio JWT
+         <p>
+            8.3.6: Contesto Operativo
+         <p>
+            8.3.11: Tipo Attività
+      </td>
+   </tr>
+   <tr>
+      <td>2.1
+      </td>
+      <td>15/10/2022
+      </td>
+      <td>Paragrafi modificati:
 
-2: Specificato nome allegato CDA: cda.xml
+         2: Specificato nome allegato CDA: cda.xml
 
-2.3: Aggiunte note su JWT e certificati
+         2.3: Aggiunte note su JWT e certificati
 
-   </td>
-  </tr>
-<tr>
-   <td>2.2
-   </td>
-   <td>28/11/2022
-   </td>
-   <td>Paragrafi modificati:
+      </td>
+   </tr>
+   <tr>
+      <td>2.2
+      </td>
+      <td>28/11/2022
+      </td>
+      <td>Paragrafi modificati:
 
-2: Evidenziato endpoint sistema di test
+         2: Evidenziato endpoint sistema di test
 
-   </td>
-  </tr>
-  <tr>
-   <td>2.3
-   </td>
-   <td>12/12/2022
-   </td>
-   <td>Paragrafi modificati:
-<p>
-2: aggiornamento Contesto di riferimento
-<p>
-5: aggiornamento Servizio di Eliminazione
-<p>
-6: aggiornamento Servizio di Sostituzione
-<p>
-7: aggiornamento Servizio di Aggiornamento Metadati
-<p>
-8: stesura del paragrafo Servizio di Recupero Stato Transazione per WorkflowInstanceId
-<p>
-9: stesura del paragrafo Servizio di Recupero Stato Transazione per TraceId
-<p>
-10: stesura del paragrafo DrillDown Response in caso di Errore
-<p>
-11.1: aggiunti nuovi custom claims per Applicativo
-   </td>
-  </tr>
-  <tr>
-   <td>2.4
-   </td>
-   <td>21/02/2022
-   </td>
-   <td>Paragrafi modificati
-<p>
-5, 7, 8, 9: rimozione Content-Type
-<p>
-6: rimozione priorità e workflowInstanceId sul Servizio di Sostituzione
-   </td>
-  </tr>
-  </tr>
-  <tr>
-   <td>2.5
-   </td>
-   <td>03/03/2023
-   </td>
-   <td>Paragrafi modificati
-<p>
-4,6,7: Aggiunti parametri in request body
-<p>
-11: Aggiornamento enums "affinity domain 2.4.1"
-<p>
-   </td>
-  </tr>
-
-  <tr>
-   <td>2.6
-   </td>
-   <td>23/03/2023
-   </td>
-   <td>Paragrafi modificati:
-<p>
-8: Aggiunto paragrafo validazione pubblicazione creazione contestuale
-<p>
-9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
-<p>
-10: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per WorkflowInstanceId"
-<p>
-11: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per TraceId"
-<p>
-12: Cambio indice paragrafo "Drilldown Response in caso di Errore"
-<p>
-13. Cambio indice paragrafo "Drilldown Parametri di Input"
-<p>
-   </td>
-  </tr>
-
-  <tr>
-   <td>2.7
-   </td>
-   <td>15/03/2024
-   </td>
-   <td>Paragrafi modificati:
-
-9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
-<p>
-   </td>
-  </tr>
+      </td>
+   </tr>
+   <tr>
+      <td>2.3
+      </td>
+      <td>12/12/2022
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            2: aggiornamento Contesto di riferimento
+         <p>
+            5: aggiornamento Servizio di Eliminazione
+         <p>
+            6: aggiornamento Servizio di Sostituzione
+         <p>
+            7: aggiornamento Servizio di Aggiornamento Metadati
+         <p>
+            8: stesura del paragrafo Servizio di Recupero Stato Transazione per WorkflowInstanceId
+         <p>
+            9: stesura del paragrafo Servizio di Recupero Stato Transazione per TraceId
+         <p>
+            10: stesura del paragrafo DrillDown Response in caso di Errore
+         <p>
+            11.1: aggiunti nuovi custom claims per Applicativo
+      </td>
+   </tr>
+   <tr>
+      <td>2.4
+      </td>
+      <td>21/02/2022
+      </td>
+      <td>Paragrafi modificati
+         <p>
+            5, 7, 8, 9: rimozione Content-Type
+         <p>
+            6: rimozione priorità e workflowInstanceId sul Servizio di Sostituzione
+      </td>
+   </tr>
+   </tr>
+   <tr>
+      <td>2.5
+      </td>
+      <td>03/03/2023
+      </td>
+      <td>Paragrafi modificati
+         <p>
+            4,6,7: Aggiunti parametri in request body
+         <p>
+            11: Aggiornamento enums "affinity domain 2.4.1"
+         <p>
+      </td>
+   </tr>
 
    <tr>
-   <td>2.8
-   </td>
-   <td>27/03/2024
-   </td>
-   <td>Paragrafi modificati:
-	   <p>
-13.1. Campi Contenuti nei JWT
-<p>
-   </td>
-  </tr>
+      <td>2.6
+      </td>
+      <td>23/03/2023
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            8: Aggiunto paragrafo validazione pubblicazione creazione contestuale
+         <p>
+            9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
+         <p>
+            10: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per WorkflowInstanceId"
+         <p>
+            11: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per TraceId"
+         <p>
+            12: Cambio indice paragrafo "Drilldown Response in caso di Errore"
+         <p>
+            13. Cambio indice paragrafo "Drilldown Parametri di Input"
+         <p>
+      </td>
+   </tr>
+
    <tr>
-   <td>2.9
-   </td>
-   <td>29/07/2024
-   </td>
-   <td>Paragrafi modificati:
-	   <p>
-13.1. Campi Contenuti nei JWT
-<p>
-   </td>
-  </tr>
-  <tr>
-   <td>2.10
-   </td>
-   <td>02/10/2024
-   </td>
-   <td>Paragrafi modificati:
-	   <p>
-13.1. Chiarimenti sull’impostazione del claim “locality”
-<p>
-   </td>
-  </tr>
+      <td>2.7
+      </td>
+      <td>15/03/2024
+      </td>
+      <td>Paragrafi modificati:
+
+         9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
+         <p>
+      </td>
+   </tr>
+
+   <tr>
+      <td>2.8
+      </td>
+      <td>27/03/2024
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            13.1. Campi Contenuti nei JWT
+         <p>
+      </td>
+   </tr>
+   <tr>
+      <td>2.9
+      </td>
+      <td>29/07/2024
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            13.1. Campi Contenuti nei JWT
+         <p>
+      </td>
+   </tr>
+   <tr>
+      <td>2.10
+      </td>
+      <td>02/10/2024
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            13.1. Chiarimenti sull’impostazione del claim “locality”
+         <p>
+      </td>
+   </tr>
+   <tr>
+      <td>2.11
+      </td>
+      <td>23/10/2024
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            10. Servizio di Recupero Stato Transazione per WorkflowInstanceId
+         <p>
+         <p>
+            10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
+         <p>
+         <p>
+            10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
+         <p>
+         <p>
+            10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
+         <p>
+         <p>
+            10.2.4. Esempio messaggio di risposta ad un aggiornamento con Esito Success 200
+         <p>
+         <p>
+            10.2.5. Esempio di Messaggio di Risposta con esito KO 404
+         <p>
+      </td>
+   </tr>
 </table>
 
 
@@ -4252,7 +4286,8 @@ L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstance
 https://<HOST>:<PORT>/v<major>/status/<workflowInstanceId>
 ```
 
-Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di una transazione associati ad un workflowInstanceId.
+Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di una transazione associati ad un workflowInstanceId. In particolare per tutti gli attori che sono abilitati ad invocare tramite il Gateway la componente INI, sarà possibile anche recuperare un ulteriore stato che mostra la request e la response SOAP per tutte le operazioni di creazione, sostituzione, aggiornamento e cancellazione.
+Tale funzionalità sara presente solo ed esclusivamente in ambiente di validazione.
 
 
 ## 10.1. Request
@@ -4618,7 +4653,9 @@ _Tabella 33: Campi Response sempre valorizzati_
 _Tabella 34: Campi Response sempre valorizzati_
 
 
-### 10.2.1. Esempio messaggio di risposta con Esito Success 200
+### 10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
+
+Di seguito viene mostrato un esempio di risposta ad una creazione per un issuer abilitato alla comunicazione verso INI con esito 200
 
 ``` json
 {
@@ -4627,48 +4664,42 @@ _Tabella 34: Campi Response sempre valorizzati_
   "transactionData": [
     {
       "eventType": "VALIDATION",
-      "eventDate": "2022-12-12T12:11:35.955+00:00",
+      "eventDate": "2024-10-23T12:26:06.971+02:00",
       "eventStatus": "SUCCESS",
-      "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
-      "organizzazione": "110",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "4dfc0f6e30444deb",
+      "subject": "PROVAX00X00X000Y^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
+      "organizzazione": "120",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "13dfc4b489d37ca3",
       "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2022-12-17T12:11:35.998+00:00"
+      "expiringDate": "2025-10-23T12:26:07.470+02:00"
     },
     {
       "eventType": "PUBLICATION",
-      "eventDate": "2022-12-12T12:11:38.280+00:00",
+      "eventDate": "2024-10-23T12:26:25.266+02:00",
       "eventStatus": "SUCCESS",
-      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^27847450",
-      "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
+      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729679184067",
+      "subject": "PROVAX00X00X000Y^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
       "tipoAttivita": "PHR",
-      "organizzazione": "110",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "e46dfa44b05ba6b7",
+      "organizzazione": "120",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "cc5783a359316a87",
       "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2022-12-17T12:11:38.341+00:00"
+      "expiringDate": "2025-10-23T12:26:25.328+02:00"
+    },
+    
+    {
+      "eventType": "INI_CREATE_SOAP",
+      "eventDate": "2024-10-23T12:26:25.812+0200",
+      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T12:26:26.155+0200"
     },
     {
       "eventType": "SEND_TO_INI",
-      "eventDate": "2022-12-12T12:11:39.063+00:00",
+      "eventDate": "2024-10-23T12:26:27.295+02:00",
       "eventStatus": "SUCCESS",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2022-12-17T12:11:39.091+00:00"
-    },
-    {
-      "eventType": "SEND_TO_EDS",
-      "eventDate": "2022-12-12T12:11:39.262+00:00",
-      "eventStatus": "SUCCESS",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2022-12-17T12:11:39.309+00:00"
-    },
-    {
-      "eventType": "EDS_WORKFLOW",
-      "eventDate": "2022-12-12T12:11:47.275+00:00",
-      "eventStatus": "SUCCESS",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.5ce1a25ed9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2022-12-17T12:11:47.302+00:00"
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T12:26:27.530+02:00"
     }
 
   ]
@@ -4676,7 +4707,173 @@ _Tabella 34: Campi Response sempre valorizzati_
 }
 ```
 
-### 10.2.2. Esempio di Messaggio di Risposta con esito KO 400
+### 10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
+
+Di seguito viene mostrato un esempio di risposta ad una cancellazione per un issuer abilitato alla comunicazione verso INI con esito 200
+
+``` json
+{
+  "traceID": "96f988e9a3f6d449",
+  "spanID": "53b7886d2a3acb85",
+  "responseStatus": 200,
+  "transactionData": [
+    {
+      "eventType": "INI_RIFERIMENTO_SOAP",
+      "eventDate": "2024-10-23T12:39:13.959+0200",
+      "message": "SOAP_REQUEST:<S:Envelope> <S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
+      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T12:39:14.002+0200"
+    },
+    {
+      "eventType": "RIFERIMENTI_INI",
+      "eventDate": "2024-10-23T12:39:14.304+02:00",
+      "eventStatus": "SUCCESS",
+      "message": "Riferimenti trovati: urn:uuid:62e9a58c-79cb-48fd-88f1-4a5fdaa5b0ed",
+      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729679950959",
+      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
+      "tipoAttivita": "PHR",
+      "organizzazione": "120",
+      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "88a9f590939e2b2e",
+      "issuer": "integrity:S1#110201234567XX",
+      "expiringDate": "2025-10-23T12:39:14.345+02:00"
+    },
+    {
+      "eventType": "INI_DELETE_SOAP",
+      "eventDate": "2024-10-23T12:39:14.353+0200",
+      "message": "SOAP_REQUEST:<S:Envelope><S:Header>....</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
+      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T12:39:14.379+0200"
+    },
+    {
+      "eventType": "INI_DELETE",
+      "eventDate": "2024-10-23T12:39:14.917+02:00",
+      "eventStatus": "SUCCESS",
+      "message": "Delete effettuata su ini",
+      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729679950959",
+      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
+      "tipoAttivita": "PHR",
+      "organizzazione": "120",
+      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "88a9f590939e2b2e",
+      "issuer": "integrity:S1#110201234567XX",
+      "expiringDate": "2025-10-23T12:39:14.946+02:00"
+    }
+  ]
+}
+```
+
+### 10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
+Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issuer abilitato alla comunicazione verso INI con esito 200
+
+``` json
+{
+  "traceID": "ffaac0bad18ab232",
+  "spanID": "b63453ce857318da",
+  "responseStatus": 200,
+  "transactionData": [
+    {
+      "eventType": "VALIDATION",
+      "eventDate": "2024-10-23T12:46:44.425+02:00",
+      "eventStatus": "SUCCESS",
+      "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
+      "organizzazione": "120",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "4df615555b1ca812",
+      "issuer": "integrity:S1#110201234567XX",
+      "expiringDate": "2025-10-23T12:46:44.450+02:00"
+    },
+    {
+      "eventType": "INI_RIFERIMENTO_SOAP",
+      "eventDate": "2024-10-23T12:46:47.148+0200",
+      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T12:46:47.172+0200"
+    },
+    {
+      "eventType": "REPLACE",
+      "eventDate": "2024-10-23T12:46:47.597+02:00",
+      "eventStatus": "SUCCESS",
+      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729680401519",
+      "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
+      "tipoAttivita": "PHR",
+      "organizzazione": "120",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "be920b993364ec0a",
+      "issuer": "integrity:S1#110201234567XX",
+      "expiringDate": "2025-10-23T12:46:47.653+02:00"
+    },
+    {
+      "eventType": "INI_REPLACE_SOAP",
+      "eventDate": "2024-10-23T12:46:47.673+0200",
+      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T12:46:47.724+0200"
+    },
+    {
+      "eventType": "SEND_TO_INI",
+      "eventDate": "2024-10-23T12:46:48.071+02:00",
+      "eventStatus": "SUCCESS",
+      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T12:46:48.102+02:00"
+    }
+  ]
+}
+```
+
+### 10.2.4. Esempio messaggio di risposta ad una update con Esito Success 200
+
+``` json
+{
+  "traceID": "e43e769a2a815203",
+  "spanID": "e65b754508379297",
+  "responseStatus": 200,
+  "transactionData": [
+    {
+      "eventType": "INI_GET_METADATI_SOAP",
+      "eventDate": "2024-10-23T13:01:10.185+0200",
+      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
+      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T13:01:10.201+0200"
+    },
+    {
+      "eventType": "RIFERIMENTI_INI",
+      "eventDate": "2024-10-23T13:01:10.871+02:00",
+      "eventStatus": "SUCCESS",
+      "message": "Merge metadati effettuato correttamente",
+      "identificativoDocumento": "2.16.840.1.113883.2.9.2.140.4.4^UAT_GTW_ID1728471418703",
+      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
+      "organizzazione": "140",
+      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "6db24f996e15f507",
+      "issuer": "integrity:S1#110201234567XX",
+      "expiringDate": "2025-10-23T13:01:10.892+02:00"
+    },
+    {
+      "eventType": "INI_UPDATE_SOAP",
+      "eventDate": "2024-10-23T13:01:10.907+0200",
+      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
+      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "expiringDate": "2025-10-23T13:01:10.922+0200"
+    },
+    {
+      "eventType": "INI_UPDATE",
+      "eventDate": "2024-10-23T13:01:11.432+02:00",
+      "eventStatus": "SUCCESS",
+      "message": "Update ini effettuato correttamente",
+      "identificativoDocumento": "2.16.840.1.113883.2.9.2.140.4.4^UAT_GTW_ID1728471418703",
+      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
+      "organizzazione": "140",
+      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+      "traceId": "6db24f996e15f507",
+      "issuer": "integrity:S1#110201234567XX",
+      "expiringDate": "2025-10-23T13:01:11.455+02:00"
+    }
+  ]
+}
+```
+
+### 10.2.5. Esempio di Messaggio di Risposta con esito KO 404
 
 ``` json
 {
@@ -4689,6 +4886,8 @@ _Tabella 34: Campi Response sempre valorizzati_
   "instance": ""
 }
 ```
+
+
 
 # 11. Servizio di Recupero Stato Transazione per TraceId
 
