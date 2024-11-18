@@ -364,8 +364,8 @@ Questo documento fornisce una mappatura dei metadati tra i sistemi Gateway ed IN
         <td><code>referenceIdList</code></td>
     </tr>
     <tr>
-        <td>:black_nib:</td>
-        <td></td>
+        <td>:page_with_curl:</td>
+        <td><code>conservazioneANorma</code></td>
         <td><strong>CONS^^^&2.16.840.1.113883.2.9.3.3.6.1.7&ISO</strong></td>
         <td><code>urn:ita:2017:repository-type</code></td>
     </tr>
