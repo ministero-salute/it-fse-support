@@ -6303,7 +6303,7 @@ Riferimento: urn:oasis:names:tc:xspa:1.0:resource:hl7:type
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Non Obbligatorio per il servizio di Eliminazione Documento e Aggiornamento Metadati
+   <td>Obbligatorio
    </td>
   </tr>
   <tr>
