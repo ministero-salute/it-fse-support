@@ -5454,7 +5454,7 @@ Gli endpoint del Gateway ricevono 2 token JWT:
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Algoritmo utilizzato per la firma del token. Valori ammessi: RS256, RS383, RS512
+   <td>Algoritmo utilizzato per la firma del token. Valori ammessi: RS256, RS384, RS512
    </td>
   </tr>
   <tr>
@@ -5750,7 +5750,7 @@ _Tabella 39: Campi contenuti in Authentication Bearer Token_
   <tr>
    <td><strong>DESCRIZIONE</strong>
    </td>
-   <td>Algoritmo utilizzato per la firma del token. Valori ammessi: RS256, RS383, RS512
+   <td>Algoritmo utilizzato per la firma del token. Valori ammessi: RS256, RS384, RS512
    </td>
   </tr>
   <tr>
