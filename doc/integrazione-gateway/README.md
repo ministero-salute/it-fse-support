@@ -2743,6 +2743,27 @@ Tale endpoint sarà esposto in ambiente di validazione per un tempo necessario d
 
 _Tabella 25: Method, URL, Type_
 
+<table>
+  <tr>
+   <td>METHOD
+   </td>
+   <td>PUT
+   </td>
+  </tr>
+  <tr>
+   <td>URL
+   </td>
+   <td>/v1/documents/{identificativoDocUpdate}/metadata-iti-57
+   </td>
+  </tr>
+  <tr>
+   <td>TYPE
+   </td>
+   <td>application/json
+   </td>
+  </tr>
+</table>
+
 
 <table>
   <tr>
@@ -3166,6 +3187,38 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
   "instance": "/msg/mandatory-element"
 }
 ```
+
+### 7.3. Esempio Messaggio di Richiesta attraverso iti-57
+
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+
+``` bash
+curl -X 'PUT' \
+  'https://<HOST>:<PORT>/v1/documents/507f1f77bcf86cd799439011/metadata-iti-57' \
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+  -H 'accept: application/json' \
+  -d '{
+  "tipologiaStruttura": "Ospedale",
+  "attiCliniciRegoleAccesso": [
+    "P99"
+  ],
+  "tipoDocumentoLivAlto": "WOR",
+  "assettoOrganizzativo": "AD_PSC001",
+  "dataInizioPrestazione": "20141020110012",
+  "dataFinePrestazione": "20141020110012",
+  "conservazioneANorma": "string",
+  "tipoAttivitaClinica": "CON",
+  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+  "administrativeRequest": ["SSN"]
+}'\
+-F 'file=@CDA_OK.pdf;type=application/pdf'
+```
+
+Le risposte sono le medesime riportate per i casi precedenti.
 
 # 8. Servizio di validazione e pubblicazione creazione contestuale
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l'invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti, è necessario fare riferimento al Capitolo 13 "Drilldown Parametri di Input.
