@@ -593,6 +593,14 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
    </td>
   </tr>
   <tr>
+   <td>/v<major>/documents/{identificativoDocUpdate}/metadata-iti-57
+   </td>
+   <td>PUT
+   </td>
+   <td>AGGIORNAMENTO METADATI ITI-57
+   </td>
+  </tr>
+  <tr>
    <td>/v<major>/documents/validate-and-create
    </td>
    <td>POST
@@ -2692,6 +2700,20 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata
 ```
 
 Lo scopo di questa API Sincrona è di aggiornare i metadati di un documento precedentemente pubblicato.
+
+In ambiente di validazione, è stato rilascio un ulteriore endpoint:
+
+```
+https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata-iti-57
+```
+
+Tale endpoint consentirà ai diversi attori di invocare la nuova transazione di aggiornamento metadati "IHE ITI-57" mediante il Gateway. Le interfacce esposte rispettano le stesse e identiche specifiche della precedente transazione. 
+
+``` IMPORTANTE
+Tale endpoint sarà esposto in ambiente di validazione per un tempo necessario da consentire a tutte le RDA di adeguarsi. Successivamente, previa comunicazione, verrà utilizzato l'endpoint /metadata per eseguire la transazione di ITI-57 attraverso il GTW
+
+```
+
 
 
 ## 7.1. Request
@@ -6303,7 +6325,7 @@ Riferimento: urn:oasis:names:tc:xspa:1.0:resource:hl7:type
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio
+   <td>Non Obbligatorio per il servizio di Eliminazione Documento e Aggiornamento Metadati
    </td>
   </tr>
   <tr>
