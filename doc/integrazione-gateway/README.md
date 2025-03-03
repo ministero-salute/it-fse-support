@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.10
+   <td>ver 2.11
    </td>
   </tr>
 </table>
@@ -140,7 +140,7 @@
   <tr>
    <td>2
    </td>
-   <td>Affinity Domain 2.5
+   <td>Affinity Domain 2.6
    </td>
    <td>Documento Affinity Domain
    </td>
@@ -546,6 +546,26 @@ _Tabella 2: Acronimi e Definizioni_
          <p>
       </td>
    </tr>
+    <tr>
+      <td>2.13
+      </td>
+      <td>03/03/2025
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            13.3.5. Ruolo
+         <p> 
+         <p>
+            13.3.4. Event Code
+         <p>
+         <p>
+            13.3.7. Organizzazione
+          <p>
+          <p>
+            13.3.8. Practice Setting Code
+          <p> 
+      </td>
+   </tr> 
 </table>
 
 
@@ -7499,7 +7519,7 @@ _Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 ### 13.3.4. Event Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -8013,6 +8033,11 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>J07BN04</td>
     <td>covid-19, protein subunit</td>
   </tr>
+   <tr>
+    <td>J07BN05</td>
+    <td>J07BN05</td>
+    <td>covid-19, virus-like particles</td>
+  </tr>
   <tr>
     <td>J07BX</td>
     <td>J07BX</td>
@@ -8032,6 +8057,16 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>J07BX04</td>
     <td>J07BX04</td>
     <td>dengue virus vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BX05</td>
+    <td>J07BX05</td>
+    <td>respiratory syncytial virus vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BX06</td>
+    <td>J07BX06</td>
+    <td>enterovirus 71 vaccines</td>
   </tr>
   <tr>
     <td>J07CA</td>
@@ -8651,7 +8686,7 @@ _Tabella 45: _Value set per il metadato XDSDocumentEntry.eventCodeList
 
 ### 13.3.5. Ruolo
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -8826,6 +8861,14 @@ Pediatra di Libera Scelta
    <td>Non indicato nel DPCM perché non rappresenta una professione
    </td>
   </tr>
+  <tr>
+   <td>GTW
+   </td>
+   <td>Gateway
+   </td>
+   <td>Ruolo per il Gateway EDS
+   </td>
+  </tr>
 </table>
 
 
@@ -8873,7 +8916,7 @@ _Tabella 47: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:pu
 
 ### 13.3.7. Organizzazione
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -9080,6 +9123,14 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 999</p>
 
    </td>
+   <td>GTW
+   </td>
+  </tr>
+  <tr>
+   <td><p style="text-align: right">
+950</p>
+
+   </td>
    <td>MDS
    </td>
   </tr>
@@ -9093,7 +9144,7 @@ _Tabella 48: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:or
 
 ### 13.3.8. Practice Setting Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -9114,6 +9165,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <tr>
       <td>AD_PSC003</td>
       <td>Anatomia e Istologia Patologica</td>
+    </tr>
+     <tr>
+      <td>AD_PSC004</td>
+      <td>Osservazione breve intensiva (OBI) e Pronto Soccorso</td>
     </tr>
     <tr>
       <td>AD_PSC005</td>
@@ -9244,6 +9299,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>Psichiatria</td>
   </tr>
   <tr>
+    <td>AD_PSC041</td>
+    <td>Medicina termale</td>
+  </tr>
+  <tr>
     <td>AD_PSC042</td>
     <td>Tossicologia</td>
   </tr>
@@ -9324,6 +9383,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
       <td>Oncoematologia</td>
     </tr>
     <tr>
+      <td>AD_PSC067</td>
+      <td>Pensionanti</td>
+    </tr> 
+    <tr>
       <td>AD_PSC068</td>
       <td>Pneumologia, Fisiopatologia Respiratoria, Tisiologia</td>
     </tr>
@@ -9339,6 +9402,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
       <td>AD_PSC071</td>
       <td>Reumatologia</td>
     </tr>
+    <tr>
+      <td>AD_PSC072</td>
+      <td>Terapia Intensiva pediatrica</td>
+    </tr> 
     <tr>
       <td>AD_PSC073</td>
       <td>Terapia Intensiva Neonatale</td>
@@ -9362,19 +9429,27 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <tr>
       <td>AD_PSC078</td>
       <td>Urologia Pediatrica</td>
-    </tr>
+    </tr> 
     <tr>
-      <td>AD_PSC082</td>
-      <td>Anestesia e Rianimazione</td>
-    </tr>
+      <td>AD_PSC094</td>
+      <td>Terapia semi-intensiva</td>
+    </tr> 
+    <tr>
+      <td>AD_PSC096</td>
+      <td>Terapia del dolore</td>
+    </tr>   
     <tr>
       <td>AD_PSC097</td>
       <td>Detenuti</td>
     </tr>
-     <tr>
-    <td>AD_PSC098</td>
-    <td>Day Surgery Plurispecialistica</td>
-  </tr>
+    <tr>
+      <td>AD_PSC098</td>
+      <td>Day Surgery Plurispecialistica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC099</td>
+      <td>Cure palliative</td>
+    </tr>
   <tr>
     <td>AD_PSC100</td>
     <td>Laboratorio Analisi Chimico Cliniche</td>
@@ -9394,11 +9469,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   <tr>
     <td>AD_PSC104</td>
     <td>Neuroradiologia</td>
-  </tr>
-  <tr>
-    <td>AD_PSC106</td>
-    <td>Pronto Soccorso e OBI</td>
-  </tr>
+  </tr> 
   <tr>
     <td>AD_PSC107</td>
     <td>Poliambulatorio</td>
@@ -9418,11 +9489,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   <tr>
     <td>AD_PSC126</td>
     <td>Libera Professione Degenza</td>
-  </tr>
-  <tr>
-    <td>AD_PSC127</td>
-    <td>Hospice Ospedaliero</td>
-  </tr>
+  </tr> 
   <tr>
     <td>AD_PSC129</td>
     <td>Trapianto Organi e Tessuti</td>
