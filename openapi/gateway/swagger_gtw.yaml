@@ -20,7 +20,6 @@ tags:
   - name: Servizio ispezione transazioni
   - name: Servizio validazione documenti
   - name: Servizio pubblicazione documenti
-  - name: Health check Status Actuator
 paths:
   /documents/{idDoc}:
     put:
@@ -244,6 +243,109 @@ paths:
       summary: Pubblicazione aggiornamento metadati
       description: Pubblicazione aggiornamento metadati dato l'identificativo documento.
       operationId: updateMetadata
+      parameters:
+        - name: idDoc
+          in: path
+          required: true
+          schema:
+            maxLength: 256
+            minLength: 1
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicationMetadataReqDTO'
+        required: true
+      responses:
+        '200':
+          description: Aggiornamento eseguito con successo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseWifDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '401':
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '403':
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '404':
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '409':
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '413':
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '429':
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '502':
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '503':
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        '504':
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+      security:
+        - bearerAuth: []
+        - FSE-JWT-Signature: []
+  /documents/{idDoc}/metadata-iti-57:
+    put:
+      tags:
+        - Servizio pubblicazione documenti
+      summary: Pubblicazione aggiornamento metadati
+      description: Pubblicazione aggiornamento metadati dato l'identificativo documento.
+      operationId: updateMetadataIti_57
       parameters:
         - name: idDoc
           in: path
@@ -1006,28 +1108,6 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseDTO'
-  /status:
-    get:
-      tags:
-        - Health check Status Actuator
-      summary: Health check status
-      description: Health check endpoint.
-      operationId: health
-      responses:
-        '200':
-          description: Health check OK
-          content:
-            application/problem+json: {}
-        '500':
-          description: Internal Server Error
-          content:
-            application/problem+json: {}
-        default:
-          description: default
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
 components:
   schemas:
     PublicationUpdateReqDTO:
@@ -1274,12 +1354,12 @@ components:
           maxLength: 1000
           minLength: 0
           type: string
-          description: Descrizione sintetica della tipologia dâ€™errore
+          description: Descrizione sintetica della tipologia d'errore
         detail:
-          maxLength: 200000
+          maxLength: 2147483647
           minLength: 0
           type: string
-          description: Dettaglio della tipologia dâ€™errore
+          description: Dettaglio della tipologia d'errore
         status:
           maximum: 599
           minimum: 100
@@ -1769,12 +1849,12 @@ components:
           maxLength: 1000
           minLength: 0
           type: string
-          description: Descrizione sintetica della tipologia dâ€™errore
+          description: Descrizione sintetica della tipologia d'errore
         detail:
-          maxLength: 200000
+          maxLength: 2147483647
           minLength: 0
           type: string
-          description: Dettaglio della tipologia dâ€™errore
+          description: Dettaglio della tipologia d'errore
         status:
           maximum: 599
           minimum: 100
@@ -2298,7 +2378,7 @@ components:
           minLength: 0
           type: string
         message:
-          maxLength: 10000
+          maxLength: 50000
           minLength: 0
           type: string
         identificativoDocumento:
