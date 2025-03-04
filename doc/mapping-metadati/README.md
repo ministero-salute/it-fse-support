@@ -387,6 +387,12 @@ Questo documento fornisce una mappatura dei metadati tra i sistemi Gateway ed IN
         <td>SSN</td>
         <td><code>administrativeRequest</code></td>
     </tr>
+    <tr>
+        <td>:pencil:</td>
+        <td><code>subject_application_id^subject_application_vendor^subject_application_version</code></td>
+        <td>SSN</td>
+        <td><code>GTW_ID^GTW_VENDOR^GTW_VERSION</code></td>
+    </tr>
 
 </table>
 

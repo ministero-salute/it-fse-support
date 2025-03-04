@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.10
+   <td>ver 2.11
    </td>
   </tr>
 </table>
@@ -60,6 +60,7 @@
   - [7.2. Response](#72-response)
     - [7.2.1. Esempio di Messaggio di risposta con Esito Success 200](#721-esempio-di-messaggio-di-risposta-con-esito-success-200)
     - [7.2.2. Esempio di Messaggio di Risposta con esito KO 400](#722-esempio-di-messaggio-di-risposta-con-esito-ko-400)
+  - [7.3. Esempio Messaggio di Richiesta attraverso iti 57](#73-esempio-messaggio-di-richiesta-attraverso-iti-57)
 - [8. Servizio di validazione e pubblicazione creazione contestuale](#8-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
   - [8.1. Request](#81-request)
     - [8.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#811-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
@@ -139,7 +140,7 @@
   <tr>
    <td>2
    </td>
-   <td>Affinity Domain 2.5
+   <td>Affinity Domain 2.6
    </td>
    <td>Documento Affinity Domain
    </td>
@@ -528,6 +529,43 @@ _Tabella 2: Acronimi e Definizioni_
          <p>
       </td>
    </tr>
+   <tr>
+      <td>2.12
+      </td>
+      <td>04/12/2024
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            2. Contesto di riferimento
+         <p>
+         <p>
+            7.1. Request
+         <p>
+         <p>
+            7.3. Esempio Messaggio di Richiesta attraverso iti-57
+         <p>
+      </td>
+   </tr>
+    <tr>
+      <td>2.13
+      </td>
+      <td>03/03/2025
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            13.3.5. Ruolo
+         <p> 
+         <p>
+            13.3.4. Event Code
+         <p>
+         <p>
+            13.3.7. Organizzazione
+          <p>
+          <p>
+            13.3.8. Practice Setting Code
+          <p> 
+      </td>
+   </tr> 
 </table>
 
 
@@ -590,6 +628,14 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
    <td>PUT
    </td>
    <td>AGGIORNAMENTO METADATI
+   </td>
+  </tr>
+  <tr>
+   <td>/v<major>/documents/{identificativoDocUpdate}/metadata-iti-57
+   </td>
+   <td>PUT
+   </td>
+   <td>AGGIORNAMENTO METADATI ITI-57
    </td>
   </tr>
   <tr>
@@ -2693,6 +2739,20 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata
 
 Lo scopo di questa API Sincrona è di aggiornare i metadati di un documento precedentemente pubblicato.
 
+In ambiente di validazione, è stato rilascio un ulteriore endpoint:
+
+```
+https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata-iti-57
+```
+
+Tale endpoint consentirà ai diversi attori di invocare la nuova transazione di aggiornamento metadati "IHE ITI-57" mediante il Gateway. Le interfacce esposte rispettano le stesse e identiche specifiche della precedente transazione. 
+
+``` IMPORTANTE
+Tale endpoint sarà esposto in ambiente di validazione per un tempo necessario da consentire a tutte le RDA di adeguarsi. Successivamente, previa comunicazione, verrà utilizzato l'endpoint /metadata per eseguire la transazione di ITI-57 attraverso il GTW
+
+```
+
+
 
 ## 7.1. Request
 
@@ -2720,6 +2780,27 @@ Lo scopo di questa API Sincrona è di aggiornare i metadati di un documento prec
 
 
 _Tabella 25: Method, URL, Type_
+
+<table>
+  <tr>
+   <td>METHOD
+   </td>
+   <td>PUT
+   </td>
+  </tr>
+  <tr>
+   <td>URL
+   </td>
+   <td>/v1/documents/{identificativoDocUpdate}/metadata-iti-57
+   </td>
+  </tr>
+  <tr>
+   <td>TYPE
+   </td>
+   <td>application/json
+   </td>
+  </tr>
+</table>
 
 
 <table>
@@ -3144,6 +3225,38 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
   "instance": "/msg/mandatory-element"
 }
 ```
+
+### 7.3. Esempio Messaggio di Richiesta attraverso iti-57
+
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+
+``` bash
+curl -X 'PUT' \
+  'https://<HOST>:<PORT>/v1/documents/507f1f77bcf86cd799439011/metadata-iti-57' \
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+  -H 'accept: application/json' \
+  -d '{
+  "tipologiaStruttura": "Ospedale",
+  "attiCliniciRegoleAccesso": [
+    "P99"
+  ],
+  "tipoDocumentoLivAlto": "WOR",
+  "assettoOrganizzativo": "AD_PSC001",
+  "dataInizioPrestazione": "20141020110012",
+  "dataFinePrestazione": "20141020110012",
+  "conservazioneANorma": "string",
+  "tipoAttivitaClinica": "CON",
+  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
+  "descriptions": [
+    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
+  ],
+  "administrativeRequest": ["SSN"]
+}'\
+-F 'file=@CDA_OK.pdf;type=application/pdf'
+```
+
+Le risposte sono le medesime riportate per i casi precedenti.
 
 # 8. Servizio di validazione e pubblicazione creazione contestuale
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l'invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti, è necessario fare riferimento al Capitolo 13 "Drilldown Parametri di Input.
@@ -6303,7 +6416,7 @@ Riferimento: urn:oasis:names:tc:xspa:1.0:resource:hl7:type
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Obbligatorio
+   <td>Non Obbligatorio per il servizio di Eliminazione Documento e Aggiornamento Metadati
    </td>
   </tr>
   <tr>
@@ -7406,7 +7519,7 @@ _Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 ### 13.3.4. Event Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -7920,6 +8033,11 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>J07BN04</td>
     <td>covid-19, protein subunit</td>
   </tr>
+   <tr>
+    <td>J07BN05</td>
+    <td>J07BN05</td>
+    <td>covid-19, virus-like particles</td>
+  </tr>
   <tr>
     <td>J07BX</td>
     <td>J07BX</td>
@@ -7939,6 +8057,16 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>J07BX04</td>
     <td>J07BX04</td>
     <td>dengue virus vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BX05</td>
+    <td>J07BX05</td>
+    <td>respiratory syncytial virus vaccines</td>
+  </tr>
+  <tr>
+    <td>J07BX06</td>
+    <td>J07BX06</td>
+    <td>enterovirus 71 vaccines</td>
   </tr>
   <tr>
     <td>J07CA</td>
@@ -8558,7 +8686,7 @@ _Tabella 45: _Value set per il metadato XDSDocumentEntry.eventCodeList
 
 ### 13.3.5. Ruolo
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -8733,6 +8861,14 @@ Pediatra di Libera Scelta
    <td>Non indicato nel DPCM perché non rappresenta una professione
    </td>
   </tr>
+  <tr>
+   <td>GTW
+   </td>
+   <td>Gateway
+   </td>
+   <td>Ruolo per il Gateway EDS
+   </td>
+  </tr>
 </table>
 
 
@@ -8780,7 +8916,7 @@ _Tabella 47: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:pu
 
 ### 13.3.7. Organizzazione
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -8987,6 +9123,14 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 999</p>
 
    </td>
+   <td>GTW
+   </td>
+  </tr>
+  <tr>
+   <td><p style="text-align: right">
+950</p>
+
+   </td>
    <td>MDS
    </td>
   </tr>
@@ -9000,7 +9144,7 @@ _Tabella 48: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:or
 
 ### 13.3.8. Practice Setting Code
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 
 <table>
@@ -9021,6 +9165,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <tr>
       <td>AD_PSC003</td>
       <td>Anatomia e Istologia Patologica</td>
+    </tr>
+     <tr>
+      <td>AD_PSC004</td>
+      <td>Osservazione breve intensiva (OBI) e Pronto Soccorso</td>
     </tr>
     <tr>
       <td>AD_PSC005</td>
@@ -9151,6 +9299,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>Psichiatria</td>
   </tr>
   <tr>
+    <td>AD_PSC041</td>
+    <td>Medicina termale</td>
+  </tr>
+  <tr>
     <td>AD_PSC042</td>
     <td>Tossicologia</td>
   </tr>
@@ -9231,6 +9383,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
       <td>Oncoematologia</td>
     </tr>
     <tr>
+      <td>AD_PSC067</td>
+      <td>Pensionanti</td>
+    </tr> 
+    <tr>
       <td>AD_PSC068</td>
       <td>Pneumologia, Fisiopatologia Respiratoria, Tisiologia</td>
     </tr>
@@ -9246,6 +9402,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
       <td>AD_PSC071</td>
       <td>Reumatologia</td>
     </tr>
+    <tr>
+      <td>AD_PSC072</td>
+      <td>Terapia Intensiva pediatrica</td>
+    </tr> 
     <tr>
       <td>AD_PSC073</td>
       <td>Terapia Intensiva Neonatale</td>
@@ -9269,19 +9429,27 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <tr>
       <td>AD_PSC078</td>
       <td>Urologia Pediatrica</td>
-    </tr>
+    </tr> 
     <tr>
-      <td>AD_PSC082</td>
-      <td>Anestesia e Rianimazione</td>
-    </tr>
+      <td>AD_PSC094</td>
+      <td>Terapia semi-intensiva</td>
+    </tr> 
+    <tr>
+      <td>AD_PSC096</td>
+      <td>Terapia del dolore</td>
+    </tr>   
     <tr>
       <td>AD_PSC097</td>
       <td>Detenuti</td>
     </tr>
-     <tr>
-    <td>AD_PSC098</td>
-    <td>Day Surgery Plurispecialistica</td>
-  </tr>
+    <tr>
+      <td>AD_PSC098</td>
+      <td>Day Surgery Plurispecialistica</td>
+    </tr>
+    <tr>
+      <td>AD_PSC099</td>
+      <td>Cure palliative</td>
+    </tr>
   <tr>
     <td>AD_PSC100</td>
     <td>Laboratorio Analisi Chimico Cliniche</td>
@@ -9301,11 +9469,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   <tr>
     <td>AD_PSC104</td>
     <td>Neuroradiologia</td>
-  </tr>
-  <tr>
-    <td>AD_PSC106</td>
-    <td>Pronto Soccorso e OBI</td>
-  </tr>
+  </tr> 
   <tr>
     <td>AD_PSC107</td>
     <td>Poliambulatorio</td>
@@ -9325,11 +9489,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   <tr>
     <td>AD_PSC126</td>
     <td>Libera Professione Degenza</td>
-  </tr>
-  <tr>
-    <td>AD_PSC127</td>
-    <td>Hospice Ospedaliero</td>
-  </tr>
+  </tr> 
   <tr>
     <td>AD_PSC129</td>
     <td>Trapianto Organi e Tessuti</td>
