@@ -1,0 +1,16 @@
+{
+	"appVendor": "GRUPPO_MAXED_DI_DANESI_EMANUELE_ALESSANDRO_FABIO_SNC",
+	"appID": "GMSoftFSE",
+	"appVersion": "V.1.1.0",
+	"results": [
+		{
+			"id": 448,
+            "ts":"2025-05-02T06:52:31.432+02:00",
+			"traceId": "90df63df33ebf5f7a7ed0145f1bae84a",
+			"workflowInstanceId": "2.16.840.1.113883.2.9.2.80.3.1.4.4.2def81c12d9d55998602ca3330968f008054bf144cb57455968dba34bac106f3.62d78dbc40^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+			"files": [
+                "0801044400100387a931c6668V1.pdf"
+                ]
+		}
+	]
+}
