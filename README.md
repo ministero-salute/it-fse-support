@@ -1,3 +1,6 @@
+# Avviso
+Nella mattinata di mercoledì 21 maggio dalle ore 9,00 alle ore 14,00 circa in ambiente di test è previsto un intervento di manutenzione programmata. I servizi del FSE non saranno disponibili nella fascia oraria indicata.
+
 # Supporto FSE 2.0
 
 Benvenuto nella pagina di supporto FSE.  
