@@ -6573,6 +6573,35 @@ UPDATE per il servizio di Sostituzione Documento e Aggiornamento Metadati
    <td><code>subject_application_version</code>
    </td>
   </tr>
+
+  <tr>
+   <td colspan="2"  style="text-align:center"><strong>SUBJECT AS AUTHOR</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>DESCRIZIONE</strong>
+   </td>
+   <td>Tale campo se valorizzato con true consente di aggiungere nelle ITI-18 eseguite al Gateway lo slot $XDSDocumentEntry.author valorizzato con il medesimo valore del claim subject-id
+   </td>
+  </tr>
+  <tr>
+   <td><strong>ESEMPIO</strong>
+   </td>
+   <td>true
+   </td>
+  </tr>
+  <tr>
+   <td><strong>VALIDAZIONE</strong>
+   </td>
+   <td>Non obbligatorio
+   </td>
+  </tr>
+  <tr>
+   <td><strong>CAMPO JWT</strong>
+   </td>
+   <td><code>use_subject_as_author</code>
+   </td>
+  </tr>
 </table>
 
 
