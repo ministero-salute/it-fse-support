@@ -576,8 +576,11 @@ _Tabella 2: Acronimi e Definizioni_
             13.1. Modificata gestione claim locality e authorInstitution
          <p> 
         <p>
-            Campi contenuti in FSE-JWT-Signature
+            13.1. Campi Contenuti nei JWT
         <p>
+        <p>
+            13.3.6. Aggiunto campo ACCESS UPDATE in tabella contesto operativo
+        <p> 
       </td>
    </tr> 
 </table>
