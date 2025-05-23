@@ -6267,11 +6267,9 @@ Su questo campo viene eseguito un controllo bloccante nelle operazioni di <stron
 <p>Nelle operazioni di <strong>DELETE</strong> e <strong>UPDATE</strong>, il Gateway utilizza il claim <code>locality</code> 
 per popolare l'asserzione di attributo <code>locality</code> verso INI. Anche in questo caso se il metadato è conforme al formato XON viene ribaltato.</p>
 <p>Il metadato <code>Author.AuthorInstitution</code>:</p>
-<ul>
-   <li>Non è richiesto nelle operazioni di DELETE.</li>
-   <li>In UPDATE viene valorizzato con il valore ottenuto tramite l’operazione di recupero metadati (<code>FindDocuments</code>).</li>
-</ul>
-    
+    <ul><li>Non è richiesto nelle operazioni di DELETE.</li>
+       <li>In UPDATE viene valorizzato con il valore ottenuto tramite l’operazione di recupero metadati (<code>FindDocuments</code>).</li>
+    </ul>
   </td>
 </tr>
 
@@ -8910,10 +8908,18 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    <td>Il valore deve essere utilizzato per il servizio di Eliminazione Documento, Aggiornamento Metadati e Sostituzione documento.
    </td>
   </tr>
+   <tr>
+   <td>ACCESS UPDATE
+   </td>
+   <td>Aggiornamento di un documento e della politica di oscuramento P99
+   </td>
+   <td>Il valore deve essere utilizzato per il servizio di Aggiornamento Metadati.
+   </td>
+  </tr>
 </table>
 
 
-_Tabella 47: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:purposeofuse
+_Tabella 47: Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:purposeofuse
 
 
 ### 13.3.7. Organizzazione
