@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.11
+   <td>ver 2.12
    </td>
   </tr>
 </table>
@@ -140,7 +140,7 @@
   <tr>
    <td>2
    </td>
-   <td>Affinity Domain 2.6
+   <td>Affinity Domain 2.6.1
    </td>
    <td>Documento Affinity Domain
    </td>
@@ -6214,66 +6214,57 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
    </td>
    <td>Tale attributo, univoco, identifica la struttura a cui appartiene l’utente.
 L’elemento è sottoposto alle validazioni come da sezione "VALIDAZIONE" e viene utilizzato dal Gateway per il colloquio con INI come riportato nella sezione "NOTE".
-Per maggiori informazioni sulla valorizzazione di tipo XON si può far riferimento ad AuthorInstitution nell'Affinity Domain Italia v.2.5 par. 2.1.2.
+Per maggiori informazioni sulla valorizzazione di tipo XON si può far riferimento ad AuthorInstitution nell'Affinity Domain Italia v.2.6.1 par. 2.1.2.
    </td>
   </tr>
   <tr>
    <td><strong>ESEMPIO</strong>
    </td>
    <td>
-   I valori ammessi per il custom claim “locality” si differenziano per i vari servizi del Gateway. </br>
-   Per i servizi di CREATE e REPLACE (anche con validazione contestuale), l’unica valorizzazione possibile è quella come tipo XON, ad esempio:
+   Il valore del custom claim <code>locality</code> deve essere unico e coerente per tutte le operazioni supportate dal Gateway 
+  (<strong>CREATE, REPLACE, UPDATE, DELETE</strong>) e deve essere conforme al formato <strong>XON</strong> come mostrato dall'esempio che segue:
    <ul>
    <li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (tipo XON), che indica la struttura "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456".</li>
    </ul>
 </br>
-    Per i servizi di DELETE e UPDATE sono ammesse ulteriori valorizzazioni. </br>Esempi di valorizzazioni possibili per la stessa struttura al punto precedente sono i seguenti: </br>
-    <ul><li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456  (Tipo XON);</li>
-    <li>^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (Tipo XON);</li>
-    <li>2.16.840.1.113883.2.9.4.1.3.111101123456 (tipo OID);</li>
-    <li>111101123456 (Regione “111”, ASL “101” e codice STS.11(6) “123456");</li>
-    <li>101123456 (ASL “101” e codice STS.11(6) “123456");</li>
-    <li>123456 (Codice STS.11(6) “123456")</li>
-    </ul>
-
    </td>
   </tr>
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Per i servizi di CREATE e REPLACE (anche con validazione contestuale) il Gateway fa un controllo bloccante per verificare che il popolamento rispetti lo standard XON (in cui XON.1 contiene il nome della struttura, XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura); </br>
-Per i servizi di DELETE e UPDATE non vengono effettuati controlli bloccanti; viene controllato solo quando il campo in input è conforme al tipo XON, per le logiche di popolamento dell’asserzione di attributo locality riportate in Note.
+   <td>Per i servizi di CREATE ,REPLACE (anche con validazione contestuale), DELETE e UPDATE il Gateway fa un controllo bloccante per verificare che il popolamento rispetti lo standard XON (in cui XON.1 contiene il nome della struttura, XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura); </br>
    </td>
   </tr>
   <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>locality</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>NOTE</strong>
-   </td>
-   <td> L’identificativo della struttura utente verrà utilizzato dal Gateway in base al servizio richiesto.
- 
-Nelle operazioni di CREATE e REPLACE (anche con validazione contestuale), il Gateway utilizza il contenuto del claim “locality” per valorizzare, verso INI, il metadato “Author.AuthorInstitution” e l'asserzione di attributo “locality”; nel caso in cui il claim “locality” (che deve essere di tipo XON) sia valorizzato come di seguito </br>
-LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 :
+  <td><strong>CAMPO JWT</strong></td>
+  <td><code>locality</code></td>
+</tr>
+<tr>
+  <td><strong>NOTE</strong></td>
+  <td>
+    Il campo <code>locality</code> rappresenta l’identificativo della struttura utente e viene utilizzato dal Gateway in base al servizio richiesto. 
+Su questo campo viene eseguito un controllo bloccante nelle operazioni di <strong>CREATE, REPLACE, UPDATE, DELETE</strong>, affinché rispetti la forma <code>XON</code>.
+<p>Nelle operazioni di <strong>CREATE</strong> e <strong>REPLACE</strong> (anche con validazione contestuale), il Gateway utilizza il valore del claim <code>locality</code> per valorizzare verso INI:</p> 
 <ul>
-<li>Lo stesso valore verrà utilizzato per la valorizzazione del metadato “Author.AuthorInstitution” che il Gateway comunica a INI;</li>
-<li>L'asserzione di attributo “locality” che il Gateway comunica a INI verrà valorizzato come concatenazione di codice catalogo (XON.6.2) e codice struttura (XON.10):
-2.16.840.1.113883.2.9.4.1.3.111101123456</li>
+    <li>il metadato <code>Author.AuthorInstitution</code></li>
+    <li>l'asserzione di attributo <code>locality</code></li>
 </ul>
- 
-Nelle operazioni di DELETE e UPDATE, il Gateway utilizza il contenuto del claim “locality” per popolare l'asserzione di attributo “locality” verso INI:
-<ul>
-<li>Se il custom claim locality è conforme al tipo XON, attua la stessa trasformazione prevista per CREATE e REPLACE, ovvero, concatenando di codice catalogo e codice struttura.</li>
-<li>In caso contrario, il suo valore viene ribaltato senza ulteriori controlli.</li>
-</ul>
+<p>Ad esempio, se il claim <code>locality</code> è valorizzato come:</p>
+<code>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456</code>
+<p>, il valore verrà ribaltato così com'è sia per il metadato che per l'asserzione.</p>
 
-Il metadato “Author.AuthorInstitution” non è necessario in DELETE, mentre in UPDATE viene popolato utilizzando il valore che il Gateway ottiene con l’operazione di recupero metadati (FindDocuments) propedeutica  all’aggiornamento metadati.
-   </br>
-   </td>
-  </tr>
+<p>Nelle operazioni di <strong>DELETE</strong> e <strong>UPDATE</strong>, il Gateway utilizza il claim <code>locality</code> 
+per popolare l'asserzione di attributo <code>locality</code> verso INI. Anche in questo caso se il metadato è conforme al formato XON viene ribaltato.</p>
+<p>Il metadato <code>Author.AuthorInstitution</code>:</p>
+<ul>
+   <li>Non è richiesto nelle operazioni di DELETE.</li>
+   <li>In UPDATE viene valorizzato con il valore ottenuto tramite l’operazione di recupero metadati (<code>FindDocuments</code>).</li>
+</ul>
+    
+  </td>
+</tr>
+
+
   <tr>
    <td colspan="2"  style="text-align:center"><strong>RUOLO UTENTE</strong>
    </td>
