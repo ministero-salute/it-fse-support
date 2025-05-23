@@ -575,6 +575,9 @@ _Tabella 2: Acronimi e Definizioni_
          <p>
             13.1. Modificata gestione claim locality e authorInstitution
          <p> 
+        <p>
+            Campi contenuti in FSE-JWT-Signature
+        <p>
       </td>
    </tr> 
 </table>
