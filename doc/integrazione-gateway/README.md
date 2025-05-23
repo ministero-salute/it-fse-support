@@ -566,6 +566,17 @@ _Tabella 2: Acronimi e Definizioni_
           <p> 
       </td>
    </tr> 
+   <tr>
+      <td>2.14
+      </td>
+      <td>23/05/2025
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            13.1. Modificata gestione claim locality e authorInstitution
+         <p> 
+      </td>
+   </tr> 
 </table>
 
 
