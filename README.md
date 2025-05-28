@@ -1,5 +1,6 @@
 # Avviso
-Nella mattinata di mercoledì 21 maggio dalle ore 9,00 alle ore 14,00 circa in ambiente di test è previsto un intervento di manutenzione programmata. I servizi del FSE non saranno disponibili nella fascia oraria indicata.
+Alle ore 13 circa di giovedì 29 maggio verrà rilasciata in ambiente di test una fix evolutiva, vi preghiamo di indicarci tempestivamente eventuali comportamenti già testati e disattesi. 
+Grazie.
 
 # Supporto FSE 2.0
 
