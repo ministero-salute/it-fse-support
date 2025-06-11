@@ -1,5 +1,5 @@
 # Avviso
-Alle ore 13 circa di giovedì 29 maggio verrà rilasciata in ambiente di test una fix evolutiva, vi preghiamo di indicarci tempestivamente eventuali comportamenti già testati e disattesi. 
+Dalle ore 13 alle ore 15 circa di mercoledì 11 giugno verrà rilasciata in ambiente di test un aggiornamento del sistema. 
 Grazie.
 
 # Supporto FSE 2.0
