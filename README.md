@@ -1,7 +1,3 @@
-# Avviso
-Dalle ore 13 alle ore 15 circa di mercoledì 11 giugno verrà rilasciata in ambiente di test un aggiornamento del sistema. 
-Grazie.
-
 # Supporto FSE 2.0
 
 Benvenuto nella pagina di supporto FSE.  
