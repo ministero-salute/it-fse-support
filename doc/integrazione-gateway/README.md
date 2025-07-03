@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.12
+   <td>ver 2.13
    </td>
   </tr>
 </table>
@@ -581,6 +581,20 @@ _Tabella 2: Acronimi e Definizioni_
         <p>
             13.3.6. Aggiunto campo ACCESS UPDATE in tabella contesto operativo
         <p> 
+      </td>
+   </tr> 
+   <tr>
+      <td>2.15
+      </td>
+      <td>30/06/2025
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            4. Rimozione flag priorità dalla request body di creazione
+         <p>  
+         <p>
+            13. Rimozione flag priorità dalla request body di creazione
+         <p> 
       </td>
    </tr> 
 </table>
@@ -1306,6 +1320,10 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 
 # 4. Servizio di Creazione
 
+<blockquote>
+  <strong>⚠️ Attenzione:</strong> il flag "priorita" presente nella request body di creazione verrà mantenuto fino al 01/09. Si prega di aggiornare le invocazioni eliminando il parametro in request.
+</blockquote>
+
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Creazione Documento CDA2 si compone come segue:
@@ -1562,16 +1580,6 @@ _Tabella 10: Method, URL, Type_
    <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
    </td>
   </tr>
-  <tr>
-   <td>priorita
-   </td>
-   <td>boolean
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
    <tr>
    <td>descriptions
    </td>
@@ -1600,7 +1608,7 @@ _Tabella 10: Method, URL, Type_
 
 _Tabella 11: Parametri Richiesta di Creazione_
 
-La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “priorita” consente al Gateway di decidere la priorità da attribuire al documento fornito in input al servizio.
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
@@ -1613,7 +1621,7 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 ### 4.1.1. Messaggio di Richiesta, esempio “Pubblicazione con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 Il workflowInstanceId è corretto e presente nel gateway.
 
@@ -1640,7 +1648,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-  "priorita": false,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -1652,7 +1659,7 @@ curl -X 'POST' \
 
 ### 4.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
+Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti.
 
 In questo caso, il workflowInstanceId non esiste nel gateway.
 
@@ -1679,7 +1686,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-  "priorita": true,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -2508,7 +2514,7 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 
 ### 6.1.1. Messaggio di Richiesta, esempio “Pubblicazione Sostituzione Documento con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 Il workflowInstanceId è corretto e presente nel gateway.
 
@@ -3022,7 +3028,7 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 
 ### 7.1.1. Esempio Messaggio di Richiesta
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 ``` bash
 curl -X 'PUT' \
@@ -3245,7 +3251,7 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 
 ### 7.3. Esempio Messaggio di Richiesta attraverso iti-57
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 ``` bash
 curl -X 'PUT' \
@@ -3520,16 +3526,6 @@ _Tabella 30: Method, URL, Type_
    <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
    </td>
   </tr>
-  <tr>
-   <td>priorita
-   </td>
-   <td>boolean
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
    <tr>
    <td>descriptions
    </td>
@@ -3558,7 +3554,7 @@ _Tabella 30: Method, URL, Type_
 
 _Tabella 31: Parametri Richiesta di validazione pubblicazione creazione contestuale_
 
-La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “priorita” consente al Gateway di decidere la priorità da attribuire al documento fornito in input al servizio.
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
@@ -3571,7 +3567,7 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 ### 8.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 ``` bash
 curl -X 'POST' \
@@ -3595,7 +3591,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-  "priorita": false,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -3606,7 +3601,7 @@ curl -X 'POST' \
 
 ### 8.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
+Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti.
 
 ``` bash
 curl -X 'POST' \
@@ -3630,7 +3625,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-  "priorita": true,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -4154,7 +4148,7 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 
 ### 9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
  
 
 ``` bash
@@ -7229,28 +7223,6 @@ Vedi TABELLA ORGANIZZAZIONE per il codice della REGIONE
    <td><strong>VALIDAZIONE</strong>
    </td>
    <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2" ><strong>PRIORITA</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>PARAMETRO</strong>
-   </td>
-   <td><code>priorita</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Indica che la richiesta dovrà essere processata con priorità massima
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>true
    </td>
   </tr>
   <tr>
