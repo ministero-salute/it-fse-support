@@ -1339,7 +1339,7 @@ https://<HOST>:<PORT>/v<major>/documents/fhir-validation
 ```
 
 
-Lo scopo di questa API è validare da un punto un documento nativo FHIR da un punto di vista sintattico, semantico sfruttando le implementation guide dei diversi tipi documento.
+Lo scopo di questa API è validare un documento nativo FHIR da un punto di vista sintattico, semantico sfruttando le implementation guide dei diversi tipi documento.
 
 
 ## 4.1. Request
