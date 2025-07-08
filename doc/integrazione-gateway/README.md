@@ -747,16 +747,12 @@ In caso di validazione eseguita con successo, l’esito tornato è positivo e la
 
 **Validazione Documento FHIR**
 
-Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard FHIR; Tale endpoint accetterà sia un PDF con iniettato un bundle il cui nome deve essere `bundleFhir.json`(senza considerare maiuscole e minuscole) presente in uno dei seguenti punti all'interno del pdf:
+Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard FHIR; Tale endpoint accetterà sia un Bundle FHIR in JSON nei casi in cui non si ha a disposizione il documento ma solo i metadati, sia un PDF con iniettato un bundle il cui nome deve essere `bundleFhir.json`(senza considerare maiuscole e minuscole) presente in uno dei seguenti punti all'interno del pdf:
 - Root/Names/EmbeddedFiles/Names/[1]/EF/F
 - Root/Names/EmbeddedFiles/Kids/[0]/Names/[1]/EF/F
 
-Sia accetterà direttamente un Bundle FHIR in JSON nei casi in cui non si ha a disposizione il documento ma solo i metadati.
-
 In differenti circostanze, verrà restituito un errore di validazione.
-
 Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici, semantici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
-
 In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. 
 
 **Pubblicazione Documento CDA2**
