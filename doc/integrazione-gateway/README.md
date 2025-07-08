@@ -1330,7 +1330,7 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
-L’Endpoint del caso d’uso di Validazione Documento CDA2 si compone come segue:
+L’Endpoint del caso d’uso di Validazione Documento Bundle FHIR si compone come segue:
 
 
 ```
