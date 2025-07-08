@@ -37,7 +37,7 @@
     - [3.2.3. Messaggio di risposta, esempio “Verifica con Attachment” con esito OK 200 con warning](#323-messaggio-di-risposta-esempio-verifica-con-attachment-con-esito-ok-200-con-warning)
 - [4. Servizio di Validazione FHIR](#4-servizio-di-validazione-fhir)
   - [4.1. Request](#41-request)
-    - [4.1.1. Messaggio di richiesta, esempio “Verifica con PDF](#411-messaggio-di-richiesta-esempio-verifica-con-pdf)
+    - [4.1.1. Messaggio di richiesta, esempio “Verifica con PDF”](#411-messaggio-di-richiesta-esempio-verifica-con-pdf)
     - [4.1.2. Messaggio di richiesta, esempio “Verifica con Bundle JSON”](#412-messaggio-di-richiesta-esempio-verifica-con-bundle-json)
   - [4.2. Response](#42-response)
     - [4.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201](#421-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-success-201)
@@ -1499,7 +1499,7 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
 
-### 4.1.1. Messaggio di richiesta, esempio “Verifica con PDF
+### 4.1.1. Messaggio di richiesta, esempio “Verifica con PDF”
 
 Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con Bundle FHIR innestato in modalità ATTACHMENT
 
