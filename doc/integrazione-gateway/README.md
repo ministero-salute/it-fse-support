@@ -1495,7 +1495,7 @@ La compilazione errata dei parameter oppure la non compilazione dei parameter �
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
-* **file** che potrà contenere un file PDF con iniettato un Bundle FHIR in formato JSON, o in alternativa un file JSON di un Bundle FHIR in linea con quanto riportato nelle «Implementation Guide»
+* **file** che potrà contenere un file PDF con iniettato un Bundle FHIR in formato JSON, o in alternativa un file JSON di un Bundle FHIR(quando non si ha a disposizione il documento ma solo i metadati) in linea con quanto riportato nelle «Implementation Guide»
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
 
