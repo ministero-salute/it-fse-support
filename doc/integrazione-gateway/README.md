@@ -617,7 +617,7 @@ La nuova architettura del FSE prevede la presenza di un componente, denominato G
 
 In questo documento verranno indicate le modalità per usufruire dei servizi esposti dal gateway: il      documento sarà redatto in modo incrementale e di volta in volta ulteriori API saranno integrate e illustrate. 
 
-In questa fase vengono trattati i due servizi principali del Gateway, che consentono rispettivamente di invocare le funzionalità di Validazione Documento CDA2 e di Pubblicazione Documento CDA2, e i servizi che consentono l’eliminazione e l’aggiornamento del documento e dei suoi metadati.
+In questa fase vengono trattati i due servizi principali del Gateway, che consentono rispettivamente di invocare le funzionalità di Validazione Documento CDA2 e FHIR e di Pubblicazione Documento CDA2, e i servizi che consentono l’eliminazione e l’aggiornamento del documento e dei suoi metadati.
 
 
 <table>
