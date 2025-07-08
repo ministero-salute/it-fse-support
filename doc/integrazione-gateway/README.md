@@ -35,7 +35,7 @@
     - [3.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201](#321-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-success-201)
     - [3.2.2. Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400](#322-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-ko-400)
     - [3.2.3. Messaggio di risposta, esempio “Verifica con Attachment” con esito OK 200 con warning](#323-messaggio-di-risposta-esempio-verifica-con-attachment-con-esito-ok-200-con-warning)
-- [4. Servizio di Validazione fhir](#4-servizio-di-validazione-fhir)
+- [4. Servizio di Validazione FHIR](#4-servizio-di-validazione-fhir)
   - [4.1. Request](#41-request)
     - [4.1.1. Messaggio di richiesta, esempio “Verifica con Attachment”](#411-messaggio-di-richiesta-esempio-verifica-con-attachment)
     - [4.1.2. Messaggio di richiesta, esempio “Verifica con resource”](#412-messaggio-di-richiesta-esempio-verifica-con-resource)
@@ -1344,7 +1344,7 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 }
 ```
 
-# 4. Servizio di Validazione fhir
+# 4. Servizio di Validazione FHIR
 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
