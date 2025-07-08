@@ -726,7 +726,7 @@ L'endpoint del **sistema di test** è:
 
     https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
 
-La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2 può non essere seguita dalla Pubblicazione CDA2. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
+La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2/FHIR può non essere seguita dalla Pubblicazione. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
 
 I due servizi di Validazione e Pubblicazione sono correlati da un identificativo di transazione referenziato nel documento come “workflowInstanceId” secondo standard IHE (Data Type  CXi).
 
