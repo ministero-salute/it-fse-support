@@ -1477,13 +1477,13 @@ La compilazione errata dei parameter oppure la non compilazione dei parameter �
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
-* **file** che dovrà contenere un file PDF con iniettato un Bundle FHIR in formato JSON in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
+* **file** che potrà contenere un file PDF con iniettato un Bundle FHIR in formato JSON, o in alternativa un file JSON di un Bundle FHIR in linea con quanto riportato nelle «Implementation Guide»
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
 
 ### 4.1.1. Messaggio di richiesta, esempio “Verifica con Attachment”
 
-Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con Bundle FHIR innestato in modalità ATTACHMENT ma senza specificarlo nella request
+Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con Bundle FHIR innestato in modalità ATTACHMENT
 
 ``` bash
 curl -X 'POST' \	
@@ -1493,15 +1493,16 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'requestBody={ 
+  "mode": "ATTACHMENT",
   "activity": "VERIFICA",
 }' \
-  -F 'file=@BUNDLE_FHIR_OK.pdf;type=application/pdf'
+  -F 'file=@BUNDLE_FHIR_ATTACH.pdf;type=application/pdf'
 ```
 
 
 ### 4.1.2. Messaggio di richiesta, esempio “Verifica con resource”
 
-Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con Bundle FHIR innestato in modalità  RESOURCE
+Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), file Bundle FHIR fornito direttamente in input
 
 ``` bash
 curl -X 'POST' \	
@@ -1514,7 +1515,7 @@ curl -X 'POST' \
   "mode": "RESOURCE",
   "activity": "VERIFICA",
 }' \
-  -F 'file=@BUNDLE_FHIR_OK.pdf;type=application/pdf'
+  -F 'file=@BUNDLE_FHIR.json;type=application/json'
 ```
 
 ## 4.2. Response
@@ -1593,6 +1594,12 @@ curl -X 'POST' \
    <td>500
    </td>
    <td>Internal server error
+   </td>
+  </tr>
+   <tr>
+   <td>501
+   </td>
+   <td>Not implemented
    </td>
   </tr>
   <tr>
