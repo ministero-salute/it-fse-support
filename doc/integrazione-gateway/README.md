@@ -638,6 +638,14 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
    </td>
   </tr>
   <tr>
+   <td>/v<major>/documents/fhir-validation
+   </td>
+   <td>POST
+   </td>
+   <td>VALIDAZIONE DOCUMENTO FHIR
+   </td>
+  </tr>
+  <tr>
    <td>/v<major>/documents
    </td>
    <td>POST
