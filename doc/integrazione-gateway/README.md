@@ -878,7 +878,7 @@ Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
 # 3. Servizio di Validazione
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Documento CDA2 si compone come segue:
 
@@ -1327,20 +1327,19 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 }
 ```
 
---START VI
 # 4. Servizio di Validazione fhir
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Documento CDA2 si compone come segue:
 
 
 ```
-https://<HOST>:<PORT>/v<major>/documents/validation
+https://<HOST>:<PORT>/v<major>/documents/fhir-validation
 ```
 
 
-Lo scopo di questa API è validare da un punto di vista sintattico, semantico e terminologico i dati forniti dal Sistema Produttore.
+Lo scopo di questa API è validare da un punto un documento nativo FHIR da un punto di vista sintattico, semantico sfruttando le implementation guide dei diversi tipi documento.
 
 
 ## 4.1. Request
@@ -1356,7 +1355,7 @@ Lo scopo di questa API è validare da un punto di vista sintattico, semantico e 
   <tr>
    <td>URL
    </td>
-   <td>/v1/documents/validation
+   <td>/v1/documents/fhir-validation
    </td>
   </tr>
   <tr>
@@ -1372,124 +1371,114 @@ _Tabella 5: Method, Url, Type_
 
 
 <table>
-  <tr>
-   <td colspan="6" >     <strong>PARAMETER</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>SECTION</strong>
-   </td>
-   <td><strong>KEY</strong>
-   </td>
-   <td><strong>VALUE</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>REQUIRED</strong>
-   </td>
-   <td><strong>AFFINITY DOMAIN/ IHE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>Authorization
-   </td>
-   <td>N.D.
-   </td>
-   <td>Bearer
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>FSE-JWT-Signature
-   </td>
-   <td>N.D.
-   </td>
-   <td>N.D.
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>Accept
-   </td>
-   <td>application/json
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="4" >Request
-<p>
-Body
-   </td>
-   <td>file
-   </td>
-   <td>file
-   </td>
-   <td>MultipartFile
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="3" >requestBody
-   </td>
-   <td>healthDataFormat
-   </td>
-   <td>HealthDataFormatEnum
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>mode
-   </td>
-   <td>InjectionModeEnum
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>activity
-   </td>
-   <td>ActivityEnum
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
+    <tr>
+        <td colspan="6"> <strong>PARAMETER</strong>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>SECTION</strong>
+        </td>
+        <td><strong>KEY</strong>
+        </td>
+        <td><strong>VALUE</strong>
+        </td>
+        <td><strong>TYPE</strong>
+        </td>
+        <td><strong>REQUIRED</strong>
+        </td>
+        <td><strong>AFFINITY DOMAIN/ IHE</strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Header
+        </td>
+        <td>Authorization
+        </td>
+        <td>N.D.
+        </td>
+        <td>Bearer
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td>Header
+        </td>
+        <td>FSE-JWT-Signature
+        </td>
+        <td>N.D.
+        </td>
+        <td>N.D.
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td>Header
+        </td>
+        <td>Accept
+        </td>
+        <td>application/json
+        </td>
+        <td>String
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="4">Request
+            <p>
+                Body
+        </td>
+        <td>file
+        </td>
+        <td>file
+        </td>
+        <td>MultipartFile
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2">requestBody
+        </td>
+        <td>mode
+        </td>
+        <td>InjectionModeEnum
+        </td>
+        <td>false
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td>activity
+        </td>
+        <td>ActivityEnum
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
 </table>
 
 
 _Tabella 6: Parametri Richiesta di Validazione_
 
-La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la restituzione di un errore di tipo warning, mentre la non compilazione del parameter facoltativo “healthDataFormat” non comporta errori di tipo warning. 
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la restituzione di un errore di tipo warning. 
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
-* **file** che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
+* **file** che dovrà contenere un file PDF con iniettato un Bundle FHIR in formato JSON in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
 
@@ -1786,7 +1775,7 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
   <strong>⚠️ Attenzione:</strong> il flag "priorita" presente nella request body di creazione verrà mantenuto fino al 01/09. Si prega di aggiornare le invocazioni eliminando il parametro in request.
 </blockquote>
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Creazione Documento CDA2 si compone come segue:
 
@@ -2672,7 +2661,7 @@ _Tabella 19: Campi Response valorizzati in caso di warning_
 
 # 7. Servizio di Sostituzione Documento
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Sostituzione Documento si compone come segue:
 
@@ -3214,7 +3203,7 @@ _Tabella 24: Campi Response valorizzati in caso di warning_
 
 # 8. Servizio di Aggiornamento Metadati
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Aggiornamento Metadati si compone come segue:
 
@@ -4317,7 +4306,7 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
  
 # 10. Servizio di validazione pubblicazione sostituzione contestuale
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Pubblicazione Sostituzione Documento si compone come segue:
 
@@ -4864,7 +4853,7 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 
 # 11. Servizio di Recupero Stato Transazione per WorkflowInstanceId
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
@@ -5477,7 +5466,7 @@ Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issu
 
 # 12. Servizio di Recupero Stato Transazione per TraceId
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
