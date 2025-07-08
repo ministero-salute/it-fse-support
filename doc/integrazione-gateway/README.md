@@ -37,9 +37,8 @@
     - [3.2.3. Messaggio di risposta, esempio “Verifica con Attachment” con esito OK 200 con warning](#323-messaggio-di-risposta-esempio-verifica-con-attachment-con-esito-ok-200-con-warning)
 - [4. Servizio di Validazione fhir](#4-servizio-di-validazione-fhir)
   - [4.1. Request](#41-request)
-    - [4.1.1. Messaggio di richiesta, esempio “Validation con Attachment”](#411-messaggio-di-richiesta-esempio-validation-con-attachment)
-    - [4.1.2. Messaggio di richiesta, esempio “Verifica con Attachment”](#412-messaggio-di-richiesta-esempio-verifica-con-attachment)
-    - [4.1.3. Messaggio di richiesta, esempio “Verifica con resource”](#413-messaggio-di-richiesta-esempio-verifica-con-resource)
+    - [4.1.1. Messaggio di richiesta, esempio “Verifica con Attachment”](#411-messaggio-di-richiesta-esempio-verifica-con-attachment)
+    - [4.1.2. Messaggio di richiesta, esempio “Verifica con resource”](#412-messaggio-di-richiesta-esempio-verifica-con-resource)
   - [4.2. Response](#42-response)
     - [4.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201](#421-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-success-201)
     - [4.2.2. Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400](#422-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-ko-400)
@@ -1216,7 +1215,7 @@ curl -X 'POST' \
 
 _Tabella 7: Response Servizio di Validazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** Se il servizio viene invocato con il parametro “activity” a VERIFICA, verrà restituito lo StatusCode 200  in caso di SUCCESS
 
@@ -1482,29 +1481,9 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
 
-### 4.1.1. Messaggio di richiesta, esempio “Validation con Attachment”
+### 4.1.1. Messaggio di richiesta, esempio “Verifica con Attachment”
 
-Messaggio di richiesta con activity “VALIDATION” (validazione ai fini della successiva pubblicazione), pdf con CDA innestato in modalità ATTACHMENT e tipo documento CDA
-
-``` bash
-curl -X 'POST' \	
-  'https://<HOST>:<PORT>/v1/documents/validation' \
-  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-  -H 'accept: application/json' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'requestBody={
-  "healthDataFormat": "CDA",
-  "mode": "ATTACHMENT",
-  "activity": "VALIDATION",
-}' \
-  -F 'file=@CDA_OK.pdf;type=application/pdf'
-```
-
-
-### 4.1.2. Messaggio di richiesta, esempio “Verifica con Attachment”
-
-Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con CDA innestato in modalità ATTACHMENT ma senza specificarlo nella request, tipo documento CDA
+Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con Bundle FHIR innestato in modalità ATTACHMENT ma senza specificarlo nella request
 
 ``` bash
 curl -X 'POST' \	
@@ -1513,17 +1492,16 @@ curl -X 'POST' \
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'requestBody={
-  "healthDataFormat": "CDA",
+  -F 'requestBody={ 
   "activity": "VERIFICA",
 }' \
-  -F 'file=@CDA_OK.pdf;type=application/pdf'
+  -F 'file=@BUNDLE_FHIR_OK.pdf;type=application/pdf'
 ```
 
 
-### 4.1.3. Messaggio di richiesta, esempio “Verifica con resource”
+### 4.1.2. Messaggio di richiesta, esempio “Verifica con resource”
 
-Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con CDA innestato in modalità  RESOURCE, tipo documento CDA
+Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con Bundle FHIR innestato in modalità  RESOURCE
 
 ``` bash
 curl -X 'POST' \	
@@ -1532,12 +1510,11 @@ curl -X 'POST' \
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
-  -F 'requestBody={
-  "healthDataFormat": "CDA",
+  -F 'requestBody={ 
   "mode": "RESOURCE",
   "activity": "VERIFICA",
 }' \
-  -F 'file=@CDA_OK.pdf;type=application/pdf'
+  -F 'file=@BUNDLE_FHIR_OK.pdf;type=application/pdf'
 ```
 
 ## 4.2. Response
@@ -1562,12 +1539,6 @@ curl -X 'POST' \
    <td>200
    </td>
    <td>Validazione positiva a seguito di activity verifica**
-   </td>
-  </tr>
-  <tr>
-   <td>201
-   </td>
-   <td>Validazione positiva a seguito di activity validation***
    </td>
   </tr>
   <tr>
@@ -1613,12 +1584,6 @@ curl -X 'POST' \
    </td>
   </tr>
   <tr>
-   <td>422
-   </td>
-   <td>Richiesta semanticamente non processabile
-   </td>
-  </tr>
-  <tr>
    <td>429
    </td>
    <td>Too Many Requests
@@ -1657,11 +1622,10 @@ curl -X 'POST' \
 
 _Tabella 7: Response Servizio di Validazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
-** Se il servizio viene invocato con il parametro “activity” a VERIFICA, verrà restituito lo StatusCode 200  in caso di SUCCESS
-
-*** Se il servizio viene invocato con il parametro “activity” a  VALIDATION, verrà restituito lo StatusCode 201 in caso di SUCCESS
+** Allo stato attuale è prevista solo la validazione di un Bundle FHIR non finalizzato alla pubblicazione e per tale motivo l'enum activity avrà solo il valore VERIFICA.
+In risposta all'invocazione, verrà restituito dal gateway lo StatusCode 200  in caso di SUCCESS
 
 **Campi sempre valorizzati**
 
@@ -1767,7 +1731,7 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
   "warning": "Attenzione, non è stata selezionata la modalità di estrazione del CDA"
 }
 ```
---END VI
+
 
 # 5. Servizio di Creazione
 
@@ -2252,7 +2216,7 @@ curl -X 'POST' \
 
 _Tabella 12: Response Servizio di Pubblicazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
 
@@ -2565,7 +2529,7 @@ curl -X 'DELETE' \
 
 _Tabella 17: Response Servizio di Pubblicazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -3105,7 +3069,7 @@ curl -X 'PUT' \
 
 _Tabella 22: Response Servizio di Pubblicazione Sostituzione Documento_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
 
@@ -3606,7 +3570,7 @@ curl -X 'PUT' \
 
 _Tabella 27: Response Servizio di Pubblicazione Aggiornamento Documento_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -4192,7 +4156,7 @@ curl -X 'POST' \
 
 _Tabella 32: Response Servizio di Validazione Pubblicazione creazione contestuale_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione creazione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400
 
@@ -4738,7 +4702,7 @@ curl -X 'PUT' \
 
 _Tabella 37: Response Servizio di Validazione pubblicazione Sostituzione Documento contestuale_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione sostituzione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400.
 
@@ -5066,7 +5030,7 @@ curl -X 'GET' \
 
 _Tabella 32: Response Servizio di Recupero Stato Transazione per WorkflowInstanceId_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
