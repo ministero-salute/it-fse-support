@@ -3,17 +3,8 @@
 **INTERFACCE REST UAR**
 
 
-<table>
-  <tr>
-   <td>Versione
-   </td>
-   <td>:
-   </td>
-   <td>ver 1.0
-   </td>
-  </tr>
-</table>
-
+| Versione | : | 1.0 |
+|----------|---|---------|
 
 
 **INDICE**
@@ -32,19 +23,19 @@
     - [Parametri Body (DocumentDTO)](#parametri-body-documentdto)
     - [3.1.1. Messaggio di Richiesta”](#311-messaggio-di-richiesta)
   - [3.2. Response](#32-response)
-    - [3.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”](#321-esempio-di-messaggio-di-risposta-con-esito-ok-200---pubblicazione-con-attachment)
-    - [3.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400](#322-messaggio-di-risposta-esempio-pubblicazione-con-resource-con-esito-ko-400)
+    - [3.2.1. Esempio di Messaggio di Risposta con esito OK 200](#321-esempio-di-messaggio-di-risposta-con-esito-ok-200)
+    - [3.2.2. Messaggio di Risposta con esito KO 400](#322-messaggio-di-risposta-con-esito-ko-400)
 - [4. Servizio di Eliminazione Documento](#4-servizio-di-eliminazione-documento)
   - [4.1. Request](#41-request)
     - [4.1.1. Messaggio di Richiesta, esempio “Eliminazione Documento”](#411-messaggio-di-richiesta-esempio-eliminazione-documento)
   - [4.2. Response](#42-response)
-    - [4.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo](#421-esempio-di-messaggio-di-risposta-con-esito-ok-200---delete-eseguita-con-successo)
+    - [4.2.1. Esempio di Messaggio di Risposta con esito OK 200](#421-esempio-di-messaggio-di-risposta-con-esito-ok-200)
     - [4.2.2. Esempio di Messaggio di Risposta con esito KO 400](#422-esempio-di-messaggio-di-risposta-con-esito-ko-400)
 - [5. Servizio di Sostituzione Documento](#5-servizio-di-sostituzione-documento)
   - [5.1. Request](#51-request)
     - [5.1.1. Messaggio di Richiesta, esempio “Pubblicazione Sostituzione Documento con Attachment”](#511-messaggio-di-richiesta-esempio-pubblicazione-sostituzione-documento-con-attachment)
   - [5.2. Response](#52-response)
-    - [56.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#5621-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
+    - [56.2.1. Esempio di Messaggio di Risposta con esito OK 200](#5621-esempio-di-messaggio-di-risposta-con-esito-ok-200)
     - [5.2.2. Esempio di Messaggio di Risposta con esito KO 400](#522-esempio-di-messaggio-di-risposta-con-esito-ko-400)
 - [6. Servizio di Aggiornamento Metadati](#6-servizio-di-aggiornamento-metadati)
   - [6.1. Request](#61-request)
@@ -410,7 +401,7 @@ traceId e spanId coincidono nella prima operazione.
 _Tabella 13: Campi Response sempre valorizzati_
 
 
-### 3.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”
+### 3.2.1. Esempio di Messaggio di Risposta con esito OK 200
 
 ``` json
 { 
@@ -420,7 +411,7 @@ _Tabella 13: Campi Response sempre valorizzati_
 }
 ```
 
-### 3.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400
+### 3.2.2. Messaggio di Risposta con esito KO 400
 
 ``` json
 {
@@ -696,7 +687,7 @@ traceId e spanId coincidono nella prima operazione.
 
 _Tabella 18: Campi Response sempre valorizzati_
 
-### 4.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo
+### 4.2.1. Esempio di Messaggio di Risposta con esito OK 200
 
 ``` json
 { 
@@ -1238,7 +1229,7 @@ _Tabella 23: Campi Response sempre valorizzati_
 _Tabella 24: Campi Response valorizzati in caso di warning_
 
 
-### 56.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
+### 56.2.1. Esempio di Messaggio di Risposta con esito OK 200
 
 ``` json
 { 
@@ -1280,12 +1271,7 @@ In ambiente di validazione, è stato rilascio un ulteriore endpoint:
 https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata-iti-57
 ```
 
-Tale endpoint consentirà ai diversi attori di invocare la nuova transazione di aggiornamento metadati "IHE ITI-57" mediante il Gateway. Le interfacce esposte rispettano le stesse e identiche specifiche della precedente transazione. 
-
-``` IMPORTANTE
-Tale endpoint sarà esposto in ambiente di validazione per un tempo necessario da consentire a tutte le RDA di adeguarsi. Successivamente, previa comunicazione, verrà utilizzato l'endpoint /metadata per eseguire la transazione di ITI-57 attraverso il GTW
-
-```
+Tale endpoint consentirà ai diversi attori di invocare la nuova transazione di aggiornamento metadati "IHE ITI-57" mediante il Gateway. Le interfacce esposte rispettano le stesse e identiche specifiche della precedente transazione.
 
 
 
