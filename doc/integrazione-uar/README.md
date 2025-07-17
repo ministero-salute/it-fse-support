@@ -52,20 +52,14 @@
   - [6.2. Response](#62-response)
     - [6.2.1. Esempio di Messaggio di risposta con Esito Success 200](#621-esempio-di-messaggio-di-risposta-con-esito-success-200)
     - [6.2.2. Esempio di Messaggio di Risposta con esito KO 400](#622-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-    - [6.3. Esempio Messaggio di Richiesta attraverso iti-57](#63-esempio-messaggio-di-richiesta-attraverso-iti-57)
-    - [7.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#711-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
-    - [7.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”](#712-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
 - [8. Drilldown Response in caso di Errore](#8-drilldown-response-in-caso-di-errore)
   - [8.1. Errori Applicativi](#81-errori-applicativi)
     - [8.3.1. Esempi di errore generati dal Gateway](#831-esempi-di-errore-generati-dal-gateway)
   - [8.1. Errori provenienti da Apparati di Frontiera](#81-errori-provenienti-da-apparati-di-frontiera)
 - [9. Drilldown Parametri di Input](#9-drilldown-parametri-di-input)
   - [9.1. Campi Contenuti nei JWT](#91-campi-contenuti-nei-jwt)
-  - [13.2. Campi Contenuti nella Request Body](#132-campi-contenuti-nella-request-body)
+  - [9.2. Campi Contenuti nella Request Body](#92-campi-contenuti-nella-request-body)
   - [13.3. Tabelle di Riferimento](#133-tabelle-di-riferimento)
-    - [13.3.1. Attività Clinica Enum](#1331-attività-clinica-enum)
-    - [13.3.2. Healthcare Facility Type Code](#1332-healthcare-facility-type-code)
-    - [13.3.3. Tipo Documento Alto Livello](#1333-tipo-documento-alto-livello)
   - [Notes](#notes)
 
 
@@ -415,31 +409,6 @@ traceId e spanId coincidono nella prima operazione.
 
 _Tabella 13: Campi Response sempre valorizzati_
 
-**Campi valorizzati solo in caso di warning**
-
-
-<table>
-  <tr>
-   <td><strong>FIELD</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>DESCRIPTION</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>warning
-   </td>
-   <td>String
-   </td>
-   <td>Dettaglio del warning
-   </td>
-  </tr>
-</table>
-
-
-_Tabella 14: Campi Response valorizzati in caso di warning_
-
 
 ### 3.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”
 
@@ -726,32 +695,6 @@ traceId e spanId coincidono nella prima operazione.
 
 
 _Tabella 18: Campi Response sempre valorizzati_
-
-**Campi valorizzati solo in caso di warning**
-
-
-<table>
-  <tr>
-   <td><strong>FIELD</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>DESCRIPTION</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>warning
-   </td>
-   <td>String
-   </td>
-   <td>Dettaglio del warning
-   </td>
-  </tr>
-</table>
-
-
-_Tabella 19: Campi Response valorizzati in caso di warning_
-
 
 ### 4.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo
 
@@ -1816,109 +1759,6 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
   "status": 400,
   "instance": "/msg/mandatory-element"
 }
-```
-
-### 6.3. Esempio Messaggio di Richiesta attraverso iti-57
-
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
-
-``` bash
-curl -X 'PUT' \
-  'https://<HOST>:<PORT>/v1/documents/507f1f77bcf86cd799439011/metadata-iti-57' \
-  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-  -H 'accept: application/json' \
-  -d '{
-  "tipologiaStruttura": "Ospedale",
-  "attiCliniciRegoleAccesso": [
-    "P99"
-  ],
-  "tipoDocumentoLivAlto": "WOR",
-  "assettoOrganizzativo": "AD_PSC001",
-  "dataInizioPrestazione": "20141020110012",
-  "dataFinePrestazione": "20141020110012",
-  "conservazioneANorma": "string",
-  "tipoAttivitaClinica": "CON",
-  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-  "descriptions": [
-    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
-  ],
-  "administrativeRequest": ["SSN"]
-}'\
--F 'file=@CDA_OK.pdf;type=application/pdf'
-```
-
-Le risposte sono le medesime riportate per i casi precedenti.
-
-### 7.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”
-
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
-
-``` bash
-curl -X 'POST' \
-  'https://<HOST>:<PORT>/v1/documents/validate-and-create' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'requestBody={
-  "healthDataFormat": "CDA",
-  "mode": "ATTACHMENT",
-  "tipologiaStruttura": "Ospedale",
-  "attiCliniciRegoleAccesso": [
-    "P99"
-  ],
-  "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290700",
-  "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-  "tipoDocumentoLivAlto": "REF",
-  "assettoOrganizzativo": "AD_PSC001",
-  "dataInizioPrestazione": "20141020110012",
-  "dataFinePrestazione": "20141020110012",
-  "tipoAttivitaClinica": "CON",
-  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-  "priorita": false,
-  "descriptions": [
-    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
-  ],
-  "administrativeRequest": ["SSN"]
-}' \
-  -F 'file=@CDA_OK.pdf;type=application/pdf'
-```
-
-### 7.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”
-
-Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
-
-``` bash
-curl -X 'POST' \
-  'https://<HOST>:<PORT>/v1/documents/validate-and-create' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'requestBody={
-  "healthDataFormat": "CDA",
-  "mode": "RESOURCE",
-  "tipologiaStruttura": "Ospedale",
-  "attiCliniciRegoleAccesso": [
-    "P99"
-  ],
-  "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290701",
-  "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-  "tipoDocumentoLivAlto": "REF",
-  "assettoOrganizzativo": "AD_PSC001",
-  "dataInizioPrestazione": "20141020110012",
-  "dataFinePrestazione": "20141020110012",
-  "tipoAttivitaClinica": "CON",
-  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-  "priorita": true,
-  "descriptions": [
-    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
-  ],
-  "administrativeRequest": ["SSN"]
-}' \
-
-  -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
 # 8. Drilldown Response in caso di Errore
@@ -3439,10 +3279,9 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 N.B: Il campo **locality** nell'esempio fa riferimento al **LABORATORIO DI PROVA** della Regione Sicilia **190**, ASL **111** e codice STS.11 **123456**
 
 
-## 13.2. Campi Contenuti nella Request Body
+## 9.2. Campi Contenuti nella Request Body
 
 Per i campi contenuti nella request body si evidenzia nel campo “provenienza” se questi sono campi introdotti per rendere possibile la comunicazione con INI o se questi sono stati appositamente introdotti per gestire in maniera efficace ed efficiente il gateway.
-
 
 <table>
   <tr>
@@ -4118,10 +3957,6 @@ Vedi TABELLA ORGANIZZAZIONE per il codice della REGIONE
 
 _Tabella 41: Campi contenuti nella Request Body_
 
-	
-
-
-
 
 ## 13.3. Tabelle di Riferimento
 
@@ -4130,206 +3965,6 @@ Nella sezione presente vengono riportate le Tabelle di Riferimento per i Paramet
 Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle medesime specifiche di riferimento (versione 2.5), sono esclusivamente quelle necessarie all’utilizzo dei servizi di validazione e di pubblicazione.
 
 Eventuali variazioni normative e/o ad Affinity Domain implicano l’aggiornamento delle tabelle referenziate.
-
-
-### 13.3.1. Attività Clinica Enum
-
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
-
-
-<table>
-  <tr>
-    <td><strong>Codice</strong></td>
-    <td><strong>DisplayName</strong></td>
-    <td><strong>Descrizione utilizzo</strong></td>
-  </tr>
-  <tr>
-    <td>PHR</td>
-    <td>Personal Health Record Update</td>
-    <td>Documenti trasmessi direttamente dal paziente mediante il taccuino personale.</td>
-  </tr>
-  <tr>
-    <td>CON</td>
-    <td>Consulto</td>
-    <td>Documenti trasmessi per richiedere un consulto.</td>
-  </tr>
-  <tr>
-    <td>DIS</td>
-    <td>Discharge</td>
-    <td>Documenti trasmessi a seguito di un ricovero.</td>
-  </tr>
-  <tr>
-    <td>ERP</td>
-    <td>Erogazione Prestazione Prenotata</td>
-    <td>Documenti trasmessi a seguito di una prestazione programmata/prenotata</td>
-  </tr>
-  <tr>
-    <td>Sistema_TS</td>
-    <td>Documenti sistema TS</td>
-    <td>Documenti resi disponibili nel FSE dal Sistema TS.</td>
-  </tr>
-  <tr>
-    <td>INI</td>
-    <td>Documenti INI</td>
-    <td>Documenti trasferiti da INI durante il trasferimento indice alla nuova RDA.</td>
-  </tr>
-  <tr>
-    <td>PN_DGC</td>
-    <td>Documenti PN-DGC</td>
-    <td>Documenti resi disponibili dalla Piattaforma Nazionale DGC al sistema FSE.</td>
-  </tr>
-  <tr>
-    <td>OBS</td>
-    <td>Documento stato di salute</td>
-    <td>Documenti trasmessi al FSE per arricchire la valutazione dello stato di salute del paziente.</td>
-  </tr>
-</table>
-
-
-_Tabella 42:  _Value set per il metadato XDSSubmissionSet.contentTypeCode
-
-
-
-
-### 13.3.2. Healthcare Facility Type Code
-
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
-
-
-<table>
-  <tr>
-    <td><strong>Codice</strong></td>
-    <td><strong>DisplayName</strong></td>
-    <td><strong>Descrizione utilizzo</strong></td>
-  </tr>
-  <tr>
-    <td>Ospedale</td>
-    <td>Ospedale</td>
-    <td>Indica che il documento è stato prodotto in regime di ricovero ospedaliero del paziente.</td>
-  </tr>
-  <tr>
-    <td>Prevenzione</td>
-    <td>Prevenzione</td>
-    <td>Indica che il documento è stato prodotto a seguito di uno screening o di medicina preventiva.</td>
-  </tr>
-  <tr>
-    <td>Territorio</td>
-    <td>Territorio</td>
-    <td>Indica che il documento è stato prodotto a seguito di un incontro con uno specialista territoriale (ad es. MMG, PLS, ecc.).</td>
-  </tr>
-  <tr>
-    <td>SistemaTS</td>
-    <td>SistemaTS</td>
-    <td>Indica che il documento è gestito e condiviso dal Sistema TS.</td>
-  </tr>
-  <tr>
-    <td>Cittadino</td>
-    <td>Cittadino</td>
-    <td>Indica che il dato/documento è stato inserito dal cittadino.</td>
-  </tr>
-  <tr>
-    <td>MdsPN_DGC</td>
-    <td>MdsPN-DGC</td>
-    <td>Piattaforma Nazionale DGC del Ministero Della Salute.</td>
-  </tr>
-</table>
-
-
-_Tabella 43:  _Value set per il metadato XDSDocumentEntry.healthcareFacilityTypeCode_reFacilityTypeCode_
-
-
-
-
-### 13.3.3. Tipo Documento Alto Livello
-
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
-
-
-<table>
-  <tr>
-    <td><strong>Codice</strong></td>
-    <td><strong>DisplayName</strong></td>
-    <td><strong>Descrizione utilizzo</strong></td>
-  </tr>
-  <tr>
-    <td>WOR</td>
-    <td>Documento di workflow</td>
-    <td>Questa classe di documenti deve essere utilizzata per i documenti di workflow.</td>
-  </tr>
-  <tr>
-    <td>REF</td>
-    <td>Referto</td>
-    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di referto.</td>
-  </tr>
-  <tr>
-    <td>LDO</td>
-    <td>Lettera di dimissione ospedaliera</td>
-    <td>Questa classe di documenti deve essere utilizzata per le lettere di dimissione ospedaliera.</td>
-  </tr>
-  <tr>
-    <td>RIC</td>
-    <td>Richiesta</td>
-    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di richiesta (prescrizioni, richieste di consulto, ecc.).</td>
-  </tr>
-  <tr>
-    <td>SUM</td>
-    <td>Sommario</td>
-    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di sommario (ad es. profilo sanitario sintetico).</td>
-  </tr>
-  <tr>
-    <td>TAC</td>
-    <td>Taccuino</td>
-    <td>Questa classe deve essere utilizzata per indicare documenti trasmessi nel taccuino dall’assistito.</td>
-  </tr>
-  <tr>
-    <td>PRS</td>
-    <td>Prescrizione</td>
-    <td>Questa classe specifica che le informazioni riguardano le prescrizioni condivise dal Sistema TS.</td>
-  </tr>
-  <tr>
-    <td>PRE</td>
-    <td>Prestazioni</td>
-    <td>Questa classe specifica che le informazioni riguardano le prestazioni erogate condivise dal Sistema TS.</td>
-  </tr>
-  <tr>
-    <td>ESE</td>
-    <td>Esenzione</td>
-    <td>Questa classe indica che le informazioni riguardano le esenzioni.</td>
-  </tr>
-  <tr>
-    <td>PDC</td>
-    <td>Piano di cura</td>
-    <td>Questa classe specifica che le informazioni riguardano i piani terapeutici condivisi dal Sistema TS.</td>
-  </tr>
-  <tr>
-    <td>VAC</td>
-    <td>Vaccino</td>
-    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di vaccino (scheda della singola vaccinazione, certificato vaccinale).</td>
-  </tr>
-  <tr>
-    <td>CER</td>
-    <td>Certificato per DGC</td>
-    <td>Questa classe di documenti deve essere utilizzata per i documenti associati al Digital Green Certificate (certificazione verde Covid-19, certificazione di guarigione da Covid-19).</td>
-  </tr>
-  <tr>
-    <td>VRB</td>
-    <td>Verbale</td>
-    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di verbale (ad es. verbale di pronto soccorso).</td>
-  </tr>
-  <tr>
-    <td>CON</td>
-    <td>Documento di consenso</td>
-    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento di consenso (ad es. consenso informato anestesia).</td>
-  </tr>
-  <tr>
-    <td>CNT</td>
-    <td>Documento di controllo</td>
-    <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento che descrive un controllo clinico (ad es. bilanci di salute).</td>
-  </tr>
-</table>
-
-
-_Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 <!-- Footnotes themselves at the bottom. -->
 ## Notes
