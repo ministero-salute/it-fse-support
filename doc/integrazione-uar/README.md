@@ -109,12 +109,14 @@ _Tabella 1: Riferimenti Esterni_
 | UA-R        | Unità di archiviazione dati regionale                                                                              |
 | UD-P        | Unità di archiviazione dati pseduonimizzati                                                                        |
 | FPE         | [Format Preserving Encryption](https://en.wikipedia.org/wiki/Format-preserving_encryption)                         |
+
 _Tabella 2: Acronimi e Definizioni_
 
 ## 1.3. Registro modifiche
 | Versione | Data           | Descrizione modifiche                                                                  |
 | -------- | -------------- | -------------------------------------------------------------------------------------- |
 | 1.0      | 2025-07-17     | Creazione del documento                                                                |
+
 _Tabella 3: Registro Modifiche_
 
 
