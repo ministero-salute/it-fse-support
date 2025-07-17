@@ -27,9 +27,11 @@
   - [2.2. Processo di Autenticazione\[^3\]](#22-processo-di-autenticazione3)
   - [2.3. Note su autenticazione e token JWT](#23-note-su-autenticazione-e-token-jwt)
 - [3. Servizio di Creazione](#3-servizio-di-creazione)
-  - [3.1. Request](#31-request)
+    - [3.1. Request](#31-request)
+    - [Parametri Path](#parametri-path)
+    - [Parametri Body (DocumentDTO)](#parametri-body-documentdto)
     - [3.1.1. Messaggio di Richiesta, esempio “Pubblicazione con Attachment”](#311-messaggio-di-richiesta-esempio-pubblicazione-con-attachment)
-    - [3.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”](#312-messaggio-di-richiesta-esempio-pubblicazione-con-resource)
+    - [3.1.2. Messaggio di Richiesta”](#312-messaggio-di-richiesta)
   - [3.2. Response](#32-response)
     - [3.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”](#321-esempio-di-messaggio-di-risposta-con-esito-ok-200---pubblicazione-con-attachment)
     - [3.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400](#322-messaggio-di-risposta-esempio-pubblicazione-con-resource-con-esito-ko-400)
@@ -101,6 +103,7 @@ _Tabella 1: Riferimenti Esterni_
 | Acronimo    | Descrizione                                                                                                        |
 | ----------- | ------------------------------------------------------------------------------------------------------------------ |
 | FSE         | Fascicolo Sanitario Elettronico                                                                                    |
+| GTW         | Gateway                                                                                                            |
 | RDE         | Regione di erogazione                                                                                              |
 | RDA         | Regione di assistenza                                                                                              |
 | API         | Application Programming Interface                                                                                  |
@@ -121,68 +124,45 @@ _Tabella 3: Registro Modifiche_
 
 
 # 2. Contesto di Riferimento
-Piattaforma software basata su architettura a microservizi progettata per la gestione, la conservazione e l'esposizione dei dati clinici italiani.
-L'obiettivo principale del sistema è garantire l'interoperabilità, la sicurezza e l'accessibilità delle informazioni sanitarie in conformità con gli standard nazionali e internazionali.
-La piattaforma conserva i documenti clinici utilizzando il formato FHIR (Fast Healthcare Interoperability Resources), lo standard internazionale per lo scambio elettronico di dati sanitari.
-Tutti i documenti (come referti, prescrizioni, piani di cura, cartelle cliniche) vengono archiviati in maniera strutturata e semantica, preservando la loro integrità, tracciabilità e valore legale.
-Funzionalità principali:
+La nuova architettura del FSE prevede la presenza di un componente dell'EDS, denominato UA-R, finalizzata alla gestione dei dati in chiaro,utilizzando il formato FHIR, degli assistiti estratti dai documenti sanitari prodotti dalla Regione/ Provincia Autonoma.
+In questo documento verranno indicate le modalità per usufruire dei servizi esposti dalla UAR: il documento sarà redatto in modo incrementale e di volta in volta ulteriori API saranno integrate ed illustrate.
 
-- Conservazione sicura dei documenti clinici in formato FHIR, in linea con le normative italiane
-- Esposizione di servizi API per l'accesso ai dati clinici:
-  - Dati in chiaro: destinati agli operatori sanitari autorizzati, che necessitano di accedere alle informazioni originali dei pazienti per finalità di cura.
-  - Dati pseudonimizzati: accessibili per finalità di ricerca, analisi epidemiologica, miglioramento dei servizi sanitari, rispettando la protezione dell'identità del paziente.
-
-Ogni microservizio della piattaforma è specializzato in una funzione specifica ed è orchestrato per garantire scalabilità, modularità e resilienza.
-
-Il presente documento descrive le api.
+In questa fase vengono illustrate le funzionalità principali:
+- Memorizzazione sicura dei documenti clinici in formato FHIR
+- Cancellazione dei documenti clinici in formato FHIR
+- Sostituzione dei documenti clinici in formato FHIR
+- Aggiornamento dei documenti clinici in formato FHIR
 
 | Endpoint URL | Metodo | Descrizione |
 |--------|----------|-------------|
-| `/v1/document/workflowinstanceid/{wii}/rda/{rda}` | POST | Servizio che consente di aggiungere un documento alla base dati di staging. |
-| `/v1/document/workflowinstanceid/{wii}/rda/{rda}` | PUT | Servizio che consente di inserire un record per replace sul MongoDB di staging.|
-| `/v1/document/metadata/{rda}` | PUT | Servizio che consente di inserire un record per aggiornamento sul MongoDB di staging.|
-| `/v1/document/identifier/{identifier}/rda/{rda}` | DELETE | Servizio che consente di cancellare un documento dalla base dati dato il suo identifier. |
+| `/v1/document/workflowinstanceid/{wii}/rda/{rda}` | POST | Acquisisce un nuovo documento per la creazione sul server FHIR.. |
+| `/v1/document/workflowinstanceid/{wii}/rda/{rda}` | PUT | Acquisisce un documento per sostituirne uno esistente sul server FHIR.|
+| `/v1/document/metadata/{rda}` | PUT | Acquisisce e aggiorna la risorsa DocumentReference all'interno del Bundle FHIR.|
+| `/v1/document/identifier/{identifier}/rda/{rda}` | DELETE | Elimina un documento, identificato dall'identificativoDocumento, dal server FHIR. |
 
 _Tabella 4: Endpoint/Funzionalità_
 
 L'endpoint del **sistema di test** è: 
 
-    https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
+    TBD
 
-
-**Creazione Documento FHIR**
-
-Nello scenario di questa funzionalità il Repository Documentale locale invia il documento secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere a quello precedentemente validato secondo il servizio di Validazione Documenti CDA2.
-
-La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF ignorando il tag del CDA "Legal Authenticator". Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
-
-Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
-
-La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
+**Creazione Documento**
+Il flusso di creazione consente di ricevere in input un Bundle FHIR conforme allo standard HL7, al fine di consentirne la presa in carico da parte del sistema UAR. Successivamente, il bundle verrà memorizzato in modo asincrono sul server FHIR indicato.
 
 **Sostituzione Documento FHIR**
-
-Nello scenario di questa funzionalità il Repository Documentale locale effettuerà una richiesta di cancellazione di un documento identificato dal XDSDocumentEntry.uniqueId. 
-
-Tale servizio effettua in modalità sincrona la cancellazione delle risorse FHIR sull’EDS e successivamente la cancellazione dei metadati su INI. 
-
-In caso di errore nell’eliminazione, il servizio fornisce un acknowledgement di presa in carico dell’operazione.
+Il flusso di sostizuone consente di ricevere in input un Bundle FHIR conforme allo standard HL7, al fine di consentirne la presa in carico da parte del sistema UAR. Successivamente, verrà eseguita una ricerca rispetto al master identifier che assicura che il documento si trova effettivamente sul server FHIR e poi tale documento viene rimpiazzato.
 
 **Cancellazione Documento FHIR**
 
-Questa funzionalità permette di sovrascrivere un documento precedentemente pubblicato. 
-
-Come per la creazione, il servizio effettua la conversione del documento in ingresso (identificato dal XDSDocumentEntry.uniqueId) in formato FHIR e procede all’invio verso EDS e INI.
-
-La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
+Il flusso di cancellazione consente la rimozione di un documento pubblicato, identificato tramite identifier (XDSDocumentEntry.uniqueId), sia dal server FHIR (EDS) che dai metadati registrati su INI.
+L’eliminazione delle risorse avviene in modalità sincrona su entrambi i sistemi.
+Il servizio restituisce un acknowledgment di presa in carico, anche in caso di errore durante l’operazione.
 
 **Aggiornamento Document FHIR**
 
-Questa funzionalità permette di aggiornare i metadati di un documento presente su FSE. Tale servizio effettua in modalità sincrona l’aggiornamento dei metadati sia su EDS che su INI.
-
-In caso di errore nell’aggiornamento, il servizio fornisce un acknowledgement di presa in carico dell’operazione.
-
-Anche in questo caso il documento viene identificato dal XDSDocumentEntry.uniqueId.
+Questa funzionalità consente di aggiornare i metadati associati a un documento già pubblicato su FSE, senza modificarne il contenuto clinico.
+L’operazione aggiorna la risorsa DocumentReference all’interno del Bundle FHIR, sia su EDS che su INI, in modalità completamente sincrona.
+Anche in questo caso, il documento viene identificato tramite XDSDocumentEntry.uniqueId. In caso di errore, il servizio restituisce un acknowledgment di presa in carico.
 
 ## 2.1. Pattern di Interazione
 
@@ -226,7 +206,6 @@ Il secondo JWT è di “signature” e contiene rifermenti al documento oggetto 
 FSE-JWT-Signature: {VALORE DEL TOKEN}
 ```
 
-
 **Entrambi** i token devono essere firmati utilizzando il certificato “signature”.
 
 Vista la dipendenza dei token dai valori specifici di utente/soggetto/documento è necessario generare nuovi JWT per ogni chiamata alle API.
@@ -235,308 +214,44 @@ Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
 # 3. Servizio di Creazione
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Lo scopo di questa API è indicizzare un nuovo documento clinico sul FSE regionale, tradurre i dati clinici nel formato HL7 FHIR ed inviarli al Data Repository Centrale.
 
-L’Endpoint del caso d’uso di Creazione Documento CDA2 si compone come segue:
+L’Endpoint del caso d’uso di Creazione Documento si compone come segue:
 
 ```
-https://<HOST>:<PORT>/v<major>/documents
+https://<HOST>:<PORT>/v<major>/documents/{wii}/rda/{rda}
 ```
 
 Lo scopo di questa API è indicizzare un nuovo documento clinico sul FSE regionale, tradurre i dati clinici nel formato HL7 FHIR ed inviarli al Data Repository Centrale.
 
 
-## 3.1. Request
+### 3.1. Request
 
+| METHOD | URL | TYPE |
+|--------|-----|------|
+| POST | `/v1/document/workflowinstanceid/{wii}/rda/{rda}` | application/json |
 
-<table>
-  <tr>
-   <td>METHOD
-   </td>
-   <td>POST
-   </td>
-  </tr>
-  <tr>
-   <td>URL
-   </td>
-   <td>/v1/documents
-   </td>
-  </tr>
-  <tr>
-   <td>TYPE
-   </td>
-   <td>multipart/form-data
-   </td>
-  </tr>
-</table>
+### Parametri Path
 
+| KEY | IN | TYPE | REQUIRED |
+|-----|----|------|----------|
+| wii | path | string | True |
+| rda | path | string | True |
 
-_Tabella 10: Method, URL, Type_
+### Parametri Body (DocumentDTO)
 
-
-<table>
-  <tr>
-   <td colspan="6" >     <strong>PARAMETER</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>SECTION</strong>
-   </td>
-   <td><strong>KEY</strong>
-   </td>
-   <td><strong>NAME</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>REQUIRED</strong>
-   </td>
-   <td><strong>AFFINITY DOMAIN/IHE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>Authorization
-   </td>
-   <td>N.D.
-   </td>
-   <td>Bearer
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>FSE-JWT-Signature
-   </td>
-   <td>N.D.
-   </td>
-   <td>N.D.
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>Accept
-   </td>
-   <td>application/json
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="18" >Request Body
-   </td>
-   <td>file
-   </td>
-   <td>file
-   </td>
-   <td>MultipartFile
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="17" >requestBody
-   </td>
-   <td>workflowInstanceId
-   </td>
-   <td>String
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>healthDataFormat
-   </td>
-   <td>HealthDataFormatEnum
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>mode
-   </td>
-   <td>InjectionModeEnum
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>tipologiaStruttura
-   </td>
-   <td>HealthcareFacilityEnum
-   </td>
-   <td>true
-   </td>
-   <td>XDSDocumentEntry.healthcareFacilityTypeCode
-   </td>
-  </tr>
-  <tr>
-   <td>attiCliniciRegoleAccesso
-   </td>
-   <td>List<String>
-   </td>
-   <td>false
-   </td>
-   <td>XDSDocumentEntry.eventCodeList
-   </td>
-  </tr>
-  <tr>
-   <td>identificativoDoc
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>XDSDocumentEntry.uniqueId
-   </td>
-  </tr>
-  <tr>
-   <td>identificativoRep
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>XDSDocumentEntry.repositoryUniqueId
-   </td>
-  </tr>
-  <tr>
-   <td>tipoDocumentoLivAlto
-   </td>
-   <td>TipoDocAltoLivEnum
-   </td>
-   <td>true
-   </td>
-   <td>XDSDocumentEntry.classCode
-   </td>
-  </tr>
-  <tr>
-   <td>assettoOrganizzativo
-   </td>
-   <td>PracticeSettingCodeEnum
-   </td>
-   <td>true
-   </td>
-   <td>XDSDocumentEntry.practiceSettingCode
-   </td>
-  </tr>
-  <tr>
-   <td>dataInizioPrestazione
-   </td>
-   <td>String
-   </td>
-   <td>false
-   </td>
-   <td>XDSDocumentEntry. serviceStartTime (ITI TF 3: 4.2.3.2.19)
-   </td>
-  </tr>
-  <tr>
-   <td>dataFinePrestazione
-   </td>
-   <td>String
-   </td>
-   <td>false
-   </td>
-   <td>XDSDocumentEntry.serviceStopTime (ITI TF 3: 4.2.3.2.20)
-   </td>
-  </tr>
-  <tr>
-   <td>conservazioneANorma
-   </td>
-   <td>String
-   </td>
-   <td>false
-   </td>
-   <td>XDSDocumentEntry.Slot - Conservazione a norma
-   </td>
-  </tr>
-  <tr>
-   <td>tipoAttivitaClinica
-   </td>
-   <td>AttivitaClinicaEnum
-   </td>
-   <td>true
-   </td>
-   <td>XDSSubmissionSet.contentTypeCode
-   </td>
-  </tr>
-  <tr>
-   <td>identificativoSottomissione
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
-   </td>
-  </tr>
-  <tr>
-   <td>priorita
-   </td>
-   <td>boolean
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-   <tr>
-   <td>descriptions
-   </td>
-   <td>List
-   </td>
-   <td>false
-   </td>
-   <td>XDSDocumentEntry.Slot - description
-   </td>
-  </tr>
-   <tr>
-   <td>administrativeRequest
-   </td>
-   <td>AdministrativeReqEnum
-   </td>
-   <td>false
-   </td>
-   <td>XDSDocumentEntry.Slot - administrativeRequest
-   </td>
-  </tr>
-  
-  
-  
-</table>
-
+| KEY | TYPE |
+|-----|------|
+| fhirServerUrl | string |
+| identifier | string |
+| operation | string |
+| jsonString | string |
+| insertionDate | string |
+| fiscalCode | string |
 
 _Tabella 11: Parametri Richiesta di Creazione_
 
-La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “priorita” consente al Gateway di decidere la priorità da attribuire al documento fornito in input al servizio.
-
-Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
-
-
-
-* **file** che dovrà contenere un file PDF con iniettato un Clinical Document in formato XML in linea con quanto riportato nelle «Implementation Guide CDA R2» al link [1]
-
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
@@ -579,7 +294,7 @@ curl -X 'POST' \
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
-### 3.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”
+### 3.1.2. Messaggio di Richiesta”
 
 Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
 
@@ -587,37 +302,21 @@ In questo caso, il workflowInstanceId non esiste nel gateway.
 
 ``` bash
 curl -X 'POST' \
-  'https://<HOST>:<PORT>/v1/documents' \
-  -H 'accept: application/json' \
-  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
-  -H 'Content-Type: multipart/form-data' \
-  -F 'requestBody={
-  "workflowInstanceId": " 2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ew.e70b9b0acr^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-  "healthDataFormat": "CDA",
-  "mode": "RESOURCE",
-  "tipologiaStruttura": "Ospedale",
-  "attiCliniciRegoleAccesso": [
-    "P99"
-  ],
-  "identificativoDoc": "2.16.840.1.113883.2.9.2.120.4.4^290701",
-  "identificativoRep": " 2.16.840.1.113883.2.9.2.120.4.5.1",
-  "tipoDocumentoLivAlto": "REF",
-  "assettoOrganizzativo": "AD_PSC001",
-  "dataInizioPrestazione": "20141020110012",
-  "dataFinePrestazione": "20141020110012",
-  "tipoAttivitaClinica": "CON",
-  "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-  "priorita": true,
-  "descriptions": [
-    "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
-  ],
-  "administrativeRequest": ["SSN"]
-}' \
-  -F 'file=@CDA_OK.pdf;type=application/pdf'
+  'http://<HOST>:<PORT>/v1/document/workflowinstanceid/2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed/rda/RDA001' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <JWT_TOKEN>' \
+  -H 'FSE-JWT-Signature: <JWT_SIGNATURE>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "fhirServerUrl": "https://fhirserver.example.com",
+    "identifier": "2.16.840.1.113883.2.9.2.120.4.4^290700",
+    "operation": "PUBLISH",
+    "jsonString": "{\"resourceType\": \"DocumentReference\", \"status\": \"current\"}",
+    "insertionDate": "2024-04-01T10:00:00Z",
+    "fiscalCode": "RSSMRA85M01H501Z"
+}'
+
 ```
-
-
 
 ## 3.2. Response
 
@@ -825,6 +524,7 @@ _Tabella 14: Campi Response valorizzati in caso di warning_
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 8.1 “Campi Contenuti nei JWT”.
 
 L’Endpoint del caso d’uso di Eliminazione Documento si compone come segue:
+
 
 ```
 https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>
