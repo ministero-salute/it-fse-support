@@ -93,6 +93,7 @@
 | [1](https://developers.italia.it/it/fse/) | Fascicolo Sanitario Elettronico | Un nuovo ecosistema digitale, basato su dati e documenti, per offrire prestazioni di qualità a favore di cittadini e operatori sanitari |
 | [2](https://github.com/ministero-salute/it-fse-support/tree/main/doc/integrazione-gateway) | Specifiche Integrazione Gateway | Documento delle specifiche di integrazione con la componente Gateway FSE2.0 |
 | [3](https://www.gazzettaufficiale.it/eli/id/2025/03/05/25A01321/SG) | Decreto ministeriale EDS | Decreto 31 dicembre 2024 — Ecosistema dati sanitari |
+
 _Tabella 1: Riferimenti Esterni_
 
 
