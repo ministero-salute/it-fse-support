@@ -6,7 +6,7 @@
 | Versione | : | 1.0 |
 |----------|---|---------|
 
-**INDICE**
+## INDICE
 
 - [1. Introduzione](#1-introduzione)
   - [1.1. Riferimenti](#11-riferimenti)
@@ -16,32 +16,26 @@
   - [2.1. Pattern di Interazione](#21-pattern-di-interazione)
   - [2.2. Processo di Autenticazione](#22-processo-di-autenticazione3)
   - [2.3. Note su autenticazione e token JWT](#23-note-su-autenticazione-e-token-jwt)
-- [3. Servizio di Creazione Documento](#3-servizio-di-creazione-documento)
+- [3. Servizio di Memorizzazione Documento](#3-servizio-di-memorizzazione-documento)
   - [3.1. Request](#31-request)
-    - [Parametri Path](#parametri-path)
-    - [Parametri Body (SendToUarDocumentRequestDTO)](#parametri-body-sendtouardocumentrequestdto)
-    - [3.1.1. Esempio di richiesta](#311-esempio-di-richiesta)
   - [3.2. Response](#32-response)
-    - [3.2.1. Esempio risposta 201](#321-esempio-risposta-201)
-    - [3.2.2. Messaggio di Risposta con esito KO 400](#322-messaggio-di-risposta-con-esito-ko-400)
 - [4. Servizio di Eliminazione Documento](#4-servizio-di-eliminazione-documento)
   - [4.1. Request](#41-request)
-    - [4.1.1. Esempio di richiesta](#411-esempio-di-richiesta)
   - [4.2. Response](#42-response)
-    - [4.2.1. Esempio risposta 200](#421-esempio-risposta-200)
-    - [4.2.2. Esempio di Messaggio di Risposta con esito KO 404](#422-esempio-di-messaggio-di-risposta-con-esito-ko-404)
 - [5. Servizio di Sostituzione Documento](#5-servizio-di-sostituzione-documento)
   - [5.1. Request](#51-request)
-    - [5.1.1. Esempio di richiesta](#511-esempio-di-richiesta)
   - [5.2. Response](#52-response)
-    - [5.2.1. Esempio risposta 200](#521-esempio-risposta-200)
-    - [5.2.2. Esempio di Messaggio di Risposta con esito KO 404](#522-esempio-di-messaggio-di-risposta-con-esito-ko-404)
 - [6. Servizio di Aggiornamento Metadati](#6-servizio-di-aggiornamento-metadati)
   - [6.1. Request](#61-request)
-    - [6.1.1. Esempio di richiesta](#611-esempio-di-richiesta)
   - [6.2. Response](#62-response)
-    - [6.2.1. Esempio risposta 200](#621-esempio-risposta-200)
-    - [6.2.2. Esempio di Messaggio di Risposta con esito KO 404](#622-esempio-di-messaggio-di-risposta-con-esito-ko-404)
+- [7. Drilldown Response in caso di Errore](#7-drilldown-response-in-caso-di-errore)
+  - [7.1. Errori Applicativi](#71-errori-applicativi)
+    - [7.1.1. Esempi di errore generati da UA-R](#711-esempi-di-errore-generati-da-ua-r)
+- [8. Drilldown Parametri di Input](#8-drilldown-parametri-di-input)
+  - [8.1. Campi Contenuti nei JWT](#81-campi-contenuti-nei-jwt)
+  - [8.2. Campi Contenuti nella Request Body](#82-campi-contenuti-nella-request-body)
+  - [8.3. Tabelle di Riferimento](#83-tabelle-di-riferimento)
+    - [8.3.1. RDA](#831-rda)
 - [Notes](#notes)
 
 
@@ -79,7 +73,7 @@ _Tabella 2: Acronimi e Definizioni_
 ## 1.3. Registro modifiche
 | Versione | Data           | Descrizione modifiche                                                                  |
 | -------- | -------------- | -------------------------------------------------------------------------------------- |
-| 1.0      | 2025-07-18     | Creazione del documento                                                                |
+| 1.0      | 2025-07-21     | Creazione del documento                                                                |
 
 _Tabella 3: Registro Modifiche_
 
