@@ -580,9 +580,36 @@ _Tabella 37: Campi Response valorizzati in caso di errore_
 </table>
 
 # 8. Drilldown Parametri di Input
-## 8.1. Campi Contenuti nei JWT
+Per il colloquio con i servizi di EDS è stato scelto di utilizzare il pattern:
+* [INTEGRITY_REST_01] Integrità del payload messaggio REST
 
-Gli endpoint del Gateway ricevono 2 token JWT:
+Secondo quanto previsto dai requisiti di progetto non è previsto il tracciamento del payload del messaggio. Sarà, invece, tracciato su tracciamento opponibile ai terzi il token **Agid-JWT-Signature**.
+
+In sede di progetto è stato fornito il requisito di applicare il pattern [INTEGRITY_REST_01] e non il profilo [PROFILE_NON_REPUDIATION_01] Profilo per la non ripudiabilità della trasmissione.
+
+Applicando il pattern [INTEGRITY_REST_01], il fruitore non detiene la risposta firmata della presa in carico o meno della transazione da parte del sistema EDS. In caso di applicazione del profilo di [PROFILE_NON_REPUDIATION_01] il Gateway avrebbe dovuto tracciare anche la request e, di conseguenza, fare persistenza del dato sanitario contenuto nell’oggetto bundle_FHIR inviato al sistema EDS.
+
+Lato Gateway, tracciando solo Agid-JWT-Signature senza payload ho solo il riferimento ai metadati della transazione inviata. Il sistema EDS, erogatore della funzionalità, non avrà tracciato la risposta fornita in virtù del profilo scelto per la fruizione lato Gateway.
+Nel caso della configurazione delle chiamate dal Gateway gestito da Sogei, i certificati con cui si presenterà al broker EDS saranno sempre gli stessi a prescindere dall’appartenenza regionale del touchpoint da cui arriva la chiamata.
+
+## 8.1. Campi Contenuti nei JWT
+Il sistema Broker è consumer dei servizi esposti dalle componenti UAR-Regionali quando non gestite direttamente da Sogei.
+Per questa esposizione si è ricevuto il requisito di esposizione con:
+[PROFILE_NON_REPUDIATION_01] Profilo per la non ripudiabilità della trasmissione
+
+Tale profilo garantisce:
+* integrità del messaggio
+* autenticazione del fruitore, quale organizzazione o unità organizzativa fruitore quale mittente del contenuto
+* conferma da parte dell’erogatore della ricezione del contenuto
+* opponibilità ai terzi
+* robustezza della trasmissione
+
+Per questo profilo sarà previsto il tracciamento opponibile ai terzi delle seguenti informazioni:
+* Agid-JWT-Signature sia della request che della response 
+* Intero payload sia della request che della response 
+
+
+Gli endpoint di UA-R ricevono 2 token JWT:
 
 
 
@@ -1176,463 +1203,9 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
   </tr>
 </table>
 
+**Custom Claims**
 
-
----
-
-<table>
-  <tr>
-   <td colspan="2" ><strong>CUSTOM CLAIMS</strong>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>IDENTIFICATIVO ORGANIZZAZIONE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Identificativo del dominio dell’utente (vedi TABELLA ORGANIZZAZIONE - Valore)
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>190
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>subject_organization_id</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>DESCRIZIONE ORGANIZZAZIONE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Descrizione del dominio dell’utente (vedi TABELLA ORGANIZZAZIONE - Descrizione)
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>Regione Sicilia
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>subject_organization</code>
-   </td>
-  </tr>
-  
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>STRUTTURA UTENTE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Tale attributo, univoco, identifica la struttura a cui appartiene l’utente.
-Per maggiori informazioni sulla valorizzazione di tipo XON si può far riferimento ad AuthorInstitution nell'Affinity Domain Italia v.2.6.1 par. 2.1.2.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>
-   Il valore del custom claim <code>locality</code> deve essere unico e coerente per tutte le operazioni supportate dal Gateway 
-  (<strong>CREATE, REPLACE, UPDATE, DELETE</strong>) e deve essere conforme al formato <strong>XON</strong> come mostrato dall'esempio che segue:
-   <ul>
-   <li>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456 (tipo XON), che indica la struttura "LABORATORIO DI PROVA” della Regione “111”, ASL “101” e codice STS.11(6) “123456".</li>
-   </ul>
-</br>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Per i servizi di CREATE ,REPLACE (anche con validazione contestuale), DELETE e UPDATE il Gateway fa un controllo bloccante per verificare che il popolamento rispetti lo standard XON (in cui XON.1 contiene il nome della struttura, XON.6.2 rappresenta l’OID del sistema di codifica, XON.6.3 è obbligatoriamente “ISO” e XON.10 rappresenta il codice della struttura); </br>
-   </td>
-  </tr>
-  <tr>
-  <td><strong>CAMPO JWT</strong></td>
-  <td><code>locality</code></td>
-</tr>
-<tr>
-  <td><strong>NOTE</strong></td>
-  <td>
-    Il campo <code>locality</code> rappresenta l’identificativo della struttura utente e viene utilizzato dal Gateway in base al servizio richiesto. 
-Su questo campo viene eseguito un controllo bloccante nelle operazioni di <strong>CREATE, REPLACE, UPDATE, DELETE</strong>, affinché rispetti la forma <code>XON</code>.
-<p>Nelle operazioni di <strong>CREATE</strong> e <strong>REPLACE</strong> (anche con validazione contestuale), il Gateway utilizza il valore del claim <code>locality</code> per valorizzare verso INI:</p> 
-<ul>
-    <li>il metadato <code>Author.AuthorInstitution</code></li>
-    <li>l'asserzione di attributo <code>locality</code></li>
-</ul>
-<p>Ad esempio, se il claim <code>locality</code> è valorizzato come:</p>
-<code>LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^111101123456</code>
-<p>, il valore verrà ribaltato così com'è sia per il metadato che per l'asserzione.</p>
-
-<p>Nelle operazioni di <strong>DELETE</strong> e <strong>UPDATE</strong>, il Gateway utilizza il claim <code>locality</code> 
-per popolare l'asserzione di attributo <code>locality</code> verso INI. Anche in questo caso se il metadato è conforme al formato XON viene ribaltato.</p>
-<p>Il metadato <code>Author.AuthorInstitution</code>:</p>
-    <ul><li>Non è richiesto nelle operazioni di DELETE.</li>
-       <li>In UPDATE viene valorizzato con il valore ottenuto tramite l’operazione di recupero metadati (<code>FindDocuments</code>).</li>
-    </ul>
-  </td>
-</tr>
-
-
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>RUOLO UTENTE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Ruolo dell’utente che effettua la richiesta, vedi TABELLA RUOLO
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>AAS
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>subject_role</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>IDENTIFICATIVO ASSISTITO</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Codice identificativo dell’assistito cui si riferisce la richiesta o del  \
-genitore/tutore che ha richiesto l’operazione \
-Codice identificativo dell’assistito, del genitore o del tutore, codificato secondo il tipo di dato CX HL7 V2.5 (per come indicato alle specifiche IHE TF-3)
-<p>
-Saranno trattati tutti i soggetti presenti in ANA
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>RSSMRA75C03F839K^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>person_id</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>PRESA IN CARICO</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Indica la presa in carico del paziente. \
-Valore booleano
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>true
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>patient_consent</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>CONTESTO OPERATIVO RICHIESTA</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Contesto operativo della richiesta.
-Vedi TABELLA CONTESTO OPERATIVO
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>TREATMENT per il servizio di Validazione, Creazione 
-<p>
-UPDATE per il servizio di Eliminazione Documento, Aggiornamento Metadati e Sostituzione Documento
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO_JWT</strong>
-   </td>
-   <td><code>purpose_of_use</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>TIPO DOCUMENTO</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Tipo di documento da registrare \
-Codifica LOINC nel formato ('code1^^coding-scheme1')
-<p>
-Riferimento: urn:oasis:names:tc:xspa:1.0:resource:hl7:type
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>('11502-2^^2.16.840.1.113883.6.1')
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Non Obbligatorio per il servizio di Eliminazione Documento e Aggiornamento Metadati
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>resource_hl7_type</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>TIPO ATTIVITÀ</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Descrive il tipo di attività     
-<p>
-Vedi TABELLA TIPO ATTIVITÀ
-<p>
-Riferimento: urn:oasis:names:tc:xacml:1.0:action:action-id
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALORE</strong>
-   </td>
-   <td>CREATE per il servizio di Creazione
-<p>
-DELETE per il servizio di Eliminazione Documento
-<p>
-UPDATE per il servizio di Sostituzione Documento e Aggiornamento Metadati
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>action_id</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>HASH FILE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Hash (SHA256) del file fornito in input
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>ccd1a23b4a73c838e4dfc2a1948aaec8389ebd331cbaebc1b3144c74fca17da5
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio per i servizi di Creazione e Sostituzione Documento
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>attachment_hash</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>ID APPLICATIVO</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>ID applicativo dell’utente
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>BARMED
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>subject_application_id</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>VENDOR APPLICATIVO</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Vendor applicativo dell’utente
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>FOO SPA
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>subject_application_vendor</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>VERSIONE APPLICATIVO</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Versione applicativo dell’utente
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>V.4.2.0
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>subject_application_version</code>
-   </td>
-  </tr>
-
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>SUBJECT AS AUTHOR</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Tale campo se valorizzato con true consente di aggiungere nelle ITI-18 eseguite al Gateway lo slot $XDSDocumentEntry.author valorizzato con il medesimo valore del claim subject-id
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>true
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Non obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>use_subject_as_author</code>
-   </td>
-  </tr>
-</table>
-
-
-_Tabella 40: Campi contenuti in FSE-JWT-Signature_
-
-
+I campi personalizzati verranno definiti e aggiunti in una fase successiva.
 
 **Esempio di utilizzo del token bearerAuth**
 
@@ -1651,31 +1224,6 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
   ]
 }
 ```
-
-**Esempio di Payload del token FSE-JWT-Signature decodificato**
-
-``` json
-{ 
-  "sub": "RSSMRA22A01A399Z^^^&2.16.840.1.113883.2.9.4.3.2&ISO", 
-  "subject_role": "AAS", 
-  "purpose_of_use": "TREATMENT", 
-  "iss": "190201123456XX", 
-  "locality": "LABORATORIO DI PROVA^^^^^&2.16.840.1.113883.2.9.4.1.3&ISO^^^^190111123456",
-  "subject_organization": "Regione Sicilia", 
-  "subject_organization_id": "190", 
-  "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
-  "patient_consent": true, 
-  "action_id": "CREATE", 
-  "resource_hl7_type": "11502-2^^2.16.840.1.113883.6.1", 
-  "exp": 1656541352925, 
-  "iat": 1656454952925, 
-  "jti": "1234", 
-  "attachment_hash": "d04f5f5d34c7bbb77e27fba4edb2c49d16ca90193d89a47117e892387c7ee466", 
-  "person_id": "PROVAX00X00X000Y^^^&2.16.840.1.113883.2.9.4.3.2&ISO" 
-}
-```
-
-N.B: Il campo **locality** nell'esempio fa riferimento al **LABORATORIO DI PROVA** della Regione Sicilia **190**, ASL **111** e codice STS.11 **123456**
 
 ## 8.2 Campi Contenuti nella Request Body
 
