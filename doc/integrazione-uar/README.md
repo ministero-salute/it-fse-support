@@ -145,11 +145,11 @@ Authorization: Bearer {VALORE DEL TOKEN}
 ```
 
 
-Il secondo JWT è di “signature” e contiene rifermenti al documento oggetto delle operazioni, il token viene trasportato nell’header http **“FSE-JWT-Signature”**:
+Il secondo JWT è di “signature” e contiene rifermenti al documento oggetto delle operazioni, il token viene trasportato nell’header http **"Agid-JWT-Signature”**:
 
 
 ```
-FSE-JWT-Signature: {VALORE DEL TOKEN}
+Agid-JWT-Signature: {VALORE DEL TOKEN}
 ```
 
 **Entrambi** i token devono essere firmati utilizzando il certificato “signature”.
@@ -198,7 +198,7 @@ curl -X 'POST' \
   'http://<HOST>:<PORT>/v1/document/workflowinstanceid/2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed/rda/120' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <JWT_TOKEN>' \
-  -H 'FSE-JWT-Signature: <JWT_SIGNATURE>' \
+  -H 'Agid-JWT-Signature: <JWT_SIGNATURE>' \
   -H 'Content-Type: application/json' \
   -d '{
     "fhirServerUrl": "https://fhirserver.example.com",
@@ -278,7 +278,7 @@ curl -X 'DELETE' \
   'http://<HOST>:<PORT>/v1/document/identifier/2.16.840.1.113883.2.9.2.120.4.4^290700/rda/120?fhirServerUrl=https://fhir.example.it' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <JWT_TOKEN>' \
-  -H 'FSE-JWT-Signature: <JWT_SIGNATURE>'
+  -H 'Agid-JWT-Signature: <JWT_SIGNATURE>'
 ```
 
 ---
@@ -353,7 +353,7 @@ curl -X 'PUT' \
   'http://<HOST>:<PORT>/v1/document/workflowinstanceid/2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed/rda/120' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <JWT_TOKEN>' \
-  -H 'FSE-JWT-Signature: <JWT_SIGNATURE>' \
+  -H 'Agid-JWT-Signature: <JWT_SIGNATURE>' \
   -H 'Content-Type: application/json' \
   -d '{
     "fhirServerUrl": "https://fhir.example.it",
@@ -434,7 +434,7 @@ curl -X 'PUT' \
   'http://<HOST>:<PORT>/v1/document/metadata/120' \
   -H 'accept: application/json' \
   -H 'Authorization: Bearer <JWT_TOKEN>' \
-  -H 'FSE-JWT-Signature: <JWT_SIGNATURE>' \
+  -H 'Agid-JWT-Signature: <JWT_SIGNATURE>' \
   -H 'Content-Type: application/json' \
   -d '{
     "fhirServerUrl": "https://fhir.example.it",
@@ -912,7 +912,7 @@ _Tabella 39: Campi contenuti in Authentication Bearer Token_
 
 
 
-* **FSE-JWT-Signature**: token JWT contenente custom claims necessari ai fini applicativi
+* **Agid-JWT-Signature**: token JWT contenente custom claims necessari ai fini applicativi
 
 <table>
   <tr>
