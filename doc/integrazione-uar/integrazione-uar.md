@@ -129,11 +129,11 @@ Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee G
 
 ## 2.3. Note su autenticazione e token JWT
 
-Per comunicare con UA-R è necessario essere in possesso di 2 certificati X.509 e delle rispettive chiavi private.
+Per interagire con UA-R è necessario disporre di **due certificati X.509** e delle relative chiavi private:
 
-Il certificato denominato di **“autenticazione”** viene utilizzato <span style="text-decoration:underline;">unicamente</span> come certificato client per le chiamate https.
+* un certificato di **autenticazione**, utilizzato **esclusivamente** come certificato client per le chiamate HTTPS;
 
-Il certificato denominato di **“signature”** viene utilizzato <span style="text-decoration:underline;">unicamente</span> per la firma dei token JWT.
+* un certificato di **firma** (*signature*), utilizzato **esclusivamente** per la firma dei token JWT.
 
 Ogni invocazione delle API deve avvenire:
 * tramite **HTTPS** autenticato con il certificato client;
