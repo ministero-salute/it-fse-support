@@ -60,7 +60,7 @@
   - [7.2. Response](#72-response)
     - [7.2.1. Esempio di Messaggio di risposta con Esito Success 200](#721-esempio-di-messaggio-di-risposta-con-esito-success-200)
     - [7.2.2. Esempio di Messaggio di Risposta con esito KO 400](#722-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-  - [7.3. Esempio Messaggio di Richiesta attraverso iti 57](#73-esempio-messaggio-di-richiesta-attraverso-iti-57)
+    - [7.3. Esempio Messaggio di Richiesta attraverso iti-57](#73-esempio-messaggio-di-richiesta-attraverso-iti-57)
 - [8. Servizio di validazione e pubblicazione creazione contestuale](#8-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
   - [8.1. Request](#81-request)
     - [8.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#811-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
@@ -83,7 +83,7 @@
     - [10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200](#1021-esempio-messaggio-di-risposta-ad-una-creazione-con-esito-success-200)
     - [10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200](#1022-esempio-messaggio-di-risposta-ad-una-cancellazione-con-esito-success-200)
     - [10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200](#1023-esempio-messaggio-di-risposta-ad-una-sostituzione-con-esito-success-200)
-    - [10.2.4. Esempio messaggio di risposta ad un aggiornamento con Esito Success 200](#1024-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
+    - [10.2.4. Esempio messaggio di risposta ad una update con Esito Success 200](#1024-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
     - [10.2.5. Esempio di Messaggio di Risposta con esito KO 404](#1025-esempio-di-messaggio-di-risposta-con-esito-ko-404)
 - [11. Servizio di Recupero Stato Transazione per TraceId](#11-servizio-di-recupero-stato-transazione-per-traceid)
   - [11.1. Request](#111-request)
@@ -3022,7 +3022,7 @@ Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier)
 
 ### 7.1.1. Esempio Messaggio di Richiesta
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con metadati formalmente corretti, senza indicazione della priorità. 
 
 ``` bash
 curl -X 'PUT' \
@@ -3046,8 +3046,7 @@ curl -X 'PUT' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
   "administrativeRequest": ["SSN"]
-}'\
--F 'file=@CDA_OK.pdf;type=application/pdf'
+}'
 ```
 
 ## 7.2. Response
@@ -3245,7 +3244,7 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 
 ### 7.3. Esempio Messaggio di Richiesta attraverso iti-57
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta  con metadati formalmente corretti, senza indicazione della priorità. 
 
 ``` bash
 curl -X 'PUT' \
@@ -3269,8 +3268,7 @@ curl -X 'PUT' \
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
   "administrativeRequest": ["SSN"]
-}'\
--F 'file=@CDA_OK.pdf;type=application/pdf'
+}'
 ```
 
 Le risposte sono le medesime riportate per i casi precedenti.
