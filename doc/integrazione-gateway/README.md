@@ -9,11 +9,10 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.12
+   <td>ver 2.15
    </td>
   </tr>
 </table>
-
 
 
 
@@ -35,84 +34,90 @@
     - [3.2.1. Messaggio di risposta, esempio “Validation con Attachment” con esito Success 201](#321-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-success-201)
     - [3.2.2. Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400](#322-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-ko-400)
     - [3.2.3. Messaggio di risposta, esempio “Verifica con Attachment” con esito OK 200 con warning](#323-messaggio-di-risposta-esempio-verifica-con-attachment-con-esito-ok-200-con-warning)
-- [4. Servizio di Creazione](#4-servizio-di-creazione)
+- [4. Servizio di Validazione FHIR](#4-servizio-di-validazione-fhir)
   - [4.1. Request](#41-request)
-    - [4.1.1. Messaggio di Richiesta, esempio “Pubblicazione con Attachment”](#411-messaggio-di-richiesta-esempio-pubblicazione-con-attachment)
-    - [4.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”](#412-messaggio-di-richiesta-esempio-pubblicazione-con-resource)
+    - [4.1.1. Messaggio di richiesta, esempio “Verifica con PDF”](#411-messaggio-di-richiesta-esempio-verifica-con-pdf)
+    - [4.1.2. Messaggio di richiesta, esempio “Verifica con Bundle JSON”](#412-messaggio-di-richiesta-esempio-verifica-con-bundle-json)
   - [4.2. Response](#42-response)
-    - [4.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”](#421-esempio-di-messaggio-di-risposta-con-esito-ok-200---pubblicazione-con-attachment)
-    - [4.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400](#422-messaggio-di-risposta-esempio-pubblicazione-con-resource-con-esito-ko-400)
-- [5. Servizio di Eliminazione Documento](#5-servizio-di-eliminazione-documento)
+    - [4.2.1. Messaggio di risposta, esempio “Verifica con PDF” con esito Success 200](#421-messaggio-di-risposta-esempio-verifica-con-pdf-con-esito-success-200)
+    - [4.2.2. Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400](#422-messaggio-di-risposta-esempio-validation-con-attachment-con-esito-ko-400)
+    - [4.2.3. Messaggio di risposta, esempio “Verifica con Bundle” con esito Success 200 con warning](#423-messaggio-di-risposta-esempio-verifica-con-bundle-con-esito-success-200-con-warning)
+- [5. Servizio di Creazione](#5-servizio-di-creazione)
   - [5.1. Request](#51-request)
-    - [5.1.1. Messaggio di Richiesta, esempio “Eliminazione Documento”](#511-messaggio-di-richiesta-esempio-eliminazione-documento)
+    - [5.1.1. Messaggio di Richiesta, esempio “Pubblicazione con Attachment”](#511-messaggio-di-richiesta-esempio-pubblicazione-con-attachment)
+    - [5.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”](#512-messaggio-di-richiesta-esempio-pubblicazione-con-resource)
   - [5.2. Response](#52-response)
-    - [5.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo](#521-esempio-di-messaggio-di-risposta-con-esito-ok-200---delete-eseguita-con-successo)
-    - [5.2.2. Esempio di Messaggio di Risposta con esito KO 400](#522-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-- [6. Servizio di Sostituzione Documento](#6-servizio-di-sostituzione-documento)
+    - [5.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”](#521-esempio-di-messaggio-di-risposta-con-esito-ok-200---pubblicazione-con-attachment)
+    - [5.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400](#522-messaggio-di-risposta-esempio-pubblicazione-con-resource-con-esito-ko-400)
+- [6. Servizio di Eliminazione Documento](#6-servizio-di-eliminazione-documento)
   - [6.1. Request](#61-request)
-    - [6.1.1. Messaggio di Richiesta, esempio “Pubblicazione Sostituzione Documento con Attachment”](#611-messaggio-di-richiesta-esempio-pubblicazione-sostituzione-documento-con-attachment)
+    - [6.1.1. Messaggio di Richiesta, esempio “Eliminazione Documento”](#611-messaggio-di-richiesta-esempio-eliminazione-documento)
   - [6.2. Response](#62-response)
-    - [6.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#621-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
+    - [6.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo](#621-esempio-di-messaggio-di-risposta-con-esito-ok-200---delete-eseguita-con-successo)
     - [6.2.2. Esempio di Messaggio di Risposta con esito KO 400](#622-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-- [7. Servizio di Aggiornamento Metadati](#7-servizio-di-aggiornamento-metadati)
+- [7. Servizio di Sostituzione Documento](#7-servizio-di-sostituzione-documento)
   - [7.1. Request](#71-request)
-    - [7.1.1. Esempio Messaggio di Richiesta](#711-esempio-messaggio-di-richiesta)
-  - [7.2. Response](#72-response)
-    - [7.2.1. Esempio di Messaggio di risposta con Esito Success 200](#721-esempio-di-messaggio-di-risposta-con-esito-success-200)
+    - [7.1.1. Messaggio di Richiesta, esempio “Pubblicazione Sostituzione Documento con Attachment”](#711-messaggio-di-richiesta-esempio-pubblicazione-sostituzione-documento-con-attachment)
+  - [6.2. Response](#62-response-1)
+    - [7.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#721-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
     - [7.2.2. Esempio di Messaggio di Risposta con esito KO 400](#722-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-    - [7.3. Esempio Messaggio di Richiesta attraverso iti-57](#73-esempio-messaggio-di-richiesta-attraverso-iti-57)
-- [8. Servizio di validazione e pubblicazione creazione contestuale](#8-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
+- [8. Servizio di Aggiornamento Metadati](#8-servizio-di-aggiornamento-metadati)
   - [8.1. Request](#81-request)
-    - [8.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#811-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
-    - [8.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”](#812-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
+    - [8.1.1. Esempio Messaggio di Richiesta](#811-esempio-messaggio-di-richiesta)
   - [8.2. Response](#82-response)
-    - [8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”](#821-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
-    - [8.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”](#822-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
-    - [8.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”](#823-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
-- [9. Servizio di validazione pubblicazione sostituzione contestuale](#9-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
+    - [8.2.1. Esempio di Messaggio di risposta con Esito Success 200](#821-esempio-di-messaggio-di-risposta-con-esito-success-200)
+    - [8.2.2. Esempio di Messaggio di Risposta con esito KO 400](#822-esempio-di-messaggio-di-risposta-con-esito-ko-400)
+    - [8.3. Esempio Messaggio di Richiesta attraverso iti-57](#83-esempio-messaggio-di-richiesta-attraverso-iti-57)
+- [9. Servizio di validazione e pubblicazione creazione contestuale](#9-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
   - [9.1. Request](#91-request)
-    - [9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
+    - [9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
+    - [9.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”](#912-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
   - [9.2. Response](#92-response)
-    - [9.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#921-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
-    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#922-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
-    - [9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#923-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
-- [10. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#10-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
+    - [9.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”](#921-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
+    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”](#922-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
+    - [9.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”](#923-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
+- [10. Servizio di validazione pubblicazione sostituzione contestuale](#10-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
   - [10.1. Request](#101-request)
-    - [10.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1011-esempio-messaggio-di-richiesta-stato-transazioni)
+    - [10.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”](#1011-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
   - [10.2. Response](#102-response)
-    - [10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200](#1021-esempio-messaggio-di-risposta-ad-una-creazione-con-esito-success-200)
-    - [10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200](#1022-esempio-messaggio-di-risposta-ad-una-cancellazione-con-esito-success-200)
-    - [10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200](#1023-esempio-messaggio-di-risposta-ad-una-sostituzione-con-esito-success-200)
-    - [10.2.4. Esempio messaggio di risposta ad una update con Esito Success 200](#1024-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
-    - [10.2.5. Esempio di Messaggio di Risposta con esito KO 404](#1025-esempio-di-messaggio-di-risposta-con-esito-ko-404)
-- [11. Servizio di Recupero Stato Transazione per TraceId](#11-servizio-di-recupero-stato-transazione-per-traceid)
+    - [10.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#1021-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
+    - [10.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#1022-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
+    - [10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#1023-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
+- [11. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#11-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
   - [11.1. Request](#111-request)
     - [11.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1111-esempio-messaggio-di-richiesta-stato-transazioni)
-  - [11.1. Response](#111-response)
-- [12. Drilldown Response in caso di Errore](#12-drilldown-response-in-caso-di-errore)
-  - [12.1. Errori Applicativi](#121-errori-applicativi)
-    - [12.3.1. Esempi di errore generati dal Gateway](#1231-esempi-di-errore-generati-dal-gateway)
-  - [12.1. Errori provenienti da Apparati di Frontiera](#121-errori-provenienti-da-apparati-di-frontiera)
-- [13. Drilldown Parametri di Input](#13-drilldown-parametri-di-input)
-  - [13.1. Campi Contenuti nei JWT](#131-campi-contenuti-nei-jwt)
-  - [13.2. Campi Contenuti nella Request Body](#132-campi-contenuti-nella-request-body)
-  - [13.3. Tabelle di Riferimento](#133-tabelle-di-riferimento)
-    - [13.3.1. Attività Clinica Enum](#1331-attività-clinica-enum)
-    - [13.3.2. Healthcare Facility Type Code](#1332-healthcare-facility-type-code)
-    - [13.3.3. Tipo Documento Alto Livello](#1333-tipo-documento-alto-livello)
-    - [13.3.4. Event Code](#1334-event-code)
-    - [13.3.5. Ruolo](#1335-ruolo)
-    - [13.3.6. Contesto Operativo](#1336-contesto-operativo)
-    - [13.3.7. Organizzazione](#1337-organizzazione)
-    - [13.3.8. Practice Setting Code](#1338-practice-setting-code)
-    - [13.3.9. Activity Enum](#1339-activity-enum)
-    - [13.3.10. Injection Mode Enum](#13310-injection-mode-enum)
-    - [13.3.11. Health Data Format Enum](#13311-health-data-format-enum)
-    - [13.3.12. Tipo Attività](#13312-tipo-attività)
-    - [13.3.13. Administrative Request](#13313-administrative-request)
+  - [11.2. Response](#112-response)
+    - [11.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200](#1121-esempio-messaggio-di-risposta-ad-una-creazione-con-esito-success-200)
+    - [11.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200](#1122-esempio-messaggio-di-risposta-ad-una-cancellazione-con-esito-success-200)
+    - [11.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200](#1123-esempio-messaggio-di-risposta-ad-una-sostituzione-con-esito-success-200)
+    - [11.2.4. Esempio messaggio di risposta ad una update con Esito Success 200](#1124-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
+    - [11.2.5. Esempio di Messaggio di Risposta con esito KO 404](#1125-esempio-di-messaggio-di-risposta-con-esito-ko-404)
+- [12. Servizio di Recupero Stato Transazione per TraceId](#12-servizio-di-recupero-stato-transazione-per-traceid)
+  - [12.1. Request](#121-request)
+    - [12.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1211-esempio-messaggio-di-richiesta-stato-transazioni)
+  - [12.1. Response](#121-response)
+- [13. Drilldown Response in caso di Errore](#13-drilldown-response-in-caso-di-errore)
+  - [13.1. Errori Applicativi](#131-errori-applicativi)
+    - [13.3.1. Esempi di errore generati dal Gateway](#1331-esempi-di-errore-generati-dal-gateway)
+  - [13.1. Errori provenienti da Apparati di Frontiera](#131-errori-provenienti-da-apparati-di-frontiera)
+- [14. Drilldown Parametri di Input](#14-drilldown-parametri-di-input)
+  - [14.1. Campi Contenuti nei JWT](#141-campi-contenuti-nei-jwt)
+  - [14.2. Campi Contenuti nella Request Body](#142-campi-contenuti-nella-request-body)
+  - [14.3. Tabelle di Riferimento](#143-tabelle-di-riferimento)
+    - [14.3.1. Attività Clinica Enum](#1431-attività-clinica-enum)
+    - [14.3.2. Healthcare Facility Type Code](#1432-healthcare-facility-type-code)
+    - [14.3.3. Tipo Documento Alto Livello](#1433-tipo-documento-alto-livello)
+    - [14.3.4. Event Code](#1434-event-code)
+    - [14.3.5. Ruolo](#1435-ruolo)
+    - [14.3.6. Contesto Operativo](#1436-contesto-operativo)
+    - [14.3.7. Organizzazione](#1437-organizzazione)
+    - [14.3.8. Practice Setting Code](#1438-practice-setting-code)
+    - [14.3.9. Activity Enum](#1439-activity-enum)
+    - [14.3.10. Injection Mode Enum](#14310-injection-mode-enum)
+    - [14.3.11. Health Data Format Enum](#14311-health-data-format-enum)
+    - [14.3.12. Tipo Attività](#14312-tipo-attività)
+    - [14.3.13. Administrative Request](#14313-administrative-request)
   - [Notes](#notes)
-
-
 
 # 1. Introduzione
 
@@ -583,6 +588,25 @@ _Tabella 2: Acronimi e Definizioni_
         <p> 
       </td>
    </tr> 
+   <tr>
+      <td>2.15
+      </td>
+      <td>30/06/2025
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            2. Aggiunto cappello introduttivo per FHIR diretto
+            4. Definizione paragrafo FHIR Diretto
+         <p>  
+         <p>
+            5. Rimozione flag priorità dalla request body di creazione
+         <p>  
+         <p>
+            6.  Rimozione flag priorità dalla request body di creazione
+         <p> 
+         <p>Modifica indice per accogliere nuove modifiche sulla validazione fhir<p> 
+      </td>
+   </tr> 
 </table>
 
 
@@ -595,7 +619,7 @@ La nuova architettura del FSE prevede la presenza di un componente, denominato G
 
 In questo documento verranno indicate le modalità per usufruire dei servizi esposti dal gateway: il      documento sarà redatto in modo incrementale e di volta in volta ulteriori API saranno integrate e illustrate. 
 
-In questa fase vengono trattati i due servizi principali del Gateway, che consentono rispettivamente di invocare le funzionalità di Validazione Documento CDA2 e di Pubblicazione Documento CDA2, e i servizi che consentono l’eliminazione e l’aggiornamento del documento e dei suoi metadati.
+In questa fase vengono trattati i due servizi principali del Gateway, che consentono rispettivamente di invocare le funzionalità di Validazione Documento CDA2 e FHIR e di Pubblicazione Documento CDA2, e i servizi che consentono l’eliminazione e l’aggiornamento del documento e dei suoi metadati.
 
 
 <table>
@@ -613,6 +637,14 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
    <td>POST
    </td>
    <td>VALIDAZIONE DOCUMENTO CDA2 
+   </td>
+  </tr>
+  <tr>
+   <td>/v<major>/documents/fhir-validation
+   </td>
+   <td>POST
+   </td>
+   <td>VALIDAZIONE DOCUMENTO FHIR
    </td>
   </tr>
   <tr>
@@ -696,7 +728,7 @@ L'endpoint del **sistema di test** è:
 
     https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
 
-La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2 può non essere seguita dalla Pubblicazione CDA2. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
+La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2/FHIR può non essere seguita dalla Pubblicazione. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
 
 I due servizi di Validazione e Pubblicazione sono correlati da un identificativo di transazione referenziato nel documento come “workflowInstanceId” secondo standard IHE (Data Type  CXi).
 
@@ -713,6 +745,16 @@ In differenti circostanze, verrà restituito un errore di validazione come defin
 
 Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici, semantici e terminologici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 
+In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. 
+
+**Validazione Documento FHIR**
+
+Nello scenario di questa funzionalità il Sistema Produttore invia un documento secondo il formato standard FHIR; Tale endpoint accetterà sia un Bundle FHIR in JSON nei casi in cui non si ha a disposizione il documento ma solo i metadati, sia un PDF con iniettato un bundle il cui nome deve essere `bundleFhir.json`(senza considerare maiuscole e minuscole) presente in uno dei seguenti punti all'interno del pdf:
+- Root/Names/EmbeddedFiles/Names/[1]/EF/F
+- Root/Names/EmbeddedFiles/Kids/[0]/Names/[1]/EF/F
+
+In differenti circostanze, verrà restituito un errore di validazione.
+Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici, semantici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. 
 
 **Pubblicazione Documento CDA2**
@@ -855,7 +897,7 @@ Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
 # 3. Servizio di Validazione
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Documento CDA2 si compone come segue:
 
@@ -1193,7 +1235,7 @@ curl -X 'POST' \
 
 _Tabella 7: Response Servizio di Validazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** Se il servizio viene invocato con il parametro “activity” a VERIFICA, verrà restituito lo StatusCode 200  in caso di SUCCESS
 
@@ -1304,9 +1346,390 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 }
 ```
 
-# 4. Servizio di Creazione
+# 4. Servizio di Validazione FHIR
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+
+L’Endpoint del caso d’uso di Validazione Bundle FHIR si compone come segue:
+
+
+```
+https://<HOST>:<PORT>/v<major>/documents/fhir-validation
+```
+
+
+Lo scopo di questa API è validare un documento nativo FHIR da un punto di vista sintattico, semantico sfruttando le implementation guide dei diversi tipi documento.
+
+
+## 4.1. Request
+
+
+<table>
+  <tr>
+   <td>METHOD
+   </td>
+   <td>POST
+   </td>
+  </tr>
+  <tr>
+   <td>URL
+   </td>
+   <td>/v1/documents/fhir-validation
+   </td>
+  </tr>
+  <tr>
+   <td>TYPE
+   </td>
+   <td>multipart/form-data
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 10: Method, Url, Type_
+
+
+<table>
+    <tr>
+        <td colspan="6"> <strong>PARAMETER</strong>
+        </td>
+    </tr>
+    <tr>
+        <td><strong>SECTION</strong>
+        </td>
+        <td><strong>KEY</strong>
+        </td>
+        <td><strong>VALUE</strong>
+        </td>
+        <td><strong>TYPE</strong>
+        </td>
+        <td><strong>REQUIRED</strong>
+        </td>
+        <td><strong>AFFINITY DOMAIN/ IHE</strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Header
+        </td>
+        <td>Authorization
+        </td>
+        <td>N.D.
+        </td>
+        <td>Bearer
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td>Header
+        </td>
+        <td>FSE-JWT-Signature
+        </td>
+        <td>N.D.
+        </td>
+        <td>N.D.
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td>Header
+        </td>
+        <td>Accept
+        </td>
+        <td>application/json
+        </td>
+        <td>String
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="4">Request
+            <p>
+                Body
+        </td>
+        <td>file
+        </td>
+        <td>file
+        </td>
+        <td>MultipartFile
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2">requestBody
+        </td>
+        <td>mode
+        </td>
+        <td>InjectionModeEnum
+        </td>
+        <td>false
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+    <tr>
+        <td>activity
+        </td>
+        <td>ActivityEnum
+        </td>
+        <td>true
+        </td>
+        <td>N.A.
+        </td>
+    </tr>
+</table>
+
+
+_Tabella 11: Parametri Richiesta di Validazione_
+
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la restituzione di un errore di tipo warning. 
+
+Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
+
+* **file** che potrà contenere un file PDF con iniettato un Bundle FHIR in formato JSON, o in alternativa un file JSON di un Bundle FHIR(quando non si ha a disposizione il documento ma solo i metadati) in linea con quanto riportato nelle «Implementation Guide»
+* **requestBody** che dovrà contenere l’oggetto json con i parameter di input
+
+
+### 4.1.1. Messaggio di richiesta, esempio “Verifica con PDF”
+
+Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), pdf con Bundle FHIR innestato in modalità ATTACHMENT
+
+``` bash
+curl -X 'POST' \	
+  'https://<HOST>:<PORT>/v1/documents/validation' \
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'requestBody={ 
+  "mode": "ATTACHMENT",
+  "activity": "VERIFICA",
+}' \
+  -F 'file=@BUNDLE_FHIR_ATTACH.pdf;type=application/pdf'
+```
+
+
+### 4.1.2. Messaggio di richiesta, esempio “Verifica con Bundle JSON”
+
+Messaggio di richiesta con activity “VERIFICA” (validazione che non sarà seguita da pubblicazione), file Bundle FHIR fornito direttamente in input
+
+``` bash
+curl -X 'POST' \	
+  'https://<HOST>:<PORT>/v1/documents/validation' \
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: multipart/form-data' \
+  -F 'requestBody={ 
+  "mode": "RESOURCE",
+  "activity": "VERIFICA",
+}' \
+  -F 'file=@BUNDLE_FHIR.json;type=application/json'
+```
+
+## 4.2. Response
+
+
+<table cellspacing="0" cellpadding="5">
+  <tr>
+    <td><strong>TIPO IN CASO DI SUCCESSO</strong></td>
+    <td colspan="2">application/json</td>
+  </tr>
+  <tr>
+    <td><strong>TIPO IN CASO DI ERRORE*</strong></td>
+    <td colspan="2">application/problem+json</td>
+  </tr>
+  <tr>
+    <td rowspan="14"><strong>STATUS CODE</strong></td>
+    <td><strong>200</strong></td>
+    <td>Validazione positiva a seguito dell'activity di verifica**</td>
+  </tr>
+  <tr>
+    <td><strong>400</strong></td>
+    <td>Bad Request</td>
+  </tr>
+  <tr>
+    <td><strong>401</strong></td>
+    <td>Unauthorized</td>
+  </tr>
+  <tr>
+    <td><strong>403</strong></td>
+    <td>Token JWT mancante o non valido</td>
+  </tr>
+  <tr>
+    <td><strong>404</strong></td>
+    <td>Not Found</td>
+  </tr>
+  <tr>
+    <td><strong>409</strong></td>
+    <td>Conflict</td>
+  </tr>
+  <tr>
+    <td><strong>413</strong></td>
+    <td>Payload Too Large</td>
+  </tr>
+  <tr>
+    <td><strong>415</strong></td>
+    <td>Unsupported Media Type</td>
+  </tr>
+  <tr>
+    <td><strong>429</strong></td>
+    <td>Too Many Requests</td>
+  </tr>
+  <tr>
+    <td><strong>500</strong></td>
+    <td>Internal Server Error</td>
+  </tr>
+  <tr>
+    <td><strong>501</strong></td>
+    <td>Not Implemented</td>
+  </tr>
+  <tr>
+    <td><strong>502</strong></td>
+    <td>Invalid response received from the API implementation</td>
+  </tr>
+  <tr>
+    <td><strong>503</strong></td>
+    <td>Service Unavailable</td>
+  </tr>
+  <tr>
+    <td><strong>504</strong></td>
+    <td>Endpoint request timed out</td>
+  </tr>
+</table>
+
+
+_Tabella 12: Response Servizio di Validazione_
+
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
+
+** Allo stato attuale è prevista solo la validazione di un Bundle FHIR non finalizzato alla pubblicazione e per tale motivo non sarà consentita l'invocazione dell'api con il valore di activity pari a VALIDATION.
+In risposta all'invocazione, verrà restituito dal gateway lo StatusCode 200  in caso di SUCCESS
+
+**Campi sempre valorizzati**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>traceID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente.
+   </td>
+  </tr>
+  <tr>
+   <td>spanID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). 
+TraceId e spanId coincidono nella prima operazione.
+   </td>
+  </tr>
+  <tr>
+   <td>workflowInstanceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco della transazione
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 13: Campi Response sempre valorizzati_
+
+**Campi valorizzati solo in caso di warning:**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>warning
+   </td>
+   <td>String
+   </td>
+   <td>Dettaglio del warning
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 14: Campi Response valorizzati in caso di warning_
+
+
+### 4.2.1. Messaggio di risposta, esempio “Verifica con PDF” con esito Success 200 
+
+``` json
+{ 
+ "traceID": "4e1cd92c6a406c4f", 
+ "spanID": "4e1cd92c6a406c4f", 
+ "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+}
+```
+
+
+### 4.2.2. Messaggio di risposta, esempio “Validation con Attachment” con esito KO 400
+
+``` json
+{
+  "traceID": "7fee3f3e2fc75b30",
+  "spanID": "7fee3f3e2fc75b30",
+  "type": "/msg/fhir-element",
+  "title": "Errore in fase di estrazioneBundle FHIR.",
+  "detail": "Errore in fase di estrazione del Bundle FHIR.",
+  "status": 400,
+  "instance": "/msg/fhir-extraction"
+}
+```
+
+
+### 4.2.3. Messaggio di risposta, esempio “Verifica con Bundle” con esito Success 200 con warning
+
+``` json
+{
+  "traceID": "96c6883856f9f887",
+  "spanID": "96c6883856f9f887",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.847c307946d33d8f14876ebb7204f2018a9cbc230da855ac27ed5413a5e2f051.bcf54e7cb9^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "Attenzione, non è stata selezionata la modalità di estrazione del CDA"
+}
+```
+
+
+# 5. Servizio di Creazione
+
+<blockquote>
+  <strong>⚠️ Attenzione:</strong> il flag "priorita" presente nella request body di creazione verrà mantenuto fino al 01/09. Si prega di aggiornare le invocazioni eliminando il parametro in request.
+</blockquote>
+
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Creazione Documento CDA2 si compone come segue:
 
@@ -1317,7 +1740,7 @@ https://<HOST>:<PORT>/v<major>/documents
 Lo scopo di questa API è indicizzare un nuovo documento clinico sul FSE regionale, tradurre i dati clinici nel formato HL7 FHIR ed inviarli al Data Repository Centrale.
 
 
-## 4.1. Request
+## 5.1. Request
 
 
 <table>
@@ -1342,7 +1765,7 @@ Lo scopo di questa API è indicizzare un nuovo documento clinico sul FSE regiona
 </table>
 
 
-_Tabella 10: Method, URL, Type_
+_Tabella 15: Method, URL, Type_
 
 
 <table>
@@ -1562,16 +1985,6 @@ _Tabella 10: Method, URL, Type_
    <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
    </td>
   </tr>
-  <tr>
-   <td>priorita
-   </td>
-   <td>boolean
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
    <tr>
    <td>descriptions
    </td>
@@ -1598,9 +2011,9 @@ _Tabella 10: Method, URL, Type_
 </table>
 
 
-_Tabella 11: Parametri Richiesta di Creazione_
+_Tabella 16: Parametri Richiesta di Creazione_
 
-La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “priorita” consente al Gateway di decidere la priorità da attribuire al documento fornito in input al servizio.
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
@@ -1611,9 +2024,9 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
-### 4.1.1. Messaggio di Richiesta, esempio “Pubblicazione con Attachment”
+### 5.1.1. Messaggio di Richiesta, esempio “Pubblicazione con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 Il workflowInstanceId è corretto e presente nel gateway.
 
@@ -1640,7 +2053,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-  "priorita": false,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -1650,9 +2062,9 @@ curl -X 'POST' \
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
-### 4.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”
+### 5.1.2. Messaggio di Richiesta, esempio “Pubblicazione con Resource”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
+Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti.
 
 In questo caso, il workflowInstanceId non esiste nel gateway.
 
@@ -1679,7 +2091,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-  "priorita": true,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -1690,7 +2101,7 @@ curl -X 'POST' \
 
 
 
-## 4.2. Response
+## 5.2. Response
 
 
 <table>
@@ -1793,9 +2204,9 @@ curl -X 'POST' \
 </table>
 
 
-_Tabella 12: Response Servizio di Pubblicazione_
+_Tabella 17: Response Servizio di Pubblicazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
 
@@ -1839,7 +2250,7 @@ traceId e spanId coincidono nella prima operazione.
 </table>
 
 
-_Tabella 13: Campi Response sempre valorizzati_
+_Tabella 18: Campi Response sempre valorizzati_
 
 **Campi valorizzati solo in caso di warning**
 
@@ -1864,10 +2275,10 @@ _Tabella 13: Campi Response sempre valorizzati_
 </table>
 
 
-_Tabella 14: Campi Response valorizzati in caso di warning_
+_Tabella 19: Campi Response valorizzati in caso di warning_
 
 
-### 4.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”
+### 5.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Pubblicazione con Attachment”
 
 ``` json
 { 
@@ -1877,7 +2288,7 @@ _Tabella 14: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 4.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400
+### 5.2.2. Messaggio di Risposta, esempio “Pubblicazione con Resource” con esito KO 400
 
 ``` json
 {
@@ -1891,7 +2302,7 @@ _Tabella 14: Campi Response valorizzati in caso di warning_
 }
 ```
 
-# 5. Servizio di Eliminazione Documento
+# 6. Servizio di Eliminazione Documento
 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 8.1 “Campi Contenuti nei JWT”.
 
@@ -1904,7 +2315,7 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>
 Lo scopo di questa API Sincrona è eliminare le risorse FHIR precedentemente pubblicate, inclusi i metadati scritti su INI.
 
 
-## 5.1. Request
+## 6.1. Request
 
 
 <table>
@@ -1923,7 +2334,7 @@ Lo scopo di questa API Sincrona è eliminare le risorse FHIR precedentemente pub
 </table>
 
 
-_Tabella 15: Method, URL, Type_
+_Tabella 20: Method, URL, Type_
 
 
 <table>
@@ -1990,14 +2401,14 @@ _Tabella 15: Method, URL, Type_
 </table>
 
 
-_Tabella 16: Parametri Richiesta di Eliminazione_
+_Tabella 21: Parametri Richiesta di Eliminazione_
 
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento da eliminare e al parametro _identificativoDoc_ utilizzato nel servizio di creazione.
 
 
-### 5.1.1. Messaggio di Richiesta, esempio “Eliminazione Documento”
+### 6.1.1. Messaggio di Richiesta, esempio “Eliminazione Documento”
 
 Messaggio di richiesta con identificativoDocUpdate presente e formalmente corretto. 
 
@@ -2009,7 +2420,7 @@ curl -X 'DELETE' \
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
 ```
 
-## 5.2. Response
+## 6.2. Response
 
 
 <table>
@@ -2106,9 +2517,9 @@ curl -X 'DELETE' \
 </table>
 
 
-_Tabella 17: Response Servizio di Pubblicazione_
+_Tabella 22: Response Servizio di Pubblicazione_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -2150,7 +2561,7 @@ traceId e spanId coincidono nella prima operazione.
 </table>
 
 
-_Tabella 18: Campi Response sempre valorizzati_
+_Tabella 23: Campi Response sempre valorizzati_
 
 **Campi valorizzati solo in caso di warning**
 
@@ -2175,10 +2586,10 @@ _Tabella 18: Campi Response sempre valorizzati_
 </table>
 
 
-_Tabella 19: Campi Response valorizzati in caso di warning_
+_Tabella 24: Campi Response valorizzati in caso di warning_
 
 
-### 5.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo
+### 6.2.1. Esempio di Messaggio di Risposta con esito OK 200 - Delete eseguita con successo
 
 ``` json
 { 
@@ -2188,7 +2599,7 @@ _Tabella 19: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 5.2.2. Esempio di Messaggio di Risposta con esito KO 400
+### 6.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
 ``` json
 {
@@ -2202,9 +2613,9 @@ _Tabella 19: Campi Response valorizzati in caso di warning_
 }
 ```
 
-# 6. Servizio di Sostituzione Documento
+# 7. Servizio di Sostituzione Documento
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Sostituzione Documento si compone come segue:
 
@@ -2215,7 +2626,7 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>
 Lo scopo di questa API Asincrona è pubblicare un documento sovrascrivendo il documento che era stato precedentemente pubblicato. 
 
 
-## 6.1. Request
+## 7.1. Request
 
 
 <table>
@@ -2240,7 +2651,7 @@ Lo scopo di questa API Asincrona è pubblicare un documento sovrascrivendo il do
 </table>
 
 
-_Tabella 20: Method, URL, Type_
+_Tabella 25: Method, URL, Type_
 
 
 <table>
@@ -2497,7 +2908,7 @@ _Tabella 20: Method, URL, Type_
 </table>
 
 
-_Tabella 21: Parametri Richiesta di Pubblicazione Sostituzione_
+_Tabella 26: Parametri Richiesta di Pubblicazione Sostituzione_
 
 La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la resituzione di un errore di tipo warning. 
 
@@ -2506,9 +2917,9 @@ Il Request Body coincide con la struttura utilizzata per il servizio di Pubblica
 Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento da sostituire e al parametro _identificativoDoc_ utilizzato precedentemente nel servizio di creazione.
 
 
-### 6.1.1. Messaggio di Richiesta, esempio “Pubblicazione Sostituzione Documento con Attachment”
+### 7.1.1. Messaggio di Richiesta, esempio “Pubblicazione Sostituzione Documento con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 Il workflowInstanceId è corretto e presente nel gateway.
 
@@ -2646,9 +3057,9 @@ curl -X 'PUT' \
 </table>
 
 
-_Tabella 22: Response Servizio di Pubblicazione Sostituzione Documento_
+_Tabella 27: Response Servizio di Pubblicazione Sostituzione Documento_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione verifica l’avvenuta validazione. In caso di assenza, risponderà con codice di errore 400
 
@@ -2692,7 +3103,7 @@ traceId e spanId coincidono nella prima operazione.
 </table>
 
 
-_Tabella 23: Campi Response sempre valorizzati_
+_Tabella 28: Campi Response sempre valorizzati_
 
 **Campi valorizzati solo in caso di warning**
 
@@ -2717,10 +3128,10 @@ _Tabella 23: Campi Response sempre valorizzati_
 </table>
 
 
-_Tabella 24: Campi Response valorizzati in caso di warning_
+_Tabella 29: Campi Response valorizzati in caso di warning_
 
 
-### 6.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
+### 7.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
 
 ``` json
 { 
@@ -2730,7 +3141,7 @@ _Tabella 24: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 6.2.2. Esempio di Messaggio di Risposta con esito KO 400
+### 7.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
 ``` json
 {
@@ -2744,9 +3155,9 @@ _Tabella 24: Campi Response valorizzati in caso di warning_
 }
 ```
 
-# 7. Servizio di Aggiornamento Metadati
+# 8. Servizio di Aggiornamento Metadati
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Aggiornamento Metadati si compone come segue:
 
@@ -2771,7 +3182,7 @@ Tale endpoint sarà esposto in ambiente di validazione per un tempo necessario d
 
 
 
-## 7.1. Request
+## 8.1. Request
 
 
 <table>
@@ -2796,7 +3207,7 @@ Tale endpoint sarà esposto in ambiente di validazione per un tempo necessario d
 </table>
 
 
-_Tabella 25: Method, URL, Type_
+_Tabella 30: Method, URL, Type_
 
 <table>
   <tr>
@@ -3013,14 +3424,14 @@ _Tabella 25: Method, URL, Type_
 </table>
 
 
-_Tabella 26: Parametri Richiesta di Pubblicazione Aggiornamento Metadati_
+_Tabella 31: Parametri Richiesta di Pubblicazione Aggiornamento Metadati_
 
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento di cui modificare i metadati e al parametro _identificativoDoc_ utilizzato nel servizio di creazione.
 
 
-### 7.1.1. Esempio Messaggio di Richiesta
+### 8.1.1. Esempio Messaggio di Richiesta
 
 Messaggio di richiesta con metadati formalmente corretti, senza indicazione della priorità. 
 
@@ -3049,7 +3460,7 @@ curl -X 'PUT' \
 }'
 ```
 
-## 7.2. Response
+## 8.2. Response
 
 
 <table>
@@ -3146,9 +3557,9 @@ curl -X 'PUT' \
 </table>
 
 
-_Tabella 27: Response Servizio di Pubblicazione Aggiornamento Documento_
+_Tabella 32: Response Servizio di Pubblicazione Aggiornamento Documento_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -3190,7 +3601,7 @@ traceId e spanId coincidono nella prima operazione.
 </table>
 
 
-_Tabella 28: Campi Response sempre valorizzati_
+_Tabella 33: Campi Response sempre valorizzati_
 
 **Campi valorizzati solo in caso di warning:**
 
@@ -3215,10 +3626,10 @@ _Tabella 28: Campi Response sempre valorizzati_
 </table>
 
 
-_Tabella 29: Campi Response valorizzati in caso di warning_
+_Tabella 34: Campi Response valorizzati in caso di warning_
 
 
-### 7.2.1. Esempio di Messaggio di risposta con Esito Success 200
+### 8.2.1. Esempio di Messaggio di risposta con Esito Success 200
 
 ``` json
 { 
@@ -3228,7 +3639,7 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 7.2.2. Esempio di Messaggio di Risposta con esito KO 400
+### 8.2.2. Esempio di Messaggio di Risposta con esito KO 400
 
 ``` json
 {
@@ -3242,7 +3653,7 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 7.3. Esempio Messaggio di Richiesta attraverso iti-57
+### 8.3. Esempio Messaggio di Richiesta attraverso iti-57
 
 Messaggio di richiesta  con metadati formalmente corretti, senza indicazione della priorità. 
 
@@ -3273,7 +3684,7 @@ curl -X 'PUT' \
 
 Le risposte sono le medesime riportate per i casi precedenti.
 
-# 8. Servizio di validazione e pubblicazione creazione contestuale
+# 9. Servizio di validazione e pubblicazione creazione contestuale
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l'invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti, è necessario fare riferimento al Capitolo 13 "Drilldown Parametri di Input.
 
 L’Endpoint del caso d’uso di Validazione e pubblicazione creazione Documento CDA2 si compone come segue:
@@ -3285,7 +3696,7 @@ https://<HOST>:<PORT>/v<major>/documents/validate-and-create
 Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale..
 
 
-## 8.1. Request
+## 9.1. Request
 
 
 <table>
@@ -3310,7 +3721,7 @@ Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologi
 </table>
 
 
-_Tabella 30: Method, URL, Type_
+_Tabella 35: Method, URL, Type_
 
 
 <table>
@@ -3518,16 +3929,6 @@ _Tabella 30: Method, URL, Type_
    <td>XDSSubmissionSet.uniqueId (ITI TF:3 4.2.3.3.12)
    </td>
   </tr>
-  <tr>
-   <td>priorita
-   </td>
-   <td>boolean
-   </td>
-   <td>false
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
    <tr>
    <td>descriptions
    </td>
@@ -3554,9 +3955,9 @@ _Tabella 30: Method, URL, Type_
 </table>
 
 
-_Tabella 31: Parametri Richiesta di validazione pubblicazione creazione contestuale_
+_Tabella 36: Parametri Richiesta di validazione pubblicazione creazione contestuale_
 
-La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “priorita” consente al Gateway di decidere la priorità da attribuire al documento fornito in input al servizio.
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
@@ -3567,9 +3968,9 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
-### 8.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”
+### 9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
 ``` bash
 curl -X 'POST' \
@@ -3593,7 +3994,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489592",
-  "priorita": false,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -3602,9 +4002,9 @@ curl -X 'POST' \
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
-### 8.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”
+### 9.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti, con indicazione della priorità.
+Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti.
 
 ``` bash
 curl -X 'POST' \
@@ -3628,7 +4028,6 @@ curl -X 'POST' \
   "dataFinePrestazione": "20141020110012",
   "tipoAttivitaClinica": "CON",
   "identificativoSottomissione": "2.16.840.1.113883.2.9.2.120.4.3.489593",
-  "priorita": true,
   "descriptions": [
     "019655^Bentelan^2.16.840.1.113883.2.9.6.1.5"
   ],
@@ -3640,7 +4039,7 @@ curl -X 'POST' \
 
 
 
-## 8.2. Response
+## 9.2. Response
 
 
 <table>
@@ -3743,9 +4142,9 @@ curl -X 'POST' \
 </table>
 
 
-_Tabella 32: Response Servizio di Validazione Pubblicazione creazione contestuale_
+_Tabella 37: Response Servizio di Validazione Pubblicazione creazione contestuale_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione creazione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400
 
@@ -3789,7 +4188,7 @@ traceId e spanId coincidono nella prima operazione.
 </table>
 
 
-_Tabella 33: Campi Response sempre valorizzati_
+_Tabella 38: Campi Response sempre valorizzati_
 
 **Campi valorizzati solo in caso di warning**
 
@@ -3814,10 +4213,10 @@ _Tabella 33: Campi Response sempre valorizzati_
 </table>
 
 
-_Tabella 34: Campi Response valorizzati in caso di warning_
+_Tabella 39: Campi Response valorizzati in caso di warning_
 
 
-### 8.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”
+### 9.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”
 
 ``` json
 { 
@@ -3827,7 +4226,7 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 8.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”
+### 9.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”
 
 
 ``` json
@@ -3844,7 +4243,7 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 8.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”
+### 9.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”
 
 
 ``` json
@@ -3857,9 +4256,9 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 }
 ```
  
-# 9. Servizio di validazione pubblicazione sostituzione contestuale
+# 10. Servizio di validazione pubblicazione sostituzione contestuale
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Pubblicazione Sostituzione Documento si compone come segue:
 
@@ -3870,7 +4269,7 @@ https://<HOST>:<PORT>/v<major>/documents/validate-and-replace/<identificativoDoc
 Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale sostituendo un documento precedentemente pubblicato, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale. 
 
 
-## 9.1. Request
+## 10.1. Request
 
 
 <table>
@@ -3895,7 +4294,7 @@ Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologi
 </table>
 
 
-_Tabella 35: Method, URL, Type_
+_Tabella 40: Method, URL, Type_
 
 
 <table>
@@ -4143,16 +4542,16 @@ _Tabella 35: Method, URL, Type_
 </table>
 
 
-_Tabella 36: Parametri Richiesta di Validazione Pubblicazione Sostituzione contestuale_
+_Tabella 41: Parametri Richiesta di Validazione Pubblicazione Sostituzione contestuale_
 
 La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la resituzione di un errore di tipo warning. 
 
 Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento da sostituire e al parametro _identificativoDoc_ utilizzato precedentemente nel servizio di creazione.
 
 
-### 9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”
+### 10.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”
 
-Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti, senza indicazione della priorità. 
+Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
  
 
 ``` bash
@@ -4186,7 +4585,7 @@ curl -X 'PUT' \
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
-## 9.2. Response
+## 10.2. Response
 
 
 <table>
@@ -4289,9 +4688,9 @@ curl -X 'PUT' \
 </table>
 
 
-_Tabella 37: Response Servizio di Validazione pubblicazione Sostituzione Documento contestuale_
+_Tabella 42: Response Servizio di Validazione pubblicazione Sostituzione Documento contestuale_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 ** La pubblicazione sostituzione non sarà eseguita se la validazione preliminare restituisce un esito negativo. In caso di errore in validazione o in trasformata FHIR, il servizio risponderà con codice di errore 400.
 
@@ -4337,7 +4736,7 @@ traceId e spanId coincidono nella prima operazione.
 </table>
 
 
-_Tabella 38: Campi Response sempre valorizzati_
+_Tabella 43: Campi Response sempre valorizzati_
 
 **Campi valorizzati solo in caso di warning**
 
@@ -4362,10 +4761,10 @@ _Tabella 38: Campi Response sempre valorizzati_
 </table>
 
 
-_Tabella 39: Campi Response valorizzati in caso di warning_
+_Tabella 44: Campi Response valorizzati in caso di warning_
 
 
-### 9.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
+### 10.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
 
 ``` json
 { 
@@ -4375,7 +4774,7 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 9.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”
+### 10.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”
 
 ``` json
 {
@@ -4387,7 +4786,7 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 9.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”
+### 10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”
 
 ``` json
 { 
@@ -4404,9 +4803,9 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 ```
 
 
-# 10. Servizio di Recupero Stato Transazione per WorkflowInstanceId
+# 11. Servizio di Recupero Stato Transazione per WorkflowInstanceId
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
@@ -4418,7 +4817,7 @@ Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di
 Tale funzionalità sara presente solo ed esclusivamente in ambiente di validazione.
 
 
-## 10.1. Request
+## 11.1. Request
 
 
 <table>
@@ -4437,7 +4836,7 @@ Tale funzionalità sara presente solo ed esclusivamente in ambiente di validazio
 </table>
 
 
-_Tabella 30: Method, URL, Type_
+_Tabella 45: Method, URL, Type_
 
 
 <table>
@@ -4504,12 +4903,12 @@ _Tabella 30: Method, URL, Type_
 </table>
 
 
-_Tabella 31: Parametri Richiesta di Recupero Stato Transazioni per WorkflowInstanceId_
+_Tabella 46: Parametri Richiesta di Recupero Stato Transazioni per WorkflowInstanceId_
 
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 
-### 10.1.1. Esempio Messaggio di Richiesta stato Transazioni
+### 11.1.1. Esempio Messaggio di Richiesta stato Transazioni
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
@@ -4520,7 +4919,7 @@ curl -X 'GET' \
   -H 'accept: application/json' 
 ```
 
-## 10.2. Response
+## 11.2. Response
 
 
 <table>
@@ -4617,9 +5016,9 @@ curl -X 'GET' \
 </table>
 
 
-_Tabella 32: Response Servizio di Recupero Stato Transazione per WorkflowInstanceId_
+_Tabella 47: Response Servizio di Recupero Stato Transazione per WorkflowInstanceId_
 
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 12 “Drilldown Error Response”.
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
 
 **Campi sempre valorizzati**
 
@@ -4653,7 +5052,7 @@ traceId e spanId coincidono nella prima operazione.
 </table>
 
 
-_Tabella 33: Campi Response sempre valorizzati_
+_Tabella 48: Campi Response sempre valorizzati_
 
 **Campi valorizzati in caso di Success**
 
@@ -4778,10 +5177,10 @@ _Tabella 33: Campi Response sempre valorizzati_
 </table>
 
 
-_Tabella 34: Campi Response sempre valorizzati_
+_Tabella 49: Campi Response sempre valorizzati_
 
 
-### 10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
+### 11.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
 
 Di seguito viene mostrato un esempio di risposta ad una creazione per un issuer abilitato alla comunicazione verso INI con esito 200
 
@@ -4835,7 +5234,7 @@ Di seguito viene mostrato un esempio di risposta ad una creazione per un issuer 
 }
 ```
 
-### 10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
+### 11.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
 
 Di seguito viene mostrato un esempio di risposta ad una cancellazione per un issuer abilitato alla comunicazione verso INI con esito 200
 
@@ -4891,7 +5290,7 @@ Di seguito viene mostrato un esempio di risposta ad una cancellazione per un iss
 }
 ```
 
-### 10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
+### 11.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
 Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issuer abilitato alla comunicazione verso INI con esito 200
 
 ``` json
@@ -4949,7 +5348,7 @@ Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issu
 }
 ```
 
-### 10.2.4. Esempio messaggio di risposta ad una update con Esito Success 200
+### 11.2.4. Esempio messaggio di risposta ad una update con Esito Success 200
 
 ``` json
 {
@@ -5001,7 +5400,7 @@ Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issu
 }
 ```
 
-### 10.2.5. Esempio di Messaggio di Risposta con esito KO 404
+### 11.2.5. Esempio di Messaggio di Risposta con esito KO 404
 
 ``` json
 {
@@ -5017,9 +5416,9 @@ Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issu
 
 
 
-# 11. Servizio di Recupero Stato Transazione per TraceId
+# 12. Servizio di Recupero Stato Transazione per TraceId
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 13 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
@@ -5030,7 +5429,7 @@ https://<HOST>:<PORT>/v<major>/status/search/<traceId>
 Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di una transazione associati ad un traceId. 
 
 
-## 11.1. Request
+## 12.1. Request
 
 
 <table>
@@ -5049,7 +5448,7 @@ Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di
 </table>
 
 
-_Tabella 35: Method, URL, Type_
+_Tabella 50: Method, URL, Type_
 
 
 <table>
@@ -5116,12 +5515,12 @@ _Tabella 35: Method, URL, Type_
 </table>
 
 
-_Tabella 36: Parametri Richiesta di Recupero Stato Transazioni per traceId_
+_Tabella 51: Parametri Richiesta di Recupero Stato Transazioni per traceId_
 
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 
-### 11.1.1. Esempio Messaggio di Richiesta stato Transazioni
+### 12.1.1. Esempio Messaggio di Richiesta stato Transazioni
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
@@ -5132,17 +5531,17 @@ curl -X 'GET' \
   -H 'accept: application/json' 
 ```
 
-## 11.1. Response
+## 12.1. Response
 
 Per ulteriori dettagli su response del servizio in oggetto è necessario fare riferimento al Capitolo 8 “Servizio di Recupero stato transazione per WorkflowInstanceId”
 
 
-# 12. Drilldown Response in caso di Errore
+# 13. Drilldown Response in caso di Errore
 
 Il Gateway genererà due tipologie di errore distinte, entrambe aderenti alla specifica RFC 7807.
 
 
-## 12.1. Errori Applicativi
+## 13.1. Errori Applicativi
 
 Di seguito vengono indicati i campi valorizzati soltanto in caso di errori provenienti dall’applicativo
 
@@ -5200,10 +5599,10 @@ Può differire dal type in caso sia necessario specificare il problema con maggi
 </table>
 
 
-_Tabella 37: Campi Response valorizzati in caso di errore_
+_Tabella 52: Campi Response valorizzati in caso di errore_
 
 
-### 12.3.1. Esempi di errore generati dal Gateway
+### 13.3.1. Esempi di errore generati dal Gateway
 
 
 <table>
@@ -5475,7 +5874,7 @@ _Tabella 37: Campi Response valorizzati in caso di errore_
 
 
 
-## 12.1. Errori provenienti da Apparati di Frontiera
+## 13.1. Errori provenienti da Apparati di Frontiera
 
 Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali o di sicurezza (ad esempio token mancante o scaduto, request non conforme alle specifiche) che vengono intercettati e notificati prima che la richiesta raggiunga i microservizi.
 
@@ -5532,10 +5931,10 @@ Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali 
 </table>
 
 
-_Tabella 38: Campi Response valorizzati in caso di errore govWay_
+_Tabella 53: Campi Response valorizzati in caso di errore govWay_
 
 
-# 13. Drilldown Parametri di Input
+# 14. Drilldown Parametri di Input
 
 Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.5” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
 
@@ -5558,7 +5957,7 @@ Campi che possono essere forniti al Gateway direttamente tramite la request body
 Nella parte restante di questo paragrafo saranno descritti puntualmente i campi recuperati dal JWT (che coincidono con i campi “asserzione attributo”) e quelli recuperati dalla request body (che nascono dall’unione dei campi “specifici per messaggio” che non possono essere dedotti dal contesto di invocazione).
 
 
-## 13.1. Campi Contenuti nei JWT
+## 14.1. Campi Contenuti nei JWT
 
 Gli endpoint del Gateway ricevono 2 token JWT:
 
@@ -5859,7 +6258,7 @@ Formato codifica conforme alle specifiche IHE (ITI TF-3)
 </table>
 
 
-_Tabella 39: Campi contenuti in Authentication Bearer Token_
+_Tabella 54: Campi contenuti in Authentication Bearer Token_
 
 
 
@@ -6609,7 +7008,7 @@ UPDATE per il servizio di Sostituzione Documento e Aggiornamento Metadati
 </table>
 
 
-_Tabella 40: Campi contenuti in FSE-JWT-Signature_
+_Tabella 55: Campi contenuti in FSE-JWT-Signature_
 
 
 
@@ -6657,7 +7056,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 N.B: Il campo **locality** nell'esempio fa riferimento al **LABORATORIO DI PROVA** della Regione Sicilia **190**, ASL **111** e codice STS.11 **123456**
 
 
-## 13.2. Campi Contenuti nella Request Body
+## 14.2. Campi Contenuti nella Request Body
 
 Per i campi contenuti nella request body si evidenzia nel campo “provenienza” se questi sono campi introdotti per rendere possibile la comunicazione con INI o se questi sono stati appositamente introdotti per gestire in maniera efficace ed efficiente il gateway.
 
@@ -7230,28 +7629,6 @@ Vedi TABELLA ORGANIZZAZIONE per il codice della REGIONE
    </td>
   </tr>
   <tr>
-   <td colspan="2" ><strong>PRIORITA</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>PARAMETRO</strong>
-   </td>
-   <td><code>priorita</code>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Indica che la richiesta dovrà essere processata con priorità massima
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>true
-   </td>
-  </tr>
-  <tr>
    <td><strong>PROVENIENZA</strong>
    </td>
    <td>GATEWAY
@@ -7334,14 +7711,14 @@ Vedi TABELLA ORGANIZZAZIONE per il codice della REGIONE
 </table>
 
 
-_Tabella 41: Campi contenuti nella Request Body_
+_Tabella 56: Campi contenuti nella Request Body_
 
 	
 
 
 
 
-## 13.3. Tabelle di Riferimento
+## 14.3. Tabelle di Riferimento
 
 Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
 
@@ -7350,7 +7727,7 @@ Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle
 Eventuali variazioni normative e/o ad Affinity Domain implicano l’aggiornamento delle tabelle referenziate.
 
 
-### 13.3.1. Attività Clinica Enum
+### 14.3.1. Attività Clinica Enum
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -7404,12 +7781,12 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 </table>
 
 
-_Tabella 42:  _Value set per il metadato XDSSubmissionSet.contentTypeCode
+_Tabella 57:  _
 
 
 
 
-### 13.3.2. Healthcare Facility Type Code
+### 14.3.2. Healthcare Facility Type Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -7453,12 +7830,12 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 </table>
 
 
-_Tabella 43:  _Value set per il metadato XDSDocumentEntry.healthcareFacilityTypeCode_reFacilityTypeCode_
+_Tabella 58: _Value set per il metadato XDSDocumentEntry.healthcareFacilityTypeCode_
 
 
 
 
-### 13.3.3. Tipo Documento Alto Livello
+### 14.3.3. Tipo Documento Alto Livello
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -7550,7 +7927,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 
-### 13.3.4. Event Code
+### 14.3.4. Event Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
@@ -8717,7 +9094,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 45: _Value set per il metadato XDSDocumentEntry.eventCodeList
 
 
-### 13.3.5. Ruolo
+### 14.3.5. Ruolo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
@@ -8911,7 +9288,7 @@ _Tabella 46: _Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:r
 
 
 
-### 13.3.6. Contesto Operativo
+### 14.3.6. Contesto Operativo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -8955,7 +9332,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 47: Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:purposeofuse
 
 
-### 13.3.7. Organizzazione
+### 14.3.7. Organizzazione
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
@@ -9183,7 +9560,7 @@ _Tabella 48: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:or
 
 
 
-### 13.3.8. Practice Setting Code
+### 14.3.8. Practice Setting Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
@@ -9557,7 +9934,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 49: _Value set per il metadato XDSDocumentEntry.practiceSettingCode
 
 
-### 13.3.9. Activity Enum
+### 14.3.9. Activity Enum
 
 
 <table>
@@ -9588,10 +9965,10 @@ _Tabella 49: _Value set per il metadato XDSDocumentEntry.practiceSettingCode
 </table>
 
 
-_Tabella 50: ActivityEnum_
+_Tabella 59: ActivityEnum_
 
 
-### 13.3.10. Injection Mode Enum
+### 14.3.10. Injection Mode Enum
 
 
 <table>
@@ -9622,10 +9999,10 @@ _Tabella 50: ActivityEnum_
 </table>
 
 
-_Tabella 51: InjectionModeEnum_
+_Tabella 60: InjectionModeEnum_
 
 
-### 13.3.11. Health Data Format Enum
+### 14.3.11. Health Data Format Enum
 
 
 <table>
@@ -9648,10 +10025,10 @@ _Tabella 51: InjectionModeEnum_
 </table>
 
 
-_Tabella 52: HealthDataFormatEnum_
+_Tabella 61: HealthDataFormatEnum_
 
 
-### 13.3.12. Tipo Attività
+### 14.3.12. Tipo Attività
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -9686,10 +10063,10 @@ Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:a
 </table>
 
 
-_Tabella 53: action-id_
+_Tabella 62: action-id_
 
 
-### 13.3.13. Administrative Request
+### 14.3.13. Administrative Request
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -9730,7 +10107,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 </tr>
 </table>
 
-_Tabella 53: Value set per il metadato XDSDocumentEntry.Slot - Administrative Request_
+_Tabella 63: Value set per il metadato XDSDocumentEntry.Slot - Administrative Request_
 
 
 <!-- Footnotes themselves at the bottom. -->
