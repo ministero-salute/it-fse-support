@@ -393,6 +393,18 @@ Questo documento fornisce una mappatura dei metadati tra i sistemi Gateway ed IN
         <td>SSN</td>
         <td><code>GTW_ID^GTW_VENDOR^GTW_VERSION</code></td>
     </tr>
+    <tr>
+        <td>:green_book:</td>
+        <td>
+            <table>
+                <tr>
+                    <td><code><strong>BASE PATH</strong>:ClinicalDocument &gt title </code></td>
+                </tr>
+            </table>
+        </td>
+        <td>REFERTO LABORATORIO</td>
+        <td><code>LocalizedString</code></td>
+    </tr>
 
 </table>
 
