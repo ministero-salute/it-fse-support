@@ -761,7 +761,7 @@ In caso di validazione eseguita con successo, l’esito tornato è positivo e la
 
 Nello scenario di questa funzionalità il Repository Documentale locale invia il documento secondo il formato standard HL7 CDA2 ed iniettato in PDF firmato digitalmente in modalità **PADES**, corredato di alcuni metadati come di seguito indicato. Il documento CDA2 innestato nel documento dovrà corrispondere a quello precedentemente validato secondo il servizio di Validazione Documenti CDA2.
 
-La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF ignorando il tag del CDA "Legal Authenticator". Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione (recuperato dalla cache tramite il “workflowInstanceId”).
+La verifica della corrispondenza verrà fatta calcolando l’hash del CDA2 estrapolato dal PDF ignorando il campo signature del tag "Legal Authenticator" del CDA fornito in input. Il processo di Pubblicazione procederà soltanto se l’hash coincide con quello calcolato nel flusso di validazione.
 
 Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in formato FHIR per l’invio verso EDS, e preparare i metadati del documento per la comunicazione verso INI ai fini della indicizzazione.
 
