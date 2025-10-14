@@ -1,0 +1,630 @@
+{
+  "resourceType": "Bundle",
+  "id": "69c30430-569e-4689-992b-15aed47e3ae1",
+  "identifier": {
+    "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+    "value": "030702.LCNLDE90L47H501Q.20220420112426.Q123E456",
+    "assigner": { "display": "Regione Lazio" }
+  },
+  "type": "transaction",
+  "timestamp": "2025-10-10T16:07:37+02:00",
+  "entry": [
+    {
+      "fullUrl": "https://example/Observation/c07d3d87-1ce0-46fe-9463-d66c4e7a49d8",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c07d3d87-1ce0-46fe-9463-d66c4e7a49d8",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "59785-6",
+              "display": "Indicazioni per la vaccinazione"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/7e79a701-744d-4173-97c6-fe11b7166fc9"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9",
+              "code": "493.9",
+              "display": "bronchite asmatica (acuta)"
+            }
+          ],
+          "text": "#[REF_CONSRISK]"
+        }
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/Observation/20ad254e-30cc-4212-9320-2426d7e02f85",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "20ad254e-30cc-4212-9320-2426d7e02f85",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "95715-9",
+              "display": "Categorie a rischio"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/7e79a701-744d-4173-97c6-fe11b7166fc9"
+        },
+        "referenceRange": [
+          {
+            "appliesTo": [
+              {
+                "coding": [
+                  {
+                    "system": "urn:oid:2.16.840.1.113883.2.9.6.1.56.2",
+                    "code": "22",
+                    "display": "Viaggi all'estero"
+                  }
+                ]
+              }
+            ],
+            "text": "string"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/Location/XXX-999999",
+      "resource": {
+        "resourceType": "Location",
+        "id": "XXX-999999",
+        "identifier": [
+          {
+            "system": "urn:oid:XXX",
+            "value": "999999",
+            "assigner": { "display": "[NOME_AUTHORITY]" }
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Location?identifier=999999" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/f42d2cff-34c9-42c5-a814-df6c779b0281",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "f42d2cff-34c9-42c5-a814-df6c779b0281",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Observation/846b65bd-4962-4882-bd35-e9a63f80bfe1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "846b65bd-4962-4882-bd35-e9a63f80bfe1",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "31044-1",
+              "display": "Immunization reaction"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/7e79a701-744d-4173-97c6-fe11b7166fc9"
+        },
+        "effectivePeriod": {
+          "start": "2022-04-27T10:10:10+01:00",
+          "end": "2022-05-06T10:10:10+01:00"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9",
+              "code": "692.3",
+              "display": "Dermatite da contatto con farmaci"
+            }
+          ],
+          "text": "#[REF_REAZ]"
+        }
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/Organization/XXX-999999",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "XXX-999999",
+        "identifier": [
+          {
+            "system": "urn:oid:XXX",
+            "value": "999999",
+            "assigner": { "display": "[NOME_AUTHORITY]" }
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=999999" }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.2-120148",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.2",
+            "value": "120148",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "telecom": [
+          { "system": "phone", "value": "3340000000", "use": "mobile" }
+        ],
+        "address": [
+          {
+            "use": "work",
+            "line": [null, "via Emilio Praga 39"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00137",
+            "country": "100"
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=120148" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/c7b2b1d8-c306-4332-aba3-f1013898b517",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "c7b2b1d8-c306-4332-aba3-f1013898b517",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        },
+        "organization": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Location/2.16.840.1.113883.2.9.4.1.2-120148",
+      "resource": {
+        "resourceType": "Location",
+        "id": "2.16.840.1.113883.2.9.4.1.2-120148",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.2",
+            "value": "120148",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Location?identifier=120148" }
+    },
+    {
+      "fullUrl": "https://example/Immunization/6cf65e83-ee25-4b50-94b9-c0342e7f7644",
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "6cf65e83-ee25-4b50-94b9-c0342e7f7644",
+        "status": "completed",
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.9.6.1.5",
+              "code": "035606033",
+              "display": "ARIXTRA*2,5MG/0,5MLSC 10SIR."
+            },
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "B01AX05",
+              "display": "FONDAPARINUX"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "occurrenceDateTime": "2022-03-30T10:10:00+01:00",
+        "location": {
+          "reference": "https://example/Location/2.16.840.1.113883.2.9.4.1.2-120148"
+        },
+        "manufacturer": {
+          "reference": "https://example/Organization/XXX-999999"
+        },
+        "lotNumber": "20",
+        "expirationDate": "2022-03-01",
+        "site": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-ActSite",
+              "code": "LA",
+              "display": "left arm"
+            }
+          ]
+        },
+        "route": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration",
+              "code": "IABDINJ",
+              "display": "Injection, intra-abdominal"
+            }
+          ]
+        },
+        "doseQuantity": { "value": 20, "unit": "mL" },
+        "reasonReference": [
+          {
+            "reference": "https://example/Observation/20ad254e-30cc-4212-9320-2426d7e02f85"
+          },
+          {
+            "reference": "https://example/Observation/c07d3d87-1ce0-46fe-9463-d66c4e7a49d8"
+          },
+          {
+            "reference": "https://example/Observation/846b65bd-4962-4882-bd35-e9a63f80bfe1"
+          }
+        ],
+        "protocolApplied": [
+          {
+            "targetDisease": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/sid/icd-9",
+                    "code": "99.45",
+                    "display": "Morbillo"
+                  }
+                ],
+                "text": "#[REF_MAL]"
+              }
+            ],
+            "doseNumberString": "3"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "https://example/Composition/8f053837-38c1-4d2b-9b4e-39234884e661",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "8f053837-38c1-4d2b-9b4e-39234884e661",
+        "language": "it-IT",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/composition-clinicaldocument-versionNumber",
+            "valueString": "2"
+          }
+        ],
+        "identifier": {
+          "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+          "value": "030702.LCNLDE90L47H501Q.20220420112426.0009rty",
+          "assigner": { "display": "Regione Lazio" }
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "82593-5",
+              "display": "Immunization summary report"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/7e79a701-744d-4173-97c6-fe11b7166fc9"
+        },
+        "date": "2022-02-10T18:30:23+01:00",
+        "author": [
+          {
+            "reference": "https://example/PractitionerRole/c7b2b1d8-c306-4332-aba3-f1013898b517"
+          }
+        ],
+        "title": "Certificato Vaccinale",
+        "confidentiality": "N",
+        "attester": [
+          {
+            "mode": "legal",
+            "time": "2022-03-30T11:24:26+01:00",
+            "party": {
+              "reference": "https://example/PractitionerRole/acdb3a73-fe24-486d-830e-8887e6b506cd"
+            }
+          }
+        ],
+        "custodian": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148"
+        },
+        "section": [
+          {
+            "title": "Certificato Vaccinazione",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11369-6",
+                  "display": "History of Immunization Narrative"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t\t\t\t[NARRATIVE_BLOCK]\n\t\t\t\t\t</div>"
+            },
+            "entry": [
+              {
+                "reference": "https://example/Immunization/6cf65e83-ee25-4b50-94b9-c0342e7f7644"
+              },
+              {
+                "reference": "https://example/Immunization/261406eb-2391-4a6f-a8a2-fa59e9fe266f"
+              }
+            ]
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Composition" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/acdb3a73-fe24-486d-830e-8887e6b506cd",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "acdb3a73-fe24-486d-830e-8887e6b506cd",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.2",
+            "value": "PROVAX00X00X000Y",
+            "assigner": { "display": "MEF" }
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner?identifier=PROVAX00X00X000Y"
+      }
+    },
+    {
+      "fullUrl": "https://example/Immunization/261406eb-2391-4a6f-a8a2-fa59e9fe266f",
+      "resource": {
+        "resourceType": "Immunization",
+        "id": "261406eb-2391-4a6f-a8a2-fa59e9fe266f",
+        "status": "not-done",
+        "statusReason": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "85714-4",
+              "display": "Motivo per cui non si è ricevuto vaccino"
+            }
+          ],
+          "text": "#[REF_IMMUNE]"
+        },
+        "vaccineCode": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.9.6.1.5",
+              "code": "043348022",
+              "display": "[DESC_AIC_VACC]"
+            },
+            {
+              "system": "http://www.whocc.no/atc",
+              "code": "C08CA01",
+              "display": "[DESC_ATC_VACC]"
+            }
+          ]
+        },
+        "patient": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "occurrenceDateTime": "2022-04-10T22:22:22+01:00",
+        "location": { "reference": "https://example/Location/XXX-999999" },
+        "protocolApplied": [
+          {
+            "targetDisease": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/sid/icd-9",
+                    "code": "99.45",
+                    "display": "Morbillo"
+                  }
+                ],
+                "text": "#[REF_MAL]"
+              }
+            ],
+            "doseNumberString": "3"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Immunization" }
+    },
+    {
+      "fullUrl": "https://example/DocumentReference/9cc73d5b-1af0-4641-adad-155b75060238",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "9cc73d5b-1af0-4641-adad-155b75060238",
+        "status": "current",
+        "subject": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "author": [
+          {
+            "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+          }
+        ],
+        "custodian": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148"
+        },
+        "content": [{ "attachment": { "title": "string" } }],
+        "context": {
+          "related": [
+            {
+              "reference": "https://example/Composition/8f053837-38c1-4d2b-9b4e-39234884e661"
+            }
+          ]
+        }
+      },
+      "request": { "method": "POST", "url": "DocumentReference" }
+    },
+    {
+      "fullUrl": "https://example/Encounter/7e79a701-744d-4173-97c6-fe11b7166fc9",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "7e79a701-744d-4173-97c6-fe11b7166fc9",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+            "value": "030702.LCNLDE90L47H501Q.20220420112426.Q123E456",
+            "assigner": { "display": "Regione Lazio" }
+          }
+        ],
+        "status": "finished",
+        "class": {
+          "system": "http://loinc.org",
+          "code": "82593-5",
+          "display": "Immunization summary report"
+        },
+        "subject": {
+          "reference": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a"
+        },
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "code": "IND"
+                  }
+                ]
+              }
+            ],
+            "individual": {
+              "reference": "https://example/PractitionerRole/f42d2cff-34c9-42c5-a814-df6c779b0281"
+            }
+          }
+        ],
+        "period": { "start": "2022-02-10T18:30:23+01:00" }
+      },
+      "request": { "method": "POST", "url": "Encounter" }
+    },
+    {
+      "fullUrl": "https://example/Patient/058ade88-1219-4137-aeec-76d0733dba9a",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "058ade88-1219-4137-aeec-76d0733dba9a",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+            "valueAddress": {
+              "line": [null],
+              "_line": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                      "valueString": "058091"
+                    }
+                  ]
+                }
+              ],
+              "city": "Roma",
+              "district": "RM",
+              "state": "120",
+              "country": "100"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.2",
+            "value": "RSSMRA22A01A399Z",
+            "assigner": { "display": "MEF" }
+          },
+          {
+            "system": "urn:oid:2.16.840.1.113883.9.9.9.9.9.9",
+            "value": "11111htttt",
+            "assigner": { "display": "SAN RAFFAELE NOMENTANA" }
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "prova.provax@gmail.it",
+            "use": "home"
+          },
+          { "system": "phone", "value": "3340000000", "use": "mobile" }
+        ],
+        "gender": "male",
+        "birthDate": "1993-06-19",
+        "address": [
+          {
+            "use": "home",
+            "line": [null, "via Aurora 12"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00187",
+            "country": "100"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient?identifier=RSSMRA22A01A399Z"
+      }
+    }
+  ]
+}

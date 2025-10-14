@@ -1,0 +1,1513 @@
+{
+  "resourceType": "Bundle",
+  "id": "191d6218-4765-4a6f-9b6e-ea5d1926d937",
+  "identifier": {
+    "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+    "value": "030702.LCNLVC95L47H501Q.20220325112426.OQlvTq1J",
+    "assigner": { "display": "Regione Lazio" }
+  },
+  "type": "transaction",
+  "timestamp": "2025-10-10T16:07:39+02:00",
+  "entry": [
+    {
+      "fullUrl": "https://example/PractitionerRole/1bba5496-d9a8-46e7-ac63-a8d4a78039b9",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "1bba5496-d9a8-46e7-ac63-a8d4a78039b9",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        },
+        "organization": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-120148"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.2.9.5.1.88",
+                "code": "PRE"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.2.9.6.2.7",
+                "code": "3211",
+                "display": "Tecnici di imaging medicale e apparecchiature terapeutiche"
+              }
+            ]
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/98e7bf99-bf7d-4351-85c2-d742bf74513a",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "98e7bf99-bf7d-4351-85c2-d742bf74513a",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-GTWGWY82B42G920M"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Condition/cfe9bd3e-bba6-4ae2-8097-801712311919",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "cfe9bd3e-bba6-4ae2-8097-801712311919",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "inactive",
+              "display": "Inactive"
+            }
+          ],
+          "text": "#[REF_STATO]"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ]
+        },
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://loinc.org",
+                "code": "75326-9",
+                "display": "Problem"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "60975-0",
+              "display": "Resistenza Vascolare"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "onsetPeriod": {
+          "start": "2022-03-30T11:24:26+01:00",
+          "end": "2022-04-04T11:00:00+02:00"
+        },
+        "evidence": [
+          {
+            "detail": [
+              {
+                "reference": "https://example/Observation/bad7dd09-b7c8-47ee-b1de-0496e24d39be"
+              }
+            ]
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Condition" }
+    },
+    {
+      "fullUrl": "https://example/Observation/bad7dd09-b7c8-47ee-b1de-0496e24d39be",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "bad7dd09-b7c8-47ee-b1de-0496e24d39be",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "89261-2",
+              "display": "Decorso Clinico"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "LA18821-1",
+              "display": "Acute"
+            }
+          ]
+        },
+        "note": [{ "text": "#[REF_CRON]" }]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/FamilyMemberHistory/d1dd80db-2808-4ef8-b6da-27c3309b58c7",
+      "resource": {
+        "resourceType": "FamilyMemberHistory",
+        "id": "d1dd80db-2808-4ef8-b6da-27c3309b58c7",
+        "status": "completed",
+        "patient": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "date": "2022-04-09T12:11:22+02:00",
+        "relationship": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-RoleCode",
+              "code": "MTH",
+              "display": "Mother"
+            }
+          ]
+        },
+        "sex": { "coding": [{ "code": "female" }] },
+        "deceasedAge": {
+          "value": 60,
+          "unit": "a",
+          "system": "http://unitsofmeasure.org",
+          "code": "a"
+        },
+        "note": [{ "text": "#[REF_OBS]" }],
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "52797-8",
+                  "display": "Diagnosi codice ICD"
+                }
+              ]
+            },
+            "outcome": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/sid/icd-9",
+                  "code": "575.6",
+                  "display": "COLESTEROLOSI DELLA COLECISTI"
+                }
+              ]
+            },
+            "onsetAge": {
+              "value": 35,
+              "unit": "a",
+              "system": "http://unitsofmeasure.org",
+              "code": "a"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "52797-8",
+                  "display": "Diagnosi codice ICD"
+                }
+              ]
+            },
+            "outcome": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/sid/icd-9",
+                  "code": "575.6",
+                  "display": "COLESTEROLOSI DELLA COLECISTI"
+                }
+              ]
+            },
+            "onsetPeriod": { "start": "2022-04-06T12:11:22+02:00" }
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "FamilyMemberHistory" }
+    },
+    {
+      "fullUrl": "https://example/Observation/73991b6c-d27b-488a-843a-e8da0ac8f84a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "73991b6c-d27b-488a-843a-e8da0ac8f84a",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55110-1",
+              "display": "Conclusioni"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "note": [
+          {
+            "text": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p> \n\t\t\t\t\t\t\tQuadro radiologico complessivamente nella norma ed invariato rispetto al precedente. \n\t\t\t\t\t\t</p></div>"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/Observation/c6739466-e883-4962-9863-361a7e19272d",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c6739466-e883-4962-9863-361a7e19272d",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "75326-9",
+              "display": "Problem"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "effectivePeriod": {
+          "start": "2017-01-01T09:00:00+02:00",
+          "end": "2017-01-01T10:30:00+02:00"
+        },
+        "valueCodeableConcept": { "text": "#[Ref_nota]" }
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/9eda69bc-16ca-4c8e-a736-37455717a492",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "9eda69bc-16ca-4c8e-a736-37455717a492",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-GTWGWY82B42G920M"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/027e7cbf-d4b2-4cf1-8979-a887ff9df1ae",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "027e7cbf-d4b2-4cf1-8979-a887ff9df1ae",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/List/628fd2f7-96c8-44cf-91de-1adce73cc784",
+      "resource": {
+        "resourceType": "List",
+        "id": "628fd2f7-96c8-44cf-91de-1adce73cc784",
+        "status": "current",
+        "mode": "working",
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "entry": [
+          {
+            "item": {
+              "reference": "https://example/FamilyMemberHistory/d1dd80db-2808-4ef8-b6da-27c3309b58c7"
+            }
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "List" }
+    },
+    {
+      "fullUrl": "https://example/Observation/d8f56f75-f31e-4db6-b80c-24db6cef1424",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "d8f56f75-f31e-4db6-b80c-24db6cef1424",
+        "status": "registered",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "48765-2",
+              "display": "Allergie e/o reazioni avverse"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "focus": [
+          {
+            "reference": "https://example/List/dfbec1da-3ebe-4081-a8b4-bef77dd3bbb6"
+          }
+        ],
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        }
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "23d46afc-454b-4122-b414-8d39dd8765c1",
+        "status": "registered",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "68604-8",
+              "display": "Referto Radiologico"
+            },
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+              "code": "002",
+              "display": "Referto Radiologico"
+            }
+          ]
+        },
+        "result": [
+          {
+            "reference": "https://example/Observation/0c40c180-584a-4eed-bd01-b9f07692a7d1"
+          },
+          {
+            "reference": "https://example/Observation/e74cbc52-afd1-47a7-bd23-e4f3ec6a840c"
+          },
+          {
+            "reference": "https://example/Observation/ccaf6dae-884e-4d3d-a162-8a5179c66be6"
+          },
+          {
+            "reference": "https://example/Observation/d8f56f75-f31e-4db6-b80c-24db6cef1424"
+          },
+          {
+            "reference": "https://example/Observation/da6d79d4-df18-4444-baa7-f956064a64a8"
+          },
+          {
+            "reference": "https://example/Observation/bdc0bc7a-85d8-49b4-b032-db3b21b2bb77"
+          },
+          {
+            "reference": "https://example/Observation/4abc4f1a-5431-4d26-bd08-584a617e57e5"
+          },
+          {
+            "reference": "https://example/Observation/73991b6c-d27b-488a-843a-e8da0ac8f84a"
+          },
+          {
+            "reference": "https://example/Observation/cd1e2911-c869-40a2-a7c4-079f5f85b6d2"
+          },
+          {
+            "reference": "https://example/Observation/c6739466-e883-4962-9863-361a7e19272d"
+          },
+          {
+            "reference": "https://example/Observation/375d1cbd-611a-4ffe-99d2-fab4a0755b44"
+          }
+        ],
+        "imagingStudy": [
+          {
+            "reference": "https://example/ImagingStudy/710bcd8b-3ffc-4890-bb89-e9b3c4b4922a"
+          }
+        ],
+        "conclusion": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p> \n\t\t\t\t\t\t\tQuadro radiologico complessivamente nella norma ed invariato rispetto al precedente. \n\t\t\t\t\t\t</p></div>"
+      },
+      "request": { "method": "POST", "url": "DiagnosticReport" }
+    },
+    {
+      "fullUrl": "https://example/Observation/bdc0bc7a-85d8-49b4-b032-db3b21b2bb77",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "bdc0bc7a-85d8-49b4-b032-db3b21b2bb77",
+        "status": "registered",
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9",
+              "code": "87.3",
+              "display": "Soft tissue x-ray of thorax"
+            },
+            {
+              "system": "http://loinc.org",
+              "code": "24651-2",
+              "display": "R & L-oblique views"
+            }
+          ],
+          "text": "#EsameDesc1"
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "effectiveDateTime": "2022-02-03T09:22:05+02:00",
+        "note": [{ "text": "#Esame1" }]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/dbd22189-3e2a-4c9c-a7ba-d6927a4cbdd6",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "dbd22189-3e2a-4c9c-a7ba-d6927a4cbdd6",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-XXX",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.2-XXX",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.2",
+            "value": "XXX",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "telecom": [
+          { "system": "phone", "value": "3340000000", "use": "work" }
+        ],
+        "partOf": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-XXX"
+        }
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=XXX" }
+    },
+    {
+      "fullUrl": "https://example/Observation/ccaf6dae-884e-4d3d-a162-8a5179c66be6",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ccaf6dae-884e-4d3d-a162-8a5179c66be6",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11329-0",
+              "display": "Storia Generale"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "focus": [
+          {
+            "reference": "https://example/List/628fd2f7-96c8-44cf-91de-1adce73cc784"
+          }
+        ],
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        }
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/List/dfbec1da-3ebe-4081-a8b4-bef77dd3bbb6",
+      "resource": {
+        "resourceType": "List",
+        "id": "dfbec1da-3ebe-4081-a8b4-bef77dd3bbb6",
+        "status": "current",
+        "mode": "working",
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "entry": [
+          {
+            "item": {
+              "reference": "https://example/AllergyIntolerance/bdc8c1c6-1b15-49cf-8b7c-a0c16c3443f2"
+            }
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "List" }
+    },
+    {
+      "fullUrl": "https://example/DocumentReference/17affe84-6e43-47a8-91c0-3ba162f88ed9",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "17affe84-6e43-47a8-91c0-3ba162f88ed9",
+        "status": "current",
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "author": [
+          {
+            "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-GTWGWY82B42G920M"
+          }
+        ],
+        "custodian": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-120148"
+        },
+        "content": [{ "attachment": { "title": "string" } }],
+        "context": {
+          "related": [
+            {
+              "reference": "https://example/Composition/c58d60b4-1f65-4622-9648-3bf33d636e6e"
+            }
+          ]
+        }
+      },
+      "request": { "method": "POST", "url": "DocumentReference" }
+    },
+    {
+      "fullUrl": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "3dcf259e-ba90-4355-91b4-2852e0fd4522",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "basedOn": [
+          {
+            "reference": "https://example/ServiceRequest/0b2abda6-8ae7-41c6-9d24-01495b07154b"
+          }
+        ],
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "code": "SPRF"
+                  }
+                ]
+              }
+            ],
+            "period": { "start": "2022-03-24T11:24:26+01:00" },
+            "individual": {
+              "reference": "https://example/PractitionerRole/1bba5496-d9a8-46e7-ac63-a8d4a78039b9"
+            }
+          },
+          {
+            "individual": {
+              "reference": "https://example/PractitionerRole/027e7cbf-d4b2-4cf1-8979-a887ff9df1ae"
+            }
+          }
+        ],
+        "period": { "start": "2022-03-30T11:24:26+01:00" },
+        "location": [
+          {
+            "location": {
+              "reference": "https://example/Location/2.16.840.1.113883.2.9.4.1.6-XXX"
+            }
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Encounter" }
+    },
+    {
+      "fullUrl": "https://example/Composition/c58d60b4-1f65-4622-9648-3bf33d636e6e",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "c58d60b4-1f65-4622-9648-3bf33d636e6e",
+        "language": "it-IT",
+        "identifier": {
+          "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+          "value": "030702.LCNLVC95L47H501Q.20220325112426.OQlvTq1J",
+          "assigner": { "display": "Regione Lazio" }
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "68604-8",
+              "display": "Referto Radiologico"
+            },
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+              "code": "002",
+              "display": "Referto Radiologico"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "date": "2022-03-30T11:24:26+01:00",
+        "author": [
+          {
+            "reference": "https://example/PractitionerRole/9eda69bc-16ca-4c8e-a736-37455717a492"
+          },
+          {
+            "reference": "https://example/PractitionerRole/98e7bf99-bf7d-4351-85c2-d742bf74513a"
+          }
+        ],
+        "title": "REFERTO RADIOLOGICO",
+        "confidentiality": "N",
+        "attester": [
+          {
+            "mode": "professional",
+            "party": {
+              "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+            }
+          },
+          {
+            "mode": "legal",
+            "time": "2022-03-30T11:24:26+01:00",
+            "party": {
+              "reference": "https://example/PractitionerRole/3a73940a-08b0-4550-9786-f1267794ec75"
+            }
+          },
+          {
+            "mode": "professional",
+            "time": "2022-03-25T11:00:00+01:00",
+            "party": {
+              "reference": "https://example/PractitionerRole/dbd22189-3e2a-4c9c-a7ba-d6927a4cbdd6"
+            }
+          }
+        ],
+        "custodian": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-120148"
+        },
+        "event": [
+          {
+            "code": [
+              {
+                "coding": [
+                  {
+                    "system": "urn:oid:2.16.840.1.113883.2.9.5.1.4",
+                    "code": "RAD_PROG",
+                    "display": "Accesso Programmato (Radiologia)"
+                  }
+                ]
+              }
+            ],
+            "period": { "start": "2022-03-30T11:24:26+01:00" }
+          }
+        ],
+        "section": [
+          {
+            "title": "DICOM Object Catalog",
+            "code": {
+              "coding": [
+                {
+                  "system": "urn:oid:1.2.840.10008.2.16.4",
+                  "version": "01",
+                  "code": "121181",
+                  "display": "DICOM Object Catalog"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Quesito Diagnostico",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "18785-6",
+                  "display": "Motivo per lo studio - Radiologia"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li><span id=\"DIAG\">Trauma toracico</span></li></ul></div>"
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Storia Clinica",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "11329-0",
+                  "display": "Storia Generale"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>\n\t\t\t\t\t\t\tAnamnesi Familiare: Il padre all’età di 55 anni è stato colpito da angina \tpectoris. Il nonno materno era diabetico. La madre ha sofferto di \n\t\t\t\t\t\t\tCOLESTEROLOSI DELLA COLECISTI a 35 anni ed è deceduta a 60 anni.\n\t\t\t\t\t\t\tAnamnesi Fisiologica: all’età di 16 anni si è manifestata l’allergia al glutine. \n\t\t\t\t\t\t\tAnamnesi Patologica Remota: Nell’anno 1988 ha subito appendicectomia. \n\t\t\t\t\t\t\tAnamnesi Patologica Prossima: Ne mese di marzo 2016 è stata colpita da \tsindrome influenzale nonostante la vaccinazione antinfluenzale. \n\t\t\t\t\t\t</p></div>"
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ],
+            "section": [
+              {
+                "title": "Allergie",
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://loinc.org",
+                      "code": "48765-2",
+                      "display": "Allergie e/o reazioni avverse"
+                    }
+                  ]
+                },
+                "text": {
+                  "status": "generated",
+                  "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>\n\t\t\t\t\t\t\t\t\tAllergico a Cefalosporine; Allergia a contatto per lattice; Allergia a contatto ed inalazione per polvere comune\n\t\t\t\t\t\t\t\t</p></div>"
+                },
+                "entry": [
+                  {
+                    "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Precedenti Esami Eseguiti",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "55114-3",
+                  "display": "Precedente procedura di imaging, descrizioni"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table><thead><tr><th>Precedente Esame Eseguito</th><th>Data Esame</th><th>Esito</th></tr></thead><tbody><tr><td>Radiografia del torace</td><td>(03 Feb2022 09:22)</td><td>Nessun trauma riscontrato</td></tr></tbody></table></div>"
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Esame Eseguito",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "55111-9",
+                  "display": "Descrizioni attuale procedure di imaging"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table><thead><tr><th>Descrizione Esame Eseguito</th><th>Data Esame Eseguito</th><th>Modalità Esame Eseguito</th><th>Dose Assorbita</th></tr></thead><tbody><tr id=\"Esame1\"><td id=\"EsameDesc1\">Radiografia del torace</td><td>(03 Feb2022 09:22)</td><td>Procedura radiografica del torace</td><td>0,001mSv</td></tr></tbody></table></div>"
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Referto",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "18782-3",
+                  "display": "Rilievo - Radiologia"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Conclusioni",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "55110-1",
+                  "display": "Conclusioni"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Informazioni Aggiuntive",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "55107-7",
+                  "display": "Appendice"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Complicanze",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "55109-3",
+                  "display": "Complicazioni"
+                }
+              ]
+            },
+            "text": {
+              "status": "generated",
+              "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>\n\t\t\t\t\t\t\tDopo la somministrazione del mezzo di contrasto, il paziente ha manifestato una evidente reazione allergica.\n\t\t\t\t\t\t</p></div>"
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          },
+          {
+            "title": "Suggerimenti per il medico prescrittore",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "18783-1",
+                  "display": "Raccomandazione studio - Radiologia"
+                }
+              ]
+            },
+            "entry": [
+              {
+                "reference": "https://example/DiagnosticReport/23d46afc-454b-4122-b414-8d39dd8765c1"
+              }
+            ]
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Composition" }
+    },
+    {
+      "fullUrl": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-GTWGWY82B42G920M",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "2.16.840.1.113883.2.9.4.3.2-GTWGWY82B42G920M",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.2",
+            "value": "GTWGWY82B42G920M",
+            "assigner": { "display": "MEF" }
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "prova.provax@example.com",
+            "use": "home"
+          },
+          {
+            "system": "email",
+            "value": "prova.provax@example.com",
+            "use": "work"
+          },
+          { "system": "phone", "value": "3340000000", "use": "mobile" }
+        ],
+        "address": [
+          {
+            "use": "home",
+            "line": [null, "via Milano 7"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00184",
+            "country": "100"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner?identifier=GTWGWY82B42G920M"
+      }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-XXX",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.1-XXX",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.1",
+            "value": "XXX",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=XXX" }
+    },
+    {
+      "fullUrl": "https://example/ServiceRequest/0b2abda6-8ae7-41c6-9d24-01495b07154b",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "0b2abda6-8ae7-41c6-9d24-01495b07154b",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.9",
+            "value": "[NRE]",
+            "assigner": { "display": "MEF" }
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "priority": "routine",
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        }
+      },
+      "request": { "method": "POST", "url": "ServiceRequest" }
+    },
+    {
+      "fullUrl": "https://example/Observation/e74cbc52-afd1-47a7-bd23-e4f3ec6a840c",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e74cbc52-afd1-47a7-bd23-e4f3ec6a840c",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11329-0",
+              "display": "Storia Generale"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "focus": [
+          {
+            "reference": "https://example/Condition/cfe9bd3e-bba6-4ae2-8097-801712311919"
+          }
+        ],
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        }
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/Observation/375d1cbd-611a-4ffe-99d2-fab4a0755b44",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "375d1cbd-611a-4ffe-99d2-fab4a0755b44",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18783-1",
+              "display": "Raccomandazione studio - Radiologia"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "note": [
+          {
+            "text": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>\n\t\t\t\t\t\t\tSi consiglia un approfondimento istologico al fine di definire la natura della lesione \n\t\t\t\t\t\t</p></div>"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/ImagingStudy/710bcd8b-3ffc-4890-bb89-e9b3c4b4922a",
+      "resource": {
+        "resourceType": "ImagingStudy",
+        "id": "710bcd8b-3ffc-4890-bb89-e9b3c4b4922a",
+        "identifier": [
+          {
+            "system": "urn:ietf:rfc:3986",
+            "value": "urn:oid:1.2.840.113619.2.62.994044785528.114289542805"
+          }
+        ],
+        "status": "available",
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "series": [
+          {
+            "uid": "1.2.840.113619.2.62.994044785528.20060823223142485051",
+            "modality": {
+              "system": "urn:oid:1.2.840.10008.2.16.4",
+              "code": "121181",
+              "display": "DICOM Object Catalog"
+            },
+            "instance": [
+              {
+                "uid": "1.2.840.113619.2.62.994044785528.20060823.3",
+                "sopClass": {
+                  "system": "urn:oid:1.2.840.10008.2.16.4",
+                  "code": "113015",
+                  "display": "Series"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "ImagingStudy" }
+    },
+    {
+      "fullUrl": "https://example/Observation/da6d79d4-df18-4444-baa7-f956064a64a8",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "da6d79d4-df18-4444-baa7-f956064a64a8",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "36554-4",
+              "display": "Radiografia del torace"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "effectiveDateTime": "2022-02-03T09:22:00+02:00",
+        "valueString": "Nessun Trauma riscontrato"
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/3a73940a-08b0-4550-9786-f1267794ec75",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "3a73940a-08b0-4550-9786-f1267794ec75",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "7d9315e3-9c7d-4da5-91e7-53fafeade70e",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+            "valueAddress": {
+              "line": [null],
+              "_line": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                      "valueString": "058091"
+                    }
+                  ]
+                }
+              ],
+              "city": "Roma",
+              "district": "RM",
+              "state": "120",
+              "country": "100"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.2",
+            "value": "GTWGWY82B42G920M",
+            "assigner": { "display": "MEF" }
+          },
+          {
+            "system": "urn:oid:2.16.840.1.113883.9.9.9.9.9.9",
+            "value": "11111htttt",
+            "assigner": { "display": "SAN RAFFAELE NOMENTANA" }
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "prova.provax@example.com",
+            "use": "home"
+          },
+          { "system": "phone", "value": "3340000000", "use": "mobile" }
+        ],
+        "gender": "male",
+        "birthDate": "1993-06-19",
+        "address": [
+          {
+            "use": "home",
+            "line": [null, "via Aurora 12"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00187",
+            "country": "100"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient?identifier=GTWGWY82B42G920M"
+      }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-120148",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.1-120148",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.1",
+            "value": "120148",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "telecom": [
+          { "system": "phone", "value": "3340000000", "use": "work" }
+        ],
+        "address": [
+          {
+            "use": "work",
+            "line": [null, "via Emilio Praga 39"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00137",
+            "country": "100"
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=120148" }
+    },
+    {
+      "fullUrl": "https://example/Observation/0c40c180-584a-4eed-bd01-b9f07692a7d1",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "0c40c180-584a-4eed-bd01-b9f07692a7d1",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29308-4",
+              "display": "Diagnosi"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-9",
+              "code": "770.0",
+              "display": "Polmonite congenita"
+            },
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.9.2.30.6.11",
+              "code": "[COD_DIAGNOSI]",
+              "display": "[DESCRIZIONE_DIAGNOSI]"
+            }
+          ]
+        }
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/AllergyIntolerance/bdc8c1c6-1b15-49cf-8b7c-a0c16c3443f2",
+      "resource": {
+        "resourceType": "AllergyIntolerance",
+        "id": "bdc8c1c6-1b15-49cf-8b7c-a0c16c3443f2",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ]
+        },
+        "type": "intolerance",
+        "criticality": "low",
+        "patient": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "onsetPeriod": {
+          "start": "2022-03-19T12:11:22+02:00",
+          "end": "2022-03-20T12:11:22+02:00"
+        },
+        "note": [{ "text": "#[REF_COMMENTI]" }],
+        "reaction": [
+          {
+            "substance": {
+              "coding": [
+                {
+                  "system": "urn:oid:2.16.840.1.113883.2.9.77.22.11.2",
+                  "code": "260152009",
+                  "display": "Peli di gatto"
+                }
+              ],
+              "text": "#[REF_AGENTE]"
+            },
+            "manifestation": [
+              {
+                "coding": [
+                  {
+                    "system": "http://hl7.org/fhir/sid/icd-9",
+                    "code": "477.2",
+                    "display": "RINITE ALLERGICA DA PELI O FORFORA ANIMALE (GATTO)(CANE)"
+                  }
+                ],
+                "text": "#[REF_REAZ]"
+              }
+            ],
+            "onset": "2022-03-19T12:11:22+02:00"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "AllergyIntolerance" }
+    },
+    {
+      "fullUrl": "https://example/Observation/cd1e2911-c869-40a2-a7c4-079f5f85b6d2",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "cd1e2911-c869-40a2-a7c4-079f5f85b6d2",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "55107-7",
+              "display": "Appendice"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "note": [
+          {
+            "text": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>\n\t\t\t\t\t\t\tSi consiglia di rimuovere la medicazione entro 3 giorni e di non sottoporre l'arto a sforzo.\n\t\t\t\t\t\t</p></div>"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.2",
+            "value": "PROVAX00X00X000Y",
+            "assigner": { "display": "MEF" }
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "prova.provax@example.com",
+            "use": "home"
+          }
+        ],
+        "address": [
+          {
+            "line": [null, "via Vittorio Veneto 3"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00187",
+            "country": "100"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner?identifier=PROVAX00X00X000Y"
+      }
+    },
+    {
+      "fullUrl": "https://example/Location/2.16.840.1.113883.2.9.4.1.6-XXX",
+      "resource": {
+        "resourceType": "Location",
+        "id": "2.16.840.1.113883.2.9.4.1.6-XXX",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.6",
+            "value": "XXX",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "address": {
+          "line": [null, "viale Regina Margherita"],
+          "_line": [
+            {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                  "valueString": "058091"
+                }
+              ]
+            },
+            null
+          ],
+          "city": "Roma",
+          "district": "RM",
+          "state": "120",
+          "postalCode": "00171",
+          "country": "100"
+        },
+        "managingOrganization": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-XXX"
+        }
+      },
+      "request": { "method": "PUT", "url": "Location?identifier=XXX" }
+    },
+    {
+      "fullUrl": "https://example/Observation/4abc4f1a-5431-4d26-bd08-584a617e57e5",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4abc4f1a-5431-4d26-bd08-584a617e57e5",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "18782-3",
+              "display": "Rilievo - Radiologia"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/7d9315e3-9c7d-4da5-91e7-53fafeade70e"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/3dcf259e-ba90-4355-91b4-2852e0fd4522"
+        },
+        "note": [
+          {
+            "text": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>\n\t\t\t\t\t\t\tAl controllo odierno non sono evidenti significative curvature scoliotiche. \n\t\t\t\t\t\t\tNon si riscontrano lesioni ossee. Nel tratto dorsale e lombare non sono evidenti discopatie. \n\t\t\t\t\t\t\tLieve soprelevazione della cresta iliaca destra.\n\t\t\t\t\t\t</p></div>"
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    }
+  ]
+}
