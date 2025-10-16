@@ -1,0 +1,714 @@
+{
+  "resourceType": "Bundle",
+  "id": "32f22a34-dd6a-4ac9-8738-286400912ed4",
+  "identifier": {
+    "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+    "value": "030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J",
+    "assigner": { "display": "Regione Lazio" }
+  },
+  "type": "transaction",
+  "timestamp": "2025-10-10T16:07:36+02:00",
+  "entry": [
+    {
+      "fullUrl": "https://example/Specimen/7768a927-382f-453c-8be2-03e9c34c9b85",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "7768a927-382f-453c-8be2-03e9c34c9b85",
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v3-SpecimenType",
+              "code": "UR",
+              "display": "Urine"
+            }
+          ]
+        }
+      },
+      "request": { "method": "POST", "url": "Specimen" }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-XXX",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.1-XXX",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.1",
+            "value": "XXX",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=XXX" }
+    },
+    {
+      "fullUrl": "https://example/Composition/b0beb44d-7733-4e3e-9bad-88f2657e2a1a",
+      "resource": {
+        "resourceType": "Composition",
+        "id": "b0beb44d-7733-4e3e-9bad-88f2657e2a1a",
+        "language": "it-IT",
+        "identifier": {
+          "system": "urn:oid:2.16.840.1.113883.2.9.2.120.4.4",
+          "value": "030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J",
+          "assigner": { "display": "Regione Lazio" }
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "11502-2",
+              "display": "Referto di laboratorio"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/e8c01a94-79d1-465c-9019-70607b1ed55d"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/cfe9543e-e6a4-4a51-b1a4-c321a9120cd9"
+        },
+        "date": "2022-03-30T11:24:26+01:00",
+        "author": [
+          {
+            "reference": "https://example/PractitionerRole/cf24b7a7-025c-4fad-8563-c77b97dfad75"
+          },
+          {
+            "reference": "https://example/PractitionerRole/d855ee70-bf9d-4497-9fc5-caee6005217b"
+          }
+        ],
+        "title": "REFERTO DI LABORATORIO",
+        "confidentiality": "N",
+        "attester": [
+          {
+            "mode": "professional",
+            "party": {
+              "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+            }
+          },
+          {
+            "mode": "legal",
+            "time": "2022-03-25T11:00:00+01:00",
+            "party": {
+              "reference": "https://example/PractitionerRole/31f90421-feb0-475b-9472-6766a4804482"
+            }
+          },
+          {
+            "mode": "professional",
+            "time": "2022-03-25T11:00:00+01:00",
+            "party": {
+              "reference": "https://example/PractitionerRole/c680be2c-2030-4e63-a5b1-1073e89cdea9"
+            }
+          }
+        ],
+        "custodian": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148"
+        },
+        "event": [
+          {
+            "period": { "start": "2022-03-24T11:24:26+01:00" },
+            "detail": [
+              {
+                "reference": "https://example/PractitionerRole/0a6cb7e2-1f96-40b2-81dd-2995f6446c93"
+              }
+            ]
+          }
+        ],
+        "section": [
+          {
+            "title": "Esami delle Urine",
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "18729-4",
+                  "display": "ESAMI DELLE URINE"
+                }
+              ]
+            },
+            "section": [
+              {
+                "title": "Albumina nelle Urine",
+                "code": {
+                  "coding": [
+                    {
+                      "system": "http://loinc.org",
+                      "code": "14957-5",
+                      "display": "Microalbumin Massa/Volume in Urine"
+                    },
+                    {
+                      "system": "urn:oid:2.16.840.1.113883.2.9.2.30.6.11",
+                      "code": "0090334.02",
+                      "display": "XXX"
+                    }
+                  ]
+                },
+                "text": {
+                  "status": "generated",
+                  "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><ul><li><table id=\"nota1\"><thead><tr><th>Esame</th><th>Metodo utilizzato per l'esame</th><th>Materiale utilizzato per l'esame</th><th>Risultato dell'esame</th><th>Commenti e note</th><th>Unità di Misura</th><th>Range di Riferimento</th><th>Criteri per il range di riferimento</th><th>Interpretazione</th><th>Allegati multimediali</th></tr></thead><tbody><tr><td>Microalbumina massa/volume in urine</td><td/><td>Urine</td><td>20</td><td/><td>mg/L</td><td> 0 - 20 </td><td/><td>N</td><td/></tr></tbody></table></li></ul></div>"
+                },
+                "entry": [
+                  {
+                    "reference": "https://example/DiagnosticReport/744267f1-caf7-4a6c-bc2d-0c1b5b3c1471"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Composition" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/31f90421-feb0-475b-9472-6766a4804482",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "31f90421-feb0-475b-9472-6766a4804482",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/DiagnosticReport/744267f1-caf7-4a6c-bc2d-0c1b5b3c1471",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "744267f1-caf7-4a6c-bc2d-0c1b5b3c1471",
+        "status": "registered",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "14957-5",
+              "display": "Microalbumin Massa/Volume in Urine"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/e8c01a94-79d1-465c-9019-70607b1ed55d"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/cfe9543e-e6a4-4a51-b1a4-c321a9120cd9"
+        },
+        "specimen": [
+          {
+            "reference": "https://example/Specimen/7768a927-382f-453c-8be2-03e9c34c9b85"
+          }
+        ],
+        "result": [
+          {
+            "reference": "https://example/Observation/379f357a-01fb-4541-bfb9-26440e5b8ca0"
+          }
+        ],
+        "conclusion": "#nota1"
+      },
+      "request": { "method": "POST", "url": "DiagnosticReport" }
+    },
+    {
+      "fullUrl": "https://example/Observation/379f357a-01fb-4541-bfb9-26440e5b8ca0",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "379f357a-01fb-4541-bfb9-26440e5b8ca0",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "14957-5",
+              "display": "Microalbumin Massa/Volume in Urine"
+            },
+            {
+              "system": "urn:oid:2.16.840.1.113883.2.9.2.30.6.11",
+              "code": "0090334.02",
+              "display": "Albumina nelle urine"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "https://example/Patient/e8c01a94-79d1-465c-9019-70607b1ed55d"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/cfe9543e-e6a4-4a51-b1a4-c321a9120cd9"
+        },
+        "effectiveDateTime": "2022-03-30T11:24:26+01:00",
+        "valueQuantity": { "value": 16.0, "unit": "mg/L" },
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                "code": "N",
+                "display": "Normal"
+              }
+            ]
+          }
+        ],
+        "referenceRange": [
+          {
+            "low": { "value": 0.0, "unit": "mg/L" },
+            "high": { "value": 20.0, "unit": "mg/L" },
+            "type": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+                  "code": "N",
+                  "display": "Normal"
+                }
+              ]
+            },
+            "appliesTo": [
+              {
+                "coding": [
+                  {
+                    "system": "http://loinc.org",
+                    "code": "30525-0",
+                    "display": "Età"
+                  }
+                ]
+              }
+            ],
+            "age": { "high": { "value": 60, "unit": "a" } }
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Observation" }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.2-120148",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.2",
+            "value": "120148",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "telecom": [
+          { "system": "phone", "value": "3340000000", "use": "work" }
+        ],
+        "address": [
+          {
+            "line": [null, "Via Emilio Praga 39"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00137",
+            "country": "100"
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=120148" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/d855ee70-bf9d-4497-9fc5-caee6005217b",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "d855ee70-bf9d-4497-9fc5-caee6005217b",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Patient/e8c01a94-79d1-465c-9019-70607b1ed55d",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "e8c01a94-79d1-465c-9019-70607b1ed55d",
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/patient-birthPlace",
+            "valueAddress": {
+              "line": [null],
+              "_line": [
+                {
+                  "extension": [
+                    {
+                      "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                      "valueString": "058091"
+                    }
+                  ]
+                }
+              ],
+              "city": "Roma",
+              "district": "RM",
+              "state": "120",
+              "country": "100"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.2",
+            "value": "GTWGWY82B42G920M",
+            "assigner": { "display": "MEF" }
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "prova.provax@example.com",
+            "use": "home"
+          },
+          { "system": "phone", "value": "33224456", "use": "mobile" }
+        ],
+        "gender": "male",
+        "birthDate": "1993-06-19",
+        "address": [
+          {
+            "use": "home",
+            "line": [null, "Via Aurora 12"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00187",
+            "country": "100"
+          },
+          {
+            "use": "home",
+            "line": [null, "Via Canevari 12B"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00138",
+            "country": "100"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient?identifier=GTWGWY82B42G920M"
+      }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/cf24b7a7-025c-4fad-8563-c77b97dfad75",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "cf24b7a7-025c-4fad-8563-c77b97dfad75",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/DocumentReference/f0c510d7-b4fe-4c4e-8046-b285b8d22370",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "f0c510d7-b4fe-4c4e-8046-b285b8d22370",
+        "status": "current",
+        "subject": {
+          "reference": "https://example/Patient/e8c01a94-79d1-465c-9019-70607b1ed55d"
+        },
+        "author": [
+          {
+            "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+          }
+        ],
+        "custodian": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148"
+        },
+        "content": [{ "attachment": { "title": "string" } }],
+        "context": {
+          "related": [
+            {
+              "reference": "https://example/Composition/b0beb44d-7733-4e3e-9bad-88f2657e2a1a"
+            }
+          ]
+        }
+      },
+      "request": { "method": "POST", "url": "DocumentReference" }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.3-327700102",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.3-327700102",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.3",
+            "value": "327700102",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "partOf": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-080105"
+        }
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=327700102" }
+    },
+    {
+      "fullUrl": "https://example/Encounter/cfe9543e-e6a4-4a51-b1a4-c321a9120cd9",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "cfe9543e-e6a4-4a51-b1a4-c321a9120cd9",
+        "status": "finished",
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        },
+        "subject": {
+          "reference": "https://example/Patient/e8c01a94-79d1-465c-9019-70607b1ed55d"
+        },
+        "basedOn": [
+          {
+            "reference": "https://example/ServiceRequest/3a744648-2aa4-4fbb-b533-5fa956306535"
+          }
+        ],
+        "participant": [
+          {
+            "type": [
+              {
+                "coding": [
+                  {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    "code": "REF"
+                  }
+                ]
+              }
+            ],
+            "period": { "start": "2022-03-20T11:00:00+01:00" },
+            "individual": {
+              "reference": "https://example/PractitionerRole/1583cc2c-fbab-4856-a268-ff4ce6fe9cd0"
+            }
+          },
+          {
+            "individual": {
+              "reference": "https://example/PractitionerRole/596bc35b-3049-4c21-aab8-cc2459e87a04"
+            }
+          }
+        ],
+        "period": { "start": "2022-03-30T11:24:26+01:00" },
+        "location": [
+          {
+            "location": {
+              "reference": "https://example/Location/2.16.840.1.113883.2.9.4.1.6-XXX"
+            }
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "Encounter" }
+    },
+    {
+      "fullUrl": "https://example/ServiceRequest/3a744648-2aa4-4fbb-b533-5fa956306535",
+      "resource": {
+        "resourceType": "ServiceRequest",
+        "id": "3a744648-2aa4-4fbb-b533-5fa956306535",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.9",
+            "value": "[NRE]",
+            "assigner": { "display": "Ministero delle Finanze" }
+          }
+        ],
+        "status": "active",
+        "intent": "order",
+        "priority": "asap",
+        "subject": {
+          "reference": "https://example/Patient/e8c01a94-79d1-465c-9019-70607b1ed55d"
+        },
+        "encounter": {
+          "reference": "https://example/Encounter/cfe9543e-e6a4-4a51-b1a4-c321a9120cd9"
+        }
+      },
+      "request": { "method": "POST", "url": "ServiceRequest" }
+    },
+    {
+      "fullUrl": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.3.2",
+            "value": "PROVAX00X00X000Y",
+            "assigner": { "display": "MEF" }
+          }
+        ],
+        "telecom": [
+          {
+            "system": "email",
+            "value": "prova.provax@example.com",
+            "use": "home"
+          }
+        ],
+        "address": [
+          {
+            "line": [null, "Via Vittorio Veneto 3"],
+            "_line": [
+              {
+                "extension": [
+                  {
+                    "url": "http://hl7.org/fhir/StructureDefinition/iso21090-ADXP-censusTract",
+                    "valueString": "058091"
+                  }
+                ]
+              },
+              null
+            ],
+            "city": "Roma",
+            "district": "RM",
+            "state": "120",
+            "postalCode": "00187",
+            "country": "100"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Practitioner?identifier=PROVAX00X00X000Y"
+      }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/1583cc2c-fbab-4856-a268-ff4ce6fe9cd0",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "1583cc2c-fbab-4856-a268-ff4ce6fe9cd0",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        },
+        "organization": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-120148"
+        },
+        "code": [
+          {
+            "coding": [
+              {
+                "system": "urn:oid:2.16.840.1.113883.2.9.5.1.88",
+                "code": "PRE"
+              }
+            ]
+          }
+        ]
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/596bc35b-3049-4c21-aab8-cc2459e87a04",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "596bc35b-3049-4c21-aab8-cc2459e87a04",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-XXX",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.2-XXX",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.2",
+            "value": "XXX",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "telecom": [
+          { "system": "phone", "value": "3340000000", "use": "work" }
+        ],
+        "partOf": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-XXX"
+        }
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=XXX" }
+    },
+    {
+      "fullUrl": "https://example/Organization/2.16.840.1.113883.2.9.4.1.1-080105",
+      "resource": {
+        "resourceType": "Organization",
+        "id": "2.16.840.1.113883.2.9.4.1.1-080105",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.1",
+            "value": "080105",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ]
+      },
+      "request": { "method": "PUT", "url": "Organization?identifier=080105" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/c680be2c-2030-4e63-a5b1-1073e89cdea9",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "c680be2c-2030-4e63-a5b1-1073e89cdea9",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    },
+    {
+      "fullUrl": "https://example/Location/2.16.840.1.113883.2.9.4.1.6-XXX",
+      "resource": {
+        "resourceType": "Location",
+        "id": "2.16.840.1.113883.2.9.4.1.6-XXX",
+        "identifier": [
+          {
+            "system": "urn:oid:2.16.840.1.113883.2.9.4.1.6",
+            "value": "XXX",
+            "assigner": { "display": "Ministero della Salute" }
+          }
+        ],
+        "managingOrganization": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.2-XXX"
+        }
+      },
+      "request": { "method": "PUT", "url": "Location?identifier=XXX" }
+    },
+    {
+      "fullUrl": "https://example/PractitionerRole/0a6cb7e2-1f96-40b2-81dd-2995f6446c93",
+      "resource": {
+        "resourceType": "PractitionerRole",
+        "id": "0a6cb7e2-1f96-40b2-81dd-2995f6446c93",
+        "practitioner": {
+          "reference": "https://example/Practitioner/2.16.840.1.113883.2.9.4.3.2-PROVAX00X00X000Y"
+        },
+        "organization": {
+          "reference": "https://example/Organization/2.16.840.1.113883.2.9.4.1.3-327700102"
+        }
+      },
+      "request": { "method": "POST", "url": "PractitionerRole" }
+    }
+  ]
+}
