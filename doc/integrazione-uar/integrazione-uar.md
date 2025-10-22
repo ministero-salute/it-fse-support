@@ -145,8 +145,6 @@ Come scenario di interazione per i servizi esposti dal UA-R viene utilizzato il 
 
 Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee Guida:
 
-
-
 * ID_AUTH_CHANNEL_02 [^4]
 
 
