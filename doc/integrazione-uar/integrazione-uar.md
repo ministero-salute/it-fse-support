@@ -751,27 +751,7 @@ _Tabella 37: Campi Response valorizzati in caso di errore_
       <td><strong>CAMPO JWT</strong></td>
       <td><code>exp</code></td>
    </tr>
-
-   <!-- SIGNED_HEADERS -->
-   <tr>
-      <td colspan="2" style="text-align:center"><strong>SIGNED_HEADERS</strong></td>
-   </tr>
-   <tr>
-      <td><strong>DESCRIZIONE</strong></td>
-      <td>Lista dei campi presenti nell’header del token che sono stati inclusi nel processo di firma.</td>
-   </tr>
-   <tr>
-      <td><strong>ESEMPIO</strong></td>
-      <td>["alg","typ","x5c"]</td>
-   </tr>
-   <tr>
-      <td><strong>VALIDAZIONE</strong></td>
-      <td>Facoltativo (ma raccomandato)</td>
-   </tr>
-   <tr>
-      <td><strong>CAMPO JWT</strong></td>
-      <td><code>signed_headers</code></td>
-   </tr>
+ 
 </table>
 
 
