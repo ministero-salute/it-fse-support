@@ -173,7 +173,7 @@ Il secondo JWT è di “signature” e contiene rifermenti al documento oggetto 
 
 
 ```
-FSE-JWT-Signature: {VALORE DEL TOKEN}
+Agid-JWT-Signature: {VALORE DEL TOKEN}
 ```
 
 **Entrambi** i token devono essere firmati utilizzando il certificato “signature”.

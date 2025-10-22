@@ -10,32 +10,55 @@
 
 - [1. Introduzione](#1-introduzione)
   - [1.1. Riferimenti](#11-riferimenti)
-  - [1.2. Acronimi e Definizioni](#12-acronomi-e-definizioni)
+  - [1.2. Acronimi e Definizioni](#12-acronimi-e-definizioni)
   - [1.3. Registro modifiche](#13-registro-modifiche)
 - [2. Contesto di Riferimento](#2-contesto-di-riferimento)
   - [2.1. Pattern di Interazione](#21-pattern-di-interazione)
-  - [2.2. Processo di Autenticazione](#22-processo-di-autenticazione3)
+  - [2.2. Processo di Autenticazione\[^3\]](#22-processo-di-autenticazione3)
   - [2.3. Note su autenticazione e token JWT](#23-note-su-autenticazione-e-token-jwt)
 - [3. Servizio di Memorizzazione Bundle FHIR](#3-servizio-di-memorizzazione-bundle-fhir)
-  - [3.1. Request](#31-request)
+    - [Endpoint](#endpoint)
+    - [3.1. Request](#31-request)
+      - [Parametri Path](#parametri-path)
+      - [Parametri Body](#parametri-body)
+      - [Esempio di richiesta](#esempio-di-richiesta)
   - [3.2. Response](#32-response)
+      - [Esempio risposta 201](#esempio-risposta-201)
+      - [Messaggio di Risposta con esito KO](#messaggio-di-risposta-con-esito-ko)
 - [4. Servizio di Eliminazione Bundle FHIR](#4-servizio-di-eliminazione-bundle-fhir)
+    - [Endpoint](#endpoint-1)
   - [4.1. Request](#41-request)
+      - [Parametri Path](#parametri-path-1)
+      - [Esempio di richiesta](#esempio-di-richiesta-1)
   - [4.2. Response](#42-response)
+      - [Esempio risposta 200](#esempio-risposta-200)
+      - [Esempio di Messaggio di Risposta con esito KO](#esempio-di-messaggio-di-risposta-con-esito-ko)
 - [5. Servizio di Sostituzione Bundle FHIR](#5-servizio-di-sostituzione-bundle-fhir)
+    - [Endpoint](#endpoint-2)
   - [5.1. Request](#51-request)
+      - [Parametri Path](#parametri-path-2)
+      - [Parametri Body](#parametri-body-1)
+      - [Esempio di richiesta](#esempio-di-richiesta-2)
   - [5.2. Response](#52-response)
+      - [Esempio risposta 200](#esempio-risposta-200-1)
+      - [Esempio di Messaggio di Risposta con esito KO](#esempio-di-messaggio-di-risposta-con-esito-ko-1)
 - [6. Servizio di Aggiornamento Metadati](#6-servizio-di-aggiornamento-metadati)
+    - [Endpoint](#endpoint-3)
   - [6.1. Request](#61-request)
+      - [Parametri Body](#parametri-body-2)
+      - [Esempio di richiesta](#esempio-di-richiesta-3)
   - [6.2. Response](#62-response)
+      - [Esempio risposta 200](#esempio-risposta-200-2)
+      - [Esempio di Messaggio di Risposta con esito KO](#esempio-di-messaggio-di-risposta-con-esito-ko-2)
 - [7. Drilldown Response in caso di Errore](#7-drilldown-response-in-caso-di-errore)
   - [7.1. Errori Applicativi](#71-errori-applicativi)
     - [7.1.1. Esempi di errore generati da UA-R](#711-esempi-di-errore-generati-da-ua-r)
-- [8. Drilldown Parametri di Input](#8-drilldown-parametri-di-input)
+- [8. Drilldown parametri di input](#8-drilldown-parametri-di-input)
   - [8.1. Campi Contenuti nei JWT](#81-campi-contenuti-nei-jwt)
-  - [8.2. Campi Contenuti nella Request Body](#82-campi-contenuti-nella-request-body)
+  - [8.2 Campi Contenuti nella Request Body](#82-campi-contenuti-nella-request-body)
+    - [Parametri obbligatori](#parametri-obbligatori)
   - [8.3. Campi contenuti nel Path](#83-campi-contenuti-nel-path)
-- [Notes](#notes)
+  - [Notes](#notes)
 
 
 
@@ -126,39 +149,30 @@ Il processo di autenticazione rispetta i seguenti pattern delle suddette Linee G
 
 
 * ID_AUTH_REST_01 [^5]
+Di seguito un diagramma che descrive un esempio di interazione per il servizio di creazione Bundle FHIR:
+
+
+
+![sequence diagram](img/sequence.png "sequence diagram")
 
 ## 2.3. Note su autenticazione e token JWT
 
-Per interagire con UA-R è necessario disporre di **due certificati X.509** e delle relative chiavi private:
+Per l’interazione con la componente UA-R, il sistema Broker opera come consumer dei servizi esposti, nel rispetto del profilo di interoperabilità [PROFILE_NON_REPUDIATION_01]. Tale profilo garantisce:
+* integrità del messaggio;
+* autenticazione del fruitore (organizzazione o unità organizzativa mittente del contenuto);
+* conferma da parte dell’erogatore della ricezione del contenuto;
+* opponibilità ai terzi;
+* robustezza della trasmissione.
 
-* un certificato di **autenticazione**, utilizzato **esclusivamente** come certificato client per le chiamate HTTPS;
+Per tale interazione, è necessario disporre di due certificati X.509 e delle relative chiavi private:
 
-* un certificato di **firma** (*signature*), utilizzato **esclusivamente** per la firma dei token JWT.
-
+* Certificato di **autenticazione**: utilizzato esclusivamente come certificato client per le chiamate HTTPS;
+* Certificato di firma (signature): utilizzato esclusivamente per la firma digitale dei token JWT.
+ 
 Ogni invocazione delle API deve avvenire:
 * tramite **HTTPS** autenticato con il certificato client;
-* includendo negli header **due token JWT**, entrambi firmati con il certificato di signature.
-
-Il primo JWT è utilizzato per l’autenticazione e contiene i riferimenti all’utente che richiama il servizio e al soggetto interessato, il token viene trasportato nell’header **“Authorization”** di tipo “**Bearer”**:
-
-
-```
-Authorization: Bearer {VALORE DEL TOKEN}
-```
-
-
-Il secondo JWT è di “signature” e contiene rifermenti al documento oggetto delle operazioni, il token viene trasportato nell’header http **“Agid-JWT-Signature”**:
-
-
-```
-Agid-JWT-Signature: {VALORE DEL TOKEN}
-```
-
-
-**Entrambi** i token devono essere firmati utilizzando il certificato “signature”.
-
-Vista la dipendenza dei token dai valori specifici di utente/soggetto/documento è necessario generare nuovi JWT per ogni chiamata alle API.
-
+* includendo negli header **Agid-JWT-Signature**, firmato con il certificato di signature.
+   
 Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
 # 3. Servizio di Memorizzazione Bundle FHIR
@@ -559,599 +573,188 @@ _Tabella 37: Campi Response valorizzati in caso di errore_
 
 ## 8.1. Campi Contenuti nei JWT
 
-Gli endpoint di UA-R ricevono 2 token JWT:
-
-
-
-* **Authentication Bearer Token**: token di autenticazione, composto da Header e Reserved Claims;
-
-     
-
-
-<table>
-  <tr>
-   <td colspan="2" >
-<strong>HEADER: ALGORITHM & TOKEN TYPE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2" style="text-align:center"><strong>ALG</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Algoritmo utilizzato per la firma del token. Valori ammessi: RS256, RS383, RS512
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>RS256
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>alg</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>TYPE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Tipologia di token. DEVE essere valorizzato con il valore 'JWT'.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALORE</strong>
-   </td>
-   <td>JWT
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>typ</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>KID</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Un riferimento opzionale alla chiave usata per la firma del token. Anche se valorizzato non viene utilizzato nella fase di verifica.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>Client11
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Opzionale
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>kid</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>XC5</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>certificato X.509 utilizzato per la firma del token. \
-Valore in formato DER, codificato in base64.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>x5c</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2" ><strong>RESERVED CLAIMS</strong>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>ISSUER</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Stringa che contiene il nome identificativo dell’entità che ha generato il token. Valorizzato con “auth:” seguito dal “Common Name del certificato di firma”
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>auth:190201123456XX
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>iss</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>ISSUED AT</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Numero intero (timestamp in secondi) che indica il momento in cui il token è stato generato, serve per conoscere l’età di un token
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>1540890704
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>iat</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>EXPIRATION</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Numero intero (timestamp in secondi) che indica fino a quando il token sarà valido
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>1540918800
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>exp</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>JWT ID</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Identificativo univoco del token, serve per prevenire la generazione accidentale di token uguali
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>1540918800
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>Jti</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>AUDIENCE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Indica il destinatario per cui è stato creato il token, da valorizzare con la base URL del servizio, comprensivo della versione, per esempio https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/uar/v1
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALORE</strong>
-   </td>
-   <td>https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/uar/v1
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>aud</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>SUBJECT</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Codice Fiscale dell’utente o partita iva dell'azienda che fa richiesta del servizio di interoperabilità
-<p>
-Formato codifica conforme alle specifiche IHE (ITI TF-3)
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>VRDMRC67T20I257E^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>sub</code>
-   </td>
-  </tr>
-</table>
-
-
-_Tabella 39: Campi contenuti in Authentication Bearer Token_
-
-
-
 * **Agid-JWT-Signature**: token JWT contenente custom claims necessari ai fini applicativi
 
-<table>
-  <tr>
-   <td colspan="2" >
-<strong>HEADER: ALGORITHM & TOKEN TYPE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>ALG</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Algoritmo utilizzato per la firma del token. Valori ammessi: RS256, RS383, RS512
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>RS256
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>alg</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>TYPE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Tipologia di token. DEVE essere valorizzato con il valore 'JWT'.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALORE</strong>
-   </td>
-   <td>JWT
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>typ</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>KID</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Un riferimento opzionale alla chiave usata per la firma del token. Anche se valorizzato non viene utilizzato nella fase di verifica.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>Client11
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Opzionale
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>kid</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>XC5</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>certificato X.509 utilizzato per la firma del token. \
-Valore in formato DER, codificato in base64.
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>x5c</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2" ><strong>RESERVED CLAIMS</strong>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>ISSUER</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Stringa che contiene il nome identificativo dell’entità che ha generato il token. Valorizzato con “integrity:” seguito dal “Common Name del certificato di firma”
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>integrity:190201123456XX
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>iss</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>ISSUED AT</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Numero intero (timestamp in secondi) che indica il momento in cui il token è stato generato, serve per conoscere l’età di un token
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>1540890704
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>iat</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>EXPIRATION</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Numero intero (timestamp in secondi) che indica fino a quando il token sarà valido
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>1540918800
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>exp</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>JWT ID</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Identificativo univoco del token, serve per prevenire la generazione accidentale di token uguali
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>1540918800
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>Jti</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>AUDIENCE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Indica il destinatario per cui è stato creato il token, da valorizzare con la base URL del servizio, comprensivo della versione, per esempio https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/uar/v1
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALORE</strong>
-   </td>
-   <td>https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/uar/v1
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>aud</code>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2"  style="text-align:center"><strong>SUBJECT</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-   <td>Codice Fiscale dell’utente o partita iva dell'organizzazione che fa richiesta del servizio di interoperabilità
-<p>
-Formato codifica conforme alle specifiche IHE (ITI TF-3)
-   </td>
-  </tr>
-  <tr>
-   <td><strong>ESEMPIO</strong>
-   </td>
-   <td>VRDMRC67T20I257E^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO
-   </td>
-  </tr>
-  <tr>
-   <td><strong>VALIDAZIONE</strong>
-   </td>
-   <td>Obbligatorio
-   </td>
-  </tr>
-  <tr>
-   <td><strong>CAMPO JWT</strong>
-   </td>
-   <td><code>sub</code>
-   </td>
-  </tr>
+<table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:100%;">
+   <tr>
+      <td colspan="2" style="text-align:center; background-color:#d9edf7;"><strong>HEADER</strong></td>
+   </tr>
+
+   <!-- ALG -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>ALG</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Algoritmo utilizzato per la firma del token. Valori ammessi: RS256, RS384, RS512.</td>
+   </tr>
+   <tr>
+      <td><strong>ESEMPIO</strong></td>
+      <td>RS256</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>alg</code></td>
+   </tr>
+
+   <!-- TYPE -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>TYPE</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Tipologia di token. DEVE essere valorizzato con il valore 'JWT'.</td>
+   </tr>
+   <tr>
+      <td><strong>VALORE</strong></td>
+      <td>JWT</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>typ</code></td>
+   </tr>
+
+   <!-- X5C -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>X5C</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Certificato X.509 utilizzato per la firma del token. Valore in formato DER, codificato in base64.</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>x5c</code></td>
+   </tr>
 </table>
+
+<br>
+
+<table border="1" cellspacing="0" cellpadding="6" style="border-collapse:collapse; width:100%;">
+   <tr>
+      <td colspan="2" style="text-align:center; background-color:#dff0d8; border-top:3px solid black;"><strong>BODY</strong></td>
+   </tr>
+
+   <!-- ISS -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>ISSUER</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Stringa che contiene il nome identificativo dell’entità che ha generato il token. Valorizzato con “integrity:” seguito dal “Common Name del certificato di firma”.</td>
+   </tr>
+   <tr>
+      <td><strong>ESEMPIO</strong></td>
+      <td>integrity:190201123456XX</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>iss</code></td>
+   </tr>
+
+   <!-- JTI -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>JWT ID</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Identificativo univoco del token, serve per prevenire la generazione accidentale di token uguali.</td>
+   </tr>
+   <tr>
+      <td><strong>ESEMPIO</strong></td>
+      <td>0a12b3cd-45e6-789f-0123-456789abcdef</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>jti</code></td>
+   </tr>
+
+   <!-- AUD -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>AUDIENCE</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Indica il destinatario per cui è stato creato il token, da valorizzare con la base URL del servizio.</td>
+   </tr>
+   <tr>
+      <td><strong>ESEMPIO</strong></td>
+      <td>https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/uar/v1</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>aud</code></td>
+   </tr>
+
+   <!-- IAT -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>ISSUED AT</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Numero intero (timestamp in secondi) che indica il momento in cui il token è stato generato.</td>
+   </tr>
+   <tr>
+      <td><strong>ESEMPIO</strong></td>
+      <td>1740307200</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>iat</code></td>
+   </tr>
+
+   <!-- EXP -->
+   <tr>
+      <td colspan="2" style="text-align:center"><strong>EXPIRATION</strong></td>
+   </tr>
+   <tr>
+      <td><strong>DESCRIZIONE</strong></td>
+      <td>Numero intero (timestamp in secondi) che indica fino a quando il token sarà valido.</td>
+   </tr>
+   <tr>
+      <td><strong>ESEMPIO</strong></td>
+      <td>1740310800</td>
+   </tr>
+   <tr>
+      <td><strong>VALIDAZIONE</strong></td>
+      <td>Obbligatorio</td>
+   </tr>
+   <tr>
+      <td><strong>CAMPO JWT</strong></td>
+      <td><code>exp</code></td>
+   </tr>
+ 
+</table>
+
+
 
 **Custom Claims**
 
