@@ -624,100 +624,76 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
 
 <table>
   <tr>
-   <td><strong>Endpoint URL</strong>
-   </td>
-   <td><strong>Metodo</strong>
-   </td>
-   <td><strong>Funzionalità</strong>
-   </td>
+    <td><strong>Endpoint URL</strong></td>
+    <td><strong>Metodo</strong></td>
+    <td><strong>Funzionalità</strong></td>
+    <td><strong>Disponibile in Produzione</strong></td>
   </tr>
   <tr>
-   <td>/v<major>/documents/validation
-   </td>
-   <td>POST
-   </td>
-   <td>VALIDAZIONE DOCUMENTO CDA2 
-   </td>
+    <td>/v&lt;major&gt;/documents/validation</td>
+    <td>POST</td>
+    <td>VALIDAZIONE DOCUMENTO CDA2</td>
+    <td>Sì</td>
   </tr>
   <tr>
-   <td>/v<major>/documents/fhir-validation
-   </td>
-   <td>POST
-   </td>
-   <td>VALIDAZIONE DOCUMENTO FHIR
-   </td>
+    <td>/v&lt;major&gt;/documents/fhir-validation</td>
+    <td>POST</td>
+    <td>VALIDAZIONE DOCUMENTO FHIR</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/documents
-   </td>
-   <td>POST
-   </td>
-   <td>PUBBLICAZIONE DOCUMENTO CDA2
-   </td>
+    <td>/v&lt;major&gt;/documents</td>
+    <td>POST</td>
+    <td>PUBBLICAZIONE DOCUMENTO CDA2</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/documents/{identificativoDocUpdate}
-   </td>
-   <td>DELETE
-   </td>
-   <td>ELIMINAZIONE DOCUMENTO
-   </td>
+    <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}</td>
+    <td>DELETE</td>
+    <td>ELIMINAZIONE DOCUMENTO</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/documents/{identificativoDocUpdate}
-   </td>
-   <td>PUT
-   </td>
-   <td>SOSTITUZIONE DOCUMENTI
-   </td>
+    <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}</td>
+    <td>PUT</td>
+    <td>SOSTITUZIONE DOCUMENTI</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/documents/{identificativoDocUpdate}/metadata
-   </td>
-   <td>PUT
-   </td>
-   <td>AGGIORNAMENTO METADATI
-   </td>
+    <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}/metadata</td>
+    <td>PUT</td>
+    <td>AGGIORNAMENTO METADATI</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/documents/{identificativoDocUpdate}/metadata-iti-57
-   </td>
-   <td>PUT
-   </td>
-   <td>AGGIORNAMENTO METADATI ITI-57
-   </td>
+    <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}/metadata-iti-57</td>
+    <td>PUT</td>
+    <td>AGGIORNAMENTO METADATI ITI-57</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/documents/validate-and-create
-   </td>
-   <td>POST
-   </td>
-   <td>VALIDAZIONE E PUBBLICAZIONE CREAZIONE CONTESTUALE
-   </td>
+    <td>/v&lt;major&gt;/documents/validate-and-create</td>
+    <td>POST</td>
+    <td>VALIDAZIONE E PUBBLICAZIONE CREAZIONE CONTESTUALE</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/documents/validate-and-replace/{idDoc}
-   </td>
-   <td>PUT
-   </td>
-   <td>VALIDAZIONE E PUBBLICAZIONE SOSTITUZIONE CONTESTUALE
-   </td>
+    <td>/v&lt;major&gt;/documents/validate-and-replace/{idDoc}</td>
+    <td>PUT</td>
+    <td>VALIDAZIONE E PUBBLICAZIONE SOSTITUZIONE CONTESTUALE</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/status/{workflowInstanceId}
-   </td>
-   <td>GET
-   </td>
-   <td>RECUPERO STATO TRANSAZIONE PER WORKFLOWINSTANCEID
-   </td>
+    <td>/v&lt;major&gt;/status/{workflowInstanceId}</td>
+    <td>GET</td>
+    <td>RECUPERO STATO TRANSAZIONE PER WORKFLOWINSTANCEID</td>
+    <td></td>
   </tr>
   <tr>
-   <td>/v<major>/status/search/{traceId}
-   </td>
-   <td>GET
-   </td>
-   <td>RECUPERO STATO TRANSAZIONE PER TRACEID
-   </td>
+    <td>/v&lt;major&gt;/status/search/{traceId}</td>
+    <td>GET</td>
+    <td>RECUPERO STATO TRANSAZIONE PER TRACEID</td>
+    <td></td>
   </tr>
 </table>
 
@@ -727,6 +703,10 @@ _Tabella 4: Endpoint/Funzionalità_
 L'endpoint del **sistema di test** è: 
 
     https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
+
+L'endpoint del **sistema di produzione** è: 
+
+    https://modipa.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
 
 La Pubblicazione di un documento CDA2 deve essere sempre preceduta da una Validazione Documento CDA2. Una Validazione Documento CDA2/FHIR può non essere seguita dalla Pubblicazione. Questo avverrà soprattutto nella fase iniziale in cui si utilizzerà il solo servizio di validazione per i vari test.  Per distinguere questi due casi è stato introdotto il campo “Activity” specificato nelle successive sezioni.
 
