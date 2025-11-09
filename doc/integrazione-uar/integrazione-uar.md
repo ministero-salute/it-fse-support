@@ -199,11 +199,12 @@ http://<HOST>:<PORT>/v<major>/document/workflowinstanceid/{wii}
 
 #### Parametri Body
 
-| KEY           | TYPE   | REQUIRED |
-|---------------|--------|----------|
-| identifier    | string | true     |
-| jsonString    | string | true     |
+| KEY           | TYPE   | REQUIRED | DESCRIPTION |
+|---------------|--------|----------| ----------- |
+| identifier    | string | true     | Tale campo rappresenta il valore del master identifier del documento oggetto di creazione.|
+| jsonString    | string | true     | Tale campo contiene il FHIR Bundle del documento da creare.|
 
+Nel caso di creazione, il campo identifier verrà utilizzato per eseguire un'operazione di check-exist preliminare sul server fhir e garantire l'idempotenza.
 La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 #### Esempio di richiesta
@@ -225,9 +226,9 @@ curl -X 'POST' \
 
 ## 3.2. Response
 
-| STATUS | SIGNIFICATO                               | TIPO                   |
-|--------|-------------------------------------------|------------------------|
-| 201    | Documento preso in carico                 | application/json       |
+| STATUS | SIGNIFICATO                               | TIPO                     |
+|--------|-------------------------------------------|------------------------- |
+| 201    | Documento preso in carico                 | application/json         |
 | 500    | Errore interno del server                 | application/problem+json |
 
 #### Esempio risposta 201
@@ -273,9 +274,13 @@ http://<HOST>:<PORT>/v<major>/document/identifier/{identifier}
 
 #### Parametri Path
 
-| KEY        | IN   | TYPE   | REQUIRED |
-|------------|------|--------|----------|
-| identifier | path | string | true     |
+| KEY        | IN   | TYPE   | REQUIRED | DESCRIPTION |
+|------------|------|--------|----------|----------|
+| identifier | path | string | true     | Tale campo rappresenta il valore del master identifier del documento oggetto di cancellazione.|
+
+
+Nel caso di cancellazione, il campo identifier verrà utilizzato per eseguire un'operazione di check-exist preliminare sul server fhir e in caso di assenza dello stesso verrà sollevata un'eccezione di documento non trovato.
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 #### Esempio di richiesta
 
@@ -349,6 +354,9 @@ http://<HOST>:<PORT>/v<major>/document/workflowinstanceid/{wii}
 |---------------|--------|----------| ----------- |
 | identifier    | string | true     | Tale campo rappresenta il valore del master identifier del documento oggetto di sostituzione.|
 | jsonString    | string | true     | Tale campo contiene il FHIR Bundle del nuovo documento. È importante notare che il nuovo id documento deve essere presente nel campo masterIdentifier della risorsa DocumentReference del nuovo FHIR Bundle.|
+
+Nel caso di sostituzione, il campo identifier verrà utilizzato per eseguire un'operazione di check-exist preliminare sul server fhir del documento che si intende sostituire e in caso di assenza dello stesso verrà sollevata un'eccezione di documento non trovato.
+La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante.
 
 #### Esempio di richiesta
 
@@ -435,8 +443,21 @@ curl -X 'PUT' \
   -H 'Content-Type: application/json' \
   -d '{
     "identifier": "2.16.840.1.113883.2.9.2.120.4.4^290700",
-    "jsonString": "{\"resourceType\": \"DocumentReference\", \"status\": \"current\"}"
-}'
+    "jsonString": "{ 
+      \"body\": {
+        \"tipologiaStruttura\": \"Prevenzione\",
+        \"attiCliniciRegoleAccesso\": [\"PUBLICPOL\"],
+        \"tipoDocumentoLivAlto\": \"PRS\",
+        \"assettoOrganizzativo\": \"AD_PSC021\",
+        \"dataInizioPrestazione\": \"20241020110012\",
+        \"dataFinePrestazione\": \"20241020110012\",
+        \"conservazioneANorma\": \"CONS^^^&2.16.840.1.113883.2.9.3.3.6.1.7&ISO\",
+        \"tipoAttivitaClinica\": \"ERP\",
+        \"identificativoSottomissione\": \"2.16.840.1.113883.2.9.2.110.4.3.X\"
+      }
+    }"
+  }'
+
 ```
 
 ---
@@ -785,7 +806,8 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 | PARAMETRO       | TIPO    | OBBLIGATORIO | DESCRIZIONE                                                 |
 |------------------|---------|--------------|------------------------------------------------------------|
 | `identifier`     | string  | Sì           | Valore del master identifier del documento da sostituire.  |
-| `jsonString`     | string  | Sì           | Contenuto del FHIR Bundle relativo al nuovo documento.     |
+| `jsonString`     | string  | Sì           | Per le operazioni di creazione e sostituzione il contenuto di tale campo coincide con il Bundle FHIR del nuovo documento.
+Per l'oprazione di aggiornamento tale campo coincide con il valore della request body come mostrato nel paragrafo 6 di aggiornamento metadati serializzata in json.     |
 
 ## 8.3. Campi contenuti nel Path
 
