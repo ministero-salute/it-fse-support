@@ -345,10 +345,10 @@ http://<HOST>:<PORT>/v<major>/document/workflowinstanceid/{wii}
 
 #### Parametri Body
 
-| KEY           | TYPE   | REQUIRED |
-|---------------|--------|----------|
-| identifier    | string | true     |
-| jsonString    | string | true     |
+| KEY           | TYPE   | REQUIRED | DESCRIPTION |
+|---------------|--------|----------| ----------- |
+| identifier    | string | true     | Tale campo rappresenta il valore del master identifier del documento oggetto di sostituzione.|
+| jsonString    | string | true     | Tale campo contiene il FHIR Bundle del nuovo documento. È importante notare che il nuovo id documento deve essere presente nel campo masterIdentifier della risorsa DocumentReference del nuovo FHIR Bundle.|
 
 #### Esempio di richiesta
 
@@ -782,18 +782,17 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 
 ### Parametri obbligatori
 
-| PARAMETRO       | TIPO    | OBBLIGATORIO | DESCRIZIONE                                                                 |
-|------------------|---------|--------------|-----------------------------------------------------------------------------|
-| `identifier`     | string  | Sì           | Identificativo univoco del Bundle FHIR.       |
-| `jsonString`     | string  | Sì           | Rappresentazione JSON del Bundle FHIR.                     |
+| PARAMETRO       | TIPO    | OBBLIGATORIO | DESCRIZIONE                                                 |
+|------------------|---------|--------------|------------------------------------------------------------|
+| `identifier`     | string  | Sì           | Valore del master identifier del documento da sostituire.  |
+| `jsonString`     | string  | Sì           | Contenuto del FHIR Bundle relativo al nuovo documento.     |
 
 ## 8.3. Campi contenuti nel Path
 
 | PARAMETRO       | TIPO    | DESCRIZIONE                                                                 |
-|------------------|---------|-----------------------------------------------------------------------------|
-| `workflowInstanceId`     | string  |  Identificativo operazione restituito dal Gateway.       | 
-
-<!-- Footnotes themselves at the bottom. -->
+|------------------|---------|----------------------------------------------------------------------------|
+| `workflowInstanceId`     | string  |  Identificativo operazione restituito dal Gateway.                 | 
+ 
 ## Notes
 
 [^1]: https://docs.italia.it/media/pdf/lg-modellointeroperabilita-docs/vintra-work/lg-modellointeroperabilita-docs.pdf
