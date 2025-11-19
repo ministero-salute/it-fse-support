@@ -615,8 +615,11 @@ _Tabella 2: Acronimi e Definizioni_
       <td>Paragrafi modificati:
          <p>
             14. Modificato enum Tipo Documento Alto Livello 
+         <p>
             14.3.13. Modificata tabella Administrative Request
+         <p>   
             14.3.4. Modificata tabella Event Code per aggiunta P00
+         <p>   
             14.3.5. Modificata tabella Ruolo per aggiunta ruolo DAP
          <p>   
       </td>
