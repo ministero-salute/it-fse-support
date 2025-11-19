@@ -870,7 +870,8 @@
 
    I seguenti ruoli appartengono alla categoria medica e hanno accesso ai documenti contrassegnati come accessibili al Medico:
    - APR - Medico Medicina Generale / Pediatra di Libera Scelta
-   - DRS - Dirigente sanitario
+   - AAS - Medico / Dirigente sanitario
+   - DRS - Medico / Dirigente sanitario
    - RSA - Medico RSA
    - MRP - Medico Rete di Patologia
 
