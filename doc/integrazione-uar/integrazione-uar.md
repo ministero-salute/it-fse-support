@@ -841,42 +841,46 @@
    
 ## 9.1. Matrice di Accesso per Tipologia Documentale
    
-   | Tipologia Documento                                   | Codice   | Medico | Infermiere | Ostetrica | Farmacista |
-   | ----------------------------------------------------- | -------- | ------ | ---------- | --------- | ---------- |
-   | Referto di laboratorio                                | 11502-2  | ✓      | ✓          | ✗         | ✗          |
-   | Referto di radiologia                                 | 68604-8  | ✓      | ✓          | ✗         | ✗          |
-   | Referto di specialistica ambulatoriale                | 11488-4  | ✓      | ✓          | ✗         | ✗          |
-   | Referto di anatomia patologica                        | 11526-1  | ✓      | ✗          | ✗         | ✗          |
-   | Verbale di pronto soccorso                            | 59258-4  | ✓      | ✓          | ✗         | ✗          |
-   | Lettera di dimissione                                 | 34105-7  | ✓      | ✓          | ✗         | ✗          |
-   | Profilo sanitario sintetico                           | 60591-5  | ✓      | ✓          | ✗         | ✗          |
-   | Prescrizione farmaceutica                             | 57833-6  | ✓      | ✗          | ✗         | ✓          |
-   | Prescrizione specialistica                            | 57832-8  | ✓      | ✓          | ✗         | ✗          |
-   | Cartella clinica                                      | 100971-1 | ✓      | ✓          | ✗         | ✗          |
-   | Erogazione farmaci a carico SSN e non a carico SSN    | 60593-1  | ✓      | ✓          | ✗         | ✓          |
-   | Scheda singola vaccinazione                           | 87273-9  | ✓      | ✓          | ✗         | ✗          |
-   | Certificato vaccinale                                 | 82593-5  | ✓      | ✓          | ✗         | ✗          |
-   | Erogazione di prestazioni di assistenza specialistica | 81223-0  | ✓      | ✓          | ✗         | ✗          |
-   | Tessera portatore di impianto                         | 101881-1 | ✓      | ✗          | ✗         | ✗          |
-   | Lettera di invito per screening                       | 108278-7 | ✓      | ✓          | ✗         | ✗          |
+   | Tipologia Documento                                   | Codice   | Medico | Infermiere e Ostetrica  | Farmacista |
+   | ----------------------------------------------------- | -------- | ------ | ----------  | ---------- |
+   | Referto di laboratorio                                | 11502-2  | ✓      | ✓           | ✗          |
+   | Referto di radiologia                                 | 68604-8  | ✓      | ✓           | ✗          |
+   | Referto di specialistica ambulatoriale                | 11488-4  | ✓      | ✓           | ✗          |
+   | Referto di anatomia patologica                        | 11526-1  | ✓      | ✗           | ✗          |
+   | Verbale di pronto soccorso                            | 59258-4  | ✓      | ✓           | ✗          |
+   | Lettera di dimissione                                 | 34105-7  | ✓      | ✓           | ✗          |
+   | Profilo sanitario sintetico                           | 60591-5  | ✓      | ✓           | ✗          |
+   | Prescrizione farmaceutica                             | 57833-6  | ✓      | ✗           | ✓          |
+   | Prescrizione specialistica                            | 57832-8  | ✓      | ✓           | ✗          |
+   | Cartella clinica                                      | 100971-1 | ✓      | ✓           | ✗          |
+   | Erogazione farmaci a carico SSN e non a carico SSN    | 60593-1  | ✓      | ✓           | ✓          |
+   | Scheda singola vaccinazione                           | 87273-9  | ✓      | ✓           | ✗          |
+   | Certificato vaccinale                                 | 82593-5  | ✓      | ✓           | ✗          |
+   | Erogazione di prestazioni di assistenza specialistica | 81223-0  | ✓      | ✓           | ✗          |
+   | Tessera portatore di impianto                         | 101881-1 | ✓      | ✗           | ✗          |
+   | Lettera di invito per screening                       | 108278-7 | ✓      | ✓           | ✗          |
 
 ## 9.2. Ruoli e Categorie Professionali
-   Categoria MED (Medici)
+   **Categoria Medici**:
+
    I seguenti ruoli appartengono alla categoria medica e hanno accesso ai documenti contrassegnati come accessibili al Medico:
    - APR - Medico Medicina Generale / Pediatra di Libera Scelta
    - DRS - Dirigente sanitario
    - RSA - Medico RSA
    - MRP - Medico Rete di Patologia
 
-   Categoria INF (Infermieri)
+   **Categoria Infermieri**:
+
    I seguenti ruoli appartengono alla categoria infermieristica e hanno accesso ai documenti contrassegnati come accessibili a Infermiere / Ostetrica:
    - INF - Personale infermieristico
 
-   Categoria FAR (Farmacisti)
+   **Categoria Farmacisti**:
+
    I seguenti ruoli appartengono alla categoria farmaceutica e hanno accesso ai documenti contrassegnati come accessibili a Farmacista:
    - FAR - Farmacista
 
-   Categoria ASS (Assistiti)
+   **Categoria Assistiti**:
+
    I seguenti ruoli appartengono alla categoria degli assistiti e hanno accesso completo al proprio FSE:
    - ASS - Assistito
    - TUT - Tutore
@@ -892,7 +896,7 @@
    I seguenti endpoint consentono la ricerca (search-type) di risorse FHIR specifiche relative ai dati clinici di un assistito.
 
 ## 10.1.1. Condition
-   Consente la ricerca di istanze della risorsa **Condition** (problemi clinici, diagnosi) associate a un paziente. L'operazione esegue una ricerca FHIR (Fast Healthcare Interoperability Resources) per recuperare le condizioni registrate, utilizzando parametri di ricerca standard.
+   Consente la ricerca di istanze della risorsa **Condition** (problemi clinici, diagnosi) associate a un paziente. L'operazione esegue una ricerca FHIR per recuperare le condizioni registrate, utilizzando parametri di ricerca standard.
 
    ```
    Endpoint: GET BASE_PATH/v1/assistito-consultazione-dati-clinici/Condition
@@ -902,16 +906,16 @@
 
    Di seguito sono elencati tutti i parametri di ricerca supportati dall'endpoint, con l'indicazione se sono obbligatori (true) o opzionali (false).
 
-   | PARAMETRO           | IN    | DESCRIZIONE                               | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD        |
-   | ------------------- | ----- | ----------------------------------------- | ------------ | --------------- | ------------------------------ |
-   | patient.identifier  | query | Identificativo del paziente.              | true         | string          | Dinamico                       |
-   | _sort               | query | Criteri di ordinamento per i risultati.   | true         | string          | -onset-date oppure onset-date. |
-   | code                | query | Codice della condizione in formato system | true         | string          | [SystemCode]\|[Code]           |
-   | _revInclude         | query | Risorse da includere nella risposta.      | true         | string          | Composition:entry              |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare.         | true         | string          | DocumentReference:related      |
-   | onset-date          | query | Lista di date nel formato `YYYY-MM-DD`.   | false        | array of string | Dinamico                       |
-   | _count              | query | Numero di risultati per pagina.           | false        | integer         | 10                             |
-   | _offset             | query | Offset dei risultati impaginati.          | false        | integer         | Dinamico                       |
+   | PARAMETRO           | DESCRIZIONE                               | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD        |
+   | ------------------- | ----------------------------------------- | ------------ | --------------- | ------------------------------ |
+   | patient.identifier  | Identificativo del paziente.              | true         | string          | Dinamico                       |
+   | _sort               | Criteri di ordinamento per i risultati.   | true         | string          | -onset-date oppure onset-date. |
+   | code                | Codice della condizione in formato system | true         | string          | [SystemCode]\|[Code]           |
+   | _revInclude         | Risorse da includere nella risposta.      | true         | string          | Composition:entry              |
+   | _revInclude:iterate | Risorse correlate su cui iterare.         | true         | string          | DocumentReference:related      |
+   | onset-date          | Lista di date nel formato `YYYY-MM-DD`.   | false        | array of string | Dinamico                       |
+   | _count              | Numero di risultati per pagina.           | false        | integer         | 10                             |
+   | _offset             | Offset dei risultati impaginati.          | false        | integer         | Dinamico                       |
 
    SystemCode ammessi per il parametro code
 
@@ -939,16 +943,16 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                   | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
-   | ------------------- | ----- | --------------------------------------------- | ------------ | --------------- | ------------------------- |
-   | code                | query | Codice dell’allergia/intolleranza.            | true         | string          | [SystemCode]\|[Code]      |
-   | patient.identifier  | query | Identificativo del paziente.                  | true         | string          | Dinamico                  |
-   | _sort               | query | Criteri di ordinamento per i risultati.       | true         | string          | -date o date              |
-   | _revInclude         | query | Risorse da includere nella risposta.          | true         | string          | Composition:entry         |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare.             | true         | string          | DocumentReference:related |
-   | date                | query | Lista di date nel formato `YYYY-MM-DD`.       | false        | array of string | Dinamico                  |
-   | _count              | query | Numero di risultati da restituire per pagina. | false        | integer         | 10                        |
-   | _offset             | query | Offset per i risultati impaginati.            | false        | integer         | Dinamico                  |
+   | PARAMETRO           | DESCRIZIONE                                   | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
+   | ------------------- | --------------------------------------------- | ------------ | --------------- | ------------------------- |
+   | code                | Codice dell’allergia/intolleranza.            | true         | string          | [SystemCode]\|[Code]      |
+   | patient.identifier  | Identificativo del paziente.                  | true         | string          | Dinamico                  |
+   | _sort               | Criteri di ordinamento per i risultati.       | true         | string          | -date o date              |
+   | _revInclude         | Risorse da includere nella risposta.          | true         | string          | Composition:entry         |
+   | _revInclude:iterate | Risorse correlate su cui iterare.             | true         | string          | DocumentReference:related |
+   | date                | Lista di date nel formato `YYYY-MM-DD`.       | false        | array of string | Dinamico                  |
+   | _count              | Numero di risultati da restituire per pagina. | false        | integer         | 10                        |
+   | _offset             | Offset per i risultati impaginati.            | false        | integer         | Dinamico                  |
 
    SystemCode ammessi per il parametro code
 
@@ -978,16 +982,24 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
-   | ------------------- | ----- | -------------------------------------------- | ------------ | --------------- | ------------------------- |
-   | code                | query | Codice del farmaco (medication code).        | true         | string          | [SystemCode][Code]        |
-   | patient.identifier  | query | Identificativo del paziente.                 | true         | string          | Dinamico                  |
-   | _sort               | query | Criteri di ordinamento per i risultati.      | true         | string          | -effective o effective    |
-   | _revInclude         | query | Risorse da includere nella risposta.         | true         | string          | Composition:entry         |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related |
-   | effective           | query | Lista di date nel formato `YYYY-MM-DD`.      | false        | array of string | Dinamico                  |
-   | _count              | query | Numero di risultati da restituire per pagina | false        | integer         | 10                        |
-   | _offset             | query | Offset dei risultati impaginati (1–100).     | false        | integer         | Dinamico                  |
+   | PARAMETRO           | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
+   | ------------------- | -------------------------------------------- | ------------ | --------------- | ------------------------- |
+   | code                | Codice del farmaco (medication code).        | true         | string          | [SystemCode][Code]        |
+   | patient.identifier  | Identificativo del paziente.                 | true         | string          | Dinamico                  |
+   | _sort               | Criteri di ordinamento per i risultati.      | true         | string          | -effective o effective    |
+   | _revInclude         | Risorse da includere nella risposta.         | true         | string          | Composition:entry         |
+   | _revInclude:iterate | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related |
+   | effective           | Lista di date nel formato `YYYY-MM-DD`.      | false        | array of string | Dinamico                  |
+   | _count              | Numero di risultati da restituire per pagina | false        | integer         | 10                        |
+   | _offset             | Offset dei risultati impaginati (1–100).     | false        | integer         | Dinamico                  |
+
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.6.73       | ATC                             | Dinamico |
+   | 2.16.840.1.113883.2.9.6.1.5  | AIC                             | Dinamico |
+   | 2.16.840.1.113883.2.9.6.1.51 | GE                              | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint MedicationStatement.
 
@@ -997,14 +1009,6 @@
       -H "Agid-JWT-Signature: <token_firmato>" \
       -H "Accept: application/json"
    ```
-   SystemCode ammessi per il parametro code
-
-   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
-   | ---------------------------- | ------------------------------- | -------- |
-   | 2.16.840.1.113883.6.73       | ATC                             | Dinamico |
-   | 2.16.840.1.113883.2.9.6.1.5  | AIC                             | Dinamico |
-   | 2.16.840.1.113883.2.9.6.1.51 | GE                              | Dinamico |
-
 
 ## 10.1.4. MedicationDispense
 
@@ -1017,18 +1021,23 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
-   | ------------------- | ----- | -------------------------------------------- | ------------ | --------------- | ------------------------- |
-   | code                | query | Codice del farmaco dispensato                | true         | string          | Dinamico                  |
-   | patient.identifier  | query | Identificativo del paziente                  | true         | string          | Dinamico                  |
-   | _sort               | query | Criteri di ordinamento per i risultati       | true         | string          | whenhandedover            |
-   | _revInclude         | query | Risorse da includere nella risposta          | true         | string          | Composition:entry         |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related |
-   | whenhandedover      | query | Lista di date nel formato `YYYY-MM-DD`       | false        | array of string | Dinamico                  |
-   | _count              | query | Numero di risultati da restituire per pagina | false        | integer         | 10                        |
-   | _offset             | query | Offset dei risultati impaginati (1–100)      | false        | integer         | Dinamico                  |
+   | PARAMETRO           | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
+   | ------------------- | -------------------------------------------- | ------------ | --------------- | ------------------------- |
+   | code                | Codice del farmaco dispensato                | true         | string          | [SystemCode][Code]        |
+   | patient.identifier  | Identificativo del paziente                  | true         | string          | Dinamico                  |
+   | _sort               | Criteri di ordinamento per i risultati       | true         | string          | whenhandedover            |
+   | _revInclude         | Risorse da includere nella risposta          | true         | string          | Composition:entry         |
+   | _revInclude:iterate | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related |
+   | whenhandedover      | Lista di date nel formato `YYYY-MM-DD`       | false        | array of string | Dinamico                  |
+   | _count              | Numero di risultati da restituire per pagina | false        | integer         | 10                        |
+   | _offset             | Offset dei risultati impaginati (1–100)      | false        | integer         | Dinamico                  |
 
 
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.2.9.6.1.5  | AIC                             | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint MedicationDispense.
 
@@ -1050,16 +1059,23 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                                    | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
-   | ------------------- | ----- | -------------------------------------------------------------- | ------------ | --------------- | ------------------------- |
-   | code                | query | Codice dell’osservazione (laboratorio, parametro vitale, ecc.) | true         | string          | Dinamico                  |
-   | patient.identifier  | query | Identificativo del paziente                                    | true         | string          | Dinamico                  |
-   | _sort               | query | Criteri di ordinamento per i risultati                         | true         | string          | -date o date              |
-   | _revInclude         | query | Risorse da includere nella risposta                            | true         | string          | Composition:entry         |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare                               | true         | string          | DocumentReference:related |
-   | date                | query | Lista di date nel formato `YYYY-MM-DD`                         | false        | array of string | Dinamico                  |
-   | _count              | query | Numero di risultati da restituire per pagina                   | false        | integer         | 10                        |
-   | _offset             | query | Offset dei risultati impaginati (1–100)                        | false        | integer         | Dinamico                  |
+   | PARAMETRO           | DESCRIZIONE                                                    | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD   |
+   | ------------------- | -------------------------------------------------------------- | ------------ | --------------- | ------------------------- |
+   | code                | Codice dell’osservazione (laboratorio, parametro vitale, ecc.) | true         | string          | [SystemCode][Code]        |
+   | patient.identifier  | Identificativo del paziente                                    | true         | string          | Dinamico                  |
+   | _sort               | Criteri di ordinamento per i risultati                         | true         | string          | -date o date              |
+   | _revInclude         | Risorse da includere nella risposta                            | true         | string          | Composition:entry         |
+   | _revInclude:iterate | Risorse correlate su cui iterare                               | true         | string          | DocumentReference:related |
+   | date                | Lista di date nel formato `YYYY-MM-DD`                         | false        | array of string | Dinamico                  |
+   | _count              | Numero di risultati da restituire per pagina                   | false        | integer         | 10                        |
+   | _offset             | Offset dei risultati impaginati (1–100)                        | false        | integer         | Dinamico                  |
+
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.6.1        | LOINC                           | Dinamico |
+   | 2.16.840.1.113883.6.103      | ICD-9-CM                        | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint Observation.
 
@@ -1081,17 +1097,22 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD                      |
-   | ------------------- | ----- | -------------------------------------------- | ------------ | --------------- | -------------------------------------------- |
-   | code                | query | Codice della procedura clinica/intervento    | true         | string          | ICD-9-CM: 2.16.840.1.113883.6.103 – Dinamico |
-   | patient.identifier  | query | Identificativo del paziente                  | true         | string          | Dinamico                                     |
-   | _sort               | query | Criteri di ordinamento per i risultati       | true         | string          | -date o date                                 |
-   | _revInclude         | query | Risorse da includere nella risposta          | true         | string          | Composition:entry                            |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related                    |
-   | date                | query | Lista di date nel formato `YYYY-MM-DD`       | false        | array of string | Dinamico                                     |
-   | _count              | query | Numero di risultati da restituire per pagina | false        | integer         | 10                                           |
-   | _offset             | query | Offset dei risultati impaginati (1–100)      | false        | integer         | Dinamico                                     |
+   | PARAMETRO           | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD       |
+   | ------------------- | -------------------------------------------- | ------------ | --------------- | ------------------------------|
+   | code                | Codice della procedura clinica/intervento    | true         | string          | [SystemCode][Code]            |
+   | patient.identifier  | Identificativo del paziente                  | true         | string          | Dinamico                      |
+   | _sort               | Criteri di ordinamento per i risultati       | true         | string          | -date o date                  |
+   | _revInclude         | Risorse da includere nella risposta          | true         | string          | Composition:entry             |
+   | _revInclude:iterate | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related     |
+   | date                | Lista di date nel formato `YYYY-MM-DD`       | false        | array of string | Dinamico                      |
+   | _count              | Numero di risultati da restituire per pagina | false        | integer         | 10                            |
+   | _offset             | Offset dei risultati impaginati (1–100)      | false        | integer         | Dinamico                      |
 
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.6.104      | ICD-9-CM                        | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint Procedure.
 
@@ -1113,16 +1134,22 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD                 |
-   | ------------------- | ----- | -------------------------------------------- | ------------ | --------------- | --------------------------------------- |
-   | code                | query | Codice del referto diagnostico.              | true         | string          | LOINC: 2.16.840.1.113883.6.1 – Dinamico |
-   | patient.identifier  | query | Identificativo del paziente.                 | true         | string          | Dinamico                                |
-   | _sort               | query | Criteri di ordinamento per i risultati.      | true         | string          | -date o date                            |
-   | _revInclude         | query | Risorse da includere nella risposta.         | true         | string          | Composition:entry                       |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related               |
-   | date                | query | Lista di date nel formato `YYYY-MM-DD`.      | true         | array of string | Dinamico                                |
-   | _count              | query | Numero di risultati da restituire per pagina | false        | integer         | 10                                      |
-   | _offset             | query | Offset dei risultati impaginati (1–100).     | false        | integer         | Dinamico                                |
+   | PARAMETRO           | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD            |
+   | ------------------- | -------------------------------------------- | ------------ | --------------- | ---------------------------------- |
+   | code                | Codice del referto diagnostico.              | true         | string          | [SystemCode][Code]                 |
+   | patient.identifier  | Identificativo del paziente.                 | true         | string          | Dinamico                           |
+   | _sort               | Criteri di ordinamento per i risultati.      | true         | string          | -date o date                       |
+   | _revInclude         | Risorse da includere nella risposta.         | true         | string          | Composition:entry                  |
+   | _revInclude:iterate | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related          |
+   | date                | Lista di date nel formato `YYYY-MM-DD`.      | true         | array of string | Dinamico                           |
+   | _count              | Numero di risultati da restituire per pagina | false        | integer         | 10                                 |
+   | _offset             | Offset dei risultati impaginati (1–100).     | false        | integer         | Dinamico                           |
+
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.6.1        | LOINC                           | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint DiagnosticReport.
 
@@ -1144,17 +1171,23 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                                | OBBLIGATORIO | TIPO            | VALORI AMMESSI / SYSTEM CODE              |
-   | ------------------- | ----- | ---------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-   | type                | query | Tipo di incontro clinico (es: visita, consulto, ricovero). | true         | string          | Dinamico (es: visita, consulto, ricovero) |
-   | patient.identifier  | query | Identificativo del paziente.                               | true         | string          | Dinamico                                  |
-   | _sort               | query | Criteri di ordinamento per i risultati.                    | true         | string          | -date o date                              |
-   | _revInclude         | query | Risorse da includere nella risposta.                       | true         | string          | Composition:entry                         |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare.                          | true         | string          | DocumentReference:related                 |
-   | _include            | query | Risorse aggiuntive da includere nella risposta.            | false        | string          | Dinamico                                  |
-   | date                | query | Lista di date nel formato `YYYY-MM-DD` (max 2 valori).     | false        | array of string | Dinamico                                  |
-   | _count              | query | Numero di risultati da restituire per pagina (1–10).       | false        | integer         | 10                                        |
-   | _offset             | query | Offset dei risultati impaginati (1–100).                   | false        | integer         | Dinamico                                  |
+   | PARAMETRO           | DESCRIZIONE                                                | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD      |
+   | ------------------- | ---------------------------------------------------------- | ------------ | --------------- | ---------------------------- |
+   | type                | Tipo di incontro clinico (es: visita, consulto, ricovero). | true         | string          | [SystemCode][Code]           |
+   | patient.identifier  | Identificativo del paziente.                               | true         | string          | Dinamico                     |
+   | _sort               | Criteri di ordinamento per i risultati.                    | true         | string          | -date o date                 |
+   | _revInclude         | Risorse da includere nella risposta.                       | true         | string          | Composition:entry            |
+   | _revInclude:iterate | Risorse correlate su cui iterare.                          | true         | string          | DocumentReference:related    |
+   | _include            | Risorse aggiuntive da includere nella risposta.            | false        | string          | Dinamico                     |
+   | date                | Lista di date nel formato `YYYY-MM-DD` (max 2 valori).     | false        | array of string | Dinamico                     |
+   | _count              | Numero di risultati da restituire per pagina (1–10).       | false        | integer         | 10                           |
+   | _offset             | Offset dei risultati impaginati (1–100).                   | false        | integer         | Dinamico                     |
+
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.6.1        | LOINC                           | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint Encounter.
 
@@ -1176,16 +1209,23 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI / SYSTEM CODE |
-   | ------------------- | ----- | -------------------------------------------- | ------------ | --------------- | ---------------------------- |
-   | vaccine-code        | query | Codice del vaccino somministrato.            | true         | string          | Dinamico (codice vaccino)    |
-   | patient.identifier  | query | Identificativo del paziente.                 | true         | string          | Dinamico                     |
-   | _sort               | query | Criteri di ordinamento per i risultati.      | true         | string          | -date o date                 |
-   | _revInclude         | query | Risorse da includere nella risposta.         | true         | string          | Composition:entry            |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related    |
-   | date                | query | Lista di date nel formato `YYYY-MM-DD`.      | false        | array of string | Dinamico                     |
-   | _count              | query | Numero di risultati da restituire per pagina | false        | integer         | 10                           |
-   | _offset             | query | Offset per i risultati impaginati (1–100).   | false        | integer         | Dinamico                     |
+   | PARAMETRO           | DESCRIZIONE                                  | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD      |
+   | ------------------- | -------------------------------------------- | ------------ | --------------- | ---------------------------- |
+   | vaccine-code        | Codice del vaccino somministrato.            | true         | string          | [SystemCode][Code]           |
+   | patient.identifier  | Identificativo del paziente.                 | true         | string          | Dinamico                     |
+   | _sort               | Criteri di ordinamento per i risultati.      | true         | string          | -date o date                 |
+   | _revInclude         | Risorse da includere nella risposta.         | true         | string          | Composition:entry            |
+   | _revInclude:iterate | Risorse correlate su cui iterare             | true         | string          | DocumentReference:related    |
+   | date                | Lista di date nel formato `YYYY-MM-DD`.      | false        | array of string | Dinamico                     |
+   | _count              | Numero di risultati da restituire per pagina | false        | integer         | 10                           |
+   | _offset             | Offset per i risultati impaginati (1–100).   | false        | integer         | Dinamico                     |
+   
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.2.9.6.1.5  | AIC                             | Dinamico |
+   | 2.16.840.1.113883.6.73       | ATC                             | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint Immunization(Assistito).
 
@@ -1208,17 +1248,24 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO           | IN    | DESCRIZIONE                                                                                                  | OBBLIGATORIO | TIPO            | VALORI STANDARD           |
-   | ------------------- | ----- | ------------------------------------------------------------------------------------------------------------ | ------------ | --------------- | ------------------------- |
-   | vaccine-code        | query | Codice del vaccino somministrato                                                                             | true         | string          | Dinamico (codice vaccino) |
-   | patient.identifier  | query | Identificativo del paziente                                                                                  | true         | string          | Dinamico                  |
-   | _sort               | query | Criteri di ordinamento per i risultati                                                                       | true         | string          | -date o date              |
-   | _revInclude         | query | Risorse da includere nella risposta                                                                          | true         | string          | Composition:entry         |
-   | _revInclude:iterate | query | Risorse correlate su cui iterare                                                                             | true         | string          | DocumentReference:related |
-   | date                | query | Lista di date nel formato `YYYY-MM-DD`                                                                       | false        | array of string | Dinamico                  |
-   | _count              | query | Numero di risultati da restituire per pagina                                                                 | false        | integer         | 10                        |
-   | _offset             | query | Offset per i risultati impaginati (1–100)                                                                    | false        | integer         | Dinamico                  |
-   | _include            | query | Risorse aggiuntive da includere nella risposta (es: `Immunization:performer.actor`, `Immunization:location`) | false        | string          | Dinamico                  |
+   | PARAMETRO           | DESCRIZIONE                                    | OBBLIGATORIO | TIPO            | VALORI STANDARD           |
+   | ------------------- | ---------------------------------------------- | ------------ | --------------- | ------------------------- |
+   | vaccine-code        | Codice del vaccino somministrato               | true         | string          | [SystemCode][Code]        |
+   | patient.identifier  | Identificativo del paziente                    | true         | string          | Dinamico                  |
+   | _sort               | Criteri di ordinamento per i risultati         | true         | string          | -date o date              |
+   | _revInclude         | Risorse da includere nella risposta            | true         | string          | Composition:entry         |
+   | _revInclude:iterate | Risorse correlate su cui iterare               | true         | string          | DocumentReference:related |
+   | date                | Lista di date nel formato `YYYY-MM-DD`         | false        | array of string | Dinamico                  |
+   | _count              | Numero di risultati da restituire per pagina   | false        | integer         | 10                        |
+   | _offset             | Offset per i risultati impaginati (1–100)      | false        | integer         | Dinamico                  |
+   | _include            | Risorse aggiuntive da includere nella risposta | false        | string          | Dinamico                  |
+
+   SystemCode ammessi per il parametro code
+
+   | SYSTEM CODE (OID)            | DOMINIO IDENTIFICATIVO CONCETTO | VALORE   |
+   | ---------------------------- | ------------------------------- | -------- |
+   | 2.16.840.1.113883.2.9.6.1.5  | AIC                             | Dinamico |
+   | 2.16.840.1.113883.6.73       | ATC                             | Dinamico |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint Immunization(Professionista).
 
@@ -1242,14 +1289,14 @@
 
    ### Parametri di Ricerca
 
-   | PARAMETRO          | IN    | DESCRIZIONE                                                               | OBBLIGATORIO | TIPO            | VALORI AMMESSI / SYSTEM CODE                 |
-   | ------------------ | ----- | ------------------------------------------------------------------------- | ------------ | --------------- | -------------------------------------------- |
-   | entity             | query | Tipo di entità coinvolta nell’evento (es: utente, sistema, applicazione). | true         | string          | Dinamico (es: utente, sistema, applicazione) |
-   | patient.identifier | query | Identificativo del paziente.                                              | true         | string          | Dinamico                                     |
-   | _sort              | query | Criteri di ordinamento per i risultati.                                   | true         | string          | -date o date                                 |
-   | date               | query | Lista di date nel formato `YYYY-MM-DD`.                                   | false        | array of string | Dinamico                                     |
-   | _count             | query | Numero di risultati da restituire per pagina                              | false        | integer         | 10                                           |
-   | _offset            | query | Offset per i risultati impaginati (1–100).                                | false        | integer         | Dinamico                                     |
+   | PARAMETRO          | IN    | DESCRIZIONE                                      | OBBLIGATORIO | TIPO            | VALORI AMMESSI STANDARD                      |
+   | ------------------ | ----- | ------------------------------------------------ | ------------ | --------------- | -------------------------------------------- |
+   | entity             | query | Tipo di entità coinvolta nell’evento             | true         | string          | Dinamico (es: utente, sistema, applicazione) |
+   | patient.identifier | query | Identificativo del paziente.                     | true         | string          | Dinamico                                     |
+   | _sort              | query | Criteri di ordinamento per i risultati.          | true         | string          | -date o date                                 |
+   | date               | query | Lista di date nel formato `YYYY-MM-DD`.          | false        | array of string | Dinamico                                     |
+   | _count             | query | Numero di risultati da restituire per pagina     | false        | integer         | 10                                           |
+   | _offset            | query | Offset per i risultati impaginati.               | false        | integer         | Dinamico                                     |
 
    Di seguito è riportato un esempio generico di richiesta `curl` per l'endpoint AuditEvent.
 
