@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.15
+   <td>ver 2.16
    </td>
   </tr>
 </table>
@@ -605,6 +605,20 @@ _Tabella 2: Acronimi e Definizioni_
             6.  Rimozione flag priorità dalla request body di creazione
          <p> 
          <p>Modifica indice per accogliere nuove modifiche sulla validazione fhir<p> 
+      </td>
+   </tr> 
+   <tr>
+      <td>2.16
+      </td>
+      <td>22/09/2025
+      </td>
+      <td>Paragrafi modificati:
+         <p>
+            14. Modificato enum Tipo Documento Alto Livello 
+         <p>  
+         <p>
+            
+         <p>    
       </td>
    </tr> 
 </table>
@@ -7901,6 +7915,11 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>Documento di controllo</td>
     <td>Questa classe di documenti deve essere utilizzata per ogni tipologia di documento che descrive un controllo clinico (ad es. bilanci di salute).</td>
   </tr>
+  <tr>
+    <td>CRT</td>
+    <td>Certificato Amministrativo generico</td>
+    <td>Questa classe di documenti deve essere utilizzata per i documenti di tipo Certificato amministrativo generico (ad es. certificato di malattia)</td>
+  </tr>
 </table>
 
 
@@ -9009,6 +9028,11 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>Oscuramento del documento</td>
   </tr>
   <tr>
+    <td>P00</td>
+    <td>P00</td>
+    <td>De-Oscuramento in alimentazione</td>
+  </tr>
+  <tr>
     <td>P97</td>
     <td>P97</td>
     <td>Oscuramento al genitore</td>
@@ -9080,185 +9104,187 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 
 
 <table>
-  <tr>
-   <td><strong>Valore</strong>
-   </td>
-   <td><strong>Descrizione</strong>
-   </td>
-   <td><strong>Mappatura con ruoli del DPCM sul FSE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>AAS
-   </td>
-   <td>Personale di assistenza ad alta specializzazione
-   </td>
-   <td>Medico / Dirigente sanitario
-   </td>
-  </tr>
-  <tr>
-   <td>APR
-   </td>
-   <td>Medico Medicina Generale
-<p>
-Pediatra di Libera Scelta
-   </td>
-   <td>Medico di Medicina Generale / Pediatra di Libera Scelta
-   </td>
-  </tr>
-  <tr>
-   <td>PSS
-   </td>
-   <td>Professionista del sociale
-   </td>
-   <td>Professionista del sociale
-   </td>
-  </tr>
-  <tr>
-   <td>INF
-   </td>
-   <td>Personale infermieristico
-   </td>
-   <td>Infermiere o altro Professionista Sanitario
-   </td>
-  </tr>
-  <tr>
-   <td>FAR
-   </td>
-   <td>Farmacista
-   </td>
-   <td>Farmacista
-   </td>
-  </tr>
-  <tr>
-   <td>DSA
-   </td>
-   <td>Direttore sanitario
-   </td>
-   <td>Direttore sanitario
-   </td>
-  </tr>
-   <tr>
-   <td>DAM
-   </td>
-   <td>Direttore amministrativo
-   </td>
-   <td>Direttore amministrativo
-   </td>
-  </tr>
-  <tr>
-  <tr>
-   <td>OAM
-   </td>
-   <td>Operatore amministrativo
-   </td>
-   <td>Operatore Amministrativo
-   </td>
-  </tr>
-  <tr>
-   <td>ASS
-   </td>
-   <td>Assistito
-   </td>
-   <td>Assistito
-   </td>
-  </tr>
-  <tr>
-   <td>TUT
-   </td>
-   <td>Tutore
-   </td>
-   <td>Tutore
-   </td>
-  </tr>
-  <tr>
-   <td>ING
-   </td>
-   <td>Informal giver (Assistito)
-   </td>
-   <td>Informal giver (Assistito)
-   </td>
-  </tr>
-  <tr>
-   <td>GEN
-   </td>
-   <td>Genitore Assistito
-   </td>
-   <td>Genitore Assistito
-   </td>
-  </tr>
-  <tr>
-   <td>NOR
-   </td>
-   <td>Nodo regionale
-   </td>
-   <td>Nodo regionale
-   </td>
-  </tr>
-  <tr>
-   <td>DRS
-   </td>
-   <td>Dirigente sanitario
-   </td>
-   <td>Medico / Dirigente sanitario
-   </td>
-  </tr>
-  <tr>
-   <td>RSA
-   </td>
-   <td>Medico RSA
-   </td>
-   <td>Medico RSA
-   </td>
-  </tr>
-  <tr>
-   <td>MRP
-   </td>
-   <td>Medico Rete di Patologia
-   </td>
-   <td>Medico Rete di Patologia
-   </td>
-  </tr>
-  <tr>
-   <td>INI
-   </td>
-   <td>Infrastruttura Nazionale per l’Interoperabilità
-   </td>
-   <td>Ruolo di sistema (non indicato nel DPCM perché non rappresenta una professione)
-   </td>
-  </tr>
-  <tr>
-   <td>OGC
-   </td>
-   <td>Operatore per la gestione dei consensi
-   </td>
-   <td>Operatore per la gestione dei consensi
-   </td>
-  </tr>
-   <tr>
-   <td>OPI
-   </td>
-   <td>Operatore di informativa
-   </td>
-   <td>Operatore di informativa
-   </td>
-  </tr>
-  <tr>
-   <td>MDS
-   </td>
-   <td>Ruolo del Ministero della Salute per la gestione del DGC
-   </td>
-   <td>Non indicato nel DPCM perché non rappresenta una professione
-   </td>
-  </tr>
-  <tr>
-   <td>GTW
-   </td>
-   <td>Gateway
-   </td>
-   <td>Ruolo per il Gateway EDS
-   </td>
-  </tr>
+    <tr>
+        <td><strong>Valore</strong>
+        </td>
+        <td><strong>Descrizione</strong>
+        </td>
+        <td><strong>Mappatura con ruoli del DPCM sul FSE</strong>
+        </td>
+    </tr>
+    <tr>
+        <td>AAS
+        </td>
+        <td>Personale di assistenza ad alta specializzazione
+        </td>
+        <td>Medico / Dirigente sanitario
+        </td>
+    </tr>
+    <tr>
+        <td>APR
+        </td>
+        <td>Medico Medicina Generale
+            <p>
+                Pediatra di Libera Scelta
+        </td>
+        <td>Medico di Medicina Generale / Pediatra di Libera Scelta
+        </td>
+    </tr>
+    <tr>
+        <td>PSS
+        </td>
+        <td>Professionista del sociale
+        </td>
+        <td>Professionista del sociale
+        </td>
+    </tr>
+    <tr>
+        <td>INF
+        </td>
+        <td>Personale infermieristico
+        </td>
+        <td>Infermiere o altro Professionista Sanitario
+        </td>
+    </tr>
+    <tr>
+        <td>FAR
+        </td>
+        <td>Farmacista
+        </td>
+        <td>Farmacista
+        </td>
+    </tr>
+    <tr>
+        <td>DSA
+        </td>
+        <td>Direttore sanitario
+        </td>
+        <td>Direttore sanitario
+        </td>
+    </tr>
+    <tr>
+        <td>DAM
+        </td>
+        <td>Direttore amministrativo
+        </td>
+        <td>Direttore amministrativo
+        </td>
+    </tr>
+    <tr>
+    <tr>
+        <td>OAM
+        </td>
+        <td>Operatore amministrativo
+        </td>
+        <td>Operatore Amministrativo
+        </td>
+    </tr>
+    <tr>
+        <td>ASS
+        </td>
+        <td>Assistito
+        </td>
+        <td>Assistito
+        </td>
+    </tr>
+    <tr>
+        <td>TUT
+        </td>
+        <td>Tutore
+        </td>
+        <td>Tutore
+        </td>
+    </tr>
+    <tr>
+        <td>ING
+        </td>
+        <td>Informal giver (Assistito)
+        </td>
+        <td>Informal giver (Assistito)
+        </td>
+    </tr>
+    <tr>
+        <td>GEN
+        </td>
+        <td>Genitore Assistito
+        </td>
+        <td>Genitore Assistito
+        </td>
+    </tr>
+    <tr>
+        <td>NOR
+        </td>
+        <td>Nodo regionale
+        </td>
+        <td>Nodo regionale
+        </td>
+    </tr>
+    <tr>
+        <td>DRS
+        </td>
+        <td>Dirigente sanitario
+        </td>
+        <td>Medico / Dirigente sanitario
+        </td>
+    </tr>
+    <tr>
+        <td>RSA
+        </td>
+        <td>Medico RSA
+        </td>
+        <td>Medico RSA
+        </td>
+    </tr>
+    <tr>
+        <td>MRP
+        </td>
+        <td>Medico Rete di Patologia
+        </td>
+        <td>Medico Rete di Patologia
+        </td>
+    </tr>
+    <tr>
+        <td>INI
+        </td>
+        <td>Infrastruttura Nazionale per l’Interoperabilità
+        </td>
+        <td>Ruolo di sistema (non indicato nel DPCM perché non rappresenta una professione)
+        </td>
+    </tr>
+    <tr>
+        <td>OGC
+        </td>
+        <td>Operatore per la gestione dei consensi
+        </td>
+        <td>Operatore per la gestione dei consensi
+        </td>
+    </tr>
+    <tr>
+        <td>OPI
+        </td>
+        <td>Operatore di informativa
+        </td>
+        <td>Operatore di informativa
+        </td>
+    </tr>
+    <tr>
+        <td>MDS
+        </td>
+        <td>Ruolo del Ministero della Salute per la gestione del DGC
+        </td>
+        <td>Non indicato nel DPCM perché non rappresenta una professione
+        </td>
+    </tr>
+    <tr>
+        <td>GTW</td>
+        <td>Gateway</td>
+        <td>Ruolo per il Gateway EDS</td>
+    </tr>
+    <tr>
+        <td>DAP</td>
+        <td>Dispositivo azienda produttrice</td>
+        <td>Dispositivo azienda produttrice</td>
+    </tr>
 </table>
 
 
@@ -10051,40 +10077,46 @@ _Tabella 62: action-id_
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
 <table>
-  <tr>
-   <td><strong>Codice</strong>
-   </td>
-   <td><strong>DisplayName</strong>
-   </td>
-   <td><strong>Descrizione utilizzo</strong>
-   </td>
-  </tr>
-  
-<tr>  
-<td>SSN</td>
-<td>Regime SSN</td>
-<td>Documento prodotto in regime SSN (in seguito a impegnativa SSN o screening)</td>
-</tr>
-<tr>
-<td>INPATIENT</td>
-<td>Regime di ricovero</td>
-<td>Documenti prodotti in: regime di ricovero ad eccezione di ricoveri in libera professione completamente a carico del cittadino, pronto soccorso ad eccezione dei pazienti che non hanno copertura SSN.</td>
-</tr>
-<tr>
-<td>NOSSN</td>
-<td>Regime privato</td>
-<td>Documento prodotto in regime privato per cui il cittadino paga tutte le spese sanitarie (es. ricoveri in libera professione, prestazioni intramoenia, etc.</td>
-</tr>
-<tr>
-<td>SSR</td>
-<td>Regime SSR</td>
-<td>Documento prodotto in regime SSR (all’interno di progettualità regionali)</td>
-</tr>
-<tr>
-<td>DONOR</td>
-<td>Regime donatori</td>
-<td>Documento prodotto in regime per i donatori</td>
-</tr>
+    <tr>
+        <td><strong>Codice</strong>
+        </td>
+        <td><strong>DisplayName</strong>
+        </td>
+        <td><strong>Descrizione utilizzo</strong>
+        </td>
+    </tr>
+    <tr>
+        <td>SSN</td>
+        <td>Regime SSN</td>
+        <td>Documento prodotto in regime SSN (in seguito a impegnativa SSN o screening)</td>
+    </tr>
+    <tr>
+        <td>INPATIENT</td>
+        <td>Regime di ricovero</td>
+        <td>Documenti prodotti in: regime di ricovero ad eccezione di ricoveri in libera professione completamente a
+            carico del cittadino, pronto soccorso ad eccezione dei pazienti che non hanno copertura SSN.</td>
+    </tr>
+    <tr>
+        <td>NOSSN</td>
+        <td>Regime privato</td>
+        <td>Documento prodotto in regime privato per cui il cittadino paga tutte le spese sanitarie (es. ricoveri in
+            libera professione, prestazioni intramoenia, etc.</td>
+    </tr>
+    <tr>
+        <td>SSR</td>
+        <td>Regime SSR</td>
+        <td>Documento prodotto in regime SSR (all’interno di progettualità regionali)</td>
+    </tr>
+    <tr>
+        <td>DONOR</td>
+        <td>Regime donatori</td>
+        <td>Documento prodotto in regime per i donatori</td>
+    </tr>
+    <tr>
+        <td>AUTO</td>
+        <td>Autoprodotto</td>
+        <td>Documento prodotto a partire da dati di Taccuino o Documenti autoprodotti dal cittadino</td>
+    </tr>
 </table>
 
 _Tabella 63: Value set per il metadato XDSDocumentEntry.Slot - Administrative Request_
