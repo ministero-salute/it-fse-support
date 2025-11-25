@@ -1050,6 +1050,7 @@ Body
 _Tabella 6: Parametri Richiesta di Validazione_
 
 La compilazione errata dei parameter oppure la non compilazione dei parameter “required” comporta un errore di tipo bloccante. La non compilazione del parameter facoltativo “mode” comporta la restituzione di un errore di tipo warning, mentre la non compilazione del parameter facoltativo “healthDataFormat” non comporta errori di tipo warning. 
+Nei casi in cui é richiesta la mutua autenticazione tramite certificato TLS client occorrerá utilizzare i parametri ```--cert``` e ```--key``` nella chiamata ```curl```.
 
 Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti due parametri:
 
