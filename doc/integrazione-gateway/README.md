@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.16
+   <td>ver 2.17
    </td>
   </tr>
 </table>
@@ -58,7 +58,7 @@
 - [7. Servizio di Sostituzione Documento](#7-servizio-di-sostituzione-documento)
   - [7.1. Request](#71-request)
     - [7.1.1. Messaggio di Richiesta, esempio “Pubblicazione Sostituzione Documento con Attachment”](#711-messaggio-di-richiesta-esempio-pubblicazione-sostituzione-documento-con-attachment)
-  - [6.2. Response](#62-response-1)
+  - [7.2. Response](#72-response)
     - [7.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#721-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
     - [7.2.2. Esempio di Messaggio di Risposta con esito KO 400](#722-esempio-di-messaggio-di-risposta-con-esito-ko-400)
 - [8. Servizio di Aggiornamento Metadati](#8-servizio-di-aggiornamento-metadati)
@@ -624,6 +624,19 @@ _Tabella 2: Acronimi e Definizioni_
          <p>   
       </td>
    </tr> 
+   <tr>
+    <td>2.17</td>
+    <td>03/12/2025</td>
+    <td>
+      Paragrafi modificati:
+      <p>5.2. Modificato status code in 202</p>
+      <p>6.2. Aggiunto status code in 202</p>
+      <p>7.2. Modificato status code in 202</p>
+      <p>8.2. Aggiunto status code in 202</p>
+      <p>9.2. Aggiunto status code in 202</p>
+      <p>10.2. Aggiunto status code in 202</p>
+    </td>
+  </tr>
 </table>
 
 
@@ -2117,7 +2130,7 @@ curl -X 'POST' \
   <tr>
    <td rowspan="11" >STATUS CODE
    </td>
-   <td>201
+   <td>202
    </td>
    <td>Presa in carico eseguita con successo
    </td>
@@ -2422,96 +2435,68 @@ curl -X 'DELETE' \
 
 <table>
   <tr>
-   <td>TIPO IN CASO DI SUCCESSO
-   </td>
-   <td colspan="2" >application/json
-   </td>
+    <td>TIPO IN CASO DI SUCCESSO</td>
+    <td colspan="2">application/json</td>
   </tr>
   <tr>
-   <td>TIPO IN CASO DI ERRORE*
-   </td>
-   <td colspan="2" >application/problem+json
-   </td>
+    <td>TIPO IN CASO DI ERRORE*</td>
+    <td colspan="2">application/problem+json</td>
   </tr>
   <tr>
-   <td rowspan="10" >STATUS CODE
-   </td>
-   <td> 200
-   </td>
-   <td>Cancellazione eseguita con successo
-   </td>
+    <td rowspan="13">STATUS CODE</td>
+    <td>200</td>
+    <td>Cancellazione eseguita con successo</td>
   </tr>
   <tr>
-   <td>400
-   </td>
-   <td>Bad request
-   </td>
+    <td>202</td>
+    <td>Presa in carico eseguita con successo</td>
   </tr>
   <tr>
-   <td>401
-   </td>
-   <td>Unauthorized
-   </td>
+    <td>400</td>
+    <td>Bad request</td>
   </tr>
   <tr>
-   <td>403
-   </td>
-   <td>Token jwt mancante o non valido
-   </td>
+    <td>401</td>
+    <td>Unauthorized</td>
   </tr>
   <tr>
-   <td>404
-   </td>
-   <td>Not found
-   </td>
+    <td>403</td>
+    <td>Token jwt mancante o non valido</td>
   </tr>
   <tr>
-   <td>409
-   </td>
-   <td>Conflict
-   </td>
+    <td>404</td>
+    <td>Not found</td>
   </tr>
   <tr>
-   <td>413
-   </td>
-   <td>Payload too large
-   </td>
+    <td>409</td>
+    <td>Conflict</td>
   </tr>
   <tr>
-   <td>429
-   </td>
-   <td>Too Many Requests
-   </td>
+    <td>413</td>
+    <td>Payload too large</td>
   </tr>
   <tr>
-   <td>500
-   </td>
-   <td>Internal server error
-   </td>
+    <td>429</td>
+    <td>Too Many Requests</td>
   </tr>
   <tr>
-   <td>502
-   </td>
-   <td>Invalid response received from the API Implementation
-   </td>
+    <td>500</td>
+    <td>Internal server error</td>
   </tr>
   <tr>
-   <td>
-   </td>
-   <td>503
-   </td>
-   <td>Service unavailable
-   </td>
+    <td>502</td>
+    <td>Invalid response received from the API Implementation</td>
   </tr>
   <tr>
-   <td>
-   </td>
-   <td>504
-   </td>
-   <td>Endpoint request timed-out
-   </td>
+    <td>503</td>
+    <td>Service unavailable</td>
+  </tr>
+  <tr>
+    <td>504</td>
+    <td>Endpoint request timed-out</td>
   </tr>
 </table>
+
 
 
 _Tabella 22: Response Servizio di Pubblicazione_
@@ -2951,7 +2936,7 @@ curl -X 'PUT' \
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
-## 6.2. Response
+## 7.2. Response
 
 
 <table>
@@ -2970,7 +2955,7 @@ curl -X 'PUT' \
   <tr>
    <td rowspan="11" >STATUS CODE
    </td>
-   <td> 200
+   <td> 202
    </td>
    <td>Presa in carico eseguita con successo
    </td>
@@ -3462,94 +3447,65 @@ curl -X 'PUT' \
 
 <table>
   <tr>
-   <td>TIPO IN CASO DI SUCCESSO
-   </td>
-   <td colspan="2" >application/json
-   </td>
+    <td>TIPO IN CASO DI SUCCESSO</td>
+    <td colspan="2">application/json</td>
   </tr>
   <tr>
-   <td>TIPO IN CASO DI ERRORE*
-   </td>
-   <td colspan="2" >application/problem+json
-   </td>
+    <td>TIPO IN CASO DI ERRORE*</td>
+    <td colspan="2">application/problem+json</td>
   </tr>
   <tr>
-   <td rowspan="10" >STATUS CODE
-   </td>
-   <td> 200
-   </td>
-   <td>Aggiornamento eseguito con successo
-   </td>
+    <td rowspan="11">STATUS CODE</td>
+    <td>200</td>
+    <td>Aggiornamento eseguito con successo</td>
   </tr>
   <tr>
-   <td>400
-   </td>
-   <td>Bad request
-   </td>
+    <td>202</td>
+    <td>Presa in carico eseguita con successo</td>
   </tr>
   <tr>
-   <td>401
-   </td>
-   <td>Unauthorized
-   </td>
+    <td>400</td>
+    <td>Bad request</td>
   </tr>
   <tr>
-   <td>403
-   </td>
-   <td>Token jwt mancante o non valido
-   </td>
+    <td>401</td>
+    <td>Unauthorized</td>
   </tr>
   <tr>
-   <td>404
-   </td>
-   <td>Not found
-   </td>
+    <td>403</td>
+    <td>Token jwt mancante o non valido</td>
   </tr>
   <tr>
-   <td>409
-   </td>
-   <td>Conflict
-   </td>
+    <td>404</td>
+    <td>Not found</td>
   </tr>
   <tr>
-   <td>413
-   </td>
-   <td>Payload too large
-   </td>
+    <td>409</td>
+    <td>Conflict</td>
   </tr>
   <tr>
-   <td>429
-   </td>
-   <td>Too Many Requests
-   </td>
+    <td>413</td>
+    <td>Payload too large</td>
   </tr>
   <tr>
-   <td>500
-   </td>
-   <td>Internal server error
-   </td>
+    <td>429</td>
+    <td>Too Many Requests</td>
   </tr>
   <tr>
-   <td>502
-   </td>
-   <td>Invalid response received from the API Implementation
-   </td>
+    <td>500</td>
+    <td>Internal server error</td>
   </tr>
   <tr>
-   <td>
-   </td>
-   <td>503
-   </td>
-   <td>Service unavailable
-   </td>
+    <td>502</td>
+    <td>Invalid response received from the API Implementation</td>
   </tr>
   <tr>
-   <td>
-   </td>
-   <td>504
-   </td>
-   <td>Endpoint request timed-out
-   </td>
+    <td>503</td>
+    <td>Service unavailable</td>
+  </tr>
+  <tr>
+    <td>504</td>
+    <td>Endpoint request timed-out</td>
   </tr>
 </table>
 
@@ -4055,7 +4011,7 @@ curl -X 'POST' \
   <tr>
    <td rowspan="11" >STATUS CODE
    </td>
-   <td>201
+   <td>202
    </td>
    <td>Presa in carico eseguita con successo
    </td>
@@ -4601,7 +4557,7 @@ curl -X 'PUT' \
   <tr>
    <td rowspan="11" >STATUS CODE
    </td>
-   <td> 200
+   <td> 202
    </td>
    <td>Presa in carico eseguita con successo
    </td>
