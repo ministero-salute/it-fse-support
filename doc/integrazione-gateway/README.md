@@ -85,8 +85,8 @@
     - [10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#1023-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
 - [11. Servizio di Notifica Stato Transazione](#11-servizio-di-notifica-stato-transazione)
   - [11.1 Modalità Push](#111-modalità-push)
-  - [11.1.1 Endpoint Push Broker verso Gateway](#1111-endpoint-push-broker-verso-gateway)
-  - [Request](#request)
+    - [11.1.1 Endpoint Push Broker verso Gateway](#1111-endpoint-push-broker-verso-gateway)
+    - [11.1.2 Request](#1112-request)
     - [Parametri Body](#parametri-body)
     - [Esempio di richiesta](#esempio-di-richiesta)
     - [Response](#response)
@@ -97,7 +97,7 @@
   - [Comportamento della Tabella di Routing del Gateway](#comportamento-della-tabella-di-routing-del-gateway)
   - [11.2 Modalità Pull](#112-modalità-pull)
     - [Endpoint Pull Gateway verso Broker](#endpoint-pull-gateway-verso-broker)
-      - [Request](#request-1)
+      - [Request](#request)
         - [Parametri Path](#parametri-path)
       - [Esempio di richiesta](#esempio-di-richiesta-1)
     - [Response](#response-1)
@@ -4793,13 +4793,13 @@ In questa modalità, il Gateway ha un ruolo attivo di **propagazione dello stato
 
 La notifica verso il touchpoint finale **non contiene esclusivamente l’ultimo stato**, ma una **lista ordinata degli eventi di stato** associati al medesimo `workflowInstanceId`, così da consentire al chiamante una visione completa dell’evoluzione del workflow.
 
-## 11.1.1 Endpoint Push Broker verso Gateway
+### 11.1.1 Endpoint Push Broker verso Gateway
 
 ```
 http://<HOST>:<PORT>/v<major>/ingestion/status
 ```
 
-## Request
+### 11.1.2 Request
 
 | METHOD | URL                    | TYPE             |
 | ------ | ---------------------- | ---------------- |
