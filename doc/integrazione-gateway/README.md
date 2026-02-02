@@ -83,15 +83,25 @@
     - [10.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#1021-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
     - [10.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#1022-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
     - [10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#1023-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
-- [11. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#11-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
-  - [11.1. Request](#111-request)
-    - [11.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1111-esempio-messaggio-di-richiesta-stato-transazioni)
-  - [11.2. Response](#112-response)
-    - [11.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200](#1121-esempio-messaggio-di-risposta-ad-una-creazione-con-esito-success-200)
-    - [11.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200](#1122-esempio-messaggio-di-risposta-ad-una-cancellazione-con-esito-success-200)
-    - [11.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200](#1123-esempio-messaggio-di-risposta-ad-una-sostituzione-con-esito-success-200)
-    - [11.2.4. Esempio messaggio di risposta ad una update con Esito Success 200](#1124-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
-    - [11.2.5. Esempio di Messaggio di Risposta con esito KO 404](#1125-esempio-di-messaggio-di-risposta-con-esito-ko-404)
+- [11. Servizio di Notifica Stato Transazione](#11-servizio-di-notifica-stato-transazione)
+  - [11.1 Modalità Push](#111-modalità-push)
+  - [11.1.1 Endpoint Push Broker verso Gateway](#1111-endpoint-push-broker-verso-gateway)
+  - [Request](#request)
+    - [Parametri Body](#parametri-body)
+    - [Esempio di richiesta](#esempio-di-richiesta)
+    - [Response](#response)
+    - [Esempio risposta 200](#esempio-risposta-200)
+  - [Notifica verso l’Utente Finale](#notifica-verso-lutente-finale)
+    - [Endpoint proposto (Gateway → Utente Finale)](#endpoint-proposto-gateway--utente-finale)
+    - [Payload di Notifica](#payload-di-notifica)
+  - [Comportamento della Tabella di Routing del Gateway](#comportamento-della-tabella-di-routing-del-gateway)
+  - [11.2 Modalità Pull](#112-modalità-pull)
+    - [Endpoint Pull Gateway verso Broker](#endpoint-pull-gateway-verso-broker)
+      - [Request](#request-1)
+        - [Parametri Path](#parametri-path)
+      - [Esempio di richiesta](#esempio-di-richiesta-1)
+    - [Response](#response-1)
+    - [Esempio risposta 200](#esempio-risposta-200-1)
 - [12. Servizio di Recupero Stato Transazione per TraceId](#12-servizio-di-recupero-stato-transazione-per-traceid)
   - [12.1. Request](#121-request)
     - [12.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1211-esempio-messaggio-di-richiesta-stato-transazioni)
@@ -4751,615 +4761,214 @@ _Tabella 44: Campi Response valorizzati in caso di warning_
 }
 ```
 
+# 11. Servizio di Notifica Stato Transazione
 
-# 11. Servizio di Recupero Stato Transazione per WorkflowInstanceId
+Il Servizio di Notifica Stato Transazione, consente l’aggiornamento e la riconciliazione dello stato delle operazioni asincrone di **creazione** e **sostituzione** dei documenti avviate verso la UA-R (Unità di Archiviazione Regionale).
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Il Gateway non interagisce mai direttamente con la UA-R per la gestione delle notifiche di stato, ma utilizza il **Broker** come unico punto di integrazione, sia in modalità **push** sia in modalità **pull**.
 
-L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
+Il servizio opera secondo due modalità distinte:
+
+- **push** (modalità primaria e da prediligere);
+- **pull** (modalità residuale, utilizzata solo per il recupero dello stato in caso di notifiche non ricevute).
+
+## 11.1 Modalità Push
+
+In modalità **push**, il Gateway riceve dal **Broker** la notifica dello stato di una transazione asincrona precedentemente avviata.
+
+La notifica è originata dalla UA-R a valle dell’esecuzione dell’operazione (sia in caso di successo sia in caso di errore) ed è inoltrata dal Broker al Gateway sulla base delle informazioni di routing associate alla RDE di competenza.
+
+Alla ricezione della notifica, il Gateway:
+
+- identifica il workflow tramite il `workflowInstanceId`;
+- aggiorna il proprio stato interno;
+- consente l’allineamento del workflow applicativo con l’esito finale restituito dalla UA-R.
+
+Successivamente, il Gateway **provvede a notificare il chiamante finale** in base alle preferenze espresse dal client:
+
+- qualora il client abbia fornito un **indirizzo di callback** tramite apposito header `X-Callback-Url` nella richiesta iniziale, il Gateway invia la notifica verso tale endpoint;
+- qualora non sia stato fornito alcun indirizzo di callback, il Gateway recupera da una **tabella di routing interna** l’URL del touchpoint finale e invia la notifica verso tale endpoint.
+
+In questa modalità, il Gateway ha un ruolo attivo di **propagazione dello stato verso il client finale**, mantenendo il Broker come unico punto di integrazione con i sistemi centrali e senza effettuare interrogazioni dirette verso la UA-R.
+
+La notifica verso il touchpoint finale **non contiene esclusivamente l’ultimo stato**, ma una **lista ordinata degli eventi di stato** associati al medesimo `workflowInstanceId`, così da consentire al chiamante una visione completa dell’evoluzione del workflow.
+
+## 11.1.1 Endpoint Push Broker verso Gateway
 
 ```
-https://<HOST>:<PORT>/v<major>/status/<workflowInstanceId>
+http://<HOST>:<PORT>/v<major>/ingestion/status
 ```
 
-Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di una transazione associati ad un workflowInstanceId. In particolare per tutti gli attori che sono abilitati ad invocare tramite il Gateway la componente INI, sarà possibile anche recuperare un ulteriore stato che mostra la request e la response SOAP per tutte le operazioni di creazione, sostituzione, aggiornamento e cancellazione.
-Tale funzionalità sara presente solo ed esclusivamente in ambiente di validazione.
+## Request
 
+| METHOD | URL                    | TYPE             |
+| ------ | ---------------------- | ---------------- |
+| POST   | `/v1/ingestion/status` | application/json |
 
-## 11.1. Request
+### Parametri Body
 
+| KEY                | TYPE   | REQUIRED |
+| ------------------ | ------ | -------- |
+| workflowInstanceId | String | true     |
+| type               | String | true     |
+| insertionDate      | Date   | true     |
+| status             | String | true     |
+| rde                | String | true     |
 
-<table>
-  <tr>
-   <td>METHOD
-   </td>
-   <td>GET
-   </td>
-  </tr>
-  <tr>
-   <td>URL
-   </td>
-   <td>/v1/status/{workflowInstanceId}
-   </td>
-  </tr>
-</table>
+### Esempio di richiesta
 
-
-_Tabella 45: Method, URL, Type_
-
-
-<table>
-  <tr>
-   <td colspan="6" >     <strong>PARAMETER</strong>
-   </td>
-  </tr>
-  <tr>
-   <td><strong>SECTION</strong>
-   </td>
-   <td><strong>KEY</strong>
-   </td>
-   <td><strong>NAME</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>REQUIRED</strong>
-   </td>
-   <td><strong>AFFINITY DOMAIN/IHE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>Authorization
-   </td>
-   <td>N.D.
-   </td>
-   <td>Bearer
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>Header
-   </td>
-   <td>Accept
-   </td>
-   <td>application/json
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-  <tr>
-   <td>Path variable
-   </td>
-   <td>workflowInstanceId
-   </td>
-   <td>workflowInstanceId
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>N.A.
-   </td>
-  </tr>
-</table>
-
-
-_Tabella 46: Parametri Richiesta di Recupero Stato Transazioni per WorkflowInstanceId_
-
-La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
-
-
-### 11.1.1. Esempio Messaggio di Richiesta stato Transazioni
-
-Messaggio di richiesta con workflowInstanceId valorizzato
-
-``` bash
-curl -X 'GET' \
-'https://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId' \
-  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
-  -H 'accept: application/json' 
+```bash
+curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <token>" \
+  -H "Agid-JWT-Signature: <signed-jwt>" \
+  -d '{
+    "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.df3ea8b89f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+    "type": "CREATE",
+    "insertionDate": "2025-12-09T08:45:12Z",
+    "status": "SUCCESS",
+    "rde": "120"
+  }'
 ```
 
-## 11.2. Response
+### Response
 
+| STATUS | SIGNIFICATO                                | TIPO                     |
+| ------ | ------------------------------------------ | ------------------------ |
+| 200    | Stato transazione recepito correttamente   | application/json         |
+| 400    | Errore di validazione                      | application/problem+json |
+| 500    | Errore interno del server                  | application/problem+json |
 
-<table>
-  <tr>
-   <td>TIPO IN CASO DI SUCCESSO
-   </td>
-   <td colspan="2" >application/json
-   </td>
-  </tr>
-  <tr>
-   <td>TIPO IN CASO DI ERRORE*
-   </td>
-   <td colspan="2" >application/problem+json
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="10" >STATUS CODE
-   </td>
-   <td> 200
-   </td>
-   <td>Success
-   </td>
-  </tr>
-  <tr>
-   <td>400
-   </td>
-   <td>Bad request
-   </td>
-  </tr>
-  <tr>
-   <td>401
-   </td>
-   <td>Unauthorized
-   </td>
-  </tr>
-  <tr>
-   <td>403
-   </td>
-   <td>Token jwt mancante o non valido
-   </td>
-  </tr>
-  <tr>
-   <td>404
-   </td>
-   <td>Not found
-   </td>
-  </tr>
-  <tr>
-   <td>409
-   </td>
-   <td>Conflict
-   </td>
-  </tr>
-  <tr>
-   <td>413
-   </td>
-   <td>Payload too large
-   </td>
-  </tr>
-  <tr>
-   <td>429
-   </td>
-   <td>Too Many Requests
-   </td>
-  </tr>
-  <tr>
-   <td>500
-   </td>
-   <td>Internal server error
-   </td>
-  </tr>
-  <tr>
-   <td>502
-   </td>
-   <td>Invalid response received from the API Implementation
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>503
-   </td>
-   <td>Service unavailable
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td>504
-   </td>
-   <td>Endpoint request timed-out
-   </td>
-  </tr>
-</table>
+### Esempio risposta 200
 
-
-_Tabella 47: Response Servizio di Recupero Stato Transazione per WorkflowInstanceId_
-
-\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
-
-**Campi sempre valorizzati**
-
-
-<table>
-  <tr>
-   <td><strong>FIELD</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>DESCRIPTION</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>traceID
-   </td>
-   <td>String
-   </td>
-   <td>Identificativo univoco assegnato alla richiesta dell'utente. È sempre presente a differenza del workflowInstanceId poiché il valore di quest’ultimo dipende dal CDA preso in input
-   </td>
-  </tr>
-  <tr>
-   <td>spanID
-   </td>
-   <td>String
-   </td>
-   <td>Identificativo univoco assegnato alla singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
-traceId e spanId coincidono nella prima operazione.
-   </td>
-  </tr>
-</table>
-
-
-_Tabella 48: Campi Response sempre valorizzati_
-
-**Campi valorizzati in caso di Success**
-
-
-<table>
-  <tr>
-   <td><strong>FIELD</strong>
-   </td>
-   <td><strong>ATTRIBUTE</strong>
-   </td>
-   <td><strong>TYPE</strong>
-   </td>
-   <td><strong>DESCRIPTION</strong>
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="13" >transactionData
-   </td>
-   <td>eventType
-   </td>
-   <td>String
-   </td>
-   <td>Tipologia di evento emesso
-   </td>
-  </tr>
-  <tr>
-   <td>eventDate
-   </td>
-   <td>String
-   </td>
-   <td>Timestamp di emissione dell’evento
-   </td>
-  </tr>
-  <tr>
-   <td>eventStatus
-   </td>
-   <td>String
-   </td>
-   <td>Stato dell’evento (SUCCESS, BLOCKING_ERROR, etc)
-   </td>
-  </tr>
-  <tr>
-   <td>message
-   </td>
-   <td>String
-   </td>
-   <td>Messaggio opzionale che descrive l’evento
-   </td>
-  </tr>
-  <tr>
-   <td>identificativoDocumento
-   </td>
-   <td>String
-   </td>
-   <td>Identificativo del documento a cui è associato l’evento emesso
-   </td>
-  </tr>
-  <tr>
-   <td>subject
-   </td>
-   <td>String
-   </td>
-   <td>Subject a cui è associato l’evento
-   </td>
-  </tr>
-  <tr>
-   <td>subjectRole
-   </td>
-   <td>String
-   </td>
-   <td>Ruolo del Subject a cui è associato l’evento
-   </td>
-  </tr>
-  <tr>
-   <td>tipoAttivita
-   </td>
-   <td>String
-   </td>
-   <td>tipologia dell’attività associata all’evento
-   </td>
-  </tr>
-  <tr>
-   <td>organizzazione
-   </td>
-   <td>String
-   </td>
-   <td>Organizzazione 
-   </td>
-  </tr>
-  <tr>
-   <td>workflowInstanceId
-   </td>
-   <td>String
-   </td>
-   <td>Identificativo univoco della transazione
-   </td>
-  </tr>
-  <tr>
-   <td>traceId
-   </td>
-   <td>String
-   </td>
-   <td>Identificativo univoco assegnato alla richiesta dell'utente
-   </td>
-  </tr>
-  <tr>
-   <td>issuer
-   </td>
-   <td>String
-   </td>
-   <td>Issuer associato all’evento
-   </td>
-  </tr>
-  <tr>
-   <td>expiringDate
-   </td>
-   <td>String
-   </td>
-   <td>Data di eliminazione della transazione dai sistemi
-   </td>
-  </tr>
-</table>
-
-
-_Tabella 49: Campi Response sempre valorizzati_
-
-
-### 11.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
-
-Di seguito viene mostrato un esempio di risposta ad una creazione per un issuer abilitato alla comunicazione verso INI con esito 200
-
-``` json
+```json
 {
-  "traceID": "3f67b89ba72ed40b",
-  "spanID": "81bad71c3ffea6d0",
-  "transactionData": [
+  "traceID": "c2e1818fbf7aea7f",
+  "spanID": "c2e1818fbf7aea7f",
+  "success": true
+}
+```
+
+## Notifica verso l’Utente Finale
+
+Il Gateway invia la notifica verso il touchpoint finale secondo le preferenze espresse in fase di invocazione iniziale come riportato in precedenza.
+
+La notifica inviata dal Gateway include una **lista di eventi di stato** riferiti allo stesso workflow, ciascuno dei quali rappresenta una transizione significativa del processo (ad esempio validazione, pubblicazione, invio a sistemi esterni).
+
+### Endpoint proposto (Gateway → Utente Finale)
+
+```
+POST http://<CALLBACK_HOST>/v1/workflow/status
+```
+
+### Payload di Notifica
+
+```json
+{
+  "workflowInstanceId": "urn:ietf:rfc:39861.be5b64eeecec0d4a506128c879f867f1bdde8c489d454371abd37875e8fbdc18.f335b5ebd3^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "events": [
     {
       "eventType": "VALIDATION",
-      "eventDate": "2024-10-23T12:26:06.971+02:00",
+      "eventDate": "2025-10-10T13:48:38.425Z",
       "eventStatus": "SUCCESS",
-      "subject": "PROVAX00X00X000Y^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
-      "organizzazione": "120",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "13dfc4b489d37ca3",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T12:26:07.470+02:00"
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
     },
     {
       "eventType": "PUBLICATION",
-      "eventDate": "2024-10-23T12:26:25.266+02:00",
+      "eventDate": "2025-10-10T14:48:45.469Z",
       "eventStatus": "SUCCESS",
-      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729679184067",
-      "subject": "PROVAX00X00X000Y^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
-      "tipoAttivita": "PHR",
-      "organizzazione": "120",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "cc5783a359316a87",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T12:26:25.328+02:00"
-    },
-    
-    {
-      "eventType": "INI_CREATE_SOAP",
-      "eventDate": "2024-10-23T12:26:25.812+0200",
-      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T12:26:26.155+0200"
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
     },
     {
       "eventType": "SEND_TO_INI",
-      "eventDate": "2024-10-23T12:26:27.295+02:00",
+      "eventDate": "2025-10-10T15:48:45.469Z",
       "eventStatus": "SUCCESS",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.440d410bf0^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T12:26:27.530+02:00"
-    }
-
-  ]
-
-}
-```
-
-### 11.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
-
-Di seguito viene mostrato un esempio di risposta ad una cancellazione per un issuer abilitato alla comunicazione verso INI con esito 200
-
-``` json
-{
-  "traceID": "96f988e9a3f6d449",
-  "spanID": "53b7886d2a3acb85",
-  "transactionData": [
-    {
-      "eventType": "INI_RIFERIMENTO_SOAP",
-      "eventDate": "2024-10-23T12:39:13.959+0200",
-      "message": "SOAP_REQUEST:<S:Envelope> <S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
-      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T12:39:14.002+0200"
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
     },
     {
-      "eventType": "RIFERIMENTI_INI",
-      "eventDate": "2024-10-23T12:39:14.304+02:00",
+      "eventType": "SEND_TO_UAR",
+      "eventDate": "2025-10-10T16:48:45.469Z",
       "eventStatus": "SUCCESS",
-      "message": "Riferimenti trovati: urn:uuid:62e9a58c-79cb-48fd-88f1-4a5fdaa5b0ed",
-      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729679950959",
-      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
-      "tipoAttivita": "PHR",
-      "organizzazione": "120",
-      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "88a9f590939e2b2e",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T12:39:14.345+02:00"
-    },
-    {
-      "eventType": "INI_DELETE_SOAP",
-      "eventDate": "2024-10-23T12:39:14.353+0200",
-      "message": "SOAP_REQUEST:<S:Envelope><S:Header>....</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
-      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T12:39:14.379+0200"
-    },
-    {
-      "eventType": "INI_DELETE",
-      "eventDate": "2024-10-23T12:39:14.917+02:00",
-      "eventStatus": "SUCCESS",
-      "message": "Delete effettuata su ini",
-      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729679950959",
-      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
-      "tipoAttivita": "PHR",
-      "organizzazione": "120",
-      "workflowInstanceId": "256b6fc0848497fd6a3fb63e2ff82db7ac8402766ad00291eecd9fc47d966a3e.c7cf8ce14f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "88a9f590939e2b2e",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T12:39:14.946+02:00"
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
     }
   ]
 }
 ```
 
-### 11.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
-Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issuer abilitato alla comunicazione verso INI con esito 200
+Il Gateway garantisce che gli eventi siano restituiti in ordine cronologico e che includano tutte le informazioni utili alla diagnosi e al monitoraggio del processo.
 
-``` json
-{
-  "traceID": "ffaac0bad18ab232",
-  "spanID": "b63453ce857318da",
-  "transactionData": [
-    {
-      "eventType": "VALIDATION",
-      "eventDate": "2024-10-23T12:46:44.425+02:00",
-      "eventStatus": "SUCCESS",
-      "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
-      "organizzazione": "120",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "4df615555b1ca812",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T12:46:44.450+02:00"
-    },
-    {
-      "eventType": "INI_RIFERIMENTO_SOAP",
-      "eventDate": "2024-10-23T12:46:47.148+0200",
-      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T12:46:47.172+0200"
-    },
-    {
-      "eventType": "REPLACE",
-      "eventDate": "2024-10-23T12:46:47.597+02:00",
-      "eventStatus": "SUCCESS",
-      "identificativoDocumento": "2.16.840.1.113883.2.9.2.110.4.4^UAT_GTW_ID1729680401519",
-      "subject": "SSSMNN75B01F257L^^^&amp;2.16.840.1.113883.2.9.4.3.2&amp;ISO",
-      "tipoAttivita": "PHR",
-      "organizzazione": "120",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "be920b993364ec0a",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T12:46:47.653+02:00"
-    },
-    {
-      "eventType": "INI_REPLACE_SOAP",
-      "eventDate": "2024-10-23T12:46:47.673+0200",
-      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T12:46:47.724+0200"
-    },
-    {
-      "eventType": "SEND_TO_INI",
-      "eventDate": "2024-10-23T12:46:48.071+02:00",
-      "eventStatus": "SUCCESS",
-      "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.8d9957eb69^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T12:46:48.102+02:00"
-    }
-  ]
-}
+## Comportamento della Tabella di Routing del Gateway
+
+La **tabella di routing del Gateway** ha lo scopo di determinare il corretto endpoint di notifica verso il client finale quando non viene fornito un indirizzo di callback esplicito.
+
+Ogni entry della tabella associa:
+
+- una RDE;
+- l’endpoint di notifica da utilizzare.
+
+Il comportamento è il seguente:
+
+1. il Gateway verifica la presenza dell’header di callback nella richiesta iniziale;
+2. se presente, l’endpoint indicato ha priorità assoluta;
+3. se assente, il Gateway interroga la tabella di routing interna;
+4. se viene trovata una corrispondenza, l’endpoint associato viene utilizzato per la notifica;
+5. in assenza di una corrispondenza valida, la notifica viene considerata non recapitabile e gestita secondo le policy di errore e retry del Gateway.
+
+Questo meccanismo consente al Gateway di supportare sia integrazioni dinamiche basate su callback, sia integrazioni statiche basate su configurazione, garantendo flessibilità e controllo centralizzato dei touchpoint di uscita.
+
+## 11.2 Modalità Pull
+
+La modalità **pull** è prevista esclusivamente per scenari eccezionali in cui il Gateway non abbia ricevuto la notifica in modalità push.
+
+In questo scenario, il Gateway attiva una **schedulazione periodica** che invoca il Broker fornendo il `workflowInstanceId` della transazione di interesse. Il Broker, grazie alle proprie informazioni di correlazione, provvede a interrogare la UA-R di riferimento e a restituire al Gateway lo stato aggiornato.
+
+Il Gateway utilizza la risposta ricevuta per aggiornare il proprio stato interno e completare la riconciliazione del workflow.
+
+### Endpoint Pull Gateway verso Broker
+
+```
+http://<HOST>:<PORT>/v<major>/status/{workflowInstanceId}
 ```
 
-### 11.2.4. Esempio messaggio di risposta ad una update con Esito Success 200
+#### Request
 
-``` json
-{
-  "traceID": "e43e769a2a815203",
-  "spanID": "e65b754508379297",
-  "transactionData": [
-    {
-      "eventType": "INI_GET_METADATI_SOAP",
-      "eventDate": "2024-10-23T13:01:10.185+0200",
-      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header xmlns:wsa=\"http://www.w3.org/2005/08/addressing\">...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
-      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T13:01:10.201+0200"
-    },
-    {
-      "eventType": "RIFERIMENTI_INI",
-      "eventDate": "2024-10-23T13:01:10.871+02:00",
-      "eventStatus": "SUCCESS",
-      "message": "Merge metadati effettuato correttamente",
-      "identificativoDocumento": "2.16.840.1.113883.2.9.2.140.4.4^UAT_GTW_ID1728471418703",
-      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
-      "organizzazione": "140",
-      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "6db24f996e15f507",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T13:01:10.892+02:00"
-    },
-    {
-      "eventType": "INI_UPDATE_SOAP",
-      "eventDate": "2024-10-23T13:01:10.907+0200",
-      "message": "SOAP_REQUEST:<S:Envelope><S:Header>...</S:Header><S:Body>...</S:Body></S:Envelope> \n SOAP_RESPONSE:<soapenv:Envelope><soapenv:Header>...</soapenv:Header><soapenv:Body>...</soapenv:Body></soapenv:Envelope>",
-      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "expiringDate": "2025-10-23T13:01:10.922+0200"
-    },
-    {
-      "eventType": "INI_UPDATE",
-      "eventDate": "2024-10-23T13:01:11.432+02:00",
-      "eventStatus": "SUCCESS",
-      "message": "Update ini effettuato correttamente",
-      "identificativoDocumento": "2.16.840.1.113883.2.9.2.140.4.4^UAT_GTW_ID1728471418703",
-      "subject": "SSSMNN75B01F257L^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
-      "organizzazione": "140",
-      "workflowInstanceId": "97fcdd6c0f5e003511104c7633fde2547ed4c973378b6686a33652c557a38b8f.7ba5fcfebf^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
-      "traceId": "6db24f996e15f507",
-      "issuer": "integrity:S1#110201234567XX",
-      "expiringDate": "2025-10-23T13:01:11.455+02:00"
-    }
-  ]
-}
+| METHOD | URL                                         | TYPE |
+| ------ | ------------------------------------------- | ---- |
+| GET    | `/v1/status/{workflowInstanceId}` | –    |
+
+##### Parametri Path
+
+| KEY                | TYPE   | REQUIRED |
+| ------------------ | ------ | -------- |
+| workflowInstanceId | String | true     |
+
+#### Esempio di richiesta
+
+```bash
+curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.df3ea8b89f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" \
+  -H "Authorization: Bearer <token>" \
+  -H "FSE-JWT-Signature: <signed-jwt>"
 ```
 
-### 11.2.5. Esempio di Messaggio di Risposta con esito KO 404
+### Response
 
-``` json
+| STATUS | SIGNIFICATO                                | TIPO                     |
+| ------ | ------------------------------------------ | ------------------------ |
+| 200    | Stato transazione recuperato correttamente | application/json         |
+| 404    | Workflow non trovato                       | application/problem+json |
+| 500    | Errore interno del server                  | application/problem+json |
+
+### Esempio risposta 200
+
+```json
 {
-  "traceID": "6cd7a61189e8282f",
-  "spanID": "6cd7a61189e8282f",
-  "type": "msg/record-not-found",
-  "title": "Record non trovato.",
-  "detail": "No Record Found",
-  "status": 404,
-  "instance": ""
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.b0f3ffcf25ce2aafc7dc901e2febc51f43837f4ca0fe3b6d1b02194e9047b6db.df3ea8b89f^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "type": "CREATE",
+  "status": "SUCCESS",
+  "insertionDate": "2025-12-09T08:47:30Z",
+  "rde": "120"
 }
 ```
-
 
 
 # 12. Servizio di Recupero Stato Transazione per TraceId
