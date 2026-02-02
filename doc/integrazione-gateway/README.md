@@ -91,11 +91,11 @@
     - [Esempio di richiesta](#esempio-di-richiesta)
     - [Response](#response)
     - [Esempio risposta 200](#esempio-risposta-200)
-  - [Notifica verso l’Utente Finale](#notifica-verso-lutente-finale)
+  - [11.2 Notifica verso l’Utente Finale](#112-notifica-verso-lutente-finale)
     - [Endpoint proposto (Gateway → Utente Finale)](#endpoint-proposto-gateway--utente-finale)
     - [Payload di Notifica](#payload-di-notifica)
-  - [Comportamento della Tabella di Routing del Gateway](#comportamento-della-tabella-di-routing-del-gateway)
-  - [11.2 Modalità Pull](#112-modalità-pull)
+  - [11.3 Comportamento della Tabella di Routing del Gateway](#113-comportamento-della-tabella-di-routing-del-gateway)
+  - [11.4 Modalità Pull](#114-modalità-pull)
     - [Endpoint Pull Gateway verso Broker](#endpoint-pull-gateway-verso-broker)
       - [Request](#request)
         - [Parametri Path](#parametri-path)
@@ -4849,7 +4849,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
 }
 ```
 
-## Notifica verso l’Utente Finale
+## 11.2 Notifica verso l’Utente Finale
 
 Il Gateway invia la notifica verso il touchpoint finale secondo le preferenze espresse in fase di invocazione iniziale come riportato in precedenza.
 
@@ -4897,7 +4897,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 
 Il Gateway garantisce che gli eventi siano restituiti in ordine cronologico e che includano tutte le informazioni utili alla diagnosi e al monitoraggio del processo.
 
-## Comportamento della Tabella di Routing del Gateway
+## 11.3 Comportamento della Tabella di Routing del Gateway
 
 La **tabella di routing del Gateway** ha lo scopo di determinare il corretto endpoint di notifica verso il client finale quando non viene fornito un indirizzo di callback esplicito.
 
@@ -4916,7 +4916,7 @@ Il comportamento è il seguente:
 
 Questo meccanismo consente al Gateway di supportare sia integrazioni dinamiche basate su callback, sia integrazioni statiche basate su configurazione, garantendo flessibilità e controllo centralizzato dei touchpoint di uscita.
 
-## 11.2 Modalità Pull
+## 11.4 Modalità Pull
 
 La modalità **pull** è prevista esclusivamente per scenari eccezionali in cui il Gateway non abbia ricevuto la notifica in modalità push.
 
