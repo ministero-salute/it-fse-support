@@ -4970,7 +4970,6 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
 }
 ```
 
-
 # 12. Servizio di Recupero Stato Transazione per TraceId
 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
