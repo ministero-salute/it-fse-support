@@ -3295,7 +3295,7 @@ _Tabella 30: Method, URL, Type_
    </td>
    <td>tipologiaStruttura
    </td>
-   <td>HealthcareFacilityEnum
+   <td>String
    </td>
    <td>true
    </td>
@@ -3315,7 +3315,7 @@ _Tabella 30: Method, URL, Type_
   <tr>
    <td>tipoDocumentoLivAlto
    </td>
-   <td>TipoDocAltoLivEnum
+   <td>String
    </td>
    <td>true
    </td>
@@ -3325,7 +3325,7 @@ _Tabella 30: Method, URL, Type_
   <tr>
    <td>assettoOrganizzativo
    </td>
-   <td>PracticeSettingCodeEnum
+   <td>String
    </td>
    <td>true
    </td>
@@ -3365,7 +3365,7 @@ _Tabella 30: Method, URL, Type_
   <tr>
    <td>tipoAttivitaClinica
    </td>
-   <td>AttivitaClinicaEnum
+   <td>String
    </td>
    <td>true
    </td>
@@ -3395,7 +3395,7 @@ _Tabella 30: Method, URL, Type_
    <tr>
    <td>administrativeRequest
    </td>
-   <td>AdministrativeReqEnum[]
+   <td>String[]
    </td>
    <td>false
    </td>
@@ -3412,7 +3412,16 @@ La compilazione errata dei parametri oppure la non compilazione dei parametri �
 
 Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento di cui modificare i metadati e al parametro _identificativoDoc_ utilizzato nel servizio di creazione.
 
+La convalida dei parametri "required" garantisce che gli aggiornamenti dei metadati siano conformi alle specifiche di Affinity Domain in vigore al momento della creazione del documento, non a quelle attuali. Ciò consente al sistema di convalidare correttamente i documenti creati con versioni precedenti di AD.
 
+Pertanto, il sistema:
+- **Identifica automaticamente** quale versione AD utilizzare in base alla data di creazione del documento, tramite pattern Strategy
+- **Applica le regole di validazione** specifiche per la versione di Affinity Domain vigente alla data di creazione del documento
+
+**Esempio pratico**:
+- Un documento creato a gennaio 2023 → viene validato con Affinty Domain v2.4
+- Un documento creato a giugno 2025 → viene validato con Affinty Domain v2.5
+- Un documento creato a marzo 2026 → viene validato con Affinty Domain v2.6.3
 ### 8.1.1. Esempio Messaggio di Richiesta
 
 Messaggio di richiesta con metadati formalmente corretti, senza indicazione della priorità. 
@@ -3606,6 +3615,19 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 }
 ```
 
+### 8.2.3. Esempio di Messaggio di Risposta con esito KO 400
+
+``` json
+{
+  "traceID": "61d8123fb20e2afc",
+  "spanID": "61d8123fb20e2afc",
+  "type": "/msg/validator",
+  "title": "Errore di validazione",
+  "detail": "Campo invalido assettoOrganizzativo: 'AD_PSC999' non è un PracticeSettingCode valido per AD 2.1",
+  "status": 400,
+  "instance": "/msg/mandatory-element"
+}
+```
 ### 8.3. Esempio Messaggio di Richiesta attraverso iti-57
 
 Messaggio di richiesta  con metadati formalmente corretti, senza indicazione della priorità. 
