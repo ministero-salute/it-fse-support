@@ -6995,7 +6995,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
   "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1", 
   "patient_consent": true, 
   "action_id": "CREATE", 
-  "resource_hl7_type": "('11502-2^^2.16.840.1.113883.6.1')"
+  "resource_hl7_type": "('11502-2^^2.16.840.1.113883.6.1')",
   "exp": 1656541352925, 
   "iat": 1656454952925, 
   "jti": "1234", 
