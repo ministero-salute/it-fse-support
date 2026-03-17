@@ -92,8 +92,10 @@
     - [Response](#response)
     - [Esempio risposta 200](#esempio-risposta-200)
   - [11.2 Notifica verso l’Utente Finale](#112-notifica-verso-lutente-finale)
-    - [Endpoint proposto (Gateway → Utente Finale)](#endpoint-proposto-gateway--utente-finale)
-    - [Payload di Notifica](#payload-di-notifica)
+    - [Endpoint (Gateway verso touchpoint)](#endpoint-gateway-verso-touchpoint)
+    - [Payload di Notifica in caso di success](#payload-di-notifica-in-caso-di-success)
+    - [Payload di Notifica in caso di errore verso INI](#payload-di-notifica-in-caso-di-errore-verso-ini)
+    - [Payload di Notifica in caso di errore verso UAR](#payload-di-notifica-in-caso-di-errore-verso-uar)
   - [11.3 Comportamento della Tabella di Routing del Gateway](#113-comportamento-della-tabella-di-routing-del-gateway)
   - [11.4 Modalità Pull](#114-modalità-pull)
     - [Endpoint Pull Gateway verso Broker](#endpoint-pull-gateway-verso-broker)
@@ -4851,17 +4853,21 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
 
 ## 11.2 Notifica verso l’Utente Finale
 
-Il Gateway invia la notifica verso il touchpoint finale secondo le preferenze espresse in fase di invocazione iniziale come riportato in precedenza.
+Il Gateway invia la notifica verso il touchpoint finale secondo le preferenze espresse in fase di invocazione iniziale, come riportato in precedenza.
 
 La notifica inviata dal Gateway include una **lista di eventi di stato** riferiti allo stesso workflow, ciascuno dei quali rappresenta una transizione significativa del processo (ad esempio validazione, pubblicazione, invio a sistemi esterni).
 
-### Endpoint proposto (Gateway → Utente Finale)
+Le specifiche OpenAPI di tale endpoint sono disponibili nella repository GitHub al seguente percorso:
+
+https://github.com/ministero-salute/it-fse-support/tree/main/openapi/gateway/swagger_status.yaml
+
+### Endpoint (Gateway verso touchpoint)
 
 ```
 POST http://<CALLBACK_HOST>/v1/workflow/status
 ```
 
-### Payload di Notifica
+### Payload di Notifica in caso di success
 
 ```json
 {
@@ -4889,6 +4895,80 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
       "eventType": "SEND_TO_UAR",
       "eventDate": "2025-10-10T16:48:45.469Z",
       "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    },
+    {
+      "eventType": "UAR_FINAL_STATUS",
+      "eventDate": "2025-10-10T16:48:45.480Z",
+      "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    }
+  ]
+}
+```
+
+### Payload di Notifica in caso di errore verso INI
+
+```json
+{
+  "workflowInstanceId": "urn:ietf:rfc:39861.be5b64eeecec0d4a506128c879f867f1bdde8c489d454371abd37875e8fbdc18.f335b5ebd3^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "events": [
+    {
+      "eventType": "VALIDATION",
+      "eventDate": "2025-10-10T13:48:38.425Z",
+      "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    },
+    {
+      "eventType": "PUBLICATION",
+      "eventDate": "2025-10-10T14:48:45.469Z",
+      "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    },
+    {
+      "eventType": "SEND_TO_INI",
+      "eventDate": "2025-10-10T15:48:45.469Z",
+      "eventStatus": "BLOCKING_ERROR",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    }
+  ]
+}
+```
+
+### Payload di Notifica in caso di errore verso UAR
+
+```json
+{
+  "workflowInstanceId": "urn:ietf:rfc:39861.be5b64eeecec0d4a506128c879f867f1bdde8c489d454371abd37875e8fbdc18.f335b5ebd3^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "events": [
+    {
+      "eventType": "VALIDATION",
+      "eventDate": "2025-10-10T13:48:38.425Z",
+      "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    },
+    {
+      "eventType": "PUBLICATION",
+      "eventDate": "2025-10-10T14:48:45.469Z",
+      "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    },
+    {
+      "eventType": "SEND_TO_INI",
+      "eventDate": "2025-10-10T15:48:45.469Z",
+      "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    },
+    {
+      "eventType": "SEND_TO_UAR",
+      "eventDate": "2025-10-10T16:48:45.469Z",
+      "eventStatus": "SUCCESS",
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
+    },
+    {
+      "eventType": "UAR_FINAL_STATUS",
+      "eventDate": "2025-10-10T16:48:45.480Z",
+      "eventStatus": "BLOCKING_ERROR",
       "issuer": "integrity:S1#111#TEST-CRASH-2"
     }
   ]
