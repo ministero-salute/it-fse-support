@@ -104,6 +104,7 @@
       - [Esempio di richiesta](#esempio-di-richiesta-1)
     - [Response](#response-1)
     - [Esempio risposta 200](#esempio-risposta-200-1)
+  - [11.5 Stati transazione](#115-stati-transazione)
 - [12. Servizio di Recupero Stato Transazione per TraceId](#12-servizio-di-recupero-stato-transazione-per-traceid)
   - [12.1. Request](#121-request)
     - [12.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1211-esempio-messaggio-di-richiesta-stato-transazioni)
@@ -5049,6 +5050,17 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
   "rde": "120"
 }
 ```
+
+## 11.5 Stati transazione
+Di seguito sono riportati i diversi stati che possono essere ottenuti in seguito ad una richiesta asincrona 
+
+| Event Type         | Event Status|
+|------------------ |--------------|
+| VALIDATION         | SUCCESS/BLOCKING_ERROR     |
+| PUBLICATION        | SUCCESS/BLOCKING_ERROR     |
+| SEND_TO_INI        | SUCCESS/BLOCKING_ERROR     |
+| SEND_TO_UAR        | SUCCESS/BLOCKING_ERROR     |
+| UAR_FINAL_STATUS   | SUCCESS/BLOCKING_ERROR     |
 
 # 12. Servizio di Recupero Stato Transazione per TraceId
 
