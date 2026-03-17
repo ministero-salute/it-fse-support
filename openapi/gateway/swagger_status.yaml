@@ -95,10 +95,8 @@ components:
         eventStatus:
           type: string
           enum:
-            - RECEIVED
-            - PROCESSING
-            - COMPLETED
-            - FAILED
+            - SUCCESS
+            - BLOCKING_ERROR
         issuer:
           type: string
 
