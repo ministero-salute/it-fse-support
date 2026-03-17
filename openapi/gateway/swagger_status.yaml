@@ -1,0 +1,148 @@
+openapi: 3.0.1
+
+info:
+  title: Gateway Status
+  description: Gateway Status
+  termsOfService: https://www.fascicolosanitario.gov.it/it/note-legali
+  contact:
+    name: Fascicolo Sanitario Elettronico 2.0
+    url: https://developers.italia.it/it/fse/
+    email: mail@sogei.it
+  version: 1.0.0
+  x-api-id: "1"
+  x-summary: Gateway Status
+
+servers:
+  - url: http://localhost:9200
+    description: Generated server url
+
+x-sandbox: true
+
+paths:
+  /v1/workflow/status:
+    post:
+      tags:
+        - Workflow Notification Test Endpoint
+      summary: Riceve notifica di stato workflow dal microservizio notifier (test endpoint)
+      operationId: receiveWorkflowStatus
+      security:
+        - {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkflowStatusDTO"
+      responses:
+        '200':
+          description: Workflow status processed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowStatusResponseDTO'
+
+        '400':
+          description: Bad Request - Invalid payload
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+
+        '404':
+          description: Workflow instance not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+
+        '500':
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseDTO'
+
+components:
+  schemas:
+
+    WorkflowStatusDTO:
+      type: object
+      additionalProperties: false
+      required:
+        - workflowInstanceId
+        - events
+      properties:
+        workflowInstanceId:
+          type: string
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/EventDTO"
+
+    EventDTO:
+      type: object
+      additionalProperties: false
+      required:
+        - eventType
+        - eventDate
+        - eventStatus
+      properties:
+        eventType:
+          type: string
+        eventDate:
+          type: string
+          format: date-time
+        eventStatus:
+          type: string
+          enum:
+            - SUCCESS
+            - BLOCKING_ERROR
+        issuer:
+          type: string
+
+    WorkflowStatusResponseDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        workflowInstanceId:
+          type: string
+          description: Identificativo del workflow
+        message:
+          type: string
+          description: Messaggio descrittivo sulla ricezione dello stato
+
+    ErrorResponseDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        traceID:
+          type: string
+          maxLength: 100
+          pattern: .*
+        spanID:
+          type: string
+          maxLength: 100
+          pattern: .*
+        status:
+          type: integer
+          format: int32
+          minimum: 100
+          maximum: 599
+        type:
+          type: string
+          description: Identificativo del problema verificatosi
+          maxLength: 100
+          pattern: .*
+        title:
+          type: string
+          description: Sintesi del problema
+          maxLength: 1000
+          pattern: .*
+        detail:
+          type: string
+          description: Descrizione del problema
+        instance:
+          type: string
+          description: URI con ulteriori informazioni
+          maxLength: 1000
+          pattern: .*
