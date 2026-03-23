@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.17
+   <td>ver 2.18
    </td>
   </tr>
 </table>
@@ -648,6 +648,15 @@ _Tabella 2: Acronimi e Definizioni_
       <p>8.2. Aggiunto status code in 202</p>
       <p>9.2. Aggiunto status code in 202</p>
       <p>10.2. Aggiunto status code in 202</p>
+    </td>
+  </tr>
+  <tr>
+    <td>2.18</td>
+    <td>23/03/2026</td>
+    <td>
+      Paragrafi modificati:
+      <p>11. Inseriti esempio response per status KO</p>
+      <p>14. Rimossa non obbligatorietà per resource_hl7_type per il flusso di update</p>
     </td>
   </tr>
 </table>
@@ -6470,7 +6479,7 @@ Riferimento: urn:oasis:names:tc:xspa:1.0:resource:hl7:type
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Non Obbligatorio per il servizio di Eliminazione Documento e Aggiornamento Metadati
+   <td>Non Obbligatorio per il servizio di Eliminazione Documento
    </td>
   </tr>
   <tr>
