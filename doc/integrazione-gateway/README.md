@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.17
+   <td>ver 2.18
    </td>
   </tr>
 </table>
@@ -67,7 +67,7 @@
   - [8.2. Response](#82-response)
     - [8.2.1. Esempio di Messaggio di risposta con Esito Success 200](#821-esempio-di-messaggio-di-risposta-con-esito-success-200)
     - [8.2.2. Esempio di Messaggio di Risposta con esito KO 400](#822-esempio-di-messaggio-di-risposta-con-esito-ko-400)
-    - [8.3. Esempio Messaggio di Richiesta attraverso iti-57](#83-esempio-messaggio-di-richiesta-attraverso-iti-57)
+    - [8.2.3. Esempio Messaggio di Richiesta attraverso iti-57](#823-esempio-messaggio-di-richiesta-attraverso-iti-57)
 - [9. Servizio di validazione e pubblicazione creazione contestuale](#9-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
   - [9.1. Request](#91-request)
     - [9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
@@ -84,35 +84,29 @@
     - [10.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#1022-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
     - [10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#1023-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
 - [11. Servizio di Notifica Stato Transazione](#11-servizio-di-notifica-stato-transazione)
-  - [11.1 Modalità Push](#111-modalità-push)
-    - [11.1.1 Endpoint Push Broker verso Gateway](#1111-endpoint-push-broker-verso-gateway)
-    - [11.1.2 Request](#1112-request)
-    - [Parametri Body](#parametri-body)
-    - [Esempio di richiesta](#esempio-di-richiesta)
-    - [Response](#response)
-    - [Esempio risposta 200](#esempio-risposta-200)
-  - [11.2 Notifica verso l’Utente Finale](#112-notifica-verso-lutente-finale)
-    - [Endpoint (Gateway verso touchpoint)](#endpoint-gateway-verso-touchpoint)
-    - [Payload di Notifica in caso di success](#payload-di-notifica-in-caso-di-success)
-    - [Payload di Notifica in caso di errore verso INI](#payload-di-notifica-in-caso-di-errore-verso-ini)
-    - [Payload di Notifica in caso di errore verso UAR](#payload-di-notifica-in-caso-di-errore-verso-uar)
-  - [11.3 Comportamento della Tabella di Routing del Gateway](#113-comportamento-della-tabella-di-routing-del-gateway)
-  - [11.4 Modalità Pull](#114-modalità-pull)
-    - [Endpoint Pull Gateway verso Broker](#endpoint-pull-gateway-verso-broker)
-      - [Request](#request)
-        - [Parametri Path](#parametri-path)
-      - [Esempio di richiesta](#esempio-di-richiesta-1)
-    - [Response](#response-1)
-    - [Esempio risposta 200](#esempio-risposta-200-1)
-  - [11.5 Stati transazione](#115-stati-transazione)
+  - [11.1. Modalità Push](#111-modalità-push)
+    - [11.1.1. Endpoint Push Broker verso Gateway](#1111-endpoint-push-broker-verso-gateway)
+    - [11.1.2. Request](#1112-request)
+    - [11.1.3. Parametri Body](#1113-parametri-body)
+  - [11.2. Notifica verso l’Utente Finale](#112-notifica-verso-lutente-finale)
+    - [11.2.1. Endpoint (Gateway verso touchpoint)](#1121-endpoint-gateway-verso-touchpoint)
+    - [11.2.2. Payload di Notifica in caso di success](#1122-payload-di-notifica-in-caso-di-success)
+    - [11.2.3. Payload di Notifica in caso di errore verso INI](#1123-payload-di-notifica-in-caso-di-errore-verso-ini)
+    - [11.2.4. Payload di Notifica in caso di errore verso UAR](#1124-payload-di-notifica-in-caso-di-errore-verso-uar)
+  - [11.3. Comportamento della Tabella di Routing del Gateway](#113-comportamento-della-tabella-di-routing-del-gateway)
+  - [11.4. Modalità Pull](#114-modalità-pull)
+    - [11.4.1. Endpoint Pull Gateway verso Broker](#1141-endpoint-pull-gateway-verso-broker)
+    - [11.4.2. Response](#1142-response)
+    - [11.4.3. Esempio risposta 200](#1143-esempio-risposta-200)
+  - [11.5. Stati transazione](#115-stati-transazione)
 - [12. Servizio di Recupero Stato Transazione per TraceId](#12-servizio-di-recupero-stato-transazione-per-traceid)
   - [12.1. Request](#121-request)
     - [12.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1211-esempio-messaggio-di-richiesta-stato-transazioni)
-  - [12.1. Response](#121-response)
+  - [12.2. Response](#122-response)
 - [13. Drilldown Response in caso di Errore](#13-drilldown-response-in-caso-di-errore)
   - [13.1. Errori Applicativi](#131-errori-applicativi)
-    - [13.3.1. Esempi di errore generati dal Gateway](#1331-esempi-di-errore-generati-dal-gateway)
-  - [13.1. Errori provenienti da Apparati di Frontiera](#131-errori-provenienti-da-apparati-di-frontiera)
+    - [13.1.1. Esempi di errore generati dal Gateway](#1311-esempi-di-errore-generati-dal-gateway)
+  - [13.2. Errori provenienti da Apparati di Frontiera](#132-errori-provenienti-da-apparati-di-frontiera)
 - [14. Drilldown Parametri di Input](#14-drilldown-parametri-di-input)
   - [14.1. Campi Contenuti nei JWT](#141-campi-contenuti-nei-jwt)
   - [14.2. Campi Contenuti nella Request Body](#142-campi-contenuti-nella-request-body)
@@ -130,7 +124,7 @@
     - [14.3.11. Health Data Format Enum](#14311-health-data-format-enum)
     - [14.3.12. Tipo Attività](#14312-tipo-attività)
     - [14.3.13. Administrative Request](#14313-administrative-request)
-  - [Notes](#notes)
+- [Notes](#notes)
 
 # 1. Introduzione
 
@@ -648,6 +642,15 @@ _Tabella 2: Acronimi e Definizioni_
       <p>8.2. Aggiunto status code in 202</p>
       <p>9.2. Aggiunto status code in 202</p>
       <p>10.2. Aggiunto status code in 202</p>
+    </td>
+  </tr>
+  <tr>
+    <td>2.18</td>
+    <td>23/03/2026</td>
+    <td>
+      Paragrafi modificati:
+      <p>11. Inseriti esempio response per status KO</p>
+      <p>14. Rimossa non obbligatorietà per resource_hl7_type per il flusso di update</p>
     </td>
   </tr>
 </table>
@@ -3619,7 +3622,7 @@ _Tabella 34: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 8.3. Esempio Messaggio di Richiesta attraverso iti-57
+### 8.2.3. Esempio Messaggio di Richiesta attraverso iti-57
 
 Messaggio di richiesta  con metadati formalmente corretti, senza indicazione della priorità. 
 
@@ -4775,7 +4778,7 @@ Il servizio opera secondo due modalità distinte:
 - **push** (modalità primaria e da prediligere);
 - **pull** (modalità residuale, utilizzata solo per il recupero dello stato in caso di notifiche non ricevute).
 
-## 11.1 Modalità Push
+## 11.1. Modalità Push
 
 In modalità **push**, il Gateway riceve dal **Broker** la notifica dello stato di una transazione asincrona precedentemente avviata.
 
@@ -4796,19 +4799,19 @@ In questa modalità, il Gateway ha un ruolo attivo di **propagazione dello stato
 
 La notifica verso il touchpoint finale **non contiene esclusivamente l’ultimo stato**, ma una **lista ordinata degli eventi di stato** associati al medesimo `workflowInstanceId`, così da consentire al chiamante una visione completa dell’evoluzione del workflow.
 
-### 11.1.1 Endpoint Push Broker verso Gateway
+### 11.1.1. Endpoint Push Broker verso Gateway
 
 ```
 http://<HOST>:<PORT>/v<major>/ingestion/status
 ```
 
-### 11.1.2 Request
+### 11.1.2. Request
 
 | METHOD | URL                    | TYPE             |
 | ------ | ---------------------- | ---------------- |
 | POST   | `/v1/ingestion/status` | application/json |
 
-### Parametri Body
+### 11.1.3. Parametri Body
 
 | KEY                | TYPE   | REQUIRED |
 | ------------------ | ------ | -------- |
@@ -4818,7 +4821,7 @@ http://<HOST>:<PORT>/v<major>/ingestion/status
 | status             | String | true     |
 | rde                | String | true     |
 
-### Esempio di richiesta
+#### Esempio di richiesta
 
 ```bash
 curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
@@ -4834,7 +4837,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
   }'
 ```
 
-### Response
+#### Response
 
 | STATUS | SIGNIFICATO                                | TIPO                     |
 | ------ | ------------------------------------------ | ------------------------ |
@@ -4842,7 +4845,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
 | 400    | Errore di validazione                      | application/problem+json |
 | 500    | Errore interno del server                  | application/problem+json |
 
-### Esempio risposta 200
+#### Esempio risposta 200
 
 ```json
 {
@@ -4852,7 +4855,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
 }
 ```
 
-## 11.2 Notifica verso l’Utente Finale
+## 11.2. Notifica verso l’Utente Finale
 
 Il Gateway invia la notifica verso il touchpoint finale secondo le preferenze espresse in fase di invocazione iniziale, come riportato in precedenza.
 
@@ -4862,13 +4865,13 @@ Le specifiche OpenAPI di tale endpoint sono disponibili nella repository GitHub 
 
 https://github.com/ministero-salute/it-fse-support/tree/main/openapi/gateway/swagger_status.yaml
 
-### Endpoint (Gateway verso touchpoint)
+### 11.2.1. Endpoint (Gateway verso touchpoint)
 
 ```
 POST http://<CALLBACK_HOST>/v1/workflow/status
 ```
 
-### Payload di Notifica in caso di success
+### 11.2.2. Payload di Notifica in caso di success
 
 ```json
 {
@@ -4908,7 +4911,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### Payload di Notifica in caso di errore verso INI
+### 11.2.3. Payload di Notifica in caso di errore verso INI
 
 ```json
 {
@@ -4936,7 +4939,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### Payload di Notifica in caso di errore verso UAR
+### 11.2.4. Payload di Notifica in caso di errore verso UAR
 
 ```json
 {
@@ -4978,7 +4981,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 
 Il Gateway garantisce che gli eventi siano restituiti in ordine cronologico e che includano tutte le informazioni utili alla diagnosi e al monitoraggio del processo.
 
-## 11.3 Comportamento della Tabella di Routing del Gateway
+## 11.3. Comportamento della Tabella di Routing del Gateway
 
 La **tabella di routing del Gateway** ha lo scopo di determinare il corretto endpoint di notifica verso il client finale quando non viene fornito un indirizzo di callback esplicito.
 
@@ -4997,7 +5000,7 @@ Il comportamento è il seguente:
 
 Questo meccanismo consente al Gateway di supportare sia integrazioni dinamiche basate su callback, sia integrazioni statiche basate su configurazione, garantendo flessibilità e controllo centralizzato dei touchpoint di uscita.
 
-## 11.4 Modalità Pull
+## 11.4. Modalità Pull
 
 La modalità **pull** è prevista esclusivamente per scenari eccezionali in cui il Gateway non abbia ricevuto la notifica in modalità push.
 
@@ -5005,7 +5008,7 @@ In questo scenario, il Gateway attiva una **schedulazione periodica** che invoca
 
 Il Gateway utilizza la risposta ricevuta per aggiornare il proprio stato interno e completare la riconciliazione del workflow.
 
-### Endpoint Pull Gateway verso Broker
+### 11.4.1. Endpoint Pull Gateway verso Broker
 
 ```
 http://<HOST>:<PORT>/v<major>/status/{workflowInstanceId}
@@ -5031,7 +5034,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
   -H "FSE-JWT-Signature: <signed-jwt>"
 ```
 
-### Response
+### 11.4.2. Response
 
 | STATUS | SIGNIFICATO                                | TIPO                     |
 | ------ | ------------------------------------------ | ------------------------ |
@@ -5039,7 +5042,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
 | 404    | Workflow non trovato                       | application/problem+json |
 | 500    | Errore interno del server                  | application/problem+json |
 
-### Esempio risposta 200
+### 11.4.3. Esempio risposta 200
 
 ```json
 {
@@ -5051,7 +5054,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
 }
 ```
 
-## 11.5 Stati transazione
+## 11.5. Stati transazione
 Di seguito sono riportati i diversi stati che possono essere ottenuti in seguito ad una richiesta asincrona 
 
 | Event Type         | Event Status|
@@ -5177,9 +5180,264 @@ curl -X 'GET' \
   -H 'accept: application/json' 
 ```
 
-## 12.1. Response
+## 12.2. Response
 
-Per ulteriori dettagli su response del servizio in oggetto è necessario fare riferimento al Capitolo 8 “Servizio di Recupero stato transazione per WorkflowInstanceId”
+<table>
+  <tr>
+   <td>TIPO IN CASO DI SUCCESSO
+   </td>
+   <td colspan="2" >application/json
+   </td>
+  </tr>
+  <tr>
+   <td>TIPO IN CASO DI ERRORE*
+   </td>
+   <td colspan="2" >application/problem+json
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="10" >STATUS CODE
+   </td>
+   <td> 200
+   </td>
+   <td>Success
+   </td>
+  </tr>
+  <tr>
+   <td>400
+   </td>
+   <td>Bad request
+   </td>
+  </tr>
+  <tr>
+   <td>401
+   </td>
+   <td>Unauthorized
+   </td>
+  </tr>
+  <tr>
+   <td>403
+   </td>
+   <td>Token jwt mancante o non valido
+   </td>
+  </tr>
+  <tr>
+   <td>404
+   </td>
+   <td>Not found
+   </td>
+  </tr>
+  <tr>
+   <td>409
+   </td>
+   <td>Conflict
+   </td>
+  </tr>
+  <tr>
+   <td>413
+   </td>
+   <td>Payload too large
+   </td>
+  </tr>
+  <tr>
+   <td>429
+   </td>
+   <td>Too Many Requests
+   </td>
+  </tr>
+  <tr>
+   <td>500
+   </td>
+   <td>Internal server error
+   </td>
+  </tr>
+  <tr>
+   <td>502
+   </td>
+   <td>Invalid response received from the API Implementation
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>503
+   </td>
+   <td>Service unavailable
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>504
+   </td>
+   <td>Endpoint request timed-out
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 47: Response Servizio di Recupero Stato Transazione per WorkflowInstanceId_
+
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
+
+**Campi sempre valorizzati**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>traceID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente. È sempre presente a differenza del workflowInstanceId poiché il valore di quest’ultimo dipende dal CDA preso in input
+   </td>
+  </tr>
+  <tr>
+   <td>spanID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
+traceId e spanId coincidono nella prima operazione.
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 48: Campi Response sempre valorizzati_
+
+**Campi valorizzati in caso di Success**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>ATTRIBUTE</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="13" >transactionData
+   </td>
+   <td>eventType
+   </td>
+   <td>String
+   </td>
+   <td>Tipologia di evento emesso
+   </td>
+  </tr>
+  <tr>
+   <td>eventDate
+   </td>
+   <td>String
+   </td>
+   <td>Timestamp di emissione dell’evento
+   </td>
+  </tr>
+  <tr>
+   <td>eventStatus
+   </td>
+   <td>String
+   </td>
+   <td>Stato dell’evento (SUCCESS, BLOCKING_ERROR, etc)
+   </td>
+  </tr>
+  <tr>
+   <td>message
+   </td>
+   <td>String
+   </td>
+   <td>Messaggio opzionale che descrive l’evento
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoDocumento
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo del documento a cui è associato l’evento emesso
+   </td>
+  </tr>
+  <tr>
+   <td>subject
+   </td>
+   <td>String
+   </td>
+   <td>Subject a cui è associato l’evento
+   </td>
+  </tr>
+  <tr>
+   <td>subjectRole
+   </td>
+   <td>String
+   </td>
+   <td>Ruolo del Subject a cui è associato l’evento
+   </td>
+  </tr>
+  <tr>
+   <td>tipoAttivita
+   </td>
+   <td>String
+   </td>
+   <td>tipologia dell’attività associata all’evento
+   </td>
+  </tr>
+  <tr>
+   <td>organizzazione
+   </td>
+   <td>String
+   </td>
+   <td>Organizzazione 
+   </td>
+  </tr>
+  <tr>
+   <td>workflowInstanceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco della transazione
+   </td>
+  </tr>
+  <tr>
+   <td>traceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente
+   </td>
+  </tr>
+  <tr>
+   <td>issuer
+   </td>
+   <td>String
+   </td>
+   <td>Issuer associato all’evento
+   </td>
+  </tr>
+  <tr>
+   <td>expiringDate
+   </td>
+   <td>String
+   </td>
+   <td>Data di eliminazione della transazione dai sistemi
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 49: Campi Response sempre valorizzati_
 
 
 # 13. Drilldown Response in caso di Errore
@@ -5248,7 +5506,7 @@ Può differire dal type in caso sia necessario specificare il problema con maggi
 _Tabella 52: Campi Response valorizzati in caso di errore_
 
 
-### 13.3.1. Esempi di errore generati dal Gateway
+### 13.1.1. Esempi di errore generati dal Gateway
 
 
 <table>
@@ -5520,7 +5778,7 @@ _Tabella 52: Campi Response valorizzati in caso di errore_
 
 
 
-## 13.1. Errori provenienti da Apparati di Frontiera
+## 13.2. Errori provenienti da Apparati di Frontiera
 
 Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali o di sicurezza (ad esempio token mancante o scaduto, request non conforme alle specifiche) che vengono intercettati e notificati prima che la richiesta raggiunga i microservizi.
 
@@ -6470,7 +6728,7 @@ Riferimento: urn:oasis:names:tc:xspa:1.0:resource:hl7:type
   <tr>
    <td><strong>VALIDAZIONE</strong>
    </td>
-   <td>Non Obbligatorio per il servizio di Eliminazione Documento e Aggiornamento Metadati
+   <td>Non Obbligatorio per il servizio di Eliminazione Documento
    </td>
   </tr>
   <tr>
@@ -9779,8 +10037,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 63: Value set per il metadato XDSDocumentEntry.Slot - Administrative Request_
 
 
-<!-- Footnotes themselves at the bottom. -->
-## Notes
+# Notes
 
 [^1]: https://docs.italia.it/media/pdf/lg-modellointeroperabilita-docs/vintra-work/lg-modellointeroperabilita-docs.pdf
 
