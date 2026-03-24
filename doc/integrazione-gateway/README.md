@@ -124,7 +124,7 @@
     - [14.3.11. Health Data Format Enum](#14311-health-data-format-enum)
     - [14.3.12. Tipo Attività](#14312-tipo-attività)
     - [14.3.13. Administrative Request](#14313-administrative-request)
-  - [14.4. Notes](#144-notes)
+- [Notes](#notes)
 
 # 1. Introduzione
 
@@ -10037,8 +10037,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 63: Value set per il metadato XDSDocumentEntry.Slot - Administrative Request_
 
 
-<!-- Footnotes themselves at the bottom. -->
-## 14.4. Notes
+# Notes
 
 [^1]: https://docs.italia.it/media/pdf/lg-modellointeroperabilita-docs/vintra-work/lg-modellointeroperabilita-docs.pdf
 
