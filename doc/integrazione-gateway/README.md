@@ -87,10 +87,7 @@
   - [11.1 Modalità Push](#111-modalità-push)
     - [11.1.1 Endpoint Push Broker verso Gateway](#1111-endpoint-push-broker-verso-gateway)
     - [11.1.2 Request](#1112-request)
-    - [Parametri Body](#parametri-body)
-    - [Esempio di richiesta](#esempio-di-richiesta)
-    - [Response](#response)
-    - [Esempio risposta 200](#esempio-risposta-200)
+    - [11.1.3 Parametri Body](#1113-parametri-body)
   - [11.2 Notifica verso l’Utente Finale](#112-notifica-verso-lutente-finale)
     - [Endpoint (Gateway verso touchpoint)](#endpoint-gateway-verso-touchpoint)
     - [Payload di Notifica in caso di success](#payload-di-notifica-in-caso-di-success)
@@ -99,9 +96,6 @@
   - [11.3 Comportamento della Tabella di Routing del Gateway](#113-comportamento-della-tabella-di-routing-del-gateway)
   - [11.4 Modalità Pull](#114-modalità-pull)
     - [Endpoint Pull Gateway verso Broker](#endpoint-pull-gateway-verso-broker)
-      - [Request](#request)
-        - [Parametri Path](#parametri-path)
-      - [Esempio di richiesta](#esempio-di-richiesta-1)
     - [Response](#response-1)
     - [Esempio risposta 200](#esempio-risposta-200-1)
   - [11.5 Stati transazione](#115-stati-transazione)
@@ -4817,7 +4811,7 @@ http://<HOST>:<PORT>/v<major>/ingestion/status
 | ------ | ---------------------- | ---------------- |
 | POST   | `/v1/ingestion/status` | application/json |
 
-### Parametri Body
+### 11.1.3 Parametri Body
 
 | KEY                | TYPE   | REQUIRED |
 | ------------------ | ------ | -------- |
@@ -4827,7 +4821,7 @@ http://<HOST>:<PORT>/v<major>/ingestion/status
 | status             | String | true     |
 | rde                | String | true     |
 
-### Esempio di richiesta
+#### Esempio di richiesta
 
 ```bash
 curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
@@ -4843,7 +4837,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
   }'
 ```
 
-### Response
+#### Response
 
 | STATUS | SIGNIFICATO                                | TIPO                     |
 | ------ | ------------------------------------------ | ------------------------ |
@@ -4851,7 +4845,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
 | 400    | Errore di validazione                      | application/problem+json |
 | 500    | Errore interno del server                  | application/problem+json |
 
-### Esempio risposta 200
+#### Esempio risposta 200
 
 ```json
 {
@@ -5188,7 +5182,262 @@ curl -X 'GET' \
 
 ## 12.1. Response
 
-Per ulteriori dettagli su response del servizio in oggetto è necessario fare riferimento al Capitolo 8 “Servizio di Recupero stato transazione per WorkflowInstanceId”
+<table>
+  <tr>
+   <td>TIPO IN CASO DI SUCCESSO
+   </td>
+   <td colspan="2" >application/json
+   </td>
+  </tr>
+  <tr>
+   <td>TIPO IN CASO DI ERRORE*
+   </td>
+   <td colspan="2" >application/problem+json
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="10" >STATUS CODE
+   </td>
+   <td> 200
+   </td>
+   <td>Success
+   </td>
+  </tr>
+  <tr>
+   <td>400
+   </td>
+   <td>Bad request
+   </td>
+  </tr>
+  <tr>
+   <td>401
+   </td>
+   <td>Unauthorized
+   </td>
+  </tr>
+  <tr>
+   <td>403
+   </td>
+   <td>Token jwt mancante o non valido
+   </td>
+  </tr>
+  <tr>
+   <td>404
+   </td>
+   <td>Not found
+   </td>
+  </tr>
+  <tr>
+   <td>409
+   </td>
+   <td>Conflict
+   </td>
+  </tr>
+  <tr>
+   <td>413
+   </td>
+   <td>Payload too large
+   </td>
+  </tr>
+  <tr>
+   <td>429
+   </td>
+   <td>Too Many Requests
+   </td>
+  </tr>
+  <tr>
+   <td>500
+   </td>
+   <td>Internal server error
+   </td>
+  </tr>
+  <tr>
+   <td>502
+   </td>
+   <td>Invalid response received from the API Implementation
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>503
+   </td>
+   <td>Service unavailable
+   </td>
+  </tr>
+  <tr>
+   <td>
+   </td>
+   <td>504
+   </td>
+   <td>Endpoint request timed-out
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 47: Response Servizio di Recupero Stato Transazione per WorkflowInstanceId_
+
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
+
+**Campi sempre valorizzati**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>traceID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente. È sempre presente a differenza del workflowInstanceId poiché il valore di quest’ultimo dipende dal CDA preso in input
+   </td>
+  </tr>
+  <tr>
+   <td>spanID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
+traceId e spanId coincidono nella prima operazione.
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 48: Campi Response sempre valorizzati_
+
+**Campi valorizzati in caso di Success**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>ATTRIBUTE</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="13" >transactionData
+   </td>
+   <td>eventType
+   </td>
+   <td>String
+   </td>
+   <td>Tipologia di evento emesso
+   </td>
+  </tr>
+  <tr>
+   <td>eventDate
+   </td>
+   <td>String
+   </td>
+   <td>Timestamp di emissione dell’evento
+   </td>
+  </tr>
+  <tr>
+   <td>eventStatus
+   </td>
+   <td>String
+   </td>
+   <td>Stato dell’evento (SUCCESS, BLOCKING_ERROR, etc)
+   </td>
+  </tr>
+  <tr>
+   <td>message
+   </td>
+   <td>String
+   </td>
+   <td>Messaggio opzionale che descrive l’evento
+   </td>
+  </tr>
+  <tr>
+   <td>identificativoDocumento
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo del documento a cui è associato l’evento emesso
+   </td>
+  </tr>
+  <tr>
+   <td>subject
+   </td>
+   <td>String
+   </td>
+   <td>Subject a cui è associato l’evento
+   </td>
+  </tr>
+  <tr>
+   <td>subjectRole
+   </td>
+   <td>String
+   </td>
+   <td>Ruolo del Subject a cui è associato l’evento
+   </td>
+  </tr>
+  <tr>
+   <td>tipoAttivita
+   </td>
+   <td>String
+   </td>
+   <td>tipologia dell’attività associata all’evento
+   </td>
+  </tr>
+  <tr>
+   <td>organizzazione
+   </td>
+   <td>String
+   </td>
+   <td>Organizzazione 
+   </td>
+  </tr>
+  <tr>
+   <td>workflowInstanceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco della transazione
+   </td>
+  </tr>
+  <tr>
+   <td>traceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente
+   </td>
+  </tr>
+  <tr>
+   <td>issuer
+   </td>
+   <td>String
+   </td>
+   <td>Issuer associato all’evento
+   </td>
+  </tr>
+  <tr>
+   <td>expiringDate
+   </td>
+   <td>String
+   </td>
+   <td>Data di eliminazione della transazione dai sistemi
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 49: Campi Response sempre valorizzati_
 
 
 # 13. Drilldown Response in caso di Errore
