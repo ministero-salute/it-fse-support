@@ -4976,7 +4976,8 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
       "eventType": "UAR_FINAL_STATUS",
       "eventDate": "2025-10-10T16:48:45.480Z",
       "eventStatus": "BLOCKING_ERROR",
-      "issuer": "integrity:S1#111#TEST-CRASH-2"
+      "issuer": "integrity:S1#111#TEST-CRASH-2",
+      "detail": "500 Internal Server Error on GET request for /v1/document/check-exist/2.16.840.1.113883.2.9.2.150.4.4%5E29602816": "{"traceID":"3d7c41edbfc7e4ad34aa28decab4f4ce","spanID":"dfd0b6a9e451a56a","type":"/err/server","title":"Server error","detail":"HAPI-1361: Failed to parse response from server when performing GET to URL /fhir/DocumentReference?identifier=29602816 - org.apache.http.conn.HttpHostConnectException: Connection refused: no further information","status":500,"instance":"/internal"}""
     }
   ]
 }
