@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.18
+   <td>ver 2.19
    </td>
   </tr>
 </table>
@@ -656,6 +656,14 @@ _Tabella 2: Acronimi e Definizioni_
       <p>14. Rimossa non obbligatorietà per resource_hl7_type per il flusso di update</p>
     </td>
   </tr>
+  <tr>
+    <td>2.19</td>
+    <td>23/04/2026</td>
+    <td>
+      Paragrafi modificati:
+      <p>2. Aggiornata tabella degli endpoint e funzionalità</p>
+    </td>
+  </tr>
 </table>
 
 
@@ -688,61 +696,61 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
     <td>/v&lt;major&gt;/documents/fhir-validation</td>
     <td>POST</td>
     <td>VALIDAZIONE DOCUMENTO FHIR</td>
-    <td></td>
+    <td>No</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents</td>
     <td>POST</td>
     <td>PUBBLICAZIONE DOCUMENTO CDA2</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}</td>
     <td>DELETE</td>
     <td>ELIMINAZIONE DOCUMENTO</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}</td>
     <td>PUT</td>
     <td>SOSTITUZIONE DOCUMENTI</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}/metadata</td>
     <td>PUT</td>
     <td>AGGIORNAMENTO METADATI</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}/metadata-iti-57</td>
     <td>PUT</td>
     <td>AGGIORNAMENTO METADATI ITI-57</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents/validate-and-create</td>
     <td>POST</td>
     <td>VALIDAZIONE E PUBBLICAZIONE CREAZIONE CONTESTUALE</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents/validate-and-replace/{idDoc}</td>
     <td>PUT</td>
     <td>VALIDAZIONE E PUBBLICAZIONE SOSTITUZIONE CONTESTUALE</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/status/{workflowInstanceId}</td>
     <td>GET</td>
     <td>RECUPERO STATO TRANSAZIONE PER WORKFLOWINSTANCEID</td>
-    <td></td>
+    <td>Si</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/status/search/{traceId}</td>
     <td>GET</td>
     <td>RECUPERO STATO TRANSAZIONE PER TRACEID</td>
-    <td></td>
+    <td>Si</td>
   </tr>
 </table>
 
