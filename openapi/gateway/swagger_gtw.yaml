@@ -7,570 +7,599 @@ info:
     name: Fascicolo Sanitario Elettronico 2.0
     url: https://developers.italia.it/it/fse/
   version: 1.0.0
-  x-api-id: '1'
+  x-api-id: "1"
   x-summary: Handles and enroutes all the CDA validations and/or publications
 servers:
-  - url: https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
-    description: Generated server url
-    x-sandbox: true
+- url: https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1
+  description: Generated server url
+  x-sandbox: true
 security:
-  - bearerAuth: []
-  - FSE-JWT-Signature: []
+- bearerAuth: []
+- FSE-JWT-Signature: []
 tags:
-  - name: Servizio ispezione transazioni
-  - name: Servizio validazione documenti
-  - name: Servizio pubblicazione documenti
+- name: Servizio ispezione transazioni
+- name: Servizio validazione documenti
+- name: Servizio pubblicazione documenti
+- name: Health check Status Actuator
 paths:
-  /documents/{idDoc}:
+  /fhir-documents/{idDoc}:
     put:
       tags:
-        - Servizio pubblicazione documenti
+      - Servizio pubblicazione documenti
       summary: Pubblicazione replace documenti
       description: Sostituisce il documento identificato da oid fornito in input.
       operationId: replace
       parameters:
-        - name: idDoc
-          in: path
-          required: true
-          schema:
-            maxLength: 256
-            minLength: 1
-            type: string
+      - name: idDoc
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 256
+          minLength: 1
       requestBody:
         content:
           multipart/form-data:
             schema:
-              required:
-                - file
-                - requestBody
               type: object
+              additionalProperties: false
               properties:
                 requestBody:
-                  $ref: '#/components/schemas/PublicationUpdateReqDTO'
+                  $ref: "#/components/schemas/PublicationUpdateReqDTO"
                 file:
-                  maxLength: 1000
                   type: string
                   format: binary
-              additionalProperties: false
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
       responses:
-        '200':
+        "202":
           description: Presa in carico eseguita con successo
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PublicationResDTO'
-        '400':
+                $ref: "#/components/schemas/PublicationResDTO"
+        "400":
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '401':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '403':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '404':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '409':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '413':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '415':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "415":
           description: Unsupported media type
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '429':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '500':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '502':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '503':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '504':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
         default:
           description: default
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
       security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
+  /documents/{idDoc}:
+    put:
+      tags:
+      - Servizio pubblicazione documenti
+      summary: Pubblicazione replace documenti
+      description: Sostituisce il documento identificato da oid fornito in input.
+      operationId: replace_1
+      parameters:
+      - name: idDoc
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 256
+          minLength: 1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                requestBody:
+                  $ref: "#/components/schemas/PublicationUpdateReqDTO"
+                file:
+                  type: string
+                  format: binary
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
+      responses:
+        "202":
+          description: Presa in carico eseguita con successo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicationResDTO"
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "415":
+          description: Unsupported media type
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+      security:
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
     delete:
       tags:
-        - Servizio pubblicazione documenti
+      - Servizio pubblicazione documenti
       summary: Eliminazione documento
       description: Elimina il documento identificato da oid fornito in input.
       operationId: delete
       parameters:
-        - name: idDoc
-          in: path
-          required: true
-          schema:
-            maxLength: 256
-            minLength: 1
-            type: string
+      - name: idDoc
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 256
+          minLength: 1
       responses:
-        '200':
+        "200":
           description: Cancellazione eseguita con successo
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseWifDTO'
-        '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '401':
-          description: Unauthorized
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '403':
-          description: Token jwt mancante o non valido
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '404':
-          description: Not found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '409':
-          description: Conflict
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '413':
-          description: Payload too large
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '429':
-          description: Too Many Requests
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '500':
-          description: Internal Server Error
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '502':
-          description: Invalid response received from the API Implementation
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '503':
-          description: Service unavailable
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '504':
-          description: Endpoint request timed-out
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        default:
-          description: default
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-      security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
-  /documents/{idDoc}/metadata:
-    put:
-      tags:
-        - Servizio pubblicazione documenti
-      summary: Pubblicazione aggiornamento metadati
-      description: Pubblicazione aggiornamento metadati dato l'identificativo documento.
-      operationId: updateMetadata
-      parameters:
-        - name: idDoc
-          in: path
-          required: true
-          schema:
-            maxLength: 256
-            minLength: 1
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PublicationMetadataReqDTO'
-        required: true
-      responses:
-        '200':
-          description: Aggiornamento eseguito con successo
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseWifDTO'
-        '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '401':
-          description: Unauthorized
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '403':
-          description: Token jwt mancante o non valido
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '404':
-          description: Not found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '409':
-          description: Conflict
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '413':
-          description: Payload too large
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '429':
-          description: Too Many Requests
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '500':
-          description: Internal Server Error
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '502':
-          description: Invalid response received from the API Implementation
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '503':
-          description: Service unavailable
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '504':
-          description: Endpoint request timed-out
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        default:
-          description: default
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-      security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
-  /documents/{idDoc}/metadata-iti-57:
-    put:
-      tags:
-        - Servizio pubblicazione documenti
-      summary: Pubblicazione aggiornamento metadati
-      description: Pubblicazione aggiornamento metadati dato l'identificativo documento.
-      operationId: updateMetadataIti_57
-      parameters:
-        - name: idDoc
-          in: path
-          required: true
-          schema:
-            maxLength: 256
-            minLength: 1
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PublicationMetadataReqDTO'
-        required: true
-      responses:
-        '200':
-          description: Aggiornamento eseguito con successo
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseWifDTO'
-        '400':
-          description: Bad Request
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '401':
-          description: Unauthorized
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '403':
-          description: Token jwt mancante o non valido
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '404':
-          description: Not found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '409':
-          description: Conflict
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '413':
-          description: Payload too large
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '429':
-          description: Too Many Requests
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '500':
-          description: Internal Server Error
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '502':
-          description: Invalid response received from the API Implementation
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '503':
-          description: Service unavailable
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '504':
-          description: Endpoint request timed-out
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        default:
-          description: default
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-      security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
-  /documents/validate-and-replace/{idDoc}:
-    put:
-      tags:
-        - Servizio pubblicazione documenti
-      summary: Pubblicazione replace documenti
-      description: Sostituisce il documento identificato da oid fornito in input.
-      operationId: validateAndReplace
-      parameters:
-        - name: idDoc
-          in: path
-          required: true
-          schema:
-            maxLength: 256
-            minLength: 1
-            type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              required:
-                - file
-                - requestBody
-              type: object
-              properties:
-                requestBody:
-                  $ref: '#/components/schemas/ValidateAndReplaceDTO'
-                file:
-                  maxLength: 1000
-                  type: string
-                  format: binary
-              additionalProperties: false
-      responses:
-        '200':
+                $ref: "#/components/schemas/ResponseWifDTO"
+        "202":
           description: Presa in carico eseguita con successo
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PublicationResDTO'
-        '400':
+                $ref: "#/components/schemas/ResponseWifDTO"
+        "400":
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '401':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '403':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '404':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '409':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '413':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '415':
-          description: Unsupported media type
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '422':
-          description: Richiesta semanticamente non processabile
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '429':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '500':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '502':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '503':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '504':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
         default:
           description: default
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
       security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
-  /documents:
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
+  /documents/{idDoc}/metadata-iti-57:
+    put:
+      tags:
+      - Servizio pubblicazione documenti
+      summary: Pubblicazione aggiornamento metadati
+      description: Pubblicazione aggiornamento metadati dato l'identificativo documento.
+      operationId: updateMetadataIti_57
+      parameters:
+      - name: idDoc
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 256
+          minLength: 1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMetadataReqDTO"
+        required: true
+      responses:
+        "200":
+          description: Aggiornamento eseguito con successo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseWifDTO"
+        "202":
+          description: Presa in carico eseguita con successo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResponseWifDTO"
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+      security:
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
+  /documents/validate-and-replace/{idDoc}:
+    put:
+      tags:
+      - Servizio pubblicazione documenti
+      summary: Pubblicazione replace documenti
+      description: Sostituisce il documento identificato da oid fornito in input.
+      operationId: validateAndReplace
+      parameters:
+      - name: idDoc
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 256
+          minLength: 1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                requestBody:
+                  $ref: "#/components/schemas/ValidateAndReplaceDTO"
+                file:
+                  type: string
+                  format: binary
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
+      responses:
+        "202":
+          description: Presa in carico eseguita con successo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicationResDTO"
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "403":
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "404":
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "409":
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "413":
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "415":
+          description: Unsupported media type
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "422":
+          description: Richiesta semanticamente non processabile
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "502":
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "503":
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "504":
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+      security:
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
+  /fhir-documents:
     post:
       tags:
-        - Servizio pubblicazione documenti
+      - Servizio pubblicazione documenti
       summary: Pubblicazione creazione documenti
       description: Pubblica con l'intento di generare nuove risorse FHIR.
       operationId: create
@@ -578,110 +607,221 @@ paths:
         content:
           multipart/form-data:
             schema:
-              required:
-                - file
-                - requestBody
               type: object
+              additionalProperties: false
               properties:
                 requestBody:
-                  $ref: '#/components/schemas/PublicationCreationReqDTO'
+                  $ref: "#/components/schemas/PublicationCreationReqDTO"
                 file:
-                  maxLength: 1000
                   type: string
                   format: binary
-              additionalProperties: false
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
       responses:
-        '201':
+        "202":
           description: Presa in carico eseguita con successo
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PublicationResDTO'
-        '400':
+                $ref: "#/components/schemas/PublicationResDTO"
+        "400":
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '401':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '403':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '404':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '409':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '413':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '415':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "415":
           description: Unsupported media type
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '429':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '500':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '502':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '503':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '504':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
         default:
           description: default
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
       security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
+  /documents:
+    post:
+      tags:
+      - Servizio pubblicazione documenti
+      summary: Pubblicazione creazione documenti
+      description: Pubblica con l'intento di generare nuove risorse FHIR.
+      operationId: create_1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                requestBody:
+                  $ref: "#/components/schemas/PublicationCreationReqDTO"
+                file:
+                  type: string
+                  format: binary
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
+      responses:
+        "202":
+          description: Presa in carico eseguita con successo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublicationResDTO"
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "415":
+          description: Unsupported media type
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+      security:
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
   /documents/validation:
     post:
       tags:
-        - Servizio validazione documenti
+      - Servizio validazione documenti
       summary: Validazione documenti
       description: Valida il CDA iniettato nel PDF fornito in input.
       operationId: validate
@@ -689,122 +829,122 @@ paths:
         content:
           multipart/form-data:
             schema:
-              required:
-                - file
-                - requestBody
               type: object
+              additionalProperties: false
               properties:
                 requestBody:
-                  $ref: '#/components/schemas/ValidationCDAReqDTO'
+                  $ref: "#/components/schemas/ValidationCDAReqDTO"
                 file:
-                  maxLength: 1000
                   type: string
                   format: binary
-              additionalProperties: false
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
       responses:
-        '200':
+        "200":
           description: Validazione positiva a seguito di activity verifica
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationResDTO'
-        '201':
+                $ref: "#/components/schemas/ValidationResDTO"
+        "201":
           description: Validazione positiva a seguito di activity validation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationResDTO'
-        '400':
+                $ref: "#/components/schemas/ValidationResDTO"
+        "400":
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '401':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "401":
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '403':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "403":
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '404':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "404":
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '409':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "409":
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '413':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "413":
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '415':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "415":
           description: Unsupported media type
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '422':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "422":
           description: Richiesta semanticamente non processabile
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '429':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "429":
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '500':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "500":
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '502':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "502":
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '503':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "503":
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '504':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "504":
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
         default:
           description: default
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
       security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
   /documents/validate-and-create:
     post:
       tags:
-        - Servizio pubblicazione documenti
+      - Servizio pubblicazione documenti
       summary: Pubblicazione creazione documenti
       description: Pubblica con l'intento di generare nuove risorse FHIR.
       operationId: validateAndCreate
@@ -812,1638 +952,1698 @@ paths:
         content:
           multipart/form-data:
             schema:
-              required:
-                - file
-                - requestBody
               type: object
+              additionalProperties: false
               properties:
                 requestBody:
-                  $ref: '#/components/schemas/ValidateAndCreateDTO'
+                  $ref: "#/components/schemas/ValidateAndCreateDTO"
                 file:
-                  maxLength: 1000
                   type: string
                   format: binary
-              additionalProperties: false
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
       responses:
-        '201':
+        "202":
           description: Presa in carico eseguita con successo
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PublicationResDTO'
-        '400':
+                $ref: "#/components/schemas/PublicationResDTO"
+        "400":
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '401':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "401":
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '403':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "403":
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '404':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "404":
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '409':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "409":
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '413':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "413":
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '415':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "415":
           description: Unsupported media type
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '422':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "422":
           description: Richiesta semanticamente non processabile
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '429':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "429":
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '500':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "500":
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '502':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "502":
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '503':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "503":
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
-        '504':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "504":
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ValidationErrorResponseDTO'
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
         default:
           description: default
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
       security:
-        - bearerAuth: []
-        - FSE-JWT-Signature: []
-  /status/{workflowInstanceId}:
-    get:
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
+  /documents/fhir-validation:
+    post:
       tags:
-        - Servizio ispezione transazioni
-      summary: Recupero eventi del workflow instance id
-      description: Recupera il dettaglio degli eventi tramite il workflow instance id.
-      operationId: getEvents
-      parameters:
-        - name: workflowInstanceId
-          in: path
-          description: Identificativo del workflow
-          required: true
-          schema:
-            maxLength: 256
-            minLength: 0
-            type: string
-            description: Identificativo del workflow
+      - Servizio validazione documenti
+      summary: Validazione documenti
+      description: Valida il bundle FHIR in input.
+      operationId: fhirValidate
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                requestBody:
+                  $ref: "#/components/schemas/ValidationFHIRReqDTO"
+                file:
+                  type: string
+                  format: binary
+                  maxLength: 1000
+              required:
+              - file
+              - requestBody
       responses:
-        '200':
-          description: Eventi recuperati con successo
+        "200":
+          description: Validazione positiva a seguito di activity verifica
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionInspectResDTO'
-        '400':
+                $ref: "#/components/schemas/ValidationResDTO"
+        "201":
+          description: Validazione positiva a seguito di activity validation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationResDTO"
+        "400":
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '401':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "401":
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '403':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "403":
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '404':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "404":
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '409':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "409":
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '413':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "413":
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '429':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "415":
+          description: Unsupported media type
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "422":
+          description: Richiesta semanticamente non processabile
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "429":
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '500':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "500":
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '502':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "501":
+          description: Not implemented
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "502":
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '503':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "503":
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '504':
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
+        "504":
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ValidationErrorResponseDTO"
         default:
           description: default
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
+      security:
+      - bearerAuth: []
+      - FSE-JWT-Signature: []
+  /status/{workflowInstanceId}:
+    get:
+      tags:
+      - Servizio ispezione transazioni
+      summary: Recupero eventi del workflow instance id
+      description: Recupera il dettaglio degli eventi tramite il workflow instance
+        id.
+      operationId: getEvents
+      parameters:
+      - name: workflowInstanceId
+        in: path
+        description: Identificativo del workflow
+        required: true
+        schema:
+          type: string
+          description: Identificativo del workflow
+          maxLength: 256
+          minLength: 0
+      responses:
+        "200":
+          description: Eventi recuperati con successo
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionInspectResDTO"
+        "400":
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
+          description: Token jwt mancante o non valido
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
+          description: Not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
+          description: Conflict
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
+          description: Payload too large
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
+          description: Too Many Requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
+          description: Invalid response received from the API Implementation
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
+          description: Service unavailable
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
+          description: Endpoint request timed-out
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
   /status/search/{traceId}:
     get:
       tags:
-        - Servizio ispezione transazioni
+      - Servizio ispezione transazioni
       summary: Recupero eventi del trace id
       description: Recupera il dettaglio degli eventi tramite il trace id.
       operationId: getEventsByTraceId
       parameters:
-        - name: traceId
-          in: path
-          required: true
-          schema:
-            maxLength: 100
-            minLength: 1
-            type: string
+      - name: traceId
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 100
+          minLength: 1
       responses:
-        '200':
+        "200":
           description: Eventi recuperati con successo
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TransactionInspectResDTO'
-        '400':
+                $ref: "#/components/schemas/TransactionInspectResDTO"
+        "400":
           description: Bad Request
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '401':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "401":
           description: Unauthorized
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '403':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "403":
           description: Token jwt mancante o non valido
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '404':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "404":
           description: Not found
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '409':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "409":
           description: Conflict
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '413':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "413":
           description: Payload too large
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '429':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "429":
           description: Too Many Requests
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '500':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "500":
           description: Internal Server Error
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '502':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "502":
           description: Invalid response received from the API Implementation
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '503':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "503":
           description: Service unavailable
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-        '504':
+                $ref: "#/components/schemas/ErrorResponseDTO"
+        "504":
           description: Endpoint request timed-out
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
         default:
           description: default
           content:
             application/problem+json:
               schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
+                $ref: "#/components/schemas/ErrorResponseDTO"
+  /status:
+    get:
+      tags:
+      - Health check Status Actuator
+      summary: Health check status
+      description: Health check endpoint.
+      operationId: health
+      responses:
+        "200":
+          description: Health check OK
+          content:
+            application/problem+json: {}
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json: {}
+        default:
+          description: default
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
 components:
   schemas:
-    PublicationUpdateReqDTO:
-      required:
-        - assettoOrganizzativo
-        - identificativoDoc
-        - identificativoRep
-        - identificativoSottomissione
-        - tipoAttivitaClinica
-        - tipoDocumentoLivAlto
-        - tipologiaStruttura
-      type: object
-      properties:
-        tipologiaStruttura:
-          type: string
-          description: Tipologia struttura che ha prodotto il documento
-          enum:
-            - Ospedale
-            - Prevenzione
-            - Territorio
-            - SistemaTS
-            - Cittadino
-            - MdsPN_DGC
-        attiCliniciRegoleAccesso:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Regola di accesso
-        tipoDocumentoLivAlto:
-          type: string
-          description: Tipo documento alto livello
-          enum:
-            - WOR
-            - REF
-            - LDO
-            - RIC
-            - SUM
-            - TAC
-            - PRS
-            - PRE
-            - ESE
-            - PDC
-            - VAC
-            - CER
-            - VRB
-            - CON
-            - CNT
-        assettoOrganizzativo:
-          type: string
-          description: Assetto organizzativo che ha portato alla creazione del documento
-          enum:
-            - AD_PSC001
-            - AD_PSC002
-            - AD_PSC003
-            - AD_PSC004
-            - AD_PSC005
-            - AD_PSC006
-            - AD_PSC007
-            - AD_PSC008
-            - AD_PSC009
-            - AD_PSC010
-            - AD_PSC011
-            - AD_PSC012
-            - AD_PSC013
-            - AD_PSC014
-            - AD_PSC015
-            - AD_PSC018
-            - AD_PSC019
-            - AD_PSC020
-            - AD_PSC021
-            - AD_PSC024
-            - AD_PSC025
-            - AD_PSC026
-            - AD_PSC027
-            - AD_PSC028
-            - AD_PSC029
-            - AD_PSC030
-            - AD_PSC031
-            - AD_PSC032
-            - AD_PSC033
-            - AD_PSC034
-            - AD_PSC035
-            - AD_PSC036
-            - AD_PSC037
-            - AD_PSC038
-            - AD_PSC039
-            - AD_PSC040
-            - AD_PSC041
-            - AD_PSC042
-            - AD_PSC043
-            - AD_PSC046
-            - AD_PSC047
-            - AD_PSC048
-            - AD_PSC049
-            - AD_PSC050
-            - AD_PSC051
-            - AD_PSC052
-            - AD_PSC054
-            - AD_PSC055
-            - AD_PSC056
-            - AD_PSC057
-            - AD_PSC058
-            - AD_PSC060
-            - AD_PSC061
-            - AD_PSC062
-            - AD_PSC064
-            - AD_PSC065
-            - AD_PSC066
-            - AD_PSC067
-            - AD_PSC068
-            - AD_PSC069
-            - AD_PSC070
-            - AD_PSC071
-            - AD_PSC072
-            - AD_PSC073
-            - AD_PSC074
-            - AD_PSC075
-            - AD_PSC076
-            - AD_PSC077
-            - AD_PSC078
-            - AD_PSC094
-            - AD_PSC096
-            - AD_PSC097
-            - AD_PSC098
-            - AD_PSC099
-            - AD_PSC100
-            - AD_PSC101
-            - AD_PSC102
-            - AD_PSC103
-            - AD_PSC104
-            - AD_PSC107
-            - AD_PSC109
-            - AD_PSC121
-            - AD_PSC122
-            - AD_PSC126
-            - AD_PSC129
-            - AD_PSC130
-            - AD_PSC131
-            - AD_PSC199
-            - AD_PSC999
-        dataInizioPrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data inizio prestazione
-        dataFinePrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data fine prestazione
-        conservazioneANorma:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Conservazione a norma
-        tipoAttivitaClinica:
-          type: string
-          description: Tipo attivitÃ  clinica
-          enum:
-            - PHR
-            - CON
-            - DIS
-            - ERP
-            - Sistema_TS
-            - INI
-            - PN_DGC
-            - OBS
-        identificativoSottomissione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo sottomissione
-        descriptions:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Descriptions
-        administrativeRequest:
-          maxItems: 1000
-          minItems: 0
-          type: array
-          description: Administrative request
-          items:
-            type: string
-            description: Administrative request
-            enum:
-              - SSN
-              - INPATIENT
-              - NOSSN
-              - SSR
-              - DONOR
-        identificativoDoc:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo documento
-        identificativoRep:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo repository
-        mode:
-          type: string
-          description: ModalitÃ  di iniezione del CDA
-          enum:
-            - ATTACHMENT
-            - RESOURCE
-        healthDataFormat:
-          type: string
-          description: Formato dei dati sanitari
-          enum:
-            - CDA
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo del workflow
-      additionalProperties: false
     ErrorResponseDTO:
       type: object
+      additionalProperties: false
       properties:
         traceID:
-          maxLength: 100
-          minLength: 0
           type: string
           description: Indentificativo univoco della richiesta dell'utente
+          maxLength: 100
+          minLength: 0
         spanID:
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente
+            (differisce dal traceID solo in caso di chiamate sincrone in cascata)
           maxLength: 100
           minLength: 0
-          type: string
-          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
         type:
+          type: string
+          description: URI da utilizzare come identificativo del problema che si è
+            verificato
           maxLength: 100
           minLength: 0
-          type: string
-          description: URI da utilizzare come identificativo del problema che si Ã¨ verificato
         title:
-          maxLength: 1000
-          minLength: 0
           type: string
           description: Descrizione sintetica della tipologia d'errore
-        detail:
-          maxLength: 2147483647
+          maxLength: 1000
           minLength: 0
+        detail:
           type: string
           description: Dettaglio della tipologia d'errore
+          maxLength: 2147483647
+          minLength: 0
         status:
+          type: integer
+          format: int32
+          description: Stato http
           maximum: 599
           minimum: 100
-          type: integer
-          description: Stato http
-          format: int32
         instance:
-          maxLength: 100
-          minLength: 0
           type: string
           description: URI che identifica la specifica occorrenza del problema
+          maxLength: 100
+          minLength: 0
+    PublicationUpdateReqDTO:
+      type: object
       additionalProperties: false
+      properties:
+        tipologiaStruttura:
+          type: string
+          description: Tipologia struttura che ha prodotto il documento
+          enum:
+          - Ospedale
+          - Prevenzione
+          - Territorio
+          - SistemaTS
+          - Cittadino
+          - MdsPN_DGC
+        attiCliniciRegoleAccesso:
+          type: array
+          items:
+            description: Regola di accesso
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        tipoDocumentoLivAlto:
+          type: string
+          description: Tipo documento alto livello
+          enum:
+          - WOR
+          - REF
+          - LDO
+          - RIC
+          - SUM
+          - TAC
+          - PRS
+          - PRE
+          - ESE
+          - PDC
+          - VAC
+          - CER
+          - VRB
+          - CON
+          - CNT
+          - CRT
+          - LET
+          - PRO
+          - COL
+        assettoOrganizzativo:
+          type: string
+          description: Assetto organizzativo che ha portato alla creazione del documento
+          enum:
+          - AD_PSC001
+          - AD_PSC002
+          - AD_PSC003
+          - AD_PSC004
+          - AD_PSC005
+          - AD_PSC006
+          - AD_PSC007
+          - AD_PSC008
+          - AD_PSC009
+          - AD_PSC010
+          - AD_PSC011
+          - AD_PSC012
+          - AD_PSC013
+          - AD_PSC014
+          - AD_PSC015
+          - AD_PSC018
+          - AD_PSC019
+          - AD_PSC020
+          - AD_PSC021
+          - AD_PSC024
+          - AD_PSC025
+          - AD_PSC026
+          - AD_PSC027
+          - AD_PSC028
+          - AD_PSC029
+          - AD_PSC030
+          - AD_PSC031
+          - AD_PSC032
+          - AD_PSC033
+          - AD_PSC034
+          - AD_PSC035
+          - AD_PSC036
+          - AD_PSC037
+          - AD_PSC038
+          - AD_PSC039
+          - AD_PSC040
+          - AD_PSC041
+          - AD_PSC042
+          - AD_PSC043
+          - AD_PSC046
+          - AD_PSC047
+          - AD_PSC048
+          - AD_PSC049
+          - AD_PSC050
+          - AD_PSC051
+          - AD_PSC052
+          - AD_PSC054
+          - AD_PSC055
+          - AD_PSC056
+          - AD_PSC057
+          - AD_PSC058
+          - AD_PSC060
+          - AD_PSC061
+          - AD_PSC062
+          - AD_PSC064
+          - AD_PSC065
+          - AD_PSC066
+          - AD_PSC067
+          - AD_PSC068
+          - AD_PSC069
+          - AD_PSC070
+          - AD_PSC071
+          - AD_PSC072
+          - AD_PSC073
+          - AD_PSC074
+          - AD_PSC075
+          - AD_PSC076
+          - AD_PSC077
+          - AD_PSC078
+          - AD_PSC094
+          - AD_PSC096
+          - AD_PSC097
+          - AD_PSC098
+          - AD_PSC099
+          - AD_PSC100
+          - AD_PSC101
+          - AD_PSC102
+          - AD_PSC103
+          - AD_PSC104
+          - AD_PSC107
+          - AD_PSC109
+          - AD_PSC121
+          - AD_PSC122
+          - AD_PSC126
+          - AD_PSC129
+          - AD_PSC130
+          - AD_PSC131
+          - AD_PSC199
+          - AD_PSC999
+        dataInizioPrestazione:
+          type: string
+          description: Data inizio prestazione
+          maxLength: 100
+          minLength: 0
+        dataFinePrestazione:
+          type: string
+          description: Data fine prestazione
+          maxLength: 100
+          minLength: 0
+        conservazioneANorma:
+          type: string
+          description: Conservazione a norma
+          maxLength: 100
+          minLength: 0
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attività clinica
+          enum:
+          - PHR
+          - CON
+          - DIS
+          - ERP
+          - Sistema_TS
+          - INI
+          - PN_DGC
+          - OBS
+        identificativoSottomissione:
+          type: string
+          description: Identificativo sottomissione
+          maxLength: 100
+          minLength: 0
+        descriptions:
+          type: array
+          items:
+            description: Descriptions
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        administrativeRequest:
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            enum:
+            - SSN
+            - INPATIENT
+            - NOSSN
+            - SSR
+            - DONOR
+            - AUTO
+            maxItems: 1000
+            minItems: 0
+          maxItems: 1000
+          minItems: 0
+        identificativoDoc:
+          type: string
+          description: Identificativo documento
+          maxLength: 256
+          minLength: 0
+        identificativoRep:
+          type: string
+          description: Identificativo repository
+          maxLength: 100
+          minLength: 0
+        mode:
+          type: string
+          description: Modalità di iniezione del CDA
+          enum:
+          - ATTACHMENT
+          - RESOURCE
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+          - CDA
+        workflowInstanceId:
+          type: string
+          description: Identificativo del workflow
+          maxLength: 256
+          minLength: 0
+      required:
+      - assettoOrganizzativo
+      - identificativoDoc
+      - identificativoRep
+      - identificativoSottomissione
+      - tipoAttivitaClinica
+      - tipoDocumentoLivAlto
+      - tipologiaStruttura
     PublicationResDTO:
       type: object
+      additionalProperties: false
       properties:
         traceID:
+          type: string
           maxLength: 100
           minLength: 0
-          type: string
         spanID:
+          type: string
           maxLength: 100
           minLength: 0
-          type: string
         warning:
-          maxLength: 10000
-          minLength: 0
           type: string
           description: Dettaglio del warning
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo del workflow instance id
-      additionalProperties: false
-    PublicationMetadataReqDTO:
-      required:
-        - assettoOrganizzativo
-        - identificativoSottomissione
-        - tipoAttivitaClinica
-        - tipoDocumentoLivAlto
-        - tipologiaStruttura
-      type: object
-      properties:
-        tipologiaStruttura:
-          type: string
-          description: Tipologia struttura che ha prodotto il documento
-          enum:
-            - Ospedale
-            - Prevenzione
-            - Territorio
-            - SistemaTS
-            - Cittadino
-            - MdsPN_DGC
-        attiCliniciRegoleAccesso:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Regola di accesso
-        tipoDocumentoLivAlto:
-          type: string
-          description: Tipo documento alto livello
-          enum:
-            - WOR
-            - REF
-            - LDO
-            - RIC
-            - SUM
-            - TAC
-            - PRS
-            - PRE
-            - ESE
-            - PDC
-            - VAC
-            - CER
-            - VRB
-            - CON
-            - CNT
-        assettoOrganizzativo:
-          type: string
-          description: Assetto organizzativo che ha portato alla creazione del documento
-          enum:
-            - AD_PSC001
-            - AD_PSC002
-            - AD_PSC003
-            - AD_PSC004
-            - AD_PSC005
-            - AD_PSC006
-            - AD_PSC007
-            - AD_PSC008
-            - AD_PSC009
-            - AD_PSC010
-            - AD_PSC011
-            - AD_PSC012
-            - AD_PSC013
-            - AD_PSC014
-            - AD_PSC015
-            - AD_PSC018
-            - AD_PSC019
-            - AD_PSC020
-            - AD_PSC021
-            - AD_PSC024
-            - AD_PSC025
-            - AD_PSC026
-            - AD_PSC027
-            - AD_PSC028
-            - AD_PSC029
-            - AD_PSC030
-            - AD_PSC031
-            - AD_PSC032
-            - AD_PSC033
-            - AD_PSC034
-            - AD_PSC035
-            - AD_PSC036
-            - AD_PSC037
-            - AD_PSC038
-            - AD_PSC039
-            - AD_PSC040
-            - AD_PSC041
-            - AD_PSC042
-            - AD_PSC043
-            - AD_PSC046
-            - AD_PSC047
-            - AD_PSC048
-            - AD_PSC049
-            - AD_PSC050
-            - AD_PSC051
-            - AD_PSC052
-            - AD_PSC054
-            - AD_PSC055
-            - AD_PSC056
-            - AD_PSC057
-            - AD_PSC058
-            - AD_PSC060
-            - AD_PSC061
-            - AD_PSC062
-            - AD_PSC064
-            - AD_PSC065
-            - AD_PSC066
-            - AD_PSC067
-            - AD_PSC068
-            - AD_PSC069
-            - AD_PSC070
-            - AD_PSC071
-            - AD_PSC072
-            - AD_PSC073
-            - AD_PSC074
-            - AD_PSC075
-            - AD_PSC076
-            - AD_PSC077
-            - AD_PSC078
-            - AD_PSC094
-            - AD_PSC096
-            - AD_PSC097
-            - AD_PSC098
-            - AD_PSC099
-            - AD_PSC100
-            - AD_PSC101
-            - AD_PSC102
-            - AD_PSC103
-            - AD_PSC104
-            - AD_PSC107
-            - AD_PSC109
-            - AD_PSC121
-            - AD_PSC122
-            - AD_PSC126
-            - AD_PSC129
-            - AD_PSC130
-            - AD_PSC131
-            - AD_PSC199
-            - AD_PSC999
-        dataInizioPrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data inizio prestazione
-        dataFinePrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data fine prestazione
-        conservazioneANorma:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Conservazione a norma
-        tipoAttivitaClinica:
-          type: string
-          description: Tipo attivitÃ  clinica
-          enum:
-            - PHR
-            - CON
-            - DIS
-            - ERP
-            - Sistema_TS
-            - INI
-            - PN_DGC
-            - OBS
-        identificativoSottomissione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo sottomissione
-        descriptions:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Descriptions
-        administrativeRequest:
-          maxItems: 1000
-          minItems: 0
-          type: array
-          description: Administrative request
-          items:
-            type: string
-            description: Administrative request
-            enum:
-              - SSN
-              - INPATIENT
-              - NOSSN
-              - SSR
-              - DONOR
-      additionalProperties: false
-    ResponseWifDTO:
-      type: object
-      properties:
-        traceID:
-          maxLength: 100
-          minLength: 0
-          type: string
-        spanID:
-          maxLength: 100
-          minLength: 0
-          type: string
-        warning:
-          maxLength: 10000
-          minLength: 0
-          type: string
-          description: Dettaglio del warning
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo del workflow instance id
-      additionalProperties: false
-    ValidateAndReplaceDTO:
-      required:
-        - assettoOrganizzativo
-        - identificativoDoc
-        - identificativoRep
-        - identificativoSottomissione
-        - tipoAttivitaClinica
-        - tipoDocumentoLivAlto
-        - tipologiaStruttura
-      type: object
-      properties:
-        tipologiaStruttura:
-          type: string
-          description: Tipologia struttura che ha prodotto il documento
-          enum:
-            - Ospedale
-            - Prevenzione
-            - Territorio
-            - SistemaTS
-            - Cittadino
-            - MdsPN_DGC
-        attiCliniciRegoleAccesso:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Regola di accesso
-        tipoDocumentoLivAlto:
-          type: string
-          description: Tipo documento alto livello
-          enum:
-            - WOR
-            - REF
-            - LDO
-            - RIC
-            - SUM
-            - TAC
-            - PRS
-            - PRE
-            - ESE
-            - PDC
-            - VAC
-            - CER
-            - VRB
-            - CON
-            - CNT
-        assettoOrganizzativo:
-          type: string
-          description: Assetto organizzativo che ha portato alla creazione del documento
-          enum:
-            - AD_PSC001
-            - AD_PSC002
-            - AD_PSC003
-            - AD_PSC004
-            - AD_PSC005
-            - AD_PSC006
-            - AD_PSC007
-            - AD_PSC008
-            - AD_PSC009
-            - AD_PSC010
-            - AD_PSC011
-            - AD_PSC012
-            - AD_PSC013
-            - AD_PSC014
-            - AD_PSC015
-            - AD_PSC018
-            - AD_PSC019
-            - AD_PSC020
-            - AD_PSC021
-            - AD_PSC024
-            - AD_PSC025
-            - AD_PSC026
-            - AD_PSC027
-            - AD_PSC028
-            - AD_PSC029
-            - AD_PSC030
-            - AD_PSC031
-            - AD_PSC032
-            - AD_PSC033
-            - AD_PSC034
-            - AD_PSC035
-            - AD_PSC036
-            - AD_PSC037
-            - AD_PSC038
-            - AD_PSC039
-            - AD_PSC040
-            - AD_PSC041
-            - AD_PSC042
-            - AD_PSC043
-            - AD_PSC046
-            - AD_PSC047
-            - AD_PSC048
-            - AD_PSC049
-            - AD_PSC050
-            - AD_PSC051
-            - AD_PSC052
-            - AD_PSC054
-            - AD_PSC055
-            - AD_PSC056
-            - AD_PSC057
-            - AD_PSC058
-            - AD_PSC060
-            - AD_PSC061
-            - AD_PSC062
-            - AD_PSC064
-            - AD_PSC065
-            - AD_PSC066
-            - AD_PSC067
-            - AD_PSC068
-            - AD_PSC069
-            - AD_PSC070
-            - AD_PSC071
-            - AD_PSC072
-            - AD_PSC073
-            - AD_PSC074
-            - AD_PSC075
-            - AD_PSC076
-            - AD_PSC077
-            - AD_PSC078
-            - AD_PSC094
-            - AD_PSC096
-            - AD_PSC097
-            - AD_PSC098
-            - AD_PSC099
-            - AD_PSC100
-            - AD_PSC101
-            - AD_PSC102
-            - AD_PSC103
-            - AD_PSC104
-            - AD_PSC107
-            - AD_PSC109
-            - AD_PSC121
-            - AD_PSC122
-            - AD_PSC126
-            - AD_PSC129
-            - AD_PSC130
-            - AD_PSC131
-            - AD_PSC199
-            - AD_PSC999
-        dataInizioPrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data inizio prestazione
-        dataFinePrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data fine prestazione
-        conservazioneANorma:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Conservazione a norma
-        tipoAttivitaClinica:
-          type: string
-          description: Tipo attivitÃ  clinica
-          enum:
-            - PHR
-            - CON
-            - DIS
-            - ERP
-            - Sistema_TS
-            - INI
-            - PN_DGC
-            - OBS
-        identificativoSottomissione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo sottomissione
-        descriptions:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Descriptions
-        administrativeRequest:
-          maxItems: 1000
-          minItems: 0
-          type: array
-          description: Administrative request
-          items:
-            type: string
-            description: Administrative request
-            enum:
-              - SSN
-              - INPATIENT
-              - NOSSN
-              - SSR
-              - DONOR
-        identificativoDoc:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo documento
-        identificativoRep:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo repository
-        mode:
-          type: string
-          description: ModalitÃ  di iniezione del CDA
-          enum:
-            - ATTACHMENT
-            - RESOURCE
-        healthDataFormat:
-          type: string
-          description: Formato dei dati sanitari
-          enum:
-            - CDA
-      additionalProperties: false
-    ValidationErrorResponseDTO:
-      type: object
-      properties:
-        traceID:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Indentificativo univoco della richiesta dell'utente
-        spanID:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Indentificativo univoco di un task della richiesta dell'utente (differisce dal traceID solo in caso di chiamate sincrone in cascata)
-        type:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: URI da utilizzare come identificativo del problema che si Ã¨ verificato
-        title:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: Descrizione sintetica della tipologia d'errore
-        detail:
-          maxLength: 2147483647
-          minLength: 0
-          type: string
-          description: Dettaglio della tipologia d'errore
-        status:
-          maximum: 599
-          minimum: 100
-          type: integer
-          description: Stato http
-          format: int32
-        instance:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: URI che identifica la specifica occorrenza del problema
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo del workflow
-      additionalProperties: false
-    PublicationCreationReqDTO:
-      required:
-        - assettoOrganizzativo
-        - identificativoDoc
-        - identificativoRep
-        - identificativoSottomissione
-        - tipoAttivitaClinica
-        - tipoDocumentoLivAlto
-        - tipologiaStruttura
-      type: object
-      properties:
-        tipologiaStruttura:
-          type: string
-          description: Tipologia struttura che ha prodotto il documento
-          enum:
-            - Ospedale
-            - Prevenzione
-            - Territorio
-            - SistemaTS
-            - Cittadino
-            - MdsPN_DGC
-        attiCliniciRegoleAccesso:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Regola di accesso
-        tipoDocumentoLivAlto:
-          type: string
-          description: Tipo documento alto livello
-          enum:
-            - WOR
-            - REF
-            - LDO
-            - RIC
-            - SUM
-            - TAC
-            - PRS
-            - PRE
-            - ESE
-            - PDC
-            - VAC
-            - CER
-            - VRB
-            - CON
-            - CNT
-        assettoOrganizzativo:
-          type: string
-          description: Assetto organizzativo che ha portato alla creazione del documento
-          enum:
-            - AD_PSC001
-            - AD_PSC002
-            - AD_PSC003
-            - AD_PSC004
-            - AD_PSC005
-            - AD_PSC006
-            - AD_PSC007
-            - AD_PSC008
-            - AD_PSC009
-            - AD_PSC010
-            - AD_PSC011
-            - AD_PSC012
-            - AD_PSC013
-            - AD_PSC014
-            - AD_PSC015
-            - AD_PSC018
-            - AD_PSC019
-            - AD_PSC020
-            - AD_PSC021
-            - AD_PSC024
-            - AD_PSC025
-            - AD_PSC026
-            - AD_PSC027
-            - AD_PSC028
-            - AD_PSC029
-            - AD_PSC030
-            - AD_PSC031
-            - AD_PSC032
-            - AD_PSC033
-            - AD_PSC034
-            - AD_PSC035
-            - AD_PSC036
-            - AD_PSC037
-            - AD_PSC038
-            - AD_PSC039
-            - AD_PSC040
-            - AD_PSC041
-            - AD_PSC042
-            - AD_PSC043
-            - AD_PSC046
-            - AD_PSC047
-            - AD_PSC048
-            - AD_PSC049
-            - AD_PSC050
-            - AD_PSC051
-            - AD_PSC052
-            - AD_PSC054
-            - AD_PSC055
-            - AD_PSC056
-            - AD_PSC057
-            - AD_PSC058
-            - AD_PSC060
-            - AD_PSC061
-            - AD_PSC062
-            - AD_PSC064
-            - AD_PSC065
-            - AD_PSC066
-            - AD_PSC067
-            - AD_PSC068
-            - AD_PSC069
-            - AD_PSC070
-            - AD_PSC071
-            - AD_PSC072
-            - AD_PSC073
-            - AD_PSC074
-            - AD_PSC075
-            - AD_PSC076
-            - AD_PSC077
-            - AD_PSC078
-            - AD_PSC094
-            - AD_PSC096
-            - AD_PSC097
-            - AD_PSC098
-            - AD_PSC099
-            - AD_PSC100
-            - AD_PSC101
-            - AD_PSC102
-            - AD_PSC103
-            - AD_PSC104
-            - AD_PSC107
-            - AD_PSC109
-            - AD_PSC121
-            - AD_PSC122
-            - AD_PSC126
-            - AD_PSC129
-            - AD_PSC130
-            - AD_PSC131
-            - AD_PSC199
-            - AD_PSC999
-        dataInizioPrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data inizio prestazione
-        dataFinePrestazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Data fine prestazione
-        conservazioneANorma:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Conservazione a norma
-        tipoAttivitaClinica:
-          type: string
-          description: Tipo attivitÃ  clinica
-          enum:
-            - PHR
-            - CON
-            - DIS
-            - ERP
-            - Sistema_TS
-            - INI
-            - PN_DGC
-            - OBS
-        identificativoSottomissione:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo sottomissione
-        descriptions:
-          maxItems: 100
-          minItems: 0
-          type: array
-          items:
-            maxLength: 1000
-            type: string
-            description: Descriptions
-        administrativeRequest:
-          maxItems: 1000
-          minItems: 0
-          type: array
-          description: Administrative request
-          items:
-            type: string
-            description: Administrative request
-            enum:
-              - SSN
-              - INPATIENT
-              - NOSSN
-              - SSR
-              - DONOR
-        identificativoDoc:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo documento
-        identificativoRep:
-          maxLength: 100
-          minLength: 0
-          type: string
-          description: Identificativo repository
-        mode:
-          type: string
-          description: ModalitÃ  di iniezione del CDA
-          enum:
-            - ATTACHMENT
-            - RESOURCE
-        healthDataFormat:
-          type: string
-          description: Formato dei dati sanitari
-          enum:
-            - CDA
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo del workflow
-        priorita:
-          type: boolean
-          description: Priorita
-      additionalProperties: false
-    ValidationCDAReqDTO:
-      required:
-        - activity
-      type: object
-      properties:
-        healthDataFormat:
-          type: string
-          description: Formato dei dati sanitari
-          enum:
-            - CDA
-        mode:
-          type: string
-          description: ModalitÃ  di iniezione del CDA
-          enum:
-            - ATTACHMENT
-            - RESOURCE
-        activity:
-          type: string
-          description: AttivitÃ  del gateway
-          enum:
-            - VERIFICA
-            - VALIDATION
-      additionalProperties: false
-    ValidationResDTO:
-      type: object
-      properties:
-        traceID:
-          maxLength: 100
-          minLength: 0
-          type: string
-        spanID:
-          maxLength: 100
-          minLength: 0
-          type: string
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-          description: Identificativo univoco della transazione
-        warning:
           maxLength: 200000
           minLength: 0
+        workflowInstanceId:
+          type: string
+          description: Identificativo del workflow instance id
+          maxLength: 256
+          minLength: 0
+    UpdateMetadataReqDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        tipologiaStruttura:
+          type: string
+          description: Tipologia struttura che ha prodotto il documento
+        attiCliniciRegoleAccesso:
+          type: array
+          items:
+            description: Regola di accesso
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        tipoDocumentoLivAlto:
+          type: string
+          description: Tipo documento alto livello
+        assettoOrganizzativo:
+          type: string
+          description: Assetto organizzativo che ha portato alla creazione del documento
+        dataInizioPrestazione:
+          type: string
+          description: Data inizio prestazione
+          maxLength: 100
+          minLength: 0
+        dataFinePrestazione:
+          type: string
+          description: Data fine prestazione
+          maxLength: 100
+          minLength: 0
+        conservazioneANorma:
+          type: string
+          description: Conservazione a norma
+          maxLength: 100
+          minLength: 0
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attività clinica
+        identificativoSottomissione:
+          type: string
+          description: Identificativo sottomissione
+          maxLength: 100
+          minLength: 0
+        descriptions:
+          type: array
+          items:
+            description: Descriptions
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        administrativeRequest:
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            maxItems: 1000
+            minItems: 0
+          maxItems: 1000
+          minItems: 0
+      required:
+      - assettoOrganizzativo
+      - identificativoSottomissione
+      - tipoAttivitaClinica
+      - tipoDocumentoLivAlto
+      - tipologiaStruttura
+    ResponseWifDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        traceID:
+          type: string
+          maxLength: 100
+          minLength: 0
+        spanID:
+          type: string
+          maxLength: 100
+          minLength: 0
+        warning:
           type: string
           description: Dettaglio del warning
-      additionalProperties: false
-    ValidateAndCreateDTO:
-      required:
-        - assettoOrganizzativo
-        - identificativoDoc
-        - identificativoRep
-        - identificativoSottomissione
-        - tipoAttivitaClinica
-        - tipoDocumentoLivAlto
-        - tipologiaStruttura
+          maxLength: 200000
+          minLength: 0
+        workflowInstanceId:
+          type: string
+          description: Identificativo del workflow instance id
+          maxLength: 256
+          minLength: 0
+    ValidateAndReplaceDTO:
       type: object
+      additionalProperties: false
       properties:
         tipologiaStruttura:
           type: string
           description: Tipologia struttura che ha prodotto il documento
           enum:
-            - Ospedale
-            - Prevenzione
-            - Territorio
-            - SistemaTS
-            - Cittadino
-            - MdsPN_DGC
+          - Ospedale
+          - Prevenzione
+          - Territorio
+          - SistemaTS
+          - Cittadino
+          - MdsPN_DGC
         attiCliniciRegoleAccesso:
-          maxItems: 100
-          minItems: 0
           type: array
           items:
-            maxLength: 1000
-            type: string
             description: Regola di accesso
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
         tipoDocumentoLivAlto:
           type: string
           description: Tipo documento alto livello
           enum:
-            - WOR
-            - REF
-            - LDO
-            - RIC
-            - SUM
-            - TAC
-            - PRS
-            - PRE
-            - ESE
-            - PDC
-            - VAC
-            - CER
-            - VRB
-            - CON
-            - CNT
+          - WOR
+          - REF
+          - LDO
+          - RIC
+          - SUM
+          - TAC
+          - PRS
+          - PRE
+          - ESE
+          - PDC
+          - VAC
+          - CER
+          - VRB
+          - CON
+          - CNT
+          - CRT
+          - LET
+          - PRO
+          - COL
         assettoOrganizzativo:
           type: string
           description: Assetto organizzativo che ha portato alla creazione del documento
           enum:
-            - AD_PSC001
-            - AD_PSC002
-            - AD_PSC003
-            - AD_PSC004
-            - AD_PSC005
-            - AD_PSC006
-            - AD_PSC007
-            - AD_PSC008
-            - AD_PSC009
-            - AD_PSC010
-            - AD_PSC011
-            - AD_PSC012
-            - AD_PSC013
-            - AD_PSC014
-            - AD_PSC015
-            - AD_PSC018
-            - AD_PSC019
-            - AD_PSC020
-            - AD_PSC021
-            - AD_PSC024
-            - AD_PSC025
-            - AD_PSC026
-            - AD_PSC027
-            - AD_PSC028
-            - AD_PSC029
-            - AD_PSC030
-            - AD_PSC031
-            - AD_PSC032
-            - AD_PSC033
-            - AD_PSC034
-            - AD_PSC035
-            - AD_PSC036
-            - AD_PSC037
-            - AD_PSC038
-            - AD_PSC039
-            - AD_PSC040
-            - AD_PSC041
-            - AD_PSC042
-            - AD_PSC043
-            - AD_PSC046
-            - AD_PSC047
-            - AD_PSC048
-            - AD_PSC049
-            - AD_PSC050
-            - AD_PSC051
-            - AD_PSC052
-            - AD_PSC054
-            - AD_PSC055
-            - AD_PSC056
-            - AD_PSC057
-            - AD_PSC058
-            - AD_PSC060
-            - AD_PSC061
-            - AD_PSC062
-            - AD_PSC064
-            - AD_PSC065
-            - AD_PSC066
-            - AD_PSC067
-            - AD_PSC068
-            - AD_PSC069
-            - AD_PSC070
-            - AD_PSC071
-            - AD_PSC072
-            - AD_PSC073
-            - AD_PSC074
-            - AD_PSC075
-            - AD_PSC076
-            - AD_PSC077
-            - AD_PSC078
-            - AD_PSC094
-            - AD_PSC096
-            - AD_PSC097
-            - AD_PSC098
-            - AD_PSC099
-            - AD_PSC100
-            - AD_PSC101
-            - AD_PSC102
-            - AD_PSC103
-            - AD_PSC104
-            - AD_PSC107
-            - AD_PSC109
-            - AD_PSC121
-            - AD_PSC122
-            - AD_PSC126
-            - AD_PSC129
-            - AD_PSC130
-            - AD_PSC131
-            - AD_PSC199
-            - AD_PSC999
+          - AD_PSC001
+          - AD_PSC002
+          - AD_PSC003
+          - AD_PSC004
+          - AD_PSC005
+          - AD_PSC006
+          - AD_PSC007
+          - AD_PSC008
+          - AD_PSC009
+          - AD_PSC010
+          - AD_PSC011
+          - AD_PSC012
+          - AD_PSC013
+          - AD_PSC014
+          - AD_PSC015
+          - AD_PSC018
+          - AD_PSC019
+          - AD_PSC020
+          - AD_PSC021
+          - AD_PSC024
+          - AD_PSC025
+          - AD_PSC026
+          - AD_PSC027
+          - AD_PSC028
+          - AD_PSC029
+          - AD_PSC030
+          - AD_PSC031
+          - AD_PSC032
+          - AD_PSC033
+          - AD_PSC034
+          - AD_PSC035
+          - AD_PSC036
+          - AD_PSC037
+          - AD_PSC038
+          - AD_PSC039
+          - AD_PSC040
+          - AD_PSC041
+          - AD_PSC042
+          - AD_PSC043
+          - AD_PSC046
+          - AD_PSC047
+          - AD_PSC048
+          - AD_PSC049
+          - AD_PSC050
+          - AD_PSC051
+          - AD_PSC052
+          - AD_PSC054
+          - AD_PSC055
+          - AD_PSC056
+          - AD_PSC057
+          - AD_PSC058
+          - AD_PSC060
+          - AD_PSC061
+          - AD_PSC062
+          - AD_PSC064
+          - AD_PSC065
+          - AD_PSC066
+          - AD_PSC067
+          - AD_PSC068
+          - AD_PSC069
+          - AD_PSC070
+          - AD_PSC071
+          - AD_PSC072
+          - AD_PSC073
+          - AD_PSC074
+          - AD_PSC075
+          - AD_PSC076
+          - AD_PSC077
+          - AD_PSC078
+          - AD_PSC094
+          - AD_PSC096
+          - AD_PSC097
+          - AD_PSC098
+          - AD_PSC099
+          - AD_PSC100
+          - AD_PSC101
+          - AD_PSC102
+          - AD_PSC103
+          - AD_PSC104
+          - AD_PSC107
+          - AD_PSC109
+          - AD_PSC121
+          - AD_PSC122
+          - AD_PSC126
+          - AD_PSC129
+          - AD_PSC130
+          - AD_PSC131
+          - AD_PSC199
+          - AD_PSC999
         dataInizioPrestazione:
-          maxLength: 100
-          minLength: 0
           type: string
           description: Data inizio prestazione
-        dataFinePrestazione:
           maxLength: 100
           minLength: 0
+        dataFinePrestazione:
           type: string
           description: Data fine prestazione
-        conservazioneANorma:
           maxLength: 100
           minLength: 0
+        conservazioneANorma:
           type: string
           description: Conservazione a norma
-        tipoAttivitaClinica:
-          type: string
-          description: Tipo attivitÃ  clinica
-          enum:
-            - PHR
-            - CON
-            - DIS
-            - ERP
-            - Sistema_TS
-            - INI
-            - PN_DGC
-            - OBS
-        identificativoSottomissione:
           maxLength: 100
           minLength: 0
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attività clinica
+          enum:
+          - PHR
+          - CON
+          - DIS
+          - ERP
+          - Sistema_TS
+          - INI
+          - PN_DGC
+          - OBS
+        identificativoSottomissione:
           type: string
           description: Identificativo sottomissione
+          maxLength: 100
+          minLength: 0
         descriptions:
-          maxItems: 100
-          minItems: 0
           type: array
           items:
-            maxLength: 1000
-            type: string
             description: Descriptions
-        administrativeRequest:
-          maxItems: 1000
+            maxLength: 1000
+          maxItems: 100
           minItems: 0
+        administrativeRequest:
           type: array
           description: Administrative request
           items:
             type: string
-            description: Administrative request
             enum:
-              - SSN
-              - INPATIENT
-              - NOSSN
-              - SSR
-              - DONOR
+            - SSN
+            - INPATIENT
+            - NOSSN
+            - SSR
+            - DONOR
+            - AUTO
+            maxItems: 1000
+            minItems: 0
+          maxItems: 1000
+          minItems: 0
         identificativoDoc:
-          maxLength: 100
-          minLength: 0
           type: string
           description: Identificativo documento
-        identificativoRep:
-          maxLength: 100
+          maxLength: 256
           minLength: 0
+        identificativoRep:
           type: string
           description: Identificativo repository
+          maxLength: 100
+          minLength: 0
         mode:
           type: string
-          description: ModalitÃ  di iniezione del CDA
+          description: Modalità di iniezione del CDA
           enum:
-            - ATTACHMENT
-            - RESOURCE
+          - ATTACHMENT
+          - RESOURCE
         healthDataFormat:
           type: string
           description: Formato dei dati sanitari
           enum:
-            - CDA
+          - CDA
+      required:
+      - assettoOrganizzativo
+      - identificativoDoc
+      - identificativoRep
+      - identificativoSottomissione
+      - tipoAttivitaClinica
+      - tipoDocumentoLivAlto
+      - tipologiaStruttura
+    ValidationErrorResponseDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        traceID:
+          type: string
+          description: Indentificativo univoco della richiesta dell'utente
+          maxLength: 100
+          minLength: 0
+        spanID:
+          type: string
+          description: Indentificativo univoco di un task della richiesta dell'utente
+            (differisce dal traceID solo in caso di chiamate sincrone in cascata)
+          maxLength: 100
+          minLength: 0
+        type:
+          type: string
+          description: URI da utilizzare come identificativo del problema che si è
+            verificato
+          maxLength: 100
+          minLength: 0
+        title:
+          type: string
+          description: Descrizione sintetica della tipologia d'errore
+          maxLength: 1000
+          minLength: 0
+        detail:
+          type: string
+          description: Dettaglio della tipologia d'errore
+          maxLength: 2147483647
+          minLength: 0
+        status:
+          type: integer
+          format: int32
+          description: Stato http
+          maximum: 599
+          minimum: 100
+        instance:
+          type: string
+          description: URI che identifica la specifica occorrenza del problema
+          maxLength: 100
+          minLength: 0
+        workflowInstanceId:
+          type: string
+          description: Identificativo del workflow
+          maxLength: 256
+          minLength: 0
+    PublicationCreationReqDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        tipologiaStruttura:
+          type: string
+          description: Tipologia struttura che ha prodotto il documento
+          enum:
+          - Ospedale
+          - Prevenzione
+          - Territorio
+          - SistemaTS
+          - Cittadino
+          - MdsPN_DGC
+        attiCliniciRegoleAccesso:
+          type: array
+          items:
+            description: Regola di accesso
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        tipoDocumentoLivAlto:
+          type: string
+          description: Tipo documento alto livello
+          enum:
+          - WOR
+          - REF
+          - LDO
+          - RIC
+          - SUM
+          - TAC
+          - PRS
+          - PRE
+          - ESE
+          - PDC
+          - VAC
+          - CER
+          - VRB
+          - CON
+          - CNT
+          - CRT
+          - LET
+          - PRO
+          - COL
+        assettoOrganizzativo:
+          type: string
+          description: Assetto organizzativo che ha portato alla creazione del documento
+          enum:
+          - AD_PSC001
+          - AD_PSC002
+          - AD_PSC003
+          - AD_PSC004
+          - AD_PSC005
+          - AD_PSC006
+          - AD_PSC007
+          - AD_PSC008
+          - AD_PSC009
+          - AD_PSC010
+          - AD_PSC011
+          - AD_PSC012
+          - AD_PSC013
+          - AD_PSC014
+          - AD_PSC015
+          - AD_PSC018
+          - AD_PSC019
+          - AD_PSC020
+          - AD_PSC021
+          - AD_PSC024
+          - AD_PSC025
+          - AD_PSC026
+          - AD_PSC027
+          - AD_PSC028
+          - AD_PSC029
+          - AD_PSC030
+          - AD_PSC031
+          - AD_PSC032
+          - AD_PSC033
+          - AD_PSC034
+          - AD_PSC035
+          - AD_PSC036
+          - AD_PSC037
+          - AD_PSC038
+          - AD_PSC039
+          - AD_PSC040
+          - AD_PSC041
+          - AD_PSC042
+          - AD_PSC043
+          - AD_PSC046
+          - AD_PSC047
+          - AD_PSC048
+          - AD_PSC049
+          - AD_PSC050
+          - AD_PSC051
+          - AD_PSC052
+          - AD_PSC054
+          - AD_PSC055
+          - AD_PSC056
+          - AD_PSC057
+          - AD_PSC058
+          - AD_PSC060
+          - AD_PSC061
+          - AD_PSC062
+          - AD_PSC064
+          - AD_PSC065
+          - AD_PSC066
+          - AD_PSC067
+          - AD_PSC068
+          - AD_PSC069
+          - AD_PSC070
+          - AD_PSC071
+          - AD_PSC072
+          - AD_PSC073
+          - AD_PSC074
+          - AD_PSC075
+          - AD_PSC076
+          - AD_PSC077
+          - AD_PSC078
+          - AD_PSC094
+          - AD_PSC096
+          - AD_PSC097
+          - AD_PSC098
+          - AD_PSC099
+          - AD_PSC100
+          - AD_PSC101
+          - AD_PSC102
+          - AD_PSC103
+          - AD_PSC104
+          - AD_PSC107
+          - AD_PSC109
+          - AD_PSC121
+          - AD_PSC122
+          - AD_PSC126
+          - AD_PSC129
+          - AD_PSC130
+          - AD_PSC131
+          - AD_PSC199
+          - AD_PSC999
+        dataInizioPrestazione:
+          type: string
+          description: Data inizio prestazione
+          maxLength: 100
+          minLength: 0
+        dataFinePrestazione:
+          type: string
+          description: Data fine prestazione
+          maxLength: 100
+          minLength: 0
+        conservazioneANorma:
+          type: string
+          description: Conservazione a norma
+          maxLength: 100
+          minLength: 0
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attività clinica
+          enum:
+          - PHR
+          - CON
+          - DIS
+          - ERP
+          - Sistema_TS
+          - INI
+          - PN_DGC
+          - OBS
+        identificativoSottomissione:
+          type: string
+          description: Identificativo sottomissione
+          maxLength: 100
+          minLength: 0
+        descriptions:
+          type: array
+          items:
+            description: Descriptions
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        administrativeRequest:
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            enum:
+            - SSN
+            - INPATIENT
+            - NOSSN
+            - SSR
+            - DONOR
+            - AUTO
+            maxItems: 1000
+            minItems: 0
+          maxItems: 1000
+          minItems: 0
+        identificativoDoc:
+          type: string
+          description: Identificativo documento
+          maxLength: 256
+          minLength: 0
+        identificativoRep:
+          type: string
+          description: Identificativo repository
+          maxLength: 100
+          minLength: 0
+        mode:
+          type: string
+          description: Modalità di iniezione del CDA
+          enum:
+          - ATTACHMENT
+          - RESOURCE
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+          - CDA
+        workflowInstanceId:
+          type: string
+          description: Identificativo del workflow
+          maxLength: 256
+          minLength: 0
         priorita:
           type: boolean
           description: Priorita
-      additionalProperties: false
-    StatusCheckDTO:
+      required:
+      - assettoOrganizzativo
+      - identificativoDoc
+      - identificativoRep
+      - identificativoSottomissione
+      - tipoAttivitaClinica
+      - tipoDocumentoLivAlto
+      - tipologiaStruttura
+    ValidationCDAReqDTO:
       type: object
+      additionalProperties: false
       properties:
-        eventType:
-          maxLength: 100
-          minLength: 0
+        healthDataFormat:
           type: string
-        eventDate:
-          maxLength: 100
-          minLength: 0
+          description: Formato dei dati sanitari
+          enum:
+          - CDA
+        mode:
           type: string
-        eventStatus:
-          maxLength: 100
-          minLength: 0
+          description: Modalità di iniezione del CDA
+          enum:
+          - ATTACHMENT
+          - RESOURCE
+        activity:
           type: string
-        message:
-          maxLength: 50000
-          minLength: 0
-          type: string
-        identificativoDocumento:
-          maxLength: 100
-          minLength: 0
-          type: string
-        subject:
-          maxLength: 100
-          minLength: 0
-          type: string
-        subjectRole:
-          maxLength: 100
-          minLength: 0
-          type: string
-        tipoAttivita:
-          maxLength: 100
-          minLength: 0
-          type: string
-        organizzazione:
-          maxLength: 100
-          minLength: 0
-          type: string
-        workflowInstanceId:
-          maxLength: 256
-          minLength: 0
-          type: string
-        traceId:
-          maxLength: 100
-          minLength: 0
-          type: string
-        issuer:
-          maxLength: 100
-          minLength: 0
-          type: string
-        expiringDate:
-          maxLength: 100
-          minLength: 0
-          type: string
-        extra:
-          maxLength: 10000
-          minLength: 0
-          type: string
-      additionalProperties: false
-    TransactionInspectResDTO:
+          description: Attività del gateway
+          enum:
+          - VERIFICA
+          - VALIDATION
+      required:
+      - activity
+    ValidationResDTO:
       type: object
+      additionalProperties: false
       properties:
         traceID:
+          type: string
           maxLength: 100
           minLength: 0
-          type: string
         spanID:
+          type: string
           maxLength: 100
           minLength: 0
+        workflowInstanceId:
           type: string
-        transactionData:
-          maxItems: 1000
-          minItems: 0
+          description: Identificativo univoco della transazione
+          maxLength: 256
+          minLength: 0
+        warning:
+          type: string
+          description: Dettaglio del warning
+          maxLength: 200000
+          minLength: 0
+    ValidateAndCreateDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        tipologiaStruttura:
+          type: string
+          description: Tipologia struttura che ha prodotto il documento
+          enum:
+          - Ospedale
+          - Prevenzione
+          - Territorio
+          - SistemaTS
+          - Cittadino
+          - MdsPN_DGC
+        attiCliniciRegoleAccesso:
           type: array
           items:
-            $ref: '#/components/schemas/StatusCheckDTO'
+            description: Regola di accesso
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        tipoDocumentoLivAlto:
+          type: string
+          description: Tipo documento alto livello
+          enum:
+          - WOR
+          - REF
+          - LDO
+          - RIC
+          - SUM
+          - TAC
+          - PRS
+          - PRE
+          - ESE
+          - PDC
+          - VAC
+          - CER
+          - VRB
+          - CON
+          - CNT
+          - CRT
+          - LET
+          - PRO
+          - COL
+        assettoOrganizzativo:
+          type: string
+          description: Assetto organizzativo che ha portato alla creazione del documento
+          enum:
+          - AD_PSC001
+          - AD_PSC002
+          - AD_PSC003
+          - AD_PSC004
+          - AD_PSC005
+          - AD_PSC006
+          - AD_PSC007
+          - AD_PSC008
+          - AD_PSC009
+          - AD_PSC010
+          - AD_PSC011
+          - AD_PSC012
+          - AD_PSC013
+          - AD_PSC014
+          - AD_PSC015
+          - AD_PSC018
+          - AD_PSC019
+          - AD_PSC020
+          - AD_PSC021
+          - AD_PSC024
+          - AD_PSC025
+          - AD_PSC026
+          - AD_PSC027
+          - AD_PSC028
+          - AD_PSC029
+          - AD_PSC030
+          - AD_PSC031
+          - AD_PSC032
+          - AD_PSC033
+          - AD_PSC034
+          - AD_PSC035
+          - AD_PSC036
+          - AD_PSC037
+          - AD_PSC038
+          - AD_PSC039
+          - AD_PSC040
+          - AD_PSC041
+          - AD_PSC042
+          - AD_PSC043
+          - AD_PSC046
+          - AD_PSC047
+          - AD_PSC048
+          - AD_PSC049
+          - AD_PSC050
+          - AD_PSC051
+          - AD_PSC052
+          - AD_PSC054
+          - AD_PSC055
+          - AD_PSC056
+          - AD_PSC057
+          - AD_PSC058
+          - AD_PSC060
+          - AD_PSC061
+          - AD_PSC062
+          - AD_PSC064
+          - AD_PSC065
+          - AD_PSC066
+          - AD_PSC067
+          - AD_PSC068
+          - AD_PSC069
+          - AD_PSC070
+          - AD_PSC071
+          - AD_PSC072
+          - AD_PSC073
+          - AD_PSC074
+          - AD_PSC075
+          - AD_PSC076
+          - AD_PSC077
+          - AD_PSC078
+          - AD_PSC094
+          - AD_PSC096
+          - AD_PSC097
+          - AD_PSC098
+          - AD_PSC099
+          - AD_PSC100
+          - AD_PSC101
+          - AD_PSC102
+          - AD_PSC103
+          - AD_PSC104
+          - AD_PSC107
+          - AD_PSC109
+          - AD_PSC121
+          - AD_PSC122
+          - AD_PSC126
+          - AD_PSC129
+          - AD_PSC130
+          - AD_PSC131
+          - AD_PSC199
+          - AD_PSC999
+        dataInizioPrestazione:
+          type: string
+          description: Data inizio prestazione
+          maxLength: 100
+          minLength: 0
+        dataFinePrestazione:
+          type: string
+          description: Data fine prestazione
+          maxLength: 100
+          minLength: 0
+        conservazioneANorma:
+          type: string
+          description: Conservazione a norma
+          maxLength: 100
+          minLength: 0
+        tipoAttivitaClinica:
+          type: string
+          description: Tipo attività clinica
+          enum:
+          - PHR
+          - CON
+          - DIS
+          - ERP
+          - Sistema_TS
+          - INI
+          - PN_DGC
+          - OBS
+        identificativoSottomissione:
+          type: string
+          description: Identificativo sottomissione
+          maxLength: 100
+          minLength: 0
+        descriptions:
+          type: array
+          items:
+            description: Descriptions
+            maxLength: 1000
+          maxItems: 100
+          minItems: 0
+        administrativeRequest:
+          type: array
+          description: Administrative request
+          items:
+            type: string
+            enum:
+            - SSN
+            - INPATIENT
+            - NOSSN
+            - SSR
+            - DONOR
+            - AUTO
+            maxItems: 1000
+            minItems: 0
+          maxItems: 1000
+          minItems: 0
+        identificativoDoc:
+          type: string
+          description: Identificativo documento
+          maxLength: 256
+          minLength: 0
+        identificativoRep:
+          type: string
+          description: Identificativo repository
+          maxLength: 100
+          minLength: 0
+        mode:
+          type: string
+          description: Modalità di iniezione del CDA
+          enum:
+          - ATTACHMENT
+          - RESOURCE
+        healthDataFormat:
+          type: string
+          description: Formato dei dati sanitari
+          enum:
+          - CDA
+      required:
+      - assettoOrganizzativo
+      - identificativoDoc
+      - identificativoRep
+      - identificativoSottomissione
+      - tipoAttivitaClinica
+      - tipoDocumentoLivAlto
+      - tipologiaStruttura
+    ValidationFHIRReqDTO:
+      type: object
       additionalProperties: false
+      properties:
+        activity:
+          type: string
+          description: Attività del gateway
+          enum:
+          - VERIFICA
+          - VALIDATION
+        mode:
+          type: string
+          description: Modalità di iniezione del FHIR
+          enum:
+          - ATTACHMENT
+          - RESOURCE
+      required:
+      - activity
+      - mode
+    StatusCheckDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        eventType:
+          type: string
+          maxLength: 100
+          minLength: 0
+        eventDate:
+          type: string
+          maxLength: 100
+          minLength: 0
+        eventStatus:
+          type: string
+          maxLength: 100
+          minLength: 0
+        message:
+          type: string
+          maxLength: 50000
+          minLength: 0
+        identificativoDocumento:
+          type: string
+          maxLength: 256
+          minLength: 0
+        subject:
+          type: string
+          maxLength: 100
+          minLength: 0
+        subjectRole:
+          type: string
+          maxLength: 100
+          minLength: 0
+        tipoAttivita:
+          type: string
+          maxLength: 100
+          minLength: 0
+        organizzazione:
+          type: string
+          maxLength: 100
+          minLength: 0
+        workflowInstanceId:
+          type: string
+          maxLength: 256
+          minLength: 0
+        traceId:
+          type: string
+          maxLength: 100
+          minLength: 0
+        issuer:
+          type: string
+          maxLength: 100
+          minLength: 0
+        expiringDate:
+          type: string
+          maxLength: 100
+          minLength: 0
+        extra:
+          type: string
+          maxLength: 10000
+          minLength: 0
+    TransactionInspectResDTO:
+      type: object
+      additionalProperties: false
+      properties:
+        traceID:
+          type: string
+          maxLength: 100
+          minLength: 0
+        spanID:
+          type: string
+          maxLength: 100
+          minLength: 0
+        transactionData:
+          type: array
+          items:
+            $ref: "#/components/schemas/StatusCheckDTO"
+          maxItems: 1000
+          minItems: 0
   securitySchemes:
     bearerAuth:
       type: http
-      description: 'JWT Authorization header using the Bearer scheme. Example: "Authorization: Bearer {token} [RFC8725](https://tools.ietf.org/html/RFC8725)."'
+      description: "JWT Authorization header using the Bearer scheme. Example: \"\
+        Authorization: Bearer {token} [RFC8725](https://tools.ietf.org/html/RFC8725).\""
       scheme: bearer
       bearerFormat: JWT
     FSE-JWT-Signature:
