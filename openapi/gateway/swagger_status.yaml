@@ -1,5 +1,4 @@
 openapi: 3.0.1
-
 info:
   title: Gateway Status
   description: Gateway Status
@@ -17,75 +16,30 @@ servers:
     description: Generated server url
 
 x-sandbox: true
-
 paths:
   /v1/workflow/status:
     post:
       tags:
-        - Workflow Notification Test Endpoint
-      summary: Riceve notifica di stato workflow dal microservizio notifier (test endpoint)
+      - Workflow Notification Test Endpoint
+      summary: Riceve notifica di stato workflow dal microservizio notifier (test
+        endpoint)
       operationId: receiveWorkflowStatus
-      security:
-        - {}
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/WorkflowStatusDTO"
+        required: true
       responses:
-        '200':
-          description: Workflow status processed successfully
+        default:
+          description: default response
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WorkflowStatusResponseDTO'
-
-        '400':
-          description: Bad Request - Invalid payload
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-
-        '404':
-          description: Workflow instance not found
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-
-        '500':
-          description: Internal Server Error
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseDTO'
-
+            application/json: {}
 components:
   schemas:
-
-    WorkflowStatusDTO:
-      type: object
-      additionalProperties: false
-      required:
-        - workflowInstanceId
-        - events
-      properties:
-        workflowInstanceId:
-          type: string
-        events:
-          type: array
-          items:
-            $ref: "#/components/schemas/EventDTO"
-
     EventDTO:
       type: object
       additionalProperties: false
-      required:
-        - eventType
-        - eventDate
-        - eventStatus
       properties:
         eventType:
           type: string
@@ -94,22 +48,21 @@ components:
           format: date-time
         eventStatus:
           type: string
-          enum:
-            - SUCCESS
-            - BLOCKING_ERROR
         issuer:
           type: string
-
-    WorkflowStatusResponseDTO:
+        message:
+          type: string
+          
+    WorkflowStatusDTO:
       type: object
       additionalProperties: false
       properties:
         workflowInstanceId:
           type: string
-          description: Identificativo del workflow
-        message:
-          type: string
-          description: Messaggio descrittivo sulla ricezione dello stato
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/EventDTO"
 
     ErrorResponseDTO:
       type: object
