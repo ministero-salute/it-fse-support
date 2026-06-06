@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.19
+   <td>ver 2.20
    </td>
   </tr>
 </table>
@@ -84,21 +84,22 @@
     - [10.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#1022-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
     - [10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#1023-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
 - [11. Servizio di Notifica Stato Transazione](#11-servizio-di-notifica-stato-transazione)
-  - [11.1. Modalità Push](#111-modalità-push)
-    - [11.1.1. Endpoint Push Broker verso Gateway](#1111-endpoint-push-broker-verso-gateway)
-    - [11.1.2. Request](#1112-request)
-    - [11.1.3. Parametri Body](#1113-parametri-body)
-  - [11.2. Notifica verso l’Utente Finale](#112-notifica-verso-lutente-finale)
-    - [11.2.1. Endpoint (Gateway verso touchpoint)](#1121-endpoint-gateway-verso-touchpoint)
-    - [11.2.2. Payload di Notifica in caso di success](#1122-payload-di-notifica-in-caso-di-success)
-    - [11.2.3. Payload di Notifica in caso di errore verso INI](#1123-payload-di-notifica-in-caso-di-errore-verso-ini)
-    - [11.2.4. Payload di Notifica in caso di errore verso UAR](#1124-payload-di-notifica-in-caso-di-errore-verso-uar)
-  - [11.3. Comportamento della Tabella di Routing del Gateway](#113-comportamento-della-tabella-di-routing-del-gateway)
-  - [11.4. Modalità Pull](#114-modalità-pull)
-    - [11.4.1. Endpoint Pull Gateway verso Broker](#1141-endpoint-pull-gateway-verso-broker)
-    - [11.4.2. Response](#1142-response)
-    - [11.4.3. Esempio risposta 200](#1143-esempio-risposta-200)
-  - [11.5. Stati transazione](#115-stati-transazione)
+  - [11.1. Modalità di Comunicazione e Paradigma di Sicurezza](#111-modalità-di-comunicazione-e-paradigma-di-sicurezza)
+  - [11.2. Modalità Push](#112-modalità-push)
+    - [11.2.1. Endpoint Push Broker verso Gateway](#1121-endpoint-push-broker-verso-gateway)
+    - [11.2.2. Request](#1122-request)
+    - [11.2.3. Parametri Body](#1123-parametri-body)
+  - [11.3. Notifica verso l’Utente Finale](#113-notifica-verso-lutente-finale)
+    - [11.3.1. Endpoint (Gateway verso touchpoint)](#1131-endpoint-gateway-verso-touchpoint)
+    - [11.3.2. Payload di Notifica in caso di success](#1132-payload-di-notifica-in-caso-di-success)
+    - [11.3.3. Payload di Notifica in caso di errore verso INI](#1133-payload-di-notifica-in-caso-di-errore-verso-ini)
+    - [11.3.4. Payload di Notifica in caso di errore verso UAR](#1134-payload-di-notifica-in-caso-di-errore-verso-uar)
+  - [11.4. Comportamento della Tabella di Routing del Gateway](#114-comportamento-della-tabella-di-routing-del-gateway)
+  - [11.5. Modalità Pull](#115-modalità-pull)
+    - [11.5.1. Endpoint Pull Gateway verso Broker](#1151-endpoint-pull-gateway-verso-broker)
+    - [11.5.2. Response](#1152-response)
+    - [11.5.3. Esempio risposta 200](#1153-esempio-risposta-200)
+  - [11.6. Stati transazione](#116-stati-transazione)
 - [12. Servizio di Recupero Stato Transazione per TraceId](#12-servizio-di-recupero-stato-transazione-per-traceid)
   - [12.1. Request](#121-request)
     - [12.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1211-esempio-messaggio-di-richiesta-stato-transazioni)
@@ -662,6 +663,13 @@ _Tabella 2: Acronimi e Definizioni_
     <td>
       Paragrafi modificati:
       <p>2. Aggiornata tabella degli endpoint e funzionalità</p>
+    </td>
+  </tr>
+  <tr>
+    <td>2.20</td>
+    <td>05/06/2026</td>
+    <td>
+      Aggiornamento capitolo 11 con aggiunta paragrafo autenticazione
     </td>
   </tr>
 </table>
@@ -4789,7 +4797,15 @@ Il servizio opera secondo due modalità distinte:
 - **push** (modalità primaria e da prediligere);
 - **pull** (modalità residuale, utilizzata solo per il recupero dello stato in caso di notifiche non ricevute).
 
-## 11.1. Modalità Push
+## 11.1. Modalità di Comunicazione e Paradigma di Sicurezza
+
+Il processo di autenticazione rispetta il seguente pattern delle Linee Guida ModI:
+
+* ID_AUTH_REST_01 [^5]
+
+Il canale di notifica tra infrastruttura centrale e livello regionale utilizza TLS unidirezionale su HTTPS: il Gateway FSE (server) espone un certificato X.509 emesso dalla CA del Ministero della Salute, mentre il Touchpoint Regionale (client) ne verifica l'autenticità tramite un Truststore contenente la CA Root ministeriale, senza presentare certificati propri.
+
+## 11.2. Modalità Push
 
 In modalità **push**, il Gateway riceve dal **Broker** la notifica dello stato di una transazione asincrona precedentemente avviata.
 
@@ -4810,19 +4826,19 @@ In questa modalità, il Gateway ha un ruolo attivo di **propagazione dello stato
 
 La notifica verso il touchpoint finale **non contiene esclusivamente l’ultimo stato**, ma una **lista ordinata degli eventi di stato** associati al medesimo `workflowInstanceId`, così da consentire al chiamante una visione completa dell’evoluzione del workflow.
 
-### 11.1.1. Endpoint Push Broker verso Gateway
+### 11.2.1. Endpoint Push Broker verso Gateway
 
 ```
 http://<HOST>:<PORT>/v<major>/ingestion/status
 ```
 
-### 11.1.2. Request
+### 11.2.2. Request
 
 | METHOD | URL                    | TYPE             |
 | ------ | ---------------------- | ---------------- |
 | POST   | `/v1/ingestion/status` | application/json |
 
-### 11.1.3. Parametri Body
+### 11.2.3. Parametri Body
 
 | KEY                | TYPE   | REQUIRED |
 | ------------------ | ------ | -------- |
@@ -4866,7 +4882,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
 }
 ```
 
-## 11.2. Notifica verso l’Utente Finale
+## 11.3. Notifica verso l’Utente Finale
 
 Il Gateway invia la notifica verso il touchpoint finale secondo le preferenze espresse in fase di invocazione iniziale, come riportato in precedenza.
 
@@ -4876,13 +4892,13 @@ Le specifiche OpenAPI di tale endpoint sono disponibili nella repository GitHub 
 
 https://github.com/ministero-salute/it-fse-support/tree/main/openapi/gateway/swagger_status.yaml
 
-### 11.2.1. Endpoint (Gateway verso touchpoint)
+### 11.3.1. Endpoint (Gateway verso touchpoint)
 
 ```
 POST http://<CALLBACK_HOST>/v1/workflow/status
 ```
 
-### 11.2.2. Payload di Notifica in caso di success
+### 11.3.2. Payload di Notifica in caso di success
 
 ```json
 {
@@ -4922,7 +4938,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### 11.2.3. Payload di Notifica in caso di errore verso INI
+### 11.3.3. Payload di Notifica in caso di errore verso INI
 
 ```json
 {
@@ -4950,7 +4966,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### 11.2.4. Payload di Notifica in caso di errore verso UAR
+### 11.3.4. Payload di Notifica in caso di errore verso UAR
 
 ```json
 {
@@ -4984,8 +5000,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
       "eventType": "UAR_FINAL_STATUS",
       "eventDate": "2025-10-10T16:48:45.480Z",
       "eventStatus": "BLOCKING_ERROR",
-      "issuer": "integrity:S1#111#TEST-CRASH-2",
-      "message": "500 Internal Server Error on GET request for /v1/document/check-exist/2.16.840.1.113883.2.9.2.150.4.4%5E29602816": "{"traceID":"3d7c41edbfc7e4ad34aa28decab4f4ce","spanID":"dfd0b6a9e451a56a","type":"/err/server","title":"Server error","detail":"HAPI-1361: Failed to parse response from server when performing GET to URL /fhir/DocumentReference?identifier=29602816 - org.apache.http.conn.HttpHostConnectException: Connection refused: no further information","status":500,"instance":"/internal"}""
+      "issuer": "integrity:S1#111#TEST-CRASH-2"
     }
   ]
 }
@@ -4993,7 +5008,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 
 Il Gateway garantisce che gli eventi siano restituiti in ordine cronologico e che includano tutte le informazioni utili alla diagnosi e al monitoraggio del processo.
 
-## 11.3. Comportamento della Tabella di Routing del Gateway
+## 11.4. Comportamento della Tabella di Routing del Gateway
 
 La **tabella di routing del Gateway** ha lo scopo di determinare il corretto endpoint di notifica verso il client finale quando non viene fornito un indirizzo di callback esplicito.
 
@@ -5012,7 +5027,7 @@ Il comportamento è il seguente:
 
 Questo meccanismo consente al Gateway di supportare sia integrazioni dinamiche basate su callback, sia integrazioni statiche basate su configurazione, garantendo flessibilità e controllo centralizzato dei touchpoint di uscita.
 
-## 11.4. Modalità Pull
+## 11.5. Modalità Pull
 
 La modalità **pull** è prevista esclusivamente per scenari eccezionali in cui il Gateway non abbia ricevuto la notifica in modalità push.
 
@@ -5020,7 +5035,7 @@ In questo scenario, il Gateway attiva una **schedulazione periodica** che invoca
 
 Il Gateway utilizza la risposta ricevuta per aggiornare il proprio stato interno e completare la riconciliazione del workflow.
 
-### 11.4.1. Endpoint Pull Gateway verso Broker
+### 11.5.1. Endpoint Pull Gateway verso Broker
 
 ```
 http://<HOST>:<PORT>/v<major>/status/{workflowInstanceId}
@@ -5046,7 +5061,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
   -H "FSE-JWT-Signature: <signed-jwt>"
 ```
 
-### 11.4.2. Response
+### 11.5.2. Response
 
 | STATUS | SIGNIFICATO                                | TIPO                     |
 | ------ | ------------------------------------------ | ------------------------ |
@@ -5054,7 +5069,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
 | 404    | Workflow non trovato                       | application/problem+json |
 | 500    | Errore interno del server                  | application/problem+json |
 
-### 11.4.3. Esempio risposta 200
+### 11.5.3. Esempio risposta 200
 
 ```json
 {
@@ -5066,7 +5081,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
 }
 ```
 
-## 11.5. Stati transazione
+## 11.6. Stati transazione
 Di seguito sono riportati i diversi stati che possono essere ottenuti in seguito ad una richiesta asincrona 
 
 | Event Type         | Event Status|
