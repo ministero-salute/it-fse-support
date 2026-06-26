@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.21
+   <td>ver 2.22
    </td>
   </tr>
 </table>
@@ -687,6 +687,13 @@ _Tabella 2: Acronimi e Definizioni_
     <td>
       - Ripristinato capitolo di search tramite status/{workflowInstanceId}
       - Modifcato paragrafo 11.5 Modalità Pull
+    </td>
+  </tr>
+  <tr>
+    <td>2.22</td>
+    <td>25/06/2026</td>
+    <td>
+      - Aggiornamento paragrafo autenticazione
     </td>
   </tr>
 </table>
@@ -4818,9 +4825,12 @@ Il servizio opera secondo due modalità distinte:
 
 Il processo di autenticazione rispetta il seguente pattern delle Linee Guida ModI:
 
-* ID_AUTH_REST_01 [^5]
+* [ID_AUTH_CHANNEL_02] (Direct Trust mutual Transport-Level Security) 
 
-Il canale di notifica tra infrastruttura centrale e livello regionale utilizza TLS unidirezionale su HTTPS: il Gateway FSE (server) espone un certificato X.509 emesso dalla CA del Ministero della Salute, mentre il Touchpoint Regionale (client) ne verifica l'autenticità tramite un Truststore contenente la CA Root ministeriale, senza presentare certificati propri.
+Il canale di notifica tra infrastruttura centrale e livello regionale utilizza il protocollo HTTPS con Transport Layer Security in modalità mutuale (mTLS), garantendo a livello di canale confidenzialità, integrità, identificazione bilaterale delle organizzazioni e protezione da attacchi. 
+In particolare:
+Il Gateway FSE (server) espone un certificato X.509 emesso dalla CA del Ministero della Salute, il Touchpoint Regionale (client) presenta a sua volta un proprio certificato X.509 valido;
+Entrambe le parti verificano i rispettivi certificati tramite i propri truststore di fiducia, realizzando un'autenticazione reciproca.
 
 ## 11.2. Modalità Push
 
@@ -4837,7 +4847,7 @@ Alla ricezione della notifica, il Gateway:
 Successivamente, il Gateway **provvede a notificare il chiamante finale** in base alle preferenze espresse dal client:
 
 - qualora il client abbia fornito un **indirizzo di callback** tramite apposito header `X-Callback-Url` nella richiesta iniziale, il Gateway invia la notifica verso tale endpoint;
-- qualora non sia stato fornito alcun indirizzo di callback, il Gateway recupera da una **tabella di routing interna** l’URL del touchpoint finale e invia la notifica verso tale endpoint.
+- In assenza di un indirizzo di callback, il Gateway utilizza l'issuer per recuperare dalla tabella di routing interna il relativo record contenente l'URL da invocare per la riconciliazione, inviando poi la notifica a tale endpoint.
 
 In questa modalità, il Gateway ha un ruolo attivo di **propagazione dello stato verso il client finale**, mantenendo il Broker come unico punto di integrazione con i sistemi centrali e senza effettuare interrogazioni dirette verso la UA-R.
 
