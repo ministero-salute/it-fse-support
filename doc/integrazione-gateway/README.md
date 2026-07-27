@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.22
+   <td>ver 2.23
    </td>
   </tr>
 </table>
@@ -707,7 +707,8 @@ _Tabella 2: Acronimi e Definizioni_
     <td>2.23</td>
     <td>24/07/2026</td>
     <td>
-      -
+      - Aggiunta endpoint per aggiornamento metadati per oscuramento a catena
+      - Refattorizzazione indice
     </td>
   </tr>
 </table>
