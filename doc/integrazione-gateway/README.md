@@ -1807,12 +1807,7 @@ _Tabella 14: Campi Response valorizzati in caso di warning_
 ```
 
 
-# 5. Servizio di Creazione
-
-<blockquote>
-  <strong>⚠️ Attenzione:</strong> il flag "priorita" presente nella request body di creazione verrà mantenuto fino al 01/09. Si prega di aggiornare le invocazioni eliminando il parametro in request.
-</blockquote>
-
+# 5. Servizio di Creazione 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Creazione Documento CDA2 si compone come segue:
@@ -2398,6 +2393,8 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>
 
 Lo scopo di questa API Sincrona è eliminare le risorse FHIR precedentemente pubblicate, inclusi i metadati scritti su INI.
 
+Il Gateway esegue preliminarmente una transazione ITI-18 di tipo LeafClass verso INI per recuperare il metadato **urn:ita:fse:2025:EDSpublished**. Qualora tale metadato risulti valorizzato a true, verrà effettuata l’eliminazione del Bundle FHIR associato al documento presente sul server FHIR regionale. Al contrario, se il valore del metadato è false, verrà eseguita un’operazione di cancellazione (ITI-63) esclusivamente nei confronti di INI.
+
 
 ## 6.1. Request
 
@@ -2679,7 +2676,9 @@ L’Endpoint del caso d’uso di Pubblicazione Sostituzione Documento si compone
 https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>
 ```
 
-Lo scopo di questa API Asincrona è pubblicare un documento sovrascrivendo il documento che era stato precedentemente pubblicato. 
+Lo scopo di questa API asincrona è consentire la pubblicazione di un documento in modalità di sostituzione, sovrascrivendo una versione precedentemente pubblicata dello stesso.
+
+A tale scopo, il Gateway invoca preliminarmente una transazione ITI-18 (LeafClass) verso INI per recuperare il metadato **urn:ita:fse:2025:EDSpublished**. L’esito di tale verifica viene propagato al flusso asincrono e utilizzato come criterio di instradamento dell’operazione. In particolare, se il documento risulta pubblicato anche nel contesto EDS, l’elaborazione verrà eseguita sia nei confronti di INI sia di EDS; diversamente, l’operazione verrà indirizzata esclusivamente verso INI.
 
 
 ## 7.1. Request
@@ -3222,6 +3221,8 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata
 ```
 
 Lo scopo di questa API Sincrona è di aggiornare i metadati di un documento precedentemente pubblicato.
+
+Prima di eseguire l’operazione di aggiornamento, il Gateway invoca una transazione ITI-18 (LeafClass) verso INI per recuperare il metadato urn:ita:fse:2025:EDSpublished. Se il valore restituito è true, il Gateway procede con l’aggiornamento della sola risorsa DocumentReference associata al documento presente sul server FHIR regionale, propagando contestualmente l’aggiornamento verso INI. Qualora invece il metadato risulti valorizzato a false, l’operazione di aggiornamento viene eseguita esclusivamente nei confronti di INI mediante una ITI-57.
 
 In ambiente di validazione, è stato rilascio un ulteriore endpoint:
 
