@@ -707,8 +707,9 @@ _Tabella 2: Acronimi e Definizioni_
     <td>2.23</td>
     <td>24/07/2026</td>
     <td>
-      - Aggiunta endpoint per aggiornamento metadati per oscuramento a catena
-      - Refattorizzazione indice
+      - Aggiunta endpoint per aggiornamento metadati per oscuramento a catena <br>
+      - Refattorizzazione indice <br>
+      - Descrizione endpoint oscuramento a catena
     </td>
   </tr>
 </table>
@@ -872,6 +873,13 @@ La conversione del dato in formato FHIR è sincrona mentre la comunicazione vers
 Questa funzionalità permette di aggiornare i metadati di un documento presente su FSE. Tale servizio effettua in modalità sincrona l’aggiornamento dei metadati sia su EDS che su INI.
 
 In caso di errore nell’aggiornamento, il servizio fornisce un acknowledgement di presa in carico dell’operazione.
+
+Anche in questo caso il documento viene identificato dal XDSDocumentEntry.uniqueId.
+
+**Aggiornamento metadati per oscuramento**
+
+Questa funzionalità mette a disposizione un endpoint dedicato solo ed esclusivamente all'aggiornamento dei metadati a seguito di un’operazione scaturita da una catena di oscuramento. 
+In particolare, il servizio gestisce unicamente l'aggiornamento del metadato eventCodeList verso INI e del metadato securityLabel presente nella DocumentReference verso EDS
 
 Anche in questo caso il documento viene identificato dal XDSDocumentEntry.uniqueId.
 
@@ -3847,8 +3855,18 @@ _Tabella 30: Method, URL, Type_
    <td>false
    </td>
    <td>XDSDocumentEntry.eventCodeList
-   </td>
+   </td> 
   </tr>  
+
+  <tr>
+   <td>edsPublished
+   </td>
+   <td>boolean
+   </td>
+   <td>false
+   </td>
+   <td>urn:ita:fse:2025:EDSpublished
+   </td>
   
 </table>
 
@@ -3994,7 +4012,8 @@ _Tabella 33: Campi Response sempre valorizzati_
 { 
   "traceID": "c2e1818fbf7aea7f", 
   "spanID": "c2e1818fbf7aea7f",
-  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId" 
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "The requestor is RDA for the patient"
 }
 ```
 
