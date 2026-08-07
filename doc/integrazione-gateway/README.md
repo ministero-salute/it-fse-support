@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.22
+   <td>ver 2.23
    </td>
   </tr>
 </table>
@@ -21,6 +21,7 @@
 - [1. Introduzione](#1-introduzione)
   - [1.1. Riferimenti](#11-riferimenti)
   - [1.2. Acronimi e Definizioni](#12-acronimi-e-definizioni)
+  - [Registro Modifiche](#registro-modifiche)
 - [2. Contesto di Riferimento](#2-contesto-di-riferimento)
   - [2.1. Pattern di Interazione](#21-pattern-di-interazione)
   - [2.2. Processo di Autenticazione\[^3\]](#22-processo-di-autenticazione3)
@@ -68,636 +69,149 @@
     - [8.2.1. Esempio di Messaggio di risposta con Esito Success 200](#821-esempio-di-messaggio-di-risposta-con-esito-success-200)
     - [8.2.2. Esempio di Messaggio di Risposta con esito KO 400](#822-esempio-di-messaggio-di-risposta-con-esito-ko-400)
     - [8.2.3. Esempio Messaggio di Richiesta attraverso iti-57](#823-esempio-messaggio-di-richiesta-attraverso-iti-57)
-- [9. Servizio di validazione e pubblicazione creazione contestuale](#9-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
+- [9. Servizio di Aggiornamento Metadati per oscuramento a catena](#9-servizio-di-aggiornamento-metadati-per-oscuramento-a-catena)
   - [9.1. Request](#91-request)
-    - [9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#911-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
-    - [9.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”](#912-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
+    - [9.1.1. Esempio Messaggio di Richiesta](#911-esempio-messaggio-di-richiesta)
   - [9.2. Response](#92-response)
-    - [9.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”](#921-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
-    - [9.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”](#922-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
-    - [9.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”](#923-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
-- [10. Servizio di validazione pubblicazione sostituzione contestuale](#10-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
+    - [9.2.1. Esempio di Messaggio di risposta con Esito Success 200](#921-esempio-di-messaggio-di-risposta-con-esito-success-200)
+    - [9.2.2. Esempio di Messaggio di Risposta con esito KO 400](#922-esempio-di-messaggio-di-risposta-con-esito-ko-400)
+- [10. Servizio di validazione e pubblicazione creazione contestuale](#10-servizio-di-validazione-e-pubblicazione-creazione-contestuale)
   - [10.1. Request](#101-request)
-    - [10.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”](#1011-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
+    - [10.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”](#1011-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-attachment)
+    - [10.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”](#1012-messaggio-di-richiesta-esempio-validazione-pubblicazione-creazione-con-resource)
   - [10.2. Response](#102-response)
-    - [10.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#1021-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
-    - [10.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#1022-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
-    - [10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#1023-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
-- [11. Servizio di Notifica Stato Transazione](#11-servizio-di-notifica-stato-transazione)
-  - [11.1. Modalità di Comunicazione e Paradigma di Sicurezza](#111-modalità-di-comunicazione-e-paradigma-di-sicurezza)
-  - [11.2. Modalità Push](#112-modalità-push)
-    - [11.2.1. Endpoint Push Broker verso Gateway](#1121-endpoint-push-broker-verso-gateway)
-    - [11.2.2. Request](#1122-request)
-    - [11.2.3. Parametri Body](#1123-parametri-body)
-  - [11.3. Notifica verso l’Utente Finale](#113-notifica-verso-lutente-finale)
-    - [11.3.1. Endpoint (Gateway verso touchpoint)](#1131-endpoint-gateway-verso-touchpoint)
-    - [11.3.2. Payload di Notifica in caso di success](#1132-payload-di-notifica-in-caso-di-success)
-    - [11.3.3. Payload di Notifica in caso di errore verso INI](#1133-payload-di-notifica-in-caso-di-errore-verso-ini)
-    - [11.3.4. Payload di Notifica in caso di errore verso UAR](#1134-payload-di-notifica-in-caso-di-errore-verso-uar)
-  - [11.4. Comportamento della Tabella di Routing del Gateway](#114-comportamento-della-tabella-di-routing-del-gateway)
-  - [11.5. Modalità Pull](#115-modalità-pull)
-    - [11.5.1. Endpoint Pull Gateway verso Broker](#1151-endpoint-pull-gateway-verso-broker)
-    - [11.5.2. Response](#1152-response)
-    - [11.5.3. Esempio risposta 200](#1153-esempio-risposta-200)
-  - [11.6. Stati transazione](#116-stati-transazione)
-- [12. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#12-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
-  - [12.1. Request](#121-request)
-    - [12.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1211-esempio-messaggio-di-richiesta-stato-transazioni)
-  - [12.2. Response](#122-response)
-    - [12.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200](#1221-esempio-messaggio-di-risposta-ad-una-creazione-con-esito-success-200)
-    - [12.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200](#1222-esempio-messaggio-di-risposta-ad-una-cancellazione-con-esito-success-200)
-    - [12.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200](#1223-esempio-messaggio-di-risposta-ad-una-sostituzione-con-esito-success-200)
-    - [12.2.4. Esempio messaggio di risposta ad una update con Esito Success 200](#1224-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
-    - [12.2.5. Esempio di Messaggio di Risposta con esito KO 404](#1225-esempio-di-messaggio-di-risposta-con-esito-ko-404)
-- [13. Servizio di Recupero Stato Transazione per TraceId](#13-servizio-di-recupero-stato-transazione-per-traceid)
+    - [10.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”](#1021-esempio-di-messaggio-di-risposta-con-esito-ok-200---validazione-pubblicazione-creazione-contestuale-con-attachment)
+    - [10.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”](#1022-esempio-di-messaggio-di-risposta-con-esito-ok-400---validazione-pubblicazione-creazione-contestuale-con-errore-sintattico)
+    - [10.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”](#1023-esempio-di-messaggio-di-risposta-con-esito-ok-201---validazione-pubblicazione-creazione-contestuale-con-warning-semantico)
+- [11. Servizio di validazione pubblicazione sostituzione contestuale](#11-servizio-di-validazione-pubblicazione-sostituzione-contestuale)
+  - [11.1. Request](#111-request)
+    - [11.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”](#1111-messaggio-di-richiesta-esempio-validazione-pubblicazione-sostituzione-documento-con-attachment)
+  - [11.2. Response](#112-response)
+    - [11.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”](#1121-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-attachment)
+    - [11.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”](#1122-esempio-di-messaggio-di-risposta-con-esito-ok-200-pubblicazione-sostituzione-documento-con-warning-semantico)
+    - [11.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”](#1123-esempio-di-messaggio-di-risposta-con-esito-ok-400-pubblicazione-sostituzione-documento-con-errore-sintattico)
+- [12. Servizio di Notifica Stato Transazione](#12-servizio-di-notifica-stato-transazione)
+  - [12.1. Modalità di Comunicazione e Paradigma di Sicurezza](#121-modalità-di-comunicazione-e-paradigma-di-sicurezza)
+  - [12.2. Modalità Push](#122-modalità-push)
+    - [12.2.1. Endpoint Push Broker verso Gateway](#1221-endpoint-push-broker-verso-gateway)
+    - [12.2.2. Request](#1222-request)
+    - [12.2.3. Parametri Body](#1223-parametri-body)
+  - [12.3. Notifica verso l’Utente Finale](#123-notifica-verso-lutente-finale)
+    - [12.3.1. Endpoint (Gateway verso touchpoint)](#1231-endpoint-gateway-verso-touchpoint)
+    - [12.3.2. Payload di Notifica in caso di success](#1232-payload-di-notifica-in-caso-di-success)
+    - [12.3.3. Payload di Notifica in caso di errore verso INI](#1233-payload-di-notifica-in-caso-di-errore-verso-ini)
+    - [12.3.4. Payload di Notifica in caso di errore verso UAR](#1234-payload-di-notifica-in-caso-di-errore-verso-uar)
+  - [12.4. Comportamento della Tabella di Routing del Gateway](#124-comportamento-della-tabella-di-routing-del-gateway)
+  - [12.5. Modalità Pull](#125-modalità-pull)
+    - [12.5.1. Endpoint Pull Gateway verso Broker](#1251-endpoint-pull-gateway-verso-broker)
+    - [12.5.2. Response](#1252-response)
+    - [12.5.3. Esempio risposta 200](#1253-esempio-risposta-200)
+  - [12.6. Stati transazione](#126-stati-transazione)
+- [13. Servizio di Recupero Stato Transazione per WorkflowInstanceId](#13-servizio-di-recupero-stato-transazione-per-workflowinstanceid)
   - [13.1. Request](#131-request)
     - [13.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1311-esempio-messaggio-di-richiesta-stato-transazioni)
   - [13.2. Response](#132-response)
-- [14. Drilldown Response in caso di Errore](#14-drilldown-response-in-caso-di-errore)
-  - [14.1. Errori Applicativi](#141-errori-applicativi)
-    - [14.1.1. Esempi di errore generati dal Gateway](#1411-esempi-di-errore-generati-dal-gateway)
-  - [14.2. Errori provenienti da Apparati di Frontiera](#142-errori-provenienti-da-apparati-di-frontiera)
-- [15. Drilldown Parametri di Input](#15-drilldown-parametri-di-input)
-  - [15.1. Campi Contenuti nei JWT](#151-campi-contenuti-nei-jwt)
-  - [15.2. Campi Contenuti nella Request Body](#152-campi-contenuti-nella-request-body)
-  - [15.3. Tabelle di Riferimento](#153-tabelle-di-riferimento)
-    - [15.3.1. Attività Clinica Enum](#1531-attività-clinica-enum)
-    - [15.3.2. Healthcare Facility Type Code](#1532-healthcare-facility-type-code)
-    - [15.3.3. Tipo Documento Alto Livello](#1533-tipo-documento-alto-livello)
-    - [15.3.4. Event Code](#1534-event-code)
+    - [13.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200](#1321-esempio-messaggio-di-risposta-ad-una-creazione-con-esito-success-200)
+    - [13.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200](#1322-esempio-messaggio-di-risposta-ad-una-cancellazione-con-esito-success-200)
+    - [13.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200](#1323-esempio-messaggio-di-risposta-ad-una-sostituzione-con-esito-success-200)
+    - [13.2.4. Esempio messaggio di risposta ad una update con Esito Success 200](#1324-esempio-messaggio-di-risposta-ad-una-update-con-esito-success-200)
+    - [13.2.5. Esempio di Messaggio di Risposta con esito KO 404](#1325-esempio-di-messaggio-di-risposta-con-esito-ko-404)
+- [14. Servizio di Recupero Stato Transazione per TraceId](#14-servizio-di-recupero-stato-transazione-per-traceid)
+  - [14.1. Request](#141-request)
+    - [14.1.1. Esempio Messaggio di Richiesta stato Transazioni](#1411-esempio-messaggio-di-richiesta-stato-transazioni)
+  - [14.2. Response](#142-response)
+- [15. Drilldown Response in caso di Errore](#15-drilldown-response-in-caso-di-errore)
+  - [15.1. Errori Applicativi](#151-errori-applicativi)
+    - [15.1.1. Esempi di errore generati dal Gateway](#1511-esempi-di-errore-generati-dal-gateway)
+  - [15.2. Errori provenienti da Apparati di Frontiera](#152-errori-provenienti-da-apparati-di-frontiera)
+- [16. Drilldown Parametri di Input](#16-drilldown-parametri-di-input)
+  - [16.1. Campi Contenuti nei JWT](#161-campi-contenuti-nei-jwt)
+  - [16.2. Campi Contenuti nella Request Body](#162-campi-contenuti-nella-request-body)
+  - [16.3. Tabelle di Riferimento](#163-tabelle-di-riferimento)
+    - [16.3.1. Attività Clinica Enum](#1631-attività-clinica-enum)
+    - [16.3.2. Healthcare Facility Type Code](#1632-healthcare-facility-type-code)
+    - [16.3.3. Tipo Documento Alto Livello](#1633-tipo-documento-alto-livello)
+    - [16.3.4. Event Code](#1634-event-code)
   - [Tabella dei codici](#tabella-dei-codici)
-    - [15.3.5. Ruolo](#1535-ruolo)
-    - [15.3.6. Contesto Operativo](#1536-contesto-operativo)
-    - [15.3.7. Organizzazione](#1537-organizzazione)
-    - [15.3.8. Practice Setting Code](#1538-practice-setting-code)
-    - [15.3.9. Activity Enum](#1539-activity-enum)
-    - [15.3.10. Injection Mode Enum](#15310-injection-mode-enum)
-    - [15.3.11. Health Data Format Enum](#15311-health-data-format-enum)
-    - [15.3.12. Tipo Attività](#15312-tipo-attività)
-    - [15.3.13. Administrative Request](#15313-administrative-request)
-  - [15.4. Correlazione tra classCode e typeCode](#154-correlazione-tra-classcode-e-typecode)
-    - [15.4.1. Tabella dei controlli](#1541-tabella-dei-controlli)
-- [16. Notes](#16-notes)
+  - [Tabella dei codici](#tabella-dei-codici-1)
+    - [16.3.5. Ruolo](#1635-ruolo)
+    - [16.3.6. Contesto Operativo](#1636-contesto-operativo)
+    - [16.3.7. Organizzazione](#1637-organizzazione)
+    - [16.3.8. Practice Setting Code](#1638-practice-setting-code)
+    - [16.3.9. Activity Enum](#1639-activity-enum)
+    - [16.3.10. Injection Mode Enum](#16310-injection-mode-enum)
+    - [16.3.11. Health Data Format Enum](#16311-health-data-format-enum)
+    - [16.3.12. Tipo Attività](#16312-tipo-attività)
+    - [16.3.13. Administrative Request](#16313-administrative-request)
+  - [16.4. Correlazione tra classCode e typeCode](#164-correlazione-tra-classcode-e-typecode)
+    - [16.4.1. Tabella dei controlli](#1641-tabella-dei-controlli)
+- [17. Notes](#17-notes)
 
 # 1. Introduzione
 
 
 ## 1.1. Riferimenti
 
-
-<table>
-  <tr>
-   <td><strong>RIF.</strong>
-   </td>
-   <td><strong>DOCUMENTO</strong>
-   </td>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>1
-   </td>
-   <td>http://www.hl7italia.it/hl7italia_D7/hl7it_publications
-   </td>
-   <td>Implementation Guide CDA R2
-   </td>
-  </tr>
-  <tr>
-   <td>2
-   </td>
-   <td>Affinity Domain 2.6.1
-   </td>
-   <td>Documento Affinity Domain
-   </td>
-  </tr>
-  <tr>
-   <td>3
-   </td>
-   <td>Linee Guida FSE
-   </td>
-   <td>Linee guida FSE
-   </td>
-  </tr>
-</table>
-
+| RIF. | DOCUMENTO | DESCRIZIONE |
+|------|-----------|-------------|
+| 1 | http://www.hl7italia.it/hl7italia_D7/hl7it_publications | Implementation Guide CDA R2 |
+| 2 | Affinity Domain 2.6.1 | Documento Affinity Domain |
+| 3 | Linee Guida FSE | Linee guida FSE |
 
 _Tabella 1: Riferimenti Esterni_
 
-
 ## 1.2. Acronimi e Definizioni
 
-
-<table>
-  <tr>
-   <td><strong>ACRONIMO</strong>
-   </td>
-   <td><strong>DEFINIZIONE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>API
-   </td>
-   <td>Application Programming Interface
-   </td>
-  </tr>
-  <tr>
-   <td>REST
-   </td>
-   <td>REpresentational State Transfer
-   </td>
-  </tr>
-  <tr>
-   <td>FHIR
-   </td>
-   <td>Fast Healthcare Interoperability Resources
-   </td>
-  </tr>
-  <tr>
-   <td>CDA
-   </td>
-   <td>Clinical Document Architecture
-   </td>
-  </tr>
-  <tr>
-   <td>URI
-   </td>
-   <td>Uniform Resource Identifier
-   </td>
-  </tr>
-  <tr>
-   <td>JWT
-   </td>
-   <td>JSON Web Token
-   </td>
-  </tr>
-  <tr>
-   <td>INI
-   </td>
-   <td>Infrastruttura Nazionale per l’Interoperabilità
-   </td>
-  </tr>
-  <tr>
-   <td>FSE
-   </td>
-   <td>Fascicolo Sanitario Elettronico
-   </td>
-  </tr>
-  <tr>
-   <td>HL7
-   </td>
-   <td>Health Level 7
-   </td>
-  </tr>
-  <tr>
-   <td>GTW
-   </td>
-   <td>Gateway
-   </td>
-  </tr>
-  <tr>
-   <td>EDS
-   </td>
-   <td>Ecosistema Dati Sanitari
-   </td>
-  </tr>
-  <tr>
-   <td>N.A.
-   </td>
-   <td>Non Applicabile
-   </td>
-  </tr>
-</table>
-
+| ACRONIMO | DEFINIZIONE |
+|----------|-------------|
+| API | Application Programming Interface |
+| REST | REpresentational State Transfer |
+| FHIR | Fast Healthcare Interoperability Resources |
+| CDA | Clinical Document Architecture |
+| URI | Uniform Resource Identifier |
+| JWT | JSON Web Token |
+| INI | Infrastruttura Nazionale per l'Interoperabilità |
+| FSE | Fascicolo Sanitario Elettronico |
+| HL7 | Health Level 7 |
+| GTW | Gateway |
+| EDS | Ecosistema Dati Sanitari |
+| N.A. | Non Applicabile |
 
 _Tabella 2: Acronimi e Definizioni_
 
+## Registro Modifiche
 
-<table>
-   <tr>
-      <td><strong>VERSIONE</strong>
-      </td>
-      <td><strong>DATA</strong>
-      </td>
-      <td><strong>MODIFICHE</strong>
-      </td>
-   </tr>
-   <tr>
-      <td>1.1
-      </td>
-      <td>20/05/22
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            Tutti: prima stesura a seguito rivisitazione
-      </td>
-   </tr>
-   <tr>
-      <td>1.2
-      </td>
-      <td>07/06/22
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            Tutti: stesura a seguito rivisitazione
-      </td>
-   </tr>
-   <tr>
-      <td>1.3
-      </td>
-      <td>13/06/22
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            2.2: scenario integrazione gateway;
-         <p>
-            3.2: aggiornamento status code; esempio workflowInstanceId; esempio response con warning;
-         <p>
-            4.2: aggiornamento status code;
-         <p>
-            5.1: obbligatorietà campo patient_consent
-      </td>
-   </tr>
-   <tr>
-      <td>1.4
-      </td>
-      <td>28/06/2022
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            2: Contesto di riferimento con overview casi d’uso di validazione e pubblicazione CDA2;
-         <p>
-            3: aggiornamento paragrafo introduttivo per il servizio di validazione;
-         <p>
-            3.1: aggiornamento parametri della request del servizio di validazione e aggiunta colonna AFFINITY
-            DOMAIN/ITI TF;
-         <p>
-            4: aggiornamento paragrafo introduttivo per il servizio di pubblicazione;
-         <p>
-            4.1: aggiornamento parametri della request del servizio di pubblicazione creazione e aggiunta colonna
-            AFFINITY DOMAIN/ITI TF;
-         <p>
-            5.1: eliminata valorizzazione nella descrizione Tipo Attività;
-         <p>
-            5.3: stesura paragrafo introduttivo per le tabelle di riferimento;
-         <p>
-            5.3.1: aggiornamento tabella Attività Clinica secondo Affinity Domain versione 2.2;
-         <p>
-            5.3.5: aggiornamento tabella con eliminazione dei ruoli non pertinenti alla validazione e pubblicazione
-            CDA2, eliminazione colonna Tipologie di Interazioni;
-         <p>
-            5.3.6: aggiornamento tabella con eliminazione dei valori non pertinenti alla validazione e pubblicazione
-            CDA2, eliminazione colonna Tipologie di Interazioni;
-         <p>
-            5.3.12: eliminazione dei valori per il tipo di attività non pertinenti alla validazione e pubblicazione
-            CDA2.
-      </td>
-   </tr>
-   <tr>
-      <td>1.5
-      </td>
-      <td>05/07/2022
-      </td>
-      <td>Correzioni su tutte le sezioni
-      </td>
-   </tr>
-   <tr>
-      <td>2.0
-      </td>
-      <td>29/07/2022
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            3: aggiornamento Request e Accept header
-         <p>
-            4: aggiornamento Request e Accept header
-         <p>
-            5: stesura del paragrafo Eliminazione Documento
-         <p>
-            6: stesura del paragrafo Sostituzione Documento
-         <p>
-            7: stesura del paragrafo Aggiornamento Metadati
-         <p>
-            8.1: aggiornamento doppio JWT
-         <p>
-            8.3.4: aggiornamento doppio JWT
-         <p>
-            8.3.6: Contesto Operativo
-         <p>
-            8.3.11: Tipo Attività
-      </td>
-   </tr>
-   <tr>
-      <td>2.1
-      </td>
-      <td>15/10/2022
-      </td>
-      <td>Paragrafi modificati:
-
-         2: Specificato nome allegato CDA: cda.xml
-
-         2.3: Aggiunte note su JWT e certificati
-
-      </td>
-   </tr>
-   <tr>
-      <td>2.2
-      </td>
-      <td>28/11/2022
-      </td>
-      <td>Paragrafi modificati:
-
-         2: Evidenziato endpoint sistema di test
-
-      </td>
-   </tr>
-   <tr>
-      <td>2.3
-      </td>
-      <td>12/12/2022
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            2: aggiornamento Contesto di riferimento
-         <p>
-            5: aggiornamento Servizio di Eliminazione
-         <p>
-            6: aggiornamento Servizio di Sostituzione
-         <p>
-            7: aggiornamento Servizio di Aggiornamento Metadati
-         <p>
-            8: stesura del paragrafo Servizio di Recupero Stato Transazione per WorkflowInstanceId
-         <p>
-            9: stesura del paragrafo Servizio di Recupero Stato Transazione per TraceId
-         <p>
-            10: stesura del paragrafo DrillDown Response in caso di Errore
-         <p>
-            11.1: aggiunti nuovi custom claims per Applicativo
-      </td>
-   </tr>
-   <tr>
-      <td>2.4
-      </td>
-      <td>21/02/2022
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            5, 7, 8, 9: rimozione Content-Type
-         <p>
-            6: rimozione priorità e workflowInstanceId sul Servizio di Sostituzione
-      </td>
-   </tr>
-   </tr>
-   <tr>
-      <td>2.5
-      </td>
-      <td>03/03/2023
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            4,6,7: Aggiunti parametri in request body
-         <p>
-            11: Aggiornamento enums "affinity domain 2.4.1"
-         <p>
-      </td>
-   </tr>
-
-   <tr>
-      <td>2.6
-      </td>
-      <td>23/03/2023
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            8: Aggiunto paragrafo validazione pubblicazione creazione contestuale
-         <p>
-            9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
-         <p>
-            10: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per WorkflowInstanceId"
-         <p>
-            11: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per TraceId"
-         <p>
-            12: Cambio indice paragrafo "Drilldown Response in caso di Errore"
-         <p>
-            13. Cambio indice paragrafo "Drilldown Parametri di Input"
-         <p>
-      </td>
-   </tr>
-
-   <tr>
-      <td>2.7
-      </td>
-      <td>15/03/2024
-      </td>
-      <td>Paragrafi modificati:
-
-         9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
-         <p>
-      </td>
-   </tr>
-
-   <tr>
-      <td>2.8
-      </td>
-      <td>27/03/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Campi Contenuti nei JWT
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.9
-      </td>
-      <td>29/07/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Campi Contenuti nei JWT
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.10
-      </td>
-      <td>02/10/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Chiarimenti sull’impostazione del claim “locality”
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.11
-      </td>
-      <td>23/10/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            10. Servizio di Recupero Stato Transazione per WorkflowInstanceId
-         <p>
-         <p>
-            10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
-         <p>
-         <p>
-            10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
-         <p>
-         <p>
-            10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
-         <p>
-         <p>
-            10.2.4. Esempio messaggio di risposta ad un aggiornamento con Esito Success 200
-         <p>
-         <p>
-            10.2.5. Esempio di Messaggio di Risposta con esito KO 404
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.12
-      </td>
-      <td>04/12/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            2. Contesto di riferimento
-         <p>
-         <p>
-            7.1. Request
-         <p>
-         <p>
-            7.3. Esempio Messaggio di Richiesta attraverso iti-57
-         <p>
-      </td>
-   </tr>
-    <tr>
-      <td>2.13
-      </td>
-      <td>03/03/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.3.5. Ruolo
-         <p> 
-         <p>
-            13.3.4. Event Code
-         <p>
-         <p>
-            13.3.7. Organizzazione
-          <p>
-          <p>
-            13.3.8. Practice Setting Code
-          <p> 
-      </td>
-   </tr> 
-   <tr>
-      <td>2.14
-      </td>
-      <td>23/05/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Modificata gestione claim locality e authorInstitution
-         <p> 
-        <p>
-            13.1. Campi Contenuti nei JWT
-        <p>
-        <p>
-            13.3.6. Aggiunto campo ACCESS UPDATE in tabella contesto operativo
-        <p> 
-      </td>
-   </tr> 
-   <tr>
-      <td>2.15
-      </td>
-      <td>30/06/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            2. Aggiunto cappello introduttivo per FHIR diretto
-            4. Definizione paragrafo FHIR Diretto
-         <p>  
-         <p>
-            5. Rimozione flag priorità dalla request body di creazione
-         <p>  
-         <p>
-            6.  Rimozione flag priorità dalla request body di creazione
-         <p> 
-         <p>Modifica indice per accogliere nuove modifiche sulla validazione fhir<p> 
-      </td>
-   </tr> 
-   <tr>
-      <td>2.16
-      </td>
-      <td>22/09/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            14. Modificato enum Tipo Documento Alto Livello 
-         <p>
-            14.3.13. Modificata tabella Administrative Request
-         <p>   
-            14.3.4. Modificata tabella Event Code per aggiunta P00
-         <p>   
-            14.3.5. Modificata tabella Ruolo per aggiunta ruolo DAP
-         <p>   
-      </td>
-   </tr> 
-   <tr>
-    <td>2.17</td>
-    <td>03/12/2025</td>
-    <td>
-      Paragrafi modificati:
-      <p>5.2. Modificato status code in 202</p>
-      <p>6.2. Aggiunto status code in 202</p>
-      <p>7.2. Modificato status code in 202</p>
-      <p>8.2. Aggiunto status code in 202</p>
-      <p>9.2. Aggiunto status code in 202</p>
-      <p>10.2. Aggiunto status code in 202</p>
-    </td>
-  </tr>
-  <tr>
-    <td>2.18</td>
-    <td>23/03/2026</td>
-    <td>
-      Paragrafi modificati:
-      <p>11. Inseriti esempio response per status KO</p>
-      <p>14. Rimossa non obbligatorietà per resource_hl7_type per il flusso di update</p>
-    </td>
-  </tr>
-  <tr>
-    <td>2.19</td>
-    <td>23/04/2026</td>
-    <td>
-      Paragrafi modificati:
-      <p>2. Aggiornata tabella degli endpoint e funzionalità</p>
-    </td>
-  </tr>
-  <tr>
-    <td>2.20</td>
-    <td>05/06/2026</td>
-    <td>
-      Aggiornamento capitolo 11 con aggiunta paragrafo autenticazione
-    </td>
-  </tr>
-  <tr>
-    <td>2.21</td>
-    <td>16/06/2026</td>
-    <td>
-      - Ripristinato capitolo di search tramite status/{workflowInstanceId}
-      - Modifcato paragrafo 11.5 Modalità Pull
-    </td>
-  </tr>
-  <tr>
-    <td>2.22</td>
-    <td>25/06/2026</td>
-    <td>
-      - Aggiornamento paragrafo autenticazione
-    </td>
-  </tr>
-</table>
-
+| VERSIONE | DATA | MODIFICHE |
+|----------|------|-----------|
+| 1.1 | 20/05/22 | Paragrafi modificati: Tutti - prima stesura a seguito rivisitazione |
+| 1.2 | 07/06/22 | Paragrafi modificati: Tutti - stesura a seguito rivisitazione |
+| 1.3 | 13/06/22 | Paragrafi modificati: 2.2 scenario integrazione gateway; 3.2 aggiornamento status code; 4.2 aggiornamento status code; 5.1 obbligatorietà campo patient_consent |
+| 1.4 | 28/06/2022 | Paragrafi modificati: 2 Contesto di riferimento; 3 aggiornamento paragrafo introduttivo; 3.1 aggiornamento parametri; 4 aggiornamento paragrafo; 4.1 aggiornamento parametri; 5.1 eliminata valorizzazione; 5.3 stesura paragrafo; vari aggiornamenti tabelle |
+| 1.5 | 05/07/2022 | Correzioni su tutte le sezioni |
+| 2.0 | 29/07/2022 | Paragrafi modificati: 3 aggiornamento Request; 4 aggiornamento Request; 5 eliminazione documento; 6 sostituzione documento; 7 aggiornamento metadati; 8.1 doppio JWT |
+| 2.1 | 15/10/2022 | Paragrafi modificati: 2 specificato nome allegato CDA: cda.xml; 2.3 aggiunte note su JWT e certificati |
+| 2.2 | 28/11/2022 | Paragrafi modificati: 2 evidenziato endpoint sistema di test |
+| 2.3 | 12/12/2022 | Paragrafi modificati: 2 aggiornamento contesto; 5 aggiornamento eliminazione; 6 aggiornamento sostituzione; 7 aggiornamento metadati; 8 servizio recupero stato; 9 servizio recupero per TraceId; 10 drilldown response; 11.1 nuovi custom claims |
+| 2.4 | 21/02/2022 | Paragrafi modificati: 5,7,8,9 rimozione Content-Type; 6 rimozione priorità e workflowInstanceId |
+| 2.5 | 03/03/2023 | Paragrafi modificati: 4,6,7 aggiunti parametri in request body; 11 aggiornamento enums |
+| 2.6 | 23/03/2023 | Paragrafi modificati: 8 validazione pubblicazione creazione; 9 validazione pubblicazione sostituzione; cambio indici paragrafi |
+| 2.7 | 15/03/2024 | Paragrafi modificati: 9 validazione pubblicazione sostituzione contestuale |
+| 2.8 | 27/03/2024 | Paragrafi modificati: 13.1 campi contenuti nei JWT |
+| 2.9 | 29/07/2024 | Paragrafi modificati: 13.1 campi contenuti nei JWT |
+| 2.10 | 02/10/2024 | Paragrafi modificati: 13.1 chiarimenti claim locality |
+| 2.11 | 23/10/2024 | Paragrafi modificati: 10 servizio recupero stato; vari esempi messaggi di risposta |
+| 2.12 | 04/12/2024 | Paragrafi modificati: 2 contesto di riferimento; 7.1 request; 7.3 esempio messaggio |
+| 2.13 | 03/03/2025 | Paragrafi modificati: 13.3.5 ruolo; 13.3.4 event code; 13.3.7 organizzazione; 13.3.8 practice setting code |
+| 2.14 | 23/05/2025 | Paragrafi modificati: 13.1 gestione claim locality e authorInstitution; 13.3.6 aggiunto campo ACCESS UPDATE |
+| 2.15 | 30/06/2025 | Paragrafi modificati: 2 aggiunto cappello FHIR diretto; 4 definizione paragrafo FHIR; 5,6 rimozione flag priorità; modifica indice validazione FHIR |
+| 2.16 | 22/09/2025 | Paragrafi modificati: 14 modificato enum tipo documento; 14.3.13 tabella administrative request; 14.3.4 event code con P00; 14.3.5 ruolo con DAP |
+| 2.17 | 03/12/2025 | Paragrafi modificati: 5.2, 6.2, 7.2, 8.2, 9.2, 10.2 modificato status code in 202 |
+| 2.18 | 23/03/2026 | Paragrafi modificati: 11 inseriti esempio response per status KO; 14 rimossa non obbligatorietà resource_hl7_type per update |
+| 2.19 | 23/04/2026 | Paragrafi modificati: 2 aggiornata tabella endpoint e funzionalità |
+| 2.20 | 05/06/2026 | Aggiornamento capitolo 11 con aggiunta paragrafo autenticazione |
+| 2.21 | 16/06/2026 | Ripristinato capitolo search status/{workflowInstanceId}; modificato paragrafo 11.5 modalità pull |
+| 2.22 | 25/06/2026 | Aggiornamento paragrafo autenticazione |
+| 2.23 | 24/07/2026 | Aggiunta endpoint aggiornamento metadati oscuramento a catena; refattorizzazione indice; aggiornamento tabelle per valori ad 2.6.4 |
 
 _Tabella 3: Registro Modifiche_
 
@@ -747,18 +261,18 @@ In questa fase vengono trattati i due servizi principali del Gateway, che consen
     <td>PUT</td>
     <td>SOSTITUZIONE DOCUMENTI</td>
     <td>Si</td>
-  </tr>
-  <tr>
-    <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}/metadata</td>
-    <td>PUT</td>
-    <td>AGGIORNAMENTO METADATI</td>
-    <td>Si</td>
-  </tr>
+  </tr> 
   <tr>
     <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}/metadata-iti-57</td>
     <td>PUT</td>
     <td>AGGIORNAMENTO METADATI ITI-57</td>
     <td>Si</td>
+  </tr>
+  <tr>
+    <td>/v&lt;major&gt;/documents/{identificativoDocUpdate}/metadata-oscuramento-catena</td>
+    <td>PUT</td>
+    <td>AGGIORNAMENTO METADATI PER OSCURAMENTO A CATENA</td>
+    <td>No</td>
   </tr>
   <tr>
     <td>/v&lt;major&gt;/documents/validate-and-create</td>
@@ -857,6 +371,13 @@ La conversione del dato in formato FHIR è sincrona mentre la comunicazione vers
 Questa funzionalità permette di aggiornare i metadati di un documento presente su FSE. Tale servizio effettua in modalità sincrona l’aggiornamento dei metadati sia su EDS che su INI.
 
 In caso di errore nell’aggiornamento, il servizio fornisce un acknowledgement di presa in carico dell’operazione.
+
+Anche in questo caso il documento viene identificato dal XDSDocumentEntry.uniqueId.
+
+**Aggiornamento metadati per oscuramento**
+
+Questa funzionalità mette a disposizione un endpoint dedicato solo ed esclusivamente all'aggiornamento dei metadati a seguito di un’operazione scaturita da una catena di oscuramento. 
+In particolare, il servizio gestisce unicamente l'aggiornamento del metadato eventCodeList verso INI e del metadato securityLabel presente nella DocumentReference verso EDS
 
 Anche in questo caso il documento viene identificato dal XDSDocumentEntry.uniqueId.
 
@@ -966,7 +487,7 @@ Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
 # 3. Servizio di Validazione
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Documento CDA2 si compone come segue:
 
@@ -1417,7 +938,7 @@ _Tabella 9: Campi Response valorizzati in caso di warning_
 
 # 4. Servizio di Validazione FHIR
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Bundle FHIR si compone come segue:
 
@@ -1792,13 +1313,8 @@ _Tabella 14: Campi Response valorizzati in caso di warning_
 ```
 
 
-# 5. Servizio di Creazione
-
-<blockquote>
-  <strong>⚠️ Attenzione:</strong> il flag "priorita" presente nella request body di creazione verrà mantenuto fino al 01/09. Si prega di aggiornare le invocazioni eliminando il parametro in request.
-</blockquote>
-
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+# 5. Servizio di Creazione 
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Creazione Documento CDA2 si compone come segue:
 
@@ -2383,6 +1899,8 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>
 
 Lo scopo di questa API Sincrona è eliminare le risorse FHIR precedentemente pubblicate, inclusi i metadati scritti su INI.
 
+Il Gateway esegue preliminarmente una transazione ITI-18 di tipo LeafClass verso INI per recuperare il metadato **urn:ita:fse:2025:EDSpublished**. Qualora tale metadato risulti valorizzato a true, verrà effettuata l’eliminazione del Bundle FHIR associato al documento presente sul server FHIR regionale. Al contrario, se il valore del metadato è false, verrà eseguita un’operazione di cancellazione (ITI-63) esclusivamente nei confronti di INI.
+
 
 ## 6.1. Request
 
@@ -2656,7 +2174,7 @@ _Tabella 24: Campi Response valorizzati in caso di warning_
 
 # 7. Servizio di Sostituzione Documento
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Sostituzione Documento si compone come segue:
 
@@ -2664,7 +2182,9 @@ L’Endpoint del caso d’uso di Pubblicazione Sostituzione Documento si compone
 https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>
 ```
 
-Lo scopo di questa API Asincrona è pubblicare un documento sovrascrivendo il documento che era stato precedentemente pubblicato. 
+Lo scopo di questa API asincrona è consentire la pubblicazione di un documento in modalità di sostituzione, sovrascrivendo una versione precedentemente pubblicata dello stesso.
+
+A tale scopo, il Gateway invoca preliminarmente una transazione ITI-18 (LeafClass) verso INI per recuperare il metadato **urn:ita:fse:2025:EDSpublished**. L’esito di tale verifica viene propagato al flusso asincrono e utilizzato come criterio di instradamento dell’operazione. In particolare, se il documento risulta pubblicato anche nel contesto EDS, l’elaborazione verrà eseguita sia nei confronti di INI sia di EDS; diversamente, l’operazione verrà indirizzata esclusivamente verso INI.
 
 
 ## 7.1. Request
@@ -3198,7 +2718,7 @@ _Tabella 29: Campi Response valorizzati in caso di warning_
 
 # 8. Servizio di Aggiornamento Metadati
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Pubblicazione Aggiornamento Metadati si compone come segue:
 
@@ -3207,6 +2727,8 @@ https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata
 ```
 
 Lo scopo di questa API Sincrona è di aggiornare i metadati di un documento precedentemente pubblicato.
+
+Prima di eseguire l’operazione di aggiornamento, il Gateway invoca una transazione ITI-18 (LeafClass) verso INI per recuperare il metadato urn:ita:fse:2025:EDSpublished. Se il valore restituito è true, il Gateway procede con l’aggiornamento della sola risorsa DocumentReference associata al documento presente sul server FHIR regionale, propagando contestualmente l’aggiornamento verso INI. Qualora invece il metadato risulti valorizzato a false, l’operazione di aggiornamento viene eseguita esclusivamente nei confronti di INI mediante una ITI-57.
 
 In ambiente di validazione, è stato rilascio un ulteriore endpoint:
 
@@ -3221,10 +2743,7 @@ Tale endpoint sarà esposto in ambiente di validazione per un tempo necessario d
 
 ```
 
-
-
 ## 8.1. Request
-
 
 <table>
   <tr>
@@ -3696,7 +3215,314 @@ curl -X 'PUT' \
 
 Le risposte sono le medesime riportate per i casi precedenti.
 
-# 9. Servizio di validazione e pubblicazione creazione contestuale
+# 9. Servizio di Aggiornamento Metadati per oscuramento a catena
+
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
+
+L’Endpoint del caso d’uso di Pubblicazione Aggiornamento Metadati per oscuramento si compone come segue:
+
+```
+https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata-oscuramento-catena
+```
+
+Lo scopo di questa API sincrona è aggiornare i metadati di un documento precedentemente pubblicato, consentendo l’esecuzione delle operazioni necessarie all’oscuramento a catena del documento stesso.
+
+In particolare, il flusso operativo si articola nelle seguenti fasi:
+
+- Fase Preliminare: Viene eseguita una transazione ITI-18 (GetDocuments di tipo LeafClass) dal Gateway verso INI al fine di recuperare il metadato **urn:ita:fse:2025:EDSpublished** e il subset minimo di dati a eseguire successivamente la ITI-57. 
+Sulla base del valore di questo metadato, la chiamata viene opportunamente dirottata verso EDS.
+
+- Aggiornamento EDS: Qualora il flag urn:ita:fse:2025:EDSpublished risulti pari a TRUE, la chiamata di aggiornamento viene dirottata ed eseguita verso EDS. Nello specifico, si provvede al recupero della risorsa DocumentReference e al contestuale aggiornamento della proprietà securityLabel, impostandola al valore P99 ricevuto in input.
+
+- Aggiornamento INI (ITI-57): Successivamente, viene eseguita la transazione ITI-57 verso INI mediante l'invio del subset minimo di metadati recuperati nella fase preliminare. L'operazione provvederà a veicolare verso la RDA il warning restituito da INI all'interno dell'apposita proprietà:
+```
+"warning": "R220 - The requestor is RDA for the patient"
+```
+
+in caso di messaggio diverso ottenuto da INI, il gateway sollverà un'eccezione
+
+## 9.1. Request
+
+
+<table>
+  <tr>
+   <td>METHOD
+   </td>
+   <td>PUT
+   </td>
+  </tr>
+  <tr>
+   <td>URL
+   </td>
+   <td>/v1/documents/{identificativoDocUpdate}/metadata-oscuramento-catena
+   </td>
+  </tr>
+  <tr>
+   <td>TYPE
+   </td>
+   <td>application/json
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 30: Method, URL, Type_
+
+ 
+<table>
+  <tr>
+   <td colspan="6" >     <strong>PARAMETER</strong>
+   </td>
+  </tr>
+  <tr>
+   <td><strong>SECTION</strong>
+   </td>
+   <td><strong>KEY</strong>
+   </td>
+   <td><strong>NAME</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>REQUIRED</strong>
+   </td>
+   <td><strong>AFFINITY DOMAIN/IHE</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>Authorization
+   </td>
+   <td>N.D.
+   </td>
+   <td>Bearer
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>FSE-JWT-Signature
+   </td>
+   <td>N.D.
+   </td>
+   <td>N.D.
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Header
+   </td>
+   <td>Accept
+   </td>
+   <td>application/json
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>N.A.
+   </td>
+  </tr>
+  <tr>
+   <td>Path variable
+   </td>
+   <td>identificativoDocUpdate
+   </td>
+   <td>identificativoDocUpdate
+   </td>
+   <td>String
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.uniqueId
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="11" >Request Body
+   </td>
+   <td rowspan="11" >requestBody
+    
+   </td>
+  </tr>
+  <tr>
+   <td>attiCliniciRegoleAccesso
+   </td>
+   <td>String[]
+   </td>
+   <td>true
+   </td>
+   <td>XDSDocumentEntry.eventCodeList
+   </td> 
+  </tr>  
+  
+</table>
+
+
+_Tabella 31: Parametri Richiesta di Pubblicazione Aggiornamento Metadati_
+
+La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
+
+
+### 9.1.1. Esempio Messaggio di Richiesta
+
+Messaggio di richiesta con metadati formalmente corretti, senza indicazione della priorità. 
+
+``` bash
+curl -X 'PUT' \
+  'https://<HOST>:<PORT>/v1/documents/ID_DOC_TEST/metadata-oscuramento-catena' \
+  -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
+  -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
+  -H 'accept: application/json' \
+  -d '{ 
+  "attiCliniciRegoleAccesso": [
+    "P99"
+  ]
+}'
+```
+
+## 9.2. Response
+
+
+<table>
+  <tr>
+    <td>TIPO IN CASO DI SUCCESSO</td>
+    <td colspan="2">application/json</td>
+  </tr>
+  <tr>
+    <td>TIPO IN CASO DI ERRORE*</td>
+    <td colspan="2">application/problem+json</td>
+  </tr>
+  <tr>
+    <td rowspan="11">STATUS CODE</td>
+    <td>200</td>
+    <td>Aggiornamento eseguito con successo</td>
+  </tr>
+  <tr>
+    <td>400</td>
+    <td>Bad request</td>
+  </tr>
+  <tr>
+    <td>401</td>
+    <td>Unauthorized</td>
+  </tr>
+  <tr>
+    <td>403</td>
+    <td>Token jwt mancante o non valido</td>
+  </tr>
+  <tr>
+    <td>404</td>
+    <td>Not found</td>
+  </tr>
+  <tr>
+    <td>409</td>
+    <td>Conflict</td>
+  </tr>
+  <tr>
+    <td>413</td>
+    <td>Payload too large</td>
+  </tr>
+  <tr>
+    <td>429</td>
+    <td>Too Many Requests</td>
+  </tr>
+  <tr>
+    <td>500</td>
+    <td>Internal server error</td>
+  </tr>
+  <tr>
+    <td>502</td>
+    <td>Invalid response received from the API Implementation</td>
+  </tr>
+  <tr>
+    <td>503</td>
+    <td>Service unavailable</td>
+  </tr>
+  <tr>
+    <td>504</td>
+    <td>Endpoint request timed-out</td>
+  </tr>
+</table>
+
+
+_Tabella 32: Response Servizio di Pubblicazione Aggiornamento Documento_
+
+\* Gli oggetti di errore, generati dall’applicativo o da apparati di frontiera, rispettano la specifica RFC 7807, per ulteriori dettagli fare riferimento al Capitolo 13 “Drilldown Error Response”.
+
+**Campi sempre valorizzati**
+
+
+<table>
+  <tr>
+   <td><strong>FIELD</strong>
+   </td>
+   <td><strong>TYPE</strong>
+   </td>
+   <td><strong>DESCRIPTION</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>traceID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla richiesta dell'utente. È sempre presente a differenza del workflowInstanceId poiché il valore di quest’ultimo dipende dal CDA preso in input
+   </td>
+  </tr>
+  <tr>
+   <td>spanID
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco assegnato alla singola operazione nell’ambito della richiesta dell'utente. In caso di richiesta avente operazioni multiple (su più microservizi), ognuna di esse avrà un differente spanId (ma stesso traceId). \
+traceId e spanId coincidono nella prima operazione.
+   </td>
+  </tr>
+  <tr>
+   <td>workflowInstanceId
+   </td>
+   <td>String
+   </td>
+   <td>Identificativo univoco della transazione
+   </td>
+  </tr>
+</table>
+
+
+_Tabella 33: Campi Response sempre valorizzati_
+
+### 9.2.1. Esempio di Messaggio di risposta con Esito Success 200
+
+``` json
+{ 
+  "traceID": "c2e1818fbf7aea7f", 
+  "spanID": "c2e1818fbf7aea7f",
+  "workflowInstanceId": "2.16.840.1.113883.2.9.2.120.4.4.97bb3fc5bee3032679f4f07419e04af6375baafa17024527a98ede920c6812ed.3c55cfd276^^^^urn:ihe:iti:xdw:2013:workflowInstanceId",
+  "warning": "The requestor is RDA for the patient"
+}
+```
+
+### 9.2.2. Esempio di Messaggio di Risposta con esito KO 400
+
+``` json
+{
+  "traceID": "61d8123fb20e2afc",
+  "spanID": "61d8123fb20e2afc",
+  "type": "/msg/mandatory-element",
+  "title": "Campo obbligatorio non presente",
+  "detail": "Il campo identificativo documento deve essere valorizzato",
+  "status": 400,
+  "instance": "/msg/mandatory-element"
+}
+```
+
+# 10. Servizio di validazione e pubblicazione creazione contestuale
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l'invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti, è necessario fare riferimento al Capitolo 13 "Drilldown Parametri di Input.
 
 L’Endpoint del caso d’uso di Validazione e pubblicazione creazione Documento CDA2 si compone come segue:
@@ -3708,7 +3534,7 @@ https://<HOST>:<PORT>/v<major>/documents/validate-and-create
 Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale..
 
 
-## 9.1. Request
+## 10.1. Request
 
 
 <table>
@@ -3980,7 +3806,7 @@ Il Request Body è di tipo **multipart/form-data**, al suo interno sono previsti
 
 * **requestBody** che dovrà contenere l’oggetto json con i parameter di input
 
-### 9.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”
+### 10.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Attachment”
 
 Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
 
@@ -4014,7 +3840,7 @@ curl -X 'POST' \
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
-### 9.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”
+### 10.1.2. Messaggio di Richiesta, esempio “Validazione Pubblicazione creazione con Resource”
 
 Messaggio di richiesta con pdf con CDA innestato in modalità RESOURCE, tipo documento CDA e metadati formalmente corretti.
 
@@ -4051,7 +3877,7 @@ curl -X 'POST' \
 
 
 
-## 9.2. Response
+## 10.2. Response
 
 
 <table>
@@ -4228,7 +4054,7 @@ _Tabella 38: Campi Response sempre valorizzati_
 _Tabella 39: Campi Response valorizzati in caso di warning_
 
 
-### 9.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”
+### 10.2.1. Esempio di Messaggio di Risposta con esito OK 200 - “Validazione Pubblicazione creazione contestuale con Attachment”
 
 ``` json
 { 
@@ -4238,7 +4064,7 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 9.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”
+### 10.2.2. Esempio di Messaggio di Risposta con esito OK 400 - “Validazione Pubblicazione creazione contestuale con errore sintattico”
 
 
 ``` json
@@ -4254,7 +4080,7 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 9.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”
+### 10.2.3. Esempio di Messaggio di Risposta con esito OK 201 - “Validazione Pubblicazione creazione contestuale con warning semantico”
 
 
 ``` json
@@ -4266,9 +4092,9 @@ _Tabella 39: Campi Response valorizzati in caso di warning_
 }
 ```
  
-# 10. Servizio di validazione pubblicazione sostituzione contestuale
+# 11. Servizio di validazione pubblicazione sostituzione contestuale
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Validazione Pubblicazione Sostituzione Documento si compone come segue:
 
@@ -4279,7 +4105,7 @@ https://<HOST>:<PORT>/v<major>/documents/validate-and-replace/<identificativoDoc
 Lo scopo di questa API è validare (sintatticamente, semanticamente, terminologicamente) un documento CDA2. Nel caso di errore bloccante di validazione, il processo ritornerà all'utente il dettaglio relativo. Nel caso invece di errore non bloccante in validazione o di successo, si procederà all'indicizzazione sul FSE regionale sostituendo un documento precedentemente pubblicato, alla traduzione dei dati clinici nel formato HL7 FHIR e al successivo invio al Data Repository Centrale. 
 
 
-## 10.1. Request
+## 11.1. Request
 
 
 <table>
@@ -4559,7 +4385,7 @@ La compilazione errata dei parameter oppure la non compilazione dei parameter �
 Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento da sostituire e al parametro _identificativoDoc_ utilizzato precedentemente nel servizio di creazione.
 
 
-### 10.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”
+### 11.1.1. Messaggio di Richiesta, esempio “Validazione Pubblicazione Sostituzione Documento con Attachment”
 
 Messaggio di richiesta con pdf con CDA innestato in modalità ATTACHMENT, tipo documento CDA e metadati formalmente corretti. 
  
@@ -4595,7 +4421,7 @@ curl -X 'PUT' \
   -F 'file=@CDA_OK.pdf;type=application/pdf'
 ```
 
-## 10.2. Response
+## 11.2. Response
 
 
 <table>
@@ -4774,7 +4600,7 @@ _Tabella 43: Campi Response sempre valorizzati_
 _Tabella 44: Campi Response valorizzati in caso di warning_
 
 
-### 10.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
+### 11.2.1. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con Attachment”
 
 ``` json
 { 
@@ -4784,7 +4610,7 @@ _Tabella 44: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 10.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”
+### 11.2.2. Esempio di Messaggio di Risposta con esito OK 200, “Pubblicazione Sostituzione Documento con warning semantico”
 
 ``` json
 {
@@ -4795,7 +4621,7 @@ _Tabella 44: Campi Response valorizzati in caso di warning_
 }
 ```
 
-### 10.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”
+### 11.2.3. Esempio di Messaggio di Risposta con esito OK 400, “Pubblicazione Sostituzione Documento con errore sintattico”
 
 ``` json
 { 
@@ -4810,7 +4636,7 @@ _Tabella 44: Campi Response valorizzati in caso di warning_
 }
 ```
 
-# 11. Servizio di Notifica Stato Transazione
+# 12. Servizio di Notifica Stato Transazione
 
 Il Servizio di Notifica Stato Transazione, consente l’aggiornamento e la riconciliazione dello stato delle operazioni asincrone di **creazione** e **sostituzione** dei documenti avviate verso la UA-R (Unità di Archiviazione Regionale).
 
@@ -4821,7 +4647,7 @@ Il servizio opera secondo due modalità distinte:
 - **push** (modalità primaria e da prediligere);
 - **pull** (modalità residuale, utilizzata solo per il recupero dello stato in caso di notifiche non ricevute).
 
-## 11.1. Modalità di Comunicazione e Paradigma di Sicurezza
+## 12.1. Modalità di Comunicazione e Paradigma di Sicurezza
 
 Il processo di autenticazione rispetta il seguente pattern delle Linee Guida ModI:
 
@@ -4832,7 +4658,7 @@ In particolare:
 Il Gateway FSE (server) espone un certificato X.509 emesso dalla CA del Ministero della Salute, il Touchpoint Regionale (client) presenta a sua volta un proprio certificato X.509 valido;
 Entrambe le parti verificano i rispettivi certificati tramite i propri truststore di fiducia, realizzando un'autenticazione reciproca.
 
-## 11.2. Modalità Push
+## 12.2. Modalità Push
 
 In modalità **push**, il Gateway riceve dal **Broker** la notifica dello stato di una transazione asincrona precedentemente avviata.
 
@@ -4853,19 +4679,19 @@ In questa modalità, il Gateway ha un ruolo attivo di **propagazione dello stato
 
 La notifica verso il touchpoint finale **non contiene esclusivamente l’ultimo stato**, ma una **lista ordinata degli eventi di stato** associati al medesimo `workflowInstanceId`, così da consentire al chiamante una visione completa dell’evoluzione del workflow.
 
-### 11.2.1. Endpoint Push Broker verso Gateway
+### 12.2.1. Endpoint Push Broker verso Gateway
 
 ```
 http://<HOST>:<PORT>/v<major>/ingestion/status
 ```
 
-### 11.2.2. Request
+### 12.2.2. Request
 
 | METHOD | URL                    | TYPE             |
 | ------ | ---------------------- | ---------------- |
 | POST   | `/v1/ingestion/status` | application/json |
 
-### 11.2.3. Parametri Body
+### 12.2.3. Parametri Body
 
 | KEY                | TYPE   | REQUIRED |
 | ------------------ | ------ | -------- |
@@ -4909,7 +4735,7 @@ curl -X POST "http://<HOST>:<PORT>/v1/ingestion/status" \
 }
 ```
 
-## 11.3. Notifica verso l’Utente Finale
+## 12.3. Notifica verso l’Utente Finale
 
 Il Gateway invia la notifica verso il touchpoint finale secondo le preferenze espresse in fase di invocazione iniziale, come riportato in precedenza.
 
@@ -4919,13 +4745,13 @@ Le specifiche OpenAPI di tale endpoint sono disponibili nella repository GitHub 
 
 https://github.com/ministero-salute/it-fse-support/tree/main/openapi/gateway/swagger_status.yaml
 
-### 11.3.1. Endpoint (Gateway verso touchpoint)
+### 12.3.1. Endpoint (Gateway verso touchpoint)
 
 ```
 POST http://<CALLBACK_HOST>/v1/workflow/status
 ```
 
-### 11.3.2. Payload di Notifica in caso di success
+### 12.3.2. Payload di Notifica in caso di success
 
 ```json
 {
@@ -4965,7 +4791,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### 11.3.3. Payload di Notifica in caso di errore verso INI
+### 12.3.3. Payload di Notifica in caso di errore verso INI
 
 ```json
 {
@@ -4993,7 +4819,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### 11.3.4. Payload di Notifica in caso di errore verso UAR
+### 12.3.4. Payload di Notifica in caso di errore verso UAR
 
 ```json
 {
@@ -5035,7 +4861,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 
 Il Gateway garantisce che gli eventi siano restituiti in ordine cronologico e che includano tutte le informazioni utili alla diagnosi e al monitoraggio del processo.
 
-## 11.4. Comportamento della Tabella di Routing del Gateway
+## 12.4. Comportamento della Tabella di Routing del Gateway
 
 La **tabella di routing del Gateway** ha lo scopo di determinare il corretto endpoint di notifica verso il client finale quando non viene fornito un indirizzo di callback esplicito.
 
@@ -5054,7 +4880,7 @@ Il comportamento è il seguente:
 
 Questo meccanismo consente al Gateway di supportare sia integrazioni dinamiche basate su callback, sia integrazioni statiche basate su configurazione, garantendo flessibilità e controllo centralizzato dei touchpoint di uscita.
 
-## 11.5. Modalità Pull
+## 12.5. Modalità Pull
 
 La modalità **pull** è prevista esclusivamente per scenari eccezionali in cui il Gateway non abbia ricevuto la notifica in modalità push.
 
@@ -5064,7 +4890,7 @@ Il Gateway utilizza la risposta ricevuta per aggiornare il proprio stato interno
 
 Dopo aver completato la riconciliazione, un consumer può ottenere lo stato della saga invocando l'endpoint documentato al capitolo 12 (Servizio di Recupero Stato Transazione per WorkflowInstanceId) che consente di ottenere la lista dei diversi stati della saga del Gateway
 
-### 11.5.1. Endpoint Pull Gateway verso Broker
+### 12.5.1. Endpoint Pull Gateway verso Broker
 
 ```
 http://<HOST>:<PORT>/v<major>/status/{workflowInstanceId}
@@ -5090,7 +4916,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
   -H "FSE-JWT-Signature: <signed-jwt>"
 ```
 
-### 11.5.2. Response
+### 12.5.2. Response
 
 | STATUS | SIGNIFICATO                                | TIPO                     |
 | ------ | ------------------------------------------ | ------------------------ |
@@ -5098,7 +4924,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
 | 404    | Workflow non trovato                       | application/problem+json |
 | 500    | Errore interno del server                  | application/problem+json |
 
-### 11.5.3. Esempio risposta 200
+### 12.5.3. Esempio risposta 200
 
 ```json
 {
@@ -5110,7 +4936,7 @@ curl -X GET "http://<HOST>:<PORT>/v1/status/2.16.840.1.113883.2.9.2.120.4.4.b0f3
 }
 ```
 
-## 11.6. Stati transazione
+## 12.6. Stati transazione
 Di seguito sono riportati i diversi stati che possono essere ottenuti in seguito ad una richiesta asincrona 
 
 | Event Type         | Event Status|
@@ -5121,9 +4947,9 @@ Di seguito sono riportati i diversi stati che possono essere ottenuti in seguito
 | SEND_TO_UAR        | SUCCESS/BLOCKING_ERROR     |
 | UAR_FINAL_STATUS   | SUCCESS/BLOCKING_ERROR     |
 
-# 12. Servizio di Recupero Stato Transazione per WorkflowInstanceId
+# 13. Servizio di Recupero Stato Transazione per WorkflowInstanceId
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
@@ -5135,7 +4961,7 @@ Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di
 Tale funzionalità sara presente solo ed esclusivamente in ambiente di validazione.
 
 
-## 12.1. Request
+## 13.1. Request
 
 
 <table>
@@ -5226,7 +5052,7 @@ _Tabella 46: Parametri Richiesta di Recupero Stato Transazioni per WorkflowInsta
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 
-### 12.1.1. Esempio Messaggio di Richiesta stato Transazioni
+### 13.1.1. Esempio Messaggio di Richiesta stato Transazioni
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
@@ -5237,7 +5063,7 @@ curl -X 'GET' \
   -H 'accept: application/json' 
 ```
 
-## 12.2. Response
+## 13.2. Response
 
 
 <table>
@@ -5498,7 +5324,7 @@ _Tabella 48: Campi Response sempre valorizzati_
 _Tabella 49: Campi Response sempre valorizzati_
 
 
-### 12.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
+### 13.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
 
 Di seguito viene mostrato un esempio di risposta ad una creazione per un issuer abilitato alla comunicazione verso INI con esito 200
 
@@ -5552,7 +5378,7 @@ Di seguito viene mostrato un esempio di risposta ad una creazione per un issuer 
 }
 ```
 
-### 12.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
+### 13.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
 
 Di seguito viene mostrato un esempio di risposta ad una cancellazione per un issuer abilitato alla comunicazione verso INI con esito 200
 
@@ -5607,7 +5433,7 @@ Di seguito viene mostrato un esempio di risposta ad una cancellazione per un iss
 }
 ```
 
-### 12.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
+### 13.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
 Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issuer abilitato alla comunicazione verso INI con esito 200
 
 ``` json
@@ -5664,7 +5490,7 @@ Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issu
 }
 ```
 
-### 12.2.4. Esempio messaggio di risposta ad una update con Esito Success 200
+### 13.2.4. Esempio messaggio di risposta ad una update con Esito Success 200
 
 ``` json
 {
@@ -5715,7 +5541,7 @@ Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issu
 }
 ```
 
-### 12.2.5. Esempio di Messaggio di Risposta con esito KO 404
+### 13.2.5. Esempio di Messaggio di Risposta con esito KO 404
 
 ``` json
 {
@@ -5729,9 +5555,9 @@ Di seguito viene mostrato un esempio di risposta ad una sostituzione per un issu
 }
 ```
 
-# 13. Servizio di Recupero Stato Transazione per TraceId
+# 14. Servizio di Recupero Stato Transazione per TraceId
 
-Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 14 “Drilldown Parametri di Input”.
+Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
 
 L’Endpoint del caso d’uso di Recupero Stato Transazione per WorkflowInstanceId si compone come segue:
 
@@ -5742,7 +5568,7 @@ https://<HOST>:<PORT>/v<major>/status/search/<traceId>
 Lo scopo di questa API Sincrona è di recuperare la lista di tutti gli eventi di una transazione associati ad un traceId. 
 
 
-## 13.1. Request
+## 14.1. Request
 
 
 <table>
@@ -5833,7 +5659,7 @@ _Tabella 51: Parametri Richiesta di Recupero Stato Transazioni per traceId_
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
 
-### 13.1.1. Esempio Messaggio di Richiesta stato Transazioni
+### 14.1.1. Esempio Messaggio di Richiesta stato Transazioni
 
 Messaggio di richiesta con workflowInstanceId valorizzato
 
@@ -5844,7 +5670,7 @@ curl -X 'GET' \
   -H 'accept: application/json' 
 ```
 
-## 13.2. Response
+## 14.2. Response
 
 <table>
   <tr>
@@ -6104,12 +5930,12 @@ _Tabella 48: Campi Response sempre valorizzati_
 _Tabella 49: Campi Response sempre valorizzati_
 
 
-# 14. Drilldown Response in caso di Errore
+# 15. Drilldown Response in caso di Errore
 
 Il Gateway genererà due tipologie di errore distinte, entrambe aderenti alla specifica RFC 7807.
 
 
-## 14.1. Errori Applicativi
+## 15.1. Errori Applicativi
 
 Di seguito vengono indicati i campi valorizzati soltanto in caso di errori provenienti dall’applicativo
 
@@ -6170,7 +5996,7 @@ Può differire dal type in caso sia necessario specificare il problema con maggi
 _Tabella 52: Campi Response valorizzati in caso di errore_
 
 
-### 14.1.1. Esempi di errore generati dal Gateway
+### 15.1.1. Esempi di errore generati dal Gateway
 
 
 <table>
@@ -6442,7 +6268,7 @@ _Tabella 52: Campi Response valorizzati in caso di errore_
 
 
 
-## 14.2. Errori provenienti da Apparati di Frontiera
+## 15.2. Errori provenienti da Apparati di Frontiera
 
 Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali o di sicurezza (ad esempio token mancante o scaduto, request non conforme alle specifiche) che vengono intercettati e notificati prima che la richiesta raggiunga i microservizi.
 
@@ -6502,7 +6328,7 @@ Gli errori provenienti dagli apparati di frontiera sono errori infrastrutturali 
 _Tabella 53: Campi Response valorizzati in caso di errore govWay_
 
 
-# 15. Drilldown Parametri di Input
+# 16. Drilldown Parametri di Input
 
 Come riportato nel documento "Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Framework e dataset dei servizi base - Versione 2.5” l’interoperabilità fra i differenti sistemi di FSE a livello nazionale è assicurata tramite INI. 
 
@@ -6525,7 +6351,7 @@ Campi che possono essere forniti al Gateway direttamente tramite la request body
 Nella parte restante di questo paragrafo saranno descritti puntualmente i campi recuperati dal JWT (che coincidono con i campi “asserzione attributo”) e quelli recuperati dalla request body (che nascono dall’unione dei campi “specifici per messaggio” che non possono essere dedotti dal contesto di invocazione).
 
 
-## 15.1. Campi Contenuti nei JWT
+## 16.1. Campi Contenuti nei JWT
 
 Gli endpoint del Gateway ricevono 2 token JWT:
 
@@ -7629,7 +7455,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 N.B: Il campo **locality** nell'esempio fa riferimento al **LABORATORIO DI PROVA** della Regione Sicilia **190**, ASL **111** e codice STS.11 **123456**
 
 
-## 15.2. Campi Contenuti nella Request Body
+## 16.2. Campi Contenuti nella Request Body
 
 Per i campi contenuti nella request body si evidenzia nel campo “provenienza” se questi sono campi introdotti per rendere possibile la comunicazione con INI o se questi sono stati appositamente introdotti per gestire in maniera efficace ed efficiente il gateway.
 
@@ -8291,7 +8117,7 @@ _Tabella 56: Campi contenuti nella Request Body_
 
 
 
-## 15.3. Tabelle di Riferimento
+## 16.3. Tabelle di Riferimento
 
 Nella sezione presente vengono riportate le Tabelle di Riferimento per i Parametri di Input: se specificato in “Fonte” queste sono riconducibili alle “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”, laddove non specificato si tratta di tabelle custom create ad uso dei servizi di questo documento.
 
@@ -8300,7 +8126,7 @@ Le informazioni riportate nelle tabelle con Fonte Affinity Domain, rispetto alle
 Eventuali variazioni normative e/o ad Affinity Domain implicano l’aggiornamento delle tabelle referenziate.
 
 
-### 15.3.1. Attività Clinica Enum
+### 16.3.1. Attività Clinica Enum
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -8359,7 +8185,7 @@ _Tabella 57:  _
 
 
 
-### 15.3.2. Healthcare Facility Type Code
+### 16.3.2. Healthcare Facility Type Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -8406,7 +8232,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 58: _Value set per il metadato XDSDocumentEntry.healthcareFacilityTypeCode_
 
 
-### 15.3.3. Tipo Documento Alto Livello
+### 16.3.3. Tipo Documento Alto Livello
 
 **Fonte:**  
 “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
@@ -8437,84 +8263,255 @@ _Tabella 58: _Value set per il metadato XDSDocumentEntry.healthcareFacilityTypeC
 _Tabella 44: _Value set per il metadato XDSDocumentEntry.classCode
 
 
-### 15.3.4. Event Code
+### 16.3.4. Event Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
 ## Tabella dei codici
 
+## Tabella dei codici
+
 | Codice | DisplayName | Descrizione |
-|--------|------------|-------------|
+|--------|-------------|-------------|
 | 1001000221103 | 1001000221103 | Inactivated whole Vibrio cholerae antigen only vaccine product in oral dose form |
 | 1011000221100 | 1011000221100 | Live attenuated Vibrio cholerae antigen only vaccine product in oral dose form |
 | 1031000221108 | 1031000221108 | Human poliovirus antigen-containing vaccine product |
-| 1051000221104 | 1051000221104 | Live attenuated Human poliovirus serotypes 1 and 3 antigens only vaccine product |
+| 1051000221104 | 1051000221104 | Live attenuated Human poliovirus serotypes 1 and 3 antigens only vaccine product in oral dose form |
+| 1052328007 | 1052328007 | Streptococcus pneumoniae Danish serotype 4, 6B, 9V, 14, 18C, 19F, and 23F capsular polysaccharide antigens conjugated only vaccine product |
 | 1081000221109 | 1081000221109 | Live attenuated Rotavirus antigen only vaccine product |
+| 1101000221104 | 1101000221104 | Clostridium tetani toxoid antigen-containing vaccine product |
+| 1119254000 | 1119254000 | Streptococcus pneumoniae Danish serotype 1, 3, 4, 5, 6A, 6B, 7F, 9V, 14, 18C, 19A, 19F, and 23F capsular polysaccharide antigens only vaccine product |
 | 1119305005 | 1119305005 | SARS-CoV-2 antigen vaccine |
 | 1119349007 | 1119349007 | SARS-CoV-2 mRNA vaccine |
+| 1121000221106 | 1121000221106 | Live attenuated Yellow fever virus antigen only vaccine product |
+| 1131000221109 | 1131000221109 | Vaccine product containing only inactivated whole Rabies lyssavirus antigen |
 | 1157024006 | 1157024006 | Inactivated whole SARS-CoV-2 antigen vaccine |
 | 1162643001 | 1162643001 | SARS-CoV-2 recombinant spike protein antigen vaccine |
+| 1181000221105 | 1181000221105 | Influenza virus antigen only vaccine product |
+| 1801000221105 | 1801000221105 | Streptococcus pneumoniae capsular polysaccharide antigen conjugated only vaccine product |
+| 1861000221106 | 1861000221106 | Bacillus Calmette-Guerin antigen only vaccine product |
+| 1981000221108 | 1981000221108 | Neisseria meningitidis serogroup B antigen only vaccine product |
+| 2171000221104 | 2171000221104 | Salmonella enterica subspecies enterica serovar Typhi capsular polysaccharide unconjugated antigen only vaccine product in parenteral dose form |
+| 2221000221107 | 2221000221107 | Live attenuated Human alphaherpesvirus 3 only vaccine product |
 | 28531000087107 | 28531000087107 | COVID-19 vaccine |
 | 29061000087103 | 29061000087103 | COVID-19 non-replicating viral vector vaccine |
+| 37146000 | 37146000 | Typhus vaccine |
+| 409568008 | 409568008 | Pentavalent botulinum toxoid vaccine |
+| 428601009 | 428601009 | Paratyphoid vaccine |
+| 601000221108 | 601000221108 | Bordetella pertussis antigen-containing vaccine product |
+| 774618008 | 774618008 | Whole cell Bordetella pertussis and Clostridium tetani toxoid adsorbed and Corynebacterium diphtheriae toxoid antigens only vaccine product |
+| 775641005 | 775641005 | Clostridium tetani toxoid adsorbed and Corynebacterium diphtheriae toxoid antigens only vaccine product |
+| 777725002 | 777725002 | Clostridium tetani toxoid antigen adsorbed only vaccine product |
+| 836368004 | 836368004 | Bacteria antigen-containing vaccine product |
 | 836369007 | 836369007 | Virus antigen-containing vaccine product |
 | 836374004 | 836374004 | Hepatitis B virus antigen-containing vaccine product |
 | 836375003 | 836375003 | Hepatitis A virus antigen-containing vaccine product |
 | 836377006 | 836377006 | Influenza virus antigen-containing vaccine product |
+| 836378001 | 836378001 | Japanese encephalitis virus antigen-containing vaccine product |
 | 836379009 | 836379009 | Human papillomavirus antigen-containing vaccine product |
 | 836380007 | 836380007 | Haemophilus influenzae type B antigen-containing vaccine product |
+| 836381006 | 836381006 | Corynebacterium diphtheriae antigen-containing vaccine product |
 | 836382004 | 836382004 | Measles morbillivirus antigen-containing vaccine product |
+| 836383009 | 836383009 | Vibrio cholerae antigen-containing vaccine product |
+| 836384003 | 836384003 | Bacillus anthracis antigen-containing vaccine product |
 | 836385002 | 836385002 | Yellow fever virus antigen-containing vaccine product |
 | 836387005 | 836387005 | Rotavirus antigen-containing vaccine product |
 | 836388000 | 836388000 | Rubella virus antigen-containing vaccine product |
+| 836389008 | 836389008 | Vaccinia virus antigen-containing vaccine product |
+| 836390004 | 836390004 | Salmonella enterica subspecies enterica serovar Typhi antigen-containing vaccine product |
+| 836393002 | 836393002 | Rabies lyssavirus antigen-containing vaccine product |
+| 836397001 | 836397001 | Coxiella burnetii antigen-containing vaccine product |
 | 836398006 | 836398006 | Streptococcus pneumoniae antigen-containing vaccine product |
 | 836401009 | 836401009 | Neisseria meningitidis antigen-containing vaccine product |
+| 836402002 | 836402002 | Bacillus Calmette-Guerin antigen-containing vaccine product |
+| 836403007 | 836403007 | Tick-borne encephalitis virus antigen-containing vaccine product |
+| 836495005 | 836495005 | Human alphaherpesvirus 3 antigen-containing vaccine product |
+| 836498007 | 836498007 | Mumps orthorubulavirus antigen-containing vaccine product |
+| 836500008 | 836500008 | Haemophilus influenzae type B and Neisseria meningitidis serogroup C antigens only vaccine product |
+| 840549009 | 840549009 | Yersinia pestis antigen-containing vaccine product |
+| 840563003 | 840563003 | Dengue virus antigen-containing vaccine product |
+| 840599008 | 840599008 | Borrelia burgdorferi antigen-containing vaccine product |
+| 863911006 | 863911006 | Clostridium tetani antigen-containing vaccine product |
+| 871726005 | 871726005 | Rabies lyssavirus antigen only vaccine product |
+| 871737006 | 871737006 | Mumps orthorubulavirus antigen only vaccine product |
+| 871738001 | 871738001 | Live attenuated Mumps orthorubulavirus antigen only vaccine product |
+| 871739009 | 871739009 | Human poliovirus antigen only vaccine product |
+| 871740006 | 871740006 | Inactivated whole Human poliovirus antigen only vaccine product |
+| 871742003 | 871742003 | Clostridium tetani antigen only vaccine product |
+| 871751006 | 871751006 | Hepatitis A virus antigen only vaccine product |
+| 871759008 | 871759008 | Acellular Bordetella pertussis only vaccine product |
+| 871764007 | 871764007 | Haemophilus influenzae type b antigen only vaccine product |
+| 871765008 | 871765008 | Measles morbillivirus antigen only vaccine product |
+| 871768005 | 871768005 | Influenza virus antigen only vaccine product in nasal dose form |
+| 871772009 | 871772009 | Influenza A virus subtype H1N1 antigen only vaccine product |
 | 871803007 | 871803007 | Hepatitis A and Hepatitis B virus antigens only vaccine product |
-| 871831003 | 871831003 | Measles + Mumps + Rubella vaccine |
-| 871908002 | 871908002 | Varicella + MMR combined vaccine |
+| 871804001 | 871804001 | Hepatitis A virus and Salmonella enterica subspecies enterica serovar Typhi antigens only vaccine product |
+| 871806004 | 871806004 | Haemophilus influenzae type B and Hepatitis B virus antigens only vaccine product |
+| 871826000 | 871826000 | Clostridium tetani and Corynebacterium diphtheriae antigens only vaccine product |
+| 871831003 | 871831003 | Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens only vaccine product |
+| 871837004 | 871837004 | Clostridium tetani and Corynebacterium diphtheriae and Human poliovirus antigens only vaccine product |
+| 871839001 | 871839001 | Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Haemophilus influenzae type B antigens only vaccine product |
+| 871866001 | 871866001 | Neisseria meningitidis serogroup C only vaccine product |
+| 871871008 | 871871008 | Neisseria meningitidis serogroup A and C only vaccine product |
+| 871873006 | 871873006 | Neisseria meningitidis serogroup A, C, W135 and Y only vaccine product |
+| 871875004 | 871875004 | Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae antigens only vaccine product |
+| 871876003 | 871876003 | Acellular Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae antigens only vaccine product |
+| 871878002 | 871878002 | Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Human poliovirus antigens only vaccine product |
+| 871887006 | 871887006 | Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Haemophilus influenzae type B and Human poliovirus antigens only vaccine product |
+| 871889009 | 871889009 | Acellular Bordetella pertussis and Corynebacterium diphtheriae and Hepatitis B virus and inactivated whole Human poliovirus antigens only vaccine product |
+| 871895005 | 871895005 | Bordetella pertussis and Clostridium tetani and Corynebacterium diphtheriae and Haemophilus influenzae type B and Hepatitis B virus and Human poliovirus antigens only vaccine product |
+| 871908002 | 871908002 | Human alphaherpesvirus 3 and Measles morbillivirus and Mumps orthorubulavirus and Rubella virus antigens only vaccine product |
+| 871918007 | 871918007 | Rickettsia antigen-containing vaccine product |
+| 871921009 | 871921009 | Staphylococcus toxoid vaccine |
+| 921000221108 | 921000221108 | Neisseria meningitidis antigen only vaccine product |
+| 971000221109 | 971000221109 | Live attenuated Salmonella enterica subspecies enterica serovar Typhi antigen only vaccine product in oral dose form |
+| 981000221107 | 981000221107 | Streptococcus pneumoniae antigen only vaccine product |
 | J07AC | J07AC | Anthrax vaccines |
+| J07AC01 | J07AC01 | anthrax antigen |
+| J07AD | J07AD | Brucellosis vaccines |
+| J07AD01 | J07AD01 | brucella antigen |
 | J07AE | J07AE | Cholera vaccines |
+| J07AE01 | J07AE01 | cholera, inactivated, whole cell |
+| J07AE02 | J07AE02 | cholera, live attenuated |
+| J07AE51 | J07AE51 | cholera, combinations with typhoid vaccine, inactivated, whole cell |
 | J07AF | J07AF | Diphtheria vaccines |
+| J07AF01 | J07AF01 | diphtheria toxoid |
 | J07AG | J07AG | Haemophilus influenzae B vaccines |
+| J07AG01 | J07AG01 | haemophilus influenzae B, purified antigen conjugated |
+| J07AG51 | J07AG51 | haemophilus influenzae B, combinations with toxoids |
+| J07AG52 | J07AG52 | haemophilus influenzae B, combinations with pertussis and toxoids |
+| J07AG53 | J07AG53 | haemophilus influenzae B, combinations with meningococcus C, conjugated |
+| J07AG54 | J07AG54 | haemophilus influenza B, combinations with meningococcus C,Y, conjugated |
 | J07AH | J07AH | Meningococcal vaccines |
+| J07AH01 | J07AH01 | meningococcus A, purified polysaccharides antigen |
+| J07AH02 | J07AH02 | other meningococcal monovalent purified polysaccharides antigen |
+| J07AH03 | J07AH03 | meningococcus A,C, bivalent purified polysaccharides antigen |
+| J07AH04 | J07AH04 | meningococcus A,C,Y,W-135, tetravalent purified polysaccharides antigen |
+| J07AH05 | J07AH05 | other meningococcal polyvalent purified polysaccharides antigen |
+| J07AH06 | J07AH06 | meningococcus B, outer membrane vesicle vaccine |
+| J07AH07 | J07AH07 | meningococcus C, purified polysaccharides antigen conjugated |
+| J07AH08 | J07AH08 | meningococcus A,C,Y,W-135, tetravalent purified polysaccharides antigen conjugated |
+| J07AH09 | J07AH09 | meningococcus B, multicomponent vaccine |
+| J07AH10 | J07AH10 | meningococcus A, purified polysaccharides antigen conjugated |
+| J07AH11 | J07AH11 | meningococcus A,B,C,Y,W-135, pentavalent purified polysaccharides antigen conjugated and factor H binding protein |
 | J07AJ | J07AJ | Pertussis vaccines |
+| J07AJ01 | J07AJ01 | pertussis, inactivated, whole cell |
+| J07AJ02 | J07AJ02 | pertussis, purified antigen |
+| J07AJ51 | J07AJ51 | pertussis, inactivated, whole cell, combinations with toxoids |
+| J07AJ52 | J07AJ52 | pertussis, purified antigen, combinations with toxoids |
+| J07AK | J07AK | Plague vaccines |
+| J07AK01 | J07AK01 | plague, inactivated, whole cell |
 | J07AL | J07AL | Pneumococcal vaccines |
+| J07AL01 | J07AL01 | pneumococcus, purified polysaccharides antigen |
+| J07AL02 | J07AL02 | pneumococcus, purified polysaccharides antigen conjugated |
+| J07AL52 | J07AL52 | pneumococcus purified polysaccharides antigen and haemophilus influenzae, conjugated |
 | J07AM | J07AM | Tetanus vaccines |
+| J07AM01 | J07AM01 | tetanus toxoid |
+| J07AM51 | J07AM51 | tetanus toxoid, combinations with diphtheria toxoid |
+| J07AM52 | J07AM52 | tetanus toxoid, combinations with tetanus immunoglobulin |
 | J07AN | J07AN | Tuberculosis vaccines |
+| J07AN01 | J07AN01 | tuberculosis, live attenuated |
 | J07AP | J07AP | Typhoid vaccines |
+| J07AP01 | J07AP01 | typhoid, oral, live attenuated |
+| J07AP02 | J07AP02 | typhoid, inactivated, whole cell |
+| J07AP03 | J07AP03 | typhoid, purified polysaccharide antigen |
+| J07AP10 | J07AP10 | typhoid, combinations with paratyphi types |
+| J07AR | J07AR | Typhus (exanthematicus) vaccines |
+| J07AR01 | J07AR01 | typhus exanthematicus, inactivated, whole cell |
+| J07AX | J07AX | Other bacterial vaccines |
+| J07AX01 | J07AX01 | leptospira vaccines |
 | J07BA | J07BA | Encephalitis vaccines |
+| J07BA01 | J07BA01 | encephalitis, tick borne, inactivated, whole virus |
+| J07BA02 | J07BA02 | encephalitis, Japanese, inactivated, whole virus |
+| J07BA03 | J07BA03 | encephalitis, Japanese, live attenuated |
 | J07BB | J07BB | Influenza vaccines |
+| J07BB01 | J07BB01 | influenza, inactivated, whole virus |
+| J07BB02 | J07BB02 | influenza, inactivated, split virus or surface antigen |
+| J07BB03 | J07BB03 | influenza, live attenuated |
+| J07BB04 | J07BB04 | influenza, virus like particles |
+| J07BB05 | J07BB05 | influenza, RNA-based vaccine |
 | J07BC | J07BC | Hepatitis vaccines |
+| J07BC01 | J07BC01 | hepatitis B, purified antigen |
+| J07BC02 | J07BC02 | hepatitis A, inactivated, whole virus |
+| J07BC20 | J07BC20 | combinations |
 | J07BD | J07BD | Measles vaccines |
+| J07BD01 | J07BD01 | measles, live attenuated |
+| J07BD51 | J07BD51 | measles, combinations with mumps, live attenuated |
+| J07BD52 | J07BD52 | measles, combinations with mumps and rubella, live attenuated |
+| J07BD53 | J07BD53 | measles, combinations with rubella, live attenuated |
+| J07BD54 | J07BD54 | measles, combinations with mumps, rubella and varicella, live attenuated |
 | J07BE | J07BE | Mumps vaccines |
+| J07BE01 | J07BE01 | mumps, live attenuated |
 | J07BF | J07BF | Poliomyelitis vaccines |
+| J07BF01 | J07BF01 | poliomyelitis oral, monovalent, live attenuated |
+| J07BF02 | J07BF02 | poliomyelitis oral, trivalent, live attenuated |
+| J07BF03 | J07BF03 | poliomyelitis, trivalent, inactivated, whole virus |
+| J07BF04 | J07BF04 | poliomyelitis oral, bivalent, live attenuated |
 | J07BG | J07BG | Rabies vaccines |
-| J07BH | J07BH | Rotavirus vaccines |
+| J07BG01 | J07BG01 | rabies, inactivated, whole virus |
+| J07BH | J07BH | Rota virus diarrhea vaccines |
+| J07BH01 | J07BH01 | rota virus, live attenuated |
+| J07BH02 | J07BH02 | rota virus, pentavalent, live, reassorted |
 | J07BJ | J07BJ | Rubella vaccines |
-| J07BK | J07BK | Varicella vaccines |
+| J07BJ01 | J07BJ01 | rubella, live attenuated |
+| J07BJ51 | J07BJ51 | rubella, combinations with mumps, live attenuated |
+| J07BK | J07BK | Varicella zoster vaccines |
+| J07BK01 | J07BK01 | varicella, live attenuated |
+| J07BK02 | J07BK02 | zoster, live attenuated |
+| J07BK03 | J07BK03 | zoster, purified antigen |
 | J07BL | J07BL | Yellow fever vaccines |
+| J07BL01 | J07BL01 | yellow fever, live attenuated |
 | J07BM | J07BM | Papillomavirus vaccines |
+| J07BM01 | J07BM01 | papillomavirus (human types 6, 11, 16, 18) |
+| J07BM02 | J07BM02 | papillomavirus (human types 16, 18) |
+| J07BM03 | J07BM03 | papillomavirus (human types 6, 11, 16, 18, 31, 33, 45, 52, 58) |
 | J07BN | J07BN | Covid-19 vaccines |
+| J07BN01 | J07BN01 | covid-19, RNA-based vaccine |
+| J07BN02 | J07BN02 | covid-19, viral vector, non-replicating |
+| J07BN03 | J07BN03 | covid-19, inactivated virus |
+| J07BN04 | J07BN04 | covid-19, protein subunit |
+| J07BN05 | J07BN05 | covid-19, virus-like particles |
 | J07BX | J07BX | Other viral vaccines |
-| J07CA | J07CA | Vaccini combinati |
+| J07BX01 | J07BX01 | smallpox and monkeypox vaccines |
+| J07BX02 | J07BX02 | ebola vaccines |
+| J07BX04 | J07BX04 | dengue virus vaccines |
+| J07BX05 | J07BX05 | respiratory syncytial virus vaccines |
+| J07BX06 | J07BX06 | enterovirus 71 vaccines |
+| J07CA | J07CA | Bacterial and viral vaccines, combined |
+| J07CA01 | J07CA01 | diphtheria-poliomyelitis-tetanus |
+| J07CA02 | J07CA02 | diphtheria-pertussis-poliomyelitis-tetanus |
+| J07CA03 | J07CA03 | diphtheria-rubella-tetanus |
+| J07CA04 | J07CA04 | haemophilus influenzae B and poliomyelitis |
+| J07CA05 | J07CA05 | diphtheria-hepatitis B-pertussis-tetanus |
+| J07CA06 | J07CA06 | diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus |
+| J07CA07 | J07CA07 | diphtheria-hepatitis B-tetanus |
+| J07CA08 | J07CA08 | haemophilus influenzae B and hepatitis B |
+| J07CA09 | J07CA09 | diphtheria-haemophilus influenzae B-pertussis-poliomyelitis-tetanus-hepatitis B |
+| J07CA10 | J07CA10 | typhoid-hepatitis A |
+| J07CA11 | J07CA11 | diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B |
+| J07CA12 | J07CA12 | diphtheria-pertussis-poliomyelitis-tetanus-hepatitis B |
+| J07CA13 | J07CA13 | diphtheria-haemophilus influenzae B-pertussis-tetanus-hepatitis B-meningococcus A + C |
 | J07XA | J07XA | Parasitic vaccines |
+| J07XA01 | J07XA01 | malaria vaccines |
 | P99 | P99 | Oscuramento del documento |
 | P00 | P00 | De-Oscuramento in alimentazione |
 | P97 | P97 | Oscuramento al genitore |
 | P98 | P98 | Oscuramento all’assistito |
-| LP418019-8 | LP418019-8 | Tampone antigenico Covid-19 |
-| LP417541-2 | LP417541-2 | Tampone molecolare Covid-19 |
-| 96118-5 | 96118-5 | Test sierologico qualitativo |
-| 94503-0 | 94503-0 | Test sierologico quantitativo |
+| P81 | P81 | Versioni precedenti Profilo Sanitario Sintetico |
+| LP418019-8 | LP418019-8 | Tampone antigenico per Covid-19 |
+| LP417541-2 | LP417541-2 | Tampone molecolare per Covid-19 |
+| 96118-5 | 96118-5 | Test Sierologico qualitativo |
+| 94503-0 | 94503-0 | Test Sierologico quantitativo |
 | pay | pay | Prescrizione farmaceutica non a carico SSN |
 | PUBLICPOL | PUBLICPOL | Prescrizione farmaceutica SSN |
 | LP267463-0 | LP267463-0 | Reddito |
 | LP199190-2 | LP199190-2 | Patologia |
-| 90768-3 | 90768-3 | Analisi sangue |
-
+| 90768-3 | 90768-3 | Analisi sangue donatore |
+ 
 _Tabella 45: Value set per il metadato XDSDocumentEntry.eventCodeList_
 
 
-### 15.3.5. Ruolo
+### 16.3.5. Ruolo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
@@ -8546,7 +8543,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 46: Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:role_
 
 
-### 15.3.6. Contesto Operativo
+### 16.3.6. Contesto Operativo
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -8590,7 +8587,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 _Tabella 47: Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:purposeofuse
 
 
-### 15.3.7. Organizzazione
+### 16.3.7. Organizzazione
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
@@ -8818,111 +8815,108 @@ _Tabella 48: _Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:or
 
 
 
-### 15.3.8. Practice Setting Code
+### 16.3.8. Practice Setting Code
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6”
 
-
 <table>
   <tr>
-   <td><strong>Code</strong>
-   </td>
-   <td><strong>CodingScheme</strong>
-   </td>
+    <td><strong>Code</strong></td>
+    <td><strong>CodingScheme</strong></td>
   </tr>
-   <tr>
-      <td>AD_PSC001</td>
-      <td>Allergologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC002</td>
-      <td>Day Hospital</td>
-    </tr>
-    <tr>
-      <td>AD_PSC003</td>
-      <td>Anatomia e Istologia Patologica</td>
-    </tr>
-     <tr>
-      <td>AD_PSC004</td>
-      <td>Osservazione breve intensiva (OBI) e Pronto Soccorso</td>
-    </tr>
-    <tr>
-      <td>AD_PSC005</td>
-      <td>Angiologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC006</td>
-      <td>Cardiochirurgia Pediatrica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC007</td>
-      <td>Cardiochirurgia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC008</td>
-      <td>Cardiologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC009</td>
-      <td>Chirurgia Generale</td>
-    </tr>
-    <tr>
-      <td>AD_PSC010</td>
-      <td>Chirurgia Maxillo-Facciale</td>
-    </tr>
-    <tr>
-      <td>AD_PSC011</td>
-      <td>Chirurgia Pediatrica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC012</td>
-      <td>Chirurgia Plastica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC013</td>
-      <td>Chirurgia Toracica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC014</td>
-      <td>Chirurgia Vascolare</td>
-    </tr>
-    <tr>
-      <td>AD_PSC015</td>
-      <td>Medicina Sportiva</td>
-    </tr>
-    <tr>
-      <td>AD_PSC018</td>
-      <td>Ematologia e Immunoematologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC019</td>
-      <td>Malattie Endocrine, del Ricambio e della Nutrizione</td>
-    </tr>
-    <tr>
-      <td>AD_PSC020</td>
-      <td>Immunologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC021</td>
-      <td>Geriatria</td>
-    </tr>
-    <tr>
-      <td>AD_PSC024</td>
-      <td>Malattie Infettive e Tropicali</td>
-    </tr>
-    <tr>
-      <td>AD_PSC025</td>
-      <td>Medicina del Lavoro</td>
-    </tr>
-    <tr>
-      <td>AD_PSC026</td>
-      <td>Medicina Generale</td>
-    </tr>
-    <tr>
-      <td>AD_PSC027</td>
-      <td>Medicina Legale</td>
-    </tr>
-    <tr>
+  <tr>
+    <td>AD_PSC001</td>
+    <td>Allergologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC002</td>
+    <td>Day Hospital</td>
+  </tr>
+  <tr>
+    <td>AD_PSC003</td>
+    <td>Anatomia e Istologia Patologica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC004</td>
+    <td>Osservazione breve intensiva (OBI) e Pronto Soccorso</td>
+  </tr>
+  <tr>
+    <td>AD_PSC005</td>
+    <td>Angiologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC006</td>
+    <td>Cardiochirurgia Pediatrica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC007</td>
+    <td>Cardiochirurgia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC008</td>
+    <td>Cardiologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC009</td>
+    <td>Chirurgia Generale</td>
+  </tr>
+  <tr>
+    <td>AD_PSC010</td>
+    <td>Chirurgia Maxillo-Facciale</td>
+  </tr>
+  <tr>
+    <td>AD_PSC011</td>
+    <td>Chirurgia Pediatrica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC012</td>
+    <td>Chirurgia Plastica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC013</td>
+    <td>Chirurgia Toracica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC014</td>
+    <td>Chirurgia Vascolare</td>
+  </tr>
+  <tr>
+    <td>AD_PSC015</td>
+    <td>Medicina Sportiva</td>
+  </tr>
+  <tr>
+    <td>AD_PSC018</td>
+    <td>Ematologia e Immunoematologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC019</td>
+    <td>Malattie Endocrine, del Ricambio e della Nutrizione</td>
+  </tr>
+  <tr>
+    <td>AD_PSC020</td>
+    <td>Immunologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC021</td>
+    <td>Geriatria</td>
+  </tr>
+  <tr>
+    <td>AD_PSC024</td>
+    <td>Malattie Infettive e Tropicali</td>
+  </tr>
+  <tr>
+    <td>AD_PSC025</td>
+    <td>Medicina del Lavoro</td>
+  </tr>
+  <tr>
+    <td>AD_PSC026</td>
+    <td>Medicina Generale</td>
+  </tr>
+  <tr>
+    <td>AD_PSC027</td>
+    <td>Medicina Legale</td>
+  </tr>
+  <tr>
     <td>AD_PSC028</td>
     <td>Unita Spinale</td>
   </tr>
@@ -9008,7 +9002,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   </tr>
   <tr>
     <td>AD_PSC051</td>
-    <td>Astanteria</td>
+    <td>Dermatologia</td>
   </tr>
   <tr>
     <td>AD_PSC052</td>
@@ -9019,113 +9013,113 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
     <td>Emodialisi</td>
   </tr>
   <tr>
-      <td>AD_PSC055</td>
-      <td>Farmacologia Clinica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC056</td>
-      <td>Recupero e Riabilitazione Funzionale</td>
-    </tr>
-    <tr>
-      <td>AD_PSC057</td>
-      <td>Fisiopatologia della Riabilitazione Umana</td>
-    </tr>
-    <tr>
-      <td>AD_PSC058</td>
-      <td>Gastroenterologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC060</td>
-      <td>Lungodegenti</td>
-    </tr>
-    <tr>
-      <td>AD_PSC061</td>
-      <td>Medicina Nucleare</td>
-    </tr>
-    <tr>
-      <td>AD_PSC062</td>
-      <td>Neonatologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC064</td>
-      <td>Oncologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC065</td>
-      <td>Oncoematologia Pediatrica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC066</td>
-      <td>Oncoematologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC067</td>
-      <td>Pensionanti</td>
-    </tr> 
-    <tr>
-      <td>AD_PSC068</td>
-      <td>Pneumologia, Fisiopatologia Respiratoria, Tisiologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC069</td>
-      <td>Radiologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC070</td>
-      <td>Radioterapia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC071</td>
-      <td>Reumatologia</td>
-    </tr>
-    <tr>
-      <td>AD_PSC072</td>
-      <td>Terapia Intensiva pediatrica</td>
-    </tr> 
-    <tr>
-      <td>AD_PSC073</td>
-      <td>Terapia Intensiva Neonatale</td>
-    </tr>
-    <tr>
-      <td>AD_PSC074</td>
-      <td>Radioterapia Oncologica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC075</td>
-      <td>Neuro-Riabilitazione</td>
-    </tr>
-    <tr>
-      <td>AD_PSC076</td>
-      <td>Neurochirurgia Pediatrica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC077</td>
-      <td>Nefrologia Pediatrica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC078</td>
-      <td>Urologia Pediatrica</td>
-    </tr> 
-    <tr>
-      <td>AD_PSC094</td>
-      <td>Terapia semi-intensiva</td>
-    </tr> 
-    <tr>
-      <td>AD_PSC096</td>
-      <td>Terapia del dolore</td>
-    </tr>   
-    <tr>
-      <td>AD_PSC097</td>
-      <td>Detenuti</td>
-    </tr>
-    <tr>
-      <td>AD_PSC098</td>
-      <td>Day Surgery Plurispecialistica</td>
-    </tr>
-    <tr>
-      <td>AD_PSC099</td>
-      <td>Cure palliative</td>
-    </tr>
+    <td>AD_PSC055</td>
+    <td>Farmacologia Clinica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC056</td>
+    <td>Recupero e Riabilitazione Funzionale</td>
+  </tr>
+  <tr>
+    <td>AD_PSC057</td>
+    <td>Fisiopatologia della Riabilitazione Umana</td>
+  </tr>
+  <tr>
+    <td>AD_PSC058</td>
+    <td>Gastroenterologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC060</td>
+    <td>Lungodegenti</td>
+  </tr>
+  <tr>
+    <td>AD_PSC061</td>
+    <td>Medicina Nucleare</td>
+  </tr>
+  <tr>
+    <td>AD_PSC062</td>
+    <td>Neonatologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC064</td>
+    <td>Oncologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC065</td>
+    <td>Oncoematologia Pediatrica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC066</td>
+    <td>Oncoematologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC067</td>
+    <td>Pensionato</td>
+  </tr>
+  <tr>
+    <td>AD_PSC068</td>
+    <td>Pneumologia, Fisiopatologia Respiratoria, Tisiologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC069</td>
+    <td>Radiologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC070</td>
+    <td>Radioterapia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC071</td>
+    <td>Reumatologia</td>
+  </tr>
+  <tr>
+    <td>AD_PSC072</td>
+    <td>Terapia Intensiva pediatrica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC073</td>
+    <td>Terapia Intensiva Neonatale</td>
+  </tr>
+  <tr>
+    <td>AD_PSC074</td>
+    <td>Radioterapia Oncologica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC075</td>
+    <td>Neuro-Riabilitazione</td>
+  </tr>
+  <tr>
+    <td>AD_PSC076</td>
+    <td>Neurochirurgia Pediatrica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC077</td>
+    <td>Nefrologia Pediatrica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC078</td>
+    <td>Urologia Pediatrica</td>
+  </tr>
+  <tr>
+    <td>AD_PSC094</td>
+    <td>Terapia Intensiva</td>
+  </tr>
+  <tr>
+    <td>AD_PSC096</td>
+    <td>Terapia del dolore</td>
+  </tr>
+  <tr>
+    <td>AD_PSC097</td>
+    <td>Detenuti</td>
+  </tr>
+  <tr>
+    <td>AD_PSC098</td>
+    <td>Day Surgery</td>
+  </tr>
+  <tr>
+    <td>AD_PSC099</td>
+    <td>Cure palliative</td>
+  </tr>
   <tr>
     <td>AD_PSC100</td>
     <td>Laboratorio Analisi Chimico Cliniche</td>
@@ -9145,7 +9139,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   <tr>
     <td>AD_PSC104</td>
     <td>Neuroradiologia</td>
-  </tr> 
+  </tr>
   <tr>
     <td>AD_PSC107</td>
     <td>Poliambulatorio</td>
@@ -9165,7 +9159,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   <tr>
     <td>AD_PSC126</td>
     <td>Libera Professione Degenza</td>
-  </tr> 
+  </tr>
   <tr>
     <td>AD_PSC129</td>
     <td>Trapianto Organi e Tessuti</td>
@@ -9188,11 +9182,10 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
   </tr>
 </table>
 
+_Tabella 49: Value set per il metadato XDSDocumentEntry.practiceSettingCode_
 
-_Tabella 49: _Value set per il metadato XDSDocumentEntry.practiceSettingCode
 
-
-### 15.3.9. Activity Enum
+### 16.3.9. Activity Enum
 
 
 <table>
@@ -9226,7 +9219,7 @@ _Tabella 49: _Value set per il metadato XDSDocumentEntry.practiceSettingCode
 _Tabella 59: ActivityEnum_
 
 
-### 15.3.10. Injection Mode Enum
+### 16.3.10. Injection Mode Enum
 
 
 <table>
@@ -9260,7 +9253,7 @@ _Tabella 59: ActivityEnum_
 _Tabella 60: InjectionModeEnum_
 
 
-### 15.3.11. Health Data Format Enum
+### 16.3.11. Health Data Format Enum
 
 
 <table>
@@ -9286,7 +9279,7 @@ _Tabella 60: InjectionModeEnum_
 _Tabella 61: HealthDataFormatEnum_
 
 
-### 15.3.12. Tipo Attività
+### 16.3.12. Tipo Attività
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -9324,7 +9317,7 @@ Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:a
 _Tabella 62: action-id_
 
 
-### 15.3.13. Administrative Request
+### 16.3.13. Administrative Request
 
 Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
 
@@ -9373,7 +9366,7 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
 
 _Tabella 63: Value set per il metadato XDSDocumentEntry.Slot - Administrative Request_
 
-## 15.4. Correlazione tra classCode e typeCode
+## 16.4. Correlazione tra classCode e typeCode
 
 Questo controllo verifica che esista una **correlazione valida** nelle operazioni di Creazione, Sostituzione e Aggiornamento tra:
 
@@ -9382,10 +9375,10 @@ Questo controllo verifica che esista una **correlazione valida** nelle operazion
 
 La validazione avviene tramite una mappa statica predefinita.
 
-### 15.4.1. Tabella dei controlli
+### 16.4.1. Tabella dei controlli
 
 | Tipo Documento (`DocumentTypeEnum`) | Tipo Alto Livello ammesso (`TipoDocAltoLivEnum`) |
-|-----------------------------------|-----------------------------------------------|
+|-------------------------------------|--------------------------------------------------------|
 | 57833_6 | PRS |
 | 60591_5 | SUM |
 | 11502_2 | REF |
@@ -9398,7 +9391,7 @@ La validazione avviene tramite una mappa statica predefinita.
 | 59284_0 | CON |
 | 104531_9 | CRT |
 | 57832_8 | PRS |
-| 29304_3 | PRE |
+| 60593_1 | PRE |
 | 11488_4 | REF |
 | 57827_8 | ESE |
 | 81223_0 | PRE |
@@ -9421,14 +9414,14 @@ La validazione avviene tramite una mappa statica predefinita.
 | 100971_1 | COL |
 | 101881_1 | SUM |
 | 108276_7 | LET |
-| LOINC_CODE_1 | LET |
-| LOINC_CODE_2 | CNT |
+| 111490_9 | LET |
+| 112062_5 | CNT |
 | 75496_0 | REF |
 | 85208_7 | REF |
-| LOINC_CODE_3 | REF |
-| LOINC_CODE_4 | CNT |
+| 112063_3 | REF |
+| 111827_2 | CNT |
 
-# 16. Notes
+# 17. Notes
 
 [^1]: https://docs.italia.it/media/pdf/lg-modellointeroperabilita-docs/vintra-work/lg-modellointeroperabilita-docs.pdf
 
