@@ -21,6 +21,7 @@
 - [1. Introduzione](#1-introduzione)
   - [1.1. Riferimenti](#11-riferimenti)
   - [1.2. Acronimi e Definizioni](#12-acronimi-e-definizioni)
+  - [Registro Modifiche](#registro-modifiche)
 - [2. Contesto di Riferimento](#2-contesto-di-riferimento)
   - [2.1. Pattern di Interazione](#21-pattern-di-interazione)
   - [2.2. Processo di Autenticazione\[^3\]](#22-processo-di-autenticazione3)
@@ -151,569 +152,66 @@
 
 ## 1.1. Riferimenti
 
-
-<table>
-  <tr>
-   <td><strong>RIF.</strong>
-   </td>
-   <td><strong>DOCUMENTO</strong>
-   </td>
-   <td><strong>DESCRIZIONE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>1
-   </td>
-   <td>http://www.hl7italia.it/hl7italia_D7/hl7it_publications
-   </td>
-   <td>Implementation Guide CDA R2
-   </td>
-  </tr>
-  <tr>
-   <td>2
-   </td>
-   <td>Affinity Domain 2.6.1
-   </td>
-   <td>Documento Affinity Domain
-   </td>
-  </tr>
-  <tr>
-   <td>3
-   </td>
-   <td>Linee Guida FSE
-   </td>
-   <td>Linee guida FSE
-   </td>
-  </tr>
-</table>
-
+| RIF. | DOCUMENTO | DESCRIZIONE |
+|------|-----------|-------------|
+| 1 | http://www.hl7italia.it/hl7italia_D7/hl7it_publications | Implementation Guide CDA R2 |
+| 2 | Affinity Domain 2.6.1 | Documento Affinity Domain |
+| 3 | Linee Guida FSE | Linee guida FSE |
 
 _Tabella 1: Riferimenti Esterni_
 
-
 ## 1.2. Acronimi e Definizioni
 
-
-<table>
-  <tr>
-   <td><strong>ACRONIMO</strong>
-   </td>
-   <td><strong>DEFINIZIONE</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>API
-   </td>
-   <td>Application Programming Interface
-   </td>
-  </tr>
-  <tr>
-   <td>REST
-   </td>
-   <td>REpresentational State Transfer
-   </td>
-  </tr>
-  <tr>
-   <td>FHIR
-   </td>
-   <td>Fast Healthcare Interoperability Resources
-   </td>
-  </tr>
-  <tr>
-   <td>CDA
-   </td>
-   <td>Clinical Document Architecture
-   </td>
-  </tr>
-  <tr>
-   <td>URI
-   </td>
-   <td>Uniform Resource Identifier
-   </td>
-  </tr>
-  <tr>
-   <td>JWT
-   </td>
-   <td>JSON Web Token
-   </td>
-  </tr>
-  <tr>
-   <td>INI
-   </td>
-   <td>Infrastruttura Nazionale per l’Interoperabilità
-   </td>
-  </tr>
-  <tr>
-   <td>FSE
-   </td>
-   <td>Fascicolo Sanitario Elettronico
-   </td>
-  </tr>
-  <tr>
-   <td>HL7
-   </td>
-   <td>Health Level 7
-   </td>
-  </tr>
-  <tr>
-   <td>GTW
-   </td>
-   <td>Gateway
-   </td>
-  </tr>
-  <tr>
-   <td>EDS
-   </td>
-   <td>Ecosistema Dati Sanitari
-   </td>
-  </tr>
-  <tr>
-   <td>N.A.
-   </td>
-   <td>Non Applicabile
-   </td>
-  </tr>
-</table>
-
+| ACRONIMO | DEFINIZIONE |
+|----------|-------------|
+| API | Application Programming Interface |
+| REST | REpresentational State Transfer |
+| FHIR | Fast Healthcare Interoperability Resources |
+| CDA | Clinical Document Architecture |
+| URI | Uniform Resource Identifier |
+| JWT | JSON Web Token |
+| INI | Infrastruttura Nazionale per l'Interoperabilità |
+| FSE | Fascicolo Sanitario Elettronico |
+| HL7 | Health Level 7 |
+| GTW | Gateway |
+| EDS | Ecosistema Dati Sanitari |
+| N.A. | Non Applicabile |
 
 _Tabella 2: Acronimi e Definizioni_
 
+## Registro Modifiche
 
-<table>
-   <tr>
-      <td><strong>VERSIONE</strong>
-      </td>
-      <td><strong>DATA</strong>
-      </td>
-      <td><strong>MODIFICHE</strong>
-      </td>
-   </tr>
-   <tr>
-      <td>1.1
-      </td>
-      <td>20/05/22
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            Tutti: prima stesura a seguito rivisitazione
-      </td>
-   </tr>
-   <tr>
-      <td>1.2
-      </td>
-      <td>07/06/22
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            Tutti: stesura a seguito rivisitazione
-      </td>
-   </tr>
-   <tr>
-      <td>1.3
-      </td>
-      <td>13/06/22
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            2.2: scenario integrazione gateway;
-         <p>
-            3.2: aggiornamento status code; esempio workflowInstanceId; esempio response con warning;
-         <p>
-            4.2: aggiornamento status code;
-         <p>
-            5.1: obbligatorietà campo patient_consent
-      </td>
-   </tr>
-   <tr>
-      <td>1.4
-      </td>
-      <td>28/06/2022
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            2: Contesto di riferimento con overview casi d’uso di validazione e pubblicazione CDA2;
-         <p>
-            3: aggiornamento paragrafo introduttivo per il servizio di validazione;
-         <p>
-            3.1: aggiornamento parametri della request del servizio di validazione e aggiunta colonna AFFINITY
-            DOMAIN/ITI TF;
-         <p>
-            4: aggiornamento paragrafo introduttivo per il servizio di pubblicazione;
-         <p>
-            4.1: aggiornamento parametri della request del servizio di pubblicazione creazione e aggiunta colonna
-            AFFINITY DOMAIN/ITI TF;
-         <p>
-            5.1: eliminata valorizzazione nella descrizione Tipo Attività;
-         <p>
-            5.3: stesura paragrafo introduttivo per le tabelle di riferimento;
-         <p>
-            5.3.1: aggiornamento tabella Attività Clinica secondo Affinity Domain versione 2.2;
-         <p>
-            5.3.5: aggiornamento tabella con eliminazione dei ruoli non pertinenti alla validazione e pubblicazione
-            CDA2, eliminazione colonna Tipologie di Interazioni;
-         <p>
-            5.3.6: aggiornamento tabella con eliminazione dei valori non pertinenti alla validazione e pubblicazione
-            CDA2, eliminazione colonna Tipologie di Interazioni;
-         <p>
-            5.3.12: eliminazione dei valori per il tipo di attività non pertinenti alla validazione e pubblicazione
-            CDA2.
-      </td>
-   </tr>
-   <tr>
-      <td>1.5
-      </td>
-      <td>05/07/2022
-      </td>
-      <td>Correzioni su tutte le sezioni
-      </td>
-   </tr>
-   <tr>
-      <td>2.0
-      </td>
-      <td>29/07/2022
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            3: aggiornamento Request e Accept header
-         <p>
-            4: aggiornamento Request e Accept header
-         <p>
-            5: stesura del paragrafo Eliminazione Documento
-         <p>
-            6: stesura del paragrafo Sostituzione Documento
-         <p>
-            7: stesura del paragrafo Aggiornamento Metadati
-         <p>
-            8.1: aggiornamento doppio JWT
-         <p>
-            8.3.4: aggiornamento doppio JWT
-         <p>
-            8.3.6: Contesto Operativo
-         <p>
-            8.3.11: Tipo Attività
-      </td>
-   </tr>
-   <tr>
-      <td>2.1
-      </td>
-      <td>15/10/2022
-      </td>
-      <td>Paragrafi modificati:
-
-         2: Specificato nome allegato CDA: cda.xml
-
-         2.3: Aggiunte note su JWT e certificati
-
-      </td>
-   </tr>
-   <tr>
-      <td>2.2
-      </td>
-      <td>28/11/2022
-      </td>
-      <td>Paragrafi modificati:
-
-         2: Evidenziato endpoint sistema di test
-
-      </td>
-   </tr>
-   <tr>
-      <td>2.3
-      </td>
-      <td>12/12/2022
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            2: aggiornamento Contesto di riferimento
-         <p>
-            5: aggiornamento Servizio di Eliminazione
-         <p>
-            6: aggiornamento Servizio di Sostituzione
-         <p>
-            7: aggiornamento Servizio di Aggiornamento Metadati
-         <p>
-            8: stesura del paragrafo Servizio di Recupero Stato Transazione per WorkflowInstanceId
-         <p>
-            9: stesura del paragrafo Servizio di Recupero Stato Transazione per TraceId
-         <p>
-            10: stesura del paragrafo DrillDown Response in caso di Errore
-         <p>
-            11.1: aggiunti nuovi custom claims per Applicativo
-      </td>
-   </tr>
-   <tr>
-      <td>2.4
-      </td>
-      <td>21/02/2022
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            5, 7, 8, 9: rimozione Content-Type
-         <p>
-            6: rimozione priorità e workflowInstanceId sul Servizio di Sostituzione
-      </td>
-   </tr>
-   </tr>
-   <tr>
-      <td>2.5
-      </td>
-      <td>03/03/2023
-      </td>
-      <td>Paragrafi modificati
-         <p>
-            4,6,7: Aggiunti parametri in request body
-         <p>
-            11: Aggiornamento enums "affinity domain 2.4.1"
-         <p>
-      </td>
-   </tr>
-
-   <tr>
-      <td>2.6
-      </td>
-      <td>23/03/2023
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            8: Aggiunto paragrafo validazione pubblicazione creazione contestuale
-         <p>
-            9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
-         <p>
-            10: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per WorkflowInstanceId"
-         <p>
-            11: Cambio indice paragrafo "Servizio di Recupero Stato Transazione per TraceId"
-         <p>
-            12: Cambio indice paragrafo "Drilldown Response in caso di Errore"
-         <p>
-            13. Cambio indice paragrafo "Drilldown Parametri di Input"
-         <p>
-      </td>
-   </tr>
-
-   <tr>
-      <td>2.7
-      </td>
-      <td>15/03/2024
-      </td>
-      <td>Paragrafi modificati:
-
-         9: Aggiunto paragrafo validazione pubblicazione sostituzione contestuale
-         <p>
-      </td>
-   </tr>
-
-   <tr>
-      <td>2.8
-      </td>
-      <td>27/03/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Campi Contenuti nei JWT
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.9
-      </td>
-      <td>29/07/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Campi Contenuti nei JWT
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.10
-      </td>
-      <td>02/10/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Chiarimenti sull’impostazione del claim “locality”
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.11
-      </td>
-      <td>23/10/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            10. Servizio di Recupero Stato Transazione per WorkflowInstanceId
-         <p>
-         <p>
-            10.2.1. Esempio messaggio di risposta ad una creazione con Esito Success 200
-         <p>
-         <p>
-            10.2.2. Esempio messaggio di risposta ad una cancellazione con Esito Success 200
-         <p>
-         <p>
-            10.2.3. Esempio messaggio di risposta ad una sostituzione con Esito Success 200
-         <p>
-         <p>
-            10.2.4. Esempio messaggio di risposta ad un aggiornamento con Esito Success 200
-         <p>
-         <p>
-            10.2.5. Esempio di Messaggio di Risposta con esito KO 404
-         <p>
-      </td>
-   </tr>
-   <tr>
-      <td>2.12
-      </td>
-      <td>04/12/2024
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            2. Contesto di riferimento
-         <p>
-         <p>
-            7.1. Request
-         <p>
-         <p>
-            7.3. Esempio Messaggio di Richiesta attraverso iti-57
-         <p>
-      </td>
-   </tr>
-    <tr>
-      <td>2.13
-      </td>
-      <td>03/03/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.3.5. Ruolo
-         <p> 
-         <p>
-            13.3.4. Event Code
-         <p>
-         <p>
-            13.3.7. Organizzazione
-          <p>
-          <p>
-            13.3.8. Practice Setting Code
-          <p> 
-      </td>
-   </tr> 
-   <tr>
-      <td>2.14
-      </td>
-      <td>23/05/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            13.1. Modificata gestione claim locality e authorInstitution
-         <p> 
-        <p>
-            13.1. Campi Contenuti nei JWT
-        <p>
-        <p>
-            13.3.6. Aggiunto campo ACCESS UPDATE in tabella contesto operativo
-        <p> 
-      </td>
-   </tr> 
-   <tr>
-      <td>2.15
-      </td>
-      <td>30/06/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            2. Aggiunto cappello introduttivo per FHIR diretto
-            4. Definizione paragrafo FHIR Diretto
-         <p>  
-         <p>
-            5. Rimozione flag priorità dalla request body di creazione
-         <p>  
-         <p>
-            6.  Rimozione flag priorità dalla request body di creazione
-         <p> 
-         <p>Modifica indice per accogliere nuove modifiche sulla validazione fhir<p> 
-      </td>
-   </tr> 
-   <tr>
-      <td>2.16
-      </td>
-      <td>22/09/2025
-      </td>
-      <td>Paragrafi modificati:
-         <p>
-            14. Modificato enum Tipo Documento Alto Livello 
-         <p>
-            14.3.13. Modificata tabella Administrative Request
-         <p>   
-            14.3.4. Modificata tabella Event Code per aggiunta P00
-         <p>   
-            14.3.5. Modificata tabella Ruolo per aggiunta ruolo DAP
-         <p>   
-      </td>
-   </tr> 
-   <tr>
-    <td>2.17</td>
-    <td>03/12/2025</td>
-    <td>
-      Paragrafi modificati:
-      <p>5.2. Modificato status code in 202</p>
-      <p>6.2. Aggiunto status code in 202</p>
-      <p>7.2. Modificato status code in 202</p>
-      <p>8.2. Aggiunto status code in 202</p>
-      <p>9.2. Aggiunto status code in 202</p>
-      <p>10.2. Aggiunto status code in 202</p>
-    </td>
-  </tr>
-  <tr>
-    <td>2.18</td>
-    <td>23/03/2026</td>
-    <td>
-      Paragrafi modificati:
-      <p>11. Inseriti esempio response per status KO</p>
-      <p>14. Rimossa non obbligatorietà per resource_hl7_type per il flusso di update</p>
-    </td>
-  </tr>
-  <tr>
-    <td>2.19</td>
-    <td>23/04/2026</td>
-    <td>
-      Paragrafi modificati:
-      <p>2. Aggiornata tabella degli endpoint e funzionalità</p>
-    </td>
-  </tr>
-  <tr>
-    <td>2.20</td>
-    <td>05/06/2026</td>
-    <td>
-      Aggiornamento capitolo 11 con aggiunta paragrafo autenticazione
-    </td>
-  </tr>
-  <tr>
-    <td>2.21</td>
-    <td>16/06/2026</td>
-    <td>
-      - Ripristinato capitolo di search tramite status/{workflowInstanceId}
-      - Modifcato paragrafo 11.5 Modalità Pull
-    </td>
-  </tr>
-  <tr>
-    <td>2.22</td>
-    <td>25/06/2026</td>
-    <td>
-      - Aggiornamento paragrafo autenticazione
-    </td>
-  </tr>
-  <tr>
-    <td>2.23</td>
-    <td>24/07/2026</td>
-    <td>
-      - Aggiunta endpoint per aggiornamento metadati per oscuramento a catena <br>
-      - Refattorizzazione indice <br>
-      - Descrizione endpoint oscuramento a catena
-    </td>
-  </tr>
-</table>
-
+| VERSIONE | DATA | MODIFICHE |
+|----------|------|-----------|
+| 1.1 | 20/05/22 | Paragrafi modificati: Tutti - prima stesura a seguito rivisitazione |
+| 1.2 | 07/06/22 | Paragrafi modificati: Tutti - stesura a seguito rivisitazione |
+| 1.3 | 13/06/22 | Paragrafi modificati: 2.2 scenario integrazione gateway; 3.2 aggiornamento status code; 4.2 aggiornamento status code; 5.1 obbligatorietà campo patient_consent |
+| 1.4 | 28/06/2022 | Paragrafi modificati: 2 Contesto di riferimento; 3 aggiornamento paragrafo introduttivo; 3.1 aggiornamento parametri; 4 aggiornamento paragrafo; 4.1 aggiornamento parametri; 5.1 eliminata valorizzazione; 5.3 stesura paragrafo; vari aggiornamenti tabelle |
+| 1.5 | 05/07/2022 | Correzioni su tutte le sezioni |
+| 2.0 | 29/07/2022 | Paragrafi modificati: 3 aggiornamento Request; 4 aggiornamento Request; 5 eliminazione documento; 6 sostituzione documento; 7 aggiornamento metadati; 8.1 doppio JWT |
+| 2.1 | 15/10/2022 | Paragrafi modificati: 2 specificato nome allegato CDA: cda.xml; 2.3 aggiunte note su JWT e certificati |
+| 2.2 | 28/11/2022 | Paragrafi modificati: 2 evidenziato endpoint sistema di test |
+| 2.3 | 12/12/2022 | Paragrafi modificati: 2 aggiornamento contesto; 5 aggiornamento eliminazione; 6 aggiornamento sostituzione; 7 aggiornamento metadati; 8 servizio recupero stato; 9 servizio recupero per TraceId; 10 drilldown response; 11.1 nuovi custom claims |
+| 2.4 | 21/02/2022 | Paragrafi modificati: 5,7,8,9 rimozione Content-Type; 6 rimozione priorità e workflowInstanceId |
+| 2.5 | 03/03/2023 | Paragrafi modificati: 4,6,7 aggiunti parametri in request body; 11 aggiornamento enums |
+| 2.6 | 23/03/2023 | Paragrafi modificati: 8 validazione pubblicazione creazione; 9 validazione pubblicazione sostituzione; cambio indici paragrafi |
+| 2.7 | 15/03/2024 | Paragrafi modificati: 9 validazione pubblicazione sostituzione contestuale |
+| 2.8 | 27/03/2024 | Paragrafi modificati: 13.1 campi contenuti nei JWT |
+| 2.9 | 29/07/2024 | Paragrafi modificati: 13.1 campi contenuti nei JWT |
+| 2.10 | 02/10/2024 | Paragrafi modificati: 13.1 chiarimenti claim locality |
+| 2.11 | 23/10/2024 | Paragrafi modificati: 10 servizio recupero stato; vari esempi messaggi di risposta |
+| 2.12 | 04/12/2024 | Paragrafi modificati: 2 contesto di riferimento; 7.1 request; 7.3 esempio messaggio |
+| 2.13 | 03/03/2025 | Paragrafi modificati: 13.3.5 ruolo; 13.3.4 event code; 13.3.7 organizzazione; 13.3.8 practice setting code |
+| 2.14 | 23/05/2025 | Paragrafi modificati: 13.1 gestione claim locality e authorInstitution; 13.3.6 aggiunto campo ACCESS UPDATE |
+| 2.15 | 30/06/2025 | Paragrafi modificati: 2 aggiunto cappello FHIR diretto; 4 definizione paragrafo FHIR; 5,6 rimozione flag priorità; modifica indice validazione FHIR |
+| 2.16 | 22/09/2025 | Paragrafi modificati: 14 modificato enum tipo documento; 14.3.13 tabella administrative request; 14.3.4 event code con P00; 14.3.5 ruolo con DAP |
+| 2.17 | 03/12/2025 | Paragrafi modificati: 5.2, 6.2, 7.2, 8.2, 9.2, 10.2 modificato status code in 202 |
+| 2.18 | 23/03/2026 | Paragrafi modificati: 11 inseriti esempio response per status KO; 14 rimossa non obbligatorietà resource_hl7_type per update |
+| 2.19 | 23/04/2026 | Paragrafi modificati: 2 aggiornata tabella endpoint e funzionalità |
+| 2.20 | 05/06/2026 | Aggiornamento capitolo 11 con aggiunta paragrafo autenticazione |
+| 2.21 | 16/06/2026 | Ripristinato capitolo search status/{workflowInstanceId}; modificato paragrafo 11.5 modalità pull |
+| 2.22 | 25/06/2026 | Aggiornamento paragrafo autenticazione |
+| 2.23 | 24/07/2026 | Aggiunta endpoint aggiornamento metadati oscuramento a catena; refattorizzazione indice; aggiornamento tabelle per valori ad 2.6.4 |
 
 _Tabella 3: Registro Modifiche_
 
@@ -3720,15 +3218,28 @@ Le risposte sono le medesime riportate per i casi precedenti.
 # 9. Servizio di Aggiornamento Metadati per oscuramento a catena
 
 Nei sottoparagrafi della presente sezione vengono riportate le informazioni principali per l’invocazione di questa funzionalità. Per ulteriori dettagli sui campi esposti è necessario fare riferimento al Capitolo 16 “Drilldown Parametri di Input”.
+
 L’Endpoint del caso d’uso di Pubblicazione Aggiornamento Metadati per oscuramento si compone come segue:
 
 ```
 https://<HOST>:<PORT>/v<major>/documents/<identificativoDocUpdate>/metadata-oscuramento-catena
 ```
 
-Lo scopo di questa API sincrona è aggiornare i metadati di un documento precedentemente pubblicato, consentendo l’esecuzione delle operazioni necessarie all’oscuramento a catena del documento stesso. 
-In particolare, il servizio viene utilizzato per effettuare, tramite transazione ITI-57, l’aggiornamento del metadato eventCodeList impostandolo al valore P99 verso INI e per valorizzare il campo securityLabel sulla risorsa DocumentReference, in modo da identificare il documento come oscurato e garantirne la corretta propagazione dei vincoli di accesso e visibilità all’interno degli attori coinvolti nel processo.
+Lo scopo di questa API sincrona è aggiornare i metadati di un documento precedentemente pubblicato, consentendo l’esecuzione delle operazioni necessarie all’oscuramento a catena del documento stesso.
 
+In particolare, il flusso operativo si articola nelle seguenti fasi:
+
+- Fase Preliminare: Viene eseguita una transazione ITI-18 (GetDocuments di tipo LeafClass) dal Gateway verso INI al fine di recuperare il metadato **urn:ita:fse:2025:EDSpublished** e il subset minimo di dati a eseguire successivamente la ITI-57. 
+Sulla base del valore di questo metadato, la chiamata viene opportunamente dirottata verso EDS.
+
+- Aggiornamento EDS: Qualora il flag urn:ita:fse:2025:EDSpublished risulti pari a TRUE, la chiamata di aggiornamento viene dirottata ed eseguita verso EDS. Nello specifico, si provvede al recupero della risorsa DocumentReference e al contestuale aggiornamento della proprietà securityLabel, impostandola al valore P99 ricevuto in input.
+
+- Aggiornamento INI (ITI-57): Successivamente, viene eseguita la transazione ITI-57 verso INI mediante l'invio del subset minimo di metadati recuperati nella fase preliminare. L'operazione provvederà a veicolare verso la RDA il warning restituito da INI all'interno dell'apposita proprietà:
+```
+"warning": "R220 - The requestor is RDA for the patient"
+```
+
+in caso di messaggio diverso ottenuto da INI, il gateway sollverà un'eccezione
 
 ## 9.1. Request
 
@@ -3837,14 +3348,7 @@ _Tabella 30: Method, URL, Type_
    <td rowspan="11" >Request Body
    </td>
    <td rowspan="11" >requestBody
-   </td>
-   <td>lid
-   </td>
-   <td>String
-   </td>
-   <td>true
-   </td>
-   <td>XDSDocumentEntry.logicalIdentifier
+    
    </td>
   </tr>
   <tr>
@@ -3852,21 +3356,11 @@ _Tabella 30: Method, URL, Type_
    </td>
    <td>String[]
    </td>
-   <td>false
+   <td>true
    </td>
    <td>XDSDocumentEntry.eventCodeList
    </td> 
   </tr>  
-
-  <tr>
-   <td>edsPublished
-   </td>
-   <td>boolean
-   </td>
-   <td>false
-   </td>
-   <td>urn:ita:fse:2025:EDSpublished
-   </td>
   
 </table>
 
@@ -3875,8 +3369,6 @@ _Tabella 31: Parametri Richiesta di Pubblicazione Aggiornamento Metadati_
 
 La compilazione errata dei parametri oppure la non compilazione dei parametri “required” comporta un errore di tipo bloccante.
 
-Il parametro _identificativoDocUpdate_ corrisponde all’OID (Object Identifier) del documento di cui modificare i metadati e al parametro _identificativoDoc_ utilizzato nel servizio di creazione.
-
 
 ### 9.1.1. Esempio Messaggio di Richiesta
 
@@ -3884,15 +3376,14 @@ Messaggio di richiesta con metadati formalmente corretti, senza indicazione dell
 
 ``` bash
 curl -X 'PUT' \
-  'https://<HOST>:<PORT>/v1/documents/507f1f77bcf86cd799439011/metadata-oscuramento-catena' \
+  'https://<HOST>:<PORT>/v1/documents/ID_DOC_TEST/metadata-oscuramento-catena' \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg' \
   -H 'FSE-JWT-Signature: eyJdWIiOiIxMjM0NTY3ODkw … Ok6yJV_adQssw5c' \
   -H 'accept: application/json' \
   -d '{ 
   "attiCliniciRegoleAccesso": [
     "P99"
-  ],
-  "lid": "urn:uuid:5c4f972b-d56b-40ac-a5fc-c8ca9b40b9d4"
+  ]
 }'
 ```
 
