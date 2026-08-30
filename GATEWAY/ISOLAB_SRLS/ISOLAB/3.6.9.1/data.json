@@ -1,0 +1,20 @@
+{
+  "sub": "PROVAX00X00X000Y^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
+  "subject_role": "DRS",
+  "purpose_of_use": "TREATMENT",
+  "iss": "A1#111#ISOLABSRLX1",
+  "subject_application_id": "ISOLAB",
+  "subject_application_vendor": "ISOLAB SRLS",
+  "subject_application_version": "3.6.9.1",
+  "locality": "Ragusa",
+  "subject_organization_id": "190",
+  "subject_organization": "Regione Sicilia",
+  "aud": "https://modipa-val.fse.salute.gov.it/govway/rest/in/FSE/gateway/v1",
+  "patient_consent": true,
+  "action_id": "CREATE",
+  "resource_hl7_type": "('11502-2^^2.16.840.1.113883.6.1')",
+  "jti": "12345678",
+  "person_id": "PROVAX00X00X000Y^^^&2.16.840.1.113883.2.9.4.3.2&ISO",
+  "pem_path": "C:/ZONA_LOCALE/FSE/Certificati/autenticazione.pem",
+  "p12_path": "C:/ZONA_LOCALE/FSE/Certificati/autenticazione.p12"
+}
