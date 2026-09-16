@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.23
+   <td>ver 2.24
    </td>
   </tr>
 </table>
@@ -212,6 +212,7 @@ _Tabella 2: Acronimi e Definizioni_
 | 2.21 | 16/06/2026 | Ripristinato capitolo search status/{workflowInstanceId}; modificato paragrafo 11.5 modalità pull |
 | 2.22 | 25/06/2026 | Aggiornamento paragrafo autenticazione |
 | 2.23 | 24/07/2026 | Aggiunta endpoint aggiornamento metadati oscuramento a catena; refattorizzazione indice; aggiornamento tabelle per valori ad 2.6.4 |
+| 2.24 | 16/09/2026 | Correzione obbligatorietà metadato Administrative Request |
 
 _Tabella 3: Registro Modifiche_
 
@@ -1585,7 +1586,7 @@ _Tabella 15: Method, URL, Type_
    </td>
    <td>AdministrativeReqEnum
    </td>
-   <td>false
+   <td>true
    </td>
    <td>XDSDocumentEntry.Slot - administrativeRequest
    </td>
@@ -2460,7 +2461,7 @@ _Tabella 25: Method, URL, Type_
    </td>
    <td>AdministrativeReqEnum[]
    </td>
-   <td>false
+   <td>true
    </td>
    <td>XDSDocumentEntry.Slot - administrativeRequest
    </td>
@@ -2975,7 +2976,7 @@ _Tabella 30: Method, URL, Type_
    </td>
    <td>AdministrativeReqEnum[]
    </td>
-   <td>false
+   <td>true
    </td>
    <td>XDSDocumentEntry.Slot - administrativeRequest
    </td>
@@ -3782,7 +3783,7 @@ _Tabella 35: Method, URL, Type_
    </td>
    <td>AdministrativeReqEnum[]
    </td>
-   <td>false
+   <td>true
    </td>
    <td>XDSDocumentEntry.Slot - administrativeRequest
    </td>
@@ -4369,7 +4370,7 @@ _Tabella 40: Method, URL, Type_
    </td>
    <td>AdministrativeReqEnum
    </td>
-   <td>false
+   <td>true
    </td>
    <td>XDSDocumentEntry.Slot - administrativeRequest
    </td>
