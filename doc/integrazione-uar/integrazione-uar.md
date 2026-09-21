@@ -50,14 +50,23 @@
   - [6.2. Response](#62-response)
       - [Esempio risposta 200](#esempio-risposta-200-2)
       - [Esempio di Messaggio di Risposta con esito KO](#esempio-di-messaggio-di-risposta-con-esito-ko-2)
-- [7. Drilldown Response in caso di Errore](#7-drilldown-response-in-caso-di-errore)
-  - [7.1. Errori Applicativi](#71-errori-applicativi)
-    - [7.1.1. Esempi di errore generati da UA-R](#711-esempi-di-errore-generati-da-ua-r)
-- [8. Drilldown parametri di input](#8-drilldown-parametri-di-input)
-  - [8.1. Campi Contenuti nei JWT](#81-campi-contenuti-nei-jwt)
-  - [8.2 Campi Contenuti nella Request Body](#82-campi-contenuti-nella-request-body)
+- [7. Servizio di Recupero Document Reference](#7-servizio-di-recupero-document-reference)
+    - [Endpoint](#endpoint-4)
+  - [7.1. Request](#71-request)
+      - [Parametri Path](#parametri-path-3)
+      - [Parametri Query](#parametri-query)
+      - [Esempio di richiesta](#esempio-di-richiesta-4)
+  - [7.2. Response](#72-response)
+      - [Esempio risposta 200](#esempio-risposta-200-3)
+      - [Esempio di Messaggio di Risposta con esito KO](#esempio-di-messaggio-di-risposta-con-esito-ko-3)
+- [8. Drilldown Response in caso di Errore](#8-drilldown-response-in-caso-di-errore)
+  - [8.1. Errori Applicativi](#81-errori-applicativi)
+    - [8.1.1. Esempi di errore generati da UA-R](#811-esempi-di-errore-generati-da-ua-r)
+- [9. Drilldown parametri di input](#9-drilldown-parametri-di-input)
+  - [9.1. Campi Contenuti nei JWT](#91-campi-contenuti-nei-jwt)
+  - [9.2 Campi Contenuti nella Request Body](#92-campi-contenuti-nella-request-body)
     - [Parametri obbligatori](#parametri-obbligatori)
-  - [8.3. Campi contenuti nel Path](#83-campi-contenuti-nel-path)
+  - [9.3. Campi contenuti nel Path](#93-campi-contenuti-nel-path)
   - [Notes](#notes)
 
 
@@ -95,6 +104,7 @@ _Tabella 2: Acronimi e Definizioni_
 | Versione | Data           | Descrizione modifiche                                                                  |
 | -------- | -------------- | -------------------------------------------------------------------------------------- |
 | 1.0      | 2025-07-23     | Creazione del documento                                                                |
+| 1.1      | 2025-09-21     | Aggiunta sezione 7: Servizio di Recupero Document Reference (GET /v1/document/document-reference/{id}) |
 
 _Tabella 3: Registro Modifiche_
 
@@ -108,6 +118,7 @@ In questa fase vengono illustrate le funzionalità principali:
 - Cancellazione dei dati clinici in formato FHIR
 - Sostituzione dei dati clinici in formato FHIR
 - Aggiornamento dei dati clinici in formato FHIR
+- Recupero della risorsa DocumentReference associata a un documento
 
 | Endpoint URL | Metodo | Descrizione |
 |--------|----------|-------------|
@@ -115,6 +126,7 @@ In questa fase vengono illustrate le funzionalità principali:
 | `/v1/document/workflowinstanceid/{wii}` | PUT | Acquisisce un documento per sostituirne uno esistente di tipo Transaction sul server FHIR.|
 | `/v1/document/metadata/` | PUT | Acquisisce e aggiorna la risorsa DocumentReference all'interno del Bundle FHIR.|
 | `/v1/document/identifier/{identifier}` | DELETE | Elimina un documento, identificato dall'identificativoDocumento, dal server FHIR. |
+| `/v1/document/document-reference/{id}` | GET | Recupera la risorsa DocumentReference associata al documento identificato dal master identifier fornito. |
 
 _Tabella 4: Endpoint/Funzionalità_
 
@@ -493,9 +505,82 @@ curl -X 'PUT' \
 }
 ```
 
-# 7. Drilldown Response in caso di Errore
+# 7. Servizio di Recupero Document Reference
 
-## 7.1. Errori Applicativi
+Questo servizio consente di recuperare la risorsa DocumentReference associata a un documento già pubblicato sul server FHIR, identificato dal suo master identifier. La ricerca viene eseguita in modalità sincrona.
+
+### Endpoint
+
+```
+http://<HOST>:<PORT>/v<major>/document/document-reference/{id}
+```
+
+## 7.1. Request
+
+| METHOD | URL | TYPE             |
+|--------|-----|------------------|
+| GET    | `/v1/document/document-reference/{id}` | application/json |
+
+#### Parametri Path
+
+| KEY | IN   | TYPE   | REQUIRED | DESCRIPTION |
+|-----|------|--------|----------|-------------|
+| id  | path | string | true     | Valore del master identifier del documento di cui si intende recuperare la DocumentReference. |
+
+#### Parametri Query
+
+| KEY           | IN    | TYPE   | REQUIRED | DESCRIPTION |
+|---------------|-------|--------|----------|-------------|
+| fhirServerUrl | query | string | false     | URL del server FHIR sul quale eseguire la ricerca della risorsa DocumentReference. Opzionale |
+
+#### Esempio di richiesta
+
+```bash
+curl -X 'GET' \
+  'http://<HOST>:<PORT>/v1/document/document-reference/2.16.840.1.113883.2.9.2.120.4.4%5E290700?fhirServerUrl=https%3A%2F%2Ffhir.example.com%2Fr4' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Bearer <JWT_TOKEN>' \
+  -H 'Agid-JWT-Signature: <JWT_SIGNATURE>'
+```
+
+---
+
+## 7.2. Response
+
+| STATUS | SIGNIFICATO                                        | TIPO                     |
+|--------|----------------------------------------------------|--------------------------|
+| 200    | DocumentReference recuperata con successo          | application/json         |
+| 400    | Richiesta non valida                               | application/problem+json |
+| 404    | Documento non trovato                              | application/problem+json |
+| 500    | Errore interno del server                          | application/problem+json |
+
+#### Esempio risposta 200
+
+```json
+{
+  "traceID": "c2e1818fbf7aea7f",
+  "spanID": "c2e1818fbf7aea7f",
+  "documentReference": "{\"resourceType\":\"DocumentReference\",\"id\":\"example-id\",\"status\":\"current\",\"masterIdentifier\":{\"system\":\"urn:ietf:rfc:3986\",\"value\":\"2.16.840.1.113883.2.9.2.120.4.4^290700\"},\"content\":[{\"attachment\":{\"contentType\":\"application/pdf\",\"url\":\"https://fhir.example.com/r4/Binary/example-binary-id\"}}]}"
+}
+```
+
+#### Esempio di Messaggio di Risposta con esito KO
+
+```json
+{
+  "tracelD": "041307e77a85f31874ec62eeb2e89ae8",
+   "spanID": "1d9f40866aba0e9c",
+   "status": 404,
+   "type" : "https://fse2.sanita.finanze.it/problems/resource-not-found",
+   "title": "Resource Not Found"
+   "detail" : "Document reference con master identifier urn:oid:2.16.840.1.113883.2.9.2.110.4.4^0000000 non trovata",
+   "instance" : "/edsalim/v1/ingestion/document-reference/GTWGWY82B42G920M/urn:oid:2.16.840.1.113883.2.9.2.110.4.4%5E0000000"
+}
+```
+
+# 8. Drilldown Response in caso di Errore
+
+## 8.1. Errori Applicativi
 
 Di seguito vengono indicati i campi valorizzati soltanto in caso di errori provenienti dall’applicativo
 
@@ -555,7 +640,7 @@ Di seguito vengono indicati i campi valorizzati soltanto in caso di errori prove
 _Tabella 37: Campi Response valorizzati in caso di errore_
 
 
-### 7.1.1. Esempi di errore generati da UA-R
+### 8.1.1. Esempi di errore generati da UA-R
 
 
 <table>
@@ -590,9 +675,9 @@ _Tabella 37: Campi Response valorizzati in caso di errore_
 </table>
 
 
-# 8. Drilldown parametri di input
+# 9. Drilldown parametri di input
 
-## 8.1. Campi Contenuti nei JWT
+## 9.1. Campi Contenuti nei JWT
 
 * **Agid-JWT-Signature**: token JWT contenente custom claims necessari ai fini applicativi
 
@@ -799,7 +884,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 }
 ```
 
-## 8.2 Campi Contenuti nella Request Body
+## 9.2 Campi Contenuti nella Request Body
 
 ### Parametri obbligatori
 
@@ -809,7 +894,7 @@ Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5c ... iZPqKv3kUbn1qzLg
 | `jsonString`     | string  | Sì           | Per le operazioni di creazione e sostituzione il contenuto di tale campo coincide con il Bundle FHIR del nuovo documento.
 Per l'oprazione di aggiornamento tale campo coincide con il valore della request body come mostrato nel paragrafo 6 di aggiornamento metadati serializzata in json.     |
 
-## 8.3. Campi contenuti nel Path
+## 9.3. Campi contenuti nel Path
 
 | PARAMETRO       | TIPO    | DESCRIZIONE                                                                 |
 |------------------|---------|----------------------------------------------------------------------------|
