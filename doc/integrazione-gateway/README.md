@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.24
+   <td>ver 2.25
    </td>
   </tr>
 </table>
@@ -213,6 +213,7 @@ _Tabella 2: Acronimi e Definizioni_
 | 2.22 | 25/06/2026 | Aggiornamento paragrafo autenticazione |
 | 2.23 | 24/07/2026 | Aggiunta endpoint aggiornamento metadati oscuramento a catena; refattorizzazione indice; aggiornamento tabelle per valori ad 2.6.4 |
 | 2.24 | 16/09/2026 | Correzione obbligatorietà metadato Administrative Request |
+| 2.25 | 21/09/2026 | Paragrafi modificati: 9: validazione JWT e validazione request body per l’oscuramento a catena; 16.1: contesto operativo richiesta; 16.3.6: aggiunto valore SYSADMIN e aggiornata fonte ad AD 2.6.4 |
 
 _Tabella 3: Registro Modifiche_
 
@@ -3241,6 +3242,20 @@ Sulla base del valore di questo metadato, la chiamata viene opportunamente dirot
 ```
 
 in caso di messaggio diverso ottenuto da INI, il gateway sollverà un'eccezione
+
+Il servizio è soggetto a una validazione dedicata del token JWT, distinta da quella del servizio di Aggiornamento Metadati descritto al Capitolo 8. In particolare i claim devono essere valorizzati come segue:
+
+- `purpose_of_use`: **SYSADMIN** (vedi Tabella 47 – Value set per l’attributo urn:oasis:names:tc:xspa:1.0:subject:purposeofuse);
+- `action_id`: **UPDATE**;
+- `subject_role`: **NOR**;
+- `locality`: **------** (sei caratteri “-”);
+- `resource_hl7_type`: non obbligatorio.
+
+L’utilizzo di un valore diverso da SYSADMIN per il claim `purpose_of_use` determina un errore bloccante con dettaglio “Il campo purpose_of_use non coerente con operazione richiesta”. Analogamente, l’invio della richiesta di oscuramento a catena verso l’endpoint di Aggiornamento Metadati (Capitolo 8) comporta il medesimo errore, in quanto tale servizio ammette esclusivamente i valori UPDATE e ACCESS UPDATE.
+
+Il request body è validato sul solo campo `attiCliniciRegoleAccesso`: l'unico valore ammesso è **P99** (vedi paragrafo 16.3.4); qualsiasi altro valore viene rifiutato con un errore bloccante con dettaglio "Il campo atti clinici &lt;valore&gt; non è consentito". A differenza del servizio di Aggiornamento Metadati (Capitolo 8), per questo flusso non sono richiesti gli ulteriori metadati di aggiornamento.
+
+Il servizio è sincrono. L'esito positivo è attestato dalla presenza del warning R220 valorizzato nella property `warning`: in assenza di tale warning il gateway solleva un'eccezione.
 
 ## 9.1. Request
 
@@ -7183,6 +7198,8 @@ Vedi TABELLA CONTESTO OPERATIVO
    <td>TREATMENT per il servizio di Validazione, Creazione 
 <p>
 UPDATE per il servizio di Eliminazione Documento, Aggiornamento Metadati e Sostituzione Documento
+<p>
+SYSADMIN per il servizio di Aggiornamento Metadati per oscuramento a catena
    </td>
   </tr>
   <tr>
@@ -8546,7 +8563,7 @@ _Tabella 46: Value set per l’attributo urn:oasis:names:tc:xacml:2.0:subject:ro
 
 ### 16.3.6. Contesto Operativo
 
-Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.5”
+Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali di FSE - Affinity Domain Italia - Versione 2.6.4”
 
 
 <table>
@@ -8580,6 +8597,14 @@ Fonte: “Specifiche tecniche per l’interoperabilità tra i sistemi regionali 
    <td>Aggiornamento di un documento e della politica di oscuramento P99
    </td>
    <td>Il valore deve essere utilizzato per il servizio di Aggiornamento Metadati.
+   </td>
+  </tr>
+   <tr>
+   <td>SYSADMIN
+   </td>
+   <td>Trasferimento del FSE e avvio del processo di catena dell’oscuramento
+   </td>
+   <td>Nell’ambito delle API esposte dal Gateway il valore deve essere utilizzato per il servizio di Aggiornamento Metadati per oscuramento a catena.
    </td>
   </tr>
 </table>
