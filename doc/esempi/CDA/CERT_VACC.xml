@@ -181,7 +181,7 @@
 										<lotNumberText>20</lotNumberText>
 									</manufacturedMaterial>
 									<manufacturerOrganization>
-										<id root="XXX" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
+										<id root="2.16.840.1.113883.2.9.4.1.2" extension="999999" assigningAuthorityName="Ministero della Salute"/>
 										<name>XXX</name>
 									</manufacturerOrganization>
 								</manufacturedProduct>
@@ -291,7 +291,7 @@
 							</consumable>
 							<participant typeCode="LOC">
 								<participantRole classCode="ROL">
-									<id root="XXX" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
+									<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
 								</participantRole>
 							</participant>
 							<!--numero di dose-->

@@ -512,7 +512,7 @@
 					<title> Prestazioni </title>
 					<text>
 						<paragraph>
-							<caption>Prestazioni Eseguite</caption>
+							<content styleCode="Bold">Prestazioni Eseguite</content>
 						</paragraph>
 						<list>
 							<item ID="Prestazione-1">
@@ -538,7 +538,7 @@
 									</tbody>
 								</table>
 								<paragraph>
-									<caption>Procedure Operative Eseguite</caption>
+									<content styleCode="Bold">Procedure Operative Eseguite</content>
 								</paragraph>
 								<list>
 									<item ID="Procedure-1">

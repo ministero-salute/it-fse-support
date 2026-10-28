@@ -214,7 +214,7 @@
 							<title>Anamnesi</title>
 							<text>
 								<paragraph>
-									<caption>Elenco degli interventi, data e commenti</caption>
+									<content styleCode="Bold">Elenco degli interventi, data e commenti</content>
 									<content ID="INTCHIR-1">
 										Appendicectomia nel ottobre 2021
 									</content>
