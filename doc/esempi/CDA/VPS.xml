@@ -123,6 +123,7 @@
 					<county>RM</county> 
 					<city>Roma</city> 
 					<censusTract>058091</censusTract>
+					<streetAddressLine>via Milano 7</streetAddressLine>
 				</addr>
 				<telecom use="WP" value="mailto:prova.provax@example.com"/> 
 				<telecom use="MC" value="tel:3340000000"/>
