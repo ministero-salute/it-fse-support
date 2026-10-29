@@ -73,7 +73,7 @@ Il processo di accreditamento **avviene presso l’ambiente di test del fornitor
 2. Il fornitore, richiede a Sogei certificati di test **associati al fornitore** (seguendo la procedura indicata al link [richiesta certificati](https://github.com/ministero-salute/it-fse-support#richiesta-certificati-x509)) fino a quando non sarà disponibile il sistema di provisioning che rilascerà anche i certificati di test)  per accedere ai servizi esposti dalla piattaforma gateway di test in ambiente di pre produzione (esempio: un fornitore che avvia il processo di accreditamento per due applicativi può usare il medesimo certificato). 
 3. Durante la fase di sviluppo, il fornitore provvede **in forma autonoma** ad invocare i servizi del gateway al sistema di pre produzione. Questa attività consente un debugging più accurato da parte del fornitore ed è propedeutica alla richiesta di avvio dell’attività di accreditamento. Per l’invocazione dei servizi devono essere utilizzati esclusivamente i codici fiscali inclusi nella white list fornita che contiene dati fittizi. 
 4. Conclusa la fase di sviluppo e test interno, il fornitore avvia la fase di accreditamento compilando il **form di richiesta accreditamento on line messo a disposizione da Agenas**  con le seguenti informazioni:
-([EUSurvey](https://ec.europa.eu/eusurvey/runner/FSE-2-validazione)
+[EUSurvey](https://ec.europa.eu/eusurvey/runner/FSE-2-validazione-new)
    * Nome fornitore dell'applicativo
    * Nome fornitore: subject_application_vendor
    * nome applicazione: subject_application_id
@@ -86,7 +86,7 @@ Il processo di accreditamento **avviene presso l’ambiente di test del fornitor
    * data prevista di fine del test di accreditamento
    * Lista dei tipi di documento oggetto dell’accreditamento 
     * Dichiarazione di presa di responsabilità: al fine di sottomettere la documentazione per il conseguimento dell'accreditamento occorre firmare e caricare la dichiarazione di presa di responsabilità da allegare all'EUSurvey, con cui il fornitore si impegna a non utilizzare dati personali e sensibili. 
-1. Il fornitore accede alla lista dei test case ed esegue i test previsti nel piano di accreditamento. Quando risulteranno tutti eseguiti con esito positivo il fornitore produrrà il report dei test effettuati (`report-checklist.xlsx`) e lo caricherà nell'apposito repository github del Ministero della Salute, come indicato nel README del repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento). Verrà messo a disposizione il nuovo repository di accreditamento, che sostituisce il precedente . 
+1. Il fornitore accede alla lista dei test case ed esegue i test previsti nel piano di accreditamento. Quando risulteranno tutti eseguiti con esito positivo il fornitore produrrà il report dei test effettuati (`report-checklist.xlsx`) e lo caricherà nell'apposito repository github del Ministero della Salute, come indicato nel README del repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento-v2). Verrà messo a disposizione il nuovo repository di accreditamento, che sostituisce il precedente . 
 <br>**ATTENZIONE**: I fornitori saranno abilitati al repository solo dopo aver sottomesso il nuovo form di richiesta accreditamento. 
 2. Sogei estrae i log dei test case, confronta i log con il contenuto del report `report-checklist.xlsx` e produce il report “Valutazione risultati”. 
 3. Sogei valuta il report “Valutazione risultati”, la documentazione prodotta dai fornitori e accerta la conformità con le specifiche nazionali. Tale certificazione è propedeutica per poter programmare insieme alla Regione e/o Azienda la fase successiva del processo di adeguamento dell’applicativo (verifica tecnica dell’impianto).
@@ -111,7 +111,7 @@ L’accreditamento  del servizio di **validazione e correttezza del CDA2** deve 
 
 Per ogni tipologia di documento da testare **sarà resa disponibile da Sogei al  fornitore** una lista di dataset. Il fornitore userà i dataset forniti per comporre i CDA iniettati nel pdf che verranno inviati al gateway. I dataset dovranno essere coerenti con un dataset reale, anche dal punto di vista terminologico.
 
-Il documento [`accreditamento-checklist.xlsx`](https://github.com/ministero-salute/it-fse-accreditamento/tree/main/Test%20Case) comprensivo dei dataset da utilizzare, è disponibile nel repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento).
+Il documento [`accreditamento-checklist.xlsx`](https://github.com/ministero-salute/it-fse-accreditamento-v2/tree/main/Test%20Case) comprensivo dei dataset da utilizzare, è disponibile nel repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento-v2).
 
 Alla fine della sessione di accreditamento il fornitore dovrà fornire:
 
