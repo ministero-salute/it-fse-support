@@ -109,6 +109,27 @@ L’accreditamento  del servizio di **validazione e correttezza del CDA2** deve 
 * presenza della firma nel documento;
 * invocazione del servizio di validazione del gateway secondo specifiche 
 
+
+**Il parametro `activity` è obbligatorio**: tutte le chiamate all'endpoint `/v1/documents/validation` effettuate durante la fase di accreditamento devono valorizzare il campo `activity` del request body con il valore **`VALIDATION_FOR_ACCREDITAMENTO`**.
+>
+> Esempio di chiamata:
+>
+> ```bash
+> curl -X 'POST' \
+>   'https://<HOST>:<PORT>/v1/documents/validation' \
+>   -H 'Authorization: Bearer <JWT_AUTH_TOKEN>' \
+>   -H 'FSE-JWT-Signature: <JWT_SIGNATURE_TOKEN>' \
+>   -H 'accept: application/json' \
+>   -H 'Content-Type: multipart/form-data' \
+>   -F 'requestBody={
+>   "healthDataFormat": "CDA",
+>   "mode": "ATTACHMENT",
+>   "activity": "VALIDATION_FOR_ACCREDITAMENTO"
+> }' \
+>   -F 'file=@CDA_OK.pdf;type=application/pdf'
+> ```
+>
+
 Per ogni tipologia di documento da testare **sarà resa disponibile da Sogei al  fornitore** una lista di dataset. Il fornitore userà i dataset forniti per comporre i CDA iniettati nel pdf che verranno inviati al gateway. I dataset dovranno essere coerenti con un dataset reale, anche dal punto di vista terminologico.
 
 Il documento [`accreditamento-checklist.xlsx`](https://github.com/ministero-salute/it-fse-accreditamento/tree/main/Test%20Case) comprensivo dei dataset da utilizzare, è disponibile nel repository [it-fse-accreditamento](https://github.com/ministero-salute/it-fse-accreditamento).
