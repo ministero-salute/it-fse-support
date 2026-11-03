@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.25
+   <td>ver 2.26
    </td>
   </tr>
 </table>
@@ -26,6 +26,12 @@
   - [2.1. Pattern di Interazione](#21-pattern-di-interazione)
   - [2.2. Processo di Autenticazione\[^3\]](#22-processo-di-autenticazione3)
   - [2.3. Note su autenticazione e token JWT](#23-note-su-autenticazione-e-token-jwt)
+  - [2.4. Trasformazione CDA–FHIR, normalizzazione e controlli sincroni](#24-trasformazione-cdafhir-normalizzazione-e-controlli-sincroni)
+    - [2.4.1. Ambito e applicazione nei flussi](#241-ambito-e-applicazione-nei-flussi)
+    - [2.4.2. Generazione del Bundle tramite FHIR Mapping Language](#242-generazione-del-bundle-tramite-fhir-mapping-language)
+    - [2.4.3. Post-processing del Bundle](#243-post-processing-del-bundle)
+    - [2.4.4. Validazioni FHIR sincrone](#244-validazioni-fhir-sincrone)
+    - [2.4.5. Interpretazione degli esiti e prosecuzione asincrona](#245-interpretazione-degli-esiti-e-prosecuzione-asincrona)
 - [3. Servizio di Validazione](#3-servizio-di-validazione)
   - [3.1. Request](#31-request)
     - [3.1.1. Messaggio di richiesta, esempio “Validation con Attachment”](#311-messaggio-di-richiesta-esempio-validation-con-attachment)
@@ -155,7 +161,7 @@
 | RIF. | DOCUMENTO | DESCRIZIONE |
 |------|-----------|-------------|
 | 1 | http://www.hl7italia.it/hl7italia_D7/hl7it_publications | Implementation Guide CDA R2 |
-| 2 | Affinity Domain 2.6.1 | Documento Affinity Domain |
+| 2 | Affinity Domain 2.6.4 | Documento Affinity Domain |
 | 3 | Linee Guida FSE | Linee guida FSE |
 
 _Tabella 1: Riferimenti Esterni_
@@ -214,6 +220,7 @@ _Tabella 2: Acronimi e Definizioni_
 | 2.23 | 24/07/2026 | Aggiunta endpoint aggiornamento metadati oscuramento a catena; refattorizzazione indice; aggiornamento tabelle per valori ad 2.6.4 |
 | 2.24 | 16/09/2026 | Correzione obbligatorietà metadato Administrative Request |
 | 2.25 | 21/09/2026 | Paragrafi modificati: 9: validazione JWT e validazione request body per l’oscuramento a catena; 16.1: contesto operativo richiesta; 16.3.6: aggiunto valore SYSADMIN e aggiornata fonte ad AD 2.6.4 |
+| 2.26 | 30/10/2026 | Introdotto il paragrafo 2.4 sulla trasformazione CDA–FHIR, il post-processing del Bundle (normalizzazione, deduplicazione e algoritmo di scoring, arricchimento dei metadati, pulizia dei tag e report delle risorse soppresse), le validazioni FHIR sincrone e la gestione degli esiti nei flussi di Validazione e Pubblicazione. Aggiornati l’indice e i richiami nel capitolo 2. |
 
 _Tabella 3: Registro Modifiche_
 
@@ -330,6 +337,8 @@ In differenti circostanze, verrà restituito un errore di validazione come defin
 
 Il servizio è sincrono, e implementa le validazioni ed i controlli sintattici, semantici e terminologici. In caso di un esito con errore, verranno restituiti i dettagli di questo indicati nell’apposita sezione in “Response”.
 
+Quando configurato (in ambiente di validazione), il servizio esegue anche verifiche su un Bundle FHIR temporaneo generato dal CDA ai soli fini dei controlli. Non si tratta del Bundle destinato alla pubblicazione. Le verifiche e la gestione delle risorse soppresse sono descritte al paragrafo [2.4](#24-trasformazione-cdafhir-normalizzazione-e-controlli-sincroni).
+
 In caso di validazione eseguita con successo, l’esito tornato è positivo e la Validazione può ritenersi conclusa correttamente. 
 
 **Validazione Documento FHIR**
@@ -352,6 +361,8 @@ Il servizio ha lo scopo di effettuare la conversione del dato in ingresso in for
 
 La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
 
+Prima della risposta di presa in carico, il Bundle attraversa il post-processing e gli eventuali controlli FHIR abilitati per la Pubblicazione. Questi ultimi anticipano nella parte sincrona verifiche oggi asincrone; eventuali errori bloccanti impediscono la prosecuzione. Il processo è descritto al paragrafo [2.4](#24-trasformazione-cdafhir-normalizzazione-e-controlli-sincroni).
+
 **Eliminazione Documento**
 
 Nello scenario di questa funzionalità il Repository Documentale locale effettuerà una richiesta di cancellazione di un documento identificato dal XDSDocumentEntry.uniqueId. 
@@ -365,6 +376,8 @@ In caso di errore nell’eliminazione, il servizio fornisce un acknowledgement d
 Questa funzionalità permette di sovrascrivere un documento precedentemente pubblicato. 
 
 Come per la creazione, il servizio effettua la conversione del documento in ingresso (identificato dal XDSDocumentEntry.uniqueId) in formato FHIR e procede all’invio verso EDS e INI.
+
+Anche per la sostituzione da CDA, alla preparazione del Bundle si applicano il post-processing e gli eventuali controlli FHIR sincroni abilitati per la Pubblicazione, descritti al paragrafo [2.4](#24-trasformazione-cdafhir-normalizzazione-e-controlli-sincroni).
 
 La conversione del dato in formato FHIR è sincrona mentre la comunicazione verso INI ed EDS è asincrona. Conclusa la conversione il servizio fornisce un acknowledgment di presa in carico.
 
@@ -485,7 +498,135 @@ Vista la dipendenza dei token dai valori specifici di utente/soggetto/documento 
 
 Per i dettagli sui campi dei token si consulti l’apposito paragrafo.
 
+## 2.4. Trasformazione CDA–FHIR, normalizzazione e controlli sincroni
 
+Il Gateway prepara il Bundle FHIR mediante le mappe di trasformazione e una sequenza di elaborazioni successive, detta **post-processing**. A questo processo si aggiungono due funzionalità configurabili:
+
+- **Validazioni FHIR sincrone**, per comunicare direttamente nella risposta API problemi che oggi vengono rilevati nelle elaborazioni asincrone.
+- **Report delle risorse soppresse**, per conservare nella narrativa del documento le segnalazioni di soppressione prodotte durante la trasformazione, rimuovendo dal Bundle le corrispondenti risorse diagnostiche solo dopo averne riportato il contenuto.
+
+Le elaborazioni di post-processing già esistenti restano attive anche quando queste funzionalità sono disabilitate. Le validazioni verificano il Bundle risultante, ma non lo modificano.
+
+### 2.4.1. Ambito e applicazione nei flussi
+
+Il processo descritto riguarda i **documenti di origine CDA**. Non va confuso con il servizio del [capitolo 4](#4-servizio-di-validazione-fhir), che valida i documenti nativi FHIR secondo l'implementation guide di pertinenza. Le operazioni sui Bundle già forniti in formato FHIR, l'aggiornamento dei soli metadati e la conversione di un Bundle documentale in una transazione seguono percorsi distinti.
+
+| Flusso | Utilizzo del Bundle |
+| --- | --- |
+| Validazione | Dopo i controlli CDA, se non vi sono errori bloccanti e sono richieste le nuove funzionalità, viene generato un **Bundle temporaneo ai soli fini delle verifiche**. Non viene pubblicato né riutilizzato per la pubblicazione. |
+| Pubblicazione, in creazione o sostituzione | Avviene la **trasformazione destinata alla pubblicazione**, a partire dal CDA e con i metadati effettivi della richiesta. |
+| Validazione e Pubblicazione contestuali | Si applica il comportamento delle rispettive fasi di Validazione e Pubblicazione, nell'ambito della stessa richiesta. |
+
+Le funzionalità sono attivate dalla configurazione del Gateway: **non richiedono nuovi parametri nella richiesta API**.
+
+### 2.4.2. Generazione del Bundle tramite FHIR Mapping Language
+
+Nel flusso di Validazione restano i controlli sintattici, semantici tramite Schematron e terminologici sul CDA, nei casi previsti. Il Bundle temporaneo viene generato soltanto se questi controlli non hanno prodotto errori bloccanti e se è attivo almeno un controllo FHIR o il report delle risorse soppresse. Eventuali warning semantici non impediscono di procedere.
+
+Per generare il Bundle, il Gateway individua il motore e la mappa associati alla tipologia documentale. Le mappe vengono eseguite utilizzando il **FHIR Mapping Language**, rappresentato dalla risorsa **StructureMap**. Descrivono come leggere i dati del CDA, convertirne strutture e valori e creare le risorse FHIR con i relativi collegamenti. Un singolo CDA può quindi produrre più risorse raccolte in un Bundle.
+
+HL7 definisce il linguaggio di mapping; le specifiche corrispondenze tra i dati del CDA e le risorse prodotte dipendono invece dalle **mappe configurate nel Gateway**.
+
+Durante il mapping alcune risorse possono essere soppresse. Le relative segnalazioni possono comparire nel Bundle come **OperationOutcome**, risorse diagnostiche che descrivono i problemi riscontrati e non sostituiscono le risorse cliniche eliminate.
+
+Il completamento del mapping non equivale al superamento della validazione FHIR: il Bundle viene prima sottoposto al post-processing e poi agli eventuali controlli abilitati.
+
+### 2.4.3. Post-processing del Bundle
+
+Il Bundle iniziale attraversa le seguenti elaborazioni, nell'ordine indicato. La stessa sequenza prepara il Bundle temporaneo in Validazione e quello destinato alla Pubblicazione.
+
+**1. Normalizzazione degli identificativi e dei riferimenti**
+
+Per le risorse anagrafiche destinate all'aggiornamento (Patient, Organization, Practitioner, Location) viene derivato un identificativo dall'originale mediante una funzione di hash e vengono aggiornati gli indirizzi delle entry e i riferimenti interessati dalle sostituzioni.
+
+Questa fase è eseguita sul Bundle prodotto dalle mappe che implementano il FHIR mapping language, prima della deduplicazione mediante l'applicazione dell'algoritmo di scoring.
+
+Per ogni risorsa la cui entry contiene una richiesta **PUT**, l'elaborazione:
+
+- Legge la parte identificativa della risorsa.
+- Calcola lo **SHA-256 del solo identificativo originale (system + value)** e usa la sua rappresentazione esadecimale come nuovo identificativo. Il calcolo non include né il tipo di risorsa né il contenuto clinico: a parità di identificativo originale viene ottenuto lo stesso hash, anche per tipi diversi.
+- Imposta l'indirizzo completo dell'entry (`fullUrl`) a `https://example/<TipoRisorsa>/<hash>` e l'indirizzo della richiesta (`request.url`) a `<TipoRisorsa>/<hash>`, mantenendo il metodo PUT.
+- Registra le corrispondenze necessarie per aggiornare i riferimenti: vecchio indirizzo completo verso il nuovo, `<TipoRisorsa>/<id originale>` verso `<TipoRisorsa>/<hash>` e identificativo originale verso hash.
+
+Per tutte le risorse cliniche, caratterizzate dal metodo POST, **non viene calcolato l'hash**; l'identificazione è garantita dalla generazione di uno UID per ogni risorsa in fase di trasformazione mediante mappe con il quale, a valle di una normalizzazione ci si riferirà all'interno del bundle stesso.
+
+**2. Deduplicazione e algoritmo di scoring**
+
+Il mapping può produrre più rappresentazioni della stessa risorsa, ad esempio quando uno stesso soggetto o una stessa organizzazione compare in punti diversi del CDA. Dopo la normalizzazione degli identificativi, la deduplicazione raggruppa le risorse per **tipo e identificativo** e mantiene una sola entry per ciascun gruppo. Non confronta il contenuto per stabilire se due risorse descrivano la stessa entità: risorse con identificativi diversi non vengono accorpate, anche se hanno contenuti simili. Le entry prive di risorsa vengono scartate.
+
+La scelta della risorsa da conservare dipende da un punteggio, calcolato secondo una delle seguenti strategie. La strategia attualmente prevista dalla configurazione del Gateway è **KEEP_PRIOR**; le altre sono disponibili come alternative.
+
+| Strategia | Criterio di selezione | Comportamento a parità di punteggio |
+| --- | --- | --- |
+| **KEEP_PRIOR** | Mantiene la risorsa con priorità maggiore in base alla provenienza nel CDA, indicata dai tag interni prodotti durante il mapping. | Mantiene la candidata già selezionata durante l'elaborazione. |
+| **KEEP_LONGER** | Mantiene la risorsa la cui rappresentazione JSON compatta ha il maggior numero di caratteri. | Mantiene la candidata già selezionata durante l'elaborazione. |
+| **KEEP_RICHER_UP** | Mantiene la risorsa con il maggior numero di elementi figli di primo livello restituiti dal modello FHIR. | Mantiene la candidata già selezionata durante l'elaborazione. |
+| **KEEP_RICHER_DOWN** | Usa lo stesso conteggio di KEEP_RICHER_UP. | Sostituisce la candidata già selezionata con quella in esame durante l'elaborazione. |
+
+**KEEP_PRIOR privilegia la provenienza, non la dimensione o la completezza della risorsa.** I tag di scoring riportano il percorso di origine nel CDA, al quale il Gateway associa un peso predefinito. Ad esempio, per le risorse derivate direttamente dai rispettivi ruoli, il peso associato al firmatario legale è maggiore di quello dell'autore, a sua volta maggiore di quello dell'autenticatore. Il punteggio non è quindi una valutazione clinica dei contenuti né un conteggio dei campi compilati. Viene utilizzato il primo tag di scoring riconosciuto per la risorsa, senza sommare i pesi; se non è presente un tag riconosciuto, il punteggio è zero. Questi tag vengono rimossi soltanto nella successiva fase di pulizia, dopo averli utilizzati per la selezione.
+
+**KEEP_LONGER privilegia l'estensione della rappresentazione JSON**, che può dipendere anche dalla lunghezza dei testi: non garantisce che la risorsa scelta contenga più informazioni clinicamente rilevanti. **KEEP_RICHER_UP e KEEP_RICHER_DOWN privilegiano invece il numero di elementi di primo livello**, senza misurare la lunghezza dei valori né contare ricorsivamente tutti gli elementi annidati. La loro differenza riguarda esclusivamente la gestione dei pareggi.
+
+L'elaborazione è parallela: «candidata già selezionata» e «candidata in esame» non corrispondono necessariamente alla prima e all'ultima entry del Bundle originale. A parità di punteggio, non è quindi garantita la scelta in base all'ordine originario delle entry, né viene garantito il mantenimento dell'ordine iniziale nel Bundle risultante.
+
+In tutte le strategie la deduplicazione è una **selezione, non una fusione**: i campi delle rappresentazioni scartate non vengono integrati nella risorsa mantenuta.
+
+**3. Arricchimento dei metadati**
+
+La **DocumentReference** presente nel Bundle viene integrata con i metadati disponibili: identificazione e classificazione del documento, struttura e contesto assistenziale, periodo della prestazione, informazioni sul contenuto e riservatezza. Questa risorsa è attesa nel Bundle iniziale prodotto dalle mappe: il post-processing ne integra i metadati, ma non la aggiunge se la mappa non l'ha generata. In Pubblicazione vengono usati i metadati effettivi della richiesta; in Validazione vengono usati metadati esemplificativi per consentire le verifiche sul Bundle temporaneo.
+
+**4. Pulizia dei tag interni**
+
+Dopo la selezione dei duplicati vengono rimossi i tag interni di punteggio o priorità utilizzati per tale selezione. Gli altri tag e le eventuali firme FHIR vengono conservati.
+
+**5. Report delle risorse soppresse, se attivo**
+
+Quando il report è attivo, il Gateway raccoglie gli OperationOutcome presenti nel Bundle dopo le elaborazioni precedenti e:
+
+1. Aggiunge una sezione **«Risorse soppresse»** alla narrativa della **Composition**, la risorsa che rappresenta la composizione del documento clinico, preservando il testo già presente.
+2. Riporta le informazioni diagnostiche disponibili: descrizioni, severità, motivazioni, codifiche e indicazioni degli elementi coinvolti.
+3. **Solo dopo aver preparato con successo il report**, rimuove tutte le entry OperationOutcome dal Bundle.
+4. Rende disponibili le relative segnalazioni come diagnostica di normalizzazione, distinta dagli esiti delle validazioni FHIR.
+
+Se non sono presenti OperationOutcome, questa fase non modifica il Bundle. Se manca la Composition o non è possibile estenderne la narrativa, il report non viene applicato: gli OperationOutcome restano nel Bundle e questa operazione non restituisce segnalazioni di normalizzazione. L'evento viene registrato nei log; le elaborazioni di post-processing già svolte restano applicate.
+
+Terminato il post-processing, il Bundle viene rappresentato in formato JSON. È su questo risultato finale che vengono eseguite le eventuali validazioni FHIR sincrone.
+
+### 2.4.4. Validazioni FHIR sincrone
+
+Questi controlli anticipano nella **parte sincrona delle API** verifiche oggi effettuate in modo asincrono. Possono essere attivati singolarmente o insieme e vengono eseguiti una sola volta ciascuno per ogni generazione del Bundle. Entrambi esaminano il Bundle finale in JSON, dopo il post-processing e il report se attivo.
+
+**Conformità alle specifiche FHIR R4 — NORMATIVE_R4**
+
+Verifica il Bundle e le risorse contenute rispetto alle definizioni di base FHIR R4, comprendendo i vincoli strutturali e i controlli terminologici supportati dal validatore. Restituisce warning ed errori, con indicazione dell'elemento interessato quando disponibile. I soli warning non rendono negativo il controllo; almeno un errore con severity "ERROR" o "FATAL" determina un esito non valido.
+
+**Raggiungibilità delle risorse — TRAVERSABILITY**
+
+Verifica i collegamenti partendo dalla **DocumentReference** del Bundle e seguendo i riferimenti nella loro direzione. Segnala come errori le risorse o i collegamenti non raggiungibili da questo punto di partenza.
+
+Il controllo non ricostruisce collegamenti e non rimuove risorse isolate. Si tratta di una verifica di raggiungibilità, non di una verifica completa dell'integrità dei riferimenti: il suo superamento non garantisce che ogni riferimento abbia una risorsa di destinazione presente nel Bundle.
+
+### 2.4.5. Interpretazione degli esiti e prosecuzione asincrona
+
+Le segnalazioni riportano la fase, la severità e la descrizione del problema. Le fasi sono:
+
+| Fase              | Significato                                                           |
+| ----------------- | --------------------------------------------------------------------- |
+| NORMALIZATION     | Diagnostica delle risorse soppresse conservata nel report narrativo.  |
+| NORMATIVE_R4      | Controllo di conformità di base a FHIR R4.                            |
+| TRAVERSABILITY    | Controllo di raggiungibilità delle risorse e dei collegamenti.        |
+
+In **Validazione**, le segnalazioni si aggiungono a quelle dei controlli CDA. Le soppressioni riportate dalla normalizzazione vengono esposte come avvertimento. Un esito negativo dei controlli FHIR prevale sugli avvertimenti e rende negativa la validazione; i soli warning FHIR non sono bloccanti.
+
+In **Pubblicazione**, le segnalazioni di normalizzazione e validazione vengono valutate singolarmente: WARNING viene esposto come avvertimento e consente di proseguire; ERROR e FATAL bloccano l'operazione prima della presa in carico asincrona. Le segnalazioni INFORMATION non costituiscono errori bloccanti né warning di pubblicazione.
+
+Gli avvertimenti vengono presentati nel campo `warning` della risposta; gli errori bloccanti seguono il formato descritto al [capitolo 15](#15-drilldown-response-in-caso-di-errore). Ad esempio, `NORMALIZATION - WARNING` identifica un avvertimento sulle soppressioni, mentre `NORMATIVE_R4 - ERROR` identifica un errore sul Bundle finale.
+
+Gli errori di esecuzione sono distinti dagli esiti negativi dei controlli: se la generazione del Bundle fallisce, il servizio non risponde o mancano i risultati di validazione richiesti, il flusso viene interrotto con un errore. **Un controllo richiesto ma non eseguito non viene considerato superato.**
+
+L'esito dell'API di Validazione non sostituisce gli eventuali controlli sincroni abilitati nell'API di Pubblicazione: le opzioni possono differire e i metadati effettivi possono produrre risultati diversi da quelli esemplificativi.
+
+Infine, **il superamento dei controlli sincroni e la risposta di presa in carico non attestano il completamento della pubblicazione**. L'anticipazione delle verifiche non implica la rimozione dei controlli asincroni né esclude errori nelle fasi successive. L'esito complessivo va verificato tramite i servizi di notifica e consultazione dello stato descritti nei capitoli [12](#12-servizio-di-notifica-stato-transazione), [13](#13-servizio-di-recupero-stato-transazione-per-workflowinstanceid) e [14](#14-servizio-di-recupero-stato-transazione-per-traceid).
 
 # 3. Servizio di Validazione
 
