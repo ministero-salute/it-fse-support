@@ -7408,6 +7408,8 @@ Riferimento: urn:oasis:names:tc:xacml:1.0:action:action-id
 DELETE per il servizio di Eliminazione Documento
 <p>
 UPDATE per il servizio di Sostituzione Documento e Aggiornamento Metadati
+<p>
+CREATE o UPDATE per il servizio di Validazione (UPDATE se la validazione è preliminare a una Sostituzione Documento)
    </td>
   </tr>
   <tr>
@@ -9463,7 +9465,7 @@ Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:a
   <tr>
    <td>CREATE
    </td>
-   <td>Il valore deve essere utilizzato per il servizio di validazione e per il servizio di Pubblicazione Creazione Documento
+   <td>Il valore deve essere utilizzato per il servizio di Pubblicazione Creazione Documento e, nel caso del servizio di validazione, quando il documento è destinato a una creazione
    </td>
   </tr>
   <tr>
@@ -9475,7 +9477,7 @@ Tabella 6.4-5. Value set per l’attributo urn:oasis:names:tc:xacml:1.0:action:a
   <tr>
    <td>UPDATE
    </td>
-   <td>Il valore deve essere utilizzato per il servizio di Aggiornamento Metadati
+   <td>Il valore deve essere utilizzato per il servizio di Pubblicazione Sostituzione Documento, per il servizio di Aggiornamento Metadati (compreso l'aggiornamento per oscuramento) e, nel caso del servizio di validazione, quando la validazione è preliminare a una sostituzione
    </td>
   </tr>
 </table>
