@@ -9,7 +9,7 @@
    </td>
    <td>:
    </td>
-   <td>ver 2.26
+   <td>ver 2.27
    </td>
   </tr>
 </table>
@@ -104,9 +104,10 @@
     - [12.2.3. Parametri Body](#1223-parametri-body)
   - [12.3. Notifica verso l’Utente Finale](#123-notifica-verso-lutente-finale)
     - [12.3.1. Endpoint (Gateway verso touchpoint)](#1231-endpoint-gateway-verso-touchpoint)
-    - [12.3.2. Payload di Notifica in caso di success](#1232-payload-di-notifica-in-caso-di-success)
-    - [12.3.3. Payload di Notifica in caso di errore verso INI](#1233-payload-di-notifica-in-caso-di-errore-verso-ini)
-    - [12.3.4. Payload di Notifica in caso di errore verso UAR](#1234-payload-di-notifica-in-caso-di-errore-verso-uar)
+    - [12.3.2. Trust del certificato client del Gateway](#1232-trust-del-certificato-client-del-gateway)
+    - [12.3.3. Payload di Notifica in caso di success](#1233-payload-di-notifica-in-caso-di-success)
+    - [12.3.4. Payload di Notifica in caso di errore verso INI](#1234-payload-di-notifica-in-caso-di-errore-verso-ini)
+    - [12.3.5. Payload di Notifica in caso di errore verso UAR](#1235-payload-di-notifica-in-caso-di-errore-verso-uar)
   - [12.4. Comportamento della Tabella di Routing del Gateway](#124-comportamento-della-tabella-di-routing-del-gateway)
   - [12.5. Modalità Pull](#125-modalità-pull)
     - [12.5.1. Endpoint Pull Gateway verso Broker](#1251-endpoint-pull-gateway-verso-broker)
@@ -221,6 +222,7 @@ _Tabella 2: Acronimi e Definizioni_
 | 2.24 | 16/09/2026 | Correzione obbligatorietà metadato Administrative Request |
 | 2.25 | 21/09/2026 | Paragrafi modificati: 9: validazione JWT e validazione request body per l’oscuramento a catena; 16.1: contesto operativo richiesta; 16.3.6: aggiunto valore SYSADMIN e aggiornata fonte ad AD 2.6.4 |
 | 2.26 | 30/10/2026 | Introdotto il paragrafo 2.4 sulla trasformazione CDA–FHIR, il post-processing del Bundle (normalizzazione, deduplicazione e algoritmo di scoring, arricchimento dei metadati, pulizia dei tag e report delle risorse soppresse), le validazioni FHIR sincrone e la gestione degli esiti nei flussi di Validazione e Pubblicazione. Aggiornati l’indice e i richiami nel capitolo 2. |
+| 2.27 | 23/11/2026 | Paragrafi modificati: 12.3.2 aggiunto paragrafo sulla CA da utilizzare per il trust del certificato client del Gateway nella notifica di stato verso il touchpoint; rinumerati i paragrafi successivi del 12.3 |
 
 _Tabella 3: Registro Modifiche_
 
@@ -4908,7 +4910,24 @@ https://github.com/ministero-salute/it-fse-support/tree/main/openapi/gateway/swa
 POST http://<CALLBACK_HOST>/v1/workflow/status
 ```
 
-### 12.3.2. Payload di Notifica in caso di success
+### 12.3.2. Trust del certificato client del Gateway
+
+L'invocazione dell'endpoint `/v1/workflow/status` esposto dal touchpoint regionale avviene da parte del Gateway (tramite GovWay) su canale HTTPS in mutua autenticazione (mTLS), secondo il pattern [ID_AUTH_CHANNEL_02] descritto al paragrafo [12.1](#121-modalità-di-comunicazione-e-paradigma-di-sicurezza).
+
+**IN AMBIENTE DI VALIDAZIONE:** Per accettare la chiamata di notifica e completare l'handshake mTLS, il touchpoint regionale deve censire nel truststore del proprio endpoint la CA che ha emesso il certificato client del Gateway:
+
+| AMBIENTE | CA | CERTIFICATO |
+| -------- | -- | ----------- |
+| Validazione | CN=CA Ministero della Salute Test-1, O=Ministero della Salute, C=IT | [CAMinisterodellaSaluteTest1.pem](https://github.com/ministero-salute/it-fse-support/blob/main/doc/CA_Sogei/VALIDAZIONE/CAMinisterodellaSaluteTest1.pem) |
+
+Il touchpoint regionale deve quindi:
+
+- importare il certificato della CA indicata nel truststore utilizzato dall'endpoint che espone `/v1/workflow/status`;
+- richiedere il certificato client in fase di handshake TLS e accettare esclusivamente i certificati emessi dalla CA sopra indicata;
+- verificare la validità del certificato presentato.
+
+
+### 12.3.3. Payload di Notifica in caso di success
 
 ```json
 {
@@ -4948,7 +4967,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### 12.3.3. Payload di Notifica in caso di errore verso INI
+### 12.3.4. Payload di Notifica in caso di errore verso INI
 
 ```json
 {
@@ -4976,7 +4995,7 @@ POST http://<CALLBACK_HOST>/v1/workflow/status
 }
 ```
 
-### 12.3.4. Payload di Notifica in caso di errore verso UAR
+### 12.3.5. Payload di Notifica in caso di errore verso UAR
 
 ```json
 {
