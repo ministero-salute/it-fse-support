@@ -13,11 +13,11 @@
 	<effectiveTime value="20220509103000+0100"/>
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
 	<languageCode code="it-IT"/>
-	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220509102426.Q123E456" assigningAuthorityName="Regione Lazio"/>
-	<versionNumber value="1"/>
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
+	<versionNumber value="2"/>
 	<recordTarget>
 		<patientRole>
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -27,7 +27,7 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>Via Aurora 12</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/>
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
 			<telecom use="MC" value="tel:3340000000"/>
 			<patient>
 				<name>
@@ -63,8 +63,8 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>via Milano 7</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson>
 				<name>
@@ -87,8 +87,8 @@
 				<censusTract>058091</censusTract>
 				<streetAddressLine>via Milano 7</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="MC" value="tel:3300000000"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson>
 				<name>
 					<family>Prova</family>
@@ -100,9 +100,9 @@
 	<custodian>
 		<assignedCustodian>
 			<representedCustodianOrganization>
-				<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="1.2.3.4.5" assigningAuthorityName="Ministero della Salute"/>
 				<name>XXX</name>
-				<telecom use="WP" value="tel:3340000000"/>
+				<telecom use="MC" value="tel:3340000000"/>
 				<addr>
 					<country>100</country>
 					<state>120</state>
@@ -127,8 +127,8 @@
 					<censusTract>058091</censusTract>
 					<streetAddressLine>Via Tommaso 14</streetAddressLine>
 				</addr>
-				<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-				<telecom use="MC" value="tel:3300000000"/> 
+				<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
+				<telecom use="MC" value="tel:3340000000"/>
 				<assignedPerson>
 					<name>
 						<family>Prova</family>
@@ -152,7 +152,7 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>via Corvetto 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
 			<associatedPerson>
 				<name>
 					<family>Test</family>
@@ -168,19 +168,20 @@
 			<priorityCode code="R" codeSystem="2.16.840.1.113883.5.7" codeSystemName="HL7 ActPriority" displayName="Normale"/>
 		</order> 
 	</inFulfillmentOf> 	
+	
 	<documentationOf> 
 		<serviceEvent> 
 			<code code="PROG" codeSystem="2.16.840.1.113883.2.9.5.1.4" codeSystemName="ActCode" displayName="Accesso Programmato"/>
 			<effectiveTime value="20220509073000+0100"/> 
 		</serviceEvent> 
 	</documentationOf> 	
-	<!-- <relatedDocument typeCode="RPLC"> 
+	<relatedDocument typeCode="RPLC"> 
 		<parentDocument> 
 			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20210420112426.F123E45G" assigningAuthorityName="HL7 Italia"/> 
 			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.DW322E34" assigningAuthorityName="Regione Lazio"/>
 			<versionNumber value="1"/>
 		</parentDocument> 
-	</relatedDocument> -->
+	</relatedDocument>
 	<componentOf>
 		<encompassingEncounter>
 			<id root="2.16.840.1.113883.2.9.2.120110.4.6" extension="2011008159" assigningAuthorityName="MEF"/>
@@ -223,6 +224,7 @@
 		<structuredBody moodCode="EVN" classCode="DOCBODY">
 			<component typeCode="COMP">
 				<section ID="QUESITO_DIAGNOSTICO">
+					<templateId root="2.16.840.1.113883.3.1937.777.63.10.1041" />
 					<code code="29299-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo della visita"/>
 					<title> Quesito diagnostico </title>
 					<text> 
@@ -512,7 +514,7 @@
 					<title> Prestazioni </title>
 					<text>
 						<paragraph>
-							<content styleCode="Bold">Prestazioni Eseguite</content>
+							Prestazioni Eseguite
 						</paragraph>
 						<list>
 							<item ID="Prestazione-1">
@@ -538,7 +540,7 @@
 									</tbody>
 								</table>
 								<paragraph>
-									<content styleCode="Bold">Procedure Operative Eseguite</content>
+									Procedure Operative Eseguite
 								</paragraph>
 								<list>
 									<item ID="Procedure-1">
@@ -605,6 +607,12 @@
 									</code>
 									<effectiveTime value="20220509073749+0100"/>
 								</procedure>
+							</entryRelationship>
+							<entryRelationship typeCode="REFR" inversionInd="false">
+								<act classCode="ACT" moodCode="EVN">
+									<id root="1.2.3.4.5" extension="ProvaXXXXX"/>
+									<code code="55122-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Surgical operation note implants"/>
+								</act>								
 							</entryRelationship>
 						</act>	
 					</entry>

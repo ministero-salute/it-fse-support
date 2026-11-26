@@ -3,6 +3,7 @@
 	<realmCode code="IT"/>
 	<typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040UV02"/>
 	<templateId root="2.16.840.1.113883.2.9.10.1.1" extension="1.3" assigningAuthorityName="HL7 Italia"/>
+	<templateId root="2.16.840.1.6" extension="1.1" assigningAuthorityName="HL7 Italia"/>
 	<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J" assigningAuthorityName="Regione Lazio"/>	
 	<code 	code="11502-2"	codeSystem="2.16.840.1.113883.6.1"  codeSystemName="LOINC" displayName="Referto di laboratorio"/> 
 	<title> REFERTO DI LABORATORIO</title>
@@ -10,11 +11,13 @@
 	<effectiveTime value="20220330112426+0100"/>
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
 	<languageCode code="it-IT"/>
-	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220325112426.OQlvTq1J" assigningAuthorityName="Regione Lazio"/> 
-	<versionNumber value="1"/> 
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="c030702.TSTSMN63A01F205H.20220325112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/> 
+	<versionNumber value="2"/> 
 	<recordTarget typeCode="RCT" contextControlCode="OP">
 		<patientRole classCode="PAT">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.2.70.4.1.1" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.17" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.2.70.4.1" extension="RSSMRA22A01A399Z" assigningAuthorityName="MEF"/>
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -33,7 +36,7 @@
 				<postalCode>00138</postalCode> 
 				<streetAddressLine>Via Canevari 12B</streetAddressLine>
 			</addr>			
-			<telecom use="HP" value="mailto:prova.provax@example.com"/>
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
 			<telecom use="MC" value="tel:33224456"/>
 			<patient> 
 				<name> 
@@ -69,8 +72,8 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>Via Milano 7</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
 			<telecom use="MC" value="tel:3340000000"/>
 			<assignedPerson> 
 				<name> 
@@ -80,8 +83,32 @@
 				</name> 
 			</assignedPerson>
 		</assignedAuthor> 
-	</author> 
-	
+	</author>
+	<author> 
+		<time value="20220325110000+0100"/>
+		<assignedAuthor classCode="ASSIGNED"> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<addr>
+				<country>100</country>
+				<state>120</state>
+				<county>RM</county> 
+				<city>Roma</city> 
+				<censusTract>058091</censusTract> 
+				<postalCode>00184</postalCode> 
+				<streetAddressLine>Via Milano 7</streetAddressLine>
+			</addr>
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
+			<telecom use="MC" value="tel:3340000000"/>
+			<assignedPerson> 
+				<name> 
+					<family>Test</family> 
+					<given>Matteo</given> 
+					<prefix>Dr</prefix>
+				</name> 
+			</assignedPerson>
+		</assignedAuthor> 
+	</author>
 	<dataEnterer typeCode="ENT"> 
 		<time value="20220325120000+0100"/> 
 		<assignedEntity> 
@@ -100,8 +127,8 @@
 			<representedCustodianOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="WP" value="tel:3340000000"/> 
-				<addr> 
+				<telecom use="MC" value="tel:3340000000"/> 
+				<addr > 
 					<country>100</country>
 					<state>120</state>
 					<county>RM</county> 
@@ -116,7 +143,7 @@
 	<informationRecipient> 
 		<intendedRecipient> 
 			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
-			<telecom use="WP" value="mailto:prova.provax@example.com"/> 
+			<telecom use="WP" value="mailto:prova.provax@pec.it"/> 
 			<informationRecipient> 
 				<name>
 					<family>Test</family> 
@@ -140,8 +167,8 @@
 					<postalCode>00164</postalCode> 
 					<streetAddressLine>Via Corvetto 3</streetAddressLine>
 				</addr> 
-				<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-				<telecom use="WP" value="tel:3340000000"/> 
+				<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+				<telecom use="MC" value="tel:3340000000"/> 
 				<assignedPerson> 
 					<name>  
 						<family>Prova</family> 
@@ -166,8 +193,8 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>Via Corvetto 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="WP" value="tel:3340000000"/> 
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/> 
+			<telecom use="MC" value="tel:3340000000"/> 
 			<assignedPerson> 
 				<name> 
 					<family>Test</family> 
@@ -191,7 +218,7 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>Via Vittorio Veneto 3</streetAddressLine>
 			</addr>
-			<telecom use="HP" value="mailto:prova.provax@example.com"/>
+			<telecom use="HP" value="mailto:prova.provax@gmail.it"/>
 			<associatedPerson>
 				<name>
 					<family>Esempio</family>
@@ -200,9 +227,8 @@
 			</associatedPerson>
 			<scopingOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/><!-- STS11-->
-				<name></name>
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="WP" value="tel:3340000000"/> 
+				<telecom use="MC" value="tel:3340000000"/> 
 				<addr> 
 					<country>100</country>
 					<state>120</state>
@@ -219,13 +245,12 @@
 	<inFulfillmentOf> 
 		<order classCode="ACT" moodCode="RQO"> 
 			<id root="2.16.840.1.113883.2.9.4.3.9" extension="[NRE]" assigningAuthorityName="Ministero delle Finanze"/> 
-			<priorityCode code="P" codeSystem="2.16.840.1.113883.5.7" codeSystemName="HL7 ActPriority" displayName="routine"/>
+			<priorityCode code="R" codeSystem="2.16.840.1.113883.5.7" codeSystemName="HL7 ActPriority" displayName="routine"/>
 		</order> 
-	</inFulfillmentOf> 
+	</inFulfillmentOf>
 	
 	<documentationOf>
 		<serviceEvent moodCode="EVN">
-			<statusCode code="completed"/>
 			<effectiveTime value="20220324112426+0100"/>
 			<performer typeCode="PRF">
 				<assignedEntity>
@@ -248,13 +273,13 @@
 		</serviceEvent>
 	</documentationOf>
 	
-	<!-- <relatedDocument typeCode ="RPLC"> 
+	<relatedDocument typeCode ="RPLC"> 
 		<parentDocument> 
 			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220330112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
 			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="c030702.TSTSMN63A01F205H.20220325112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
 			<versionNumber value="1"/> 
 		</parentDocument> 
-	</relatedDocument>  -->
+	</relatedDocument> 
 	
 	<componentOf>
 		<encompassingEncounter>
@@ -273,10 +298,25 @@
 			<location>
 				<healthCareFacility>
 					<id root="2.16.840.1.113883.2.9.4.1.6" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+					<location>
+						<realmCode code="IT"/>
+						<typeId root="2.16.840.1.113883.1.3" extension="extension"/>
+						<templateId root="1.1.1.1.1.1.1.1" extension="1.4" assigningAuthorityName="HL7 Italia"/>
+						<name>SAN RAFFAELE NOMENTANA</name>
+						<addr>
+							<country>100</country>
+							<state>120</state>
+							<county>RM</county> 
+							<city>Roma</city> 
+							<censusTract>058091</censusTract> 
+							<postalCode>00164</postalCode> 
+							<streetAddressLine>via Corvetto 3</streetAddressLine>					
+						</addr>
+					</location>
 					<serviceProviderOrganization>
 						<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
-						<name>[nome_presidio]</name>
-						<telecom use="WP" value="tel:3340000000"/>
+						<name>xxx</name>
+						<telecom use="MC" value="tel:3340000000"/>
 						<asOrganizationPartOf>
 							<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 						</asOrganizationPartOf>
@@ -342,6 +382,7 @@
 									<statusCode code="active"/>
 									<specimen>			
 										<specimenRole>
+											<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
 											<specimenPlayingEntity>
 												<code code="UR" codeSystem="2.16.840.1.113883.5.129" codeSystemName="SpecimenType " displayName="Urine"/>
 											</specimenPlayingEntity>
@@ -365,6 +406,7 @@
 											<effectiveTime value="20220330112426+0100"/>
 											<value xsi:type="PQ" value="16.00" unit="mg/L"/>
 											<interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 Observation Interpretation" displayName="Normal"/>
+											
 											<specimen typeCode="SPC">
 												<specimenRole classCode="SPEC">
 													<specimenPlayingEntity>
@@ -372,6 +414,19 @@
 													</specimenPlayingEntity>
 												</specimenRole>
 											</specimen>
+											<participant typeCode="AUTHEN">
+												<time value="20230222160000+0200"/>
+												<participantRole>
+												  <id assigningAuthorityName="Ministero Economia e Finanze" extension="XXXXXX66S50A944F" root="2.16.840.1.113883.2.9.4.3.2"/>
+												  <playingEntity>
+													<name>
+													  <family>CognomeDottoressa </family>
+													  <given>NomeDottoressa</given>
+													  <prefix>Dott.sa</prefix>
+													</name>
+												  </playingEntity>
+												</participantRole>
+											  </participant>
 											<referenceRange>
 												<observationRange>
 													<value xsi:type="IVL_PQ">
@@ -389,6 +444,80 @@
 													</lab:precondition>
 												</observationRange>
 											</referenceRange>
+											
+										</observation>
+									</entryRelationship>
+								</act>	
+							</entry>
+							<entry typeCode="DRIV">
+								<act moodCode="EVN" classCode="ACT">
+									<code code="14957-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Microalbumin Massa/Volume in Urine"/>	
+									<statusCode code="active"/>
+									<specimen>			
+										<specimenRole>
+											<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+											<specimenPlayingEntity>
+												<code code="UR" codeSystem="2.16.840.1.113883.5.129" codeSystemName="SpecimenType " displayName="Urine"/>
+											</specimenPlayingEntity>
+										</specimenRole>
+									</specimen>
+									<entryRelationship typeCode="SUBJ">
+										<act moodCode="EVN" classCode="ACT">
+											<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
+											<text>
+												<reference value="#nota1"/>
+											</text>
+										</act>
+									</entryRelationship>
+									
+									<entryRelationship typeCode="COMP">
+										<observation moodCode="EVN" classCode="OBS">
+											<code code="14957-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Microalbumin Massa/Volume in Urine">
+												<translation code="0090334.02" codeSystem="2.16.840.1.113883.2.9.2.30.6.11" codeSystemName="SISS" displayName="Albumina nelle urine"/>
+											</code>										
+											<statusCode code="completed"/>
+											<effectiveTime value="20220330112426+0100"/>
+											<value xsi:type="PQ" value="16.00" unit="mg/L"/>
+											<interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 Observation Interpretation" displayName="Normal"/>
+											
+											<specimen typeCode="SPC">
+												<specimenRole classCode="SPEC">
+													<specimenPlayingEntity>
+														<code code="UR" codeSystem="2.16.840.1.113883.5.129" codeSystemName="SpecimenType" displayName="Urine"/>
+													</specimenPlayingEntity>
+												</specimenRole>
+											</specimen>
+											<participant typeCode="AUTHEN">
+												<time value="20230222160000+0200"/>
+												<participantRole>
+												  <id assigningAuthorityName="Ministero Economia e Finanze" extension="XXXXXX66S50A944F" root="2.16.840.1.113883.2.9.4.3.2"/>
+												  <playingEntity>
+													<name>
+													  <family>CognomeDottoressa </family>
+													  <given>NomeDottoressa</given>
+													  <prefix>Dott.sa</prefix>
+													</name>
+												  </playingEntity>
+												</participantRole>
+											  </participant>
+											<referenceRange>
+												<observationRange>
+													<value xsi:type="IVL_PQ">
+														<low value="0.00" unit="mg/L"/>
+														<high value="20.00" unit="mg/L"/>
+													</value>
+													<interpretationCode code="N" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 Observation Interpretation" displayName="Normal"/>
+													<lab:precondition> 
+														<lab:criterion>
+															<lab:code code="30525-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età"/>
+															<lab:value xsi:type="IVL_PQ"> 
+																<high value="60" unit="a"/>
+															</lab:value>
+														</lab:criterion>
+													</lab:precondition>
+												</observationRange>
+											</referenceRange>
+											
 										</observation>
 									</entryRelationship>
 								</act>	

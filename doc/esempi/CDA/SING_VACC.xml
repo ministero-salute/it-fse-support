@@ -3,7 +3,8 @@
 <ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:mif="urn:hl7-org:v3/mif" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdtc="urn:hl7-org:sdtc">
 	<realmCode code="IT"/>
 	<typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040UV02"/>
-	<templateId root="2.16.840.1.113883.2.9.10.1.11.1.1" extension="1.1" assigningAuthorityName="HL7 Italia"/> 
+	<!--templateId root="2.16.840.1.113883.2.9.10.1.11.1.1" extension="1.1" assigningAuthorityName="HL7 Italia"/--> 
+	<templateId root="2.16.840.1.113883.2.9.10.1.11.1.1" extension="1.0" assigningAuthorityName="HL7 Italia"/> 
 	<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.Q123E456" assigningAuthorityName="Regione Lazio"/>
 	<code code="87273-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName=" Immunization note"> 
 		<!--translation code="[CODICE_LOCALE]"	codeSystem="[OID_SISTEMA_CODIFICA]" codeSystemName="[DESCRIZIONE_SISTEMA_CODIFICA]" displayName="Immunization note"/-->
@@ -12,12 +13,12 @@
 	<effectiveTime value="20220210183023+0100"/>
 	<confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="HL7 Confidentiality" displayName="Normal"/>
 	<languageCode code="it-IT"/>
-	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220420112426.Q123E456" assigningAuthorityName="Regione Lazio"/>
-	<versionNumber value="1"/>
-	<recordTarget>
+	<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220520112426.Q123E446" assigningAuthorityName="Regione Lazio"/>
+	<versionNumber value="2"/>
+	<recordTarget typeCode="RCT" contextControlCode="OP">
 		<patientRole classCode="PAT">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="GTWGWY82B42G920M" assigningAuthorityName="MEF"/> 
-			<id root="2.16.840.1.113883.9.9.9.9.9.9" extension="11111htttt" assigningAuthorityName="SAN RAFFAELE NOMENTANA"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="TSTSMN63A01F205H" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.9.9.9.9.9" extension="11111htttt" assigningAuthorityName="SAN RAFFAELE NOMENTANA"/>
 			<addr use="H"> 
 				<country>100</country>
 				<state>120</state>
@@ -27,11 +28,11 @@
 				<postalCode>00187</postalCode> 
 				<streetAddressLine>via Aurora 12</streetAddressLine> 
 			</addr> 			
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="MC" value="tel:3340000000"/>
+			<telecom use="HP" value="mailto:giuseppe.verdi@gmail.com"/>
+			<telecom use="MC" value="tel:33224456"/>
 			<patient> 
 				<name> 
-					<family>Test</family> 
+					<family>Verdi</family> 
 					<given>Giuseppe</given> 
 				</name> 
 				<administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Maschio"/> 
@@ -53,8 +54,8 @@
 	<author>
 		<time value="20220330112426+0100"/>
 		<assignedAuthor classCode="ASSIGNED"> 
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
-			<addr use="HP"> 
+			<id root="2.16.840.1.113883.2.9.6.3.2" extension="LCNLVC95L47H501Q" assigningAuthorityName="MEF"/>
+			<addr> 
 				<country>100</country>
 				<state>120</state>
 				<county>RM</county> 
@@ -63,20 +64,30 @@
 				<postalCode>00184</postalCode> 
 				<streetAddressLine>via Milano 7</streetAddressLine> 
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-            <telecom use="WP" value="mailto:prova.provax@example.com"/>
-			<telecom use="MC" value="tel:3340000000"/>
-			<assignedPerson> 
+			<telecom use="HP" value="mailto:matteo.cervone@gmail.it"/> 
+			<telecom use="WP" value="mailto:matteo.cervone@pec.it"/> 
+			<telecom use="MC" value="tel:3478129873"/>
+			<!--assignedPerson> 
 				<name> 
-					<family>Prova</family> 
+					<family>Cervone</family> 
 					<given>Matteo</given> 
 				</name> 
-			</assignedPerson>
+			</assignedPerson-->
+			<assignedAuthoringDevice>
+				<templateId root="2.16.840.1.113883.2.9.4.1.2.99"/>
+				<!--asMaintainedEntity>
+					<maintainingPerson>
+						<name> 
+							<family>Cervone</family> 
+							<given>Matteo</given> 
+						</name> 
+					</maintainingPerson>
+				</asMaintainedEntity-->
+			</assignedAuthoringDevice>
 			<representedOrganization>
 				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
 				<name>SAN RAFFAELE NOMENTANA</name>
-				<telecom use="WP" value="tel: 010 337288945"/> 
-				<addr use="WP"> 
+				<telecom use="WP" value="tel: 010 337288945"/> 				<addr> 
 					<country>100</country>
 					<state>120</state>
 					<county>RM</county> 
@@ -91,9 +102,9 @@
 	<custodian> 
 		<assignedCustodian> 
 			<representedCustodianOrganization>
-				<id root="2.16.840.1.113883.2.9.4.1.1" extension="XXX" assigningAuthorityName="Ministero della Salute"/>	
-				<name>XXX</name>
-				<telecom use="WP" value="tel:3340000000"/> 
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
+				<name>SAN RAFFAELE NOMENTANA</name>
+				<telecom use="WP" value="tel: 010 337288945"/> 
 				<addr use="DIR"> 
 					<country>100</country>
 					<state>120</state>
@@ -101,7 +112,7 @@
 					<city>Roma</city> 
 					<censusTract>058091</censusTract> 
 					<postalCode>00137</postalCode> 
-					<streetAddressLine>XXX</streetAddressLine> 
+					<streetAddressLine>via Emilio Praga 39</streetAddressLine> 
 				</addr>
 			</representedCustodianOrganization> 
 		</assignedCustodian> 
@@ -110,7 +121,7 @@
 		<time value="20220330112426+0100"/> 
 		<signatureCode code="S"/> 
 		<assignedEntity>
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/> 
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="LCNLVC95L47H501Q" assigningAuthorityName="MEF"/> 
 			<addr> 
 				<country>100</country>
 				<state>120</state>
@@ -120,34 +131,35 @@
 				<postalCode>00164</postalCode> 
 				<streetAddressLine>via Corvetto 3</streetAddressLine>
 			</addr> 
-			<telecom use="HP" value="mailto:prova.provax@example.com"/> 
-			<telecom use="MC" value="tel:3340000000"/>
+			<telecom use="HP" value="mailto:righi.federico@gmail.com"/> 
+			<telecom use="MC" value="tel:330987986"/>
 			<assignedPerson> 
 				<name>  
-					<family>Test</family> 
+					<family>Righi</family> 
 					<given>Federico</given>
 					<prefix>Dr.</prefix>
 				</name> 
 			</assignedPerson> 
 		</assignedEntity> 
 	</legalAuthenticator> 	
-	<participant typeCode="IND">
+	<participant typeCode="SPRF" contextControlCode="OP">
 		<associatedEntity classCode="PROV">
-			<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+			<id root="2.16.840.1.113883.2.9.4.3.2" extension="MGGFDR90H56Z579G" assigningAuthorityName="MEF"/>
 			<associatedPerson>
 				<name>
-					<family>Esempio</family>
+					<family>Maggi</family>
 					<given>Federica</given>
 				</name>
 			</associatedPerson>
 		</associatedEntity>
 	</participant>	
-	<!-- <relatedDocument typeCode="RPLC">
+	<relatedDocument typeCode="RPLC">
 		<parentDocument>
-			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220520112426.Q123E446" assigningAuthorityName="Regione Lazio"/>
+			<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.TSTSMN63A01F205H.20220330112426.TSS1Tkju" assigningAuthorityName="Regione Lazio"/>
+			<setId root="2.16.840.1.113883.2.9.2.120.4.4" extension="030702.LCNLDE90L47H501Q.20220520112426.Q123E446" assigningAuthorityName="Regione Lazio"/>
 			<versionNumber value="1"/> 
 		</parentDocument> 
-	</relatedDocument> -->
+	</relatedDocument>
 	
 	
 	
@@ -163,8 +175,7 @@
 					<text>
 						[NARRATIVE_BLOCK]
 					</text>
-					<!--dati vaccinazione-->
-					<entry> 
+					<entry> <!--dati vaccinazione-->
 						<substanceAdministration moodCode="EVN" classCode="SBADM">
 							<templateId root="2.16.840.1.113883.2.9.10.1.11.4.1"/>
 							<statusCode code="completed"/>
@@ -181,7 +192,7 @@
 										<lotNumberText>20</lotNumberText>
 									</manufacturedMaterial>
 									<manufacturerOrganization>
-										<id root="1.2.3.4.5.6.7" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
+										<id root="1.2.3.4.5" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
 										<name>XXX</name>
 									</manufacturerOrganization>
 								</manufacturedProduct>
@@ -191,8 +202,7 @@
 									<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>	
 								</participantRole>
 							</participant>
-							<!--numero di dose-->
-							<entryRelationship typeCode="SUBJ" inversionInd="true">  
+							<entryRelationship typeCode="SUBJ" inversionInd="true">  <!--numero di dose-->
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.3"/> 
 									<code code="30973-2" displayName="Numero di dose" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
@@ -200,8 +210,7 @@
 									<value xsi:type="INT" value="3"/> 
 								</observation>
 							</entryRelationship>
-							<!--periodo di copertura-->
-							<entryRelationship typeCode="REFR" inversionInd="false"> 
+							<entryRelationship typeCode="REFR" inversionInd="false"> <!--periodo di copertura-->
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.4"/> 
 									<code code="59778-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Date when overdue for immunization "/> 
@@ -211,8 +220,7 @@
 									</value>
 								</observation>
 							</entryRelationship>
-							<!--schedulazione del prossimo vaccino-->
-							<entryRelationship typeCode="REFR" inversionInd="false"> 
+							<entryRelationship typeCode="REFR" inversionInd="false"> <!--schedulazione del prossimo vaccino-->
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.4"/> 
 									<code code="30980-7" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Date vaccine due"/> 
@@ -220,22 +228,20 @@
 									<value xsi:type="TS" value="20220308221122+0100"/>
 								</observation>
 							</entryRelationship>
-							<!--categorie a rischio-->
-							<entryRelationship typeCode="RSON" inversionInd="false"> 
+							<entryRelationship typeCode="RSON" inversionInd="false"> <!--categorie a rischio-->
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.5"/>
 									<code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="95715-9" displayName="Categorie a rischio"/>
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" codeSystem="2.16.840.1.113883.2.9.6.1.56.2" codeSystemName="Categorie di Rischio" code="22" displayName="Viaggi all'estero"/>
+									<value xsi:type="CD" code="31" codeSystem="2.16.840.1.113883.2.9.6.1.56.2" codeSystemName="Categorie di Rischio"  displayName="Categorie di Rischio"/>
 								</observation>
 							</entryRelationship>
-							<!--condizioni sanitarie a rischio-->
-							<entryRelationship typeCode="RSON" inversionInd="false">    
+							<entryRelationship typeCode="RSON" inversionInd="false">    <!--condizioni sanitarie a rischio-->
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.6"/>
 									<code code="59785-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Indicazioni per la vaccinazione"/>
 									<statusCode code="completed"/> 
-									<value xsi:type="CD"  code="493.9" codeSystem="2.16.840.1.113883.6.103" displayName="bronchite asmatica (acuta)" codeSystemName="ICD-9CM (diagnosis codes)"> 
+									<value xsi:type="CD" code="345.0" codeSystem="2.16.840.1.113883.6.103" displayName="Epilessia Geeneralizzata non convulsiva" codeSystemName="ICD-9CM (diagnosis codes)"> 
 										<originalText> 
 											<reference value="#[REF_CONSRISK]"/> 
 										</originalText> 
@@ -252,30 +258,28 @@
 										<low value="20220427101010+0100"/>
 										<high value ="20220506101010+0100"/>
 									</effectiveTime>
-									<value xsi:type="CD" code="692.3" codeSystem="2.16.840.1.113883.6.103" displayName="Dermatite da contatto con farmaci" codeSystemName="ICD-9CM (diagnosis codes)"> 
+									<value xsi:type="CD" code="692.3" codeSystem="2.16.840.1.113883.6.103" displayName="Dermatite da contatto con farmaci" codeSystemName="ICD-9CM (diagnosis codes)">
 									<originalText>
 										<reference value="#[REF_REAZ]"/> 
 									</originalText>
 									</value>
 								</observation>
 							</entryRelationship>
-							<!--malattia per cui si effettua la vaccinazione-->
-							<entryRelationship typeCode="RSON" inversionInd="false"> 
+							<entryRelationship typeCode="RSON" inversionInd="false"> <!--malattia per cui si effettua la vaccinazione-->
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.9"/> 
 									<code code="75323-6" displayName="Condizione" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" code="99.45" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Morbillo">
-										<originalText>
-											<reference value="#[REF_MAL]"></reference>
-										</originalText>
+									<value xsi:type="CD" code="055.9" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Measles without mention of complication">
+									<originalText>
+										<reference value="#[REF_MAL]"></reference>
+									</originalText>
 									</value>
 								</observation>
 							</entryRelationship>
 						</substanceAdministration>
 					</entry>	
-					<!--dati esonero/omissione o differimento-->
-					<!--entry-->  
+					<!--entry-->  <!--dati esonero/omissione o differimento-->
 						<!--substanceAdministration moodCode="EVN" classCode="SBADM">
 							<templateId root="2.16.840.1.113883.2.9.10.1.11.4.2"/>
 							<statusCode code="cancelled"/>
@@ -291,21 +295,19 @@
 							</consumable>
 							<participant typeCode="LOC">
 								<participantRole classCode="ROL">
-									<id root="XXX" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
+									<id root="1.2.3.4.5" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
 								</participantRole>
-							</participant-->
-							<!--numero di dose-->
-							<!--entryRelationship typeCode="SUBJ" inversionInd="true">  
-								<observation classCode="OBS" moodCode="EVN">
+							</participant>
+							<entryRelationship typeCode="SUBJ" inversionInd="true"-->  <!--numero di dose-->
+								<!--observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.3"/> 
 									<code code="30973-2" displayName="Numero di dose" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
 									<statusCode code="completed"/> 
 									<value xsi:type="INT" value="3"/> 
 								</observation>
 							</entryRelationship-->
-							<!--ragione esonero/omissione o differimento-->
-							<!--entryRelationship typeCode="RSON"> 
-								<observation classCode="OBS" moodCode="EVN">
+							<!--entryRelationship typeCode="RSON"--> <!--ragione esonero/omissione o differimento-->
+								<!--observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.10"/>
 									<code code="85714-4" displayName="Motivo per cui non si è ricevuto vaccino" codeSystemName="HL7 ActNoImmunizationReason" codeSystem="2.16.840.1.113883.6.1"/>
 									<statusCode code="completed"/>
@@ -313,32 +315,28 @@
 										<low value="20220425121122+0100"/>
 										<high value="20210707221122+0100"/>
 									</effectiveTime>
-									<value xsi:type="CD" code="427.89" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Bradicardia"/>
+									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="[DESC_MOTIVO]"/>
 								</observation>
-							</entryRelationship-->
-							<!--malattia con presunta immunità-->
-							<!--entryRelationship typeCode="RSON">
-								<observation classCode="OBS" moodCode="EVN"> 
-									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.7"/>
-									<code code="59784-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Disease with presumed immunity"/>
-									<statusCode code="completed"/>
-									<value xsi:type="CD" code="403.9" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Nefropatia ipertensiva non specificata">
-										<originalText>
-											<reference value="#[REF_IMMUNE]"></reference>
-										</originalText>
-									</value>
-								</observation>
-							</entryRelationship-->	
-							<!--malattia per cui si effettua la vaccinazione-->
-							<!--entryRelationship typeCode="RSON" inversionInd="false"> 
-								<observation classCode="OBS" moodCode="EVN"> 
+							</entryRelationship>
+							<entryRelationship typeCode="CAUS">
+							<observation classCode="OBS" moodCode="EVN"--> <!--malattia con presunta immunità-->
+								<!--code code="59784-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Disease with presumed immunity"/>
+								<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="[DESC_MALATTIA]">
+									<originalText>
+										<reference value="#[REF_IMMUNE]"></reference>
+									</originalText>
+								</value>
+							</observation>
+							</entryRelationship>	
+							<entryRelationship typeCode="RSON" inversionInd="false"--> <!--malattia per cui si effettua la vaccinazione-->
+								<!--observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.9"/> 
 									<code code="75323-6" displayName="Condizione" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/> 
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" code="99.45" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="Morbillo">
-										<originalText>
-											<reference value="#[REF_MAL]"></reference>
-										</originalText>
+									<value xsi:type="CD" code="XXX" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM" displayName="[DESC_MAL]">
+									<originalText>
+										<reference value="#[REF_MAL]"></reference>
+									</originalText>
 									</value>
 								</observation>
 							</entryRelationship>
@@ -349,3 +347,5 @@
 		</structuredBody>
 	</component>
 </ClinicalDocument>	
+
+

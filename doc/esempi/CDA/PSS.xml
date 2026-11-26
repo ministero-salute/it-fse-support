@@ -30,7 +30,7 @@
 					<given>Guido</given>
 				</name>
 				<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Femmina"/> 
-				<birthTime value="19900619"/>
+				<birthTime value="20220712"/>
 				<birthplace> 
 					<place>
 						<addr>
@@ -107,7 +107,7 @@
 	<custodian>
 		<assignedCustodian>
 			<representedCustodianOrganization>
-				<id root="2.16.840.1.113883.2.9.4.1.2" extension="XXX" assigningAuthorityName="Ministero della Salute"/>
+				<id root="2.16.840.1.113883.2.9.4.1.2" extension="1.2.3.4.5" assigningAuthorityName="Ministero della Salute"/>
 				<name>XXX</name>
 				<telecom use="WP" value="tel:0640402233"/>
 				<addr>
@@ -209,7 +209,7 @@
 			<component typeCode="COMP">
 				<section ID="ALLERGIE_INTOLLERANZE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.1"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-001"/>
+					<id root="1.2.3.4.5"/>
 					<code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergie, Reazioni Avverse"/>
 					<title>Allergie e Intolleranze</title>
 					<text>
@@ -218,7 +218,7 @@
 					<entry>
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-002"/>
+							<id root="1.2.3.4.5"/>
 							<code nullFlavor="NA"/>
 							<statusCode code="active"/>
 							<effectiveTime>
@@ -258,7 +258,7 @@
 							<entryRelationship typeCode="SUBJ">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.3"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-003"/>
+									<id root="1.2.3.4.5"/>
 									<code code="52473-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergia o causa della reazione"/>
 									<text>
 										<reference value="#[REF_TXT_ALLARME]"/>
@@ -268,7 +268,7 @@
 										<low value="20200410000000+0100"/>
 										<high value="20220410000000+0100"/>
 									</effectiveTime>
-									<value xsi:type="CD" code="ALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ObservationIntoleranceType" displayName="Allergy"/>
+									<value xsi:type="CD" code="ALG" codeSystem="2.16.840.1.113883.1.11.19700" codeSystemName="ObservationIntoleranceType" displayName="Allergy"/>
 									<participant typeCode="CSM">
 										<participantRole classCode="MANU">
 											<playingEntity classCode="MMAT">
@@ -283,7 +283,7 @@
 									<entryRelationship typeCode="MFST">
 										<observation classCode="OBS" moodCode="EVN" >
 											<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.5.1"/>
-											<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-004"/>
+											<id root="1.2.3.4.5"/>
 											<code code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Obiettività Clinica"/>
 											<text>
 												<reference value="#[REF_TXT_REAZ]"/>
@@ -342,7 +342,7 @@
 			<component typeCode="COMP">
 				<section ID="TERAPIE_FARMACOLOGICHE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.2"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-005"/>
+					<id root="1.2.3.4.5"/>
 					<code code='10160-0' codeSystem='2.16.840.1.113883.6.1' codeSystemName='LOINC' displayName='HISTORY OF MEDICATION USE'/>
 					<title>Terapie Farmacologiche</title>
 					<text>
@@ -351,7 +351,7 @@
 					<entry>
 						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.2.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-006"/>
+							<id root="1.2.3.4.5"/>
 							<text>
 								<reference value="#[REF_MED]"/>
 							</text>
@@ -364,7 +364,7 @@
 								<period value="6" unit="h" />
 							</effectiveTime>
 							<!--Via di somministrazione (OPZIONALE)-->
-							<routeCode code="SQ" codeSystem="2.16.840.1.113883.5.112" codeSystemName=" HL7 RouteOfAdministration" displayName="Injection, subcutaneous"/>
+							<routeCode code="SQ" codeSystem="2.16.840.1.113883.5.112" codeSystemName="HL7 RouteOfAdministration" displayName="Injection, subcutaneous"/>
 							<!--Sito di somministrazione (OPZIONALE)-->
 							<approachSiteCode code="LA" codeSystem="2.16.840.1.113883.5.1052" codeSystemName="ActSite" displayName="left arm"/>
 							<!--Dose (OPZIONALE)-->
@@ -411,7 +411,7 @@
 			<component typeCode="COMP">
 				<section ID="VACCINAZIONI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.3"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-007"/>
+					<id root="1.2.3.4.5"/>
 					<code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di immunizzazioni"/>
 					<title>Vaccinazioni</title>
 					<text>
@@ -420,14 +420,14 @@
 					<entry>
 						<substanceAdministration classCode="SBADM" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.3.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-008"/>
+							<id root="1.2.3.4.5"/>
 							<code code="IMMUNIZ" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" displayName="Immunization" />
 							<text>
 								<reference value="#[REF_DESC_VACC]"/>
 							</text>
 							<statusCode code="completed"/>
 							<effectiveTime value="20210420101010+0100"/>
-							<routeCode code="IM" codeSystem="2.16.840.1.113883.5.112" codeSystemName=" HL7 RouteOfAdministration" displayName="Injection, intramuscular"/>
+							<routeCode code="IM" codeSystem="2.16.840.1.113883.5.112" codeSystemName="HL7 RouteOfAdministration" displayName="Injection, intramuscular"/>
 							<consumable typeCode="CSM">
 								<manufacturedProduct classCode="MANU">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.3.2"/>
@@ -471,7 +471,7 @@
 							<entryRelationship typeCode="CAUS">
 								<observation classCode="OBS" moodCode="EVN" >
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.5.1"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-009"/>
+									<id root="1.2.3.4.5"/>
 									<code code="75321-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Obiettività Clinica"/>
 									<text>
 										<reference value="#[REF_TXT_REAZ]"/>
@@ -492,7 +492,7 @@
 							<entryRelationship typeCode="SUBJ" inversionInd="true">
 								<act classCode="ACT" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.7"/>
-									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotation Comment"/>
+									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotazioni e commenti"/>
 									<text>
 										<reference value="#[REF_COMMENTI_VAC]"/>
 									</text>
@@ -507,7 +507,7 @@
 			<component typeCode="COMP">
 				<section ID="LISTA_PROBLEMI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.4"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-010"/>
+					<id root="1.2.3.4.5"/>
 					<code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Lista dei Problemi"/>
 					<title>Lista dei Problemi</title>
 					<text>
@@ -517,7 +517,7 @@
 					<entry>
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-011"/>
+							<id root="1.2.3.4.5"/>
 							<code nullFlavor="NA"/>
 							<statusCode code="active"/>
 							<effectiveTime>
@@ -528,8 +528,8 @@
 							<entryRelationship typeCode="SUBJ" inversionInd="false">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.2"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-012"/>
-									<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
+									<id root="1.2.3.4.5"/>
+									<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problema"/>
 									<text>
 										<reference value="#[REF_PROBLEMA]"/>
 									</text>
@@ -596,7 +596,7 @@
 							<entryRelationship typeCode="REFR" inversionInd="true">
 								<act classCode="ACT" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.4.3"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-013"/>
+									<id root="1.2.3.4.5"/>
 									<code nullFlavor="NA"/>
 									<text>
 										<reference value="#[REF]"/>
@@ -611,7 +611,7 @@
 			<component typeCode="COMP">
 				<section ID="ANAMNESI_FAMILIARE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.16"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-014"/>
+					<id root="1.2.3.4.5"/>
 					<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di malattie di membri familiari"/>
 					<title>Anamnesi Familiare</title>
 					<text>
@@ -658,7 +658,7 @@
 					<entry>
 						<organizer classCode="CLUSTER" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.16.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-015"/>
+							<id root="1.2.3.4.5"/>
 							<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di malattie di membri familiari"/>
 							<statusCode code="completed"/>
 							<subject typeCode="SBJ">
@@ -673,7 +673,7 @@
 							<component>
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.16.2"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-016"/>
+									<id root="1.2.3.4.5"/>
 									<code code="52797-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi codice ICD"/>
 									<text>
 										<reference value="#fam_4"/>
@@ -736,7 +736,7 @@
 							<id root='XXX'/>
 							<code code="75326-9" codeSystem="2.16.840.1.113883.2.9.77.22.11.9" codeSystemName="LOINC" displayName="Problema"/>
 							<statusCode code="completed"/>
-							<value xsi:type="CD" code="no-known-problems" codeSystem="2.16.840.1.113883.11.22.9" codeSystemName="	IPSNoProbsInfos" displayName="Informazioni non note sull'anamnesi familiare"/>
+							<value xsi:type="CD" code="no-known-problems" codeSystem="2.16.840.1.113883.11.22.17" codeSystemName="	IPSNoProbsInfos" displayName="Informazioni non note sull'anamnesi familiare"/>
 						</observation>
 					</entry-->
 					
@@ -746,9 +746,9 @@
 			<component typeCode="COMP">
 				<section ID="STILE_DI_VITA">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.6"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-017"/>
+					<id root="1.2.3.4.5"/>
 					<code code="29762-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Stile di vita"/>
-					<title>Stili di Vita (Social History)</title>
+					<title>Stili di Vita</title>
 					<text>
 						<table border="1" width="100%">
 							<tbody>
@@ -804,9 +804,9 @@
 			</component>
 			
 			<component typeCode="COMP">
-				<section ID="GRAVIDANZE_PARTO">
+				<section ID="GRAVIDANZE_E_PARTO">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.7"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-018"/>
+					<id root="1.2.3.4.5"/>
 					<code code="10162-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di gravidanze"/>
 					<title>Gravidanze, parto e stato mestruale</title>
 					<text>
@@ -843,7 +843,7 @@
 			<component typeCode="COMP">
 				<section ID="PARAMETRI_VITALI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.8"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-019"/>
+					<id root="1.2.3.4.5"/>
 					<code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Parametri vitali"/>
 					<title>Parametri Vitali</title>
 					<text>
@@ -899,14 +899,14 @@
 					<entry>
 						<organizer classCode="CLUSTER" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-020"/>
+							<id root="1.2.3.4.5"/>
 							<code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Parametri vitali"/>
 							<statusCode code="completed"/>
 							<effectiveTime value="20200420000000+0100"/>
 							<component typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.2"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-021"/>
+									<id root="1.2.3.4.5"/>
 									<code code="8480-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pressione Sistolica"/>
 									<text>
 										<reference value="#[REF_OBS]"/>
@@ -923,7 +923,7 @@
 							<component typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.2"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-022"/>
+									<id root="1.2.3.4.5"/>
 									<code code="8462-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Pressione Diastolica"/>
 									<text>
 										<reference value="#[REF_OBS]"/>
@@ -942,7 +942,7 @@
 					<entry>
 						<observation classCode="OBS" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.8.2"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-023"/>
+							<id root="1.2.3.4.5"/>
 							<code code="8302-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Altezza Corporea"/>
 							<text>
 								<reference value="#[REF_OBS]"/>
@@ -957,9 +957,9 @@
 			</component>
 			
 			<component typeCode="COMP">
-				<section ID="PROTESI_IMPIANTI_AUSILI">
+				<section ID="PROTESI_IMPIANTI_E_AUSILI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.9"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-024"/>
+					<id root="1.2.3.4.5"/>
 					<code code="46264-8" displayName="Storia di uso di dispositivi medici" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
 					<title>Protesi, Impianti ed Ausilii</title> 
 					<text>
@@ -991,11 +991,11 @@
 			</component>
 			
 			<component typeCode="COMP">
-				<section ID="PIANI_CURA">
+				<section ID="PIANI_DI_CURA">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.10"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-025"/>
+					<id root="1.2.3.4.5"/>
 					<code code="18776-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Piano di cura"/>
-					<title>Piano di Cura</title>
+					<title>Piani di Cura</title>
 					<text>
 						[NARRATIVE_BLOCK]
 					</text>
@@ -1015,7 +1015,7 @@
 					<entry>
 						<substanceAdministration classCode="SBADM" moodCode="RQO">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.10.2"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-026"/>
+							<id root="1.2.3.4.5" extension="[CODICE_TERAPIA]"/>
 							<text>
 								<reference value="#[REF_MED]"/>
 							</text>
@@ -1047,7 +1047,7 @@
 					<entry>
 						<procedure classCode="PROC" moodCode="RQO">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.10.3"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-027"/>
+							<id root="1.2.3.4.5"/>
 							<code code="68692-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Neurological surgery procedure note"/>
 							<text>
 								<reference value="#[REF_PROC]"/>
@@ -1059,7 +1059,7 @@
 					<entry>
 						<encounter classCode="ENC" moodCode="RQO">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.10.4"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-028"/>
+							<id root="1.2.3.4.5"/>
 							<code code="IMP" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActEncounterCode" displayName="Inpatient"/>
 							<text>
 								<reference value="#[REF_ENC]"/>
@@ -1085,8 +1085,8 @@
 			<component typeCode="COMP">
 				<section ID="TRATTAMENTI_PROCEDURE_TERAPEUTICHE_CHIRURGICHE_DIAGNOSTICHE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.11"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-029"/>
-					<code code="47519-4" codeSystem="2.16.840.1.113883.6.1" displayName="Storia di Procedure"/>
+					<id root="1.2.3.4.5"/>
+					<code code="47519-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di Procedure"/>
 					<title> Trattamenti e procedure terapeutiche, chirurgiche e diagnostiche </title>
 					<text>
 						[NARRATIVE_BLOCK]
@@ -1106,14 +1106,14 @@
 							</effectiveTime>
 							<entryRelationship typeCode="RSON">
 								<observation classCode="OBS" moodCode="EVN">
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-030"/>
+									<id root="1.2.3.4.5"/>
 									<code code="410" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM (diagnosis codes)" displayName="IMA"/>
 								</observation>
 							</entryRelationship>
 							<entryRelationship typeCode="RSON">
 								<encounter classCode="ENC" moodCode="EVN">
 								<templateId root="2.16.840.1.113883.2.9.10.1.4.3.12.1"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-031"/>
+									<id root="1.2.3.4.5"/>
 									<code code="FLD" codeSystem="2.16.840.1.113883.2.9.77.22.11.14" codeSystemName="EncounterCode_PSST" displayName="Assistenza Territoriale"/>
 									<effectiveTime>
 										<low value="20200420100000+0100"/>
@@ -1133,9 +1133,9 @@
 			</component>
 			
 			<component typeCode="COMP">
-				<section ID="VISITE_RICOVERI">
+				<section ID="VISITE_E_RICOVERI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.12"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-032"/>
+					<id root="1.2.3.4.5"/>
 					<code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di ospedalizzazioni e Storia di visite ambulatoriali"/> 
 					<title>Visite e Ricoveri</title>
 					<text>
@@ -1144,7 +1144,7 @@
 					<entry>
 						<encounter classCode="ENC" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.12.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-033"/>
+							<id root="1.2.3.4.5"/>
 							<code code="CARD" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode" displayName="Cardiologia"/>
 							<text>
 								<reference value="#[REF_ENC]"/>
@@ -1174,32 +1174,17 @@
 			</component>
 			
 			<component typeCode="COMP">
-				<section ID="STATO_FUNZIONALE_PAZIENTE">
+				<section ID="STATO_FUNZIONALE_DEL_PAZIENTE">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.13"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-034"/>
+					<id root= "1.2.3.4.5"/>
 					<code code="47420-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Nota di valutazione dello stato funzionale"/>
 					<title>Stato funzionale del Paziente</title>
 					<text>
-						<table border="1" width="100%">
-							<tbody>
-								<tr>
-									<th>ADL (Katz 1970)</th>
-								</tr>
-								<tr>
-									<td>
-										<paragraph>
-											<content styleCode="Bold">Rilevazione del 10 maggio 2015</content>
-										</paragraph>
-										<list>
-											<item>Capacità motoria: allettato</item>
-											<item>Vestirsi: Necessita di assistenza per allacciarsi le scarpe</item>
-											<item>Uso dei servizi : Va in Bagno si pulisce si riveste è in grado di svuotare vaso e padella</item>
-											<item>Assistenza domiciliare Integrata attiva dal 10/01/2013</item>
-										</list>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						Rilevazione del 10 maggio 2015:
+						Capacità motoria: allettato
+						Vestirsi: Necessita di assistenza per allacciarsi le scarpe
+						Uso dei servizi : Va in Bagno si pulisce si riveste è in grado di svuotare vaso e padella
+						Assistenza domiciliare Integrata attiva dal 10/01/2013
 					</text> 
 					<entry typeCode="DRIV"> 
 						<organizer classCode="BATTERY" moodCode="EVN"> 
@@ -1224,7 +1209,7 @@
 									<effectiveTime> 
 										<low value="20220420101010+0100"/> 
 									</effectiveTime> 
-									<value xsi:type="CD" code="PSSADI" codeSystem="2.16.840.1.113883.2.9.5.2.8" displayName="Assistenza Domiciliare Integrata"/> 
+									<value xsi:type="CD" code="PSSADI" codeSystem="2.16.840.1.113883.2.9.5.2.8" codeSystemName="AssistenzaDomiciliare_PSSIT" displayName="Assistenza Domiciliare Integrata"/> 
 								</observation> 
 							</component> 
 							
@@ -1245,15 +1230,18 @@
 			</component>
 			
 			<component typeCode="COMP">
-				<section ID="INDAGINI_DIAGNOSTICHE_ESAMI_LABORATORIO">
+				<section ID="INDAGINI_DIAGNOSTICHE_E_ESAMI_DI_LABORATORIO">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.14"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-035"/>
+					<id root="1.2.3.4.5"/>
 					<code code="30954-2" codeSystem="2.16.840.1.113883.6.1" displayName="Test diagnostici rilevanti e/o dati di laboratorio"/>
 					<title>Indagini diagnostiche e esami di laboratorio</title>
 					<text>
 						<table border="1" width="100%"> 
-							<caption>23 Marzo 2022 - Emocromo e piastrine</caption> 
+							
 							<thead> 
+								<tr>
+									<th colspan="6">23 Marzo 2022 - Emocromo e piastrine</th>
+								</tr>
 								<tr> 
 									<th>Esame</th>
 									<th>Esito</th>
@@ -1293,8 +1281,11 @@
 							</tbody> 
 						</table> 
 						<table border="1" width="100%"> 
-							<caption>12 Aprile 2022 - Creatinina</caption> 
+							 
 							<thead> 
+								<tr>
+									<th colspan="6">12 Aprile 2022 - Creatinina</th>
+								</tr>
 								<tr> 
 									<th>Esame</th>
 									<th>Esito</th>
@@ -1323,7 +1314,7 @@
 							<component> 
 								<observation classCode="OBS" moodCode="EVN"> 
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.14.2"/>
-									<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-036"/>
+									<id root="1.2.3.4.5"/>
 									<code code="2161-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Creatinina nelle urine"/> 
 									<!--code nullFlavor='OTH'/-->
 									<statusCode code="completed"/> 
@@ -1353,7 +1344,7 @@
 			<component typeCode="COMP">
 				<section ID="ASSENSO_DISSENSO_DONAZIONE_ORGANI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.15"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-037"/>
+					<id root="1.2.3.4.5"/>
 					<code code="42348-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Dichiarazioni anticipate di trattamento"/>
 					<title> Assenso / Dissenso Donazione Organi </title> 
 					<text>
@@ -1382,7 +1373,7 @@
 			<component typeCode="COMP">
 				<section ID="ESENZIONI">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.17"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-038"/>
+					<id root="1.2.3.4.5"/>
 					<code code="57827-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Motivo di esenzione dal co-pagamento"/>
 					<title> Esenzioni </title> 
 					<text>
@@ -1391,7 +1382,7 @@
 					<entry>
 						<act classCode="ACT" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.17.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-039"/>
+							<id root="1.2.3.4.5"/>
 							<code code="02" codeSystem="2.16.840.1.113883.2.9.6.1.22" displayName="Disoccupazione"/>
 							<statusCode code="active"/>
 							<effectiveTime>
@@ -1414,9 +1405,9 @@
 			</component>
 			
 			<component typeCode="COMP">
-				<section ID="RETI_PATOLOGIA">
+				<section ID="RETI_DI_PATOLOGIA">
 					<templateId root="2.16.840.1.113883.2.9.10.1.4.2.18"/>
-					<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-040"/>
+					<id root="1.2.3.4.5"/>
 					<code code="PSSIT99" codeSystem="2.16.840.1.113883.2.9.5.2.8" codeSystemName="ProfiloSanitarioSinteticoIT" displayName="Reti di Patologia"/>
 					<title> Reti di Patologia </title> 
 					<text>
@@ -1425,14 +1416,14 @@
 					<entry>
 						<act classCode="PCPR" moodCode="EVN">
 							<templateId root="2.16.840.1.113883.2.9.10.1.4.3.18.1"/>
-							<id root="2.16.840.1.113883.2.9.2.120.4.4" extension="TEST-PSS-041"/>
+							<id root="1.2.3.4.5"/>
 							<code code="XX" codeSystem="2.16.840.1.113883.2.9.2.30.3.1.3.6.10.1" displayName="Rete IMA"/>
 							<statusCode code="active"/>
 							<effectiveTime>
 								<low nullFlavor="UNK"/>
 								<!--high value="20200420101010+0100"/-->
 							</effectiveTime>
-							<entryRelationship typeCode="COMP">
+							<entryRelationship typeCode="SUBJ">
 								<act classCode="ACT" moodCode="EVN">
 									<templateId root="2.16.840.1.113883.2.9.10.1.4.3.1.7"/>
 									<code code="48767-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Annotation Comment"/>

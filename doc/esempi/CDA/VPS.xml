@@ -418,8 +418,9 @@
 									</assignedPerson>
 								</assignedAuthor>
 							</author>
-							<entry> 
+							<entry typeCode="COMP"> 
 								<observation moodCode="EVN" classCode="OBS">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.316"/>
 									<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
 									<statusCode code="completed"/>
 									<effectiveTime>
@@ -427,7 +428,7 @@
 										<high value="20220420101010+0100"/>
 									</effectiveTime>
 									<value xsi:type="CD" code="153.5" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="TUMORI MALIGNI DELL'APPENDICE"/>
-									<entryRelationship typeCode="REFR" inversionInd='false'> 
+									<entryRelationship typeCode="REFR" inversionInd="false"> 
 										<observation classCode="OBS" moodCode="EVN">
 											<code code="89261-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Decorso Clinico" />
 											<text>
@@ -437,7 +438,7 @@
 											<value xsi:type="CE" code="LA28752-6" codeSystem="2.16.840.1.113883.6.1" displayName="Chronic"/>
 										</observation>
 									</entryRelationship > 
-									<entryRelationship typeCode="REFR" inversionInd='false'>
+									<entryRelationship typeCode="REFR" inversionInd="false">
 										<observation classCode="OBS" moodCode="EVN">
 											<code code="33999-4" displayName="Stato" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
 											<text>
@@ -449,8 +450,9 @@
 									</entryRelationship>
 								</observation>
 							</entry>
-							<entry>
+							<entry typeCode="COMP">
 								<organizer classCode="CLUSTER" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.317"/>
 									<code code="10157-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Storia di malattie di membri familiari"/>
 									<statusCode code="completed"/>
 									<effectiveTime value="20220423101010+0100"/>
@@ -458,12 +460,17 @@
 										<relatedSubject classCode="PRS">
 											<code code="MTH" codeSystem="2.16.840.1.113883.5.111" codeSystemName="RoleCode" displayName="Mother"/>
 											<subject>
+												<name>
+													<family>Prova</family>
+													<given>Fabrizio</given>
+												</name>
 												<administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1" codeSystemName="HL7 AdministrativeGender" displayName="Femmina"/>
 											</subject>
 										</relatedSubject>
 									</subject>
 									<component>
 										<observation classCode="OBS" moodCode="EVN">
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.931"/>
 											<code code="52797-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosi codice ICD"/> 
 											<text>
 												<reference value="#[REF_OBS]"/>
@@ -473,12 +480,14 @@
 											<value xsi:type="CD" code="575.6" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9-CM" displayName="COLESTEROLOSI DELLA COLECISTI"/>
 											<entryRelationship typeCode="SUBJ">
 												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.3.1937.777.63.10.932"/>
 													<code code="35267-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età diagnosi patologia"/>
 													<value xsi:type="PQ" value="40" unit="a"/> 
 												</observation>
 											</entryRelationship>
 											<entryRelationship typeCode="SUBJ">
 												<observation classCode="OBS" moodCode="EVN">
+													<templateId root="2.16.840.1.113883.3.1937.777.63.10.933"/>
 													<code code="39016-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Età_decesso"/>
 													<value xsi:type="PQ" value="70" unit="a"/> 
 												</observation>
@@ -575,6 +584,7 @@
 							</author>
 							<entry> 
 								<act classCode="ACT" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.319"/>
 									<code nullFlavor="NA"/> 
 									<statusCode code="active"/>
 									<effectiveTime>
@@ -583,6 +593,7 @@
 									</effectiveTime>
 									<entryRelationship typeCode="SUBJ">
 										<observation classCode="OBS" moodCode="EVN"> 
+											<templateId root="2.16.840.1.113883.3.1937.777.63.10.320"/>
 											<code code="52473-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergia o causa della reazione"/> 
 											<text>
 												<reference value="#[REF_NOTA1]"/>
@@ -592,7 +603,7 @@
 												<low value="20220415101010+0100"/>
 												<high value="20220419101010+0100"/>
 											</effectiveTime>
-											<value xsi:type="CD" code="ALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ObservationIntoleranceType" displayName="Allergy"/>
+											<value xsi:type="CD" code="ALG" codeSystem="2.16.840.1.113883.1.11.19700" codeSystemName="ObservationIntoleranceType" displayName="Allergy"/>
 											<participant typeCode="CSM">
 												<participantRole classCode="MANU">
 													<playingEntity classCode="MMAT">
@@ -629,7 +640,7 @@
 														<reference value="#[REF_TXT_CRIT]"/>
 													</text>
 													<statusCode code="completed"/>
-													<value xsi:type="CD" code="M" codeSystem="2.16.840.1.113883.5.1063" codeSystemName="CriticalityObservation" displayName="Moderate"/>
+													<value xsi:type="CD" code="M" codeSystem="2.16.840.1.113883.2.9.77.22.11.6" codeSystemName="CriticalityObservation" displayName="Moderate"/>
 												</observation>
 											</entryRelationship>
 											<entryRelationship typeCode="REFR">
@@ -848,8 +859,21 @@
 							manifestato una evidente reazione allergica.
 						</paragraph> 
 					</text>
+					<author>
+						<time value="20220416101010+0100"/>
+						<assignedAuthor>
+							<id root="2.16.840.1.113883.2.9.4.3.2" extension="PROVAX00X00X000Y" assigningAuthorityName="MEF"/>
+							<assignedPerson>
+								<name>
+									<family>Test</family>
+									<given>Stefano</given>
+								</name>
+							</assignedPerson>
+						</assignedAuthor>
+					</author>
 					<entry> 
 						<observation classCode="OBS" moodCode="EVN"> 
+							<templateId root="2.16.840.1.113883.3.1937.777.63.10.323"/>
 							<code code="75326-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem"/>
 							<effectiveTime>
 								<low value="20170101090000+0100"/> 
@@ -1009,9 +1033,6 @@
 									<statusCode code="completed"/>
 									<repeatNumber value="3"/>
 									<value xsi:type="PQ" value="10" unit="kg"/>
-									<interpretationCode code="B" codeSystem="2.16.840.1.113883.5.83" codeSystemName="HL7 ObservationInterpretation" displayName="Better"/>
-									<methodCode code="70962-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Body weight Measured"/>
-									<!--targetSiteCode code="[TRG_CODE]" codeSystem="[OID_CODESYSTEM]" codeSystemName="[DESC_CODESYSTEM]" displayName="[DESC_TARGET]"/-->
 									<performer>
 										<time value="20220421101010+0100"/>
 										<assignedEntity>
@@ -1087,7 +1108,7 @@
 								<high value="15" unit="mL/h"/> 
 							</rateQuantity>
 							<!--Forma Farmaceutica-->
-							<administrationUnitCode code="385219001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Injection solution"/>
+							<administrationUnitCode code="385219001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Solution for injection"/>
 							<!--ATC / AIC -->
 							<consumable>
 								<manufacturedProduct classCode="MANU">
@@ -1129,6 +1150,7 @@
 							<!-- GRAMMATURA -->
 							<entryRelationship typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.921"/>
 									<code 	code="029480086" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="Grammatura"/>
 									<value xsi:type="REAL" value="2.5"/>
 								</observation>
@@ -1136,6 +1158,7 @@
 							<!-- QUANTITÀ NELLA CONFEZIONE -->
 							<entryRelationship typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.922"/>
 									<code code="029480086" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="Quantità nella Confezione"/>
 									<value xsi:type="REAL" value="5"/>
 								</observation>
@@ -1143,9 +1166,10 @@
 							<!-- NUMERO DI CONFEZIONI -->
 							<entryRelationship typeCode="COMP">
 								<supply classCode="SPLY" moodCode="RQO">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.924"/>
 									<quantity value="5"/>
 								</supply>
-							</entryRelationship>	
+							</entryRelationship>
 						</substanceAdministration>
 					</entry>
 				</section>
@@ -1288,7 +1312,8 @@
 							<effectiveTime value="20220427171717+0100"/>
 							<value xsi:type="ST">[PROGNOSI]</value>
 						</observation> 
-					</entry>					
+					</entry>
+					
 					<!--livello di appropriatezza-->
 					<entry>
 						<observation classCode="OBS" moodCode="EVN"> 
@@ -1412,7 +1437,7 @@
 							<!--Periodo di inizio e fine della terapia (OBBLIGATORIO)-->
 							<effectiveTime xsi:type="IVL_TS">
 								<low value="20220425121122+0100"/>
-								<high value="20220707221122+0100"/>
+								
 							</effectiveTime>
 							<!--Posologia – es. 2 volte al giorno (OPZIONALE)-->
 							<effectiveTime operator="A" xsi:type="PIVL_TS" institutionSpecified="true">
@@ -1460,10 +1485,10 @@
 									</playingEntity >
 								</participantRole >
 							</participant>
-							
 							<!--Grammatura-->
 							<entryRelationship typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.921"/>
 									<code 	code="029480086" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="Grammatura"/>
 									<value xsi:type="REAL" value="2.5"/>
 								</observation>
@@ -1471,6 +1496,7 @@
 							<!--Quantità nella confezione-->
 							<entryRelationship typeCode="COMP">
 								<observation classCode="OBS" moodCode="EVN">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.922"/>
 									<code code="029480086" codeSystem="2.16.840.1.113883.2.9.6.1.5" codeSystemName="AIC" displayName="Quantità nella Confezione"/>
 									<value xsi:type="REAL" value="50"/>
 								</observation>
@@ -1478,6 +1504,7 @@
 							<!--Numero di confezioni-->
 							<entryRelationship typeCode="COMP">
 								<supply classCode="SPLY" moodCode="RQO">
+									<templateId root="2.16.840.1.113883.3.1937.777.63.10.924"/>
 									<quantity value="5"/>
 								</supply>
 							</entryRelationship>

@@ -181,7 +181,7 @@
 										<lotNumberText>20</lotNumberText>
 									</manufacturedMaterial>
 									<manufacturerOrganization>
-										<id root="2.16.840.1.113883.2.9.4.1.2" extension="999999" assigningAuthorityName="Ministero della Salute"/>
+										<id root="1.2.3.4.5" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
 										<name>XXX</name>
 									</manufacturerOrganization>
 								</manufacturedProduct>
@@ -226,7 +226,7 @@
 									<templateId root="2.16.840.1.113883.2.9.10.1.11.4.5"/>
 									<code code="95715-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Categorie a rischio"/>
 									<statusCode code="completed"/> 
-									<value xsi:type="CD" codeSystem="2.16.840.1.113883.2.9.6.1.56.2" codeSystemName="Categorie di Rischio" code="22" displayName="Viaggi all'estero"/>
+									<value xsi:type="CD" code="31" codeSystem="2.16.840.1.113883.2.9.6.1.56.2" codeSystemName="Categorie di Rischio"  displayName="Categorie di Rischio"/>
 								</observation>
 							</entryRelationship>
 							<!--condizioni sanitarie a rischio-->
@@ -237,7 +237,7 @@
 									<statusCode code="completed"/> 
 									<value xsi:type="CD" code="493.9" codeSystem="2.16.840.1.113883.6.103" displayName="bronchite asmatica (acuta)" codeSystemName="ICD-9CM (diagnosis codes)"> 
 										<originalText> 
-										 <reference value="#[REF_CONSRISK]"/> 
+											<reference value="#[REF_CONSRISK]"/> 
 										</originalText> 
 									</value> 
 								</observation>	
@@ -291,7 +291,7 @@
 							</consumable>
 							<participant typeCode="LOC">
 								<participantRole classCode="ROL">
-									<id root="2.16.840.1.113883.2.9.4.1.2" extension="120148" assigningAuthorityName="Ministero della Salute"/>
+									<id root="1.2.3.4.5" extension="999999" assigningAuthorityName="[NOME_AUTHORITY]"/>
 								</participantRole>
 							</participant>
 							<!--numero di dose-->
